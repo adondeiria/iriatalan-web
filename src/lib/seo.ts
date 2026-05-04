@@ -1,0 +1,212 @@
+/**
+ * JSON-LD schema.org generators alineados a EEAT para YMYL (finanzas).
+ * Combinar múltiples schemas con @graph en una sola etiqueta <script>.
+ */
+
+export const SITE_URL = "https://iriatalan.com.mx";
+export const SITE_NAME = "Iria Talan / RIF";
+
+export type AuthorData = {
+  _id?: string;
+  name: string;
+  slug?: string;
+  title?: string;
+  bio?: string;
+  longBio?: unknown;
+  photo?: { asset?: { url?: string }; alt?: string } | null;
+  credentials?: Array<{ title?: string; issuer?: string; year?: string; category?: string; url?: string }>;
+  carriers?: string[];
+  specialties?: string[];
+  languages?: string[];
+  socialLinks?: {
+    linkedin?: string;
+    instagram?: string;
+    facebook?: string;
+    whatsapp?: string;
+    email?: string;
+    calendly?: string;
+  };
+  officeAddress?: string;
+  sameAs?: string[];
+};
+
+export function buildPersonSchema(author: AuthorData) {
+  const sameAs = [
+    ...(author.sameAs ?? []),
+    author.socialLinks?.linkedin,
+    author.socialLinks?.instagram,
+    author.socialLinks?.facebook,
+  ].filter((u): u is string => typeof u === "string" && u.length > 0);
+
+  const knowsAbout = [
+    ...(author.specialties ?? []),
+    "Seguros de Vida",
+    "Gastos Médicos Mayores",
+    "Planeación Patrimonial",
+    "Retiro y Pensiones",
+  ];
+
+  return {
+    "@type": "Person" as const,
+    "@id": `${SITE_URL}/sobre-iria#person`,
+    name: author.name,
+    jobTitle: author.title,
+    description: author.bio,
+    image: author.photo?.asset?.url,
+    url: `${SITE_URL}/sobre-iria`,
+    knowsAbout,
+    knowsLanguage: author.languages,
+    hasCredential: author.credentials?.map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: c.title,
+      credentialCategory: c.category,
+      recognizedBy: c.issuer
+        ? { "@type": "Organization", name: c.issuer }
+        : undefined,
+      url: c.url,
+    })),
+    sameAs: sameAs.length ? sameAs : undefined,
+  };
+}
+
+export function buildFinancialAdvisorSchema(author: AuthorData) {
+  return {
+    "@type": "FinancialService" as const,
+    "@id": `${SITE_URL}#financialservice`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: author.bio,
+    image: author.photo?.asset?.url,
+    address: author.officeAddress
+      ? {
+          "@type": "PostalAddress",
+          streetAddress: author.officeAddress,
+          addressCountry: "MX",
+        }
+      : undefined,
+    areaServed: { "@type": "Country", name: "México" },
+    serviceType: [
+      "Seguros de Vida",
+      "Gastos Médicos Mayores",
+      "Planeación Patrimonial",
+      "Fideicomisos",
+      "Retiro y Pensiones",
+      "Planes Educacionales",
+    ],
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    telephone: author.socialLinks?.whatsapp,
+    email: author.socialLinks?.email,
+  };
+}
+
+export function buildOrganizationSchema(author?: AuthorData) {
+  return {
+    "@type": "Organization" as const,
+    "@id": `${SITE_URL}#organization`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+    founder: author ? { "@id": `${SITE_URL}/sobre-iria#person` } : undefined,
+    sameAs: author?.sameAs,
+  };
+}
+
+export function buildWebSiteSchema() {
+  return {
+    "@type": "WebSite" as const,
+    "@id": `${SITE_URL}#website`,
+    url: SITE_URL,
+    name: SITE_NAME,
+    inLanguage: "es-MX",
+    publisher: { "@id": `${SITE_URL}#organization` },
+  };
+}
+
+export type FAQItem = { question: string; answerText?: string | null };
+
+export function buildFAQPageSchema(faqs: FAQItem[]) {
+  if (!faqs || faqs.length === 0) return null;
+  return {
+    "@type": "FAQPage" as const,
+    mainEntity: faqs
+      .filter((f) => f.question && f.answerText)
+      .map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.answerText,
+        },
+      })),
+  };
+}
+
+export type ArticleData = {
+  title: string;
+  slug: string;
+  excerpt?: string;
+  publishedAt: string;
+  updatedAt?: string;
+  heroImage?: { asset?: { url?: string }; alt?: string };
+  author?: AuthorData;
+  reviewedBy?: { name?: string };
+  sources?: Array<{ title?: string; url?: string; publisher?: string }>;
+  topic?: string;
+  wordCount?: number;
+};
+
+export function buildArticleSchema(article: ArticleData) {
+  return {
+    "@type": "Article" as const,
+    "@id": `${SITE_URL}/blog/${article.slug}#article`,
+    headline: article.title,
+    description: article.excerpt,
+    image: article.heroImage?.asset?.url,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    inLanguage: "es-MX",
+    wordCount: article.wordCount,
+    keywords: article.topic,
+    author: article.author
+      ? { "@id": `${SITE_URL}/sobre-iria#person` }
+      : undefined,
+    reviewedBy: article.reviewedBy?.name
+      ? { "@type": "Person", name: article.reviewedBy.name }
+      : undefined,
+    citation: article.sources?.map((s) => ({
+      "@type": "CreativeWork",
+      name: s.title,
+      url: s.url,
+      publisher: s.publisher
+        ? { "@type": "Organization", name: s.publisher }
+        : undefined,
+    })),
+    publisher: { "@id": `${SITE_URL}#organization` },
+    mainEntityOfPage: `${SITE_URL}/blog/${article.slug}`,
+  };
+}
+
+export type Breadcrumb = { name: string; path: string };
+
+export function buildBreadcrumbSchema(crumbs: Breadcrumb[]) {
+  if (!crumbs || crumbs.length === 0) return null;
+  return {
+    "@type": "BreadcrumbList" as const,
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: `${SITE_URL}${crumb.path}`,
+    })),
+  };
+}
+
+export function buildGraph(...schemas: Array<unknown | null | undefined>) {
+  const valid = schemas.filter(
+    (s): s is Record<string, unknown> => Boolean(s) && typeof s === "object"
+  );
+  return {
+    "@context": "https://schema.org",
+    "@graph": valid,
+  };
+}
