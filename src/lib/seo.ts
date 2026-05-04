@@ -12,7 +12,7 @@ export type AuthorData = {
   slug?: string;
   title?: string;
   bio?: string;
-  longBio?: unknown;
+  longBio?: unknown[] | null;
   photo?: { asset?: { url?: string }; alt?: string } | null;
   credentials?: Array<{ title?: string; issuer?: string; year?: string; category?: string; url?: string }>;
   carriers?: string[];
