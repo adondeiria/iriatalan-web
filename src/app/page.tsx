@@ -42,7 +42,7 @@ const FALLBACK_VALUE_PROPS = [
       "MDRT Top of the Table — distinción reservada al top mundial de la industria.",
   },
   {
-    title: "6 carriers, una asesora",
+    title: "6 aseguradoras, una asesora",
     description:
       "Sura, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP. Comparamos para ti.",
   },

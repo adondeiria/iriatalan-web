@@ -181,7 +181,7 @@ export default async function SobreIriaPage() {
           <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
-                Carriers autorizados
+                Aseguradoras autorizadas
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
                 Comparo y selecciono entre estas aseguradoras según tu perfil.
