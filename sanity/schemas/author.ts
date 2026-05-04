@@ -106,7 +106,7 @@ export const author = defineType({
     }),
     defineField({
       name: "carriers",
-      title: "Carriers autorizados",
+      title: "Aseguradoras autorizadas",
       description: "BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP, etc.",
       type: "array",
       of: [{ type: "string" }],

@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "Sobre Iria Talan — Asesora Financiera RIF",
   description:
-    "Iria Talan: MDRT Top of the Table, AMASFAC 5to Lugar Nacional, Yale Wealth Management, LSE MBA Essentials. Asesora financiera autorizada CNSF en CDMX.",
+    "Iria Talan: MDRT Top of the Table, AMASFAC 8vo Lugar Nacional, Yale Wealth Management, LSE MBA Essentials. Asesora financiera autorizada CNSF en CDMX.",
   alternates: { canonical: "/sobre-iria" },
   openGraph: {
     title: "Sobre Iria Talan — Asesora Financiera RIF",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 15+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Miembro MDRT Top of the Table — distinción reservada al top mundial de la industria de seguros. AMASFAC 5to Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera con 15+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Miembro MDRT Top of the Table — distinción reservada al top mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
   carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
   specialties: [
     "Seguros de Vida",
@@ -40,7 +40,7 @@ const FALLBACK_AUTHOR: AuthorData = {
   languages: ["Español", "English"],
   credentials: [
     { title: "MDRT Top of the Table", issuer: "Million Dollar Round Table", category: "industria" },
-    { title: "5to Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", category: "industria" },
+    { title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", category: "industria" },
     { title: "Asesora Diamante", issuer: "GNP Seguros", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", category: "carrier" },
     { title: "Wealth Management Certificate", issuer: "Yale University", category: "academica" },

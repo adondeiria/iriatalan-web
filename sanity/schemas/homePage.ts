@@ -127,7 +127,7 @@ export const homePage = defineType({
       fields: [
         defineField({
           name: "carriersShown",
-          title: "Carriers mostrados",
+          title: "Aseguradoras mostradas",
           type: "array",
           of: [{ type: "string" }],
           options: { layout: "tags" },

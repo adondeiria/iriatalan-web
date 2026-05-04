@@ -132,7 +132,7 @@ export const service = defineType({
     }),
     defineField({
       name: "carriersAvailable",
-      title: "Carriers disponibles para este servicio",
+      title: "Aseguradoras disponibles para este servicio",
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
