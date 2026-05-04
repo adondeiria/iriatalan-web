@@ -220,6 +220,85 @@ export default async function SobreIriaPage() {
           </section>
         )}
 
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Contacto
+            </h2>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {author.socialLinks?.whatsapp && (
+                <a
+                  href={`https://wa.me/${author.socialLinks.whatsapp.replace(/[^\d]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                >
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                    WhatsApp
+                  </div>
+                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                    {author.socialLinks.whatsapp}
+                  </div>
+                  <div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                    Atención a clientes de RIF
+                  </div>
+                </a>
+              )}
+              {author.socialLinks?.email && (
+                <a
+                  href={`mailto:${author.socialLinks.email}`}
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                >
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                    Email
+                  </div>
+                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50 break-all">
+                    {author.socialLinks.email}
+                  </div>
+                </a>
+              )}
+              {author.socialLinks?.calendly && (
+                <a
+                  href={author.socialLinks.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                >
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                    Agenda en Calendly
+                  </div>
+                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                    Consulta gratuita 30 min
+                  </div>
+                </a>
+              )}
+              {author.officeAddress && (
+                <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                    Oficina
+                  </div>
+                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50 leading-snug">
+                    {author.officeAddress}
+                  </div>
+                </div>
+              )}
+            </div>
+            {author.socialLinks && (
+              <div className="mt-8 flex gap-4 flex-wrap">
+                {author.socialLinks.linkedin && (
+                  <a href={author.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">LinkedIn →</a>
+                )}
+                {author.socialLinks.instagram && (
+                  <a href={author.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">Instagram →</a>
+                )}
+                {author.socialLinks.facebook && (
+                  <a href={author.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">Facebook →</a>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
         <section className="px-6 py-20 max-w-4xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
