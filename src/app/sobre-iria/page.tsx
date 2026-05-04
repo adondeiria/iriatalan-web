@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
@@ -116,6 +117,12 @@ export default async function SobreIriaPage() {
             <p className="mt-8 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-2xl">
               {author.bio}
             </p>
+          )}
+
+          {author.longBio && Array.isArray(author.longBio) && author.longBio.length > 0 && (
+            <div className="mt-10 max-w-3xl prose prose-zinc dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50">
+              <PortableText value={author.longBio as PortableTextBlock[]} />
+            </div>
           )}
         </section>
 
