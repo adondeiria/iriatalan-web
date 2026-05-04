@@ -98,7 +98,7 @@ export default async function HomePage() {
       : FALLBACK_FEATURED_SERVICES;
   const carriers =
     data?.trustSignals?.carriersShown ??
-    ["Sura", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"];
+    ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"];
 
   const homeSchema = author
     ? buildGraph(

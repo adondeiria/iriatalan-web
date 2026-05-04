@@ -28,7 +28,7 @@ const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
   bio: "Asesora financiera con 15+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Miembro MDRT Top of the Table — distinción reservada al top mundial de la industria de seguros. AMASFAC 5to Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
-  carriers: ["Sura", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
+  carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
   specialties: [
     "Seguros de Vida",
     "Gastos Médicos Mayores",
