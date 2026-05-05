@@ -209,6 +209,80 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <section className="px-6 py-20 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Asesoría especializada
+            </p>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
+              Por situación de vida — territorios donde la asesoría genérica falla.
+            </h2>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+              Hay tres perfiles que la industria de seguros y planeación patrimonial no cubre bien.
+              Por eso construí espacios específicos para cada uno.
+            </p>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              <Link
+                href="/mujeres"
+                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+              >
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
+                  Para mujeres
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  Mujeres que toman decisiones
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+                  Profesionistas, divorciadas, viudas y empresarias.
+                  Cuatro perfiles, cuatro estrategias específicas.
+                </p>
+                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  Conocer →
+                </span>
+              </Link>
+
+              <Link
+                href="/familias-arcoiris"
+                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+              >
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
+                  Familias diversas
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  Familias arcoíris con hijos
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+                  Estructuras legales para que la ley reconozca a tu familia
+                  tal como tú la construiste.
+                </p>
+                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  Conocer →
+                </span>
+              </Link>
+
+              <Link
+                href="/hijos-neurodivergentes"
+                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+              >
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
+                  Cuidado vitalicio
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  Hijos neurodivergentes
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+                  Planeación financiera de por vida — más allá de la
+                  universidad, más allá de tu propia vida.
+                </p>
+                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  Conocer →
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="px-6 py-24 max-w-5xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-12 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
