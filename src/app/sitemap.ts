@@ -7,11 +7,13 @@ import { SITE_URL } from "@/lib/seo";
 type SitemapData = {
   services: Array<{ slug: string; _updatedAt: string }>;
   articles: Array<{ slug: string; _updatedAt: string; publishedAt?: string }>;
+  resources: Array<{ slug: string; _updatedAt: string }>;
 } | null;
 
 const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/", priority: 1.0 },
   { path: "/sobre-iria", priority: 0.9 },
+  { path: "/recursos", priority: 0.8 },
   { path: "/blog", priority: 0.8 },
 ];
 
@@ -43,5 +45,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })) ?? [];
 
-  return [...staticUrls, ...serviceUrls, ...articleUrls];
+  const resourceUrls: MetadataRoute.Sitemap =
+    data?.resources?.map((r) => ({
+      url: `${SITE_URL}/recursos/${r.slug}`,
+      lastModified: new Date(r._updatedAt),
+      priority: 0.6,
+    })) ?? [];
+
+  return [...staticUrls, ...serviceUrls, ...articleUrls, ...resourceUrls];
 }

@@ -4,6 +4,7 @@ import { article } from "./article";
 import { author } from "./author";
 import { faq } from "./faq";
 import { homePage } from "./homePage";
+import { resource } from "./resource";
 import { service } from "./service";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
@@ -12,4 +13,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   article,
   author,
   faq,
+  resource,
 ];

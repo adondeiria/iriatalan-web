@@ -124,6 +124,54 @@ export const SITEMAP_QUERY = defineQuery(`
       "slug": slug.current,
       _updatedAt,
       publishedAt
+    },
+    "resources": *[_type == "resource" && defined(slug.current) && isPublic == true]{
+      "slug": slug.current,
+      _updatedAt
     }
+  }
+`);
+
+export const RESOURCES_LIST_QUERY = defineQuery(`
+  *[_type == "resource" && isPublic == true && defined(slug.current)]
+    | order(carrier asc, category asc, year desc){
+      _id,
+      title,
+      "slug": slug.current,
+      carrier,
+      category,
+      productLine,
+      year,
+      "fileUrl": file.asset->url,
+      "fileSize": file.asset->size,
+      externalUrl,
+      seoDescription
+    }
+`);
+
+export const RESOURCE_QUERY = defineQuery(`
+  *[_type == "resource" && slug.current == $slug && isPublic == true][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    carrier,
+    category,
+    productLine,
+    year,
+    "fileUrl": file.asset->url,
+    "fileSize": file.asset->size,
+    "fileType": file.asset->mimeType,
+    externalUrl,
+    description,
+    seoTitle,
+    seoDescription,
+    _updatedAt
+  }
+`);
+
+export const ALL_RESOURCES_SLUGS_QUERY = defineQuery(`
+  *[_type == "resource" && defined(slug.current) && isPublic == true]{
+    "slug": slug.current,
+    _updatedAt
   }
 `);

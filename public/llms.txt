@@ -53,6 +53,10 @@ BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA, GNP
 - [Planeación patrimonial en divorcios HNWI](https://iriatalan.com.mx/casos/divorcios-patrimonial)
 - [Seguros educacionales internacionales](https://iriatalan.com.mx/casos/educacionales-internacionales)
 
+## Recursos públicos
+
+- [Documentos de aseguradoras](https://iriatalan.com.mx/recursos): biblioteca pública de Condiciones Generales, formatos de reclamación, cuadros médicos y tabuladores de las 6 carriers autorizadas (BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP). Documentación oficial provista por las aseguradoras con fines informativos.
+
 ## Contenido editorial
 
 - [Blog completo](https://iriatalan.com.mx/blog)
