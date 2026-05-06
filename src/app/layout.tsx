@@ -239,9 +239,18 @@ export default function RootLayout({
             <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-zinc-500 leading-relaxed">
               <p>
                 Iria Talan — Asesora Autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF).
-                Cédula vigente. Esta página tiene fines informativos; las condiciones específicas
+                Cédula <strong>V388618</strong> ·{" "}
+                <a
+                  href="https://agentesajustadores.cnsf.gob.mx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
+                >
+                  Verificar en CNSF
+                </a>
+                . Esta página tiene fines informativos; las condiciones específicas
                 de cada producto se rigen por la póliza emitida por la aseguradora correspondiente.
-                Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por carrier.
+                Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
               </p>
               <p className="mt-3">© {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.</p>
             </div>

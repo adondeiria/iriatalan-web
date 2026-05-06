@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 15+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Miembro MDRT Top of the Table — distinción reservada al top mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera con 17+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
   carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
   specialties: [
     "Seguros de Vida",
@@ -41,16 +41,15 @@ const FALLBACK_AUTHOR: AuthorData = {
   ],
   languages: ["Español", "English"],
   credentials: [
-    { title: "MDRT Top of the Table", issuer: "Million Dollar Round Table", category: "industria" },
+    { title: "Miembro MDRT desde 2008 · Top of the Table 2024 · Court of the Table 2025", issuer: "Million Dollar Round Table — élite mundial de la industria de seguros", category: "industria" },
     { title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", category: "industria" },
     { title: "Asesora Diamante", issuer: "GNP Seguros", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", category: "carrier" },
-    { title: "Wealth Management Certificate", issuer: "Yale University", category: "academica" },
-    { title: "MBA Essentials", issuer: "London School of Economics", category: "academica" },
-    { title: "Certificación BMV", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
-    { title: "Miembro IMEF", issuer: "Instituto Mexicano de Ejecutivos de Finanzas", category: "industria" },
-    { title: "Egresada Tec de Monterrey", issuer: "Tecnológico de Monterrey", category: "academica" },
-    { title: "Asesora Autorizada", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", category: "regulatoria" },
+    { title: "Wealth Management Theory & Practice", issuer: "Yale School of Management — Executive Education", year: "2019", category: "academica" },
+    { title: "MBA Essentials", issuer: "London School of Economics — Executive Education (curso ejecutivo, no MBA)", category: "academica" },
+    { title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", category: "academica" },
+    { title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
+    { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
   ],
   officeAddress: "Bosque de Chapultepec, Ciudad de México",
   socialLinks: {
