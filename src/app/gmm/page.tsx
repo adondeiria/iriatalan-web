@@ -1,0 +1,441 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { sanityFetch } from "../../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
+import {
+  AuthorData,
+  buildBreadcrumbSchema,
+  buildGraph,
+  SITE_URL,
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Gastos Médicos Mayores en México — Iria Talan / RIF",
+  description:
+    "GMM correcto: red hospitalaria, deducible y cobertura internacional adaptados. 6 aseguradoras AAA. Estrategia para renovaciones que subieron 15-20%. MDRT TOT · Asesora autorizada CNSF.",
+  alternates: { canonical: `${SITE_URL}/gmm` },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/gmm`,
+    title: "Gastos Médicos Mayores — Iria Talan",
+    description:
+      "Si tu GMM subió este año, hay 3 vías para bajar prima sin perder cobertura crítica.",
+  },
+};
+
+function buildServiceSchema() {
+  return {
+    "@type": "FinancialProduct" as const,
+    "@id": `${SITE_URL}/gmm#service`,
+    name: "Gastos Médicos Mayores",
+    description:
+      "Cobertura médica privada estructurada: red hospitalaria, deducible, coaseguro y cobertura internacional adaptados al perfil del cliente. Comparación entre 6 aseguradoras AAA en México.",
+    url: `${SITE_URL}/gmm`,
+    provider: { "@id": `${SITE_URL}#financialservice` },
+    category: "Seguros de salud privada",
+    areaServed: { "@type": "Country", name: "México" },
+  };
+}
+
+export default async function GmmPage() {
+  const author = await sanityFetch<AuthorData | null>({
+    query: SOBRE_IRIA_QUERY,
+    tags: ["author"],
+  }).catch(() => null);
+
+  const ctaUrl = author?.socialLinks?.calendly ?? "https://calendly.com/iriatalan";
+  const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
+  const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
+
+  const pageSchema = buildGraph(
+    buildServiceSchema(),
+    buildBreadcrumbSchema([
+      { name: "Inicio", path: "/" },
+      { name: "Gastos Médicos Mayores", path: "/gmm" },
+    ])
+  );
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+
+      <main className="flex flex-col">
+        <section className="px-6 pt-20 pb-12 max-w-4xl mx-auto w-full">
+          <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <Link href="/" className="hover:underline">Inicio</Link>
+            {" / "}Gastos Médicos Mayores
+          </p>
+          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+            La diferencia entre un GMM bien y uno mal estructurado no es la prima.
+          </h1>
+          <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            Es si tu familia recibe la red hospitalaria, el deducible y la cobertura
+            internacional correctas para tu caso real. Comparo BUPA, MetLife, Allianz,
+            Seguros Monterrey NYL, AXA y GNP con tus parámetros — no los de un cliente promedio.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <a
+              href={ctaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-7 py-3.5 font-medium hover:opacity-90 transition"
+            >
+              Agenda revisión gratis 30 min
+            </a>
+            <Link
+              href="/sobre-iria"
+              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+            >
+              Conoce a Iria
+            </Link>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              ¿En cuál de estos dos momentos estás?
+            </h2>
+            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+              Cada uno requiere una conversación distinta. Elige el que aplique a tu caso.
+            </p>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <a href="#defensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col">
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                  Si ya tienes GMM
+                </div>
+                <h3 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  &ldquo;Mi GMM subió 15-20% este año.&rdquo;
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+                  Es la queja #1 que escucho hoy. Hay 3 vías para bajar prima sin
+                  perder cobertura crítica. No canceles antes de hablar.
+                </p>
+                <span className="mt-5 text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  Estrategias defensivas →
+                </span>
+              </a>
+
+              <a href="#ofensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col">
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                  Si aún no tienes GMM
+                </div>
+                <h3 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  &ldquo;¿Cuánto cuesta NO tenerlo?&rdquo;
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
+                  Una intervención compleja en CDMX puede acumular cientos de miles
+                  a millones de pesos sin previo aviso. Hagamos la cuenta correcta.
+                </p>
+                <span className="mt-5 text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  Cómo elegir bien →
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Lo que mucha gente no sabe del GMM
+            </h2>
+            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+              Un GMM mal contratado cuesta lo mismo que uno bien contratado — pero el
+              primero te deja sin cobertura cuando más lo necesitas. Estas son las
+              6 variables que realmente importan.
+            </p>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Red hospitalaria</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  ¿Incluye ABC, Médica Sur, Ángeles, Christus Muguerza? La diferencia entre planes top y básicos.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Deducible</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  Impacto directo en tu liquidez al momento del siniestro. Decisión más importante.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Coaseguro y tope</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  Sin tope máximo, puede triplicar tu desembolso real en eventos largos.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Suma asegurada</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  Por enfermedad/accidente. No es lo mismo $5M que $30M.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Cobertura internacional</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  EUA, Europa — crítica para HNWI. BUPA y MetLife tienen las redes más amplias.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Exclusiones</h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  Preexistencias, enfermedades crónicas, congénitas. La letra chica importa.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="defensivo" className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
+          <div className="max-w-4xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Estrategia defensiva
+            </p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+              Si ya tienes GMM y te subió la prima
+            </h2>
+            <p className="mt-4 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+              La inflación médica es real, los reajustes anuales son inevitables. Pero hay
+              <strong className="text-zinc-900 dark:text-zinc-50"> 3 vías concretas</strong> que
+              pueden bajar tu prima sin perder cobertura crítica. Antes de cancelar — peor escenario —
+              hagamos esta evaluación.
+            </p>
+
+            <div className="mt-10 space-y-6">
+              <div className="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Vía 1</div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+                  Optimizar el deducible
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Subir tu deducible reduce la prima sin afectar tu suma asegurada total.
+                  Si tu liquidez de emergencia te lo permite, asumir un deducible más alto
+                  en eventos chicos puede bajar tu prima 15-25%.
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Vía 2</div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+                  Cambio estratégico de carrier (sin perder antigüedad)
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Algunas aseguradoras te aceptan con conservación de antigüedad si vienes
+                  de otro carrier reconocido. Esto puede ahorrarte el período de espera por
+                  preexistencias y darte mejor prima por perfil.
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Vía 3</div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+                  Ajustar la red hospitalaria
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Si nunca te has atendido en hospitales top (ABC, Médica Sur, Ángeles), un
+                  plan con red media puede ahorrarte 30-40% sin afectar la atención que sí usas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ofensivo" className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Estrategia ofensiva
+            </p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+              Si aún no tienes GMM
+            </h2>
+            <div className="mt-6 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p>
+                Una intervención médica privada compleja en CDMX (cirugía mayor, terapia intensiva,
+                hospitalización oncológica) puede acumular varios cientos de miles a millones
+                de pesos en cuestión de días. Una familia mass-affluent puede ver borrado años
+                de ahorro patrimonial sin previo aviso.
+              </p>
+              <p>
+                <strong className="text-zinc-900 dark:text-zinc-50">El cálculo correcto:</strong>{" "}
+                la prima anual de un GMM correcto rara vez supera el 5% del costo de un solo
+                evento médico mayor. Para una familia de 4 con red top y cobertura internacional,
+                rangos típicos en México 2025 van de $80,000 a $180,000 anuales según edades,
+                deducible y carrier.
+              </p>
+              <p>
+                <strong className="text-zinc-900 dark:text-zinc-50">La pregunta no es &ldquo;¿es caro?&rdquo;.</strong>{" "}
+                Es: ¿puedo absorber un evento de cientos de miles sin afectar mi plan financiero?
+              </p>
+              <p>
+                El IMSS y las prestaciones laborales son una capa importante de protección — pero
+                rara vez son suficiente capa única. Tiempos de respuesta del sistema público son
+                variables, y los GMM laborales se quedan en la empresa al cambiar de empleo.
+                Para familias mass-affluent y HNWI funcionan mejor como complemento.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-3xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Cómo lo hacemos correcto contigo
+            </h2>
+            <div className="mt-10 space-y-8">
+              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  1. Análisis de tu perfil de riesgo médico (60 min)
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Edad, antecedentes familiares, condiciones preexistentes, hospitales donde
+                  quieres ser atendida. Sin formularios genéricos.
+                </p>
+              </div>
+              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  2. Comparación específica entre 6 aseguradoras
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  BUPA, MetLife, Allianz, SegMon NYL, AXA, GNP — con tus parámetros, no los
+                  de un cliente promedio. 3 cotizaciones reales con red, deducibles y costos.
+                </p>
+              </div>
+              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  3. Estructura final que tú apruebas
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Decides tú entre las opciones, con toda la información a la vista. Y cuando
+                  llegue un siniestro, te acompaño personalmente — no te dejo sola con el call center.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-3xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Preguntas frecuentes
+            </h2>
+            <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  Mi GMM subió 18% este año, ya no me alcanza.
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías
+                  defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura
+                  sería el peor escenario.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  Es muy caro.
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Para una familia de 4 con red top y cobertura internacional, rangos típicos
+                  en México 2025 van de $80,000 a $180,000 anuales (Aseguratemexico 2025).
+                  Un solo evento médico mayor sin cobertura supera fácilmente esa cifra anual entera.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  El IMSS / mi prestación me cubre.
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Son una capa importante — pero rara vez son suficiente capa única. Tiempos
+                  de respuesta variables y portabilidad limitada al cambiar de empleo. Para
+                  familias mass-affluent y HNWI funcionan mejor como complemento.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  Tengo dudas con el deducible.
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Es la decisión más importante. Bajo = prima alta, cobertura desde el primer peso.
+                  Alto = prima baja, asumes los primeros gastos tú. Depende de tu liquidez de
+                  emergencia y aversión al riesgo. Lo cuantificamos juntos.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  ¿Qué hospitales cubre?
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Depende del carrier y plan. ABC + Médica Sur + Ángeles está en planes premium
+                  de varios. Christus Muguerza en otros. Te muestro la red exacta antes de decidir.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  ¿Y si me niegan un siniestro?
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  La CNSF regula y arbitra disputas. La mayoría de &ldquo;negativas&rdquo; son por documentación
+                  incompleta o por aplicar plan equivocado para el caso — cosas que se corrigen.
+                  Te acompaño personalmente en el proceso.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  ¿Y la cobertura internacional?
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Crítica para HNWI con tratamientos en EUA o Europa. No todos los planes la
+                  incluyen. BUPA y MetLife tienen las redes internacionales más amplias.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Tres formas de empezar
+            </h2>
+            <p className="mt-3 text-zinc-700 dark:text-zinc-300">
+              Lo único que pido: que vengas con tus dudas, no con respuestas.
+            </p>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <a
+                href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+              >
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Mensaje rápido</div>
+                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">WhatsApp</div>
+                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{whatsapp}</div>
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+              >
+                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Email reflexivo</div>
+                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">Cuéntame por correo</div>
+                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{email}</div>
+              </a>
+              <a
+                href={ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-6 rounded-2xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 hover:opacity-90 transition"
+              >
+                <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Revisión directa</div>
+                <div className="text-lg font-medium">Agenda 30 min gratis</div>
+                <div className="mt-2 text-sm opacity-80">Calendly · sin costo</div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}

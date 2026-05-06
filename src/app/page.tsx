@@ -55,12 +55,12 @@ const FALLBACK_VALUE_PROPS = [
 
 const FALLBACK_FEATURED_SERVICES: FeaturedService[] = [
   {
-    _id: "fallback-vida",
-    title: "Seguros de Vida",
-    slug: "seguros-vida",
+    _id: "fallback-retiro",
+    title: "Planeación de Retiro",
+    slug: "retiro",
     category: "vida_pillar",
     shortDescription:
-      "Protección financiera para tu familia con productos de las mejores aseguradoras de México.",
+      "PPR con beneficio fiscal (art. 151 fracc V y art. 185 LISR) + Modalidad 40 IMSS para multiplicar tu pensión vitalicia.",
   },
   {
     _id: "fallback-gmm",
@@ -68,7 +68,15 @@ const FALLBACK_FEATURED_SERVICES: FeaturedService[] = [
     slug: "gmm",
     category: "gmm_pillar",
     shortDescription:
-      "Cobertura médica privada con red de hospitales y deducibles a tu medida.",
+      "Cobertura médica privada con red, deducible y cobertura internacional adaptados. 6 aseguradoras AAA comparadas.",
+  },
+  {
+    _id: "fallback-empresas",
+    title: "Seguros para Empresas",
+    slug: "empresas",
+    category: "empresas",
+    shortDescription:
+      "Persona Clave (Hombre Clave), Vida grupo, GMM colectivo, buy-sell agreement asegurado y plan de retiro empresarial.",
   },
 ];
 

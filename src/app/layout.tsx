@@ -117,6 +117,26 @@ export default function RootLayout({
               </Link>
               <details className="relative group">
                 <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1">
+                  Servicios
+                  <span className="text-xs">▾</span>
+                </summary>
+                <div className="absolute right-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-2">
+                  <Link href="/retiro" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Planeación de Retiro</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">PPR + Modalidad 40 IMSS</div>
+                  </Link>
+                  <Link href="/gmm" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Gastos Médicos Mayores</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">6 aseguradoras AAA · estrategias renovación</div>
+                  </Link>
+                  <Link href="/empresas" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguros para Empresas</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Persona Clave · Vida grupo · GMM colectivo</div>
+                  </Link>
+                </div>
+              </details>
+              <details className="relative group">
+                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1">
                   Para ti
                   <span className="text-xs">▾</span>
                 </summary>
@@ -150,6 +170,9 @@ export default function RootLayout({
           </div>
           <nav className="md:hidden border-t border-zinc-200 dark:border-zinc-800 px-6 py-3 flex flex-wrap gap-x-4 gap-y-2 text-xs text-zinc-700 dark:text-zinc-300">
             <Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link>
+            <Link href="/retiro" className="hover:underline">Retiro</Link>
+            <Link href="/gmm" className="hover:underline">GMM</Link>
+            <Link href="/empresas" className="hover:underline">Empresas</Link>
             <Link href="/mujeres" className="hover:underline">Mujeres</Link>
             <Link href="/familias-arcoiris" className="hover:underline">Arcoíris</Link>
             <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
@@ -168,12 +191,15 @@ export default function RootLayout({
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Sitio</p>
+              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Servicios</p>
               <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
-                <li><Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link></li>
+                <li><Link href="/retiro" className="hover:underline">Planeación de Retiro</Link></li>
+                <li><Link href="/gmm" className="hover:underline">Gastos Médicos Mayores</Link></li>
+                <li><Link href="/empresas" className="hover:underline">Seguros para Empresas</Link></li>
                 <li><Link href="/mujeres" className="hover:underline">Mujeres</Link></li>
                 <li><Link href="/familias-arcoiris" className="hover:underline">Familias arcoíris</Link></li>
                 <li><Link href="/hijos-neurodivergentes" className="hover:underline">Hijos neurodivergentes</Link></li>
+                <li><Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link></li>
                 <li><Link href="/recursos" className="hover:underline">Recursos</Link></li>
               </ul>
             </div>

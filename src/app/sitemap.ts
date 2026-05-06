@@ -13,6 +13,9 @@ type SitemapData = {
 const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/", priority: 1.0 },
   { path: "/sobre-iria", priority: 0.9 },
+  { path: "/retiro", priority: 0.9 },
+  { path: "/gmm", priority: 0.9 },
+  { path: "/empresas", priority: 0.9 },
   { path: "/mujeres", priority: 0.85 },
   { path: "/familias-arcoiris", priority: 0.85 },
   { path: "/hijos-neurodivergentes", priority: 0.85 },
