@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
@@ -100,30 +101,46 @@ export default async function SobreIriaPage() {
       />
 
       <main className="flex flex-col">
-        <section className="px-6 py-20 sm:py-28 max-w-4xl mx-auto w-full">
+        <section className="px-6 py-20 sm:py-28 max-w-5xl mx-auto w-full">
           <p className="text-sm uppercase tracking-wider text-zinc-500">
             <Link href="/" className="hover:underline">
               Inicio
             </Link>
             {" / "}Sobre Iria
           </p>
-          <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
-            {author.name}
-          </h1>
-          <p className="mt-3 text-xl text-zinc-700 dark:text-zinc-300">
-            {author.title}
-          </p>
-          {author.bio && (
-            <p className="mt-8 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-2xl">
-              {author.bio}
-            </p>
-          )}
+          <div className="mt-8 grid gap-10 sm:grid-cols-[280px,1fr] sm:items-start">
+            {author.photo?.asset?.url && (
+              <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+                <Image
+                  src={author.photo.asset.url}
+                  alt={author.photo.alt ?? author.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 280px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+                {author.name}
+              </h1>
+              <p className="mt-3 text-xl text-zinc-700 dark:text-zinc-300">
+                {author.title}
+              </p>
+              {author.bio && (
+                <p className="mt-8 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+                  {author.bio}
+                </p>
+              )}
 
-          {author.longBio && Array.isArray(author.longBio) && author.longBio.length > 0 && (
-            <div className="mt-10 max-w-3xl prose prose-zinc dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50">
-              <PortableText value={author.longBio as PortableTextBlock[]} />
+              {author.longBio && Array.isArray(author.longBio) && author.longBio.length > 0 && (
+                <div className="mt-10 prose prose-zinc dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50">
+                  <PortableText value={author.longBio as PortableTextBlock[]} />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </section>
 
         {author.credentials && author.credentials.length > 0 && (

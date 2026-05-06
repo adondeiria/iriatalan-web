@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
@@ -58,7 +59,20 @@ export default async function PatrimonialPage() {
       />
 
       <main className="flex flex-col">
-        <section className="px-6 pt-20 pb-12 max-w-4xl mx-auto w-full">
+        <section className="relative w-full overflow-hidden">
+          <div className="relative aspect-[21/9] w-full">
+            <Image
+              src="/img/servicios/patrimonial-hero.png"
+              alt="Manos firmando un documento de fideicomiso con pluma fountain en escritorio de notaría — planeación patrimonial discreta"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </section>
+
+        <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
           <p className="text-sm uppercase tracking-wider text-zinc-500">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Patrimonios complejos

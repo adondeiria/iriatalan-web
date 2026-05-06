@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { sanityFetch } from "../../sanity/lib/fetch";
@@ -125,7 +126,20 @@ export default async function HomePage() {
       )}
 
       <main className="flex flex-col">
-        <section className="px-6 py-24 sm:py-32 max-w-5xl mx-auto w-full">
+        <section className="relative w-full overflow-hidden">
+          <div className="relative aspect-[21/9] w-full">
+            <Image
+              src="/img/nichos/hero-homepage.png"
+              alt="Familia mexicana animando a sus hijos en un partido de fútbol escolar"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </section>
+
+        <section className="px-6 py-16 sm:py-20 max-w-5xl mx-auto w-full">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
             {heroTitle}
           </h1>
