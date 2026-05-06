@@ -16,6 +16,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/retiro", priority: 0.9 },
   { path: "/gmm", priority: 0.9 },
   { path: "/empresas", priority: 0.9 },
+  { path: "/patrimonial", priority: 0.9 },
   { path: "/mujeres", priority: 0.85 },
   { path: "/familias-arcoiris", priority: 0.85 },
   { path: "/hijos-neurodivergentes", priority: 0.85 },

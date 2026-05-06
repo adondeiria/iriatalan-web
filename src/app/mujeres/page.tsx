@@ -211,11 +211,12 @@ export default async function MujeresPage() {
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                  2. Comparación entre 6 aseguradoras
+                  2. Recomendación de aseguradora(s) para tu perfil
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA y GNP. Te muestro
-                  3 opciones reales para tu perfil — pros, contras, costos. Decides tú con todo a la vista.
+                  Trabajo con BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA y GNP.
+                  Según tu situación específica, te recomiendo la(s) más adecuada(s) para ti
+                  — con pros, contras y costos a la vista. Decides tú.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
@@ -253,8 +254,9 @@ export default async function MujeresPage() {
                   Vengo recomendada por una amiga / clienta tuya. ¿Es muy distinto el proceso?
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  No. Misma metodología, misma transparencia con las 6 aseguradoras. La única
-                  diferencia es que ya tenemos contexto compartido — eso ahorra tiempo en la primera sesión.
+                  No. Misma metodología, misma transparencia. Trabajo con las mismas
+                  6 aseguradoras y la recomendación se ajusta a tu situación específica.
+                  La única diferencia es que ya tenemos contexto compartido — eso ahorra tiempo en la primera sesión.
                 </p>
               </div>
               <div>

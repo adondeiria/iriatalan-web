@@ -280,8 +280,9 @@ export default async function RetiroPage() {
                   4. Estructura combinada
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  PPR + Modalidad 40 + (si aplica) ahorro patrimonial adicional. Comparo entre
-                  6 aseguradoras autorizadas para el PPR.
+                  PPR + Modalidad 40 + (si aplica) ahorro patrimonial adicional. Trabajo con
+                  6 aseguradoras autorizadas para el PPR; según tu situación específica, te
+                  recomiendo la(s) más adecuada(s) para ti. Aportaciones desde $2,000 MXN/mes.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">

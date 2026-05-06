@@ -29,9 +29,9 @@ type HomeData = {
 } | null;
 
 const FALLBACK_HERO_TITLE =
-  "Decisiones financieras que protegen lo que más importa.";
+  "Universidad, retiro, GMM, patrimonio: las decisiones que hoy nadie te enseña a planear.";
 const FALLBACK_HERO_SUBTITLE =
-  "Asesoría especializada en seguros de vida, gastos médicos mayores y planeación patrimonial. MDRT Top of the Table · AMASFAC · Yale Wealth Management.";
+  "Asesoría financiera personalizada en México. Desde tus primeros $2,000 MXN al mes hasta estructuras patrimoniales complejas. MDRT Top of the Table · AMASFAC · Yale Wealth Management.";
 const FALLBACK_CTA_TEXT = "Agenda consulta gratis 30 min";
 const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
 
@@ -44,7 +44,7 @@ const FALLBACK_VALUE_PROPS = [
   {
     title: "6 aseguradoras, una asesora",
     description:
-      "Sura, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP. Comparamos para ti.",
+      "BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP. Según tu situación, te recomiendo la(s) más adecuada(s).",
   },
   {
     title: "Educación de élite",
@@ -68,7 +68,7 @@ const FALLBACK_FEATURED_SERVICES: FeaturedService[] = [
     slug: "gmm",
     category: "gmm_pillar",
     shortDescription:
-      "Cobertura médica privada con red, deducible y cobertura internacional adaptados. 6 aseguradoras AAA comparadas.",
+      "Cobertura médica privada con red, deducible y cobertura internacional adaptados. Trabajo con 6 aseguradoras AAA y te recomiendo la(s) adecuada(s).",
   },
   {
     _id: "fallback-empresas",
@@ -288,6 +288,34 @@ export default async function HomePage() {
                 </span>
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-20 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <Link
+              href="/patrimonial"
+              className="group block p-10 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                <div className="max-w-2xl">
+                  <p className="text-xs uppercase tracking-wider text-zinc-500">
+                    Servicio diferenciado
+                  </p>
+                  <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                    Patrimonios complejos · Asesoría discreta para HNWI
+                  </h2>
+                  <p className="mt-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    Fideicomisos, sucesión, inversiones complejas y estructuras
+                    internacionales. Para patrimonios donde los productos estándar dejan
+                    de ser suficientes.
+                  </p>
+                </div>
+                <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline whitespace-nowrap">
+                  Conocer →
+                </span>
+              </div>
+            </Link>
           </div>
         </section>
 

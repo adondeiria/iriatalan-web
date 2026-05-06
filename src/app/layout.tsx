@@ -138,6 +138,10 @@ export default function RootLayout({
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguros para Empresas</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Persona Clave · Vida grupo · GMM colectivo</div>
                   </Link>
+                  <Link href="/patrimonial" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Patrimonios complejos</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Asesoría discreta HNWI · fideicomisos · internacional</div>
+                  </Link>
 
                   <div className="my-2 border-t border-zinc-200 dark:border-zinc-800" />
 
@@ -178,6 +182,7 @@ export default function RootLayout({
             <Link href="/retiro" className="hover:underline">Retiro</Link>
             <Link href="/gmm" className="hover:underline">GMM</Link>
             <Link href="/empresas" className="hover:underline">Empresas</Link>
+            <Link href="/patrimonial" className="hover:underline">Patrimonial</Link>
             <Link href="/mujeres" className="hover:underline">Mujeres</Link>
             <Link href="/familias-arcoiris" className="hover:underline">Arcoíris</Link>
             <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
@@ -201,6 +206,7 @@ export default function RootLayout({
                 <li><Link href="/retiro" className="hover:underline">Planeación de Retiro</Link></li>
                 <li><Link href="/gmm" className="hover:underline">Gastos Médicos Mayores</Link></li>
                 <li><Link href="/empresas" className="hover:underline">Seguros para Empresas</Link></li>
+                <li><Link href="/patrimonial" className="hover:underline">Patrimonios complejos</Link></li>
                 <li><Link href="/mujeres" className="hover:underline">Mujeres</Link></li>
                 <li><Link href="/familias-arcoiris" className="hover:underline">Familias arcoíris</Link></li>
                 <li><Link href="/hijos-neurodivergentes" className="hover:underline">Hijos neurodivergentes</Link></li>

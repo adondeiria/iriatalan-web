@@ -184,7 +184,7 @@ export default async function SobreIriaPage() {
                 Aseguradoras autorizadas
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                Comparo y selecciono entre estas aseguradoras según tu perfil.
+                Trabajo con estas aseguradoras. Según tu situación específica, te recomiendo la(s) más adecuada(s) para ti.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {author.carriers.map((c) => (

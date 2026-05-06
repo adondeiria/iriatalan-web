@@ -268,11 +268,12 @@ export default async function EmpresasPage() {
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                  3. Comparación entre 6 aseguradoras
+                  3. Recomendación de aseguradora(s) para tu caso
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  BUPA, MetLife, Allianz, SegMon NYL, AXA, GNP — todas autorizadas CNSF para
-                  pólizas empresariales. Te muestro 3 opciones con primas reales, no estimaciones.
+                  Trabajo con BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA y
+                  GNP — todas autorizadas CNSF para pólizas empresariales. Según la situación
+                  específica de tu empresa, te recomiendo la(s) más adecuada(s) para ti.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">

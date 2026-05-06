@@ -74,8 +74,9 @@ export default async function GmmPage() {
           </h1>
           <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
             Es si tu familia recibe la red hospitalaria, el deducible y la cobertura
-            internacional correctas para tu caso real. Comparo BUPA, MetLife, Allianz,
-            Seguros Monterrey NYL, AXA y GNP con tus parámetros — no los de un cliente promedio.
+            internacional correctas para tu caso real. Trabajo con BUPA, MetLife,
+            Allianz, Seguros Monterrey New York Life, AXA y GNP. Según tu situación
+            específica, te recomiendo la(s) más adecuada(s) para ti.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
@@ -297,11 +298,12 @@ export default async function GmmPage() {
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                  2. Comparación específica entre 6 aseguradoras
+                  2. Recomendación de la(s) aseguradora(s) adecuada(s) para ti
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  BUPA, MetLife, Allianz, SegMon NYL, AXA, GNP — con tus parámetros, no los
-                  de un cliente promedio. 3 cotizaciones reales con red, deducibles y costos.
+                  Trabajo con BUPA, MetLife, Allianz, Seguros Monterrey New York Life,
+                  AXA y GNP. Según tu situación específica, te recomiendo la(s) más
+                  adecuada(s) para ti.
                 </p>
               </div>
               <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
