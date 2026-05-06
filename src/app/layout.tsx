@@ -120,36 +120,41 @@ export default function RootLayout({
                   Servicios
                   <span className="text-xs">▾</span>
                 </summary>
-                <div className="absolute right-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-2">
-                  <Link href="/retiro" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                <div className="absolute right-0 mt-3 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3">
+                  <div className="px-4 pt-2 pb-1">
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-zinc-500">
+                      Por producto
+                    </p>
+                  </div>
+                  <Link href="/retiro" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Planeación de Retiro</div>
                     <div className="text-xs text-zinc-500 mt-0.5">PPR + Modalidad 40 IMSS</div>
                   </Link>
-                  <Link href="/gmm" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                  <Link href="/gmm" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Gastos Médicos Mayores</div>
                     <div className="text-xs text-zinc-500 mt-0.5">6 aseguradoras AAA · estrategias renovación</div>
                   </Link>
-                  <Link href="/empresas" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                  <Link href="/empresas" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguros para Empresas</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Persona Clave · Vida grupo · GMM colectivo</div>
                   </Link>
-                </div>
-              </details>
-              <details className="relative group">
-                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1">
-                  Para ti
-                  <span className="text-xs">▾</span>
-                </summary>
-                <div className="absolute right-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-2">
-                  <Link href="/mujeres" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+
+                  <div className="my-2 border-t border-zinc-200 dark:border-zinc-800" />
+
+                  <div className="px-4 pt-1 pb-1">
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-zinc-500">
+                      Por situación de vida
+                    </p>
+                  </div>
+                  <Link href="/mujeres" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Mujeres</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Profesionistas, divorciadas, viudas, empresarias</div>
                   </Link>
-                  <Link href="/familias-arcoiris" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                  <Link href="/familias-arcoiris" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Familias arcoíris</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Familias diversas con hijos</div>
                   </Link>
-                  <Link href="/hijos-neurodivergentes" className="block px-4 py-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                  <Link href="/hijos-neurodivergentes" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Hijos neurodivergentes</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Planeación financiera de por vida</div>
                   </Link>
