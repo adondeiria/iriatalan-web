@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import { type PortableTextBlock } from "@portabletext/react";
+
+import { PortableTextRenderer } from "@/components/portable-text";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import {
@@ -110,7 +112,7 @@ function buildServiceSchema(service: ServiceData) {
     url: `${SITE_URL}/${service.slug}`,
     provider: { "@id": `${SITE_URL}#financialservice` },
     category: CATEGORY_LABELS[service.category] ?? service.category,
-    audience: { "@type": "Audience", audienceType: "Mass-affluent y HNWI México" },
+    audience: { "@type": "Audience", audienceType: "Familias afluentes y HNWI México" },
     areaServed: { "@type": "Country", name: "México" },
   };
 }
@@ -195,15 +197,15 @@ export default async function ServicePage({
         </section>
 
         {service.body && Array.isArray(service.body) && service.body.length > 0 && (
-          <section className="px-6 py-12 border-t border-zinc-200 dark:border-zinc-800">
-            <div className="max-w-3xl mx-auto w-full prose prose-zinc dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50">
-              <PortableText value={service.body as PortableTextBlock[]} />
+          <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
+            <div className="max-w-3xl mx-auto w-full">
+              <PortableTextRenderer value={service.body as PortableTextBlock[]} />
             </div>
           </section>
         )}
 
         {service.keyBenefits && service.keyBenefits.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Beneficios clave
@@ -224,7 +226,7 @@ export default async function ServicePage({
         )}
 
         {service.objectionsAddressed && service.objectionsAddressed.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Lo que la gente nos pregunta antes de contratar
@@ -254,7 +256,7 @@ export default async function ServicePage({
         )}
 
         {service.carriersAvailable && service.carriersAvailable.length > 0 && (
-          <section className="px-6 py-12 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <p className="text-sm uppercase tracking-wider text-zinc-500">
                 Aseguradoras disponibles
@@ -271,7 +273,7 @@ export default async function ServicePage({
         )}
 
         {service.faqs && service.faqs.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-3xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Preguntas frecuentes
@@ -287,8 +289,8 @@ export default async function ServicePage({
                       {f.answer &&
                       Array.isArray(f.answer) &&
                       f.answer.length > 0 ? (
-                        <div className="mt-2 prose prose-zinc dark:prose-invert prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300">
-                          <PortableText value={f.answer as PortableTextBlock[]} />
+                        <div className="mt-2">
+                          <PortableTextRenderer value={f.answer as PortableTextBlock[]} />
                         </div>
                       ) : f.answerText ? (
                         <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -302,7 +304,7 @@ export default async function ServicePage({
           </section>
         )}
 
-        <section className="px-6 py-20 max-w-4xl mx-auto w-full">
+        <section className="px-6 py-12 sm:py-20 max-w-4xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight max-w-xl mx-auto">
               ¿Listas para hablar de {service.title.toLowerCase()}?

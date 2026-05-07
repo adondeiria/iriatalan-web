@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import { type PortableTextBlock } from "@portabletext/react";
+
+import { PortableTextRenderer } from "@/components/portable-text";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
 const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 17+ años acompañando a familias mass-affluent y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera con 17+ años acompañando a familias afluentes y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
   carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
   specialties: [
     "Seguros de Vida",
@@ -100,7 +102,7 @@ export default async function SobreIriaPage() {
       />
 
       <main className="flex flex-col">
-        <section className="px-6 py-20 sm:py-28 max-w-5xl mx-auto w-full">
+        <section className="px-6 py-12 sm:py-20 max-w-5xl mx-auto w-full">
           <p className="text-sm uppercase tracking-wider text-zinc-500">
             <Link href="/" className="hover:underline">
               Inicio
@@ -134,8 +136,8 @@ export default async function SobreIriaPage() {
               )}
 
               {author.longBio && Array.isArray(author.longBio) && author.longBio.length > 0 && (
-                <div className="mt-10 prose prose-zinc dark:prose-invert prose-lg prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-p:leading-relaxed prose-p:text-zinc-700 dark:prose-p:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50">
-                  <PortableText value={author.longBio as PortableTextBlock[]} />
+                <div className="mt-10 max-w-3xl">
+                  <PortableTextRenderer value={author.longBio as PortableTextBlock[]} />
                 </div>
               )}
             </div>
@@ -143,7 +145,7 @@ export default async function SobreIriaPage() {
         </section>
 
         {author.credentials && author.credentials.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Credenciales y autoridad
@@ -194,7 +196,7 @@ export default async function SobreIriaPage() {
         )}
 
         {author.carriers && author.carriers.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Aseguradoras autorizadas
@@ -217,7 +219,7 @@ export default async function SobreIriaPage() {
         )}
 
         {author.specialties && author.specialties.length > 0 && (
-          <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Especialidades
@@ -236,7 +238,7 @@ export default async function SobreIriaPage() {
           </section>
         )}
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Contacto
@@ -315,7 +317,7 @@ export default async function SobreIriaPage() {
           </div>
         </section>
 
-        <section className="px-6 py-20 max-w-4xl mx-auto w-full">
+        <section className="px-6 py-14 sm:py-20 max-w-4xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               ¿Hablamos?

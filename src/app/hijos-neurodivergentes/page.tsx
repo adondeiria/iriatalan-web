@@ -104,7 +104,7 @@ export default async function HijosNeurodivergentesPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               La pregunta que nadie quiere hacer en voz alta
@@ -136,7 +136,7 @@ export default async function HijosNeurodivergentesPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Lo que típicamente estructuramos juntos
@@ -192,7 +192,7 @@ export default async function HijosNeurodivergentesPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Cómo trabajamos
@@ -242,7 +242,7 @@ export default async function HijosNeurodivergentesPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Preguntas frecuentes
@@ -295,7 +295,7 @@ export default async function HijosNeurodivergentesPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Tres formas de empezar

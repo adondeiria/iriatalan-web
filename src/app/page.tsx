@@ -139,7 +139,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 sm:py-20 max-w-5xl mx-auto w-full">
+        <section className="px-6 py-10 sm:py-20 max-w-5xl mx-auto w-full">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
             {heroTitle}
           </h1>
@@ -164,7 +164,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-12 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Aseguradoras autorizadas
@@ -179,7 +179,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-20 max-w-5xl mx-auto w-full">
+        <section className="px-6 py-12 sm:py-20 max-w-5xl mx-auto w-full">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
             Servicios prioritarios
           </h2>
@@ -211,10 +211,10 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-20 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-              Por qué clientes mass-affluent y HNWI confían en RIF
+              Por qué clientes afluentes y HNWI confían en RIF
             </h2>
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
               {valueProps.map((vp, i) => (
@@ -231,7 +231,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-20 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Asesoría especializada
@@ -305,7 +305,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-20 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <Link
               href="/patrimonial"
@@ -333,7 +333,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-24 max-w-5xl mx-auto w-full">
+        <section className="px-6 py-16 sm:py-24 max-w-5xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-12 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
               30 minutos pueden cambiar la trayectoria financiera de tu familia.

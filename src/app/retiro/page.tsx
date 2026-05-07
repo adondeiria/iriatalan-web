@@ -110,7 +110,7 @@ export default async function RetiroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               El gap del retiro mexicano
@@ -140,13 +140,13 @@ export default async function RetiroPage() {
             </div>
             <p className="mt-8 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
               La pensión IMSS por sí sola rara vez sostiene el nivel de vida de una familia
-              mass-affluent o un patrimonio HNWI. Por eso las dos herramientas siguientes
+              afluentes o un patrimonio HNWI. Por eso las dos herramientas siguientes
               son las más vendidas hoy en mi consultoría.
             </p>
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Herramienta 1
@@ -206,7 +206,7 @@ export default async function RetiroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Herramienta 2
@@ -256,7 +256,7 @@ export default async function RetiroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Cómo trabajamos contigo
@@ -312,7 +312,7 @@ export default async function RetiroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Preguntas frecuentes
@@ -345,7 +345,7 @@ export default async function RetiroPage() {
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
                   No compiten — se complementan. La AFORE es obligatoria, el PPR es voluntario.
-                  La AFORE no te da deducción anual, el PPR sí. Para mass-affluent, el PPR es
+                  La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR es
                   estructuralmente más rentable cuando se aprovecha la deducción fiscal.
                 </p>
               </div>
@@ -383,7 +383,7 @@ export default async function RetiroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Tres formas de empezar

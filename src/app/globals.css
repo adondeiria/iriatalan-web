@@ -12,6 +12,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* RIF brand palette — locked 2026-05-06 (verified against Pantone)
+ * Use with Tailwind utilities: bg-rif-rojo, text-rif-oro, border-rif-gris, etc.
+ *   --rif-rojo  #D50032  Pantone 199C — CTAs, acentos
+ *   --rif-oro   #C5A572  Champagne (foil Luxor 428 approx) — headlines premium
+ *   --rif-gris  #857874  Pantone 409C — texto secundario, datos
+ *   --rif-negro #1A1A1A  Texto principal (alternativa a zinc-900)
+ */
+@theme {
+  --color-rif-rojo: #D50032;
+  --color-rif-oro: #C5A572;
+  --color-rif-gris: #857874;
+  --color-rif-negro: #1A1A1A;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

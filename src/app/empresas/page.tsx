@@ -110,7 +110,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               El doble dolor del empresario
@@ -136,7 +136,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Producto pillar B2B
@@ -168,7 +168,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               ¿Quién en tu empresa es Persona Clave?
@@ -209,7 +209,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Cobertura empresarial completa — no solo Persona Clave
@@ -256,7 +256,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Cómo trabajamos contigo
@@ -304,7 +304,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Preguntas frecuentes
@@ -364,7 +364,7 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Tres formas de empezar

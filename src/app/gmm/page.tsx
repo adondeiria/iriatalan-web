@@ -110,7 +110,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               ¿En cuál de estos dos momentos estás?
@@ -155,7 +155,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Lo que mucha gente no sabe del GMM
@@ -207,7 +207,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section id="defensivo" className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
+        <section id="defensivo" className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Estrategia defensiva
@@ -259,7 +259,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section id="ofensivo" className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section id="ofensivo" className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Estrategia ofensiva
@@ -271,7 +271,7 @@ export default async function GmmPage() {
               <p>
                 Una intervención médica privada compleja en CDMX (cirugía mayor, terapia intensiva,
                 hospitalización oncológica) puede acumular varios cientos de miles a millones
-                de pesos en cuestión de días. Una familia mass-affluent puede ver borrado años
+                de pesos en cuestión de días. Una familia afluente puede ver borrado años
                 de ahorro patrimonial sin previo aviso.
               </p>
               <p>
@@ -289,13 +289,13 @@ export default async function GmmPage() {
                 El IMSS y las prestaciones laborales son una capa importante de protección — pero
                 rara vez son suficiente capa única. Tiempos de respuesta del sistema público son
                 variables, y los GMM laborales se quedan en la empresa al cambiar de empleo.
-                Para familias mass-affluent y HNWI funcionan mejor como complemento.
+                Para familias afluentes y HNWI funcionan mejor como complemento.
               </p>
             </div>
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Cómo lo hacemos correcto contigo
@@ -333,7 +333,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Preguntas frecuentes
@@ -366,7 +366,7 @@ export default async function GmmPage() {
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
                   Son una capa importante — pero rara vez son suficiente capa única. Tiempos
                   de respuesta variables y portabilidad limitada al cambiar de empleo. Para
-                  familias mass-affluent y HNWI funcionan mejor como complemento.
+                  familias afluentes y HNWI funcionan mejor como complemento.
                 </p>
               </div>
               <div>
@@ -411,7 +411,7 @@ export default async function GmmPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Tres formas de empezar
