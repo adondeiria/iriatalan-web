@@ -7,6 +7,7 @@ import {
   AuthorData,
   buildFinancialAdvisorSchema,
   buildGraph,
+  buildLocalBusinessSchema,
   buildPersonSchema,
 } from "@/lib/seo";
 
@@ -30,11 +31,84 @@ type HomeData = {
 } | null;
 
 const FALLBACK_HERO_TITLE =
-  "Universidad, retiro, GMM, patrimonio: las decisiones que hoy nadie te enseña a planear.";
+  "Planeación patrimonial, seguros y retiro para personas, familias y empresas en México";
 const FALLBACK_HERO_SUBTITLE =
-  "Asesoría financiera personalizada en México. Desde tus primeros $2,000 MXN al mes hasta estructuras patrimoniales complejas. MDRT Top of the Table · AMASFAC · Yale Wealth Management.";
+  "Asesoría especializada para proteger tu salud, tu patrimonio, tu retiro y la continuidad financiera de tu familia o empresa.";
 const FALLBACK_CTA_TEXT = "Agenda consulta gratis 30 min";
 const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
+
+const AUTHORITY_BADGES = [
+  "Asesora desde 2008",
+  "MDRT Top of the Table",
+  "Cédula CNSF V388618",
+  "Yale Wealth Management",
+  "LSE MBA Essentials",
+  "6 aseguradoras autorizadas",
+];
+
+const PARA_QUIEN = [
+  {
+    label: "Profesionistas independientes",
+    desc: "Médicos, abogados, arquitectos — ingresos variables, ISR alto, sin prestaciones.",
+  },
+  {
+    label: "Empresarios",
+    desc: "Dueños de empresa que necesitan proteger continuidad operativa y patrimonio personal.",
+  },
+  {
+    label: "Familias con patrimonio",
+    desc: "Quien tiene qué proteger y quiere hacerlo con una estrategia coherente, no producto a producto.",
+  },
+  {
+    label: "Mujeres que toman decisiones",
+    desc: "Divorciadas, viudas, profesionistas, empresarias con agenda financiera propia.",
+  },
+  {
+    label: "Familias con hijos neurodivergentes",
+    desc: "Planeación patrimonial que trasciende la vida de los padres — fideicomiso + seguros coordinados.",
+  },
+  {
+    label: "Empresas que protegen talento clave",
+    desc: "Persona Clave, Vida grupo, GMM colectivo, retiro empresarial deducible.",
+  },
+  {
+    label: "Retiro con estrategia fiscal",
+    desc: "PPR + Modalidad 40 coordinados con tu declaración anual SAT para maximizar deducción.",
+  },
+];
+
+const METODOLOGIA = [
+  {
+    n: "01",
+    title: "Diagnóstico",
+    desc: "Entiendo tu situación: ingresos, familia, patrimonio, cobertura existente y objetivos.",
+  },
+  {
+    n: "02",
+    title: "Comparativo entre aseguradoras",
+    desc: "Analizo las 6 aseguradoras autorizadas y te presento las que mejor se adaptan a tu perfil.",
+  },
+  {
+    n: "03",
+    title: "Diseño de estrategia",
+    desc: "Una propuesta coherente que cubre salud, retiro, patrimonio y continuidad — no productos sueltos.",
+  },
+  {
+    n: "04",
+    title: "Implementación",
+    desc: "Coordino la contratación y verifico cada detalle de las pólizas antes de firmar.",
+  },
+  {
+    n: "05",
+    title: "Acompañamiento anual",
+    desc: "Revisamos cada año: cambian las UMAs, la legislación fiscal, tu situación familiar.",
+  },
+  {
+    n: "06",
+    title: "Acompañamiento en siniestros",
+    desc: "No te dejo sola con el call center de la aseguradora. Estoy contigo en el proceso.",
+  },
+];
 
 const FALLBACK_VALUE_PROPS = [
   {
@@ -77,7 +151,7 @@ const FALLBACK_FEATURED_SERVICES: FeaturedService[] = [
     slug: "empresas",
     category: "empresas",
     shortDescription:
-      "Persona Clave (Hombre Clave), Vida grupo, GMM colectivo, buy-sell agreement asegurado y plan de retiro empresarial.",
+      "Persona Clave, Vida grupo, GMM colectivo, buy-sell agreement asegurado y plan de retiro empresarial.",
   },
 ];
 
@@ -112,20 +186,20 @@ export default async function HomePage() {
   const homeSchema = author
     ? buildGraph(
         buildPersonSchema(author),
-        buildFinancialAdvisorSchema(author)
+        buildFinancialAdvisorSchema(author),
+        buildLocalBusinessSchema(author)
       )
-    : null;
+    : buildGraph(buildLocalBusinessSchema());
 
   return (
     <>
-      {homeSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
+      />
 
       <main className="flex flex-col">
+        {/* Hero image */}
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
@@ -139,6 +213,7 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Hero text + authority badges + CTAs */}
         <section className="px-6 py-10 sm:py-20 max-w-5xl mx-auto w-full">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
             {heroTitle}
@@ -146,7 +221,17 @@ export default async function HomePage() {
           <p className="mt-4 sm:mt-6 text-base sm:text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
             {heroSubtitle}
           </p>
-          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="mt-5 flex flex-wrap gap-2">
+            {AUTHORITY_BADGES.map((badge) => (
+              <span
+                key={badge}
+                className="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href={ctaUrl}
               target="_blank"
@@ -164,6 +249,7 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Carriers */}
         <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
@@ -179,7 +265,39 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-12 sm:py-20 max-w-5xl mx-auto w-full">
+        {/* Para quién */}
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Para quién es esta asesoría
+            </p>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl">
+              La asesoría genérica no alcanza para estos perfiles.
+            </h2>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+              Trabajo con personas que tienen necesidades financieras complejas o que la
+              industria de seguros ha ignorado históricamente.
+            </p>
+            <div className="mt-8 sm:mt-10 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {PARA_QUIEN.map((item) => (
+                <div
+                  key={item.label}
+                  className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800"
+                >
+                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
+                    {item.label}
+                  </h3>
+                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Servicios prioritarios */}
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800 max-w-5xl mx-auto w-full">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
             Servicios prioritarios
           </h2>
@@ -211,6 +329,7 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Por qué confían en RIF */}
         <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
@@ -231,6 +350,37 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Metodología */}
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Metodología
+            </p>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
+              Cómo trabajamos juntos.
+            </h2>
+            <div className="mt-8 sm:mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {METODOLOGIA.map((step) => (
+                <div
+                  key={step.n}
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800"
+                >
+                  <div className="text-2xl font-semibold text-rif-rojo tabular-nums">
+                    {step.n}
+                  </div>
+                  <h3 className="mt-3 font-semibold text-zinc-900 dark:text-zinc-50">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Por situación de vida */}
         <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-zinc-500">
@@ -243,7 +393,6 @@ export default async function HomePage() {
               Hay tres perfiles que la industria de seguros y planeación patrimonial no cubre bien.
               Por eso construí espacios específicos para cada uno.
             </p>
-
             <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
               <Link
                 href="/mujeres"
@@ -305,6 +454,7 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Patrimonios complejos */}
         <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-5xl mx-auto w-full">
             <Link
@@ -333,6 +483,7 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Final CTA */}
         <section className="px-6 py-12 sm:py-24 max-w-5xl mx-auto w-full">
           <div className="rounded-3xl bg-rif-rojo text-white p-10 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">

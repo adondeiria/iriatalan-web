@@ -138,9 +138,12 @@ export default async function RetiroPage() {
                 </p>
               </div>
             </div>
-            <p className="mt-8 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-xs text-zinc-500 italic border-l-2 border-zinc-300 dark:border-zinc-700 pl-3">
+              Las cifras son ilustrativas y dependen del perfil, edad, aseguradora, producto, legislación vigente y evaluación individual.
+            </p>
+            <p className="mt-6 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
               La pensión IMSS por sí sola rara vez sostiene el nivel de vida de una familia
-              afluentes o un patrimonio HNWI. Por eso las dos herramientas siguientes
+              afluente o un patrimonio HNWI. Por eso las dos herramientas siguientes
               son las más vendidas hoy en mi consultoría.
             </p>
           </div>

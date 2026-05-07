@@ -201,6 +201,27 @@ export function buildBreadcrumbSchema(crumbs: Breadcrumb[]) {
   };
 }
 
+export function buildLocalBusinessSchema(author?: AuthorData) {
+  return {
+    "@type": "LocalBusiness" as const,
+    "@id": `${SITE_URL}#localbusiness`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    telephone: author?.socialLinks?.whatsapp ?? "+525512683401",
+    email: author?.socialLinks?.email ?? "soporte@talan.com.mx",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ciudad de México",
+      addressRegion: "CDMX",
+      addressCountry: "MX",
+    },
+    areaServed: { "@type": "Country", name: "México" },
+    priceRange: "$$$$",
+    openingHours: "Mo-Fr 09:00-18:00",
+    sameAs: author?.sameAs,
+  };
+}
+
 export function buildGraph(...schemas: Array<unknown | null | undefined>) {
   const valid = schemas.filter(
     (s): s is Record<string, unknown> => Boolean(s) && typeof s === "object"

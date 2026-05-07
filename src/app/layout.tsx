@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import {
   buildGraph,
+  buildLocalBusinessSchema,
   buildOrganizationSchema,
   buildWebSiteSchema,
   SITE_NAME,
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Asesoría financiera personalizada en México. Seguros de vida, gastos médicos mayores, planeación patrimonial y retiro. MDRT Top of the Table, AMASFAC.",
+    "Planeación patrimonial, seguros y retiro para personas, familias y empresas en México. Asesora MDRT Top of the Table · Cédula CNSF V388618 · Yale Wealth Management · 6 aseguradoras autorizadas.",
   applicationName: SITE_NAME,
   authors: [{ name: "Iria Talan", url: `${SITE_URL}/sobre-iria` }],
   keywords: [
@@ -45,15 +46,17 @@ export const metadata: Metadata = {
     "retiro AFORE",
     "Iria Talan",
     "RIF Reingeniería Financiera",
+    "MDRT Top of the Table",
+    "seguros empresas México",
   ],
   openGraph: {
     type: "website",
     locale: "es_MX",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Asesoría Financiera y Seguros`,
+    title: `${SITE_NAME} — Planeación Patrimonial, Seguros y Retiro`,
     description:
-      "Asesoría financiera personalizada en México. Seguros de vida, GMM, planeación patrimonial.",
+      "Asesoría financiera personalizada en México. Seguros de vida, GMM, planeación patrimonial y retiro. MDRT Top of the Table.",
   },
   twitter: {
     card: "summary_large_image",
@@ -93,7 +96,8 @@ export default function RootLayout({
 }>) {
   const globalSchema = buildGraph(
     buildOrganizationSchema(),
-    buildWebSiteSchema()
+    buildWebSiteSchema(),
+    buildLocalBusinessSchema()
   );
 
   return (
@@ -110,85 +114,168 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-800">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-            <Link href="/" className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 whitespace-nowrap">
+            <Link
+              href="/"
+              className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 whitespace-nowrap"
+            >
               Iria Talan / RIF
             </Link>
-            <nav className="hidden md:flex items-center gap-6 text-sm">
-              <Link href="/sobre-iria" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition">
-                Sobre Iria
-              </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-5 text-sm">
+
+              {/* Personas */}
               <details className="relative group">
-                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1">
-                  Servicios
-                  <span className="text-xs">▾</span>
+                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1 select-none">
+                  Personas <span className="text-xs">▾</span>
                 </summary>
-                <div className="absolute right-0 mt-3 w-80 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3">
-                  <div className="px-4 pt-2 pb-1">
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-zinc-500">
-                      Por producto
-                    </p>
-                  </div>
-                  <Link href="/retiro" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Planeación de Retiro</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">PPR + Modalidad 40 IMSS</div>
-                  </Link>
-                  <Link href="/gmm" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+                <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50">
+                  <Link
+                    href="/gmm"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">Gastos Médicos Mayores</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">6 aseguradoras AAA · estrategias renovación</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">6 aseguradoras · comparativo personalizado</div>
                   </Link>
-                  <Link href="/empresas" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguros para Empresas</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">Persona Clave · Vida grupo · GMM colectivo</div>
+                  <Link
+                    href="/retiro"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguro de Vida</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Protección patrimonial y familiar</div>
                   </Link>
-                  <Link href="/patrimonial" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Patrimonios complejos</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">Asesoría discreta HNWI · fideicomisos · internacional</div>
+                  <Link
+                    href="/retiro"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Retiro · PPR · Modalidad 40</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Beneficio fiscal + pensión multiplicada</div>
                   </Link>
-
-                  <div className="my-2 border-t border-zinc-200 dark:border-zinc-800" />
-
-                  <div className="px-4 pt-1 pb-1">
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-zinc-500">
-                      Por situación de vida
-                    </p>
-                  </div>
-                  <Link href="/mujeres" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Mujeres</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">Profesionistas, divorciadas, viudas, empresarias</div>
-                  </Link>
-                  <Link href="/familias-arcoiris" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Familias arcoíris</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">Familias diversas con hijos</div>
-                  </Link>
-                  <Link href="/hijos-neurodivergentes" className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
-                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Hijos neurodivergentes</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">Planeación financiera de por vida</div>
+                  <Link
+                    href="/mujeres"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Protección familiar</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Estrategias para mujeres, parejas y familias</div>
                   </Link>
                 </div>
               </details>
-              <Link href="/recursos" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition">
+
+              {/* Empresas */}
+              <details className="relative group">
+                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1 select-none">
+                  Empresas <span className="text-xs">▾</span>
+                </summary>
+                <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50">
+                  <Link
+                    href="/empresas"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Persona clave</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Continuidad si falta un socio o talento clave</div>
+                  </Link>
+                  <Link
+                    href="/empresas"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Vida grupo</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Prestación deducible para tu equipo</div>
+                  </Link>
+                  <Link
+                    href="/empresas"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">GMM colectivo</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Cobertura médica para empleados clave</div>
+                  </Link>
+                  <Link
+                    href="/empresas"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Retiro empresarial</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Plan de retiro deducible para socios</div>
+                  </Link>
+                </div>
+              </details>
+
+              {/* Patrimonios */}
+              <details className="relative group">
+                <summary className="list-none cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition flex items-center gap-1 select-none">
+                  Patrimonios <span className="text-xs">▾</span>
+                </summary>
+                <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50">
+                  <Link
+                    href="/patrimonial"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Fideicomisos</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Protección y transmisión patrimonial</div>
+                  </Link>
+                  <Link
+                    href="/patrimonial"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Sucesión patrimonial</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Que tu voluntad se cumpla</div>
+                  </Link>
+                  <Link
+                    href="/hijos-neurodivergentes"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Hijos neurodivergentes</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Planeación de por vida, más allá de ti</div>
+                  </Link>
+                  <Link
+                    href="/familias-arcoiris"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Familias diversas</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Estructura legal para tu familia tal como es</div>
+                  </Link>
+                  <Link
+                    href="/patrimonial"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">HNWI</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Asesoría discreta para patrimonios complejos</div>
+                  </Link>
+                </div>
+              </details>
+
+              <Link
+                href="/recursos"
+                className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition"
+              >
                 Recursos
               </Link>
+              <Link
+                href="/sobre-iria"
+                className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50 transition"
+              >
+                Sobre Iria
+              </Link>
             </nav>
-            <a
-              href="https://calendly.com/iriatalan"
-              target="_blank"
-              rel="noopener noreferrer"
+
+            <Link
+              href="/contacto"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-5 py-2 text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
             >
-              Agenda 30 min
-            </a>
+              Agenda
+            </Link>
           </div>
+
+          {/* Mobile nav */}
           <nav className="md:hidden border-t border-zinc-200 dark:border-zinc-800 px-6 py-3 flex flex-wrap gap-x-4 gap-y-2 text-xs text-zinc-700 dark:text-zinc-300">
             <Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link>
-            <Link href="/retiro" className="hover:underline">Retiro</Link>
             <Link href="/gmm" className="hover:underline">GMM</Link>
+            <Link href="/retiro" className="hover:underline">Retiro</Link>
             <Link href="/empresas" className="hover:underline">Empresas</Link>
             <Link href="/patrimonial" className="hover:underline">Patrimonial</Link>
             <Link href="/mujeres" className="hover:underline">Mujeres</Link>
             <Link href="/familias-arcoiris" className="hover:underline">Arcoíris</Link>
             <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
             <Link href="/recursos" className="hover:underline">Recursos</Link>
+            <Link href="/contacto" className="hover:underline font-medium text-rif-rojo">Agenda</Link>
           </nav>
         </header>
 
@@ -233,6 +320,11 @@ export default function RootLayout({
                   <a href="https://calendly.com/iriatalan" target="_blank" rel="noopener noreferrer" className="hover:underline">
                     Agenda en Calendly
                   </a>
+                </li>
+                <li>
+                  <Link href="/contacto" className="hover:underline">
+                    Página de contacto
+                  </Link>
                 </li>
               </ul>
             </div>

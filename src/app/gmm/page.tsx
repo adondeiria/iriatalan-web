@@ -282,7 +282,10 @@ export default async function GmmPage() {
                 deducible y carrier.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">La pregunta no es &ldquo;¿es caro?&rdquo;.</strong>{" "}
+                <span className="block mt-3 mb-3 text-xs text-zinc-500 italic border-l-2 border-zinc-300 dark:border-zinc-700 pl-3">
+                Las cifras son ilustrativas y dependen del perfil, edad, aseguradora, producto, legislación vigente y evaluación individual.
+              </span>
+              <strong className="text-zinc-900 dark:text-zinc-50">La pregunta no es &ldquo;¿es caro?&rdquo;.</strong>{" "}
                 Es: ¿puedo absorber un evento de cientos de miles sin afectar mi plan financiero?
               </p>
               <p>

@@ -17,8 +17,7 @@ const nextConfig: NextConfig = {
       { source: "/quienes-somos/", destination: "/sobre-iria", permanent: true },
       { source: "/servicios", destination: "/", permanent: true },
       { source: "/servicios/", destination: "/", permanent: true },
-      { source: "/contacto", destination: "/", permanent: true },
-      { source: "/contacto/", destination: "/", permanent: true },
+      // /contacto tiene página propia — sin redirect
       // Legacy service pages — best-effort mapping
       { source: "/seguros-gastos-medicos", destination: "/gmm", permanent: true },
       { source: "/seguros-gastos-medicos/", destination: "/gmm", permanent: true },
@@ -34,8 +33,14 @@ const nextConfig: NextConfig = {
       // English variants commonly indexed
       { source: "/about-us", destination: "/sobre-iria", permanent: true },
       { source: "/about-us/", destination: "/sobre-iria", permanent: true },
-      { source: "/contact", destination: "/", permanent: true },
-      { source: "/contact/", destination: "/", permanent: true },
+      { source: "/about-our-company", destination: "/sobre-iria", permanent: true },
+      { source: "/about-our-company/", destination: "/sobre-iria", permanent: true },
+      { source: "/contact", destination: "/contacto", permanent: true },
+      { source: "/contact/", destination: "/contacto", permanent: true },
+      { source: "/contact-us", destination: "/contacto", permanent: true },
+      { source: "/contact-us/", destination: "/contacto", permanent: true },
+      { source: "/english", destination: "/", permanent: true },
+      { source: "/english/", destination: "/", permanent: true },
     ];
   },
 };
