@@ -84,27 +84,27 @@ const INDUSTRIA_SILENCIOS = [
   },
   {
     title: "Universidades privadas más caras cada año, sin plan dedicado",
-    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una universidad nacional privada buena, varios cientos de miles al año. Una internacional, mucho más. Y el costo educativo en México sube por encima de la inflación general, año tras año. La mayoría de papás ahorra \"lo que pueda\" — sin plan dedicado, sin vehículo aseguradora con suma asegurada si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, la cuenta no alcanza.",
+    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una universidad nacional privada buena, varios cientos de miles al año. Una internacional, mucho más. Y el costo educativo sube por encima de la inflación general, año tras año. La mayoría de papás ahorra \"lo que pueda\" — sin plan dedicado, sin un vehículo asegurador que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, la cuenta no alcanza.",
   },
   {
     title: "Retiro deducible — la gente lo contrata por la deducción, no por el retiro",
-    body: "Hoy la mayoría que contrata un PPR (Plan Personal de Retiro) lo hace porque le devuelve hasta 30-35% vía SAT cada año (Art. 151 fracc V LISR, hasta el tope deducible permitido — alrededor de $213,973 MXN en 2026). No por la pensión a futuro, por el flujo fiscal de hoy. Y está bien: si un PPR te ahorra impuestos ahora y además te construye fondo para retiro, son dos beneficios en uno. El error es no usarlo cuando estás dentro del rango de ingreso donde la deducción te aplica.",
+    body: "Hoy la mayoría que contrata un PPR (Plan Personal de Retiro) lo hace por la deducción fiscal, no por la pensión a futuro. Y tiene lógica: te devuelve hasta 30-35% vía SAT cada año (Art. 151 fracc V LISR, hasta el tope deducible — alrededor de $213,973 MXN en 2026). Si además te construye fondo para retiro, son dos beneficios en uno. El error es no usarlo cuando estás dentro del rango de ingreso donde la deducción te aplica.",
   },
   {
     title: "Beneficiarios desactualizados",
-    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de pólizas tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás.",
+    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de pólizas tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
   },
   {
     title: "Empresas sin Persona Clave",
-    body: "El dueño se asegura. Pero la directora de operaciones cuya salida colapsaría la empresa, no. La continuidad de tu negocio rara vez depende solo del fundador — y muchos socios mexicanos lo descubren tarde.",
+    body: "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo y la operación se queda sin liquidez para resolver lo inmediato: pagos a proveedores, nómina, transición de mando, búsqueda de reemplazo. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria de la suma asegurada sobre el dueño (o sobre cualquier persona insustituible). Cuando llega el momento, la empresa tiene capital para sobrevivir el bache — no para liquidarse.",
   },
   {
     title: "Hijos neurodivergentes sin estructura financiera",
-    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso administrador del cuidado. Eso garantiza recursos cuando tú ya no estás — sin sucesiones lentas ni tutores no idóneos.",
+    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
   },
   {
     title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
-    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el patrimonio llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal, y sin estar atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora, que es donde está la liquidez inmediata.",
+    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedarse atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
   },
 ];
 
