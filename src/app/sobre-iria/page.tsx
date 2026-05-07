@@ -286,7 +286,7 @@ export default async function SobreIriaPage() {
                     Agenda en Calendly
                   </div>
                   <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
-                    Consulta gratuita 30 min
+                    Sesión inicial · 30 min
                   </div>
                 </a>
               )}
@@ -323,7 +323,7 @@ export default async function SobreIriaPage() {
               ¿Hablamos?
             </h2>
             <p className="mt-3 opacity-80 max-w-md mx-auto">
-              Consulta gratuita de 30 min. Te escucho primero, recomiendo después.
+              Sesión inicial de 30 min. Te escucho primero, recomiendo después.
               {author.officeAddress
                 ? ` Oficina en ${author.officeAddress}.`
                 : ""}
@@ -334,7 +334,7 @@ export default async function SobreIriaPage() {
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
-              Agenda consulta gratis 30 min
+              Agenda sesión inicial
             </a>
           </div>
         </section>

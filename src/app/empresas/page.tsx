@@ -131,7 +131,7 @@ export default async function EmpresasPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
-              Agenda diagnóstico gratis 30 min
+              Agenda diagnóstico empresarial
             </a>
             <Link
               href="/sobre-iria"
@@ -430,7 +430,7 @@ export default async function EmpresasPage() {
                 className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Diagnóstico</div>
-                <div className="text-lg font-medium">Agenda 30 min gratis</div>
+                <div className="text-lg font-medium">Agenda sesión inicial</div>
                 <div className="mt-2 text-sm opacity-80">Calendly · sin costo</div>
               </a>
             </div>

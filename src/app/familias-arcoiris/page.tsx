@@ -120,7 +120,7 @@ export default async function FamiliasArcoirisPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
-              Agenda consulta gratis 30 min
+              Agenda sesión inicial
             </a>
             <Link
               href="/sobre-iria"
@@ -368,10 +368,10 @@ export default async function FamiliasArcoirisPage() {
                   Consulta directa
                 </div>
                 <div className="text-lg font-medium">
-                  Agenda 30 min gratis
+                  Agenda sesión inicial
                 </div>
                 <div className="mt-2 text-sm opacity-80">
-                  Calendly · sin costo, sin compromiso
+                  Calendly · sin compromiso
                 </div>
               </a>
             </div>

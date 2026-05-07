@@ -135,7 +135,7 @@ export default async function ServicePage({
   }
 
   const ctaUrl = service.ctaUrl || "https://calendly.com/iriatalan";
-  const ctaText = service.ctaText || "Agenda consulta gratis 30 min";
+  const ctaText = service.ctaText || "Agenda sesión inicial";
 
   const faqItems: FAQItem[] =
     service.faqs
@@ -310,7 +310,7 @@ export default async function ServicePage({
               ¿Listas para hablar de {service.title.toLowerCase()}?
             </h2>
             <p className="mt-3 opacity-80 max-w-md mx-auto">
-              30 min de consulta gratuita. Te escucho primero, recomiendo después.
+              Sesión inicial de 30 min. Te escucho primero, recomiendo después.
             </p>
             <a
               href={ctaUrl}

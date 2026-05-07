@@ -45,7 +45,7 @@ function buildContactPageSchema() {
     name: `Contacto — ${SITE_NAME}`,
     url: `${SITE_URL}/contacto`,
     description:
-      "Agenda consulta gratuita de 30 min con Iria Talan, asesora financiera autorizada CNSF.",
+      "Agenda sesión inicial con Iria Talan, asesora financiera autorizada CNSF.",
     inLanguage: "es-MX",
     isPartOf: { "@id": `${SITE_URL}#website` },
     mainEntity: { "@id": `${SITE_URL}#localbusiness` },
@@ -55,14 +55,14 @@ function buildContactPageSchema() {
 export const metadata: Metadata = {
   title: "Contacto — Agenda tu Consulta Gratuita",
   description:
-    "Agenda una consulta de 30 min, escríbeme por WhatsApp o correo. Cuéntame qué quieres proteger: salud, retiro, patrimonio, empresa o familia.",
+    "Agenda una sesión inicial, escríbeme por WhatsApp o correo. Cuéntame qué quieres proteger: salud, retiro, patrimonio, empresa o familia.",
   alternates: { canonical: `${SITE_URL}/contacto` },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/contacto`,
     title: "Contacto — Iria Talan / RIF",
     description:
-      "Agenda consulta gratuita de 30 min. Asesoría financiera personalizada en México.",
+      "Agenda sesión inicial. Asesoría financiera personalizada en México.",
   },
 };
 
@@ -92,7 +92,7 @@ export default function ContactoPage() {
           Cuéntame qué quieres proteger.
         </h1>
         <p className="mt-4 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-xl">
-          Salud, retiro, patrimonio, empresa o familia. La consulta inicial es sin costo y sin compromiso.
+          Salud, retiro, patrimonio, empresa o familia. La sesión inicial es sin compromiso.
         </p>
       </section>
 
@@ -108,7 +108,7 @@ export default function ContactoPage() {
             <div className="text-xs uppercase tracking-wider opacity-70 mb-3">Preferido</div>
             <div className="text-xl font-semibold">Agenda en Calendly</div>
             <div className="mt-2 text-sm opacity-80 leading-relaxed">
-              Reserva tu consulta gratuita de 30 min. Yo te confirmo.
+              Reserva tu sesión inicial. Yo te confirmo.
             </div>
             <div className="mt-5 text-sm font-medium">Agendar ahora →</div>
           </a>

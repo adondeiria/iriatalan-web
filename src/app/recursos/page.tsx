@@ -384,7 +384,7 @@ export default async function RecursosPage({
               Los documentos aquí publicados son provistos por las aseguradoras
               con fines informativos. La versión vigente de cada póliza
               prevalece sobre cualquier copia descargada. Para confirmar
-              vigencia o resolver dudas, agenda una consulta gratuita.
+              vigencia o resolver dudas, agenda una sesión inicial.
             </p>
           </div>
         </section>

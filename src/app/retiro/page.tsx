@@ -474,7 +474,7 @@ export default async function RetiroPage() {
                   Calcula tu pensión gratis
                 </div>
                 <div className="mt-2 text-sm opacity-80">
-                  Calendly · 30 min sin costo
+                  Calendly · 30 min
                 </div>
               </a>
             </div>

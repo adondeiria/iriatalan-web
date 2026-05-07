@@ -291,82 +291,86 @@ export default function RootLayout({
 
         <div className="flex-1">{children}</div>
 
-        <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-12">
-          <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8 sm:grid-cols-3">
+        <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
+          <div className="max-w-6xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
             <div>
-              <p className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">{SITE_NAME}</p>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Asesoría financiera personalizada en México para familias afluentes y patrimonios HNWI.
+              <Image
+                src="/LOGOVECTORRIF.svg"
+                alt={`${SITE_NAME} — Reingeniería Financiera`}
+                width={56}
+                height={56}
+                className="h-14 w-auto"
+              />
+              <p className="mt-5 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-sm">
+                Asesoría patrimonial discreta para familias afluentes y HNWI en México.
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Servicios</p>
-              <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
-                <li><Link href="/retiro" className="hover:underline">Planeación de Retiro</Link></li>
-                <li><Link href="/gmm" className="hover:underline">Gastos Médicos Mayores</Link></li>
-                <li><Link href="/empresas" className="hover:underline">Seguros para Empresas</Link></li>
-                <li><Link href="/patrimonial" className="hover:underline">Patrimonios complejos</Link></li>
-                <li><Link href="/mujeres" className="hover:underline">Mujeres</Link></li>
-                <li><Link href="/familias-arcoiris" className="hover:underline">Familias arcoíris</Link></li>
-                <li><Link href="/hijos-neurodivergentes" className="hover:underline">Hijos neurodivergentes</Link></li>
-                <li><Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link></li>
-                <li><Link href="/recursos" className="hover:underline">Recursos</Link></li>
+              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-4">Servicios</p>
+              <ul className="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+                <li><Link href="/retiro" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">Planeación de Retiro</Link></li>
+                <li><Link href="/gmm" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">Gastos Médicos Mayores</Link></li>
+                <li><Link href="/empresas" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">Empresas</Link></li>
+                <li><Link href="/patrimonial" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">Patrimonios complejos</Link></li>
               </ul>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Contacto</p>
-              <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+              <p className="text-xs uppercase tracking-wider text-zinc-500 mb-4">Contacto</p>
+              <ul className="space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
                 <li>
-                  <a href="https://wa.me/525512683401" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                    WhatsApp +52 55 1268 3401
+                  <a href="https://calendly.com/iriatalan" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">
+                    Agenda sesión inicial
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:soporte@talan.com.mx" className="hover:underline break-all">
+                  <a href="https://wa.me/525512683401" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">
+                    WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:soporte@talan.com.mx" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition break-all">
                     soporte@talan.com.mx
                   </a>
                 </li>
                 <li>
-                  <a href="https://calendly.com/iriatalan" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                    Agenda en Calendly
-                  </a>
+                  <Link href="/sobre-iria" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">
+                    Sobre Iria
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/contacto" className="hover:underline">
-                    Página de contacto
+                  <Link href="/recursos" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition">
+                    Recursos
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-zinc-200 dark:border-zinc-800">
-            <div className="max-w-6xl mx-auto px-6 py-6 text-xs text-zinc-500 leading-relaxed">
+            <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-zinc-500">
               <p>
-                Iria Talan — Asesora Autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF).
-                Cédula <strong>V388618</strong> ·{" "}
+                © {new Date().getFullYear()} {SITE_NAME} · Cédula CNSF{" "}
+                <strong className="font-medium">V388618</strong> ·{" "}
                 <a
                   href="https://agentesajustadores.cnsf.gob.mx/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
                 >
-                  Verificar en CNSF
+                  Verificar
                 </a>
-                . Esta página tiene fines informativos; las condiciones específicas
-                de cada producto se rigen por la póliza emitida por la aseguradora correspondiente.
-                Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
               </p>
-              <p className="mt-3">
-                © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.{" "}
-                <Link
-                  href="/aviso-privacidad"
-                  className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
-                >
-                  Aviso de Privacidad
-                </Link>
-                .
-              </p>
+              <Link
+                href="/aviso-privacidad"
+                className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
+              >
+                Aviso de Privacidad
+              </Link>
             </div>
+          </div>
+          <div className="border-t border-zinc-100 dark:border-zinc-900">
+            <p className="max-w-6xl mx-auto px-6 py-4 text-[11px] text-zinc-400 leading-relaxed">
+              Esta página tiene fines informativos; las condiciones específicas de cada producto se rigen por la póliza emitida por la aseguradora correspondiente. Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
+            </p>
           </div>
         </footer>
         <CookieBanner />

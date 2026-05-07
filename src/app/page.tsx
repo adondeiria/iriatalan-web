@@ -34,7 +34,7 @@ const FALLBACK_HERO_TITLE =
   "Planeación patrimonial, seguros y retiro para personas, familias y empresas en México";
 const FALLBACK_HERO_SUBTITLE =
   "Asesoría especializada para proteger tu salud, tu patrimonio, tu retiro y la continuidad financiera de tu familia o empresa.";
-const FALLBACK_CTA_TEXT = "Agenda consulta gratis 30 min";
+const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
 const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
 
 const AUTHORITY_BADGES = [
@@ -565,7 +565,7 @@ export default async function HomePage() {
               30 minutos pueden cambiar la trayectoria financiera de tu familia.
             </h2>
             <p className="mt-4 text-lg opacity-80 max-w-xl mx-auto">
-              Consulta gratuita, sin compromiso. Te escucho primero.
+              Sesión inicial sin compromiso. Te escucho primero.
             </p>
             <a
               href={ctaUrl}
