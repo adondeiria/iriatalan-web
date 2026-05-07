@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -116,9 +117,18 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
             <Link
               href="/"
-              className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 whitespace-nowrap"
+              className="flex items-center gap-2 whitespace-nowrap"
+              aria-label={`${SITE_NAME} — Inicio`}
             >
-              Iria Talan / RIF
+              <Image
+                src="/LOGOVECTORRIF.svg"
+                alt={`${SITE_NAME} — Reingeniería Financiera`}
+                width={48}
+                height={48}
+                priority
+                className="h-10 w-auto sm:h-12"
+              />
+              <span className="sr-only">{SITE_NAME}</span>
             </Link>
 
             {/* Desktop nav */}

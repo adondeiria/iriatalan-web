@@ -1,7 +1,56 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { SITE_URL } from "@/lib/seo";
+import {
+  buildBreadcrumbSchema,
+  buildFAQPageSchema,
+  buildGraph,
+  SITE_NAME,
+  SITE_URL,
+  type FAQItem,
+} from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "¿La primera consulta tiene costo?",
+    answerText:
+      "No. La consulta inicial de 30 minutos es gratuita y sin compromiso. La uso para escucharte: qué quieres proteger, en qué momento estás. Después recomiendo, con argumentos.",
+  },
+  {
+    question: "¿Qué llevo a la primera reunión?",
+    answerText:
+      "Nada en particular. Si ya tienes pólizas vigentes (vida, GMM, retiro, AFORE), tenerlas a mano ayuda — pero no es obligatorio. La primera conversación es para entender tu situación, no para revisar papeles.",
+  },
+  {
+    question: "¿Hay compromiso de contratar después de la consulta?",
+    answerText:
+      "Cero. La consulta es informativa. Si lo que recomiendo te hace sentido, seguimos. Si no, te entregué información que ya es tuya.",
+  },
+  {
+    question: "¿Atiendes en español o inglés?",
+    answerText:
+      "Ambos. Mi oficina está en Bosque de Chapultepec, CDMX. Atiendo presencial o por videollamada según prefieras.",
+  },
+  {
+    question: "¿En cuánto tiempo respondes WhatsApp o correo?",
+    answerText:
+      "Máximo 24 horas hábiles. Si es urgente (siniestro en curso, renovación con fecha límite), márcalo así y respondo más rápido.",
+  },
+];
+
+function buildContactPageSchema() {
+  return {
+    "@type": "ContactPage" as const,
+    "@id": `${SITE_URL}/contacto#contactpage`,
+    name: `Contacto — ${SITE_NAME}`,
+    url: `${SITE_URL}/contacto`,
+    description:
+      "Agenda consulta gratuita de 30 min con Iria Talan, asesora financiera autorizada CNSF.",
+    inLanguage: "es-MX",
+    isPartOf: { "@id": `${SITE_URL}#website` },
+    mainEntity: { "@id": `${SITE_URL}#localbusiness` },
+  };
+}
 
 export const metadata: Metadata = {
   title: "Contacto — Agenda tu Consulta Gratuita",
@@ -18,8 +67,21 @@ export const metadata: Metadata = {
 };
 
 export default function ContactoPage() {
+  const pageSchema = buildGraph(
+    buildContactPageSchema(),
+    buildBreadcrumbSchema([
+      { name: "Inicio", path: "/" },
+      { name: "Contacto", path: "/contacto" },
+    ]),
+    buildFAQPageSchema(FAQS)
+  );
+
   return (
     <main className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
       {/* Hero */}
       <section className="px-6 pt-16 pb-10 max-w-4xl mx-auto w-full">
         <p className="text-sm uppercase tracking-wider text-zinc-500">
@@ -165,6 +227,30 @@ export default function ContactoPage() {
             </a>
             . Respondo en un plazo máximo de 24 horas hábiles.
           </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="px-6 py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-3xl mx-auto w-full">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Antes de agendar
+          </h2>
+          <p className="mt-3 text-zinc-600 dark:text-zinc-400">
+            Lo que normalmente preguntan mis clientes antes de la primera consulta.
+          </p>
+          <div className="mt-10 space-y-8">
+            {FAQS.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  {faq.answerText}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

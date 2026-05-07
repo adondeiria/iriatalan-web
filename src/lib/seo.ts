@@ -120,7 +120,7 @@ export function buildOrganizationSchema(author?: AuthorData) {
     "@id": `${SITE_URL}#organization`,
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/LOGOVECTORRIF.svg`,
     founder: author ? { "@id": `${SITE_URL}/sobre-iria#person` } : undefined,
     sameAs,
   };

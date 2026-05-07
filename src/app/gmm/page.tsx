@@ -339,6 +339,55 @@ export default async function GmmPage() {
           </div>
         </section>
 
+        <section id="internacional" className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-4xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Cobertura internacional
+            </p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+              GMM internacional para HNWI
+            </h2>
+            <div className="mt-6 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p>
+                Para patrimonios con tratamientos en EUA o Europa, contratar GMM solo nacional
+                puede salir en millones cuando aparece el caso complejo. La diferencia entre
+                BUPA o MetLife internacional vs un GMM nacional estándar no es cosmética —
+                es de capa, de techo y de red hospitalaria internacional aceptada.
+              </p>
+              <div>
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Cuándo importa la cobertura internacional
+                </h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Tratamientos oncológicos en MD Anderson, Mayo Clinic, Johns Hopkins</li>
+                  <li>Cirugías cardiovasculares con surgeon ranking top global</li>
+                  <li>Trasplantes complejos donde el tiempo de espera fuera de EUA es prohibitivo</li>
+                  <li>Maternidad en hospitales de élite internacional</li>
+                  <li>Vidas con residencia parcial en EUA, Europa o Canadá</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+                  Carriers con redes internacionales más amplias
+                </h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><strong className="text-zinc-900 dark:text-zinc-50">BUPA</strong> — red global muy amplia, especialmente Reino Unido, Europa y Asia</li>
+                  <li><strong className="text-zinc-900 dark:text-zinc-50">MetLife</strong> — red EUA muy fuerte, opciones flexibles de deducible</li>
+                  <li><strong className="text-zinc-900 dark:text-zinc-50">Allianz</strong> — cobertura europea premium</li>
+                </ul>
+              </div>
+              <p>
+                <strong className="text-zinc-900 dark:text-zinc-50">Lo que cuesta NO tener:</strong>{" "}
+                un solo evento mayor en EUA puede acumular varios millones de dólares en cuestión de
+                semanas. La prima anual de un GMM internacional bien estructurado es una fracción de eso.
+              </p>
+              <p className="text-xs text-zinc-500 italic border-l-2 border-zinc-300 dark:border-zinc-700 pl-3 mt-3">
+                Las cifras de costos médicos son ilustrativas y dependen del país, hospital, tipo de evento, aseguradora, plan contratado y evaluación individual.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">

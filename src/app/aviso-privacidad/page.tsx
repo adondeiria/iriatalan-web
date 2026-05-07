@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { SITE_URL } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildGraph, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Aviso de Privacidad — Iria Talan / RIF",
@@ -18,8 +18,19 @@ const RESPONSABLE_DOMICILIO =
   "Homero 203 -103, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
 
 export default function AvisoPrivacidadPage() {
+  const pageSchema = buildGraph(
+    buildBreadcrumbSchema([
+      { name: "Inicio", path: "/" },
+      { name: "Aviso de Privacidad", path: "/aviso-privacidad" },
+    ])
+  );
+
   return (
     <main className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
       <section className="px-6 py-10 sm:py-20 max-w-3xl mx-auto w-full">
         <p className="text-sm uppercase tracking-wider text-zinc-500">
           Cumplimiento legal

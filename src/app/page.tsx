@@ -77,6 +77,37 @@ const PARA_QUIEN = [
   },
 ];
 
+const INDUSTRIA_SILENCIOS = [
+  {
+    title: "Pensión multiplicada 5-8x — si no abandonas el plan a la mitad",
+    body: "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión 5-8x — pero casi nadie planea cómo va a pagar la cotización mensual durante los años que dura. Sin un vehículo de ahorro alimentándola (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60 años), la cuota se vuelve insostenible y la estrategia se cancela a medio camino. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
+  },
+  {
+    title: "Universidades privadas más caras cada año, sin plan dedicado",
+    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una universidad nacional privada buena, varios cientos de miles al año. Una internacional, mucho más. Y el costo educativo en México sube por encima de la inflación general, año tras año. La mayoría de papás ahorra \"lo que pueda\" — sin plan dedicado, sin vehículo aseguradora con suma asegurada si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, la cuenta no alcanza.",
+  },
+  {
+    title: "Retiro deducible — la gente lo contrata por la deducción, no por el retiro",
+    body: "Hoy la mayoría que contrata un PPR (Plan Personal de Retiro) lo hace porque le devuelve hasta 30-35% vía SAT cada año (Art. 151 fracc V LISR, hasta el tope deducible permitido — alrededor de $213,973 MXN en 2026). No por la pensión a futuro, por el flujo fiscal de hoy. Y está bien: si un PPR te ahorra impuestos ahora y además te construye fondo para retiro, son dos beneficios en uno. El error es no usarlo cuando estás dentro del rango de ingreso donde la deducción te aplica.",
+  },
+  {
+    title: "Beneficiarios desactualizados",
+    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de pólizas tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás.",
+  },
+  {
+    title: "Empresas sin Persona Clave",
+    body: "El dueño se asegura. Pero la directora de operaciones cuya salida colapsaría la empresa, no. La continuidad de tu negocio rara vez depende solo del fundador — y muchos socios mexicanos lo descubren tarde.",
+  },
+  {
+    title: "Hijos neurodivergentes sin estructura financiera",
+    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso administrador del cuidado. Eso garantiza recursos cuando tú ya no estás — sin sucesiones lentas ni tutores no idóneos.",
+  },
+  {
+    title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
+    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el patrimonio llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal, y sin estar atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora, que es donde está la liquidez inmediata.",
+  },
+];
+
 const METODOLOGIA = [
   {
     n: "01",
@@ -261,6 +292,50 @@ export default async function HomePage() {
                   {c}
                 </span>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lo que la industria NO te explica */}
+        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Diferenciación
+            </p>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight max-w-3xl">
+              Lo que normalmente NO te explica la industria financiera
+            </h2>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl italic">
+              No vendo seguros. Diagnostico decisiones que la industria suele dejar sin nombrar.
+            </p>
+            <div className="mt-10 sm:mt-12 grid gap-6 sm:gap-8 sm:grid-cols-2">
+              {INDUSTRIA_SILENCIOS.map((item, i) => (
+                <div
+                  key={item.title}
+                  className="border-l-2 border-rif-rojo pl-5"
+                >
+                  <div className="text-xs uppercase tracking-wider text-rif-rojo font-medium tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+              <p className="text-zinc-800 dark:text-zinc-200 italic leading-relaxed max-w-2xl">
+                ¿Reconoces alguno de estos en tu situación? Hagamos diagnóstico antes de que sea decisión.
+              </p>
+              <Link
+                href="/contacto"
+                className="mt-4 inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-6 py-3 text-sm font-medium hover:opacity-90 transition"
+              >
+                Agenda diagnóstico gratuito
+              </Link>
             </div>
           </div>
         </section>
