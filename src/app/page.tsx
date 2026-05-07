@@ -188,7 +188,7 @@ export default async function HomePage() {
               <Link
                 key={s._id}
                 href={`/${s.slug}`}
-                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   {s.category === "vida_pillar" || s.category === "gmm_pillar"
@@ -216,7 +216,7 @@ export default async function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
               Por qué clientes afluentes y HNWI confían en RIF
             </h2>
-            <div className="mt-6 sm:mt-10 grid gap-6 sm:gap-8 sm:grid-cols-3">
+            <div className="mt-6 sm:mt-10 grid gap-5 sm:gap-8 sm:grid-cols-3">
               {valueProps.map((vp, i) => (
                 <div key={i}>
                   <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -247,7 +247,7 @@ export default async function HomePage() {
             <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
               <Link
                 href="/mujeres"
-                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Para mujeres
@@ -266,7 +266,7 @@ export default async function HomePage() {
 
               <Link
                 href="/familias-arcoiris"
-                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Familias diversas
@@ -285,7 +285,7 @@ export default async function HomePage() {
 
               <Link
                 href="/hijos-neurodivergentes"
-                className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Cuidado vitalicio
@@ -309,7 +309,7 @@ export default async function HomePage() {
           <div className="max-w-5xl mx-auto w-full">
             <Link
               href="/patrimonial"
-              className="group block p-10 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+              className="group block p-8 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                 <div className="max-w-2xl">
@@ -333,8 +333,8 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="px-6 py-16 sm:py-24 max-w-5xl mx-auto w-full">
-          <div className="rounded-3xl bg-rif-rojo text-white p-12 sm:p-16 text-center">
+        <section className="px-6 py-12 sm:py-24 max-w-5xl mx-auto w-full">
+          <div className="rounded-3xl bg-rif-rojo text-white p-10 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
               30 minutos pueden cambiar la trayectoria financiera de tu familia.
             </h2>
