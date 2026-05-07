@@ -7,9 +7,35 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "Mi hijo es muy pequeño aún. ¿No es prematuro pensar en esto?",
+    answerText:
+      "Es lo opuesto. Mientras más temprano estructures, menos cuesta y más tiempo tiene el patrimonio para crecer. Y los seguros de vida son más baratos cuanto más joven los contrates. Empezar a los 35 con un hijo de 5 es muy distinto a empezar a los 50 con uno de 20.",
+  },
+  {
+    question: "¿Necesito tener un patrimonio enorme para que un fideicomiso tenga sentido?",
+    answerText:
+      "No. La función del seguro de vida es justamente \"crear\" el patrimonio base que va al fideicomiso si tú llegas a faltar. Tu prima mensual hoy puede convertirse en varios millones para tu hijo el día que pase algo. Lo importante es estructurar correctamente.",
+  },
+  {
+    question: "Mi hijo tiene un diagnóstico reciente. ¿Aplica algún seguro?",
+    answerText:
+      "El seguro de vida es sobre TI (los padres), no sobre tu hijo — eso es importante entenderlo. La condición de tu hijo no afecta tu capacidad de asegurarte tú. Y el GMM tiene reglas específicas que varían por carrier; te muestro cuáles aplican y cuáles no.",
+  },
+  {
+    question: "Pertenezco a una asociación de padres. ¿Trabajas con asociaciones?",
+    answerText:
+      "Sí. Si tu asociación quiere organizar una sesión informativa para varias familias a la vez, podemos coordinar — sin compromiso individual de contratar, solo educativa. Escríbeme.",
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Asesoría financiera para familias con hijos neurodivergentes — Iria Talan / RIF",
@@ -49,7 +75,8 @@ export default async function HijosNeurodivergentesPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Hijos neurodivergentes", path: "/hijos-neurodivergentes" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

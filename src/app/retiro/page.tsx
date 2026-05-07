@@ -7,9 +7,44 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "Estoy joven, falta mucho para mi retiro.",
+    answerText:
+      "El interés compuesto premia exponencialmente al que empieza joven. Aportar $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando a los 50. Y la deducción fiscal del PPR te puede dar 30-35% de regreso vía SAT cada año, según tu nivel de ingreso.",
+  },
+  {
+    question: "El IMSS me va a alcanzar.",
+    answerText:
+      "Tu pensión IMSS se calcula sobre el promedio de tus últimos años cotizados. Si los últimos años tuviste un SBC menor al máximo (25 UMAs), tu pensión queda muy por debajo de tu nivel de vida actual. Lo cuantificamos juntos antes de decidir.",
+  },
+  {
+    question: "PPR vs AFORE: ¿cuál es mejor?",
+    answerText:
+      "No compiten — se complementan. La AFORE es obligatoria, el PPR es voluntario. La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR es estructuralmente más rentable cuando se aprovecha la deducción fiscal.",
+  },
+  {
+    question: "Modalidad 40 IMSS suena complicada.",
+    answerText:
+      "Tiene reglas específicas pero no es complicada — es metodológica. Lo crítico es entender el cálculo: si entras con SBC tope durante años suficientes, tu pensión puede multiplicarse 5-8x vs no usarla. Lo modelamos con tus datos antes de decidir.",
+  },
+  {
+    question: "¿Y si las leyes cambian?",
+    answerText:
+      "Pueden cambiar — y por eso revisamos anualmente. Las reformas previsionales en México (1997, 2020) tienden a ser progresivas, raramente regresivas para quienes ya están cotizando. Y los PPRs ya contratados se respetan en términos generales.",
+  },
+  {
+    question: "¿La aseguradora dónde invierte mi dinero?",
+    answerText:
+      "El PPR funciona como cuenta individualizada. Cada carrier tiene su política de inversión auditada por la CNSF y la CONSAR. Te muestro el rendimiento histórico y la composición del portafolio antes de elegir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Planeación de Retiro · PPR + Modalidad 40 IMSS — Iria Talan / RIF",
@@ -54,7 +89,8 @@ export default async function RetiroPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Planeación de Retiro", path: "/retiro" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

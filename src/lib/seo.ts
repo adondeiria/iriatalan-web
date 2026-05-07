@@ -6,6 +6,18 @@
 export const SITE_URL = "https://iriatalan.com.mx";
 export const SITE_NAME = "Iria Talan / RIF";
 
+/**
+ * SameAs fallback — perfiles canonical públicos de Iria Talan.
+ * Usado cuando el campo `author.sameAs` de Sanity está vacío.
+ * Crítico para EEAT (Person.sameAs) y entity disambiguation en LLMs.
+ */
+export const SAMEAS_FALLBACK: string[] = [
+  "https://mx.linkedin.com/in/iriatalan",
+  "https://www.instagram.com/iriatalan/",
+  "https://www.facebook.com/IriaTalan/",
+  "https://www.tiktok.com/@iriatips",
+];
+
 export type AuthorData = {
   _id?: string;
   name: string;
@@ -31,12 +43,13 @@ export type AuthorData = {
 };
 
 export function buildPersonSchema(author: AuthorData) {
-  const sameAs = [
+  const collected = [
     ...(author.sameAs ?? []),
     author.socialLinks?.linkedin,
     author.socialLinks?.instagram,
     author.socialLinks?.facebook,
   ].filter((u): u is string => typeof u === "string" && u.length > 0);
+  const sameAs = collected.length > 0 ? collected : SAMEAS_FALLBACK;
 
   const knowsAbout = [
     ...(author.specialties ?? []),
@@ -100,6 +113,8 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
 }
 
 export function buildOrganizationSchema(author?: AuthorData) {
+  const sameAs =
+    author?.sameAs && author.sameAs.length > 0 ? author.sameAs : SAMEAS_FALLBACK;
   return {
     "@type": "Organization" as const,
     "@id": `${SITE_URL}#organization`,
@@ -107,7 +122,7 @@ export function buildOrganizationSchema(author?: AuthorData) {
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     founder: author ? { "@id": `${SITE_URL}/sobre-iria#person` } : undefined,
-    sameAs: author?.sameAs,
+    sameAs,
   };
 }
 
@@ -202,6 +217,8 @@ export function buildBreadcrumbSchema(crumbs: Breadcrumb[]) {
 }
 
 export function buildLocalBusinessSchema(author?: AuthorData) {
+  const sameAs =
+    author?.sameAs && author.sameAs.length > 0 ? author.sameAs : SAMEAS_FALLBACK;
   return {
     "@type": "LocalBusiness" as const,
     "@id": `${SITE_URL}#localbusiness`,
@@ -218,7 +235,7 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     areaServed: { "@type": "Country", name: "México" },
     priceRange: "$$$$",
     openingHours: "Mo-Fr 09:00-18:00",
-    sameAs: author?.sameAs,
+    sameAs,
   };
 }
 

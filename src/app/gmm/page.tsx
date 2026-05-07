@@ -7,9 +7,49 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "Mi GMM subió 18% este año, ya no me alcanza.",
+    answerText:
+      "Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura sería el peor escenario.",
+  },
+  {
+    question: "Es muy caro.",
+    answerText:
+      "Para una familia de 4 con red top y cobertura internacional, rangos típicos en México 2025 van de $80,000 a $180,000 anuales (Aseguratemexico 2025). Un solo evento médico mayor sin cobertura supera fácilmente esa cifra anual entera.",
+  },
+  {
+    question: "El IMSS / mi prestación me cubre.",
+    answerText:
+      "Son una capa importante — pero rara vez son suficiente capa única. Tiempos de respuesta variables y portabilidad limitada al cambiar de empleo. Para familias afluentes y HNWI funcionan mejor como complemento.",
+  },
+  {
+    question: "Tengo dudas con el deducible.",
+    answerText:
+      "Es la decisión más importante. Bajo = prima alta, cobertura desde el primer peso. Alto = prima baja, asumes los primeros gastos tú. Depende de tu liquidez de emergencia y aversión al riesgo. Lo cuantificamos juntos.",
+  },
+  {
+    question: "¿Qué hospitales cubre?",
+    answerText:
+      "Depende del carrier y plan. ABC + Médica Sur + Ángeles está en planes premium de varios. Christus Muguerza en otros. Te muestro la red exacta antes de decidir.",
+  },
+  {
+    question: "¿Y si me niegan un siniestro?",
+    answerText:
+      "La CNSF regula y arbitra disputas. La mayoría de \"negativas\" son por documentación incompleta o por aplicar plan equivocado para el caso — cosas que se corrigen. Te acompaño personalmente en el proceso.",
+  },
+  {
+    question: "¿Y la cobertura internacional?",
+    answerText:
+      "Crítica para HNWI con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA y MetLife tienen las redes internacionales más amplias.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Gastos Médicos Mayores en México — Iria Talan / RIF",
@@ -54,7 +94,8 @@ export default async function GmmPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Gastos Médicos Mayores", path: "/gmm" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

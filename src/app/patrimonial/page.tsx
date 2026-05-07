@@ -7,9 +7,35 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "¿A partir de qué patrimonio aplica?",
+    answerText:
+      "No hay umbral fijo — depende de la complejidad, no del monto absoluto. Una empresa familiar de mediano tamaño con socios y herederos múltiples puede beneficiarse tanto como un patrimonio HNWI tradicional.",
+  },
+  {
+    question: "¿Trabajas con bancas privadas?",
+    answerText:
+      "Sí, coordinamos con tu banca privada actual. Mi rol no compite con la banca — soy capa aseguradora y de planeación patrimonial. Trabajamos juntos para que tu estrategia bancaria y aseguradora estén alineadas.",
+  },
+  {
+    question: "¿Cobras honorarios o solo comisiones?",
+    answerText:
+      "Lo platicamos en la primera conversación. Para casos patrimoniales complejos hay opciones de honorarios fijos o comisiones por carrier según el producto. Total transparencia sobre cómo me pagan.",
+  },
+  {
+    question: "¿Mi información es confidencial?",
+    answerText:
+      "Absolutamente. Mi obligación profesional bajo CNSF + ética AMASFAC. Nunca compartas datos sensibles por canales abiertos — usa el email o agenda llamada.",
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Patrimonios complejos · Asesoría discreta para HNWI — Iria Talan / RIF",
@@ -48,7 +74,8 @@ export default async function PatrimonialPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Patrimonios complejos", path: "/patrimonial" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

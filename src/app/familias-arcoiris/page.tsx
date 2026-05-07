@@ -7,9 +7,35 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "¿Por qué necesito asesoría especializada y no cualquier asesor?",
+    answerText:
+      "Porque las estructuras legales y de beneficiarios para familias diversas con hijos requieren combinaciones específicas que muchos asesores generales no conocen o no priorizan. La diferencia se nota el día que algo pasa.",
+  },
+  {
+    question: "Mi pareja y yo no estamos casados legalmente. ¿Eso es problema?",
+    answerText:
+      "No con la estructura correcta. Hay instrumentos legales (designación irrevocable de beneficiario en seguros de vida, fideicomisos, testamento específico) que te permiten proteger a tu pareja independientemente del estatus civil. Lo armamos con eso en cuenta.",
+  },
+  {
+    question: "Adoptamos a nuestros hijos hace pocos años. ¿La estructura cambia?",
+    answerText:
+      "Si la adopción es legal, los hijos adoptados tienen los mismos derechos hereditarios que los biológicos. Aún así, recomiendo blindar con seguro de vida y fideicomiso para evitar cualquier disputa de familiares biológicos de cualquiera de los dos.",
+  },
+  {
+    question: "Soy madre/padre soltero/a por elección. ¿También aplica?",
+    answerText:
+      "Sí — y es un perfil que cada vez veo más. La estructura cambia ligeramente (no hay segunda figura paterna/materna) pero los principios son los mismos: proteger a tu hijo financiera y legalmente sin importar quién quede después.",
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Asesoría financiera para familias arcoíris en México — Iria Talan / RIF",
@@ -49,7 +75,8 @@ export default async function FamiliasArcoirisPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Familias arcoíris", path: "/familias-arcoiris" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

@@ -7,9 +7,35 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "¿Trabajas solo con mujeres?",
+    answerText:
+      "No. Trabajo con familias, parejas, hombres y mujeres. Esta página existe porque muchas clientas mujeres buscan específicamente una asesora mujer y quería darles un espacio donde se reconozcan.",
+  },
+  {
+    question: "Vengo recomendada por una amiga / clienta tuya. ¿Es muy distinto el proceso?",
+    answerText:
+      "No. Misma metodología, misma transparencia. Trabajo con las mismas 6 aseguradoras y la recomendación se ajusta a tu situación específica. La única diferencia es que ya tenemos contexto compartido — eso ahorra tiempo en la primera sesión.",
+  },
+  {
+    question: "Estoy en proceso de divorcio. ¿Es buen momento para hablar contigo?",
+    answerText:
+      "Es uno de los mejores. Las decisiones financieras que se toman durante y después del divorcio impactan décadas. Hablar antes — incluso antes de firmar el convenio — te da claridad sobre lo que estás negociando.",
+  },
+  {
+    question: "Mi pareja siempre llevó las finanzas. Yo no sé mucho. ¿Eso es problema?",
+    answerText:
+      "Para nada. Es el caso más común — y es justo donde mi metodología te sirve más. Vamos a tu ritmo, sin asumir conocimiento previo, sin condescendencia.",
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Asesoría financiera para mujeres en México — Iria Talan / RIF",
@@ -49,7 +75,8 @@ export default async function MujeresPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Asesoría para mujeres", path: "/mujeres" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (

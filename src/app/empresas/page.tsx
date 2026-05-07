@@ -7,9 +7,40 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
+
+const FAQS: FAQItem[] = [
+  {
+    question: "¿La prima de Persona Clave es deducible para la empresa?",
+    answerText:
+      "Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos con tu contador para asegurar la deducibilidad.",
+  },
+  {
+    question: "¿Cuánto debe ser la suma asegurada por persona clave?",
+    answerText:
+      "Depende de su rol. Como referencia: 5-10x la utilidad anual atribuible a esa persona, o el costo total de reemplazo (búsqueda + entrenamiento + bache operativo) multiplicado por 2-3. Lo cuantificamos juntos.",
+  },
+  {
+    question: "¿Mi socio se entera si lo aseguro?",
+    answerText:
+      "Sí — la persona asegurada debe firmar consentimiento y pasar exámenes médicos. No se puede asegurar a alguien sin que sepa. La buena noticia: a la mayoría de socios les parece bien (es señal de que la empresa los valora).",
+  },
+  {
+    question: "¿Sirve para empresas pequeñas (menos de 10 empleados)?",
+    answerText:
+      "Sí — y es donde más se necesita. En empresas chicas, una sola persona faltante puede colapsar la operación. En corporativos grandes hay redundancia natural; en empresas pequeñas, no.",
+  },
+  {
+    question: "Ya tengo Vida grupo y GMM colectivo. ¿Necesito Persona Clave también?",
+    answerText:
+      "Son productos distintos con beneficiarios distintos. Vida grupo paga a la familia del empleado. Persona Clave paga a la empresa. Ambos son necesarios — protegen cosas distintas. Hablamos de la diferencia con detalle en consulta.",
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Seguros para Empresas · Persona Clave / Hombre Clave — Iria Talan / RIF",
@@ -55,7 +86,8 @@ export default async function EmpresasPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Seguros para empresas", path: "/empresas" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS)
   );
 
   return (
