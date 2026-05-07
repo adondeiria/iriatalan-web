@@ -230,53 +230,53 @@ export default async function HomePage() {
       />
 
       <main className="flex flex-col">
-        {/* Hero image */}
-        <section className="relative w-full overflow-hidden">
-          <div className="relative aspect-[21/9] w-full">
-            <Image
-              src="/img/nichos/hero-homepage.png"
-              alt="Familia mexicana animando a sus hijos en un partido de fútbol escolar"
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </section>
-
-        {/* Hero text + authority badges + CTAs */}
-        <section className="px-6 py-10 sm:py-20 max-w-5xl mx-auto w-full">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
-            {heroTitle}
-          </h1>
-          <p className="mt-4 sm:mt-6 text-base sm:text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
-            {heroSubtitle}
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {AUTHORITY_BADGES.map((badge) => (
-              <span
-                key={badge}
-                className="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <a
-              href={ctaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
-            >
-              {ctaText}
-            </a>
-            <Link
-              href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
-            >
-              Conoce a Iria
-            </Link>
+        {/* Hero split — foto editorial Iria + texto */}
+        <section className="px-6 py-10 sm:py-16 lg:py-20 max-w-6xl mx-auto w-full">
+          <div className="grid gap-10 lg:gap-16 lg:grid-cols-[5fr_7fr] lg:items-center">
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+              <Image
+                src="/img/iria/iria-hero-01.jpg"
+                alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+                {heroTitle}
+              </h1>
+              <p className="mt-5 sm:mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-xl">
+                {heroSubtitle}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {AUTHORITY_BADGES.map((badge) => (
+                  <span
+                    key={badge}
+                    className="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <a
+                  href={ctaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
+                >
+                  {ctaText}
+                </a>
+                <Link
+                  href="/sobre-iria"
+                  className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                >
+                  Conoce a Iria
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
