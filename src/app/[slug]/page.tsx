@@ -183,7 +183,7 @@ export default async function ServicePage({
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               {ctaText}
             </a>
@@ -305,7 +305,7 @@ export default async function ServicePage({
         )}
 
         <section className="px-6 py-12 sm:py-20 max-w-4xl mx-auto w-full">
-          <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
+          <div className="rounded-3xl bg-rif-rojo text-white p-10 sm:p-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight max-w-xl mx-auto">
               ¿Listas para hablar de {service.title.toLowerCase()}?
             </h2>

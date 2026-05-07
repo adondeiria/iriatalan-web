@@ -49,6 +49,22 @@ const PRODUCT_LINE_LABELS: Record<string, string> = {
   otro: "—",
 };
 
+type WhatsAppChannel = {
+  carrier: string;
+  ramo: string;
+  url: string;
+};
+
+const WHATSAPP_CHANNELS: WhatsAppChannel[] = [
+  { carrier: "BUPA",    ramo: "Médico",         url: "https://whatsapp.com/channel/0029VaGVom8GehELQJ7iCA2v" },
+  { carrier: "GNP",     ramo: "Médico + Autos", url: "https://whatsapp.com/channel/0029VaBhwM6Dp2Q4uSPaB92l" },
+  { carrier: "SMNYL",   ramo: "Médico",         url: "https://whatsapp.com/channel/0029VaGvIyNAYlUPmGEDFQ2p" },
+  { carrier: "AXA",     ramo: "Médico + Autos", url: "https://whatsapp.com/channel/0029VaBbyzT0LKZCIHeDxz1p" },
+  { carrier: "MetLife", ramo: "Vida + GMM",     url: "https://whatsapp.com/channel/0029VaCLFhMAe5Vps0msnG3D" },
+  { carrier: "Keralty", ramo: "Médico",         url: "https://whatsapp.com/channel/0029Vb7fJI27dmeRo6pleH3X" },
+  { carrier: "Allianz", ramo: "Autos",          url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
+];
+
 export const metadata: Metadata = {
   title: "Recursos — Documentos de aseguradoras",
   description:
@@ -166,6 +182,50 @@ export default async function RecursosPage({
             acceso público a la documentación oficial de las 6 aseguradoras
             autorizadas con las que trabajo.
           </p>
+        </section>
+
+        <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
+          <div className="max-w-5xl mx-auto w-full">
+            <p className="text-sm uppercase tracking-wider text-zinc-500">
+              Avisos directos
+            </p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+              Canales oficiales de WhatsApp por aseguradora
+            </h2>
+            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+              Cada aseguradora publica avisos importantes (siniestros, cambios
+              de red, vencimientos, alertas) en su canal oficial de WhatsApp.
+              Únete a los canales de los productos que tienes contigo.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {WHATSAPP_CHANNELS.map((c) => (
+                <a
+                  key={c.carrier}
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                >
+                  <div>
+                    <div className="font-semibold text-zinc-900 dark:text-zinc-50">
+                      {c.carrier}
+                    </div>
+                    <div className="text-xs text-zinc-500 mt-0.5">
+                      {c.ramo}
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
+                    Únete →
+                  </span>
+                </a>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-zinc-500">
+              Los canales son administrados directamente por cada aseguradora;
+              al unirte aceptas sus términos. No publicamos contenido en estos
+              canales — solo compartimos los enlaces oficiales.
+            </p>
+          </div>
         </section>
 
         {!isEmpty && (

@@ -140,18 +140,18 @@ export default async function HomePage() {
         </section>
 
         <section className="px-6 py-10 sm:py-20 max-w-5xl mx-auto w-full">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50 max-w-3xl">
             {heroTitle}
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-base sm:text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
             {heroSubtitle}
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               {ctaText}
             </a>
@@ -183,7 +183,7 @@ export default async function HomePage() {
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
             Servicios prioritarios
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2">
             {services.map((s) => (
               <Link
                 key={s._id}
@@ -216,7 +216,7 @@ export default async function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
               Por qué clientes afluentes y HNWI confían en RIF
             </h2>
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            <div className="mt-6 sm:mt-10 grid gap-6 sm:gap-8 sm:grid-cols-3">
               {valueProps.map((vp, i) => (
                 <div key={i}>
                   <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -244,7 +244,7 @@ export default async function HomePage() {
               Por eso construí espacios específicos para cada uno.
             </p>
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
               <Link
                 href="/mujeres"
                 className="group p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
@@ -334,7 +334,7 @@ export default async function HomePage() {
         </section>
 
         <section className="px-6 py-16 sm:py-24 max-w-5xl mx-auto w-full">
-          <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-12 sm:p-16 text-center">
+          <div className="rounded-3xl bg-rif-rojo text-white p-12 sm:p-16 text-center">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
               30 minutos pueden cambiar la trayectoria financiera de tu familia.
             </h2>

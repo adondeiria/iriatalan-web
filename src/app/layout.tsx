@@ -10,6 +10,8 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
+import { CookieBanner } from "@/components/cookie-banner";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -172,7 +174,7 @@ export default function RootLayout({
               href="https://calendly.com/iriatalan"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-5 py-2 text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
+              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-5 py-2 text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
             >
               Agenda 30 min
             </a>
@@ -252,10 +254,20 @@ export default function RootLayout({
                 de cada producto se rigen por la póliza emitida por la aseguradora correspondiente.
                 Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
               </p>
-              <p className="mt-3">© {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.</p>
+              <p className="mt-3">
+                © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.{" "}
+                <Link
+                  href="/aviso-privacidad"
+                  className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
+                >
+                  Aviso de Privacidad
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </footer>
+        <CookieBanner />
       </body>
     </html>
   );

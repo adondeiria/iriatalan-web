@@ -89,7 +89,7 @@ export default async function PatrimonialPage() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href={`mailto:${email}?subject=Consulta%20patrimonios%20complejos`}
-              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               Conversación confidencial por email
             </a>
@@ -317,7 +317,7 @@ export default async function PatrimonialPage() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <a
                 href={`mailto:${email}?subject=Consulta%20patrimonios%20complejos`}
-                className="p-6 rounded-2xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 hover:opacity-90 transition"
+                className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">
                   Recomendado

@@ -97,7 +97,7 @@ export default async function EmpresasPage() {
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               Agenda diagnóstico gratis 30 min
             </a>
@@ -395,7 +395,7 @@ export default async function EmpresasPage() {
                 href={ctaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 hover:opacity-90 transition"
+                className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Diagnóstico</div>
                 <div className="text-lg font-medium">Agenda 30 min gratis</div>

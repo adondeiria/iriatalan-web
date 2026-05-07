@@ -24,6 +24,18 @@ const nextConfig: NextConfig = {
       { source: "/seguros-gastos-medicos/", destination: "/gmm", permanent: true },
       { source: "/retiro-y-pensiones", destination: "/retiro", permanent: true },
       { source: "/retiro-y-pensiones/", destination: "/retiro", permanent: true },
+      // Additional WordPress sitelinks captured from Google SERP (2026-05-07)
+      { source: "/soy-cliente", destination: "/recursos", permanent: true },
+      { source: "/soy-cliente/", destination: "/recursos", permanent: true },
+      { source: "/our-services", destination: "/", permanent: true },
+      { source: "/our-services/", destination: "/", permanent: true },
+      { source: "/hablemos", destination: "/", permanent: true },
+      { source: "/hablemos/", destination: "/", permanent: true },
+      // English variants commonly indexed
+      { source: "/about-us", destination: "/sobre-iria", permanent: true },
+      { source: "/about-us/", destination: "/sobre-iria", permanent: true },
+      { source: "/contact", destination: "/", permanent: true },
+      { source: "/contact/", destination: "/", permanent: true },
     ];
   },
 };
