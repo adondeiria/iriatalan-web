@@ -107,9 +107,9 @@ export default async function SobreIriaPage() {
             </Link>
             {" / "}Sobre Iria
           </p>
-          <div className="mt-8 grid gap-10 sm:grid-cols-[280px,1fr] sm:items-start">
+          <div className="mt-8 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
             {author.photo?.asset?.url && (
-              <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+              <div className="relative w-full max-w-[240px] mx-auto sm:max-w-none aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
                 <Image
                   src={author.photo.asset.url}
                   alt={author.photo.alt ?? author.name}
