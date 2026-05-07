@@ -249,6 +249,13 @@ export default function RootLayout({
                     <div className="font-medium text-zinc-900 dark:text-zinc-50">HNWI</div>
                     <div className="text-xs text-zinc-500 mt-0.5">Asesoría discreta para patrimonios complejos</div>
                   </Link>
+                  <Link
+                    href="/mexicanos-en-el-extranjero"
+                    className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                  >
+                    <div className="font-medium text-zinc-900 dark:text-zinc-50">Mexicanos en el extranjero</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Asesoría a distancia para residentes en EUA, Europa o Canadá</div>
+                  </Link>
                 </div>
               </details>
 
@@ -284,6 +291,7 @@ export default function RootLayout({
             <Link href="/mujeres" className="hover:underline">Mujeres</Link>
             <Link href="/familias-arcoiris" className="hover:underline">Arcoíris</Link>
             <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
+            <Link href="/mexicanos-en-el-extranjero" className="hover:underline">Mex. en el extranjero</Link>
             <Link href="/recursos" className="hover:underline">Recursos</Link>
             <Link href="/contacto" className="hover:underline font-medium text-rif-rojo">Agenda</Link>
           </nav>

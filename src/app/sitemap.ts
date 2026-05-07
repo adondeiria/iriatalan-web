@@ -20,6 +20,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/mujeres", priority: 0.85 },
   { path: "/familias-arcoiris", priority: 0.85 },
   { path: "/hijos-neurodivergentes", priority: 0.85 },
+  { path: "/mexicanos-en-el-extranjero", priority: 0.85 },
   { path: "/recursos", priority: 0.8 },
   { path: "/blog", priority: 0.8 },
 ];
