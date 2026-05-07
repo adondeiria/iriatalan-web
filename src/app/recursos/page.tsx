@@ -351,7 +351,7 @@ export default async function RecursosPage({
                         </>
                       );
                       const className =
-                        "block p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition";
+                        "block p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition";
                       if (!url) {
                         return (
                           <div key={r._id} className={`${className} opacity-60`}>

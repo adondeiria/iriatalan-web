@@ -169,7 +169,7 @@ export default async function HomePage() {
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Aseguradoras autorizadas
             </p>
-            <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-zinc-700 dark:text-zinc-300">
+            <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-rif-gris dark:text-zinc-300">
               {carriers.map((c) => (
                 <span key={c} className="font-medium">
                   {c}
@@ -188,7 +188,7 @@ export default async function HomePage() {
               <Link
                 key={s._id}
                 href={`/${s.slug}`}
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   {s.category === "vida_pillar" || s.category === "gmm_pillar"
@@ -247,7 +247,7 @@ export default async function HomePage() {
             <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
               <Link
                 href="/mujeres"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Para mujeres
@@ -266,7 +266,7 @@ export default async function HomePage() {
 
               <Link
                 href="/familias-arcoiris"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Familias diversas
@@ -285,7 +285,7 @@ export default async function HomePage() {
 
               <Link
                 href="/hijos-neurodivergentes"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col"
+                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
                   Cuidado vitalicio
@@ -309,7 +309,7 @@ export default async function HomePage() {
           <div className="max-w-5xl mx-auto w-full">
             <Link
               href="/patrimonial"
-              className="group block p-8 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+              className="group block p-8 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                 <div className="max-w-2xl">

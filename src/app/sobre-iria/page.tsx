@@ -249,7 +249,7 @@ export default async function SobreIriaPage() {
                   href={`https://wa.me/${author.socialLinks.whatsapp.replace(/[^\d]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
                   <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                     WhatsApp
@@ -265,7 +265,7 @@ export default async function SobreIriaPage() {
               {author.socialLinks?.email && (
                 <a
                   href={`mailto:${author.socialLinks.email}`}
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
                   <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                     Email
@@ -280,7 +280,7 @@ export default async function SobreIriaPage() {
                   href={author.socialLinks.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
                   <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                     Agenda en Calendly

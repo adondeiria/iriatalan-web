@@ -120,7 +120,7 @@ export default async function GmmPage() {
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <a href="#defensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col">
+              <a href="#defensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col">
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                   Si ya tienes GMM
                 </div>
@@ -136,7 +136,7 @@ export default async function GmmPage() {
                 </span>
               </a>
 
-              <a href="#ofensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-zinc-50 transition flex flex-col">
+              <a href="#ofensivo" className="group p-7 rounded-2xl border-2 border-zinc-300 dark:border-zinc-700 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col">
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                   Si aún no tienes GMM
                 </div>
@@ -424,7 +424,7 @@ export default async function GmmPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Mensaje rápido</div>
                 <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">WhatsApp</div>
@@ -432,7 +432,7 @@ export default async function GmmPage() {
               </a>
               <a
                 href={`mailto:${email}`}
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Email reflexivo</div>
                 <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">Cuéntame por correo</div>

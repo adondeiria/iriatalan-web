@@ -329,7 +329,7 @@ export default async function PatrimonialPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-50 transition"
+                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
                 <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
                   Mensaje directo
