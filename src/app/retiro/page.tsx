@@ -247,7 +247,7 @@ export default async function RetiroPage() {
                 Cuándo conviene Modalidad 40
               </p>
               <ul className="space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
-                <li>· Cotizaste muchos años con SBC bajo y quieres "subir" el promedio antes del retiro</li>
+                <li>· Cotizaste muchos años con SBC bajo y quieres “subir” el promedio antes del retiro</li>
                 <li>· Dejaste de trabajar como subordinado pero quieres mantener historial IMSS</li>
                 <li>· Quieres maximizar la pensión vitalicia (vs lump-sum AFORE)</li>
                 <li>· Buscas garantía estatal (IMSS) y atención médica post-retiro</li>

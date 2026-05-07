@@ -154,7 +154,7 @@ export default async function MujeresPage() {
                   Viudas con patrimonio heredado
                 </h3>
                 <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-                  Pasaste de "mi pareja sabía" a "yo decido". Trabajamos a tu ritmo, sin presión,
+                  Pasaste de “mi pareja sabía” a “yo decido”. Trabajamos a tu ritmo, sin presión,
                   para que entiendas y conserves lo que tienes.
                 </p>
                 <p className="mt-4 text-sm font-medium text-zinc-900 dark:text-zinc-50">
@@ -196,9 +196,9 @@ export default async function MujeresPage() {
               </p>
               <p>
                 <strong className="text-zinc-900 dark:text-zinc-50">Lo que escucho seguido:</strong>{" "}
-                "Es la primera vez que un asesor me deja preguntar lo que realmente quería preguntar."
-                "No me hablaste como si yo no entendiera." "Me explicaste sin asumir que mi marido
-                debe estar en la conversación."
+                “Es la primera vez que un asesor me deja preguntar lo que realmente quería preguntar.”
+                “No me hablaste como si yo no entendiera.” “Me explicaste sin asumir que mi marido
+                debe estar en la conversación.”
               </p>
               <p>
                 Ese es el espacio. La metodología es la misma que usan los asesores top mundiales —

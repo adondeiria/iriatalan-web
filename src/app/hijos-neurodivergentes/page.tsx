@@ -111,7 +111,7 @@ export default async function HijosNeurodivergentesPage() {
             </h2>
             <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
               <p>
-                <em>"¿Quién va a cuidar a mi hijo cuando yo no esté?"</em>
+                <em>“¿Quién va a cuidar a mi hijo cuando yo no esté?”</em>
               </p>
               <p>
                 Es la pregunta que mantiene despiertas a las familias con hijos
@@ -159,8 +159,8 @@ export default async function HijosNeurodivergentesPage() {
                   Seguro de vida con suma asegurada amplia
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
-                  Calculada no para "10 años de gastos familiares" sino para "60+ años
-                  de cuidado de tu hijo". El monto correcto cambia todo.
+                  Calculada no para “10 años de gastos familiares” sino para “60+ años
+                  de cuidado de tu hijo”. El monto correcto cambia todo.
                 </p>
                 <Link href="/seguros-vida" className="mt-3 inline-block text-sm font-medium underline">
                   Más sobre seguros de vida →
@@ -264,7 +264,7 @@ export default async function HijosNeurodivergentesPage() {
                   ¿Necesito tener un patrimonio enorme para que un fideicomiso tenga sentido?
                 </h3>
                 <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  No. La función del seguro de vida es justamente "crear" el patrimonio
+                  No. La función del seguro de vida es justamente “crear” el patrimonio
                   base que va al fideicomiso si tú llegas a faltar. Tu prima mensual
                   hoy puede convertirse en varios millones para tu hijo el día que
                   pase algo. Lo importante es estructurar correctamente.

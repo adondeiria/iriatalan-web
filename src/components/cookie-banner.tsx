@@ -25,6 +25,11 @@ export function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Intentional: sync external cookie state → React state on mount.
+    // Initial state must be `false` to avoid SSR/hydration mismatch (cookies
+    // unavailable during server render). The single setVisible after mount
+    // is the correct pattern here, not an anti-pattern.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (readConsent() === null) setVisible(true);
   }, []);
 
