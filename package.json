@@ -13,6 +13,7 @@
     "@sanity/image-url": "^2.1.1",
     "@sanity/locale-es-es": "^1.2.33",
     "@sanity/vision": "^5.23.0",
+    "lucide-react": "^1.14.0",
     "next": "16.2.4",
     "next-sanity": "^12.4.0",
     "react": "19.2.4",

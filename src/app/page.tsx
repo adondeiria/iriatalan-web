@@ -1,5 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  Briefcase,
+  Heart,
+  Shield,
+  Users,
+} from "lucide-react";
 
 import { sanityFetch } from "../../sanity/lib/fetch";
 import { HOME_PAGE_QUERY, SOBRE_IRIA_QUERY } from "../../sanity/lib/queries";
@@ -11,101 +19,68 @@ import {
   buildPersonSchema,
 } from "@/lib/seo";
 
-type FeaturedService = {
-  _id: string;
-  title: string;
-  slug: string;
-  category: string;
-  priority?: number;
-  shortDescription?: string;
-};
-
 type HomeData = {
   heroTitle?: string;
   heroSubtitle?: string;
   heroCtaText?: string;
   heroCtaUrl?: string;
-  featuredServices?: FeaturedService[];
-  valueProps?: Array<{ title?: string; description?: string; icon?: string }>;
-  trustSignals?: { carriersShown?: string[] };
 } | null;
 
-const FALLBACK_HERO_TITLE =
-  "Planeación patrimonial, seguros y retiro para personas, familias y empresas en México";
+const FALLBACK_HERO_TITLE = "Protegemos hoy lo que te importa mañana.";
 const FALLBACK_HERO_SUBTITLE =
-  "Asesoría especializada para proteger tu salud, tu patrimonio, tu retiro y la continuidad financiera de tu familia o empresa.";
+  "Estrategias personalizadas para personas, familias y empresas que buscan seguridad, crecimiento y legado.";
 const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
 const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
 
-const AUTHORITY_BADGES = [
-  "Asesora desde 2008",
+const CREDENCIALES = [
+  "Desde 2008",
   "MDRT Top of the Table",
-  "Cédula CNSF V388618",
   "Yale Wealth Management",
   "LSE MBA Essentials",
-  "6 aseguradoras autorizadas",
+  "Cédula CNSF V388618",
+];
+
+const SERVICIOS = [
+  {
+    icon: Shield,
+    title: "Protección Patrimonial",
+    desc: "Estrategias para blindar lo que ya construiste.",
+    href: "/patrimonial",
+  },
+  {
+    icon: Heart,
+    title: "Seguros Personales",
+    desc: "Vida, GMM y planes educacionales con vehículo asegurador.",
+    href: "/gmm",
+  },
+  {
+    icon: BarChart3,
+    title: "Retiro e Inversiones",
+    desc: "PPR deducible, Modalidad 40 y fondos a edad 55-60.",
+    href: "/retiro",
+  },
+  {
+    icon: Users,
+    title: "Planeación Familiar",
+    desc: "Hijos neurodivergentes, familias diversas y sucesión.",
+    href: "/hijos-neurodivergentes",
+  },
+  {
+    icon: Briefcase,
+    title: "Empresas y Persona Clave",
+    desc: "Continuidad operativa con vida grupal y persona clave.",
+    href: "/empresas",
+  },
 ];
 
 const PARA_QUIEN = [
-  {
-    label: "Profesionistas independientes",
-    desc: "Médicos, abogados, arquitectos — ingresos variables, ISR alto, sin prestaciones.",
-  },
-  {
-    label: "Empresarios",
-    desc: "Dueños de empresa que necesitan proteger continuidad operativa y patrimonio personal.",
-  },
-  {
-    label: "Familias con patrimonio",
-    desc: "Quien tiene qué proteger y quiere hacerlo con una estrategia coherente, no producto a producto.",
-  },
-  {
-    label: "Mujeres que toman decisiones",
-    desc: "Divorciadas, viudas, profesionistas, empresarias con agenda financiera propia.",
-  },
-  {
-    label: "Familias con hijos neurodivergentes",
-    desc: "Planeación patrimonial que trasciende la vida de los padres — fideicomiso + seguros coordinados.",
-  },
-  {
-    label: "Empresas que protegen talento clave",
-    desc: "Persona Clave, Vida grupo, GMM colectivo, retiro empresarial deducible.",
-  },
-  {
-    label: "Retiro con estrategia fiscal",
-    desc: "PPR + Modalidad 40 coordinados con tu declaración anual SAT para maximizar deducción.",
-  },
-];
-
-const INDUSTRIA_SILENCIOS = [
-  {
-    title: "Pensión multiplicada 5-8x — si no abandonas el plan a la mitad",
-    body: "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión 5-8x — pero casi nadie planea cómo va a pagar la cotización mensual durante los años que dura. Sin un vehículo de ahorro alimentándola (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60 años), la cuota se vuelve insostenible y la estrategia se cancela a medio camino. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
-  },
-  {
-    title: "Universidades privadas más caras cada año, sin plan dedicado",
-    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una universidad nacional privada buena, varios cientos de miles al año. Una internacional, mucho más. Y el costo educativo sube por encima de la inflación general, año tras año. La mayoría de papás ahorra \"lo que pueda\" — sin plan dedicado, sin un vehículo asegurador que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, la cuenta no alcanza.",
-  },
-  {
-    title: "Retiro deducible — la gente lo contrata por la deducción, no por el retiro",
-    body: "Hoy la mayoría que contrata un PPR (Plan Personal de Retiro) lo hace por la deducción fiscal, no por la pensión a futuro. Y tiene lógica: te devuelve hasta 30-35% vía SAT cada año (Art. 151 fracc V LISR, hasta el tope deducible — alrededor de $213,973 MXN en 2026). Si además te construye fondo para retiro, son dos beneficios en uno. El error es no usarlo cuando estás dentro del rango de ingreso donde la deducción te aplica.",
-  },
-  {
-    title: "Beneficiarios desactualizados",
-    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de pólizas tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
-  },
-  {
-    title: "Empresas sin Persona Clave",
-    body: "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo y la operación se queda sin liquidez para resolver lo inmediato: pagos a proveedores, nómina, transición de mando, búsqueda de reemplazo. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria de la suma asegurada sobre el dueño (o sobre cualquier persona insustituible). Cuando llega el momento, la empresa tiene capital para sobrevivir el bache — no para liquidarse.",
-  },
-  {
-    title: "Hijos neurodivergentes sin estructura financiera",
-    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
-  },
-  {
-    title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
-    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedarse atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
-  },
+  "Profesionistas independientes con ISR alto",
+  "Empresarios que protegen continuidad y patrimonio",
+  "Familias afluentes con estrategia patrimonial coherente",
+  "Mujeres con agenda financiera propia",
+  "Familias con hijos neurodivergentes",
+  "Empresas que blindan talento clave",
+  "Quien planea retiro con estrategia fiscal",
 ];
 
 const METODOLOGIA = [
@@ -141,48 +116,61 @@ const METODOLOGIA = [
   },
 ];
 
-const FALLBACK_VALUE_PROPS = [
+const INDUSTRIA_SILENCIOS = [
   {
-    title: "Élite global en seguros",
-    description:
-      "MDRT Top of the Table — distinción reservada al top mundial de la industria.",
+    title: "Pensión multiplicada 5-8x — si no abandonas el plan a la mitad",
+    body: "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión 5-8x — pero casi nadie planea cómo va a pagar la cotización mensual durante los años que dura. Sin un vehículo de ahorro alimentándola (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60 años), la cuota se vuelve insostenible y la estrategia se cancela a medio camino. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
   },
   {
-    title: "6 aseguradoras, una asesora",
-    description:
-      "BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP. Según tu situación, te recomiendo la(s) más adecuada(s).",
+    title: "Universidades privadas más caras cada año, sin plan dedicado",
+    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una universidad nacional privada buena, varios cientos de miles al año. Una internacional, mucho más. Y el costo educativo sube por encima de la inflación general, año tras año. La mayoría de papás ahorra \"lo que pueda\" — sin plan dedicado, sin un vehículo asegurador que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, la cuenta no alcanza.",
   },
   {
-    title: "Educación de élite",
-    description:
-      "Yale Wealth Management · LSE MBA Essentials · Tec de Monterrey · BMV · IMEF.",
+    title: "Retiro deducible — la gente lo contrata por la deducción, no por el retiro",
+    body: "Hoy la mayoría que contrata un PPR (Plan Personal de Retiro) lo hace por la deducción fiscal, no por la pensión a futuro. Y tiene lógica: te devuelve hasta 30-35% vía SAT cada año (Art. 151 fracc V LISR, hasta el tope deducible — alrededor de $213,973 MXN en 2026). Si además te construye fondo para retiro, son dos beneficios en uno. El error es no usarlo cuando estás dentro del rango de ingreso donde la deducción te aplica.",
+  },
+  {
+    title: "Beneficiarios desactualizados",
+    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de pólizas tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
+  },
+  {
+    title: "Empresas sin Persona Clave",
+    body: "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo y la operación se queda sin liquidez para resolver lo inmediato: pagos a proveedores, nómina, transición de mando, búsqueda de reemplazo. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria de la suma asegurada sobre el dueño (o sobre cualquier persona insustituible). Cuando llega el momento, la empresa tiene capital para sobrevivir el bache — no para liquidarse.",
+  },
+  {
+    title: "Hijos neurodivergentes sin estructura financiera",
+    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
+  },
+  {
+    title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
+    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedarse atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
   },
 ];
 
-const FALLBACK_FEATURED_SERVICES: FeaturedService[] = [
+const INSIGHTS = [
   {
-    _id: "fallback-retiro",
-    title: "Planeación de Retiro",
-    slug: "retiro",
-    category: "vida_pillar",
-    shortDescription:
-      "PPR con beneficio fiscal (art. 151 fracc V y art. 185 LISR) + Modalidad 40 IMSS para multiplicar tu pensión vitalicia.",
+    category: "Retiro e Inversiones",
+    title: "Modalidad 40 IMSS: cuándo sí y cuándo no conviene",
+    href: "/retiro",
+    image: "/img/servicios/retiro-hero.png",
   },
   {
-    _id: "fallback-gmm",
-    title: "Gastos Médicos Mayores",
-    slug: "gmm",
-    category: "gmm_pillar",
-    shortDescription:
-      "Cobertura médica privada con red, deducible y cobertura internacional adaptados. Trabajo con 6 aseguradoras AAA y te recomiendo la(s) adecuada(s).",
+    category: "Seguros Personales",
+    title: "Errores comunes en seguros de gastos médicos mayores",
+    href: "/gmm",
+    image: "/img/servicios/gmm-hero.png",
   },
   {
-    _id: "fallback-empresas",
-    title: "Seguros para Empresas",
-    slug: "empresas",
-    category: "empresas",
-    shortDescription:
-      "Persona Clave, Vida grupo, GMM colectivo, buy-sell agreement asegurado y plan de retiro empresarial.",
+    category: "Planeación Familiar",
+    title: "Cómo proteger financieramente a un hijo neurodivergente",
+    href: "/hijos-neurodivergentes",
+    image: "/img/nichos/hijos-neurodivergentes-hero.png",
+  },
+  {
+    category: "Patrimonial",
+    title: "Mexicanos en el extranjero: productos mexicanos que tu país no tiene",
+    href: "/mexicanos-en-el-extranjero",
+    image: "/img/servicios/patrimonial-hero.png",
   },
 ];
 
@@ -202,17 +190,6 @@ export default async function HomePage() {
   const heroSubtitle = data?.heroSubtitle ?? FALLBACK_HERO_SUBTITLE;
   const ctaText = data?.heroCtaText ?? FALLBACK_CTA_TEXT;
   const ctaUrl = data?.heroCtaUrl ?? FALLBACK_CTA_URL;
-  const valueProps =
-    data?.valueProps && data.valueProps.length > 0
-      ? data.valueProps
-      : FALLBACK_VALUE_PROPS;
-  const services =
-    data?.featuredServices && data.featuredServices.length > 0
-      ? data.featuredServices
-      : FALLBACK_FEATURED_SERVICES;
-  const carriers =
-    data?.trustSignals?.carriersShown ??
-    ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"];
 
   const homeSchema = author
     ? buildGraph(
@@ -230,94 +207,158 @@ export default async function HomePage() {
       />
 
       <main className="flex flex-col">
-        {/* Hero split — foto editorial Iria + texto */}
-        <section className="px-6 py-10 sm:py-16 lg:py-20 max-w-6xl mx-auto w-full">
-          <div className="grid gap-10 lg:gap-16 lg:grid-cols-[5fr_7fr] lg:items-center">
-            <div className="relative w-full max-w-md mx-auto lg:max-w-none aspect-[3/4] rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-              <Image
-                src="/img/iria/iria-hero-01.jpg"
-                alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-top"
-                priority
-              />
-            </div>
-            <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
-                {heroTitle}
-              </h1>
-              <p className="mt-5 sm:mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-xl">
-                {heroSubtitle}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {AUTHORITY_BADGES.map((badge) => (
-                  <span
-                    key={badge}
-                    className="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+        {/* HERO — dark editorial split */}
+        <section className="relative bg-zinc-950 text-zinc-50 overflow-hidden">
+          <div className="px-6 py-16 sm:py-20 lg:py-28 max-w-6xl mx-auto w-full">
+            <div className="grid gap-12 lg:gap-20 lg:grid-cols-[6fr_5fr] lg:items-center">
+              <div>
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                  Planeación patrimonial estratégica
+                </p>
+                <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-zinc-50">
+                  {heroTitle}
+                </h1>
+                <p className="mt-6 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
+                  {heroSubtitle}
+                </p>
+                <div className="mt-8">
+                  <a
+                    href={ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 rounded-full bg-rif-rojo text-white px-8 py-4 text-sm font-medium tracking-wide hover:opacity-90 transition"
                   >
-                    {badge}
-                  </span>
-                ))}
+                    {ctaText}
+                    <ArrowRight className="size-4 transition group-hover:translate-x-1" strokeWidth={2.2} />
+                  </a>
+                </div>
+                <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] sm:text-xs uppercase tracking-[0.14em] text-zinc-400">
+                  {CREDENCIALES.map((c, i) => (
+                    <li key={c} className="flex items-center gap-3 sm:gap-6">
+                      {i > 0 && <span className="hidden sm:inline text-zinc-700">·</span>}
+                      {c}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <a
-                  href={ctaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
-                >
-                  {ctaText}
-                </a>
-                <Link
-                  href="/sobre-iria"
-                  className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
-                >
-                  Conoce a Iria
-                </Link>
+              <div className="relative w-full max-w-md mx-auto lg:max-w-none aspect-[3/4] rounded-3xl overflow-hidden">
+                <Image
+                  src="/img/iria/iria-hero-01.jpg"
+                  alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Carriers */}
-        <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
-              Aseguradoras autorizadas
-            </p>
-            <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-rif-gris dark:text-zinc-300">
-              {carriers.map((c) => (
-                <span key={c} className="font-medium">
-                  {c}
+        {/* SERVICIOS — 5 cards iconográficas */}
+        <section className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+          <div className="grid gap-y-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-0 lg:divide-x lg:divide-zinc-200 lg:dark:divide-zinc-800">
+            {SERVICIOS.map(({ icon: Icon, title, desc, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group flex flex-col items-center text-center px-6 lg:px-5"
+              >
+                <Icon
+                  className="size-9 text-rif-rojo"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <h3 className="mt-6 font-serif text-lg leading-snug text-zinc-900 dark:text-zinc-50">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {desc}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-rif-rojo group-hover:gap-2 transition-all">
+                  Ver más
+                  <ArrowRight className="size-3" strokeWidth={2.2} />
                 </span>
-              ))}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* PARA QUIÉN — bullets cortos */}
+        <section className="bg-zinc-50 dark:bg-zinc-900/40 border-y border-zinc-200 dark:border-zinc-800">
+          <div className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+            <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+              <div>
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                  Para quién
+                </p>
+                <h2 className="mt-6 font-serif text-3xl sm:text-4xl leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
+                  La asesoría genérica no alcanza para ciertos perfiles.
+                </h2>
+              </div>
+              <ul className="space-y-3">
+                {PARA_QUIEN.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-4 text-base sm:text-lg text-zinc-800 dark:text-zinc-200"
+                  >
+                    <span className="mt-2 inline-block size-1.5 rounded-full bg-rif-rojo flex-shrink-0" aria-hidden />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* Lo que la industria NO te explica */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+        {/* CÓMO TRABAJO — accordion */}
+        <section className="px-6 py-20 sm:py-24 max-w-4xl mx-auto w-full">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+            Cómo trabajo
+          </p>
+          <h2 className="mt-6 font-serif text-3xl sm:text-4xl leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
+            Seis pasos. Sin productos sueltos.
+          </h2>
+          <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+            Una metodología que cubre desde el diagnóstico hasta el acompañamiento en siniestros.
+          </p>
+          <div className="mt-10 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+            {METODOLOGIA.map((step) => (
+              <details key={step.n} className="group py-5 [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex items-center gap-6 cursor-pointer list-none">
+                  <span className="font-serif text-lg text-rif-rojo tabular-nums">{step.n}</span>
+                  <span className="flex-1 font-medium text-zinc-900 dark:text-zinc-50">{step.title}</span>
+                  <span className="text-zinc-400 transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden>
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 ml-14 pr-8 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {step.desc}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* LO QUE NO TE EXPLICAN — sección diferenciador */}
+        <section className="bg-zinc-50 dark:bg-zinc-900/40 border-y border-zinc-200 dark:border-zinc-800">
+          <div className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
               Diferenciación
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight max-w-3xl">
+            <h2 className="mt-6 font-serif text-3xl sm:text-4xl leading-tight tracking-tight max-w-3xl text-zinc-900 dark:text-zinc-50">
               Lo que normalmente NO te explica la industria financiera
             </h2>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl italic">
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed italic max-w-2xl">
               No vendo seguros. Diagnostico decisiones que la industria suele dejar sin nombrar.
             </p>
-            <div className="mt-10 sm:mt-12 grid gap-6 sm:gap-8 sm:grid-cols-2">
+            <div className="mt-12 grid gap-8 sm:grid-cols-2">
               {INDUSTRIA_SILENCIOS.map((item, i) => (
-                <div
-                  key={item.title}
-                  className="border-l-2 border-rif-rojo pl-5"
-                >
+                <div key={item.title} className="border-l-2 border-rif-rojo pl-5">
                   <div className="text-xs uppercase tracking-wider text-rif-rojo font-medium tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="mt-2 font-serif text-lg text-zinc-900 dark:text-zinc-50">
                     {item.title}
                   </h3>
                   <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -326,254 +367,81 @@ export default async function HomePage() {
                 </div>
               ))}
             </div>
-            <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+            <div className="mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
               <p className="text-zinc-800 dark:text-zinc-200 italic leading-relaxed max-w-2xl">
                 ¿Reconoces alguno de estos en tu situación? Hagamos diagnóstico antes de que sea decisión.
               </p>
               <Link
                 href="/contacto"
-                className="mt-4 inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-6 py-3 text-sm font-medium hover:opacity-90 transition"
+                className="inline-flex items-center gap-2 rounded-full bg-rif-rojo text-white px-6 py-3 text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
               >
-                Agenda diagnóstico gratuito
+                Agenda sesión inicial
+                <ArrowRight className="size-4" strokeWidth={2.2} />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Para quién */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
-              Para quién es esta asesoría
-            </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl">
-              La asesoría genérica no alcanza para estos perfiles.
-            </h2>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
-              Trabajo con personas que tienen necesidades financieras complejas o que la
-              industria de seguros ha ignorado históricamente.
-            </p>
-            <div className="mt-8 sm:mt-10 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {PARA_QUIEN.map((item) => (
-                <div
-                  key={item.label}
-                  className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800"
-                >
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
-                    {item.label}
-                  </h3>
-                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
+        {/* INSIGHTS DESTACADOS */}
+        <section className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                Insights destacados
+              </p>
+              <h2 className="mt-6 font-serif text-3xl sm:text-4xl leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
+                Lectura recomendada
+              </h2>
             </div>
           </div>
-        </section>
-
-        {/* Servicios prioritarios */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800 max-w-5xl mx-auto w-full">
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-            Servicios prioritarios
-          </h2>
-          <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2">
-            {services.map((s) => (
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {INSIGHTS.map((item) => (
               <Link
-                key={s._id}
-                href={`/${s.slug}`}
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                key={item.href}
+                href={item.href}
+                className="group flex flex-col"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-                  {s.category === "vida_pillar" || s.category === "gmm_pillar"
-                    ? "⭐ Pillar"
-                    : s.category}
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                  {s.title}
+                <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-rif-rojo font-medium">
+                  {item.category}
+                </p>
+                <h3 className="mt-3 font-serif text-lg leading-snug text-zinc-900 dark:text-zinc-50">
+                  {item.title}
                 </h3>
-                {s.shortDescription && (
-                  <p className="mt-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {s.shortDescription}
-                  </p>
-                )}
-                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
-                  Conocer →
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-zinc-700 dark:text-zinc-300 group-hover:gap-2 transition-all">
+                  Leer más
+                  <ArrowRight className="size-3" strokeWidth={2.2} />
                 </span>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* Por qué confían en RIF */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-              Por qué clientes afluentes y HNWI confían en RIF
+        {/* CTA FINAL */}
+        <section className="bg-rif-rojo text-white">
+          <div className="px-6 py-20 sm:py-24 max-w-4xl mx-auto w-full text-center">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">
+              Hablemos de tu patrimonio y tu futuro.
             </h2>
-            <div className="mt-6 sm:mt-10 grid gap-5 sm:gap-8 sm:grid-cols-3">
-              {valueProps.map((vp, i) => (
-                <div key={i}>
-                  <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                    {vp.title}
-                  </h3>
-                  <p className="mt-2 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {vp.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Metodología */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
-              Metodología
-            </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
-              Cómo trabajamos juntos.
-            </h2>
-            <div className="mt-8 sm:mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {METODOLOGIA.map((step) => (
-                <div
-                  key={step.n}
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800"
-                >
-                  <div className="text-2xl font-semibold text-rif-rojo tabular-nums">
-                    {step.n}
-                  </div>
-                  <h3 className="mt-3 font-semibold text-zinc-900 dark:text-zinc-50">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Por situación de vida */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
-              Asesoría especializada
-            </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
-              Por situación de vida — territorios donde la asesoría genérica falla.
-            </h2>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
-              Hay tres perfiles que la industria de seguros y planeación patrimonial no cubre bien.
-              Por eso construí espacios específicos para cada uno.
-            </p>
-            <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
-              <Link
-                href="/mujeres"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
-              >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-                  Para mujeres
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                  Mujeres que toman decisiones
-                </h3>
-                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
-                  Profesionistas, divorciadas, viudas y empresarias.
-                  Cuatro perfiles, cuatro estrategias específicas.
-                </p>
-                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
-                  Conocer →
-                </span>
-              </Link>
-
-              <Link
-                href="/familias-arcoiris"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
-              >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-                  Familias diversas
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                  Familias arcoíris con hijos
-                </h3>
-                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
-                  Estructuras legales para que la ley reconozca a tu familia
-                  tal como tú la construiste.
-                </p>
-                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
-                  Conocer →
-                </span>
-              </Link>
-
-              <Link
-                href="/hijos-neurodivergentes"
-                className="group p-6 sm:p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col"
-              >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-                  Cuidado vitalicio
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                  Hijos neurodivergentes
-                </h3>
-                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
-                  Planeación financiera de por vida — más allá de la
-                  universidad, más allá de tu propia vida.
-                </p>
-                <span className="mt-5 inline-block text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
-                  Conocer →
-                </span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Patrimonios complejos */}
-        <section className="px-6 py-12 sm:py-20 border-t border-zinc-200 dark:border-zinc-800">
-          <div className="max-w-5xl mx-auto w-full">
-            <Link
-              href="/patrimonial"
-              className="group block p-8 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-                <div className="max-w-2xl">
-                  <p className="text-xs uppercase tracking-wider text-zinc-500">
-                    Servicio diferenciado
-                  </p>
-                  <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                    Patrimonios complejos · Asesoría discreta para HNWI
-                  </h2>
-                  <p className="mt-3 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    Fideicomisos, sucesión, inversiones complejas y estructuras
-                    internacionales. Para patrimonios donde los productos estándar dejan
-                    de ser suficientes.
-                  </p>
-                </div>
-                <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline whitespace-nowrap">
-                  Conocer →
-                </span>
-              </div>
-            </Link>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="px-6 py-12 sm:py-24 max-w-5xl mx-auto w-full">
-          <div className="rounded-3xl bg-rif-rojo text-white p-10 sm:p-16 text-center">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
-              30 minutos pueden cambiar la trayectoria financiera de tu familia.
-            </h2>
-            <p className="mt-4 text-lg opacity-80 max-w-xl mx-auto">
-              Sesión inicial sin compromiso. Te escucho primero.
+            <p className="mt-5 text-base sm:text-lg opacity-90 max-w-xl mx-auto leading-relaxed">
+              Sesión inicial sin compromiso. Te escucho primero, recomiendo después.
             </p>
             <a
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="group mt-10 inline-flex items-center gap-3 rounded-full bg-white text-rif-rojo px-8 py-4 text-sm font-medium tracking-wide hover:opacity-90 transition"
             >
               {ctaText}
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" strokeWidth={2.2} />
             </a>
           </div>
         </section>
