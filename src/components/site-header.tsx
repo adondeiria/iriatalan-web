@@ -237,8 +237,8 @@ export function SiteHeader({ siteName }: Props) {
         className={
           "md:hidden border-t px-6 py-3 flex flex-wrap gap-x-4 gap-y-2 text-xs transition-colors duration-300 " +
           (overHero
-            ? "border-zinc-800 text-zinc-300"
-            : "border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300")
+            ? "border-zinc-800 bg-zinc-950/95 text-zinc-200"
+            : "border-zinc-200 dark:border-zinc-800 bg-white/85 dark:bg-zinc-950/85 text-zinc-700 dark:text-zinc-300")
         }
       >
         <Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link>

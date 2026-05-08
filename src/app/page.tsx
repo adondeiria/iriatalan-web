@@ -235,6 +235,7 @@ export default async function HomePage() {
 
         {/* SERVICIOS — 5 cards iconográficas */}
         <section className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+          <h2 className="sr-only">Servicios</h2>
           <div className="grid gap-y-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-0 lg:divide-x lg:divide-zinc-200 lg:dark:divide-zinc-800">
             {SERVICIOS.map(({ icon: Icon, title, desc, href }) => (
               <Link
