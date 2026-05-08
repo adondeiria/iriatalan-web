@@ -170,7 +170,7 @@ export default async function ServicePage({
             {" / "}
             {isPillar ? "⭐ Servicio pillar" : CATEGORY_LABELS[service.category] ?? service.category}
           </p>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
             {service.title}
           </h1>
           {service.shortDescription && (
@@ -207,7 +207,7 @@ export default async function ServicePage({
         {service.keyBenefits && service.keyBenefits.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Beneficios clave
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -228,7 +228,7 @@ export default async function ServicePage({
         {service.objectionsAddressed && service.objectionsAddressed.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Lo que la gente nos pregunta antes de contratar
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
@@ -275,7 +275,7 @@ export default async function ServicePage({
         {service.faqs && service.faqs.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-3xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Preguntas frecuentes
               </h2>
               <div className="mt-10 space-y-8">

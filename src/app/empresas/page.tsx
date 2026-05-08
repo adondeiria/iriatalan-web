@@ -116,7 +116,7 @@ export default async function EmpresasPage() {
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Seguros para empresas
           </p>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
             Tu negocio depende de personas insustituibles. Asegurarlas es asegurar la empresa.
           </h1>
           <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
@@ -144,7 +144,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               El doble dolor del empresario
             </h2>
             <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -173,7 +173,7 @@ export default async function EmpresasPage() {
             <p className="text-sm uppercase tracking-wider text-zinc-500">
               Producto pillar B2B
             </p>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
               Persona Clave (Hombre Clave) — qué es, por qué importa
             </h2>
             <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -202,7 +202,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               ¿Quién en tu empresa es Persona Clave?
             </h2>
             <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
@@ -243,7 +243,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cobertura empresarial completa — no solo Persona Clave
             </h2>
             <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
@@ -290,7 +290,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cómo trabajamos contigo
             </h2>
             <div className="mt-10 space-y-8">
@@ -338,7 +338,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
@@ -398,7 +398,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
             <p className="mt-3 text-zinc-700 dark:text-zinc-300">

@@ -102,16 +102,16 @@ export default async function SobreIriaPage() {
       />
 
       <main className="flex flex-col">
-        <section className="px-6 py-12 sm:py-20 max-w-5xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
-            <Link href="/" className="hover:underline">
+        <section className="px-6 pt-16 pb-12 sm:pt-20 sm:pb-16 max-w-5xl mx-auto w-full">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+            <Link href="/" className="hover:opacity-80 transition">
               Inicio
             </Link>
             {" / "}Sobre Iria
           </p>
-          <div className="mt-8 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
+          <div className="mt-10 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
             {author.photo?.asset?.url && (
-              <div className="relative w-full max-w-[240px] mx-auto sm:max-w-none aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+              <div className="relative w-full max-w-[240px] mx-auto sm:max-w-none aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
                 <Image
                   src={author.photo.asset.url}
                   alt={author.photo.alt ?? author.name}
@@ -123,14 +123,14 @@ export default async function SobreIriaPage() {
               </div>
             )}
             <div>
-              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
                 {author.name}
               </h1>
-              <p className="mt-3 text-xl text-zinc-700 dark:text-zinc-300">
+              <p className="mt-4 text-lg sm:text-xl italic text-zinc-600 dark:text-zinc-400 max-w-xl">
                 {author.title}
               </p>
               {author.bio && (
-                <p className="mt-8 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+                <p className="mt-8 text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-2xl">
                   {author.bio}
                 </p>
               )}
@@ -147,7 +147,7 @@ export default async function SobreIriaPage() {
         {author.credentials && author.credentials.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
                 Credenciales y autoridad
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
@@ -198,7 +198,7 @@ export default async function SobreIriaPage() {
         {author.carriers && author.carriers.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
                 Aseguradoras autorizadas
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
@@ -221,7 +221,7 @@ export default async function SobreIriaPage() {
         {author.specialties && author.specialties.length > 0 && (
           <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
                 Especialidades
               </h2>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -240,7 +240,7 @@ export default async function SobreIriaPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Contacto
             </h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -319,7 +319,7 @@ export default async function SobreIriaPage() {
 
         <section className="px-6 py-14 sm:py-20 max-w-4xl mx-auto w-full">
           <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               ¿Hablamos?
             </h2>
             <p className="mt-3 opacity-80 max-w-md mx-auto">

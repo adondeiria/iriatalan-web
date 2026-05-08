@@ -289,41 +289,38 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* PLANEACIÓN CON PROPÓSITO — dark editorial split */}
-        <section className="bg-zinc-950 text-zinc-50">
-          <div className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
-            <div className="grid gap-12 lg:gap-16 lg:grid-cols-[5fr_6fr] lg:items-center">
-              <div>
-                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
-                  Planeación con propósito
-                </p>
-                <h2 className="mt-6 font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight text-zinc-50">
-                  No se trata solo de tener un plan, sino de tener el correcto.
-                </h2>
-                <p className="mt-6 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
-                  Mi enfoque es integral, independiente y 100% personalizado. Trabajo contigo para entender tu historia, tus objetivos y lo que realmente te importa, para diseñar estrategias que generen tranquilidad hoy y legado mañana.
-                </p>
-                <div className="mt-8">
-                  <Link
-                    href="/sobre-iria"
-                    className="group inline-flex items-center gap-2 text-rif-rojo text-xs sm:text-sm font-medium uppercase tracking-[0.18em] hover:gap-3 transition-all"
-                  >
-                    Conoce más sobre mí
-                    <ArrowRight className="size-4" strokeWidth={2.2} />
-                  </Link>
-                </div>
-              </div>
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-zinc-900">
-                <Image
-                  src="/img/proposito-cuaderno.jpg"
-                  alt="Cuaderno de trabajo con pluma fountain — planeación patrimonial"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
+        {/* PLANEACIÓN CON PROPÓSITO — dark editorial centered */}
+        <section className="relative bg-zinc-950 text-zinc-50 overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rif-rojo/40 to-transparent"
+          />
+          <div className="relative px-6 py-24 sm:py-32 max-w-3xl mx-auto w-full text-center">
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.22em] text-rif-rojo">
+              Planeación con propósito
+            </p>
+            <h2 className="mt-8 font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight text-zinc-50">
+              <span className="italic font-light text-zinc-400">No se trata solo de tener un plan,</span>
+              <br />
+              <span>sino de tener el correcto.</span>
+            </h2>
+            <p className="mt-8 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl mx-auto">
+              Mi enfoque es integral, independiente y 100% personalizado. Trabajo contigo para entender tu historia, tus objetivos y lo que realmente te importa — para diseñar estrategias que generen tranquilidad hoy y legado mañana.
+            </p>
+            <div className="mt-10">
+              <Link
+                href="/sobre-iria"
+                className="group inline-flex items-center gap-2 text-rif-rojo text-xs sm:text-sm font-medium uppercase tracking-[0.22em] hover:gap-3 transition-all"
+              >
+                Conoce más sobre mí
+                <ArrowRight className="size-4" strokeWidth={2.2} />
+              </Link>
             </div>
           </div>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-rif-rojo/40 to-transparent"
+          />
         </section>
 
         {/* ASESORÍA / METODOLOGÍA / RESULTADOS — 3-col with dark center */}

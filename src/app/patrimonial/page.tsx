@@ -104,7 +104,7 @@ export default async function PatrimonialPage() {
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Patrimonios complejos
           </p>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
             Asesoría patrimonial discreta para patrimonios HNWI.
           </h1>
           <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
@@ -131,7 +131,7 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cuándo este espacio es para ti
             </h2>
             <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
@@ -159,7 +159,7 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Lo que típicamente estructuramos juntos
             </h2>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -234,7 +234,7 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cómo trabajamos
             </h2>
             <div className="mt-10 space-y-8">
@@ -283,7 +283,7 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
@@ -333,7 +333,7 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
           <div className="max-w-3xl mx-auto w-full">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Iniciar conversación
             </h2>
             <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
