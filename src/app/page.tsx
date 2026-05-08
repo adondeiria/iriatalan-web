@@ -353,19 +353,13 @@ export default async function HomePage() {
               <p className="mt-6 text-zinc-300 leading-relaxed">
                 Analizamos tu situación actual, definimos objetivos claros y diseñamos un plan personalizado para alcanzarlos.
               </p>
-              <div className="mt-10 grid grid-cols-4 items-start gap-x-1 gap-y-2">
-                {METODOLOGIA.map(({ icon: Icon, label }, i) => (
-                  <div key={label} className="flex flex-col items-center text-center relative min-w-0">
-                    {i > 0 && (
-                      <span
-                        aria-hidden
-                        className="absolute right-1/2 left-[calc(-50%+1.25rem)] top-5 border-t border-dashed border-zinc-700"
-                      />
-                    )}
-                    <div className="relative z-10 flex items-center justify-center size-10 rounded-full bg-zinc-950 ring-1 ring-rif-rojo/40">
+              <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6">
+                {METODOLOGIA.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="flex items-center justify-center size-10 rounded-full bg-zinc-950 ring-1 ring-rif-rojo/40 flex-shrink-0">
                       <Icon className="size-5 text-rif-rojo" strokeWidth={1.6} aria-hidden />
                     </div>
-                    <p className="mt-3 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] text-zinc-400 leading-tight break-words">
+                    <p className="text-xs uppercase tracking-[0.14em] text-zinc-300">
                       {label}
                     </p>
                   </div>
