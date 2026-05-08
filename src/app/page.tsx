@@ -4,8 +4,12 @@ import {
   ArrowRight,
   BarChart3,
   Briefcase,
+  Compass,
+  FileText,
   Heart,
+  Search,
   Shield,
+  Sparkles,
   Users,
 } from "lucide-react";
 
@@ -84,36 +88,10 @@ const PARA_QUIEN = [
 ];
 
 const METODOLOGIA = [
-  {
-    n: "01",
-    title: "Diagnóstico",
-    desc: "Entiendo tu situación: ingresos, familia, patrimonio, cobertura existente y objetivos.",
-  },
-  {
-    n: "02",
-    title: "Comparativo entre aseguradoras",
-    desc: "Analizo las 6 aseguradoras autorizadas y te presento las que mejor se adaptan a tu perfil.",
-  },
-  {
-    n: "03",
-    title: "Diseño de estrategia",
-    desc: "Una propuesta coherente que cubre salud, retiro, patrimonio y continuidad — no productos sueltos.",
-  },
-  {
-    n: "04",
-    title: "Implementación",
-    desc: "Coordino la contratación y verifico cada detalle de las pólizas antes de firmar.",
-  },
-  {
-    n: "05",
-    title: "Acompañamiento anual",
-    desc: "Revisamos cada año: cambian las UMAs, la legislación fiscal, tu situación familiar.",
-  },
-  {
-    n: "06",
-    title: "Acompañamiento en siniestros",
-    desc: "No te dejo sola con el call center de la aseguradora. Estoy contigo en el proceso.",
-  },
+  { icon: Search, label: "Analizamos" },
+  { icon: Compass, label: "Diseñamos" },
+  { icon: FileText, label: "Implementamos" },
+  { icon: Sparkles, label: "Acompañamos" },
 ];
 
 const INDUSTRIA_SILENCIOS = [
@@ -311,32 +289,106 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* CÓMO TRABAJO — accordion */}
-        <section className="px-6 py-20 sm:py-24 max-w-4xl mx-auto w-full">
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
-            Cómo trabajo
-          </p>
-          <h2 className="mt-6 font-serif text-3xl sm:text-4xl leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
-            Seis pasos. Sin productos sueltos.
-          </h2>
-          <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
-            Una metodología que cubre desde el diagnóstico hasta el acompañamiento en siniestros.
-          </p>
-          <div className="mt-10 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-            {METODOLOGIA.map((step) => (
-              <details key={step.n} className="group py-5 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center gap-6 cursor-pointer list-none">
-                  <span className="font-serif text-lg text-rif-rojo tabular-nums">{step.n}</span>
-                  <span className="flex-1 font-medium text-zinc-900 dark:text-zinc-50">{step.title}</span>
-                  <span className="text-zinc-400 transition-transform group-open:rotate-45 text-2xl leading-none" aria-hidden>
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 ml-14 pr-8 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  {step.desc}
+        {/* PLANEACIÓN CON PROPÓSITO — dark editorial split */}
+        <section className="bg-zinc-950 text-zinc-50">
+          <div className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+            <div className="grid gap-12 lg:gap-16 lg:grid-cols-[5fr_6fr] lg:items-center">
+              <div>
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                  Planeación con propósito
                 </p>
-              </details>
-            ))}
+                <h2 className="mt-6 font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight text-zinc-50">
+                  No se trata solo de tener un plan, sino de tener el correcto.
+                </h2>
+                <p className="mt-6 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
+                  Mi enfoque es integral, independiente y 100% personalizado. Trabajo contigo para entender tu historia, tus objetivos y lo que realmente te importa, para diseñar estrategias que generen tranquilidad hoy y legado mañana.
+                </p>
+                <div className="mt-8">
+                  <Link
+                    href="/sobre-iria"
+                    className="group inline-flex items-center gap-2 text-rif-rojo text-xs sm:text-sm font-medium uppercase tracking-[0.18em] hover:gap-3 transition-all"
+                  >
+                    Conoce más sobre mí
+                    <ArrowRight className="size-4" strokeWidth={2.2} />
+                  </Link>
+                </div>
+              </div>
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-zinc-900">
+                <Image
+                  src="/img/proposito-cuaderno.jpg"
+                  alt="Cuaderno de trabajo con pluma fountain — planeación patrimonial"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ASESORÍA / METODOLOGÍA / RESULTADOS — 3-col with dark center */}
+        <section className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Col 1 — Asesoría en la que puedes confiar */}
+            <div className="bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 sm:p-10">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                Asesoría en la que puedes confiar
+              </p>
+              <p className="mt-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                Más de 17 años acompañando a personas, familias y empresas en decisiones financieras y patrimoniales clave.
+              </p>
+              <div className="mt-10">
+                <p className="font-serif text-5xl text-rif-rojo tabular-nums">+17</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.18em] text-zinc-500">
+                  Años de experiencia
+                </p>
+              </div>
+            </div>
+
+            {/* Col 2 — Metodología integral (dark) */}
+            <div className="bg-zinc-950 text-zinc-50 rounded-3xl p-8 sm:p-10">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                Metodología integral
+              </p>
+              <p className="mt-6 text-zinc-300 leading-relaxed">
+                Analizamos tu situación actual, definimos objetivos claros y diseñamos un plan personalizado para alcanzarlos.
+              </p>
+              <div className="mt-10 grid grid-cols-4 items-start gap-2">
+                {METODOLOGIA.map(({ icon: Icon, label }, i) => (
+                  <div key={label} className="flex flex-col items-center text-center relative">
+                    {i > 0 && (
+                      <span
+                        aria-hidden
+                        className="absolute -left-1/2 top-5 w-full border-t border-dashed border-zinc-700"
+                      />
+                    )}
+                    <div className="relative z-10 flex items-center justify-center size-10 rounded-full bg-zinc-950 ring-1 ring-rif-rojo/40">
+                      <Icon className="size-5 text-rif-rojo" strokeWidth={1.6} aria-hidden />
+                    </div>
+                    <p className="mt-3 text-[10px] uppercase tracking-[0.14em] text-zinc-400 leading-snug">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Col 3 — Resultados que trascienden */}
+            <div className="bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 sm:p-10">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
+                Resultados que trascienden
+              </p>
+              <p className="mt-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                Estrategias que protegen tu patrimonio, optimizan tus recursos y construyen un legado para futuras generaciones.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-x-3 gap-y-2 text-xs uppercase tracking-[0.18em] text-zinc-700 dark:text-zinc-300">
+                <span>Legado</span>
+                <span className="text-rif-rojo">·</span>
+                <span>Tranquilidad</span>
+                <span className="text-rif-rojo">·</span>
+                <span>Futuro</span>
+              </div>
+            </div>
           </div>
         </section>
 
