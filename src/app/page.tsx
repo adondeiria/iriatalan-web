@@ -209,19 +209,19 @@ export default async function HomePage() {
       <main className="flex flex-col">
         {/* HERO — dark editorial split */}
         <section className="relative bg-zinc-950 text-zinc-50 overflow-hidden">
-          <div className="px-6 py-16 sm:py-20 lg:py-28 max-w-6xl mx-auto w-full">
-            <div className="grid gap-12 lg:gap-20 lg:grid-cols-[6fr_5fr] lg:items-center">
+          <div className="px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-20 lg:pb-24 max-w-6xl mx-auto w-full">
+            <div className="grid gap-10 lg:gap-20 lg:grid-cols-[6fr_5fr] lg:items-center">
               <div>
                 <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-rif-rojo">
                   Planeación patrimonial estratégica
                 </p>
-                <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-zinc-50">
+                <h1 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-zinc-50">
                   {heroTitle}
                 </h1>
-                <p className="mt-6 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
+                <p className="mt-5 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
                   {heroSubtitle}
                 </p>
-                <div className="mt-8">
+                <div className="mt-7">
                   <a
                     href={ctaUrl}
                     target="_blank"
@@ -232,10 +232,10 @@ export default async function HomePage() {
                     <ArrowRight className="size-4 transition group-hover:translate-x-1" strokeWidth={2.2} />
                   </a>
                 </div>
-                <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] sm:text-xs uppercase tracking-[0.14em] text-zinc-400">
+                <ul className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:items-center gap-x-6 gap-y-3 text-[11px] uppercase tracking-[0.14em] text-zinc-400">
                   {CREDENCIALES.map((c, i) => (
                     <li key={c} className="flex items-center gap-3 sm:gap-6">
-                      {i > 0 && <span className="hidden sm:inline text-zinc-700">·</span>}
+                      {i > 0 && <span className="hidden lg:inline text-zinc-700">·</span>}
                       {c}
                     </li>
                   ))}
