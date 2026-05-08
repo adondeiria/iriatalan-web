@@ -196,7 +196,7 @@ export default async function HomePage() {
                 <h1 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-zinc-50">
                   {heroTitle}
                 </h1>
-                <p className="mt-5 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
+                <p className="mt-5 text-base sm:text-lg text-zinc-200 leading-relaxed max-w-xl">
                   {heroSubtitle}
                 </p>
                 <div className="mt-7">
@@ -304,7 +304,7 @@ export default async function HomePage() {
               <br />
               <span>sino de tener el correcto.</span>
             </h2>
-            <p className="mt-8 text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl mx-auto">
+            <p className="mt-8 text-base sm:text-lg text-zinc-200 leading-relaxed max-w-xl mx-auto">
               Mi enfoque es integral, independiente y 100% personalizado. Trabajo contigo para entender tu historia, tus objetivos y lo que realmente te importa — para diseñar estrategias que generen tranquilidad hoy y legado mañana.
             </p>
             <div className="mt-10">
@@ -331,7 +331,7 @@ export default async function HomePage() {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
                 Asesoría en la que puedes confiar
               </p>
-              <p className="mt-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p className="mt-6 text-zinc-700 dark:text-zinc-200 leading-relaxed">
                 Más de 17 años acompañando a personas, familias y empresas en decisiones financieras y patrimoniales clave.
               </p>
               <div className="mt-10">
@@ -347,7 +347,7 @@ export default async function HomePage() {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
                 Metodología integral
               </p>
-              <p className="mt-6 text-zinc-300 leading-relaxed">
+              <p className="mt-6 text-zinc-200 leading-relaxed">
                 Analizamos tu situación actual, definimos objetivos claros y diseñamos un plan personalizado para alcanzarlos.
               </p>
               <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6">
@@ -369,7 +369,7 @@ export default async function HomePage() {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-rif-rojo">
                 Resultados que trascienden
               </p>
-              <p className="mt-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p className="mt-6 text-zinc-700 dark:text-zinc-200 leading-relaxed">
                 Estrategias que protegen tu patrimonio, optimizan tus recursos y construyen un legado para futuras generaciones.
               </p>
               <div className="mt-10 flex flex-wrap gap-x-3 gap-y-2 text-xs uppercase tracking-[0.18em] text-zinc-700 dark:text-zinc-300">
@@ -404,7 +404,7 @@ export default async function HomePage() {
                   <h3 className="mt-2 font-serif text-lg text-zinc-900 dark:text-zinc-50">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-200 leading-relaxed">
                     {item.body}
                   </p>
                 </div>
