@@ -52,9 +52,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
       })) ?? [];
 
-  // articleUrls y resourceUrls deshabilitados hasta que existan las rutas
-  // /blog/[slug] y /recursos/[slug]. Re-habilitar cuando esas rutas se creen.
-  // Emitir URLs sin route en el sitemap genera 404s y degrada la calidad SEO.
+  // /blog/[slug] y /recursos/[slug] ya existen como rutas dinámicas con
+  // generateStaticParams, así que es seguro emitir las URLs desde Sanity.
+  const articleUrls: MetadataRoute.Sitemap =
+    data?.articles?.map((a) => ({
+      url: `${SITE_URL}/blog/${a.slug}`,
+      lastModified: new Date(a._updatedAt),
+      priority: 0.7,
+    })) ?? [];
 
-  return [...staticUrls, ...serviceUrls];
+  const resourceUrls: MetadataRoute.Sitemap =
+    data?.resources?.map((r) => ({
+      url: `${SITE_URL}/recursos/${r.slug}`,
+      lastModified: new Date(r._updatedAt),
+      priority: 0.6,
+    })) ?? [];
+
+  // Index /blog se agrega solo si hay artículos publicados; evita exponer
+  // la página "Próximamente" como soft-404 mientras la biblioteca esté vacía.
+  const blogIndexUrl: MetadataRoute.Sitemap =
+    articleUrls.length > 0
+      ? [
+          {
+            url: `${SITE_URL}/blog`,
+            lastModified: now,
+            priority: 0.8,
+          },
+        ]
+      : [];
+
+  return [
+    ...staticUrls,
+    ...blogIndexUrl,
+    ...serviceUrls,
+    ...articleUrls,
+    ...resourceUrls,
+  ];
 }

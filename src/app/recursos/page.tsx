@@ -65,19 +65,35 @@ const WHATSAPP_CHANNELS: WhatsAppChannel[] = [
   { carrier: "Allianz", ramo: "Autos",          url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
 ];
 
-export const metadata: Metadata = {
-  title: "Recursos — Documentos de aseguradoras",
-  description:
-    "Biblioteca pública de Condiciones Generales, formatos, cuadros médicos y tabuladores de las aseguradoras autorizadas: BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP.",
-  alternates: { canonical: `${SITE_URL}/recursos` },
-  openGraph: {
-    type: "website",
-    url: `${SITE_URL}/recursos`,
-    title: "Recursos — Documentos de aseguradoras | Iria Talan / RIF",
+// Metadata dinámico: noindex si la biblioteca está vacía (evita soft-404
+// en Google y desindexa automáticamente cuando no hay contenido publicado).
+// En cuanto se agrega ≥1 recurso público en Sanity, vuelve a indexable.
+export async function generateMetadata(): Promise<Metadata> {
+  const resources =
+    (await sanityFetch<Array<{ _id: string }>>({
+      query: RESOURCES_LIST_QUERY,
+      tags: ["resource"],
+    }).catch(() => null)) ?? [];
+
+  const isEmpty = resources.length === 0;
+
+  return {
+    title: "Recursos — Documentos de aseguradoras",
     description:
-      "Condiciones Generales, formatos y cuadros médicos. Acceso público a documentación oficial de carriers.",
-  },
-};
+      "Biblioteca pública de Condiciones Generales, formatos, cuadros médicos y tabuladores de las aseguradoras autorizadas: BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP.",
+    alternates: { canonical: `${SITE_URL}/recursos` },
+    robots: isEmpty
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
+    openGraph: {
+      type: "website",
+      url: `${SITE_URL}/recursos`,
+      title: "Recursos — Documentos de aseguradoras | Iria Talan / RIF",
+      description:
+        "Condiciones Generales, formatos y cuadros médicos. Acceso público a documentación oficial de carriers.",
+    },
+  };
+}
 
 function formatFileSize(bytes?: number | null): string | null {
   if (!bytes || bytes <= 0) return null;
