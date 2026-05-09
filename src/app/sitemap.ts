@@ -22,7 +22,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/hijos-neurodivergentes", priority: 0.85 },
   { path: "/mexicanos-en-el-extranjero", priority: 0.85 },
   { path: "/recursos", priority: 0.8 },
-  { path: "/blog", priority: 0.8 },
+  { path: "/contacto", priority: 0.7 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -39,26 +39,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: r.priority,
   }));
 
+  // Dedupe contra rutas estáticas: si Sanity tiene un service con slug
+  // "gmm", "retiro", etc., evita emitir la URL dos veces (Next.js sirve
+  // la ruta estática en /gmm — la URL dinámica nunca se renderizaría).
+  const staticPaths = new Set(STATIC_ROUTES.map((r) => r.path));
   const serviceUrls: MetadataRoute.Sitemap =
-    data?.services?.map((s) => ({
-      url: `${SITE_URL}/${s.slug}`,
-      lastModified: new Date(s._updatedAt),
-      priority: 0.9,
-    })) ?? [];
+    data?.services
+      ?.filter((s) => !staticPaths.has(`/${s.slug}`))
+      .map((s) => ({
+        url: `${SITE_URL}/${s.slug}`,
+        lastModified: new Date(s._updatedAt),
+        priority: 0.9,
+      })) ?? [];
 
-  const articleUrls: MetadataRoute.Sitemap =
-    data?.articles?.map((a) => ({
-      url: `${SITE_URL}/blog/${a.slug}`,
-      lastModified: new Date(a._updatedAt),
-      priority: 0.7,
-    })) ?? [];
+  // articleUrls y resourceUrls deshabilitados hasta que existan las rutas
+  // /blog/[slug] y /recursos/[slug]. Re-habilitar cuando esas rutas se creen.
+  // Emitir URLs sin route en el sitemap genera 404s y degrada la calidad SEO.
 
-  const resourceUrls: MetadataRoute.Sitemap =
-    data?.resources?.map((r) => ({
-      url: `${SITE_URL}/recursos/${r.slug}`,
-      lastModified: new Date(r._updatedAt),
-      priority: 0.6,
-    })) ?? [];
-
-  return [...staticUrls, ...serviceUrls, ...articleUrls, ...resourceUrls];
+  return [...staticUrls, ...serviceUrls];
 }

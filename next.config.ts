@@ -9,6 +9,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // X-Robots-Tag noindex defense-in-depth para Sanity Studio.
+  // Robots.txt es declarativo (crawlers pueden ignorarlo); el header HTTP
+  // es enforcement directo y se respeta universalmente.
+  async headers() {
+    return [
+      {
+        source: "/studio/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
+      {
+        source: "/studio",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
+    ];
+  },
+
   // 301 redirects from legacy WordPress URLs.
   // Google sitelinks still point to /quienes-somos and /servicios (404 on new site).
   async redirects() {
