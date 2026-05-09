@@ -229,7 +229,7 @@ export function SiteHeader({ siteName }: Props) {
               : "bg-burgundy text-cream-light hover:bg-burgundy-deep shadow-[0_8px_24px_-8px_rgba(158,27,30,0.45)]")
           }
         >
-          Agenda una valoración
+          Agenda sesión inicial
           <ArrowRight className="size-3.5" strokeWidth={2} />
         </Link>
       </div>

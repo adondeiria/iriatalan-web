@@ -38,7 +38,7 @@ type HomeData = {
 const FALLBACK_HERO_TITLE = "La tranquilidad financiera se construye.";
 const FALLBACK_HERO_SUBTITLE =
   "Te ayudamos a proteger tu patrimonio, retiro y familia con estrategias claras y personalizadas.";
-const FALLBACK_CTA_TEXT = "Agenda una valoración";
+const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
 const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
 
 const CREDENCIALES = [
@@ -53,30 +53,30 @@ const SERVICIOS = [
   {
     icon: Shield,
     title: "Protección Patrimonial",
-    desc: "Blindar lo que ya construiste.",
+    desc: "Estrategias para blindar lo que ya construiste.",
     href: "/patrimonial",
   },
   {
     icon: Heart,
     title: "Seguros Personales",
-    desc: "Vida, GMM y educación a la medida.",
+    desc: "Educacionales, ahorro, mujeres, retiro deducible, GMM, vida vitalicios y con fideicomiso.",
     href: "/gmm",
   },
   {
     icon: BarChart3,
     title: "Retiro e Inversiones",
-    desc: "PPR, Modalidad 40 y fondos a 55-60.",
+    desc: "PPR, Seguro de Ahorro para Modalidad 40 y fondos a edad 55-60.",
     href: "/retiro",
   },
   {
     icon: Users,
     title: "Planeación Familiar",
-    desc: "Familias diversas y neurodivergencia.",
+    desc: "Hijos neurodivergentes, familias diversas, sucesiones y herencias.",
     href: "/hijos-neurodivergentes",
   },
   {
     icon: Briefcase,
-    title: "Empresas y Personas Clave",
+    title: "Empresas y Persona Clave",
     desc: "Si el dueño falta, la empresa no termina.",
     href: "/empresas",
   },
@@ -91,66 +91,66 @@ const METODOLOGIA = [
 
 const INDUSTRIA_SILENCIOS = [
   {
-    title: "Pensión multiplicada 5-8x — si no abandonas el plan a la mitad",
-    body: "Modalidad 40 puede multiplicar tu pensión IMSS 5-8x. Pero la cuota dura años: sin un seguro de retiro o fondo a 55-60 alimentándola, la mayoría tira el plan a medio camino.",
+    title: "Modalidad 40 — pensión dorada, si no abandonas el plan a la mitad",
+    body: "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión — pero casi nadie planea cómo va a pagar la mensualidad durante los 5 años que dura. Sin un esquema de ahorro que lo garantice (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60), la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
     image: "/img/silencios/silencio-01-pension.png",
   },
   {
-    title: "Universidades privadas: el plan que casi nadie hace",
-    body: "Una colegiatura privada en México supera $45,000 MXN al mes y sube cada año. Sin un vehículo asegurador que complete las cuotas si tú llegas a faltar, la cuenta no alcanza cuando llega el momento.",
+    title: "Universidades privadas más caras cada año, sin plan dedicado",
+    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una internacional, mucho más. Y el costo educativo incrementa anualmente por encima de la inflación. La mayoría de papás ahorra “lo que pueda” — sin plan dedicado, sin un seguro que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, el dinero no alcanza.",
     image: "/img/silencios/silencio-02-universidades.png",
   },
   {
-    title: "PPR — se contrata por la deducción, no por el retiro",
-    body: "El PPR te devuelve hasta 30-35% vía SAT cada año (Art. 151 LISR, tope ~$213,973 MXN en 2026). El error no es contratarlo: es no usarlo cuando tu ingreso califica.",
+    title: "Retiro deducible de impuestos — el instrumento perfecto",
+    body: "Construye tu retiro con la ayuda de PPR (Plan Personal de Retiro): te devuelve hasta el 35% en tu declaración anual de impuestos (Art. 151 fracc V LISR, hasta el tope deducible — alrededor de $213,973 MXN en 2026). Cobra tu dinero a edad 65 años en pago único o en pensión vitalicia (y puede ser heredable), sin retención de impuestos.",
     image: "/img/silencios/silencio-03-ppr.png",
   },
   {
     title: "Beneficiarios desactualizados",
-    body: "Divorcios, hijos nuevos, segundas parejas. La mayoría de pólizas tienen beneficiarios que ya no reflejan tu vida actual. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás.",
+    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de los seguros de vida tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
     image: "/img/silencios/silencio-04-beneficiarios.png",
   },
   {
     title: "Empresas sin Persona Clave",
-    body: "El dueño rara vez se asegura para la empresa que construyó. Sin Persona Clave, cuando algo pasa la operación se queda sin liquidez para nómina, proveedores y transición. La estructura correcta protege la continuidad, no la liquidación.",
+    body: "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo, la operación se queda sin liquidez para resolver problemas inmediatos, no tienen estructura de ahorro para retiro, transición de mando o búsqueda de reemplazos. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria sobre el dueño, socios o cualquier persona insustituible. El ahorro al término del plazo también lo recibe la empresa, así cuando llega el momento, hay capital para sobrevivir el bache — no para liquidarse.",
     image: "/img/silencios/silencio-05-empresas.png",
   },
   {
     title: "Hijos neurodivergentes sin estructura financiera",
-    body: "Pocos padres construyen estructuras específicas para proteger a un hijo neurodivergente de por vida. Seguro de vida con designación irrevocable a fideicomiso + seguro de retiro: dos fuentes de ingreso garantizadas para cuando tú ya no estés.",
+    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
     image: "/img/silencios/silencio-06-neurodivergentes.png",
   },
   {
-    title: "Sucesión sin fideicomiso vía aseguradora",
-    body: "Para patrimonios complejos, un testamento solo no basta. Seguro de vida con designación irrevocable a fideicomiso: el capital llega al heredero correcto en semanas, no en años de juicio sucesorio.",
+    title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
+    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedar atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
     image: "/img/silencios/silencio-07-sucesion.png",
   },
 ];
 
 const INSIGHTS = [
   {
-    category: "Planeación Patrimonial",
-    title: "Modalidad 40: cuándo sí y cuándo no conviene",
+    category: "Retiro e Inversiones",
+    title: "Modalidad 40 IMSS: cuándo sí y cuándo no conviene",
     href: "/retiro",
     image: "/img/servicios/retiro-hero.png",
   },
   {
-    category: "Seguros",
-    title: "Errores comunes en seguros de gastos médicos",
+    category: "Seguros Personales",
+    title: "Errores comunes en seguros de gastos médicos mayores",
     href: "/gmm",
     image: "/img/servicios/gmm-hero.png",
   },
   {
-    category: "Retiro e Inversiones",
-    title: "PPR vs inversión tradicional: ¿cuál es mejor para ti?",
-    href: "/retiro",
-    image: "/img/servicios/patrimonial-hero.png",
-  },
-  {
     category: "Planeación Familiar",
-    title: "Cómo proteger a un hijo neurodivergente financieramente",
+    title: "Cómo proteger financieramente a un hijo neurodivergente",
     href: "/hijos-neurodivergentes",
     image: "/img/nichos/hijos-neurodivergentes-hero.png",
+  },
+  {
+    category: "Patrimonial",
+    title: "Mexicanos en el extranjero: productos mexicanos que tu país no tiene",
+    href: "/mexicanos-en-el-extranjero",
+    image: "/img/servicios/patrimonial-hero.png",
   },
 ];
 
@@ -319,7 +319,7 @@ export default async function HomePage() {
                   <span>sino de tener el correcto.</span>
                 </h2>
                 <p className="mt-9 text-base sm:text-lg text-cream-light/75 leading-relaxed max-w-xl">
-                  Trabajo contigo para entender tu historia y diseñar estrategias que generen tranquilidad hoy y legado mañana.
+                  Mi enfoque es integral, independiente y personalizado. Trabajo contigo para entender tu historia, tus objetivos y lo que realmente te importa — para diseñar estrategias que generen tranquilidad hoy y legado mañana.
                 </p>
                 <div className="mt-12">
                   <Link
@@ -357,11 +357,11 @@ export default async function HomePage() {
                   Asesoría en la que puedes confiar
                 </p>
                 <p className="mt-7 text-warm-brown/85 leading-relaxed">
-                  Más de 17 años acompañando decisiones financieras y patrimoniales que importan.
+                  Más de 18 años acompañando a personas, familias y empresas en decisiones financieras y patrimoniales clave.
                 </p>
                 <div className="mt-12">
                   <p className="font-serif text-6xl font-light text-burgundy tabular-nums leading-none">
-                    +17
+                    +18
                   </p>
                   <p className="mt-3 text-xs uppercase tracking-[0.24em] text-warm-brown/60">
                     Años de experiencia
@@ -374,7 +374,7 @@ export default async function HomePage() {
                   Metodología integral
                 </p>
                 <p className="mt-7 text-cream-light/80 leading-relaxed">
-                  Analizamos, definimos objetivos y diseñamos tu plan personalizado.
+                  Analizamos tu situación actual, definimos objetivos claros y diseñamos un plan personalizado para alcanzarlos.
                 </p>
                 <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-7">
                   {METODOLOGIA.map(({ icon: Icon, label }) => (
@@ -399,7 +399,7 @@ export default async function HomePage() {
                   Resultados que trascienden
                 </p>
                 <p className="mt-7 text-warm-brown/85 leading-relaxed">
-                  Estrategias que protegen, optimizan y construyen legado.
+                  Estrategias que protegen tu patrimonio, optimizan tus recursos y construyen un legado para futuras generaciones.
                 </p>
                 <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.24em] text-warm-brown/85 font-medium">
                   <span>Legado</span>
@@ -424,7 +424,7 @@ export default async function HomePage() {
                 Lo que normalmente NO te explica la industria financiera
               </h2>
               <p className="mt-5 text-warm-brown/75 leading-relaxed italic">
-                No vendo seguros. Diagnostico lo que la industria deja sin nombrar.
+                No vendo seguros. Te ayudo a que tomes las decisiones correctas.
               </p>
             </div>
           </div>
@@ -465,13 +465,13 @@ export default async function HomePage() {
           <div className="px-6 max-w-6xl mx-auto w-full">
             <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 p-6 sm:p-8 rounded-2xl bg-cream-light border border-warm-brown/15">
               <p className="text-ink/85 italic leading-relaxed max-w-xl">
-                ¿Reconoces alguno? Hagamos diagnóstico antes de que sea decisión.
+                ¿Reconoces alguno de estos en tu situación? Hagamos diagnóstico antes de que sea decisión.
               </p>
               <Link
                 href="/contacto"
                 className="group inline-flex items-center gap-2 rounded-full bg-burgundy text-cream-light px-7 py-4 text-[11px] font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5"
               >
-                Agenda una valoración
+                Agenda sesión inicial
                 <ArrowRight
                   className="size-4 transition-transform duration-500 group-hover:translate-x-1"
                   strokeWidth={2}
@@ -489,10 +489,10 @@ export default async function HomePage() {
           <div className="max-w-6xl mx-auto w-full">
             <div className="text-center max-w-3xl mx-auto">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
-                Recursos para tomar mejores decisiones
+                Insights destacados
               </p>
               <h2 className="mt-5 font-serif font-light italic text-2xl sm:text-3xl leading-[1.3] text-ink/75">
-                Lectura recomendada para tu educación financiera.
+                Lectura recomendada
               </h2>
             </div>
             <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -555,7 +555,7 @@ export default async function HomePage() {
               Hablemos de tu patrimonio y tu futuro.
             </h2>
             <p className="mt-6 text-base sm:text-lg opacity-85 max-w-xl mx-auto leading-relaxed">
-              Sesión inicial sin compromiso. Te escucho primero.
+              Sesión inicial sin compromiso. Te escucho primero, recomiendo después.
             </p>
             <a
               href={ctaUrl}

@@ -140,7 +140,7 @@ export default async function GmmPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
-              Agenda revisión patrimonial
+              Agenda revisión de tu seguro
             </a>
             <Link
               href="/sobre-iria"
