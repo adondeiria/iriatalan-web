@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const SCROLL_THRESHOLD = 80; // px scrolled before header switches to light mode
+const SCROLL_THRESHOLD = 80;
 
 type Props = {
   siteName: string;
@@ -13,8 +13,7 @@ type Props = {
 
 /**
  * Dark-aware sticky header. Transparent over the dark hero (scrollY < threshold),
- * solid white over content (scrollY >= threshold). Logo + nav text switch color
- * with scroll position to maintain contrast.
+ * cream solid over content. Logo + nav text switch color with scroll position.
  */
 export function SiteHeader({ siteName }: Props) {
   const [overHero, setOverHero] = useState(true);
@@ -31,10 +30,10 @@ export function SiteHeader({ siteName }: Props) {
   return (
     <header
       className={
-        "sticky top-0 z-50 transition-colors duration-300 " +
+        "sticky top-0 z-50 transition-colors duration-500 " +
         (overHero
           ? "bg-transparent border-b border-transparent"
-          : "bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800")
+          : "bg-cream-light/85 backdrop-blur-md border-b border-warm-brown/15")
       }
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
@@ -57,10 +56,8 @@ export function SiteHeader({ siteName }: Props) {
         {/* Desktop nav */}
         <nav
           className={
-            "hidden md:flex items-center gap-5 text-sm transition-colors duration-300 " +
-            (overHero
-              ? "text-zinc-200"
-              : "text-zinc-700 dark:text-zinc-300")
+            "hidden md:flex items-center gap-6 text-sm transition-colors duration-500 " +
+            (overHero ? "text-cream-light/85" : "text-warm-brown")
           }
         >
           {/* Personas */}
@@ -68,39 +65,39 @@ export function SiteHeader({ siteName }: Props) {
             <summary
               className={
                 "list-none cursor-pointer transition flex items-center gap-1 select-none " +
-                (overHero ? "hover:text-white" : "hover:text-zinc-900 dark:hover:text-zinc-50")
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
               }
             >
               Personas <span className="text-xs">▾</span>
             </summary>
-            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50 text-zinc-700 dark:text-zinc-300">
+            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-warm-brown/15 bg-cream-light shadow-[0_24px_48px_-16px_rgba(20,17,15,0.18)] p-3 z-50 text-warm-brown">
               <Link
                 href="/gmm"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Gastos Médicos Mayores</div>
-                <div className="text-xs text-zinc-500 mt-0.5">6 aseguradoras · comparativo personalizado</div>
+                <div className="font-medium text-ink">Gastos Médicos Mayores</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">6 aseguradoras · comparativo personalizado</div>
               </Link>
               <Link
                 href="/retiro"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Seguro de Vida</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Protección patrimonial y familiar</div>
+                <div className="font-medium text-ink">Seguro de Vida</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Protección patrimonial y familiar</div>
               </Link>
               <Link
                 href="/retiro"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Retiro · PPR · Modalidad 40</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Beneficio fiscal + pensión multiplicada</div>
+                <div className="font-medium text-ink">Retiro · PPR · Modalidad 40</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Beneficio fiscal + pensión multiplicada</div>
               </Link>
               <Link
                 href="/mujeres"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Protección familiar</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Estrategias para mujeres, parejas y familias</div>
+                <div className="font-medium text-ink">Protección familiar</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Estrategias para mujeres, parejas y familias</div>
               </Link>
             </div>
           </details>
@@ -110,39 +107,39 @@ export function SiteHeader({ siteName }: Props) {
             <summary
               className={
                 "list-none cursor-pointer transition flex items-center gap-1 select-none " +
-                (overHero ? "hover:text-white" : "hover:text-zinc-900 dark:hover:text-zinc-50")
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
               }
             >
               Empresas <span className="text-xs">▾</span>
             </summary>
-            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50 text-zinc-700 dark:text-zinc-300">
+            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-warm-brown/15 bg-cream-light shadow-[0_24px_48px_-16px_rgba(20,17,15,0.18)] p-3 z-50 text-warm-brown">
               <Link
                 href="/empresas"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Persona clave</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Continuidad si falta un socio o talento clave</div>
+                <div className="font-medium text-ink">Persona clave</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Continuidad si falta un socio o talento clave</div>
               </Link>
               <Link
                 href="/empresas"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Vida grupo</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Prestación deducible para tu equipo</div>
+                <div className="font-medium text-ink">Vida grupo</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Prestación deducible para tu equipo</div>
               </Link>
               <Link
                 href="/empresas"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">GMM colectivo</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Cobertura médica para empleados clave</div>
+                <div className="font-medium text-ink">GMM colectivo</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Cobertura médica para empleados clave</div>
               </Link>
               <Link
                 href="/empresas"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Retiro empresarial</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Plan de retiro deducible para socios</div>
+                <div className="font-medium text-ink">Retiro empresarial</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Plan de retiro deducible para socios</div>
               </Link>
             </div>
           </details>
@@ -152,53 +149,53 @@ export function SiteHeader({ siteName }: Props) {
             <summary
               className={
                 "list-none cursor-pointer transition flex items-center gap-1 select-none " +
-                (overHero ? "hover:text-white" : "hover:text-zinc-900 dark:hover:text-zinc-50")
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
               }
             >
               Patrimonios <span className="text-xs">▾</span>
             </summary>
-            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-lg p-3 z-50 text-zinc-700 dark:text-zinc-300">
+            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-warm-brown/15 bg-cream-light shadow-[0_24px_48px_-16px_rgba(20,17,15,0.18)] p-3 z-50 text-warm-brown">
               <Link
                 href="/patrimonial"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Fideicomisos</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Protección y transmisión patrimonial</div>
+                <div className="font-medium text-ink">Fideicomisos</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Protección y transmisión patrimonial</div>
               </Link>
               <Link
                 href="/patrimonial"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Sucesión patrimonial</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Que tu voluntad se cumpla</div>
+                <div className="font-medium text-ink">Sucesión patrimonial</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Que tu voluntad se cumpla</div>
               </Link>
               <Link
                 href="/hijos-neurodivergentes"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Hijos neurodivergentes</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Planeación de por vida, más allá de ti</div>
+                <div className="font-medium text-ink">Hijos neurodivergentes</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Planeación de por vida, más allá de ti</div>
               </Link>
               <Link
                 href="/familias-arcoiris"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Familias diversas</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Estructura legal para tu familia tal como es</div>
+                <div className="font-medium text-ink">Familias diversas</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Estructura legal para tu familia tal como es</div>
               </Link>
               <Link
                 href="/patrimonial"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">HNWI</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Asesoría discreta para patrimonios complejos</div>
+                <div className="font-medium text-ink">HNWI</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría discreta para patrimonios complejos</div>
               </Link>
               <Link
                 href="/mexicanos-en-el-extranjero"
-                className="block px-4 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-zinc-900 dark:text-zinc-50">Mexicanos en el extranjero</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Asesoría a distancia para residentes en EUA, Europa o Canadá</div>
+                <div className="font-medium text-ink">Mexicanos en el extranjero</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría a distancia para residentes en EUA, Europa o Canadá</div>
               </Link>
             </div>
           </details>
@@ -207,7 +204,7 @@ export function SiteHeader({ siteName }: Props) {
             href="/recursos"
             className={
               "transition " +
-              (overHero ? "hover:text-white" : "hover:text-zinc-900 dark:hover:text-zinc-50")
+              (overHero ? "hover:text-cream-light" : "hover:text-ink")
             }
           >
             Recursos
@@ -216,7 +213,7 @@ export function SiteHeader({ siteName }: Props) {
             href="/sobre-iria"
             className={
               "transition " +
-              (overHero ? "hover:text-white" : "hover:text-zinc-900 dark:hover:text-zinc-50")
+              (overHero ? "hover:text-cream-light" : "hover:text-ink")
             }
           >
             Sobre Iria
@@ -225,20 +222,25 @@ export function SiteHeader({ siteName }: Props) {
 
         <Link
           href="/contacto"
-          className="inline-flex items-center gap-2 rounded-full bg-rif-rojo text-white px-5 py-2 text-sm font-medium hover:opacity-90 transition whitespace-nowrap"
+          className={
+            "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium tracking-[0.18em] uppercase transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5 " +
+            (overHero
+              ? "border border-cream-light/40 text-cream-light hover:bg-cream-light hover:text-burgundy hover:border-cream-light"
+              : "bg-burgundy text-cream-light hover:bg-burgundy-deep shadow-[0_8px_24px_-8px_rgba(158,27,30,0.45)]")
+          }
         >
-          Agenda
-          <ArrowRight className="size-3.5" strokeWidth={2.2} />
+          Agenda una valoración
+          <ArrowRight className="size-3.5" strokeWidth={2} />
         </Link>
       </div>
 
       {/* Mobile nav */}
       <nav
         className={
-          "md:hidden border-t px-6 py-3 flex flex-wrap gap-x-4 gap-y-2 text-xs transition-colors duration-300 " +
+          "md:hidden border-t px-6 py-3 flex flex-wrap gap-x-4 gap-y-2 text-xs transition-colors duration-500 " +
           (overHero
-            ? "border-zinc-800 bg-zinc-950/95 text-zinc-200"
-            : "border-zinc-200 dark:border-zinc-800 bg-white/85 dark:bg-zinc-950/85 text-zinc-700 dark:text-zinc-300")
+            ? "border-warm-brown/30 bg-espresso/95 text-cream-light/85"
+            : "border-warm-brown/15 bg-cream-light/95 text-warm-brown")
         }
       >
         <Link href="/sobre-iria" className="hover:underline">Sobre Iria</Link>
@@ -251,7 +253,7 @@ export function SiteHeader({ siteName }: Props) {
         <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
         <Link href="/mexicanos-en-el-extranjero" className="hover:underline">Mex. en el extranjero</Link>
         <Link href="/recursos" className="hover:underline">Recursos</Link>
-        <Link href="/contacto" className="hover:underline font-medium text-rif-rojo">Agenda</Link>
+        <Link href="/contacto" className="hover:underline font-medium text-burgundy">Agenda</Link>
       </nav>
     </header>
   );

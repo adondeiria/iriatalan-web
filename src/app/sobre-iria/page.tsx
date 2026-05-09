@@ -111,7 +111,7 @@ export default async function SobreIriaPage() {
           </p>
           <div className="mt-10 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
             {author.photo?.asset?.url && (
-              <div className="relative w-full max-w-[240px] mx-auto sm:max-w-none aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+              <div className="relative w-full max-w-[240px] mx-auto sm:max-w-none aspect-[4/5] rounded-3xl overflow-hidden bg-warm-brown/15 dark:bg-warm-brown/30">
                 <Image
                   src={author.photo.asset.url}
                   alt={author.photo.alt ?? author.name}
@@ -123,14 +123,14 @@ export default async function SobreIriaPage() {
               </div>
             )}
             <div>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
                 {author.name}
               </h1>
-              <p className="mt-4 text-lg sm:text-xl italic text-zinc-600 dark:text-zinc-400 max-w-xl">
+              <p className="mt-4 text-lg sm:text-xl italic text-warm-brown/85 dark:text-cream-light/65 max-w-xl">
                 {author.title}
               </p>
               {author.bio && (
-                <p className="mt-8 text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-2xl">
+                <p className="mt-8 text-base sm:text-lg leading-relaxed text-warm-brown dark:text-cream-light/85 max-w-2xl">
                   {author.bio}
                 </p>
               )}
@@ -145,19 +145,19 @@ export default async function SobreIriaPage() {
         </section>
 
         {author.credentials && author.credentials.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-ink dark:text-cream-light">
                 Credenciales y autoridad
               </h2>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-warm-brown/85 dark:text-cream-light/65">
                 Cada credencial es verificable. Puedes pedirme la prueba de cualquiera.
               </p>
 
               <div className="mt-10 space-y-12">
                 {Object.entries(credentialsByCategory).map(([cat, items]) => (
                   <div key={cat}>
-                    <h3 className="text-xs uppercase tracking-wider text-zinc-500 mb-4">
+                    <h3 className="text-xs uppercase tracking-wider text-cream-light0 mb-4">
                       {categoryLabels[cat] ?? cat}
                     </h3>
                     <ul className="space-y-3">
@@ -166,11 +166,11 @@ export default async function SobreIriaPage() {
                           key={`${cat}-${i}`}
                           className="flex flex-col sm:flex-row sm:items-baseline sm:gap-4"
                         >
-                          <span className="font-medium text-zinc-900 dark:text-zinc-50">
+                          <span className="font-medium text-ink dark:text-cream-light">
                             {c.title}
                           </span>
                           {c.issuer && (
-                            <span className="text-zinc-600 dark:text-zinc-400">
+                            <span className="text-warm-brown/85 dark:text-cream-light/65">
                               {c.issuer}
                               {c.year ? ` · ${c.year}` : ""}
                             </span>
@@ -180,7 +180,7 @@ export default async function SobreIriaPage() {
                               href={c.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-sm underline text-zinc-700 dark:text-zinc-300"
+                              className="text-sm underline text-warm-brown dark:text-cream-light/85"
                             >
                               Verificar
                             </a>
@@ -196,19 +196,19 @@ export default async function SobreIriaPage() {
         )}
 
         {author.carriers && author.carriers.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-ink dark:text-cream-light">
                 Aseguradoras autorizadas
               </h2>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-warm-brown/85 dark:text-cream-light/65">
                 Trabajo con estas aseguradoras. Según tu situación específica, te recomiendo la(s) más adecuada(s) para ti.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {author.carriers.map((c) => (
                   <span
                     key={c}
-                    className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium"
+                    className="px-4 py-2 rounded-full border border-warm-brown/20 dark:border-warm-brown/40 text-warm-brown dark:text-cream-light/85 font-medium"
                   >
                     {c}
                   </span>
@@ -219,18 +219,18 @@ export default async function SobreIriaPage() {
         )}
 
         {author.specialties && author.specialties.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-ink dark:text-cream-light">
                 Especialidades
               </h2>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {author.specialties.map((s) => (
                   <li
                     key={s}
-                    className="text-zinc-700 dark:text-zinc-300 flex items-baseline gap-2"
+                    className="text-warm-brown dark:text-cream-light/85 flex items-baseline gap-2"
                   >
-                    <span className="text-zinc-400">·</span> {s}
+                    <span className="text-cream-light/65">·</span> {s}
                   </li>
                 ))}
               </ul>
@@ -238,7 +238,7 @@ export default async function SobreIriaPage() {
           </section>
         )}
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Contacto
@@ -249,15 +249,15 @@ export default async function SobreIriaPage() {
                   href={`https://wa.me/${author.socialLinks.whatsapp.replace(/[^\d]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                     WhatsApp
                   </div>
-                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                  <div className="text-lg font-medium text-ink dark:text-cream-light">
                     {author.socialLinks.whatsapp}
                   </div>
-                  <div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  <div className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65">
                     Atención a clientes de RIF
                   </div>
                 </a>
@@ -265,12 +265,12 @@ export default async function SobreIriaPage() {
               {author.socialLinks?.email && (
                 <a
                   href={`mailto:${author.socialLinks.email}`}
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                     Email
                   </div>
-                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50 break-all">
+                  <div className="text-lg font-medium text-ink dark:text-cream-light break-all">
                     {author.socialLinks.email}
                   </div>
                 </a>
@@ -280,22 +280,22 @@ export default async function SobreIriaPage() {
                   href={author.socialLinks.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                     Agenda en Calendly
                   </div>
-                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                  <div className="text-lg font-medium text-ink dark:text-cream-light">
                     Sesión inicial · 30 min
                   </div>
                 </a>
               )}
               {author.officeAddress && (
-                <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                  <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                     Oficina
                   </div>
-                  <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50 leading-snug">
+                  <div className="text-lg font-medium text-ink dark:text-cream-light leading-snug">
                     {author.officeAddress}
                   </div>
                 </div>
@@ -304,13 +304,13 @@ export default async function SobreIriaPage() {
             {author.socialLinks && (
               <div className="mt-8 flex gap-4 flex-wrap">
                 {author.socialLinks.linkedin && (
-                  <a href={author.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">LinkedIn →</a>
+                  <a href={author.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-warm-brown dark:text-cream-light/85 hover:underline">LinkedIn →</a>
                 )}
                 {author.socialLinks.instagram && (
-                  <a href={author.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">Instagram →</a>
+                  <a href={author.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-warm-brown dark:text-cream-light/85 hover:underline">Instagram →</a>
                 )}
                 {author.socialLinks.facebook && (
-                  <a href={author.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:underline">Facebook →</a>
+                  <a href={author.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-warm-brown dark:text-cream-light/85 hover:underline">Facebook →</a>
                 )}
               </div>
             )}
@@ -318,7 +318,7 @@ export default async function SobreIriaPage() {
         </section>
 
         <section className="px-6 py-14 sm:py-20 max-w-4xl mx-auto w-full">
-          <div className="rounded-3xl bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 p-10 sm:p-14 text-center">
+          <div className="rounded-3xl bg-coffee dark:bg-cream text-cream-light dark:text-ink p-10 sm:p-14 text-center">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               ¿Hablamos?
             </h2>
@@ -332,7 +332,7 @@ export default async function SobreIriaPage() {
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-cream dark:bg-coffee text-ink dark:text-cream-light px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               Agenda sesión inicial
             </a>

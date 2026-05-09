@@ -171,28 +171,28 @@ export default async function RecursosPage({
 
       <main className="flex flex-col">
         <section className="px-6 pt-20 pb-10 max-w-5xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             Recursos
           </p>
-          <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-ink dark:text-cream-light">
             Documentos oficiales de las aseguradoras
           </h1>
-          <p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+          <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Condiciones Generales, formatos, cuadros médicos y tabuladores —
             acceso público a la documentación oficial de las 6 aseguradoras
             autorizadas con las que trabajo.
           </p>
         </section>
 
-        <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Avisos directos
             </p>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink dark:text-cream-light">
               Canales oficiales de WhatsApp por aseguradora
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               Cada aseguradora publica avisos importantes (siniestros, cambios
               de red, vencimientos, alertas) en su canal oficial de WhatsApp.
               Únete a los canales de los productos que tienes contigo.
@@ -204,13 +204,13 @@ export default async function RecursosPage({
                   href={c.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-4 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                  className="group flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
                   <div>
-                    <div className="font-semibold text-zinc-900 dark:text-zinc-50">
+                    <div className="font-semibold text-ink dark:text-cream-light">
                       {c.carrier}
                     </div>
-                    <div className="text-xs text-zinc-500 mt-0.5">
+                    <div className="text-xs text-cream-light0 mt-0.5">
                       {c.ramo}
                     </div>
                   </div>
@@ -220,7 +220,7 @@ export default async function RecursosPage({
                 </a>
               ))}
             </div>
-            <p className="mt-4 text-xs text-zinc-500">
+            <p className="mt-4 text-xs text-cream-light0">
               Los canales son administrados directamente por cada aseguradora;
               al unirte aceptas sus términos. No publicamos contenido en estos
               canales — solo compartimos los enlaces oficiales.
@@ -231,13 +231,13 @@ export default async function RecursosPage({
         {!isEmpty && (
           <section className="px-6 pb-8 max-w-5xl mx-auto w-full">
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-zinc-500 mr-2">Filtrar:</span>
+              <span className="text-sm text-cream-light0 mr-2">Filtrar:</span>
               <Link
                 href="/recursos"
                 className={`text-sm px-3 py-1.5 rounded-full border ${
                   !hasFilter
-                    ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 border-zinc-900 dark:border-zinc-50"
-                    : "border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                    ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
+                    : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
                 }`}
               >
                 Todos
@@ -248,8 +248,8 @@ export default async function RecursosPage({
                   href={`/recursos?carrier=${encodeURIComponent(c)}`}
                   className={`text-sm px-3 py-1.5 rounded-full border ${
                     carrierFilter === c
-                      ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 border-zinc-900 dark:border-zinc-50"
-                      : "border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                      ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
+                      : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
                   }`}
                 >
                   {c}
@@ -258,15 +258,15 @@ export default async function RecursosPage({
             </div>
             {categoriesAvailable.length > 1 && (
               <div className="mt-3 flex flex-wrap gap-2 items-center">
-                <span className="text-sm text-zinc-500 mr-2">Categoría:</span>
+                <span className="text-sm text-cream-light0 mr-2">Categoría:</span>
                 {categoriesAvailable.map((cat) => (
                   <Link
                     key={cat}
                     href={`/recursos?category=${encodeURIComponent(cat)}`}
                     className={`text-sm px-3 py-1.5 rounded-full border ${
                       categoryFilter === cat
-                        ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 border-zinc-900 dark:border-zinc-50"
-                        : "border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                        ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
+                        : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
                     }`}
                   >
                     {CATEGORY_LABELS[cat] ?? cat}
@@ -279,11 +279,11 @@ export default async function RecursosPage({
 
         <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
           {isEmpty ? (
-            <div className="rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-700 p-12 text-center">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+            <div className="rounded-2xl border border-dashed border-warm-brown/20 dark:border-warm-brown/40 p-12 text-center">
+              <h2 className="text-xl font-semibold text-ink dark:text-cream-light">
                 Aún no hay documentos publicados
               </h2>
-              <p className="mt-3 text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
+              <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65 max-w-md mx-auto">
                 Estoy organizando la biblioteca de Condiciones Generales y
                 formatos de cada aseguradora. Si necesitas un documento
                 específico, escríbeme.
@@ -296,8 +296,8 @@ export default async function RecursosPage({
               </Link>
             </div>
           ) : resources.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-700 p-12 text-center">
-              <p className="text-zinc-700 dark:text-zinc-300">
+            <div className="rounded-2xl border border-dashed border-warm-brown/20 dark:border-warm-brown/40 p-12 text-center">
+              <p className="text-warm-brown dark:text-cream-light/85">
                 Ningún documento coincide con el filtro seleccionado.
               </p>
               <Link
@@ -311,7 +311,7 @@ export default async function RecursosPage({
             <div className="space-y-12">
               {carriers.map((carrier) => (
                 <div key={carrier}>
-                  <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  <h2 className="text-2xl font-semibold tracking-tight text-ink dark:text-cream-light">
                     {carrier}
                   </h2>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -320,30 +320,30 @@ export default async function RecursosPage({
                       const size = formatFileSize(r.fileSize);
                       const card = (
                         <>
-                          <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                          <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                             {CATEGORY_LABELS[r.category] ?? r.category}
                             {r.productLine &&
                               r.productLine !== "otro" &&
                               ` · ${PRODUCT_LINE_LABELS[r.productLine] ?? r.productLine}`}
                             {r.year && ` · ${r.year}`}
                           </div>
-                          <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50 leading-snug">
+                          <h3 className="text-base font-semibold text-ink dark:text-cream-light leading-snug">
                             {r.title}
                           </h3>
                           {r.seoDescription && (
-                            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                               {r.seoDescription}
                             </p>
                           )}
                           <div className="mt-3 flex items-center gap-3 text-sm">
-                            <span className="font-medium text-zinc-900 dark:text-zinc-50">
+                            <span className="font-medium text-ink dark:text-cream-light">
                               {r.fileUrl ? "Descargar PDF" : "Ver documento"}
                             </span>
                             {size && (
-                              <span className="text-zinc-500">({size})</span>
+                              <span className="text-cream-light0">({size})</span>
                             )}
                             {!r.fileUrl && r.externalUrl && (
-                              <span className="text-zinc-500 text-xs">
+                              <span className="text-cream-light0 text-xs">
                                 → sitio de {r.carrier}
                               </span>
                             )}
@@ -351,7 +351,7 @@ export default async function RecursosPage({
                         </>
                       );
                       const className =
-                        "block p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition";
+                        "block p-5 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition";
                       if (!url) {
                         return (
                           <div key={r._id} className={`${className} opacity-60`}>
@@ -378,9 +378,9 @@ export default async function RecursosPage({
           )}
         </section>
 
-        <section className="px-6 py-10 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-xs text-zinc-500 leading-relaxed">
+            <p className="text-xs text-cream-light0 leading-relaxed">
               Los documentos aquí publicados son provistos por las aseguradoras
               con fines informativos. La versión vigente de cada póliza
               prevalece sobre cualquier copia descargada. Para confirmar

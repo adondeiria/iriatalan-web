@@ -100,14 +100,14 @@ export default async function PatrimonialPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Patrimonios complejos
           </p>
-          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             Asesoría patrimonial discreta para patrimonios HNWI.
           </h1>
-          <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Cuando tu patrimonio cruza ciertos umbrales, los productos estándar
             dejan de ser suficientes. Aquí trabajamos fideicomisos, sucesión patrimonial,
             inversiones complejas y estructuras internacionales — con la discreción
@@ -122,19 +122,19 @@ export default async function PatrimonialPage() {
             </a>
             <Link
               href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+              className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
             >
               Conoce a Iria
             </Link>
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cuándo este espacio es para ti
             </h2>
-            <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
                 Si tu patrimonio personal o familiar incluye empresas en operación,
                 inmuebles de inversión, instrumentos financieros internacionales,
@@ -142,7 +142,7 @@ export default async function PatrimonialPage() {
                 aseguradores estándar no resuelven tu realidad.
               </p>
               <p>
-                Lo que sí funciona: <strong className="text-zinc-900 dark:text-zinc-50">combinaciones
+                Lo que sí funciona: <strong className="text-ink dark:text-cream-light">combinaciones
                 estructuradas</strong> de seguro de vida con suma asegurada amplia,
                 fideicomisos con reglas a tu medida, planes de inversión integrados
                 con tu estrategia fiscal, y coberturas internacionales que reconocen
@@ -157,72 +157,72 @@ export default async function PatrimonialPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Lo que típicamente estructuramos juntos
             </h2>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Sucesión</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Sucesión</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Fideicomisos patrimoniales
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Vehículos legales que protegen el patrimonio durante tu vida y trasladan reglas
                   específicas a herederos. Útil para evitar disputas, proteger menores,
                   asegurar continuidad de negocios.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Vida HNWI</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Vida HNWI</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Seguros de vida con suma asegurada amplia
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Sumas aseguradas calibradas a tu patrimonio (no a múltiplos de salario).
                   Beneficiario blindado, posible interaction con fideicomiso testamentario.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Inversión</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Inversión</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Inversiones aseguradas
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Vehículos de inversión con componente asegurador (Allianz y otros). Combinan
                   rendimiento con protección, optimización fiscal y portabilidad internacional.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Internacional</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Internacional</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Coberturas y estructuras transfronterizas
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   GMM internacional (BUPA, MetLife) para tratamientos en EUA o Europa.
                   Estructuras que reconocen residencia fiscal múltiple y herederos en distintas
                   jurisdicciones.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Empresarial</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Empresarial</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Buy-sell agreement asegurado
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Si tienes socios, instrumento que asegura compra-venta de participación
                   accionaria si uno falta. Evita disputas con herederos y protege control empresarial.
                   Ver{" "}
                   <Link href="/empresas" className="underline">/empresas</Link>.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Fiscal</div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Fiscal</div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Optimización fiscal vía PPR + estímulos
                 </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Aprovechamiento estructurado de art. 151 fracc V y art. 185 LISR.
                   Combinable con Modalidad 40 IMSS para perfiles que cotizaron antes. Ver{" "}
                   <Link href="/retiro" className="underline">/retiro</Link>.
@@ -232,47 +232,47 @@ export default async function PatrimonialPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cómo trabajamos
             </h2>
             <div className="mt-10 space-y-8">
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   1. Conversación confidencial
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Una sesión inicial — preferentemente por email reflexivo o videollamada
                   privada — donde expones tu patrimonio en términos generales y los retos
                   específicos que enfrentas. Sin formularios, sin banco de datos, sin presión.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   2. Diagnóstico técnico
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Identificamos juntos los huecos: ¿qué pasa con tu patrimonio si tú o
                   un socio faltan? ¿Cómo se distribuirá entre herederos sin conflicto?
                   ¿Qué exposición fiscal puede optimizarse?
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   3. Propuesta combinada
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Estructura que combina seguros, fideicomisos, vehículos de inversión y
                   coberturas internacionales según tu caso. Coordinamos con tu equipo legal
                   y fiscal para que cada pieza funcione con las otras.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   4. Acompañamiento permanente
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Tu situación cambia. Las leyes cambian. Las aseguradoras lanzan nuevos
                   productos. Revisamos al menos anualmente para ajustar estructura.
                 </p>
@@ -281,47 +281,47 @@ export default async function PatrimonialPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿A partir de qué patrimonio aplica?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   No hay umbral fijo — depende de la complejidad, no del monto absoluto.
                   Una empresa familiar de mediano tamaño con socios y herederos múltiples
                   puede beneficiarse tanto como un patrimonio HNWI tradicional.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Trabajas con bancas privadas?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí, coordinamos con tu banca privada actual. Mi rol no compite con la
                   banca — soy capa aseguradora y de planeación patrimonial. Trabajamos juntos
                   para que tu estrategia bancaria y aseguradora estén alineadas.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Cobras honorarios o solo comisiones?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Lo platicamos en la primera conversación. Para casos patrimoniales complejos
                   hay opciones de honorarios fijos o comisiones por carrier según el producto.
                   Total transparencia sobre cómo me pagan.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Mi información es confidencial?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Absolutamente. Mi obligación profesional bajo CNSF + ética AMASFAC.
                   Nunca compartas datos sensibles por canales abiertos — usa el email
                   o agenda llamada.
@@ -331,12 +331,12 @@ export default async function PatrimonialPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Iniciar conversación
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               Por la naturaleza confidencial de los temas, prefiero que el primer contacto
               sea por email o WhatsApp directo. Después coordinamos sesión privada según
               tu agenda.
@@ -356,15 +356,15 @@ export default async function PatrimonialPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                   Mensaje directo
                 </div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                <div className="text-lg font-medium text-ink dark:text-cream-light">
                   WhatsApp
                 </div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">
                   {whatsapp}
                 </div>
               </a>

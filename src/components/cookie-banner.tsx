@@ -46,14 +46,14 @@ export function CookieBanner() {
       aria-label="Aviso de cookies"
       className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6"
     >
-      <div className="mx-auto max-w-3xl rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur shadow-lg p-5 sm:p-6">
-        <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+      <div className="mx-auto max-w-3xl rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-white/95 dark:bg-espresso/95 backdrop-blur shadow-lg p-5 sm:p-6">
+        <p className="text-sm leading-relaxed text-warm-brown dark:text-cream-light/85">
           Usamos cookies para analizar el uso del sitio y mejorar tu
           experiencia. Puedes aceptarlas o rechazarlas; tu decisión se
           guarda por 12 meses. Detalles en nuestro{" "}
           <Link
             href="/aviso-privacidad"
-            className="underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-50"
+            className="underline underline-offset-4 hover:text-burgundy"
           >
             Aviso de Privacidad
           </Link>
@@ -63,7 +63,7 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => handle("rejected")}
-            className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+            className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-5 py-2.5 text-sm font-medium text-warm-brown dark:text-cream-light/85 hover:bg-cream dark:hover:bg-coffee/40 transition"
           >
             Rechazar
           </button>

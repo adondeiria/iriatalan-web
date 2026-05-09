@@ -163,18 +163,18 @@ export default async function ServicePage({
 
       <main className="flex flex-col">
         <section className="px-6 pt-16 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             <Link href="/" className="hover:underline">
               Inicio
             </Link>
             {" / "}
             {isPillar ? "⭐ Servicio pillar" : CATEGORY_LABELS[service.category] ?? service.category}
           </p>
-          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             {service.title}
           </h1>
           {service.shortDescription && (
-            <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               {service.shortDescription}
             </p>
           )}
@@ -189,7 +189,7 @@ export default async function ServicePage({
             </a>
             <Link
               href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+              className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
             >
               Conoce a Iria
             </Link>
@@ -197,7 +197,7 @@ export default async function ServicePage({
         </section>
 
         {service.body && Array.isArray(service.body) && service.body.length > 0 && (
-          <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-3xl mx-auto w-full">
               <PortableTextRenderer value={service.body as PortableTextBlock[]} />
             </div>
@@ -205,7 +205,7 @@ export default async function ServicePage({
         )}
 
         {service.keyBenefits && service.keyBenefits.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Beneficios clave
@@ -214,9 +214,9 @@ export default async function ServicePage({
                 {service.keyBenefits.map((b, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300 leading-relaxed"
+                    className="flex items-start gap-3 text-warm-brown dark:text-cream-light/85 leading-relaxed"
                   >
-                    <span className="text-zinc-400 mt-1.5">·</span>
+                    <span className="text-cream-light/65 mt-1.5">·</span>
                     <span>{b}</span>
                   </li>
                 ))}
@@ -226,12 +226,12 @@ export default async function ServicePage({
         )}
 
         {service.objectionsAddressed && service.objectionsAddressed.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
               <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Lo que la gente nos pregunta antes de contratar
               </h2>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-warm-brown/85 dark:text-cream-light/65">
                 Las objeciones reales que escucho — y cómo las resolvemos.
               </p>
               <div className="mt-10 space-y-8">
@@ -240,12 +240,12 @@ export default async function ServicePage({
                   .map((o, i) => (
                     <div
                       key={i}
-                      className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6"
+                      className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6"
                     >
-                      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                      <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                         {o.objection}
                       </h3>
-                      <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                      <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                         {o.response}
                       </p>
                     </div>
@@ -256,12 +256,12 @@ export default async function ServicePage({
         )}
 
         {service.carriersAvailable && service.carriersAvailable.length > 0 && (
-          <section className="px-6 py-8 sm:py-12 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
-              <p className="text-sm uppercase tracking-wider text-zinc-500">
+              <p className="text-sm uppercase tracking-wider text-cream-light0">
                 Aseguradoras disponibles
               </p>
-              <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-zinc-700 dark:text-zinc-300">
+              <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-warm-brown dark:text-cream-light/85">
                 {service.carriersAvailable.map((c) => (
                   <span key={c} className="font-medium">
                     {c}
@@ -273,7 +273,7 @@ export default async function ServicePage({
         )}
 
         {service.faqs && service.faqs.length > 0 && (
-          <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+          <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-3xl mx-auto w-full">
               <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                 Preguntas frecuentes
@@ -283,7 +283,7 @@ export default async function ServicePage({
                   .filter((f) => f.question)
                   .map((f) => (
                     <div key={f._id ?? f.question}>
-                      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                      <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                         {f.question}
                       </h3>
                       {f.answer &&
@@ -293,7 +293,7 @@ export default async function ServicePage({
                           <PortableTextRenderer value={f.answer as PortableTextBlock[]} />
                         </div>
                       ) : f.answerText ? (
-                        <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                        <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                           {f.answerText}
                         </p>
                       ) : null}
@@ -316,7 +316,7 @@ export default async function ServicePage({
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 px-7 py-3.5 font-medium hover:opacity-90 transition"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-cream dark:bg-coffee text-ink dark:text-cream-light px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               {ctaText}
             </a>

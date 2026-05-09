@@ -142,14 +142,14 @@ export default async function MexicanosEnElExtranjeroPage() {
 
       <main className="flex flex-col">
         <section className="px-6 pt-16 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Mexicanos en el extranjero
           </p>
-          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             Vivir afuera no significa renunciar a productos financieros mexicanos.
           </h1>
-          <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Para muchas familias mexicanas residentes en EUA, Europa o Canadá, mantener (o
             contratar) ciertos productos en México es la decisión más rentable. México tiene
             herramientas fiscales y de planeación patrimonial que tu país de residencia
@@ -166,25 +166,25 @@ export default async function MexicanosEnElExtranjeroPage() {
             </a>
             <Link
               href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+              className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
             >
               Conoce a Iria
             </Link>
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Por qué importa
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
               Lo que México ofrece y tu país de residencia probablemente no
             </h2>
-            <div className="mt-6 space-y-4 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-6 space-y-4 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
                 EUA tiene 401(k), Roth IRA, HSA. Europa tiene fondos de pensión privados con
-                tope variable. México tiene <strong className="text-zinc-900 dark:text-zinc-50">PPR
+                tope variable. México tiene <strong className="text-ink dark:text-cream-light">PPR
                 con deducción del Art. 151 LISR</strong>, modalidades del IMSS, planes educacionales con
                 vehículo asegurador, fideicomisos vía aseguradora con liquidez inmediata. Son
                 herramientas distintas, no reemplazables.
@@ -200,9 +200,9 @@ export default async function MexicanosEnElExtranjeroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Productos clave
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -217,10 +217,10 @@ export default async function MexicanosEnElExtranjeroPage() {
                   <div className="text-xs uppercase tracking-wider text-rif-rojo font-medium tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <h3 className="mt-2 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="mt-2 text-lg font-semibold text-ink dark:text-cream-light">
                     {p.title}
                   </h3>
-                  <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/85 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
@@ -229,9 +229,9 @@ export default async function MexicanosEnElExtranjeroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Para quién es
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -241,12 +241,12 @@ export default async function MexicanosEnElExtranjeroPage() {
               {PERFILES.map((p) => (
                 <div
                   key={p.label}
-                  className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800"
+                  className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30"
                 >
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="font-semibold text-ink dark:text-cream-light">
                     {p.label}
                   </h3>
-                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <p className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
@@ -255,32 +255,32 @@ export default async function MexicanosEnElExtranjeroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Cómo funcionamos a distancia
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
               No necesitas estar en México para trabajar conmigo
             </h2>
-            <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">Sesiones por videollamada</strong> —
+                <strong className="text-ink dark:text-cream-light">Sesiones por videollamada</strong> —
                 Zoom, Teams o Google Meet. Atiendo en español o inglés según tu preferencia, en
                 horario que se acomode a tu zona (CDMX / EUA / Europa).
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">Documentos por firma digital</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">Documentos por firma digital</strong>{" "}
                 cuando aplica. Las pólizas se envían a la dirección que indiques o se mantienen en
                 la oficina hasta tu próxima visita.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">Trámites que requieren firma física</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">Trámites que requieren firma física</strong>{" "}
                 se coordinan con tu próxima visita a México, o se gestionan vía poder notarial cuando
                 aplica. Acompañamiento real, no formularios sueltos.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">Acompañamiento en siniestros</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">Acompañamiento en siniestros</strong>{" "}
                 — si pasa algo y tú estás afuera, soy yo quien va al hospital, al centro de
                 atención o a la aseguradora. No te dejo sola con un call center.
               </p>
@@ -288,7 +288,7 @@ export default async function MexicanosEnElExtranjeroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
@@ -296,10 +296,10 @@ export default async function MexicanosEnElExtranjeroPage() {
             <div className="mt-10 space-y-8">
               {FAQS.map((faq) => (
                 <div key={faq.question}>
-                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                     {faq.question}
                   </h3>
-                  <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                     {faq.answerText}
                   </p>
                 </div>
@@ -308,12 +308,12 @@ export default async function MexicanosEnElExtranjeroPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85">
               La sesión inicial es por videollamada, sin compromiso.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -321,19 +321,19 @@ export default async function MexicanosEnElExtranjeroPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Mensaje rápido</div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">WhatsApp</div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{whatsapp}</div>
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
               </a>
               <a
                 href={`mailto:${email}`}
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Email reflexivo</div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">Cuéntame por correo</div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{email}</div>
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
               </a>
               <a
                 href={ctaUrl}

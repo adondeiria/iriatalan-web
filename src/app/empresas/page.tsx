@@ -112,14 +112,14 @@ export default async function EmpresasPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Seguros para empresas
           </p>
-          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             Tu negocio depende de personas insustituibles. Asegurarlas es asegurar la empresa.
           </h1>
-          <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Persona Clave (también conocida como <em>Hombre Clave</em>), Vida grupo, GMM colectivo
             y beneficios para empleados. Soluciones aseguradoras pensadas para empresarios y
             dueños de negocio que entienden el doble dolor: protegerte tú + proteger lo que construiste.
@@ -135,21 +135,21 @@ export default async function EmpresasPage() {
             </a>
             <Link
               href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+              className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
             >
               Conoce a Iria
             </Link>
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               El doble dolor del empresario
             </h2>
-            <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
-                Cuando construyes una empresa, asumes <strong className="text-zinc-900 dark:text-zinc-50">dos
+                Cuando construyes una empresa, asumes <strong className="text-ink dark:text-cream-light">dos
                 riesgos en paralelo</strong>: lo que pasa contigo (tu familia depende de tu ingreso) y
                 lo que pasa con tu negocio (tu empresa depende de personas específicas — tú, tu socio,
                 un director técnico, un comercial estrella).
@@ -160,7 +160,7 @@ export default async function EmpresasPage() {
                 y a veces — el cierre del negocio en menos de 12 meses.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">La planeación financiera personal y
+                <strong className="text-ink dark:text-cream-light">La planeación financiera personal y
                 empresarial no pueden ir por separado.</strong> Quien te diga que sí, no entiende cómo
                 funciona realmente un patrimonio empresarial.
               </p>
@@ -168,17 +168,17 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-zinc-500">
+            <p className="text-sm uppercase tracking-wider text-cream-light0">
               Producto pillar B2B
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
               Persona Clave (Hombre Clave) — qué es, por qué importa
             </h2>
-            <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">Persona Clave</strong> es un seguro
+                <strong className="text-ink dark:text-cream-light">Persona Clave</strong> es un seguro
                 de vida (y opcionalmente de invalidez) cuya prima paga la empresa, donde la
                 empresa misma es la beneficiaria. Si la persona asegurada falta — fallecimiento o
                 invalidez total y permanente — la empresa recibe una suma que le permite:
@@ -191,7 +191,7 @@ export default async function EmpresasPage() {
                 <li>Evitar fugas de talento secundario al estabilizar el barco</li>
               </ul>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">¿Por qué se llama también Hombre Clave?</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">¿Por qué se llama también Hombre Clave?</strong>{" "}
                 Es el nombre coloquial histórico del producto en México. Yo uso ambos términos
                 porque ambos se buscan — y porque muchos empresarios encuentran el producto buscando
                 &ldquo;seguro hombre clave&rdquo; sin saber el nombre técnico.
@@ -200,39 +200,39 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               ¿Quién en tu empresa es Persona Clave?
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               No es solo el dueño. Estos son los perfiles más comunes que asegurar:
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Tú, fundador/a o socio/a</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">Tú, fundador/a o socio/a</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Si tu nombre está en los contratos, en las relaciones bancarias, en las decisiones
                   estratégicas — eres persona clave por definición.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Director técnico u operativo</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">Director técnico u operativo</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Quien sostiene la operación día a día. Sin esa persona, el cliente no recibe el
                   servicio. Reemplazarla toma 6-12 meses mínimo.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Comercial estrella</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">Comercial estrella</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Quien trae las cuentas grandes. Su salida arrastra clientes — y a veces a otros
                   comerciales. Asegurarla protege tu pipeline.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Especialista único</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">Especialista único</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Ingeniero senior, científica de datos, médico/a especialista, abogada experta —
                   cualquier perfil cuya rotación genera riesgo operativo serio.
                 </p>
@@ -241,44 +241,44 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cobertura empresarial completa — no solo Persona Clave
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               Persona Clave es el corazón. Pero un programa empresarial completo suele incluir
               estos componentes complementarios.
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">B2B core</div>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">Vida grupo / colectivo</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">B2B core</div>
+                <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Vida grupo / colectivo</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Seguro de vida para todos tus empleados con suma asegurada en múltiplos de salario
                   (12, 24, 36 meses). Beneficio laboral deducible para la empresa.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Salud B2B</div>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">GMM colectivo</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Salud B2B</div>
+                <h3 className="text-xl font-semibold text-ink dark:text-cream-light">GMM colectivo</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Cobertura médica privada para empleados con red hospitalaria y deducibles
                   estructurados al perfil de tu nómina. Atrae y retiene talento.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Sucesión</div>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">Buy-sell agreement asegurado</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Sucesión</div>
+                <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Buy-sell agreement asegurado</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Si tienes socios y uno falta, la empresa recibe la suma para comprar su participación
                   accionaria. Evita conflictos con herederos y mantiene control empresarial.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Beneficios extra</div>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">Plan de retiro empresarial</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Beneficios extra</div>
+                <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Plan de retiro empresarial</h3>
+                <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   PPR colectivo o vehículos de ahorro para retiro como prestación. Combinable con
                   Modalidad 40 IMSS individual. Ver{" "}
                   <Link href="/retiro" className="underline">/retiro</Link>.
@@ -288,45 +288,45 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cómo trabajamos contigo
             </h2>
             <div className="mt-10 space-y-8">
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   1. Diagnóstico de riesgos críticos del negocio
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Identificamos juntos: ¿quién es persona clave en tu empresa? ¿Qué pasaría operativa
                   y financieramente si esa persona falta? Es una conversación honesta, sin formularios.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   2. Cuantificación de la suma asegurada
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Para cada persona clave: cuánto necesita la empresa para absorber su ausencia.
                   Cálculo basado en utilidades, deudas, costos de reemplazo y participación accionaria.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   3. Recomendación de aseguradora(s) para tu caso
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Trabajo con BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA y
                   GNP — todas autorizadas CNSF para pólizas empresariales. Según la situación
                   específica de tu empresa, te recomiendo la(s) más adecuada(s) para ti.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   4. Estructura legal y fiscal correcta
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Coordinación con tu contador y abogado para que la prima sea deducible para la
                   empresa, los beneficiarios estén bien designados, y la suma sea recibida sin
                   complicaciones fiscales el día que se requiera.
@@ -336,57 +336,57 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿La prima de Persona Clave es deducible para la empresa?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es
                   beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos
                   con tu contador para asegurar la deducibilidad.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Cuánto debe ser la suma asegurada por persona clave?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Depende de su rol. Como referencia: 5-10x la utilidad anual atribuible a esa
                   persona, o el costo total de reemplazo (búsqueda + entrenamiento + bache operativo)
                   multiplicado por 2-3. Lo cuantificamos juntos.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Mi socio se entera si lo aseguro?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí — la persona asegurada debe firmar consentimiento y pasar exámenes médicos.
                   No se puede asegurar a alguien sin que sepa. La buena noticia: a la mayoría de
                   socios les parece bien (es señal de que la empresa los valora).
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Sirve para empresas pequeñas (menos de 10 empleados)?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí — y es donde más se necesita. En empresas chicas, una sola persona faltante
                   puede colapsar la operación. En corporativos grandes hay redundancia natural; en
                   empresas pequeñas, no.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Ya tengo Vida grupo y GMM colectivo. ¿Necesito Persona Clave también?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Son productos distintos con beneficiarios distintos. Vida grupo paga a la familia
                   del empleado. Persona Clave paga a la empresa. Ambos son necesarios — protegen
                   cosas distintas. Hablamos de la diferencia con detalle en consulta.
@@ -396,12 +396,12 @@ export default async function EmpresasPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85">
               Identificar persona clave en tu empresa toma una conversación de 30 minutos.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -409,19 +409,19 @@ export default async function EmpresasPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Mensaje rápido</div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">WhatsApp</div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{whatsapp}</div>
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
               </a>
               <a
                 href={`mailto:${email}`}
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Email reflexivo</div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">Cuéntame por correo</div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">{email}</div>
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
               </a>
               <a
                 href={ctaUrl}

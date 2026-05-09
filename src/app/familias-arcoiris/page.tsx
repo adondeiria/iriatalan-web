@@ -101,14 +101,14 @@ export default async function FamiliasArcoirisPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-zinc-500">
+          <p className="text-sm uppercase tracking-wider text-cream-light0">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Familias arcoíris
           </p>
-          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-zinc-900 dark:text-zinc-50">
+          <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             Tu familia construida con amor merece estructura legal y financiera igual de sólida.
           </h1>
-          <p className="mt-6 text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Planeación patrimonial, seguros y fideicomisos diseñados específicamente
             para familias diversas con hijos en México. Para que el día que tú no estés,
             la ley reconozca a tu familia tal como tú la construiste.
@@ -124,19 +124,19 @@ export default async function FamiliasArcoirisPage() {
             </a>
             <Link
               href="/sobre-iria"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 px-7 py-3.5 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900 transition"
+              className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
             >
               Conoce a Iria
             </Link>
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               El problema que pocos asesores entienden
             </h2>
-            <div className="mt-8 space-y-6 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
                 Las leyes mexicanas de sucesión, herencia, tutela y beneficiarios
                 fueron escritas asumiendo una familia: papá, mamá, hijos biológicos.
@@ -146,14 +146,14 @@ export default async function FamiliasArcoirisPage() {
                 que tú llamarías familia.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">El riesgo concreto:</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">El riesgo concreto:</strong>{" "}
                 si pasa algo y no estructuraste correctamente, tu pareja puede no ser
                 reconocida como beneficiaria principal. Tu hijo puede ser reclamado
                 por familiares biológicos lejanos. Tu testamento puede ser disputado
                 si no está blindado.
               </p>
               <p>
-                <strong className="text-zinc-900 dark:text-zinc-50">La buena noticia:</strong>{" "}
+                <strong className="text-ink dark:text-cream-light">La buena noticia:</strong>{" "}
                 todo esto se resuelve con planeación adecuada. Combinación correcta de
                 seguro de vida con beneficiario designado, fideicomiso testamentario,
                 tutela legal documentada, plan educacional con titularidad correcta.
@@ -163,17 +163,17 @@ export default async function FamiliasArcoirisPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Lo que típicamente estructuramos juntos
             </h2>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Seguros de vida con beneficiario blindado
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
                   Designación irrevocable de pareja e hijos. Imposible disputar por
                   familiares biológicos no deseados.
                 </p>
@@ -182,32 +182,32 @@ export default async function FamiliasArcoirisPage() {
                 </Link>
               </div>
 
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Fideicomiso testamentario para hijos
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
                   Instrumento legal que trasciende disputas familiares. Si pasa algo,
                   el patrimonio queda protegido específicamente para tus hijos —
                   con reglas que tú diseñas.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Plan educacional con titularidad clara
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
                   Ahorro para universidad de tus hijos con estructura que sobrevive a
                   cualquier evento adverso. SEGUBECA y otros instrumentos.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   GMM familiar correcto
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
                   Cobertura médica de pareja + hijos en planes que reconocen
                   estructura familiar diversa. No todas las aseguradoras lo manejan
                   igual — yo te muestro cuáles sí.
@@ -217,47 +217,47 @@ export default async function FamiliasArcoirisPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Cómo trabajamos
             </h2>
             <div className="mt-10 space-y-8">
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   1. Conversación honesta sobre tu estructura familiar
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Quiénes son tu pareja, tus hijos, las personas que dependen
                   económicamente de ti. Sin juicios, sin que tengas que explicar
                   o justificar nada. Solo claridad sobre a quién quieres proteger.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   2. Diseño de estructura blindada
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Combinamos los instrumentos correctos (vida + fideicomiso + educacional + GMM)
                   para que el resultado total proteja exactamente a quien quieres proteger,
                   sin importar lo que diga el código civil por default.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   3. Coordinación con notario y/o abogado
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Si la estructura requiere instrumentos legales (testamento, fideicomiso,
                   poderes), trabajo con notarías y despachos especializados en familias
                   diversas. No quedas solo coordinando todo.
                 </p>
               </div>
-              <div className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-6">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   4. Revisión periódica
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   La ley mexicana ha avanzado mucho en reconocimiento de familias diversas
                   en los últimos años. Revisamos anualmente para aprovechar nuevas figuras
                   legales que te protejan mejor.
@@ -267,27 +267,27 @@ export default async function FamiliasArcoirisPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Por qué necesito asesoría especializada y no cualquier asesor?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Porque las estructuras legales y de beneficiarios para familias diversas
                   con hijos requieren combinaciones específicas que muchos asesores generales
                   no conocen o no priorizan. La diferencia se nota el día que algo pasa.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Mi pareja y yo no estamos casados legalmente. ¿Eso es problema?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   No con la estructura correcta. Hay instrumentos legales (designación
                   irrevocable de beneficiario en seguros de vida, fideicomisos, testamento
                   específico) que te permiten proteger a tu pareja independientemente del
@@ -295,10 +295,10 @@ export default async function FamiliasArcoirisPage() {
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Adoptamos a nuestros hijos hace pocos años. ¿La estructura cambia?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Si la adopción es legal, los hijos adoptados tienen los mismos derechos
                   hereditarios que los biológicos. Aún así, recomiendo blindar con seguro
                   de vida y fideicomiso para evitar cualquier disputa de familiares biológicos
@@ -306,10 +306,10 @@ export default async function FamiliasArcoirisPage() {
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Soy madre/padre soltero/a por elección. ¿También aplica?
                 </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí — y es un perfil que cada vez veo más. La estructura cambia ligeramente
                   (no hay segunda figura paterna/materna) pero los principios son los mismos:
                   proteger a tu hijo financiera y legalmente sin importar quién quede después.
@@ -319,12 +319,12 @@ export default async function FamiliasArcoirisPage() {
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:py-16 border-t border-zinc-200 dark:border-zinc-800">
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300">
+            <p className="mt-3 text-warm-brown dark:text-cream-light/85">
               No tienes que llegar con todas las respuestas — solo con tus dudas.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -332,29 +332,29 @@ export default async function FamiliasArcoirisPage() {
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                   Mensaje rápido
                 </div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                <div className="text-lg font-medium text-ink dark:text-cream-light">
                   WhatsApp
                 </div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">
                   {whatsapp}
                 </div>
               </a>
               <a
                 href={`mailto:${email}`}
-                className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
                   Email reflexivo
                 </div>
-                <div className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+                <div className="text-lg font-medium text-ink dark:text-cream-light">
                   Cuéntame por correo
                 </div>
-                <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 break-all">
+                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">
                   {email}
                 </div>
               </a>
