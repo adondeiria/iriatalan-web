@@ -82,6 +82,16 @@ const SERVICIOS = [
   },
 ];
 
+const PARA_QUIEN = [
+  "Profesionistas independientes con ISR alto",
+  "Empresarios que protegen continuidad y patrimonio",
+  "Familias afluentes con estrategia patrimonial coherente",
+  "Mujeres con agenda financiera propia",
+  "Familias con hijos neurodivergentes",
+  "Empresas que blindan talento clave",
+  "Quien planea retiro con estrategia fiscal",
+];
+
 const METODOLOGIA = [
   { icon: Search, label: "Analizamos" },
   { icon: Compass, label: "Diseñamos" },
@@ -290,6 +300,36 @@ export default async function HomePage() {
                   </p>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PARA QUIÉN — perfiles que sirvo (restaurada con paleta luxury) */}
+        <section className="bg-cream-light border-y border-warm-brown/15">
+          <div className="px-6 py-20 sm:py-24 max-w-6xl mx-auto w-full">
+            <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+              <div>
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
+                  Para quién
+                </p>
+                <h2 className="mt-6 font-serif font-light text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.01em] text-ink">
+                  La asesoría genérica no alcanza para ciertos perfiles.
+                </h2>
+              </div>
+              <ul className="space-y-4">
+                {PARA_QUIEN.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-4 text-base sm:text-lg text-warm-brown leading-relaxed"
+                  >
+                    <span
+                      className="mt-2.5 inline-block size-1.5 rounded-full bg-burgundy flex-shrink-0"
+                      aria-hidden
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
