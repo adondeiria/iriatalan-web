@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
  * la deindexación vs un 404 (que Google reintenta crawlear durante meses).
  *
  * Importante: las URLs con redirect 301/308 en next.config.ts se procesan
- * ANTES del middleware, así que esto solo aplica a paths sin redirect.
+ * ANTES del proxy, así que esto solo aplica a paths sin redirect.
  */
 const GONE_BODY =
   "Gone — esta página fue removida del sitio. Visita https://iriatalan.com.mx para el contenido actual.";
@@ -22,7 +22,7 @@ function gone() {
   });
 }
 
-export function middleware() {
+export function proxy() {
   return gone();
 }
 
