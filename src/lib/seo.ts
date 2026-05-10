@@ -94,11 +94,32 @@ export function buildPersonSchema(author: AuthorData) {
       name: c.issuer,
     }));
 
+  // Defaults hardcoded para Iria — sitio one-author. Si Sanity no tiene
+  // estos campos, usar los datos confirmados (2026-05-09). Si Sanity los
+  // tiene, los valores de Sanity overridean (truthy check).
+  const isIria = author.name === "Iria Talan";
+  const alternateName =
+    author.alternateName ?? (isIria ? "Iria Talán" : undefined);
+  const awards =
+    author.awards && author.awards.length > 0
+      ? author.awards
+      : isIria
+        ? [
+            "Million Dollar Round Table (MDRT) — Miembro desde 2008",
+            "MDRT Court of the Table (COT) 2023",
+            "MDRT Top of the Table (TOT) 2024",
+            "MDRT Court of the Table (COT) 2025",
+            "AMASFAC — 8vo Lugar Nacional",
+            "GNP Seguros — Asesora Diamante",
+            "Seguros Monterrey New York Life — Asesora Diamante",
+          ]
+        : undefined;
+
   return {
     "@type": "Person" as const,
     "@id": `${SITE_URL}/sobre-iria#person`,
     name: author.name,
-    alternateName: author.alternateName,
+    alternateName,
     jobTitle: author.title,
     description: author.bio,
     image: author.photo?.asset?.url,
@@ -109,7 +130,7 @@ export function buildPersonSchema(author: AuthorData) {
     workLocation: author.officeAddress
       ? { "@type": "Place", name: author.officeAddress }
       : { "@type": "Place", name: "Ciudad de México, México" },
-    award: author.awards,
+    award: awards,
     alumniOf: alumniOf && alumniOf.length > 0 ? alumniOf : undefined,
     worksFor: { "@id": `${SITE_URL}#organization` },
     hasCredential: author.credentials?.map((c) => ({
