@@ -58,7 +58,7 @@ const FALLBACK_AUTHOR: AuthorData = {
     { title: "Asesora Diamante", issuer: "GNP Seguros", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", category: "carrier" },
     { title: "Wealth Management Theory & Practice", issuer: "Yale School of Management — Executive Education", year: "2019", category: "academica" },
-    { title: "MBA Essentials", issuer: "London School of Economics — Executive Education (curso ejecutivo, no MBA)", category: "academica" },
+    { title: "MBA Essentials", issuer: "London School of Economics — Executive Education", category: "academica" },
     { title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", category: "academica" },
     { title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
     { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
@@ -133,7 +133,10 @@ export default async function SobreIriaPage() {
               </div>
             )}
             <div>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
+                Cédula CNSF V388618 · Autorizada desde 2008
+              </p>
+              <h1 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
                 {author.name}
               </h1>
               <p className="mt-4 text-lg sm:text-xl italic text-warm-brown/85 dark:text-cream-light/65 max-w-xl">
