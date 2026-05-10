@@ -13,7 +13,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Asesoría financiera para mexicanos en el extranjero — Iria Talan / RIF",
+  title: "Asesoría financiera para mexicanos en el extranjero",
   description:
     "Si vives en EUA, Europa o Canadá, México tiene productos financieros que tu país de residencia no: PPR deducible Art. 151 LISR, GMM con red premium nacional, planes educacionales y vida Art. 185 LISR. Asesoría a distancia, MDRT Top of the Table.",
   alternates: { canonical: `${SITE_URL}/mexicanos-en-el-extranjero` },

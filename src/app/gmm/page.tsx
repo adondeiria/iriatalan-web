@@ -52,7 +52,7 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Gastos Médicos Mayores en México — Iria Talan / RIF",
+  title: "Gastos Médicos Mayores en México",
   description:
     "GMM correcto: red hospitalaria, deducible y cobertura internacional adaptados. 6 aseguradoras AAA. Estrategia para renovaciones que subieron 15-20%. MDRT TOT · Asesora autorizada CNSF.",
   alternates: { canonical: `${SITE_URL}/gmm` },

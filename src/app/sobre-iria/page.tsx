@@ -16,7 +16,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Sobre Iria Talan — Asesora Financiera RIF",
+  title: { absolute: "Sobre Iria Talan — Asesora Financiera RIF" },
   description:
     "Iria Talan: MDRT Top of the Table, AMASFAC 8vo Lugar Nacional, Yale Wealth Management, LSE MBA Essentials. Asesora financiera autorizada CNSF en CDMX.",
   alternates: { canonical: "/sobre-iria" },

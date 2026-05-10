@@ -42,5 +42,11 @@ export const config = {
     "/hello-world",
     "/videos",
     "/videos/:path*",
+    // Posts demo lorem-ipsum del theme WP — descubiertos via firecrawl 2026-05-10.
+    // Google sigue indexándolos como 404 soft; 410 Gone acelera deindex.
+    "/what-consumers-want-from-businesses",
+    "/giving-buyers-more-options-with-financing",
+    "/how-to-go-freelance-your-step-by-step-guide",
+    "/seven-ways-to-handle-unexpected-expenses-and-financial-emergencies",
   ],
 };

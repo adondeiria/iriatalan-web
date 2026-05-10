@@ -46,6 +46,9 @@ const nextConfig: NextConfig = {
       // Additional WordPress sitelinks captured from Google SERP (2026-05-07)
       { source: "/soy-cliente", destination: "/recursos", permanent: true },
       { source: "/soy-cliente/", destination: "/recursos", permanent: true },
+      // /clientes — descubierto por firecrawl 2026-05-10 (Google sigue indexándola)
+      { source: "/clientes", destination: "/recursos", permanent: true },
+      { source: "/clientes/", destination: "/recursos", permanent: true },
       { source: "/our-services", destination: "/", permanent: true },
       { source: "/our-services/", destination: "/", permanent: true },
       { source: "/hablemos", destination: "/", permanent: true },

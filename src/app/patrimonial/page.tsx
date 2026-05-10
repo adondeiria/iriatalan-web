@@ -38,7 +38,7 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Patrimonios complejos · Asesoría discreta para HNWI — Iria Talan / RIF",
+  title: "Patrimonios complejos · Asesoría discreta para HNWI",
   description:
     "Asesoría patrimonial discreta para patrimonios HNWI: fideicomisos, sucesión, inversiones complejas y estructuras internacionales. MDRT Top of the Table · Asesora autorizada CNSF.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },

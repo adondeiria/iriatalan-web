@@ -16,6 +16,7 @@ export const SAMEAS_FALLBACK: string[] = [
   "https://www.instagram.com/iriatalan/",
   "https://www.facebook.com/IriaTalan/",
   "https://www.tiktok.com/@iriatips",
+  "https://www.youtube.com/@iriatalan",
 ];
 
 export type AuthorData = {
@@ -55,6 +56,23 @@ export type AuthorData = {
   officeAddress?: string;
   sameAs?: string[];
 };
+
+// Normaliza nombres de idiomas a ISO 639-1 (es/en) para entity recognition LLM.
+// Sanity guarda strings libres ("español", "Español", "English"); schema.org
+// y crawlers IA prefieren códigos ISO o nombres en inglés.
+const LANGUAGE_ISO_MAP: Record<string, string> = {
+  "español": "es",
+  "espanol": "es",
+  "spanish": "es",
+  "ingles": "en",
+  "inglés": "en",
+  "english": "en",
+};
+
+function normalizeLanguages(langs?: string[]): string[] | undefined {
+  if (!langs || langs.length === 0) return undefined;
+  return langs.map((l) => LANGUAGE_ISO_MAP[l.toLowerCase().trim()] ?? l);
+}
 
 export function buildPersonSchema(author: AuthorData) {
   const collected = [
@@ -125,7 +143,7 @@ export function buildPersonSchema(author: AuthorData) {
     image: author.photo?.asset?.url,
     url: `${SITE_URL}/sobre-iria`,
     knowsAbout,
-    knowsLanguage: author.languages,
+    knowsLanguage: normalizeLanguages(author.languages),
     nationality: { "@type": "Country", name: "México" },
     workLocation: author.officeAddress
       ? { "@type": "Place", name: author.officeAddress }
@@ -288,6 +306,7 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     "@id": `${SITE_URL}#localbusiness`,
     name: SITE_NAME,
     url: SITE_URL,
+    image: author?.photo?.asset?.url ?? `${SITE_URL}/img/iria/iria-portrait-02.jpg`,
     telephone: author?.socialLinks?.whatsapp ?? "+525512683401",
     email: author?.socialLinks?.email ?? "soporte@talan.com.mx",
     address: {

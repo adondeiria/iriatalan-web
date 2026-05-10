@@ -38,7 +38,7 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Asesoría financiera para familias arcoíris en México — Iria Talan / RIF",
+  title: "Asesoría financiera para familias arcoíris en México",
   description:
     "Planeación financiera y patrimonial para familias diversas con hijos: seguros de vida, fideicomisos, planes educacionales y estructuras de tutela diseñadas para que la ley reconozca a tu familia tal como es. MDRT Top of the Table.",
   alternates: { canonical: `${SITE_URL}/familias-arcoiris` },

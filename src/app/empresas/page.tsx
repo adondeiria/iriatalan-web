@@ -43,7 +43,7 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Seguros para Empresas · Persona Clave / Hombre Clave — Iria Talan / RIF",
+  title: "Seguros para Empresas · Persona Clave / Hombre Clave",
   description:
     "Seguros empresariales: Persona Clave (Hombre Clave), Vida grupo, GMM colectivo y beneficios para empleados. Protege tu negocio cuando depende de personas insustituibles. MDRT TOT · CNSF.",
   alternates: { canonical: `${SITE_URL}/empresas` },

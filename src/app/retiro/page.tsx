@@ -47,7 +47,7 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Planeación de Retiro · PPR + Modalidad 40 IMSS — Iria Talan / RIF",
+  title: "Planeación de Retiro · PPR + Modalidad 40 IMSS",
   description:
     "PPR con beneficio fiscal art. 151 fracc V y art. 185 LISR (hasta $213,973 MXN deducibles en 2026), Modalidad 40 IMSS y estructura combinada. MDRT Top of the Table · Asesora autorizada CNSF.",
   alternates: { canonical: `${SITE_URL}/retiro` },
