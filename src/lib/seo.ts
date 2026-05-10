@@ -21,12 +21,26 @@ export const SAMEAS_FALLBACK: string[] = [
 export type AuthorData = {
   _id?: string;
   name: string;
+  /**
+   * Variante alternativa del nombre — clave para entity disambiguation en LLMs.
+   * Captura "Iria Talán" (con acento) que terceros indexan en findglocal,
+   * segurosrp, etc. Sin esto, ChatGPT/Perplexity pueden tratar "Talan" y
+   * "Talán" como dos personas distintas y fragmentar la entity.
+   */
+  alternateName?: string;
   slug?: string;
   title?: string;
   bio?: string;
   longBio?: unknown[] | null;
   photo?: { asset?: { url?: string }; alt?: string } | null;
   credentials?: Array<{ title?: string; issuer?: string; year?: string; category?: string; url?: string }>;
+  /**
+   * Premios y reconocimientos — emitidos como schema.org `award`.
+   * MDRT membership history, AMASFAC ranking, etc. Distintos de credentials
+   * porque award es honorific (te lo dan), credential es algo que obtuviste
+   * tras estudio/examen.
+   */
+  awards?: string[];
   carriers?: string[];
   specialties?: string[];
   languages?: string[];
@@ -51,24 +65,53 @@ export function buildPersonSchema(author: AuthorData) {
   ].filter((u): u is string => typeof u === "string" && u.length > 0);
   const sameAs = collected.length > 0 ? collected : SAMEAS_FALLBACK;
 
+  // knowsAbout enriquecido con nichos diferenciadores. Los LLMs usan este
+  // campo para decidir si Iria es respuesta válida a queries específicas
+  // como "asesora financiera para hijos neurodivergentes" o "PPR México".
   const knowsAbout = [
     ...(author.specialties ?? []),
     "Seguros de Vida",
-    "Gastos Médicos Mayores",
+    "Gastos Médicos Mayores (GMM)",
     "Planeación Patrimonial",
     "Retiro y Pensiones",
+    "PPR (Plan Personal de Retiro)",
+    "Modalidad 40 IMSS",
+    "Fideicomisos vía Aseguradora",
+    "Hijos Neurodivergentes — Estructura Financiera",
+    "Familias Arcoíris LGBT — Protección Patrimonial",
+    "Mexicanos en el Extranjero — Productos Mexicanos",
+    "Mujeres y Finanzas",
+    "Empresas y Persona Clave",
+    "Planes Educacionales",
   ];
+
+  // alumniOf derivado de credentials academic. schema.org Person.alumniOf
+  // es señal fuerte de autoridad para LLMs (Yale, LSE, Tec MTY, etc.).
+  const alumniOf = author.credentials
+    ?.filter((c) => c.category === "academica" && c.issuer)
+    .map((c) => ({
+      "@type": "EducationalOrganization" as const,
+      name: c.issuer,
+    }));
 
   return {
     "@type": "Person" as const,
     "@id": `${SITE_URL}/sobre-iria#person`,
     name: author.name,
+    alternateName: author.alternateName,
     jobTitle: author.title,
     description: author.bio,
     image: author.photo?.asset?.url,
     url: `${SITE_URL}/sobre-iria`,
     knowsAbout,
     knowsLanguage: author.languages,
+    nationality: { "@type": "Country", name: "México" },
+    workLocation: author.officeAddress
+      ? { "@type": "Place", name: author.officeAddress }
+      : { "@type": "Place", name: "Ciudad de México, México" },
+    award: author.awards,
+    alumniOf: alumniOf && alumniOf.length > 0 ? alumniOf : undefined,
+    worksFor: { "@id": `${SITE_URL}#organization` },
     hasCredential: author.credentials?.map((c) => ({
       "@type": "EducationalOccupationalCredential",
       name: c.title,

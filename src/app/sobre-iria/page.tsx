@@ -30,8 +30,18 @@ export const metadata: Metadata = {
 
 const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
+  alternateName: "Iria Talán",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 17+ años acompañando a familias afluentes y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  awards: [
+    "Million Dollar Round Table (MDRT) — Miembro desde 2008",
+    "MDRT Court of the Table (COT) 2023",
+    "MDRT Top of the Table (TOT) 2024",
+    "MDRT Court of the Table (COT) 2025",
+    "AMASFAC — 8vo Lugar Nacional",
+    "GNP Seguros — Asesora Diamante",
+    "Seguros Monterrey New York Life — Asesora Diamante",
+  ],
   carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
   specialties: [
     "Seguros de Vida",
@@ -43,7 +53,7 @@ const FALLBACK_AUTHOR: AuthorData = {
   ],
   languages: ["Español", "English"],
   credentials: [
-    { title: "Miembro MDRT desde 2008 · Top of the Table 2024 · Court of the Table 2025", issuer: "Million Dollar Round Table — élite mundial de la industria de seguros", category: "industria" },
+    { title: "Miembro MDRT desde 2008 · Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025", issuer: "Million Dollar Round Table — élite mundial de la industria de seguros", category: "industria" },
     { title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", category: "industria" },
     { title: "Asesora Diamante", issuer: "GNP Seguros", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", category: "carrier" },
