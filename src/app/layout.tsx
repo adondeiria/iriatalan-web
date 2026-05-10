@@ -14,6 +14,7 @@ import {
 
 import { CookieBanner } from "@/components/cookie-banner";
 import { SiteHeader } from "@/components/site-header";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 import "./globals.css";
 
@@ -213,7 +214,7 @@ export default function RootLayout({
               <ul className="space-y-3 text-sm text-warm-brown">
                 <li>
                   <a
-                    href="https://calendly.com/iriatalan"
+                    href="/contacto#agendar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-burgundy transition-colors duration-500"
@@ -273,6 +274,7 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+        <WhatsAppFloat />
         <CookieBanner />
       </body>
     </html>

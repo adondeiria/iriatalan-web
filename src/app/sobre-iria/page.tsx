@@ -65,7 +65,7 @@ const FALLBACK_AUTHOR: AuthorData = {
   ],
   officeAddress: "Bosque de Chapultepec, Ciudad de México",
   socialLinks: {
-    calendly: "https://calendly.com/iriatalan",
+    calendly: "/contacto#agendar",
   },
 };
 
@@ -76,7 +76,7 @@ export default async function SobreIriaPage() {
       tags: ["author"],
     }).catch(() => null)) ?? FALLBACK_AUTHOR;
 
-  const ctaUrl = author.socialLinks?.calendly ?? "https://calendly.com/iriatalan";
+  const ctaUrl = author.socialLinks?.calendly ?? "/contacto#agendar";
 
   const pageSchema = buildGraph(
     buildPersonSchema(author),

@@ -134,7 +134,7 @@ export default async function ServicePage({
     notFound();
   }
 
-  const ctaUrl = service.ctaUrl || "https://calendly.com/iriatalan";
+  const ctaUrl = service.ctaUrl || "/contacto#agendar";
   const ctaText = service.ctaText || "Agenda sesión inicial";
 
   const faqItems: FAQItem[] =

@@ -39,7 +39,7 @@ const FALLBACK_HERO_TITLE = "Decisiones financieras que protegen lo que más imp
 const FALLBACK_HERO_SUBTITLE =
   "Te ayudamos a proteger tu patrimonio, retiro y familia con estrategias claras y personalizadas.";
 const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
-const FALLBACK_CTA_URL = "https://calendly.com/iriatalan";
+const FALLBACK_CTA_URL = "/contacto#agendar";
 
 const CREDENCIALES = [
   { icon: Calendar, label: "Desde 2008" },

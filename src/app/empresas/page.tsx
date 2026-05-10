@@ -77,7 +77,7 @@ export default async function EmpresasPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "https://calendly.com/iriatalan";
+  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
