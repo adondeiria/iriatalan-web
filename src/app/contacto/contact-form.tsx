@@ -2,51 +2,62 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import Link from "next/link";
 
 /**
- * Form de pre-cualificación — captura todos los leads (sin rechazo automático)
- * y los envía via Web3Forms a soporte@talan.com.mx para triage manual.
+ * Form de pre-cualificación — captura todos los leads y los reenvía a Zoho Forms
+ * via /api/contact (server-side proxy). El form en Zoho está configurado para
+ * auto-create Lead en Zoho CRM con el mapping de campos del Workflow.
  *
  * Conditional logic según servicio:
- * - GMM → pregunta informativa sobre enfermedad/accidente
+ * - GMM → pregunta condición médica (Sí/No/N/A)
  * - PPR/Vida/Mod40/Educacional → ¿Cuánto te gustaría aportar al mes o al año?
  * - Empresarial / HNWI / Otros → solo confirmación de respuesta en 24 hrs
+ *
+ * Los IDs/labels de servicios coinciden EXACTAMENTE con los valores del
+ * dropdown en Zoho Forms — no modificar sin actualizar también allá.
  */
 
 const SERVICIOS = [
-  { id: "retiro", label: "Retiro / PPR" },
-  { id: "gmm", label: "GMM — gastos médicos mayores" },
-  { id: "vida", label: "Seguro de vida" },
-  { id: "educacional", label: "Seguro educacional / SEGUBECAS" },
-  { id: "modalidad40", label: "Modalidad 40 IMSS" },
-  { id: "empresarial", label: "Empresarial / Persona Clave" },
-  { id: "patrimonial", label: "Patrimonial / HNWI / Fideicomisos" },
-  { id: "familias-diversas", label: "Familias diversas" },
-  { id: "neurodivergentes", label: "Hijos neurodivergentes" },
-  { id: "mexicanos-extranjero", label: "Mexicanos en el extranjero" },
-  { id: "mujeres", label: "Mujeres — asesoría enfocada" },
-  { id: "otro", label: "Otro / no estoy seguro" },
+  "Retiro / PPR",
+  "GMM — gastos médicos mayores",
+  "Seguro de vida",
+  "Seguro / Fideicomiso educacional",
+  "Ahorro para Modalidad 40",
+  "Empresarial / Persona Clave",
+  "Patrimonial / HNWI / Fideicomisos",
+  "Familias diversas",
+  "Hijos neurodivergentes",
+  "Mexicanos en el extranjero",
+  "Mujeres — asesoría enfocada",
+  "Foreigners living in Mexico",
+  "Otro / no estoy seguro",
 ] as const;
 
-type ServicioId = (typeof SERVICIOS)[number]["id"];
+type Servicio = (typeof SERVICIOS)[number];
 
-const SERVICIOS_APORTACION: ServicioId[] = [
-  "retiro",
-  "vida",
-  "educacional",
-  "modalidad40",
+const SERVICIO_GMM: Servicio = "GMM — gastos médicos mayores";
+
+const SERVICIOS_APORTACION: Servicio[] = [
+  "Retiro / PPR",
+  "Seguro de vida",
+  "Seguro / Fideicomiso educacional",
+  "Ahorro para Modalidad 40",
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
+type CondicionMedica = "SI" | "NO" | "N/A" | "";
 
-export function ContactForm({ accessKey }: { accessKey: string }) {
-  const [servicio, setServicio] = useState<ServicioId | "">("");
-  const [tieneCondicion, setTieneCondicion] = useState<"si" | "no" | "">("");
+export function ContactForm() {
+  const [servicio, setServicio] = useState<Servicio | "">("");
+  const [condicionMedica, setCondicionMedica] = useState<CondicionMedica>("");
+  const [privacyAccepted, setPrivacyAccepted] = useState<boolean>(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const isGMM = servicio === "gmm";
-  const askAportacion = servicio !== "" && SERVICIOS_APORTACION.includes(servicio);
+  const isGMM = servicio === SERVICIO_GMM;
+  const askAportacion =
+    servicio !== "" && SERVICIOS_APORTACION.includes(servicio as Servicio);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,50 +65,34 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
-    const servicioLabel =
-      SERVICIOS.find((s) => s.id === servicio)?.label ?? "(sin seleccionar)";
 
-    const payload: Record<string, string> = {
-      access_key: accessKey,
-      subject: `iriatalan.com.mx — Nuevo lead: ${servicioLabel}`,
-      from_name: "iriatalan.com.mx",
-      nombre: String(formData.get("nombre") ?? ""),
-      whatsapp: String(formData.get("whatsapp") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      ciudad: String(formData.get("ciudad") ?? ""),
-      servicio: servicioLabel,
-      mensaje: String(formData.get("mensaje") ?? ""),
+    const payload = {
+      nombre: String(formData.get("nombre") ?? "").trim(),
+      whatsapp: String(formData.get("whatsapp") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      ciudad: String(formData.get("ciudad") ?? "").trim(),
+      servicio: servicio || "",
+      condicion_medica: isGMM ? condicionMedica : "",
+      aportacion: askAportacion
+        ? String(formData.get("aportacion") ?? "").trim()
+        : "",
+      mensaje: String(formData.get("mensaje") ?? "").trim(),
+      privacy_accepted: privacyAccepted,
     };
 
-    if (isGMM) {
-      payload.condicion_medica =
-        tieneCondicion === "si"
-          ? "Sí"
-          : tieneCondicion === "no"
-            ? "No"
-            : "(no respondida)";
-      payload.condicion_detalle = String(formData.get("condicion_detalle") ?? "");
-    }
-    if (askAportacion) {
-      payload.aportacion = String(formData.get("aportacion") ?? "");
-    }
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = await res.json();
-      if (data.success) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
         setSubmitState("success");
       } else {
         setSubmitState("error");
         setErrorMsg(
-          data.message ??
+          data.error ??
             "Error al enviar. Por favor intenta de nuevo o escríbenos por WhatsApp.",
         );
       }
@@ -133,8 +128,8 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
           Recibí tu mensaje.
         </h3>
         <p className="mt-4 text-warm-brown leading-relaxed max-w-md mx-auto">
-          Te contactaré en máximo <strong>24 horas hábiles</strong>. Si es urgente,
-          escríbeme por WhatsApp y respondo más rápido.
+          Te contactaré en máximo <strong>24 horas hábiles</strong>. Si es
+          urgente, escríbeme por WhatsApp y respondo más rápido.
         </p>
       </div>
     );
@@ -158,7 +153,6 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
             label="WhatsApp"
             name="whatsapp"
             type="tel"
-            required
             placeholder="+52 55 XXXX XXXX"
           />
           <Field
@@ -175,6 +169,7 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
       <fieldset className="space-y-4">
         <legend className="text-xs font-medium uppercase tracking-[0.24em] text-burgundy mb-1">
           ¿Qué quieres resolver?
+          <span className="text-burgundy ml-1">*</span>
         </legend>
         <p className="text-sm text-warm-brown/85 mb-4">
           Selecciona la opción más cercana — después podemos refinar.
@@ -182,9 +177,9 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
         <div className="grid gap-2 sm:grid-cols-2">
           {SERVICIOS.map((s) => (
             <label
-              key={s.id}
+              key={s}
               className={`flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-all duration-300 ${
-                servicio === s.id
+                servicio === s
                   ? "border-burgundy bg-burgundy/5 text-ink"
                   : "border-warm-brown/15 hover:border-burgundy/40 text-warm-brown"
               }`}
@@ -192,16 +187,16 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
               <input
                 type="radio"
                 name="servicio"
-                value={s.id}
-                checked={servicio === s.id}
+                value={s}
+                checked={servicio === s}
                 onChange={() => {
-                  setServicio(s.id);
-                  setTieneCondicion("");
+                  setServicio(s);
+                  setCondicionMedica("");
                 }}
                 required
                 className="size-4 accent-burgundy"
               />
-              <span className="text-sm">{s.label}</span>
+              <span className="text-sm">{s}</span>
             </label>
           ))}
         </div>
@@ -211,40 +206,33 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
       {isGMM && (
         <fieldset className="space-y-4 rounded-xl bg-cream p-5 border border-warm-brown/15">
           <legend className="px-2 text-xs font-medium uppercase tracking-[0.24em] text-burgundy">
-            GMM — pregunta informativa
+            Condición médica
           </legend>
           <p className="text-sm text-warm-brown leading-relaxed">
             ¿Tienes o has tenido alguna enfermedad o accidente importante?
           </p>
           <div className="flex gap-3">
-            {(["si", "no"] as const).map((opt) => (
+            {(["SI", "NO", "N/A"] as const).map((opt) => (
               <label
                 key={opt}
                 className={`flex-1 text-center rounded-lg border px-4 py-2.5 cursor-pointer transition-all duration-300 text-sm ${
-                  tieneCondicion === opt
+                  condicionMedica === opt
                     ? "border-burgundy bg-burgundy/5 text-ink font-medium"
                     : "border-warm-brown/15 hover:border-burgundy/40 text-warm-brown"
                 }`}
               >
                 <input
                   type="radio"
-                  name="condicion_medica"
+                  name="condicion_medica_radio"
                   value={opt}
-                  checked={tieneCondicion === opt}
-                  onChange={() => setTieneCondicion(opt)}
+                  checked={condicionMedica === opt}
+                  onChange={() => setCondicionMedica(opt)}
                   className="sr-only"
                 />
-                {opt === "si" ? "Sí" : "No"}
+                {opt === "SI" ? "Sí" : opt === "NO" ? "No" : "N/A"}
               </label>
             ))}
           </div>
-          {tieneCondicion === "si" && (
-            <Field
-              label="¿Cuál? (opcional)"
-              name="condicion_detalle"
-              placeholder="Diabetes, hipertensión, cirugía previa, etc."
-            />
-          )}
         </fieldset>
       )}
 
@@ -273,12 +261,38 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
         />
       </fieldset>
 
+      {/* Privacy / T&C */}
+      <fieldset>
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            name="privacy_accepted"
+            checked={privacyAccepted}
+            onChange={(e) => setPrivacyAccepted(e.target.checked)}
+            required
+            className="mt-1 size-4 accent-burgundy flex-shrink-0"
+          />
+          <span className="text-sm text-warm-brown leading-relaxed">
+            He leído y acepto el{" "}
+            <Link
+              href="/aviso-privacidad"
+              target="_blank"
+              className="text-burgundy underline hover:no-underline"
+            >
+              Aviso de Privacidad
+            </Link>
+            .
+            <span className="text-burgundy ml-0.5">*</span>
+          </span>
+        </label>
+      </fieldset>
+
       {/* Submit */}
       <div className="space-y-3">
         <button
           type="submit"
-          disabled={submitState === "submitting"}
-          className="w-full inline-flex items-center justify-center rounded-full bg-burgundy text-cream-light px-7 py-4 font-medium tracking-[0.06em] uppercase text-sm hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
+          disabled={submitState === "submitting" || !privacyAccepted}
+          className="w-full inline-flex items-center justify-center rounded-full bg-burgundy text-cream-light px-7 py-4 font-medium tracking-[0.06em] uppercase text-sm hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         >
           {submitState === "submitting" ? "Enviando…" : "Agendar sesión inicial"}
         </button>
@@ -286,8 +300,9 @@ export function ContactForm({ accessKey }: { accessKey: string }) {
           <p className="text-sm text-burgundy text-center">{errorMsg}</p>
         )}
         <p className="text-xs text-warm-brown/70 text-center leading-relaxed">
-          Tu información es estrictamente confidencial. No comparto datos con terceros.
-          Cédula CNSF <strong>V388618</strong>. Respuesta en máximo 24 horas hábiles.
+          Tu información es estrictamente confidencial. No comparto datos con
+          terceros. Cédula CNSF <strong>V388618</strong>. Respuesta en máximo 24
+          horas hábiles.
         </p>
       </div>
     </form>

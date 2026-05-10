@@ -78,10 +78,6 @@ export default function ContactoPage() {
     buildFAQPageSchema(FAQS),
   );
 
-  // Web3Forms access key — set en Vercel env como NEXT_PUBLIC_WEB3FORMS_KEY.
-  // Hasta que Iria provea key real, el form devuelve error gracioso si se intenta enviar.
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "PENDIENTE";
-
   return (
     <main className="flex flex-col">
       <script
@@ -124,7 +120,7 @@ export default function ContactoPage() {
           </p>
 
           <div className="mt-10">
-            <ContactForm accessKey={accessKey} />
+            <ContactForm />
           </div>
         </div>
       </section>
