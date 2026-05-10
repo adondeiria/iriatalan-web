@@ -61,7 +61,7 @@ const FALLBACK_AUTHOR: AuthorData = {
     { title: "MBA Essentials", issuer: "London School of Economics — Executive Education (curso ejecutivo, no MBA)", category: "academica" },
     { title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", category: "academica" },
     { title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
-    { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
+    { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
   ],
   officeAddress: "Bosque de Chapultepec, Ciudad de México",
   socialLinks: {
