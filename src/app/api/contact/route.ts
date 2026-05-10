@@ -53,8 +53,11 @@ export async function POST(req: Request) {
   formData.append("zf_referrer_name", "iriatalan.com.mx");
   formData.append("zf_redirect_url", "");
   formData.append("zc_gad", "");
+  // Sanitizar whatsapp — Zoho 'Number' field rechaza '+' y espacios
+  // (checktype c2 = solo dígitos). Quitamos cualquier carácter no numérico.
+  const whatsappDigits = (body.whatsapp ?? "").replace(/\D/g, "");
   formData.append("SingleLine", body.nombre);
-  formData.append("Number", body.whatsapp ?? "");
+  formData.append("Number", whatsappDigits);
   formData.append("SingleLine1", body.email);
   formData.append("SingleLine2", body.ciudad ?? "");
   formData.append("Dropdown", body.servicio);
