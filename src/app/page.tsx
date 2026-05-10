@@ -35,7 +35,7 @@ type HomeData = {
   heroCtaUrl?: string;
 } | null;
 
-const FALLBACK_HERO_TITLE = "La tranquilidad financiera se construye.";
+const FALLBACK_HERO_TITLE = "Decisiones financieras que protegen lo que más importa.";
 const FALLBACK_HERO_SUBTITLE =
   "Te ayudamos a proteger tu patrimonio, retiro y familia con estrategias claras y personalizadas.";
 const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
