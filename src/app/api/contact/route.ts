@@ -72,16 +72,26 @@ export async function POST(req: Request) {
       // Zoho redirects a página de "thank you" después del submit (302).
       // No queremos seguir el redirect — solo verificar que el submit pasó.
       redirect: "manual",
+      headers: {
+        // Zoho rechaza con 409 sin estos headers — espera tráfico tipo browser.
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+        Origin: "https://iriatalan.com.mx",
+        Referer: "https://iriatalan.com.mx/contacto",
+      },
     });
 
-    // Zoho devuelve 200 OK o 3xx (redirect a thank-you page) cuando
-    // la submission es exitosa. Cualquier 4xx/5xx indica error.
+    // Capturamos el body para diagnóstico cuando Zoho rechaza.
     if (res.status >= 200 && res.status < 400) {
       return NextResponse.json({ success: true });
     }
 
+    const responseBody = await res.text().catch(() => "(unable to read body)");
     return NextResponse.json(
-      { error: `Zoho rechazó la submission (status ${res.status}).` },
+      {
+        error: `Zoho rechazó la submission (status ${res.status}).`,
+        zohoResponse: responseBody.slice(0, 500),
+      },
       { status: 502 },
     );
   } catch (err) {
