@@ -34,6 +34,16 @@ const FAQS: FAQItem[] = [
     answerText:
       "Sí — y es un perfil que cada vez veo más. La estructura cambia ligeramente (no hay segunda figura paterna/materna) pero los principios son los mismos: proteger a tu hijo financiera y legalmente sin importar quién quede después.",
   },
+  {
+    question: "¿Podemos contratar seguros (educacionales, retiro, vida) y poner a nuestra pareja como beneficiaria?",
+    answerText:
+      "Sí. Cualquier persona puede contratar planes de seguro educacional, retiro, vida o gastos médicos y nombrar a su pareja como beneficiaria — independientemente del estatus civil. Si están casados y tienen acta de registro civil, tu espos@ recibirá el dinero exento de ISR ante un fallecimiento (Art. 93 fracc. XXI de la LISR), igual que cualquier cónyuge. Si no están casados, lo armamos con designación irrevocable de beneficiario — el efecto patrimonial es prácticamente el mismo: el dinero llega directo a tu pareja sin pasar por juicio sucesorio.",
+  },
+  {
+    question: "En caso de separación o divorcio, ¿lo que estructuramos sigue protegiendo a quien yo decidí?",
+    answerText:
+      "Sí, la estructura sigue en pie. Cuando estructuramos con designación irrevocable de beneficiario, el derecho que adquiere la persona que designaste se vuelve derecho propio — no entra en la masa divisible de un eventual divorcio, ni queda sujeto a embargo de acreedores que aparezcan tras la separación (Art. 179 de la Ley sobre el Contrato de Seguro). Lo que tú decidiste hoy queda blindado. Y la designación irrevocable funciona igual sin importar el tipo de vínculo: cónyuge legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.",
+  },
 ];
 
 
@@ -332,6 +342,37 @@ export default async function FamiliasArcoirisPage() {
                   Sí — y es un perfil que cada vez veo más. La estructura cambia ligeramente
                   (no hay segunda figura paterna/materna) pero los principios son los mismos:
                   proteger a tu hijo financiera y legalmente sin importar quién quede después.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Podemos contratar seguros (educacionales, retiro, vida) y poner a nuestra pareja como beneficiaria?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí. Cualquier persona puede contratar planes de seguro educacional,
+                  retiro, vida o gastos médicos y nombrar a su pareja como beneficiaria
+                  — independientemente del estatus civil. Si están casados y tienen
+                  acta de registro civil, tu espos@ recibirá el dinero exento de ISR
+                  ante un fallecimiento (Art. 93 fracc. XXI de la LISR), igual que
+                  cualquier cónyuge. Si no están casados, lo armamos con designación
+                  irrevocable de beneficiario — el efecto patrimonial es prácticamente
+                  el mismo: el dinero llega directo a tu pareja sin pasar por juicio
+                  sucesorio.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  En caso de separación o divorcio, ¿lo que estructuramos sigue protegiendo a quien yo decidí?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, la estructura sigue en pie. Cuando estructuramos con designación
+                  irrevocable de beneficiario, el derecho que adquiere la persona que
+                  designaste se vuelve derecho propio — no entra en la masa divisible
+                  de un eventual divorcio, ni queda sujeto a embargo de acreedores que
+                  aparezcan tras la separación (Art. 179 de la Ley sobre el Contrato
+                  de Seguro). Lo que tú decidiste hoy queda blindado. Y la designación
+                  irrevocable funciona igual sin importar el tipo de vínculo: cónyuge
+                  legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.
                 </p>
               </div>
             </div>
