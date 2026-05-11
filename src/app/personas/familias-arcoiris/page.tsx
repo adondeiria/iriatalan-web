@@ -44,6 +44,11 @@ const FAQS: FAQItem[] = [
     answerText:
       "Sí, la estructura sigue en pie. Cuando estructuramos con designación irrevocable de beneficiario, el derecho que adquiere la persona que designaste se vuelve derecho propio — no entra en la masa divisible de un eventual divorcio, ni queda sujeto a embargo de acreedores que aparezcan tras la separación (Art. 179 de la Ley sobre el Contrato de Seguro). Lo que tú decidiste hoy queda blindado. Y la designación irrevocable funciona igual sin importar el tipo de vínculo: cónyuge legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.",
   },
+  {
+    question: "¿Cuándo conviene actualizar a mis beneficiarios?",
+    answerText:
+      "Cualquier momento en que algo importante cambia en tu vida: un matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento de un beneficiario actual, o una mejora patrimonial significativa. Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando quieras — es un trámite simple con la aseguradora. Lo importante es que tu designación refleje a quién quieres proteger HOY, no a quién querías hace cinco años cuando firmaste la póliza.",
+  },
 ];
 
 
@@ -373,6 +378,20 @@ export default async function FamiliasArcoirisPage() {
                   de Seguro). Lo que tú decidiste hoy queda blindado. Y la designación
                   irrevocable funciona igual sin importar el tipo de vínculo: cónyuge
                   legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuándo conviene actualizar a mis beneficiarios?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Cualquier momento en que algo importante cambia en tu vida: un
+                  matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento
+                  de un beneficiario actual, o una mejora patrimonial significativa.
+                  Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando
+                  quieras — es un trámite simple con la aseguradora. Lo importante es
+                  que tu designación refleje a quién quieres proteger HOY, no a quién
+                  querías hace cinco años cuando firmaste la póliza.
                 </p>
               </div>
             </div>

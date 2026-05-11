@@ -34,6 +34,11 @@ const FAQS: FAQItem[] = [
     answerText:
       "Para nada. Es el caso más común — y es justo donde mi metodología te sirve más. Vamos a tu ritmo, sin asumir conocimiento previo, sin condescendencia.",
   },
+  {
+    question: "¿Cuándo conviene actualizar a mis beneficiarios?",
+    answerText:
+      "Cualquier momento en que algo importante cambia en tu vida: un matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento de un beneficiario actual, o una mejora patrimonial significativa. Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando quieras — es un trámite simple con la aseguradora. Lo importante es que tu designación refleje a quién quieres proteger HOY, no a quién querías hace cinco años cuando firmaste la póliza.",
+  },
 ];
 
 
@@ -339,6 +344,20 @@ export default async function MujeresPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Para nada. Es el caso más común — y es justo donde mi metodología te sirve más.
                   Vamos a tu ritmo, sin asumir conocimiento previo, sin condescendencia.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuándo conviene actualizar a mis beneficiarios?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Cualquier momento en que algo importante cambia en tu vida: un
+                  matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento
+                  de un beneficiario actual, o una mejora patrimonial significativa.
+                  Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando
+                  quieras — es un trámite simple con la aseguradora. Lo importante es
+                  que tu designación refleje a quién quieres proteger HOY, no a quién
+                  querías hace cinco años cuando firmaste la póliza.
                 </p>
               </div>
             </div>
