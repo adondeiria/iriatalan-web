@@ -239,6 +239,16 @@ export function SiteHeader({ siteName }: Props) {
           >
             Sobre Iria
           </Link>
+          <Link
+            href="/foreigners-in-mexico"
+            className={
+              "transition " +
+              (overHero ? "hover:text-cream-light" : "hover:text-ink")
+            }
+            lang="en"
+          >
+            Foreigners Living in Mexico
+          </Link>
         </nav>
 
         <Link
@@ -273,6 +283,7 @@ export function SiteHeader({ siteName }: Props) {
         <Link href="/personas/familias-arcoiris" className="hover:underline">Arcoíris</Link>
         <Link href="/personas/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
         <Link href="/personas/mexicanos-en-el-extranjero" className="hover:underline">Mex. en el extranjero</Link>
+        <Link href="/foreigners-in-mexico" className="hover:underline" lang="en">Foreigners Living in Mexico</Link>
         <Link href="/recursos" className="hover:underline">Recursos</Link>
         <Link href="/contacto" className="hover:underline font-medium text-burgundy">Agenda</Link>
       </nav>
