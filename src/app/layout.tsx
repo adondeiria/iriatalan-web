@@ -196,7 +196,7 @@ export default function RootLayout({
                 <li><Link href="/patrimonial" className="hover:text-burgundy transition-colors duration-500">Protección Patrimonial</Link></li>
                 <li><Link href="/gmm" className="hover:text-burgundy transition-colors duration-500">Seguros Personales</Link></li>
                 <li><Link href="/retiro" className="hover:text-burgundy transition-colors duration-500">Retiro e Inversiones</Link></li>
-                <li><Link href="/hijos-neurodivergentes" className="hover:text-burgundy transition-colors duration-500">Planeación Familiar</Link></li>
+                <li><Link href="/personas/hijos-neurodivergentes" className="hover:text-burgundy transition-colors duration-500">Planeación Familiar</Link></li>
                 <li><Link href="/empresas" className="hover:text-burgundy transition-colors duration-500">Empresas y Persona Clave</Link></li>
               </ul>
             </div>
@@ -205,7 +205,7 @@ export default function RootLayout({
               <ul className="space-y-3 text-sm text-warm-brown">
                 <li><Link href="/recursos" className="hover:text-burgundy transition-colors duration-500">Recursos para clientes</Link></li>
                 <li><Link href="/sobre-iria" className="hover:text-burgundy transition-colors duration-500">Sobre Iria</Link></li>
-                <li><Link href="/mexicanos-en-el-extranjero" className="hover:text-burgundy transition-colors duration-500">Mexicanos en el extranjero</Link></li>
+                <li><Link href="/personas/mexicanos-en-el-extranjero" className="hover:text-burgundy transition-colors duration-500">Mexicanos en el extranjero</Link></li>
                 <li><Link href="/aviso-privacidad" className="hover:text-burgundy transition-colors duration-500">Aviso de Privacidad</Link></li>
               </ul>
             </div>

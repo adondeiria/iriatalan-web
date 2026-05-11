@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { sanityFetch } from "../../../sanity/lib/fetch";
-import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   title: "Asesoría financiera para mexicanos en el extranjero",
   description:
     "Si vives en EUA, Europa o Canadá, México tiene productos financieros que tu país de residencia no: PPR deducible Art. 151 LISR, GMM con red premium nacional, planes educacionales y vida Art. 185 LISR. Asesoría a distancia, MDRT Top of the Table.",
-  alternates: { canonical: `${SITE_URL}/mexicanos-en-el-extranjero` },
+  alternates: { canonical: `${SITE_URL}/personas/mexicanos-en-el-extranjero` },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/mexicanos-en-el-extranjero`,
+    url: `${SITE_URL}/personas/mexicanos-en-el-extranjero`,
     title: "Mexicanos en el extranjero — Iria Talan",
     description:
       "Vivir afuera no significa renunciar a productos financieros mexicanos. Para muchas familias, mantenerlos es la decisión más rentable.",
@@ -62,7 +62,7 @@ const FAQS: FAQItem[] = [
 function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
-    "@id": `${SITE_URL}/mexicanos-en-el-extranjero#audience`,
+    "@id": `${SITE_URL}/personas/mexicanos-en-el-extranjero#audience`,
     audienceType: "Mexicanos residentes en el extranjero (EUA, Europa, Canadá)",
     geographicArea: { "@type": "Country", name: "México" },
   };
@@ -128,7 +128,8 @@ export default async function MexicanosEnElExtranjeroPage() {
     buildAudienceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
-      { name: "Mexicanos en el extranjero", path: "/mexicanos-en-el-extranjero" },
+      { name: "Personas", path: "/personas" },
+      { name: "Mexicanos en el extranjero", path: "/personas/mexicanos-en-el-extranjero" },
     ]),
     buildFAQPageSchema(FAQS)
   );

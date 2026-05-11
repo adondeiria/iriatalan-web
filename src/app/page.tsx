@@ -72,7 +72,7 @@ const SERVICIOS = [
     icon: Users,
     title: "Planeación Familiar",
     desc: "Hijos neurodivergentes, familias diversas, sucesiones y herencias.",
-    href: "/hijos-neurodivergentes",
+    href: "/personas/hijos-neurodivergentes",
   },
   {
     icon: Briefcase,
@@ -153,13 +153,13 @@ const INSIGHTS = [
   {
     category: "Planeación Familiar",
     title: "Cómo proteger financieramente a un hijo neurodivergente",
-    href: "/hijos-neurodivergentes",
+    href: "/personas/hijos-neurodivergentes",
     image: "/img/nichos/hijos-neurodivergentes-hero.png",
   },
   {
     category: "Patrimonial",
     title: "Mexicanos en el extranjero: productos mexicanos que tu país no tiene",
-    href: "/mexicanos-en-el-extranjero",
+    href: "/personas/mexicanos-en-el-extranjero",
     image: "/img/servicios/patrimonial-hero.png",
   },
 ];

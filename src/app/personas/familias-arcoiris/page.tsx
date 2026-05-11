@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { sanityFetch } from "../../../sanity/lib/fetch";
-import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   title: "Asesoría financiera para familias arcoíris en México",
   description:
     "Planeación financiera y patrimonial para familias diversas con hijos: seguros de vida, fideicomisos, planes educacionales y estructuras de tutela diseñadas para que la ley reconozca a tu familia tal como es. MDRT Top of the Table.",
-  alternates: { canonical: `${SITE_URL}/familias-arcoiris` },
+  alternates: { canonical: `${SITE_URL}/personas/familias-arcoiris` },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/familias-arcoiris`,
+    url: `${SITE_URL}/personas/familias-arcoiris`,
     title: "Asesoría financiera para familias arcoíris — Iria Talan",
     description:
       "Estructura legal y patrimonial diseñada para familias diversas con hijos en México.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
-    "@id": `${SITE_URL}/familias-arcoiris#audience`,
+    "@id": `${SITE_URL}/personas/familias-arcoiris#audience`,
     audienceType: "Familias LGBTQ+ con hijos en México",
     geographicArea: { "@type": "Country", name: "México" },
   };
@@ -74,7 +74,8 @@ export default async function FamiliasArcoirisPage() {
     buildAudienceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
-      { name: "Familias arcoíris", path: "/familias-arcoiris" },
+      { name: "Personas", path: "/personas" },
+      { name: "Familias arcoíris", path: "/personas/familias-arcoiris" },
     ]),
     buildFAQPageSchema(FAQS)
   );

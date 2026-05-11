@@ -93,7 +93,7 @@ export function SiteHeader({ siteName }: Props) {
                 <div className="text-xs text-warm-brown/60 mt-0.5">Beneficio fiscal + pensión multiplicada</div>
               </Link>
               <Link
-                href="/mujeres"
+                href="/personas/mujeres"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
                 <div className="font-medium text-ink">Protección familiar</div>
@@ -170,14 +170,14 @@ export function SiteHeader({ siteName }: Props) {
                 <div className="text-xs text-warm-brown/60 mt-0.5">Que tu voluntad se cumpla</div>
               </Link>
               <Link
-                href="/hijos-neurodivergentes"
+                href="/personas/hijos-neurodivergentes"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
                 <div className="font-medium text-ink">Hijos neurodivergentes</div>
                 <div className="text-xs text-warm-brown/60 mt-0.5">Planeación de por vida, más allá de ti</div>
               </Link>
               <Link
-                href="/familias-arcoiris"
+                href="/personas/familias-arcoiris"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
                 <div className="font-medium text-ink">Familias diversas</div>
@@ -191,7 +191,7 @@ export function SiteHeader({ siteName }: Props) {
                 <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría discreta para patrimonios complejos</div>
               </Link>
               <Link
-                href="/mexicanos-en-el-extranjero"
+                href="/personas/mexicanos-en-el-extranjero"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
                 <div className="font-medium text-ink">Mexicanos en el extranjero</div>
@@ -248,10 +248,10 @@ export function SiteHeader({ siteName }: Props) {
         <Link href="/retiro" className="hover:underline">Retiro</Link>
         <Link href="/empresas" className="hover:underline">Empresas</Link>
         <Link href="/patrimonial" className="hover:underline">Patrimonial</Link>
-        <Link href="/mujeres" className="hover:underline">Mujeres</Link>
-        <Link href="/familias-arcoiris" className="hover:underline">Arcoíris</Link>
-        <Link href="/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
-        <Link href="/mexicanos-en-el-extranjero" className="hover:underline">Mex. en el extranjero</Link>
+        <Link href="/personas/mujeres" className="hover:underline">Mujeres</Link>
+        <Link href="/personas/familias-arcoiris" className="hover:underline">Arcoíris</Link>
+        <Link href="/personas/hijos-neurodivergentes" className="hover:underline">Neurodivergentes</Link>
+        <Link href="/personas/mexicanos-en-el-extranjero" className="hover:underline">Mex. en el extranjero</Link>
         <Link href="/recursos" className="hover:underline">Recursos</Link>
         <Link href="/contacto" className="hover:underline font-medium text-burgundy">Agenda</Link>
       </nav>

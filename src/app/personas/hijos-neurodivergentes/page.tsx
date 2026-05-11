@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { sanityFetch } from "../../../sanity/lib/fetch";
-import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   title: "Asesoría financiera para familias con hijos neurodivergentes",
   description:
     "Planeación financiera de por vida para familias con hijos con autismo, TDAH, síndrome de Down u otra condición neurodivergente. Fideicomisos, seguros de vida, planeación legal de tutela y patrimonio. MDRT Top of the Table.",
-  alternates: { canonical: `${SITE_URL}/hijos-neurodivergentes` },
+  alternates: { canonical: `${SITE_URL}/personas/hijos-neurodivergentes` },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/hijos-neurodivergentes`,
+    url: `${SITE_URL}/personas/hijos-neurodivergentes`,
     title: "Asesoría financiera para familias con hijos neurodivergentes — Iria Talan",
     description:
       "Fideicomisos, seguros de vida y planeación legal para asegurar el futuro de tu hijo más allá de tu propia vida.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
-    "@id": `${SITE_URL}/hijos-neurodivergentes#audience`,
+    "@id": `${SITE_URL}/personas/hijos-neurodivergentes#audience`,
     audienceType: "Familias con hijos neurodivergentes en México",
     geographicArea: { "@type": "Country", name: "México" },
   };
@@ -74,7 +74,8 @@ export default async function HijosNeurodivergentesPage() {
     buildAudienceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
-      { name: "Hijos neurodivergentes", path: "/hijos-neurodivergentes" },
+      { name: "Personas", path: "/personas" },
+      { name: "Hijos neurodivergentes", path: "/personas/hijos-neurodivergentes" },
     ]),
     buildFAQPageSchema(FAQS)
   );

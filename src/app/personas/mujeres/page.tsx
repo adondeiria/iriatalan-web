@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { sanityFetch } from "../../../sanity/lib/fetch";
-import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   title: "Asesoría financiera para mujeres en México",
   description:
     "Asesoría financiera diseñada por una mujer, para mujeres que toman decisiones: profesionistas, divorciadas, viudas y empresarias. Planes educacionales, PPR, fideicomisos, vida y GMM. MDRT Top of the Table.",
-  alternates: { canonical: `${SITE_URL}/mujeres` },
+  alternates: { canonical: `${SITE_URL}/personas/mujeres` },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/mujeres`,
+    url: `${SITE_URL}/personas/mujeres`,
     title: "Asesoría financiera para mujeres en México — Iria Talan",
     description:
       "Diseñada por una mujer, para mujeres que deciden. Profesionistas, divorciadas, viudas, empresarias.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
-    "@id": `${SITE_URL}/mujeres#audience`,
+    "@id": `${SITE_URL}/personas/mujeres#audience`,
     audienceType: "Mujeres afluentes y HNWI México",
     geographicArea: { "@type": "Country", name: "México" },
   };
@@ -74,7 +74,8 @@ export default async function MujeresPage() {
     buildAudienceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
-      { name: "Asesoría para mujeres", path: "/mujeres" },
+      { name: "Personas", path: "/personas" },
+      { name: "Asesoría para mujeres", path: "/personas/mujeres" },
     ]),
     buildFAQPageSchema(FAQS)
   );

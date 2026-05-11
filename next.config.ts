@@ -64,6 +64,16 @@ const nextConfig: NextConfig = {
       { source: "/contact-us/", destination: "/contacto", permanent: true },
       { source: "/english", destination: "/", permanent: true },
       { source: "/english/", destination: "/", permanent: true },
+      // Restructure 2026-05-10: 4 nichos movidos bajo /personas/* para
+      // crear topical hub. Preservar SEO con 308 (=301 SEO-equivalente).
+      { source: "/mexicanos-en-el-extranjero", destination: "/personas/mexicanos-en-el-extranjero", permanent: true },
+      { source: "/mexicanos-en-el-extranjero/", destination: "/personas/mexicanos-en-el-extranjero", permanent: true },
+      { source: "/hijos-neurodivergentes", destination: "/personas/hijos-neurodivergentes", permanent: true },
+      { source: "/hijos-neurodivergentes/", destination: "/personas/hijos-neurodivergentes", permanent: true },
+      { source: "/familias-arcoiris", destination: "/personas/familias-arcoiris", permanent: true },
+      { source: "/familias-arcoiris/", destination: "/personas/familias-arcoiris", permanent: true },
+      { source: "/mujeres", destination: "/personas/mujeres", permanent: true },
+      { source: "/mujeres/", destination: "/personas/mujeres", permanent: true },
     ];
   },
 };
