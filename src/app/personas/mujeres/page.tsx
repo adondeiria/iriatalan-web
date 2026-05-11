@@ -171,6 +171,9 @@ export default async function MujeresPage() {
                   CXO, abogadas, doctoras, contadoras, consultoras 35-55. Decides sola, ganas tú,
                   quieres optimizar fiscalmente y proteger lo construido.
                 </p>
+                <p className="mt-3 text-xs text-warm-brown/70 dark:text-cream-light/60 leading-relaxed">
+                  PPR deducible Art. 151 fracc V LISR — hasta 5 UMAs anuales (~$213,973 MXN en 2026).
+                </p>
                 <p className="mt-4 text-sm font-medium text-ink dark:text-cream-light">
                   Productos: PPR · Vida · GMM premium · Modalidad 40 IMSS
                 </p>
