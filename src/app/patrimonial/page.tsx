@@ -348,6 +348,52 @@ export default async function PatrimonialPage() {
         </section>
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Casos relacionados
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Estas situaciones también requieren planeación patrimonial
+            </h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <Link
+                href="/personas/hijos-neurodivergentes"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Familias con hijos neurodivergentes
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Fideicomiso de soporte vitalicio + pensión vitalicia + tutela documentada. Estructura de por vida, no solo hasta la universidad.
+                </p>
+              </Link>
+              <Link
+                href="/personas/mexicanos-en-el-extranjero"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Patrimonio y herederos transfronterizos
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Sucesión sin juicio internacional cuando vives fuera pero tu patrimonio o tus herederos están en México.
+                </p>
+              </Link>
+              <Link
+                href="/personas/familias-arcoiris"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Familias LGBT+ con protección patrimonial
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Designación irrevocable de beneficiario para pareja afectiva o cónyuge legal — la estructura funciona igual sin importar el vínculo.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Iniciar conversación

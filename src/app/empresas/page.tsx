@@ -398,6 +398,52 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Casos relacionados
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Estos perfiles también nos consultan
+            </h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <Link
+                href="/personas/mujeres"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Mujeres dueñas o socias de empresa
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Estructura patrimonial coordinada entre seguro de Mujer Clave para la empresa y planeación personal.
+                </p>
+              </Link>
+              <Link
+                href="/gmm"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  GMM corporativo para directivos
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Cobertura médica para empleados clave como beneficio competitivo + retención de talento estratégico.
+                </p>
+              </Link>
+              <Link
+                href="/retiro"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  PPR para dueños y socios
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Retiro propio del dueño con deducción Art. 151 fracc V LISR, independiente de la estrategia patrimonial de la empresa.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>

@@ -506,6 +506,52 @@ export default async function GmmPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Casos relacionados
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              El GMM también aplica en estas situaciones
+            </h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <Link
+                href="/personas/mexicanos-en-el-extranjero"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Mexicanos viviendo en EUA o Europa
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Mantener GMM mexicano con red premium nacional para tratamientos electivos o emergencias en visitas familiares.
+                </p>
+              </Link>
+              <Link
+                href="/personas/mujeres"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Mujeres planeando GMM sustentable
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  GMM diseñado para sostener primas a largo plazo sin sorpresas, alineado con cambios hormonales y patrones de salud específicos.
+                </p>
+              </Link>
+              <Link
+                href="/patrimonial"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Estrategia patrimonial integral
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  GMM como pieza de un esquema patrimonial más amplio: cobertura médica vitalicia + planeación de transmisión.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
