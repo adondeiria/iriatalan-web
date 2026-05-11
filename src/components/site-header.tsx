@@ -242,6 +242,17 @@ export function SiteHeader({ siteName }: Props) {
             >
               Sobre mí
             </Link>
+            <Link
+              href="/foreigners-in-mexico"
+              lang="en"
+              aria-label="Foreigners in Mexico — English"
+              className={
+                "text-[11px] tracking-[0.18em] uppercase opacity-70 hover:opacity-100 transition-all duration-300 " +
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+              }
+            >
+              EN
+            </Link>
           </nav>
 
           {/* CTA + Mobile burger */}
@@ -423,6 +434,14 @@ export function SiteHeader({ siteName }: Props) {
                 className="block text-lg font-medium text-ink"
               >
                 Sobre mí
+              </Link>
+              <Link
+                href="/foreigners-in-mexico"
+                onClick={() => setMobileOpen(false)}
+                lang="en"
+                className="block text-lg font-medium text-ink"
+              >
+                EN · Foreigners in Mexico
               </Link>
             </div>
           </nav>
