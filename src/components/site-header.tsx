@@ -60,7 +60,7 @@ export function SiteHeader({ siteName }: Props) {
             (overHero ? "text-cream-light/85" : "text-warm-brown")
           }
         >
-          {/* Personas */}
+          {/* Servicios */}
           <details className="relative group">
             <summary
               className={
@@ -68,7 +68,7 @@ export function SiteHeader({ siteName }: Props) {
                 (overHero ? "hover:text-cream-light" : "hover:text-ink")
               }
             >
-              Personas <span className="text-xs">▾</span>
+              Servicios <span className="text-xs">▾</span>
             </summary>
             <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-warm-brown/15 bg-cream-light shadow-[0_24px_48px_-16px_rgba(20,17,15,0.18)] p-3 z-50 text-warm-brown">
               <Link
@@ -92,12 +92,54 @@ export function SiteHeader({ siteName }: Props) {
                 <div className="font-medium text-ink">Retiro · PPR · Modalidad 40</div>
                 <div className="text-xs text-warm-brown/60 mt-0.5">Beneficio fiscal + pensión multiplicada</div>
               </Link>
+            </div>
+          </details>
+
+          {/* Personas */}
+          <details className="relative group">
+            <summary
+              className={
+                "list-none cursor-pointer transition flex items-center gap-1 select-none " +
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+              }
+            >
+              Personas <span className="text-xs">▾</span>
+            </summary>
+            <div className="absolute left-0 mt-3 w-72 rounded-2xl border border-warm-brown/15 bg-cream-light shadow-[0_24px_48px_-16px_rgba(20,17,15,0.18)] p-3 z-50 text-warm-brown">
+              <Link
+                href="/personas"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
+              >
+                <div className="font-medium text-ink">Ver todos los perfiles</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Hub de personas que asesoro</div>
+              </Link>
               <Link
                 href="/personas/mujeres"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
-                <div className="font-medium text-ink">Protección familiar</div>
-                <div className="text-xs text-warm-brown/60 mt-0.5">Estrategias para mujeres, parejas y familias</div>
+                <div className="font-medium text-ink">Asesoría para mujeres</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Profesionistas, divorciadas, viudas, empresarias</div>
+              </Link>
+              <Link
+                href="/personas/hijos-neurodivergentes"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
+              >
+                <div className="font-medium text-ink">Hijos neurodivergentes</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Planeación de por vida, más allá de ti</div>
+              </Link>
+              <Link
+                href="/personas/familias-arcoiris"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
+              >
+                <div className="font-medium text-ink">Familias diversas</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Estructura legal para tu familia tal como es</div>
+              </Link>
+              <Link
+                href="/personas/mexicanos-en-el-extranjero"
+                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
+              >
+                <div className="font-medium text-ink">Mexicanos en el extranjero</div>
+                <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría a distancia para residentes en EUA, Europa o Canadá</div>
               </Link>
             </div>
           </details>
@@ -170,32 +212,11 @@ export function SiteHeader({ siteName }: Props) {
                 <div className="text-xs text-warm-brown/60 mt-0.5">Que tu voluntad se cumpla</div>
               </Link>
               <Link
-                href="/personas/hijos-neurodivergentes"
-                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
-              >
-                <div className="font-medium text-ink">Hijos neurodivergentes</div>
-                <div className="text-xs text-warm-brown/60 mt-0.5">Planeación de por vida, más allá de ti</div>
-              </Link>
-              <Link
-                href="/personas/familias-arcoiris"
-                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
-              >
-                <div className="font-medium text-ink">Familias diversas</div>
-                <div className="text-xs text-warm-brown/60 mt-0.5">Estructura legal para tu familia tal como es</div>
-              </Link>
-              <Link
                 href="/patrimonial"
                 className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
               >
                 <div className="font-medium text-ink">HNWI</div>
                 <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría discreta para patrimonios complejos</div>
-              </Link>
-              <Link
-                href="/personas/mexicanos-en-el-extranjero"
-                className="block px-4 py-2.5 rounded-xl hover:bg-cream transition-colors duration-300"
-              >
-                <div className="font-medium text-ink">Mexicanos en el extranjero</div>
-                <div className="text-xs text-warm-brown/60 mt-0.5">Asesoría a distancia para residentes en EUA, Europa o Canadá</div>
               </Link>
             </div>
           </details>
