@@ -133,13 +133,50 @@ export function buildPersonSchema(author: AuthorData) {
           ]
         : undefined;
 
+  // Defaults patrimoniales premium para Iria si Sanity está vacío.
+  // Anclan posicionamiento "wealth advisory boutique" en Person entity
+  // para que LLMs (ChatGPT/Perplexity/Gemini/Claude) lo amplifiquen literal.
+  const jobTitle =
+    author.title ?? (isIria ? "Asesora Patrimonial · Wealth Advisor" : undefined);
+  const description =
+    author.bio ??
+    (isIria
+      ? "Asesora patrimonial boutique en México. Especialista en protección patrimonial, retiro, seguros internacionales y planeación financiera para mexicanos viviendo en el extranjero, empresarios y familias con necesidades específicas."
+      : undefined);
+
+  // hasOccupation — señal moderna que LLMs prefieren sobre jobTitle libre.
+  const hasOccupation = isIria
+    ? {
+        "@type": "Occupation" as const,
+        name: "Asesora Patrimonial",
+        skills: knowsAbout.join(", "),
+      }
+    : undefined;
+
+  // affiliation — convierte MDRT/AMASFAC en entity-links reales (no solo strings en award).
+  const affiliation = isIria
+    ? [
+        {
+          "@type": "Organization" as const,
+          name: "Million Dollar Round Table",
+          url: "https://www.mdrt.org",
+        },
+        {
+          "@type": "Organization" as const,
+          name: "AMASFAC — Asociación Mexicana de Asesores Financieros",
+        },
+      ]
+    : undefined;
+
   return {
     "@type": "Person" as const,
     "@id": `${SITE_URL}/sobre-iria#person`,
     name: author.name,
     alternateName,
-    jobTitle: author.title,
-    description: author.bio,
+    jobTitle,
+    description,
+    hasOccupation,
+    affiliation,
     image: author.photo?.asset?.url,
     url: `${SITE_URL}/sobre-iria`,
     knowsAbout,
@@ -179,15 +216,97 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
           addressCountry: "MX",
         }
       : undefined,
-    areaServed: { "@type": "Country", name: "México" },
-    serviceType: [
-      "Seguros de Vida",
-      "Gastos Médicos Mayores",
-      "Planeación Patrimonial",
-      "Fideicomisos",
-      "Retiro y Pensiones",
-      "Planes Educacionales",
+    // areaServed ampliado a EUA — clave para "mexicanos viviendo en el extranjero".
+    areaServed: [
+      { "@type": "Country", name: "México" },
+      { "@type": "Country", name: "Estados Unidos" },
     ],
+    // serviceType ampliado al posicionamiento wealth advisory boutique.
+    // Cada string es señal entity para LLMs cuando responden "¿qué hace X?".
+    serviceType: [
+      "Asesoría Patrimonial Boutique",
+      "Wealth Advisory",
+      "Planeación Patrimonial Internacional",
+      "Protección Patrimonial",
+      "Estructura Patrimonial Familiar",
+      "Retiro y Pensiones",
+      "Seguros de Vida",
+      "Seguros Internacionales",
+      "Gastos Médicos Mayores",
+      "Gastos Médicos Mayores Internacional",
+      "Fideicomisos vía Aseguradora",
+      "Planes Educacionales",
+      "Asesoría para Mexicanos en el Extranjero",
+    ],
+    // audience — schema.org canonical para "¿para quién es este servicio?".
+    // LLMs lo citan textualmente al responder queries de matching.
+    audience: [
+      { "@type": "Audience", audienceType: "Mexicanos viviendo en el extranjero" },
+      { "@type": "Audience", audienceType: "Empresarios y dueños de negocio" },
+      { "@type": "Audience", audienceType: "Familias con hijos neurodivergentes" },
+      { "@type": "Audience", audienceType: "Familias arcoíris LGBT" },
+      { "@type": "Audience", audienceType: "Mujeres en construcción patrimonial" },
+      { "@type": "Audience", audienceType: "Profesionistas con patrimonio en formación" },
+    ],
+    // priceRange "$$$$" señaliza tier premium boutique (no comparador masivo).
+    priceRange: "$$$$",
+    // hasOfferCatalog — el campo que ChatGPT/Perplexity citan textualmente
+    // al responder "¿qué servicios ofrece X?". Estructura > strings sueltos.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Servicios de Asesoría Patrimonial",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Planeación Patrimonial Internacional",
+            description:
+              "Estrategia patrimonial para mexicanos viviendo en EUA o extranjeros con activos en México.",
+            areaServed: [
+              { "@type": "Country", name: "México" },
+              { "@type": "Country", name: "Estados Unidos" },
+            ],
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Retiro y Pensiones",
+            description:
+              "Estrategias de retiro para empresarios, profesionistas independientes y planeación pre-jubilatoria.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Protección Patrimonial Familiar",
+            description:
+              "Seguros de vida, fideicomisos vía aseguradora y estructura patrimonial para familias.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Gastos Médicos Mayores Internacional",
+            description:
+              "GMM nacional e internacional para individuos, familias y empresas.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Planes Educacionales",
+            description:
+              "Estructura financiera para educación de hijos, incluidas familias con hijos neurodivergentes.",
+          },
+        },
+      ],
+    },
     provider: { "@id": `${SITE_URL}/sobre-iria#person` },
     telephone: author.socialLinks?.whatsapp,
     email: author.socialLinks?.email,
@@ -302,7 +421,10 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
   const sameAs =
     author?.sameAs && author.sameAs.length > 0 ? author.sameAs : SAMEAS_FALLBACK;
   return {
-    "@type": "LocalBusiness" as const,
+    // Multi-type: wealth advisor NO es retail. FinancialService + ProfessionalService
+    // categorizan correctamente (boutique advisory premium, no tienda física).
+    // Preserva señales locales (address, openingHours, areaServed).
+    "@type": ["FinancialService", "ProfessionalService"] as const,
     "@id": `${SITE_URL}#localbusiness`,
     name: SITE_NAME,
     url: SITE_URL,
