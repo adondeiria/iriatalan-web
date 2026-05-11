@@ -47,7 +47,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Soy dueña o socia de una empresa. ¿Qué es un seguro de Hombre Clave / Mujer Clave y cuándo me conviene contratarlo?",
     answerText:
-      "Para empresas con socios o personas estratégicas insustituibles, estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave). La empresa figura como contratante y beneficiaria irrevocable; la persona clave es la asegurada. Cubre fallecimiento, incapacidad total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos actualizables por inflación. Marco fiscal: las primas son 100% deducibles de ISR para la empresa (Art. 27 fracc. XII LISR + Art. 51 del Reglamento). Cuando se activa el seguro o vence el plazo, la aseguradora paga a la empresa sin retención de ISR. Para qué sirve en la práctica: liquidez inmediata si falta una persona estratégica, compra de acciones del socio fallecido o inválido (continuidad accionaria), como bono de antigüedad para tus directivos al término del plazo, como fondo de retiro para los socios.",
+      "Para empresas con socios o personas estratégicas insustituibles, estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave). La empresa figura como contratante y beneficiaria irrevocable; la persona clave es la asegurada. Cubre fallecimiento, incapacidad total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos actualizables por inflación. Marco fiscal: las primas son 100% deducibles de ISR para la empresa (Art. 27 fracc. XII LISR + Art. 51 del Reglamento). Cuando se activa el seguro o vence el plazo, la aseguradora paga a la empresa sin retención de ISR. Para qué sirve en la práctica: liquidez inmediata si falta una persona estratégica, compra de acciones del socio fallecido o inválido (continuidad accionaria), como bono de antigüedad para tus directivos al término del plazo, como fondo de retiro para los socios, o como capital programado para reinvertir en la empresa (compra de equipo, remodelación, expansión).",
   },
 ];
 
@@ -409,7 +409,8 @@ export default async function MujeresPage() {
                   persona estratégica, compra de acciones del socio fallecido o
                   inválido (continuidad accionaria), como bono de antigüedad para tus
                   directivos al término del plazo, como fondo de retiro para los
-                  socios.
+                  socios, o como capital programado para reinvertir en la empresa
+                  (compra de equipo, remodelación, expansión).
                 </p>
               </div>
             </div>
