@@ -68,6 +68,32 @@ function buildAudienceSchema() {
   };
 }
 
+// Service schema específico — clave AEO. Sin este, LLMs solo tienen
+// Audience (a quién atiendes) pero no Service (qué ofreces estructurado).
+// Para este niche: multi-jurisdictional (MX + países de residencia),
+// availableLanguage es+en, serviceType transfronterizo.
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/personas/mexicanos-en-el-extranjero#service`,
+    name: "Asesoría Patrimonial Transfronteriza para Mexicanos en el Extranjero",
+    description:
+      "Asesoría financiera y patrimonial a distancia para mexicanos residentes en Estados Unidos, Europa o Canadá que mantienen vínculos fiscales, patrimoniales o familiares en México. Incluye PPR deducible, GMM con red premium nacional, planes educacionales en peso o dólar, y planeación sucesoria transfronteriza con designación irrevocable hacia fideicomiso.",
+    serviceType: "Asesoría Patrimonial Transfronteriza",
+    category: "Planeación Patrimonial Internacional",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: [
+      { "@type": "Country", name: "México" },
+      { "@type": "Country", name: "Estados Unidos" },
+      { "@type": "Country", name: "España" },
+      { "@type": "Country", name: "Reino Unido" },
+      { "@type": "Country", name: "Canadá" },
+    ],
+    audience: { "@id": `${SITE_URL}/personas/mexicanos-en-el-extranjero#audience` },
+    availableLanguage: ["es", "en"],
+  };
+}
+
 const PRODUCTOS = [
   {
     title: "PPR deducible — Art. 151 fracc V LISR",
@@ -126,6 +152,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
   const pageSchema = buildGraph(
     buildAudienceSchema(),
+    buildServiceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
