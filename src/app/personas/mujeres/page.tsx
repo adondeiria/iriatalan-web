@@ -39,6 +39,11 @@ const FAQS: FAQItem[] = [
     answerText:
       "Cualquier momento en que algo importante cambia en tu vida: un matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento de un beneficiario actual, o una mejora patrimonial significativa. Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando quieras — es un trámite simple con la aseguradora. Lo importante es que tu designación refleje a quién quieres proteger HOY, no a quién querías hace cinco años cuando firmaste la póliza.",
   },
+  {
+    question: "Ya tengo mis deducciones personales topadas. ¿El PPR sí me ayuda a deducir más impuestos?",
+    answerText:
+      "Sí, porque la deducción del PPR es independiente del tope global del Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026). Ese tope es propio del PPR — no se suma al de tus deducciones personales clásicas (honorarios médicos, intereses hipotecarios, colegiaturas, etc.). En la práctica: aunque ya hayas usado todo el tope de deducciones personales, puedes seguir bajando tu base gravable aportando al PPR.",
+  },
 ];
 
 
@@ -358,6 +363,22 @@ export default async function MujeresPage() {
                   quieras — es un trámite simple con la aseguradora. Lo importante es
                   que tu designación refleje a quién quieres proteger HOY, no a quién
                   querías hace cinco años cuando firmaste la póliza.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Ya tengo mis deducciones personales topadas. ¿El PPR sí me ayuda a deducir más impuestos?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, porque la deducción del PPR es independiente del tope global del
+                  Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan
+                  Personal de Retiro hasta el menor de: el 10% de tus ingresos
+                  acumulables del ejercicio, o el equivalente a 5 UMAs anuales
+                  (≈ $213,973 MXN en 2026). Ese tope es propio del PPR — no se suma al
+                  de tus deducciones personales clásicas (honorarios médicos, intereses
+                  hipotecarios, colegiaturas, etc.). En la práctica: aunque ya hayas
+                  usado todo el tope de deducciones personales, puedes seguir bajando
+                  tu base gravable aportando al PPR.
                 </p>
               </div>
             </div>
