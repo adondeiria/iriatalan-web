@@ -177,7 +177,7 @@ export default async function FamiliasArcoirisPage() {
                   Designación irrevocable de pareja e hijos. Imposible disputar por
                   familiares biológicos no deseados.
                 </p>
-                <Link href="/seguros-vida" className="mt-3 inline-block text-sm font-medium underline">
+                <Link href="/patrimonial" className="mt-3 inline-block text-sm font-medium underline">
                   Más sobre seguros de vida →
                 </Link>
               </div>
