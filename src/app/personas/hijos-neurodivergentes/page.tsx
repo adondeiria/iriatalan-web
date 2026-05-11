@@ -34,6 +34,21 @@ const FAQS: FAQItem[] = [
     answerText:
       "Sí. Si tu asociación quiere organizar una sesión informativa para varias familias a la vez, podemos coordinar — sin compromiso individual de contratar, solo educativa. Escríbeme.",
   },
+  {
+    question: "¿Cómo dejarle una pensión vitalicia a mi hij@?",
+    answerText:
+      "Lo que estructuro contigo es un seguro de vida combinado con un ahorro de rentas vitalicias. La aseguradora paga a tu hij@ una renta mensual o anual — actualizada por inflación, o pagada al TC del dólar, de acuerdo con la moneda del plan. La pensión se dispara en caso de fallecimiento o el vencimiento del plazo del seguro de ahorro. Tú decides cuánto recibe mensualmente; eso determina la suma asegurada que necesitamos. Es un contrato directo entre la aseguradora y tu hij@ como beneficiario — no entra en juicio de sucesión, ni depende del testamento.",
+  },
+  {
+    question: "¿El dinero está blindado contra embargos y problemas legales?",
+    answerText:
+      "Sí. Cuando estructuramos la póliza con designación irrevocable de beneficiario, el derecho que adquiere tu hij@ es un derecho propio que nace del contrato de seguro — no es herencia. Por eso no forma parte de la masa hereditaria, no pasa por juicio sucesorio, y queda inembargable frente a acreedores tuyos, incluso en concurso o quiebra (Art. 179 de la Ley sobre el Contrato de Seguro). Y si tu hij@ es descendiente directo, las cantidades que reciba están exentas de ISR (Art. 93 fracc. XXI de la LISR). En la práctica te mando el contrato de la fiduciaria para que veas exactamente cómo opera.",
+  },
+  {
+    question: "¿Qué pasa con el dinero si mi hij@ llegara a fallecer?",
+    answerText:
+      "En la estructura nombramos beneficiarios sustitutos desde el inicio. Generalmente designamos a sus hermanos — no solo por afecto, sino porque son quienes conocieron a tu hij@ de cerca y van a entender el sentido del patrimonio que construiste. Si no hay hermanos, podemos definir otros familiares, tu pareja, o incluso una fundación dedicada a neurodivergencia. La cascada queda definida por escrito antes de firmar la póliza — no hay improvisación.",
+  },
 ];
 
 
@@ -335,6 +350,51 @@ export default async function HijosNeurodivergentesPage() {
                   Sí. Si tu asociación quiere organizar una sesión informativa para
                   varias familias a la vez, podemos coordinar — sin compromiso individual
                   de contratar, solo educativa. Escríbeme.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo dejarle una pensión vitalicia a mi hij@?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Lo que estructuro contigo es un seguro de vida combinado con un ahorro
+                  de rentas vitalicias. La aseguradora paga a tu hij@ una renta mensual o
+                  anual — actualizada por inflación, o pagada al TC del dólar, de acuerdo
+                  con la moneda del plan. La pensión se dispara en caso de fallecimiento
+                  o el vencimiento del plazo del seguro de ahorro. Tú decides cuánto
+                  recibe mensualmente; eso determina la suma asegurada que necesitamos.
+                  Es un contrato directo entre la aseguradora y tu hij@ como beneficiario
+                  — no entra en juicio de sucesión, ni depende del testamento.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿El dinero está blindado contra embargos y problemas legales?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí. Cuando estructuramos la póliza con designación irrevocable de
+                  beneficiario, el derecho que adquiere tu hij@ es un derecho propio que
+                  nace del contrato de seguro — no es herencia. Por eso no forma parte
+                  de la masa hereditaria, no pasa por juicio sucesorio, y queda
+                  inembargable frente a acreedores tuyos, incluso en concurso o quiebra
+                  (Art. 179 de la Ley sobre el Contrato de Seguro). Y si tu hij@ es
+                  descendiente directo, las cantidades que reciba están exentas de ISR
+                  (Art. 93 fracc. XXI de la LISR). En la práctica te mando el contrato
+                  de la fiduciaria para que veas exactamente cómo opera.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué pasa con el dinero si mi hij@ llegara a fallecer?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  En la estructura nombramos beneficiarios sustitutos desde el inicio.
+                  Generalmente designamos a sus hermanos — no solo por afecto, sino
+                  porque son quienes conocieron a tu hij@ de cerca y van a entender el
+                  sentido del patrimonio que construiste. Si no hay hermanos, podemos
+                  definir otros familiares, tu pareja, o incluso una fundación dedicada
+                  a neurodivergencia. La cascada queda definida por escrito antes de
+                  firmar la póliza — no hay improvisación.
                 </p>
               </div>
             </div>
