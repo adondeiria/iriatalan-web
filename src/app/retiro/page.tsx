@@ -424,6 +424,52 @@ export default async function RetiroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Casos relacionados
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              El PPR también aplica en estas situaciones
+            </h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <Link
+                href="/personas/mujeres"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Mujeres profesionistas con ISR alto
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  PPR como herramienta fiscal específica para optimización de ingresos profesionales.
+                </p>
+              </Link>
+              <Link
+                href="/empresas"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Empresarios y dueños de negocio
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  PPR personal + estrategia patrimonial de la empresa, coordinados.
+                </p>
+              </Link>
+              <Link
+                href="/personas/mexicanos-en-el-extranjero"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Mexicanos viviendo fuera del país
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  El beneficio aplica si sigues tributando en México (residencia fiscal, ingresos de fuente mexicana, propiedades, empresa).
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Tres formas de empezar
             </h2>
