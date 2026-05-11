@@ -49,6 +49,11 @@ const FAQS: FAQItem[] = [
     answerText:
       "En la estructura nombramos beneficiarios sustitutos desde el inicio. Generalmente designamos a sus hermanos — no solo por afecto, sino porque son quienes conocieron a tu hij@ de cerca y van a entender el sentido del patrimonio que construiste. Si no hay hermanos, podemos definir otros familiares, tu pareja, o incluso una fundación dedicada a neurodivergencia. La cascada queda definida por escrito antes de firmar la póliza — no hay improvisación.",
   },
+  {
+    question: "¿Mis otros hijos también necesitan estar incluidos en la planeación?",
+    answerText:
+      "Solamente como beneficiarios contingentes y de hecho una de las razones por las que estructuramos así es justamente para que el cuidado de tu hij@ no recaiga económicamente en sus hermanos ni en otros familiares. La idea de generar una pensión vitalicia a través del fideicomiso es poder cubrir los gastos de su cuidado de por vida: terapias, vivienda asistida, cuidador, costo de seguro de gastos médicos. Tus otros hijos pueden estar cerca afectivamente, o supervisar — pero sin la presión de sostenerlo con sus propios ingresos ni sacrificar sus propios proyectos de vida.",
+  },
 ];
 
 
@@ -395,6 +400,22 @@ export default async function HijosNeurodivergentesPage() {
                   definir otros familiares, tu pareja, o incluso una fundación dedicada
                   a neurodivergencia. La cascada queda definida por escrito antes de
                   firmar la póliza — no hay improvisación.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Mis otros hijos también necesitan estar incluidos en la planeación?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Solamente como beneficiarios contingentes y de hecho una de las
+                  razones por las que estructuramos así es justamente para que el
+                  cuidado de tu hij@ no recaiga económicamente en sus hermanos ni en
+                  otros familiares. La idea de generar una pensión vitalicia a través
+                  del fideicomiso es poder cubrir los gastos de su cuidado de por vida:
+                  terapias, vivienda asistida, cuidador, costo de seguro de gastos
+                  médicos. Tus otros hijos pueden estar cerca afectivamente, o
+                  supervisar — pero sin la presión de sostenerlo con sus propios
+                  ingresos ni sacrificar sus propios proyectos de vida.
                 </p>
               </div>
             </div>
