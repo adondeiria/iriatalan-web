@@ -34,6 +34,11 @@ const FAQS: FAQItem[] = [
     answerText:
       "Absolutamente. Mi obligación profesional bajo CNSF + ética AMASFAC. Nunca compartas datos sensibles por canales abiertos — usa el email o agenda llamada.",
   },
+  {
+    question: "¿Trabajas con family office?",
+    answerText:
+      "Sí, coordinamos con tu family office. Mi asesoría no compite con la banca — hago estrategias con seguros. Trabajamos juntos para que tu estrategia patrimonial integral incluya los seguros adecuados para ti y tu familia.",
+  },
 ];
 
 
@@ -325,6 +330,17 @@ export default async function PatrimonialPage() {
                   Absolutamente. Mi obligación profesional bajo CNSF + ética AMASFAC.
                   Nunca compartas datos sensibles por canales abiertos — usa el email
                   o agenda llamada.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Trabajas con family office?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, coordinamos con tu family office. Mi asesoría no compite con la
+                  banca — hago estrategias con seguros. Trabajamos juntos para que tu
+                  estrategia patrimonial integral incluya los seguros adecuados para
+                  ti y tu familia.
                 </p>
               </div>
             </div>
