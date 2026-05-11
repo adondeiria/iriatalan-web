@@ -20,7 +20,7 @@ import Link from "next/link";
 
 const SERVICIOS = [
   "Retiro / PPR",
-  "GMM — gastos medicos mayores",
+  "Gastos medicos mayores",
   "Seguro de vida",
   "Seguro / Fideicomiso educacional",
   "Ahorro para Modalidad 40",
@@ -29,14 +29,14 @@ const SERVICIOS = [
   "Familias diversas",
   "Hijos neurodivergentes",
   "Mexicanos en el extranjero",
-  "Mujeres — asesoria enfocada",
+  "Mujeres - asesoria enfocada",
   "Foreigners living in Mexico",
   "Otro / no estoy seguro",
 ] as const;
 
 type Servicio = (typeof SERVICIOS)[number];
 
-const SERVICIO_GMM: Servicio = "GMM — gastos medicos mayores";
+const SERVICIO_GMM: Servicio = "Gastos medicos mayores";
 
 const SERVICIOS_APORTACION: Servicio[] = [
   "Retiro / PPR",
