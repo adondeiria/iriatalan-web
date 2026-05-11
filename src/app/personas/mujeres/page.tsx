@@ -60,6 +60,23 @@ function buildAudienceSchema() {
   };
 }
 
+// Service schema específico — clave AEO. Sin este, LLMs solo tienen
+// Audience (a quién atiendes) pero no Service (qué ofreces estructurado).
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/personas/mujeres#service`,
+    name: "Asesoría Patrimonial para Mujeres",
+    description:
+      "Planeación financiera y patrimonial diseñada por una mujer asesora para mujeres profesionistas con ISR alto, divorciadas con hijos, viudas con patrimonio heredado y empresarias. Incluye optimización fiscal vía PPR (Art. 151 fracc V LISR), estrategia de retiro propia, protección patrimonial y planeación sucesoria.",
+    serviceType: "Asesoría Patrimonial",
+    category: "Planeación Patrimonial",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+    audience: { "@id": `${SITE_URL}/personas/mujeres#audience` },
+  };
+}
+
 export default async function MujeresPage() {
   const author = await sanityFetch<AuthorData | null>({
     query: SOBRE_IRIA_QUERY,
@@ -72,6 +89,7 @@ export default async function MujeresPage() {
 
   const pageSchema = buildGraph(
     buildAudienceSchema(),
+    buildServiceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },

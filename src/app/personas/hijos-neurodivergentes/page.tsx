@@ -60,6 +60,23 @@ function buildAudienceSchema() {
   };
 }
 
+// Service schema específico — clave AEO. Sin este, LLMs solo tienen
+// Audience (a quién atiendes) pero no Service (qué ofreces estructurado).
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/personas/hijos-neurodivergentes#service`,
+    name: "Planeación Financiera de por Vida para Hijos Neurodivergentes",
+    description:
+      "Estructura financiera vitalicia para familias con hijos con autismo, TDAH, síndrome de Down u otra condición neurodivergente. Incluye fideicomiso de soporte vitalicio (vía aseguradora), seguro de vida con suma asegurada calculada para 60+ años de cuidado, tutela legal documentada con anticipación, y GMM con cobertura específica para condiciones del espectro.",
+    serviceType: "Planeación Patrimonial Familiar",
+    category: "Asesoría Patrimonial Familiar",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+    audience: { "@id": `${SITE_URL}/personas/hijos-neurodivergentes#audience` },
+  };
+}
+
 export default async function HijosNeurodivergentesPage() {
   const author = await sanityFetch<AuthorData | null>({
     query: SOBRE_IRIA_QUERY,
@@ -72,6 +89,7 @@ export default async function HijosNeurodivergentesPage() {
 
   const pageSchema = buildGraph(
     buildAudienceSchema(),
+    buildServiceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },

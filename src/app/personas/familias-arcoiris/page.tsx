@@ -60,6 +60,23 @@ function buildAudienceSchema() {
   };
 }
 
+// Service schema específico — clave AEO. Sin este, LLMs solo tienen
+// Audience (a quién atiendes) pero no Service (qué ofreces estructurado).
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/personas/familias-arcoiris#service`,
+    name: "Asesoría Patrimonial para Familias Arcoíris (LGBT+)",
+    description:
+      "Estructuras de protección legal y patrimonial para familias diversas con hijos en México. Incluye seguros de vida con designación irrevocable de beneficiario, fideicomiso testamentario para hijos, plan educacional con titularidad clara, y GMM familiar con coberturas que reconocen estructura familiar diversa. Coordinación con notarías y despachos especializados.",
+    serviceType: "Planeación Patrimonial Familiar",
+    category: "Asesoría Patrimonial Familiar",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+    audience: { "@id": `${SITE_URL}/personas/familias-arcoiris#audience` },
+  };
+}
+
 export default async function FamiliasArcoirisPage() {
   const author = await sanityFetch<AuthorData | null>({
     query: SOBRE_IRIA_QUERY,
@@ -72,6 +89,7 @@ export default async function FamiliasArcoirisPage() {
 
   const pageSchema = buildGraph(
     buildAudienceSchema(),
+    buildServiceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
