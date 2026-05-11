@@ -22,6 +22,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/personas/familias-arcoiris", priority: 0.85 },
   { path: "/personas/hijos-neurodivergentes", priority: 0.85 },
   { path: "/personas/mexicanos-en-el-extranjero", priority: 0.85 },
+  { path: "/foreigners-in-mexico", priority: 0.85 },
   { path: "/recursos", priority: 0.8 },
   { path: "/contacto", priority: 0.7 },
 ];

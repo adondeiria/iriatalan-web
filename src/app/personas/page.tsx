@@ -10,14 +10,14 @@ import {
 export const metadata: Metadata = {
   title: "Personas que asesoro — Iria Talan / RIF",
   description:
-    "Asesoría patrimonial boutique para 4 perfiles específicos: mexicanos viviendo en el extranjero, familias con hijos neurodivergentes, familias arcoíris, y mujeres en construcción patrimonial. Cada plan se diseña desde tu situación real.",
+    "Asesoría patrimonial boutique para 5 perfiles específicos: mexicanos viviendo en el extranjero, familias con hijos neurodivergentes, familias arcoíris, mujeres en construcción patrimonial, y extranjeros residentes en México (asesoría bilingüe). Cada plan se diseña desde tu situación real.",
   alternates: { canonical: `${SITE_URL}/personas` },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/personas`,
     title: "Personas que asesoro — Iria Talan",
     description:
-      "4 perfiles que requieren asesoría patrimonial específica, no genérica.",
+      "5 perfiles que requieren asesoría patrimonial específica, no genérica.",
   },
 };
 
@@ -46,6 +46,12 @@ const PERSONAS = [
     description:
       "Asesoría diseñada por una mujer asesora: profesionistas con ISR alto, divorciadas con hijos, viudas con patrimonio heredado, empresarias. Optimización fiscal vía PPR Art. 151 LISR + estrategia de retiro propia.",
   },
+  {
+    href: "/foreigners-in-mexico",
+    title: "Foreigners living in Mexico (English)",
+    description:
+      "Para extranjeros con residencia temporal o permanente en México. Asesoría bilingüe (español/inglés) sobre GMM con red premium nacional, seguros de vida con sucesión transfronteriza, planes de retiro Art. 93 LISR y planes educacionales en MXN o USD. Página de destino en inglés.",
+  },
 ];
 
 export default function PersonasHubPage() {
@@ -59,7 +65,7 @@ export default function PersonasHubPage() {
       "@id": `${SITE_URL}/personas#page`,
       name: "Personas que asesoro",
       description:
-        "4 perfiles que requieren asesoría patrimonial específica, no genérica.",
+        "5 perfiles que requieren asesoría patrimonial específica, no genérica.",
       url: `${SITE_URL}/personas`,
       isPartOf: { "@id": `${SITE_URL}#website` },
       hasPart: PERSONAS.map((p) => ({
@@ -86,7 +92,7 @@ export default function PersonasHubPage() {
             Personas que asesoro
           </h1>
           <p className="mt-6 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed">
-            La asesoría patrimonial premium no es un producto único. Son cuatro
+            La asesoría patrimonial premium no es un producto único. Son cinco
             perfiles que necesitan estructura financiera específica, no
             genérica. Cada plan se diseña desde tu situación real — fiscal,
             familiar, geográfica — para que la estrategia tenga sentido cinco,
