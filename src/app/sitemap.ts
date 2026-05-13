@@ -7,6 +7,7 @@ import { SITE_URL } from "@/lib/seo";
 type SitemapData = {
   services: Array<{ slug: string; _updatedAt: string }>;
   articles: Array<{ slug: string; _updatedAt: string; publishedAt?: string }>;
+  glossaryTerms: Array<{ slug: string; _updatedAt: string }>;
   resources: Array<{ slug: string; _updatedAt: string }>;
 } | null;
 
@@ -42,8 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Dedupe contra rutas estáticas: si Sanity tiene un service con slug
-  // "gmm", "retiro", etc., evita emitir la URL dos veces (Next.js sirve
-  // la ruta estática en /gmm — la URL dinámica nunca se renderizaría).
+  // "gmm", "retiro", etc., evita emitir la URL dos veces.
   const staticPaths = new Set(STATIC_ROUTES.map((r) => r.path));
   const serviceUrls: MetadataRoute.Sitemap =
     data?.services
@@ -54,13 +54,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
       })) ?? [];
 
-  // /blog/[slug] y /recursos/[slug] ya existen como rutas dinámicas con
-  // generateStaticParams, así que es seguro emitir las URLs desde Sanity.
+  // /blog/[slug] — drafts ya excluidos por SITEMAP_QUERY (`!draft && publishedAt <= now()`)
   const articleUrls: MetadataRoute.Sitemap =
     data?.articles?.map((a) => ({
       url: `${SITE_URL}/blog/${a.slug}`,
       lastModified: new Date(a._updatedAt),
       priority: 0.7,
+    })) ?? [];
+
+  // /glosario/[slug] — drafts excluidos por SITEMAP_QUERY
+  const glossaryUrls: MetadataRoute.Sitemap =
+    data?.glossaryTerms?.map((t) => ({
+      url: `${SITE_URL}/glosario/${t.slug}`,
+      lastModified: new Date(t._updatedAt),
+      priority: 0.5,
     })) ?? [];
 
   const resourceUrls: MetadataRoute.Sitemap =
@@ -70,8 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })) ?? [];
 
-  // Index /blog se agrega solo si hay artículos publicados; evita exponer
-  // la página "Próximamente" como soft-404 mientras la biblioteca esté vacía.
+  // /blog index — solo si hay artículos publicados (evita soft-404)
   const blogIndexUrl: MetadataRoute.Sitemap =
     articleUrls.length > 0
       ? [
@@ -83,11 +89,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ]
       : [];
 
+  // /glosario index — solo si hay términos publicados
+  const glossaryIndexUrl: MetadataRoute.Sitemap =
+    glossaryUrls.length > 0
+      ? [
+          {
+            url: `${SITE_URL}/glosario`,
+            lastModified: now,
+            priority: 0.7,
+          },
+        ]
+      : [];
+
   return [
     ...staticUrls,
     ...blogIndexUrl,
+    ...glossaryIndexUrl,
     ...serviceUrls,
     ...articleUrls,
+    ...glossaryUrls,
     ...resourceUrls,
   ];
 }

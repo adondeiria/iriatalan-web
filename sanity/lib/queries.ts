@@ -1,5 +1,16 @@
 import { defineQuery } from "next-sanity";
 
+/**
+ * Queries GROQ — fuente única de verdad para fetching desde Sanity.
+ *
+ * Convención drafts:
+ *  - Documentos `article` y `glossaryTerm` tienen un campo `draft: boolean`.
+ *  - Queries PÚBLICAS filtran `!draft` para que los stubs nunca aparezcan en
+ *    sitemap.xml, llms.txt, /blog index, /blog/[slug] (404), category pages,
+ *    /glosario, ni en related posts.
+ *  - Para previsualizar drafts: usar Sanity Studio (no hay vista pública de preview).
+ */
+
 export const HOME_PAGE_QUERY = defineQuery(`
   *[_type == "homePage"][0]{
     heroTitle,
@@ -71,17 +82,35 @@ export const FEATURED_SERVICES_QUERY = defineQuery(`
   }
 `);
 
+// =========================================================
+// ARTICLES (BLOG)
+// =========================================================
+
+/**
+ * ARTICLE_QUERY — un solo artículo por slug.
+ * Filtra `!draft` → drafts retornan null → /blog/[slug] llama notFound().
+ */
 export const ARTICLE_QUERY = defineQuery(`
-  *[_type == "article" && slug.current == $slug][0]{
+  *[_type == "article" && slug.current == $slug && !draft][0]{
     _id, title, "slug": slug.current,
-    "author": author->{ _id, name, "slug": slug.current, title, photo{ ..., asset-> }, sameAs },
+    "author": author->{ _id, name, "slug": slug.current, title, bio, photo{ ..., asset-> }, sameAs, socialLinks, credentials[]{ title, issuer, year, category } },
     "reviewedBy": reviewedBy->{ _id, name, "slug": slug.current, title },
     publishedAt,
     updatedAt,
+    lastReviewed,
     topic,
+    format,
+    tldr,
+    questionsAnswered,
     excerpt,
     heroImage{ ..., asset-> },
-    body,
+    body[]{
+      ...,
+      _type == "glossaryReference" => {
+        ...,
+        "term": term->{ _id, term, "slug": slug.current, shortDefinition, draft }
+      }
+    },
     "faqs": faqs[]->{
       _id, question,
       "answerText": pt::text(answer),
@@ -89,30 +118,117 @@ export const ARTICLE_QUERY = defineQuery(`
       topic
     },
     sources[]{ title, url, publisher },
+    "relatedArticles": relatedArticles[]->{
+      _id, title, "slug": slug.current, excerpt, topic, publishedAt, heroImage{ ..., asset-> }
+    },
     wordCount,
     seoTitle,
     seoDescription
   }
 `);
 
+/**
+ * ALL_ARTICLES_SLUGS_QUERY — para generateStaticParams.
+ * Filtra `!draft` → drafts NO generan páginas estáticas.
+ */
 export const ALL_ARTICLES_SLUGS_QUERY = defineQuery(`
-  *[_type == "article" && defined(slug.current)]{
+  *[_type == "article" && defined(slug.current) && !draft]{
     "slug": slug.current,
     _updatedAt,
     publishedAt
   }
 `);
 
+/**
+ * BLOG_INDEX_QUERY — listado público de blog.
+ * Filtra `!draft && publishedAt <= now()` → futuras fechas tampoco aparecen.
+ */
 export const BLOG_INDEX_QUERY = defineQuery(`
-  *[_type == "article" && defined(slug.current)] | order(publishedAt desc){
+  *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now()] | order(publishedAt desc){
     _id, title, "slug": slug.current,
     excerpt,
+    tldr,
     publishedAt,
+    updatedAt,
     topic,
+    format,
     heroImage{ ..., asset-> },
     "author": author->{ name, "slug": slug.current, photo{ ..., asset-> } }
   }
 `);
+
+/**
+ * BLOG_BY_TOPIC_QUERY — listado filtrado por categoría.
+ * Para /blog/categoria/[slug].
+ */
+export const BLOG_BY_TOPIC_QUERY = defineQuery(`
+  *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now() && topic == $topic] | order(publishedAt desc){
+    _id, title, "slug": slug.current,
+    excerpt,
+    tldr,
+    publishedAt,
+    topic,
+    format,
+    heroImage{ ..., asset-> },
+    "author": author->{ name, "slug": slug.current, photo{ ..., asset-> } }
+  }
+`);
+
+/**
+ * RELATED_ARTICLES_QUERY — fallback automático cuando relatedArticles está vacío.
+ * Trae 3 del mismo topic, excluyendo el artículo actual.
+ */
+export const RELATED_ARTICLES_QUERY = defineQuery(`
+  *[_type == "article" && !draft && publishedAt <= now() && topic == $topic && slug.current != $excludeSlug] | order(publishedAt desc)[0...3]{
+    _id, title, "slug": slug.current, excerpt, topic, publishedAt, heroImage{ ..., asset-> }
+  }
+`);
+
+// =========================================================
+// GLOSSARY
+// =========================================================
+
+/**
+ * GLOSSARY_INDEX_QUERY — listado público de términos.
+ */
+export const GLOSSARY_INDEX_QUERY = defineQuery(`
+  *[_type == "glossaryTerm" && defined(slug.current) && !draft] | order(term asc){
+    _id, term, "slug": slug.current,
+    shortDefinition,
+    topic,
+    synonyms
+  }
+`);
+
+/**
+ * GLOSSARY_TERM_QUERY — un solo término por slug, con relacionados.
+ */
+export const GLOSSARY_TERM_QUERY = defineQuery(`
+  *[_type == "glossaryTerm" && slug.current == $slug && !draft][0]{
+    _id, term, "slug": slug.current,
+    shortDefinition,
+    longExplanation,
+    topic,
+    synonyms,
+    "relatedTerms": relatedTerms[]->{
+      _id, term, "slug": slug.current, shortDefinition, draft
+    }
+  }
+`);
+
+/**
+ * ALL_GLOSSARY_SLUGS_QUERY — para generateStaticParams de /glosario/[slug].
+ */
+export const ALL_GLOSSARY_SLUGS_QUERY = defineQuery(`
+  *[_type == "glossaryTerm" && defined(slug.current) && !draft]{
+    "slug": slug.current,
+    _updatedAt
+  }
+`);
+
+// =========================================================
+// SITEMAP (drafts excluidos)
+// =========================================================
 
 export const SITEMAP_QUERY = defineQuery(`
   {
@@ -120,10 +236,14 @@ export const SITEMAP_QUERY = defineQuery(`
       "slug": slug.current,
       _updatedAt
     },
-    "articles": *[_type == "article" && defined(slug.current)]{
+    "articles": *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now()]{
       "slug": slug.current,
       _updatedAt,
       publishedAt
+    },
+    "glossaryTerms": *[_type == "glossaryTerm" && defined(slug.current) && !draft]{
+      "slug": slug.current,
+      _updatedAt
     },
     "resources": *[_type == "resource" && defined(slug.current) && isPublic == true]{
       "slug": slug.current,
@@ -131,6 +251,10 @@ export const SITEMAP_QUERY = defineQuery(`
     }
   }
 `);
+
+// =========================================================
+// RESOURCES (sin cambios)
+// =========================================================
 
 export const RESOURCES_LIST_QUERY = defineQuery(`
   *[_type == "resource" && isPublic == true && defined(slug.current)]

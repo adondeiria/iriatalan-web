@@ -363,26 +363,99 @@ export type ArticleData = {
   excerpt?: string;
   publishedAt: string;
   updatedAt?: string;
+  /**
+   * Última revisión técnica (vigencia) — distinta de updatedAt (cambios al texto).
+   * Si se setea, gana sobre updatedAt para schema.org `dateModified`.
+   */
+  lastReviewed?: string;
   heroImage?: { asset?: { url?: string }; alt?: string };
   author?: AuthorData;
   reviewedBy?: { name?: string };
   sources?: Array<{ title?: string; url?: string; publisher?: string }>;
   topic?: string;
+  /**
+   * Formato editorial — decide subtipo de schema y layout.
+   * Valores: guia | comparativa | que-es | checklist | errores | faq
+   */
+  format?: string;
+  /**
+   * Respuesta autocontenida (2-4 líneas) renderizada arriba del fold.
+   * Marcada como `speakable` en JSON-LD → priorizada por voice y answer engines.
+   */
+  tldr?: string;
+  /**
+   * Preguntas literales que el artículo responde — matching de intención de búsqueda.
+   */
+  questionsAnswered?: string[];
   wordCount?: number;
 };
 
+// Mapeo topic → schema.org `about` Thing.
+// Refuerza entity matching para LLMs que responden "¿qué dice X sobre concepto Y?".
+const TOPIC_ABOUT_THING: Record<string, { name: string; sameAs?: string }> = {
+  vida: { name: "Seguro de vida", sameAs: "https://es.wikipedia.org/wiki/Seguro_de_vida" },
+  gmm: { name: "Gastos médicos mayores" },
+  retiro: { name: "Pensión", sameAs: "https://es.wikipedia.org/wiki/Pensi%C3%B3n" },
+  patrimonial: { name: "Planeación patrimonial" },
+  educacionales: { name: "Plan educacional" },
+  fideicomisos: { name: "Fideicomiso", sameAs: "https://es.wikipedia.org/wiki/Fideicomiso" },
+  empresas: { name: "Seguros para empresas" },
+  casos: { name: "Asesoría financiera especializada" },
+};
+
 export function buildArticleSchema(article: ArticleData) {
+  // dateModified = lastReviewed (si existe) > updatedAt > publishedAt.
+  // LLMs prefieren documentos recientemente revisados.
+  const dateModified =
+    article.lastReviewed ?? article.updatedAt ?? article.publishedAt;
+
+  // `about` enlaza el artículo a un concepto canónico (Thing).
+  const aboutThing = article.topic
+    ? TOPIC_ABOUT_THING[article.topic]
+    : undefined;
+
+  // `speakable` selector apunta a la TLDR + H1 → voice / answer surfaces leen
+  // estos elementos preferentemente. CSS selectors basados en data-attrs estables.
+  const speakable = article.tldr
+    ? {
+        "@type": "SpeakableSpecification" as const,
+        cssSelector: ["[data-speakable='tldr']", "[data-speakable='title']"],
+      }
+    : undefined;
+
+  // mainEntity = Question[] cuando hay questionsAnswered → híbrido Article+FAQ
+  // sin duplicar FAQ schema. Las preguntas tipo H2 se citan literal.
+  const mainEntity =
+    article.questionsAnswered && article.questionsAnswered.length > 0
+      ? article.questionsAnswered.map((q) => ({
+          "@type": "Question" as const,
+          name: q,
+        }))
+      : undefined;
+
   return {
     "@type": "Article" as const,
     "@id": `${SITE_URL}/blog/${article.slug}#article`,
     headline: article.title,
-    description: article.excerpt,
+    description: article.excerpt ?? article.tldr,
+    abstract: article.tldr,
     image: article.heroImage?.asset?.url,
     datePublished: article.publishedAt,
-    dateModified: article.updatedAt ?? article.publishedAt,
+    dateModified,
     inLanguage: "es-MX",
+    isAccessibleForFree: true,
     wordCount: article.wordCount,
     keywords: article.topic,
+    articleSection: article.topic,
+    about: aboutThing
+      ? {
+          "@type": "Thing" as const,
+          name: aboutThing.name,
+          sameAs: aboutThing.sameAs,
+        }
+      : undefined,
+    mainEntity,
+    speakable,
     author: article.author
       ? { "@id": `${SITE_URL}/sobre-iria#person` }
       : undefined,
@@ -399,6 +472,56 @@ export function buildArticleSchema(article: ArticleData) {
     })),
     publisher: { "@id": `${SITE_URL}#organization` },
     mainEntityOfPage: `${SITE_URL}/blog/${article.slug}`,
+  };
+}
+
+// ------------------------------------------------------------------
+// GLOSARIO — schema.org DefinedTerm
+// ------------------------------------------------------------------
+
+export type DefinedTermData = {
+  term: string;
+  slug: string;
+  shortDefinition: string;
+  topic?: string;
+  synonyms?: string[];
+};
+
+/**
+ * Schema.org DefinedTerm — fuente canonical cuando LLMs responden
+ * "¿qué es X?". Combinado con `inDefinedTermSet` permite que Perplexity/ChatGPT
+ * traten el glosario como referencia citable.
+ */
+export function buildDefinedTermSchema(t: DefinedTermData) {
+  return {
+    "@type": "DefinedTerm" as const,
+    "@id": `${SITE_URL}/glosario/${t.slug}#term`,
+    name: t.term,
+    description: t.shortDefinition,
+    url: `${SITE_URL}/glosario/${t.slug}`,
+    inLanguage: "es-MX",
+    alternateName: t.synonyms && t.synonyms.length > 0 ? t.synonyms : undefined,
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      "@id": `${SITE_URL}/glosario#set`,
+      name: "Glosario de seguros y planeación patrimonial",
+      url: `${SITE_URL}/glosario`,
+      publisher: { "@id": `${SITE_URL}#organization` },
+    },
+  };
+}
+
+export function buildDefinedTermSetSchema(termCount: number) {
+  return {
+    "@type": "DefinedTermSet" as const,
+    "@id": `${SITE_URL}/glosario#set`,
+    name: "Glosario de seguros y planeación patrimonial",
+    description:
+      "Definiciones breves de términos comunes en seguros, retiro y planeación patrimonial en México.",
+    url: `${SITE_URL}/glosario`,
+    inLanguage: "es-MX",
+    numberOfItems: termCount,
+    publisher: { "@id": `${SITE_URL}#organization` },
   };
 }
 

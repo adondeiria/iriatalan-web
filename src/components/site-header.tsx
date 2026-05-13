@@ -225,6 +225,15 @@ export function SiteHeader({ siteName }: Props) {
             </div>
 
             <Link
+              href="/blog"
+              className={
+                "transition-colors duration-300 " +
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+              }
+            >
+              Blog
+            </Link>
+            <Link
               href="/recursos"
               className={
                 "transition-colors duration-300 " +
@@ -421,6 +430,13 @@ export function SiteHeader({ siteName }: Props) {
             ))}
 
             <div className="pt-6 border-t border-warm-brown/10 space-y-4">
+              <Link
+                href="/blog"
+                onClick={() => setMobileOpen(false)}
+                className="block text-lg font-medium text-ink"
+              >
+                Blog
+              </Link>
               <Link
                 href="/recursos"
                 onClick={() => setMobileOpen(false)}

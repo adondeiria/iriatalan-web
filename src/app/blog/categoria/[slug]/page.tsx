@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { CategoryBadge } from "@/components/blog/article-meta";
-import { sanityFetch } from "../../../sanity/lib/fetch";
-import { BLOG_INDEX_QUERY } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../../../sanity/lib/fetch";
+import { BLOG_BY_TOPIC_QUERY } from "../../../../../sanity/lib/queries";
 import {
   formatDateMx,
+  isValidTopicSlug,
+  TOPIC_DESCRIPTIONS,
   TOPIC_LABELS,
   TOPIC_TO_URL_SLUG,
+  URL_SLUG_TO_TOPIC,
   type ArticleTopic,
 } from "@/lib/blog";
 import {
@@ -25,48 +28,77 @@ type ArticleListItem = {
   excerpt?: string;
   tldr?: string;
   publishedAt: string;
-  updatedAt?: string;
   topic?: string;
   format?: string;
   heroImage?: { asset?: { url?: string }; alt?: string } | null;
-  author?: {
-    name: string;
-    slug?: string;
-    photo?: { asset?: { url?: string } } | null;
-  } | null;
+  author?: { name: string; slug?: string } | null;
 };
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateStaticParams() {
+  // Genera una página por categoría definida en lib/blog.ts.
+  return Object.values(TOPIC_TO_URL_SLUG).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  if (!isValidTopicSlug(slug)) {
+    return {
+      title: "Categoría no encontrada",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const topic = URL_SLUG_TO_TOPIC[slug];
+  const label = TOPIC_LABELS[topic] ?? slug;
+  const description = TOPIC_DESCRIPTIONS[topic] ?? "";
+
+  // Solo indexamos si hay al menos 1 artículo publicado en la categoría.
   const articles =
     (await sanityFetch<ArticleListItem[]>({
-      query: BLOG_INDEX_QUERY,
+      query: BLOG_BY_TOPIC_QUERY,
+      params: { topic },
       tags: ["article"],
     }).catch(() => null)) ?? [];
-
   const isEmpty = articles.length === 0;
 
   return {
-    title: "Blog — Planeación patrimonial y seguros en México",
-    description:
-      "Artículos firmados sobre planeación patrimonial, seguros, retiro, PPR, GMM y casos especiales. Por Iria Talan, MDRT Top of the Table.",
-    alternates: { canonical: `${SITE_URL}/blog` },
+    title: `${label} | Blog ${SITE_NAME}`,
+    description,
+    alternates: { canonical: `${SITE_URL}/blog/categoria/${slug}` },
     robots: isEmpty
       ? { index: false, follow: true }
       : { index: true, follow: true },
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/blog`,
-      title: `Blog | ${SITE_NAME}`,
-      description:
-        "Artículos sobre planeación patrimonial, seguros y retiro en México.",
+      url: `${SITE_URL}/blog/categoria/${slug}`,
+      title: `${label} | Blog ${SITE_NAME}`,
+      description,
     },
   };
 }
 
-export default async function BlogIndexPage() {
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  if (!isValidTopicSlug(slug)) {
+    notFound();
+  }
+
+  const topic: ArticleTopic = URL_SLUG_TO_TOPIC[slug];
+  const label = TOPIC_LABELS[topic] ?? slug;
+  const description = TOPIC_DESCRIPTIONS[topic] ?? "";
+
   const articles =
     (await sanityFetch<ArticleListItem[]>({
-      query: BLOG_INDEX_QUERY,
+      query: BLOG_BY_TOPIC_QUERY,
+      params: { topic },
       tags: ["article"],
     }).catch(() => null)) ?? [];
 
@@ -74,14 +106,30 @@ export default async function BlogIndexPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Blog", path: "/blog" },
-    ])
+      { name: label, path: `/blog/categoria/${slug}` },
+    ]),
+    articles.length > 0
+      ? {
+          "@type": "CollectionPage",
+          "@id": `${SITE_URL}/blog/categoria/${slug}#collection`,
+          name: `${label} — Blog ${SITE_NAME}`,
+          description,
+          url: `${SITE_URL}/blog/categoria/${slug}`,
+          inLanguage: "es-MX",
+          isPartOf: { "@id": `${SITE_URL}#website` },
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: articles.length,
+            itemListElement: articles.map((a, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `${SITE_URL}/blog/${a.slug}`,
+              name: a.title,
+            })),
+          },
+        }
+      : null
   );
-
-  // Categorías que tienen al menos 1 artículo publicado. Solo se muestran
-  // las que existen — evita exponer hubs vacíos como soft-404 implícito.
-  const topicsWithContent = Array.from(
-    new Set(articles.map((a) => a.topic).filter(Boolean))
-  ) as string[];
 
   return (
     <>
@@ -96,32 +144,22 @@ export default async function BlogIndexPage() {
             <Link href="/" className="hover:underline">
               Inicio
             </Link>
-            {" / Blog"}
+            {" / "}
+            <Link href="/blog" className="hover:underline">
+              Blog
+            </Link>
+            {` / ${label}`}
           </p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
-            Blog
+          <p className="mt-5 text-[11px] uppercase tracking-[0.24em] font-medium text-burgundy">
+            Categoría
+          </p>
+          <h1 className="mt-2 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
+            {label}
           </h1>
-          <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-            Artículos firmados sobre planeación patrimonial, retiro, seguros y
-            casos especiales — escritos por Iria Talan, MDRT Top of the Table,
-            con citas a CNSF, AMIS y Banxico.
-          </p>
-
-          {topicsWithContent.length > 0 && (
-            <nav
-              aria-label="Categorías del blog"
-              className="mt-8 flex flex-wrap gap-x-5 gap-y-2"
-            >
-              {topicsWithContent.map((t) => (
-                <Link
-                  key={t}
-                  href={`/blog/categoria/${TOPIC_TO_URL_SLUG[t as ArticleTopic] ?? t}`}
-                  className="text-[11px] uppercase tracking-[0.22em] font-medium text-burgundy hover:opacity-75 transition-opacity duration-300"
-                >
-                  {TOPIC_LABELS[t] ?? t}
-                </Link>
-              ))}
-            </nav>
+          {description && (
+            <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
+              {description}
+            </p>
           )}
         </section>
 
@@ -132,9 +170,9 @@ export default async function BlogIndexPage() {
                 Próximamente
               </h2>
               <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65 max-w-md mx-auto">
-                Estoy preparando los primeros artículos. Mientras tanto, agenda
-                una sesión inicial si quieres conversar sobre tu situación
-                patrimonial específica.
+                Estoy preparando los primeros artículos de esta categoría.
+                Mientras tanto, agenda una sesión inicial si quieres conversar
+                sobre {label.toLowerCase()}.
               </p>
               <Link
                 href="/contacto"
@@ -162,12 +200,7 @@ export default async function BlogIndexPage() {
                       />
                     </div>
                   )}
-                  {a.topic && (
-                    <div className="mt-5">
-                      <CategoryBadge topic={a.topic} size="sm" />
-                    </div>
-                  )}
-                  <h2 className="mt-3 font-serif text-xl leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+                  <h2 className="mt-5 font-serif text-xl leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
                     {a.title}
                   </h2>
                   {(a.excerpt || a.tldr) && (

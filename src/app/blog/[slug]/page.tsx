@@ -4,13 +4,22 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { type PortableTextBlock } from "@portabletext/react";
 
+import {
+  AuthorCard,
+  CategoryBadge,
+  LastUpdated,
+  TLDRBox,
+} from "@/components/blog/article-meta";
 import { PortableTextRenderer } from "@/components/portable-text";
+import { RelatedPosts } from "@/components/blog/related-posts";
+import { TableOfContents } from "@/components/blog/table-of-contents";
 
 import { sanityFetch } from "../../../../sanity/lib/fetch";
 import {
   ALL_ARTICLES_SLUGS_QUERY,
   ARTICLE_QUERY,
 } from "../../../../sanity/lib/queries";
+import { TOPIC_LABELS, topicHref } from "@/lib/blog";
 import {
   AuthorData,
   buildArticleSchema,
@@ -22,15 +31,23 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 
+type ArticleAuthor = AuthorData & {
+  credentials?: Array<{ title?: string; issuer?: string; category?: string }>;
+};
+
 type ArticleData = {
   _id: string;
   title: string;
   slug: string;
-  author?: AuthorData | null;
+  author?: ArticleAuthor | null;
   reviewedBy?: { name?: string; slug?: string; title?: string } | null;
   publishedAt: string;
   updatedAt?: string;
+  lastReviewed?: string;
   topic?: string;
+  format?: string;
+  tldr?: string;
+  questionsAnswered?: string[];
   excerpt?: string;
   heroImage?: { asset?: { url?: string }; alt?: string } | null;
   body?: unknown[] | null;
@@ -42,33 +59,19 @@ type ArticleData = {
     topic?: string;
   }> | null;
   sources?: Array<{ title?: string; url?: string; publisher?: string }> | null;
+  relatedArticles?: Array<{
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt?: string;
+    topic?: string;
+    publishedAt?: string;
+    heroImage?: { asset?: { url?: string }; alt?: string } | null;
+  }> | null;
   wordCount?: number;
   seoTitle?: string | null;
   seoDescription?: string | null;
 };
-
-const TOPIC_LABELS: Record<string, string> = {
-  vida: "Seguros de Vida",
-  gmm: "GMM",
-  retiro: "Retiro / AFORE",
-  patrimonial: "Planeación Patrimonial",
-  educacionales: "Planes Educacionales",
-  fideicomisos: "Fideicomisos",
-  empresas: "Empresas",
-  casos: "Casos especiales",
-};
-
-function formatDate(iso: string): string {
-  try {
-    return new Date(iso).toLocaleDateString("es-MX", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  } catch {
-    return "";
-  }
-}
 
 export async function generateStaticParams() {
   const slugs =
@@ -101,7 +104,10 @@ export async function generateMetadata({
   const description =
     article.seoDescription ||
     article.excerpt ||
-    `Artículo de Iria Talan sobre ${TOPIC_LABELS[article.topic ?? ""] ?? article.topic}.`;
+    article.tldr ||
+    `Artículo de Iria Talan sobre ${
+      TOPIC_LABELS[article.topic ?? ""] ?? article.topic ?? "planeación patrimonial"
+    }.`;
 
   return {
     title,
@@ -113,7 +119,8 @@ export async function generateMetadata({
       title,
       description,
       publishedTime: article.publishedAt,
-      modifiedTime: article.updatedAt ?? article.publishedAt,
+      modifiedTime:
+        article.lastReviewed ?? article.updatedAt ?? article.publishedAt,
       authors: article.author?.name ? [article.author.name] : undefined,
       images: article.heroImage?.asset?.url
         ? [
@@ -149,13 +156,22 @@ export default async function ArticlePage({
       ?.filter((f) => f.question && f.answerText)
       .map((f) => ({ question: f.question!, answerText: f.answerText })) ?? [];
 
+  const categoryHref = topicHref(article.topic);
+  const topicLabel = article.topic
+    ? TOPIC_LABELS[article.topic] ?? article.topic
+    : null;
+
   const pageSchema = buildGraph(
     buildArticleSchema({
       title: article.title,
       slug: article.slug,
       excerpt: article.excerpt,
+      tldr: article.tldr,
+      questionsAnswered: article.questionsAnswered,
+      format: article.format,
       publishedAt: article.publishedAt,
       updatedAt: article.updatedAt,
+      lastReviewed: article.lastReviewed,
       heroImage: article.heroImage ?? undefined,
       author: article.author ?? undefined,
       reviewedBy: article.reviewedBy ?? undefined,
@@ -166,6 +182,9 @@ export default async function ArticlePage({
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Blog", path: "/blog" },
+      ...(categoryHref && topicLabel
+        ? [{ name: topicLabel, path: categoryHref }]
+        : []),
       { name: article.title, path: `/blog/${article.slug}` },
     ]),
     buildFAQPageSchema(faqItems)
@@ -180,27 +199,41 @@ export default async function ArticlePage({
 
       <main className="flex flex-col">
         <article>
-          <section className="px-6 pt-16 pb-10 max-w-3xl mx-auto w-full">
+          <section className="px-6 pt-16 pb-6 max-w-3xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-cream-light0">
-              <Link href="/" className="hover:underline">Inicio</Link>
+              <Link href="/" className="hover:underline">
+                Inicio
+              </Link>
               {" / "}
-              <Link href="/blog" className="hover:underline">Blog</Link>
-              {article.topic && (
+              <Link href="/blog" className="hover:underline">
+                Blog
+              </Link>
+              {categoryHref && topicLabel && (
                 <>
                   {" / "}
-                  {TOPIC_LABELS[article.topic] ?? article.topic}
+                  <Link href={categoryHref} className="hover:underline">
+                    {topicLabel}
+                  </Link>
                 </>
               )}
             </p>
-            <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
+            {article.topic && (
+              <div className="mt-5">
+                <CategoryBadge topic={article.topic} />
+              </div>
+            )}
+            <h1
+              data-speakable="title"
+              className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light"
+            >
               {article.title}
             </h1>
             {article.excerpt && (
-              <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed">
+              <p className="mt-5 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed">
                 {article.excerpt}
               </p>
             )}
-            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-warm-brown/70 dark:text-cream-light/65">
+            <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-warm-brown/70 dark:text-cream-light/65">
               {article.author?.name && (
                 <span>
                   Por{" "}
@@ -213,20 +246,11 @@ export default async function ArticlePage({
                 </span>
               )}
               <span aria-hidden>·</span>
-              <span>
-                <time dateTime={article.publishedAt}>
-                  {formatDate(article.publishedAt)}
-                </time>
-              </span>
-              {article.updatedAt &&
-                article.updatedAt !== article.publishedAt && (
-                  <>
-                    <span aria-hidden>·</span>
-                    <span className="italic">
-                      Actualizado {formatDate(article.updatedAt)}
-                    </span>
-                  </>
-                )}
+              <LastUpdated
+                publishedAt={article.publishedAt}
+                updatedAt={article.updatedAt}
+                lastReviewed={article.lastReviewed}
+              />
               {article.reviewedBy?.name && (
                 <>
                   <span aria-hidden>·</span>
@@ -236,8 +260,14 @@ export default async function ArticlePage({
             </div>
           </section>
 
+          {article.tldr && (
+            <section className="px-6 max-w-3xl mx-auto w-full">
+              <TLDRBox>{article.tldr}</TLDRBox>
+            </section>
+          )}
+
           {article.heroImage?.asset?.url && (
-            <section className="px-6 max-w-4xl mx-auto w-full">
+            <section className="px-6 mt-6 max-w-4xl mx-auto w-full">
               <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-warm-brown/10">
                 <Image
                   src={article.heroImage.asset.url}
@@ -251,11 +281,16 @@ export default async function ArticlePage({
             </section>
           )}
 
-          {article.body && Array.isArray(article.body) && article.body.length > 0 && (
-            <section className="px-6 py-12 sm:py-16 max-w-3xl mx-auto w-full">
-              <PortableTextRenderer value={article.body as PortableTextBlock[]} />
-            </section>
-          )}
+          {article.body &&
+            Array.isArray(article.body) &&
+            article.body.length > 0 && (
+              <section className="px-6 py-10 sm:py-12 max-w-3xl mx-auto w-full">
+                <TableOfContents body={article.body as unknown[]} />
+                <PortableTextRenderer
+                  value={article.body as PortableTextBlock[]}
+                />
+              </section>
+            )}
 
           {faqItems.length > 0 && (
             <section className="px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
@@ -312,6 +347,29 @@ export default async function ArticlePage({
               </div>
             </section>
           )}
+
+          <section className="px-6 pt-8 max-w-3xl mx-auto w-full">
+            <AuthorCard
+              author={
+                article.author
+                  ? {
+                      name: article.author.name,
+                      title: article.author.title,
+                      bio: article.author.bio,
+                      photo: article.author.photo ?? null,
+                      credentials: article.author.credentials,
+                    }
+                  : null
+              }
+              reviewedBy={article.reviewedBy ?? null}
+            />
+          </section>
+
+          <RelatedPosts
+            topic={article.topic}
+            currentSlug={article.slug}
+            manual={article.relatedArticles ?? undefined}
+          />
 
           <section className="px-6 py-16 border-t border-warm-brown/15 dark:border-warm-brown/30 bg-cream/40 dark:bg-coffee/30">
             <div className="max-w-3xl mx-auto w-full text-center">
