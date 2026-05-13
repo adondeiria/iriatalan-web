@@ -183,6 +183,64 @@ Cada término del glosario emite (vía `lib/seo.ts:buildDefinedTermSchema`):
 
 ---
 
+## Agente dedicado: `iriatalan-seo-blog`
+
+Existe un agente custom scoped al repo en
+[`.claude/agents/iriatalan-seo-blog.md`](../.claude/agents/iriatalan-seo-blog.md)
+que automatiza el trabajo SEO/AEO/GEO del blog.
+
+### Cuándo se activa automático
+
+El agente tiene auto-trigger configurado para que Claude Code lo invoque
+cuando digas frases como:
+
+- *"blog semanal"* / *"qué escribo esta semana"* → **Weekly Plan mode**
+- *"redacta el artículo X"* / *"draft del [topic]"* → **Draft Writing mode**
+- *"audita /blog/[slug]"* / *"review SEO del artículo X"* → **Audit mode**
+- *"keywords para [topic]"* / *"intent research"* → **Research mode**
+
+### Cuándo invocarlo manual
+
+Si quieres forzar la invocación, puedes pedir explícitamente:
+
+> *"Usa el agente iriatalan-seo-blog para [tarea]"*
+
+### Los 4 modos del agente
+
+| Modo | Para qué sirve | Input que necesita |
+|---|---|---|
+| **Weekly Plan** | Decidir qué artículo escribir esta semana | nada (lee el estado de drafts solo) |
+| **Draft Writing** | Escribir el contenido completo de un draft | slug del draft (ej. `como-elegir-seguro-de-vida-mexico`) |
+| **Audit** | Revisar un artículo publicado y sugerir mejoras | slug ya publicado |
+| **Research** | Keyword + competitor analysis para un topic | un topic o pregunta |
+
+### Reglas internas del agente
+
+El agente conoce:
+- Tus credenciales (MDRT TOT, AMASFAC 8vo, CNSF, Yale, LSE) y las usa para EEAT
+- Los 12 drafts pendientes y los 14 términos del glosario
+- El schema Sanity con todos los campos LLM-ready (tldr, questionsAnswered, format, lastReviewed)
+- Los custom Portable Text blocks disponibles
+- Reglas YMYL México (no inventar cifras/regulación/coberturas)
+- Apellido **Talan** sin acento
+- Fuentes oficiales aceptadas (CNSF, AMIS, Banxico, IMSS, SAT, CONDUSEF, INEGI)
+- Skills que debe invocar para cada modo
+
+### Lo que NO hace el agente
+
+- Implementar componentes/rutas/schemas (eso es main thread)
+- Decidir paleta/tipografía/layout (eso es skill `aesthetic-override-iriatalan`)
+- Ejecutar git commit / push / build (eso lo decides tú)
+- Publicar directo a Sanity Studio (genera markdown + JSON, tú pegas en Studio)
+
+### Expectativas honestas
+
+El agente **maximiza condiciones** para ranking, no **garantiza** ranking.
+SEO orgánico tarda 3-6 meses en mostrar resultados para artículos nuevos.
+La calidad de los drafts + consistencia editorial semanal mueven la aguja.
+
+---
+
 ## Archivos relevantes (mapa rápido)
 
 | Qué | Dónde |
@@ -206,3 +264,4 @@ Cada término del glosario emite (vía `lib/seo.ts:buildDefinedTermSchema`):
 | Seed NDJSON glosario | `sanity/seeds/glossary-terms.ndjson` |
 | Script seed drafts | `scripts/seed-drafts.mjs` |
 | Script seed glosario | `scripts/seed-glossary.mjs` |
+| Agente SEO/AEO del blog | `.claude/agents/iriatalan-seo-blog.md` |
