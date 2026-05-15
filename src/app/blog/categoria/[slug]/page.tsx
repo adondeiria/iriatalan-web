@@ -21,6 +21,10 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
+// ISR: regenerar páginas de categoría cada 60 seg para que nuevos artículos
+// aparezcan automáticamente sin redeploy.
+export const revalidate = 60;
+
 type ArticleListItem = {
   _id: string;
   title: string;

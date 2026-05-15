@@ -31,6 +31,11 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 
+// ISR: regenerar cada 60 seg para que nuevos artículos publicados desde Sanity
+// (vía /draft-push o cambio del toggle draft=false) aparezcan sin necesidad
+// de redeploy manual.
+export const revalidate = 60;
+
 type ArticleAuthor = AuthorData & {
   credentials?: Array<{ title?: string; issuer?: string; category?: string }>;
 };

@@ -4,6 +4,10 @@ import { sanityFetch } from "../../sanity/lib/fetch";
 import { SITEMAP_QUERY } from "../../sanity/lib/queries";
 import { SITE_URL } from "@/lib/seo";
 
+// ISR: regenerar sitemap cada 60 seg para que crawlers vean nuevos slugs
+// publicados sin necesidad de redeploy.
+export const revalidate = 60;
+
 type SitemapData = {
   services: Array<{ slug: string; _updatedAt: string }>;
   articles: Array<{ slug: string; _updatedAt: string; publishedAt?: string }>;

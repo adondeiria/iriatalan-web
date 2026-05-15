@@ -18,6 +18,10 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
+// ISR: regenerar índice cada 60 seg para que nuevos artículos publicados
+// en Sanity aparezcan en /blog sin necesidad de redeploy.
+export const revalidate = 60;
+
 type ArticleListItem = {
   _id: string;
   title: string;
