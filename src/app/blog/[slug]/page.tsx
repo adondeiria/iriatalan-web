@@ -31,10 +31,12 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 
-// ISR: regenerar cada 60 seg para que nuevos artículos publicados desde Sanity
-// (vía /draft-push o cambio del toggle draft=false) aparezcan sin necesidad
-// de redeploy manual.
-export const revalidate = 60;
+// ISR: regenerar cada 30 seg para que nuevos artículos publicados desde Sanity
+// (vía /draft-push o cambio del toggle draft=false) aparezcan rápido sin
+// necesidad de redeploy manual. dynamicParams explícito = slugs no pre-generados
+// caen a SSR + cache (default true en App Router, lo dejamos explícito).
+export const revalidate = 30;
+export const dynamicParams = true;
 
 type ArticleAuthor = AuthorData & {
   credentials?: Array<{ title?: string; issuer?: string; category?: string }>;
