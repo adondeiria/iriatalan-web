@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local image archive (exploration variants — not deployed, not committed)
 /public/img/_descartadas/
+
+# borradores Word (export de iriatalan-blog-conductor — uso humano, no deploy)
+/borradores/

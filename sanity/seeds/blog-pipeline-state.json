@@ -1,0 +1,45 @@
+{
+  "_comment": "Estado del pipeline editorial del blog. Manejado por el agente iriatalan-blog-conductor. Persistido para que Iria pueda retomar entre sesiones con /blog-resume <slug>. NUNCA editar a mano salvo emergencia. NUNCA borrar entradas — solo cambiar phase a 'done' o 'archived'.",
+  "_schema": {
+    "slug": "kebab-case del artículo (sin acentos, ≤96 chars)",
+    "title": "título humano provisional",
+    "topic": "vida | gmm | retiro | patrimonial | educacionales | fideicomisos | empresas | casos",
+    "format": "guia | comparativa | que-es | checklist | errores | faq",
+    "phase": "idea | brief-approved | researching | drafting | word-exported | awaiting-edits | edits-applied | image-concepts | image-approved | published | done | archived",
+    "primaryKeyword": "frase exacta de búsqueda en México (opcional hasta brief-approved)",
+    "verdict": "🟢 escribir ahora | 🟡 ajustar primero | 🔴 descartar (sólo en phase=idea)",
+    "created": "ISO 8601 con timezone (ej. 2026-05-15T12:42:00-06:00)",
+    "lastTouched": "ISO 8601 con timezone",
+    "draftHistoryFile": "ruta relativa al .md más reciente en sanity/seeds/draft-history/",
+    "docxFile": "ruta relativa al .docx exportado en borradores/ (si existe)",
+    "edits": {
+      "round": "número de revisión (1, 2, ...)",
+      "appliedAt": "ISO 8601",
+      "source": "docx-extract | chat-paste | manual-md"
+    },
+    "imageConcept": {
+      "prompt": "prompt aprobado para Higgsfield",
+      "model": "modelo Higgsfield usado (ej. nano_banana_2)",
+      "approvedAt": "ISO 8601",
+      "attempts": "number — regeneraciones Higgsfield"
+    },
+    "imageAsset": {
+      "higgsfieldUrl": "URL del asset original en Higgsfield",
+      "sanityAssetRef": "_ref al asset en Sanity Content Lake (después del upload)"
+    },
+    "sanityDocId": "article-<slug> cuando ya está en Sanity",
+    "publishedUrl": "URL pública si ya está live (https://iriatalan.com.mx/blog/<slug>)",
+    "verifyMarkers": ["array de frases únicas (mínimo 3) que el agente buscó en producción tras revalidate para confirmar live"],
+    "verifiedAt": "ISO 8601 — última vez que se confirmó que producción sirve el contenido nuevo",
+    "notes": "string libre",
+    "metrics": {
+      "activeTimeMinutes": "number — minutos activos de Iria (cronómetro manual al cerrar cada etapa)",
+      "factCheckPassed": "boolean — true si pasó fact-check sin placeholders residuales",
+      "voiceScore": "number 1-5 — Iria valora si 'suena a mí' al revisar Word",
+      "aiMolestiesCount": "number — count manual de muletillas IA detectadas",
+      "tokensConsumed": "number — estimado al cierre de pipeline (opcional)",
+      "higgsfieldCreditsUsed": "number — del response del MCP (opcional)"
+    }
+  },
+  "blogs": []
+}
