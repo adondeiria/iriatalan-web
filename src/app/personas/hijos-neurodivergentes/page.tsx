@@ -20,6 +20,21 @@ const FAQS: FAQItem[] = [
       "La estructura que recomiendo combina dos vehículos: (1) un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo; y (2) un seguro de retiro con pensión vitalicia adicional. Esto crea dos fuentes de ingreso garantizadas para cuando ya no estés, sin sucesiones lentas ni tutores no idóneos. El fideicomiso lo administra la fiduciaria de la aseguradora o un banco fiduciario, supervisado opcionalmente por un protector (familiar de confianza o asociación). La estructura se diseña con tu caso específico: edad de tu hijo, nivel de autonomía esperado, otros hijos involucrados.",
   },
   {
+    question: "¿Cuánto cuesta estructurar un seguro de vida con fideicomiso para un hijo con autismo o discapacidad?",
+    answerText:
+      "El fideicomiso no se financia con un costo fijo, sino con la suma asegurada de un seguro de vida que se dispara cuando faltas tú. La prima del seguro que pagas mensual o anualmente, depende de tu edad y salud al contratar, y de la suma asegurada que necesites para que el fideicomiso genere una renta vitalicia suficiente para tu hijo. La fiduciaria cobra una comisión anual de administración sobre el capital, generalmente es baja respecto al rendimiento esperado.",
+  },
+  {
+    question: "¿Quién administra el fideicomiso cuando los padres ya no estén?",
+    answerText:
+      "El fideicomiso lo administra una fiduciaria — puede ser la fiduciaria de la aseguradora donde está el seguro de vida, o un banco fiduciario independiente. La fiduciaria de la aseguradora sigue las reglas que tú dejaste por escrito en el contrato de fideicomiso: cuánto entregar a tu hijo cada mes. En el fideicomiso bancario puedes establecer las condiciones, qué pasa si requiere atención médica extra, etc. Pero debes nombrar a un \"protector del fideicomiso\" — un familiar de confianza, una asociación de padres, o un comité — que supervise y autorice esas decisiones. La estructura legal queda firmada y notariada antes de que tú la necesites; cuando llega el momento, todo opera sin improvisación.",
+  },
+  {
+    question: "¿El GMM cubre terapias de autismo, TDAH o de neurodesarrollo?",
+    answerText:
+      "Varía mucho por aseguradora y plan. Generalmente están cubiertas cuando la madre estuvo asegurada al menos 10 meses antes del parto. Algunas pólizas cubren terapias relacionadas tras hospitalización o evento médico documentado, con topes anuales. Otras las consideran fuera de cobertura básica y se contratan vía complementos opcionales (cuando existen). Muchas no cubren terapias de neurodesarrollo regulares (terapia ocupacional, ABA, lenguaje) porque no califican como tratamiento médico agudo. Clave: revisar las condiciones específicas de cada póliza ANTES de contratar, idealmente comparando lo que ofrecen 2-3 aseguradoras AAA para tu caso. La sesión inicial sirve para identificar qué planes cubren mejor las terapias que tu hijo actualmente recibe o probablemente necesitará.",
+  },
+  {
     question: "Mi hijo es muy pequeño aún. ¿No es prematuro pensar en esto?",
     answerText:
       "Es lo opuesto. Mientras más temprano estructures, menos cuesta y más tiempo tiene el patrimonio para crecer. Y los seguros de vida son más baratos cuanto más joven los contrates. Empezar a los 35 con un hijo de 5 es muy distinto a empezar a los 50 con uno de 20.",
@@ -330,6 +345,30 @@ export default async function HijosNeurodivergentesPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   La estructura que recomiendo combina dos vehículos: (1) un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo; y (2) un seguro de retiro con pensión vitalicia adicional. Esto crea dos fuentes de ingreso garantizadas para cuando ya no estés, sin sucesiones lentas ni tutores no idóneos. El fideicomiso lo administra la fiduciaria de la aseguradora o un banco fiduciario, supervisado opcionalmente por un protector (familiar de confianza o asociación). La estructura se diseña con tu caso específico: edad de tu hijo, nivel de autonomía esperado, otros hijos involucrados.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuánto cuesta estructurar un seguro de vida con fideicomiso para un hijo con autismo o discapacidad?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  El fideicomiso no se financia con un costo fijo, sino con la suma asegurada de un seguro de vida que se dispara cuando faltas tú. La prima del seguro que pagas mensual o anualmente, depende de tu edad y salud al contratar, y de la suma asegurada que necesites para que el fideicomiso genere una renta vitalicia suficiente para tu hijo. La fiduciaria cobra una comisión anual de administración sobre el capital, generalmente es baja respecto al rendimiento esperado.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Quién administra el fideicomiso cuando los padres ya no estén?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  El fideicomiso lo administra una fiduciaria — puede ser la fiduciaria de la aseguradora donde está el seguro de vida, o un banco fiduciario independiente. La fiduciaria de la aseguradora sigue las reglas que tú dejaste por escrito en el contrato de fideicomiso: cuánto entregar a tu hijo cada mes. En el fideicomiso bancario puedes establecer las condiciones, qué pasa si requiere atención médica extra, etc. Pero debes nombrar a un &quot;protector del fideicomiso&quot; — un familiar de confianza, una asociación de padres, o un comité — que supervise y autorice esas decisiones. La estructura legal queda firmada y notariada antes de que tú la necesites; cuando llega el momento, todo opera sin improvisación.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿El GMM cubre terapias de autismo, TDAH o de neurodesarrollo?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Varía mucho por aseguradora y plan. Generalmente están cubiertas cuando la madre estuvo asegurada al menos 10 meses antes del parto. Algunas pólizas cubren terapias relacionadas tras hospitalización o evento médico documentado, con topes anuales. Otras las consideran fuera de cobertura básica y se contratan vía complementos opcionales (cuando existen). Muchas no cubren terapias de neurodesarrollo regulares (terapia ocupacional, ABA, lenguaje) porque no califican como tratamiento médico agudo. Clave: revisar las condiciones específicas de cada póliza ANTES de contratar, idealmente comparando lo que ofrecen 2-3 aseguradoras AAA para tu caso. La sesión inicial sirve para identificar qué planes cubren mejor las terapias que tu hijo actualmente recibe o probablemente necesitará.
                 </p>
               </div>
               <div>

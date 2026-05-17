@@ -33,6 +33,21 @@ const FAQS: FAQItem[] = [
       "Sí — varias de las 6 aseguradoras AAA con las que trabajo ofrecen PPR, vida, ahorro y GMM internacional en USD. Es útil para mexicanos que cobran en USD/EUR, mantienen patrimonio en moneda dura, o tienen herederos cuyos gastos están dolarizados. La elección entre MXN y USD depende de tu moneda funcional de gastos e ingresos, los planes futuros (regresar a México o no), y el horizonte de inversión. En una sesión inicial mapeamos qué porción de tu portafolio asegurador conviene en cada moneda para minimizar fricción cambiaria.",
   },
   {
+    question: "Tengo hijos con doble nacionalidad. ¿Cómo afecta la planeación sucesoria?",
+    answerText:
+      "La doble nacionalidad de tus herederos NO afecta el funcionamiento de la designación irrevocable de beneficiarios mexicana — el capital del seguro llega directo conforme al Art. 179 LCS vigente, independientemente de la nacionalidad del beneficiario. Lo que SÍ varía es el tratamiento fiscal del capital recibido en el país de residencia del heredero (EUA, España, Canadá, etc.) — cada jurisdicción aplica sus propias reglas de impuesto sucesorio o de ingreso. Estrategia: coordinar la planeación con un fiscalista internacional que entienda ambas jurisdicciones, para que la estructura mexicana minimice fricciones del lado del país del heredero. En la sesión inicial mapeamos qué países están involucrados y qué consideraciones aplican.",
+  },
+  {
+    question: "¿Cómo pago las primas si vivo en EUA y mi cuenta bancaria principal está allá?",
+    answerText:
+      "Varias de las 6 aseguradoras AAA mexicanas aceptan: (1) Tarjeta de crédito internacional (Visa/MC/AMEX emitida en cualquier país); (2) Transferencias SWIFT desde tu banco en EUA o Europa; (3) Débito automático a una cuenta MXN si la mantienes; (4) Pago en USD para productos contratados en dólares (no requiere conversión). Cada método tiene costo y velocidad distintos — TC internacional es la más simple pero puede tener comisión cambiaria de tu banco; SWIFT es la más barata para montos grandes; débito MXN es óptimo si mantienes cuenta en México. La elección depende de la aseguradora, el monto de prima y la frecuencia. En la sesión inicial elegimos el método más conveniente para tu caso.",
+  },
+  {
+    question: "¿Tener residencia fiscal en EUA me impide contratar seguros nuevos en México?",
+    answerText:
+      "Puedes contratar la mayoría de los planes. Únicamente el plan de retiro deducible de impuestos PPR requiere que seas residente fiscal mexicano para aprovechar la deducción Art. 151 fracc V LISR vigente — si dejas de tributar en México pierdes el beneficio fiscal anual (aunque puedes seguir el plan ya contratado, ahora sin deducir). En la sesión inicial identificamos qué productos puedes contratar hoy y cuáles requieren mantener residencia fiscal mexicana para aprovechar los beneficios al máximo.",
+  },
+  {
     question: "Vivo en EUA. ¿Puedo seguir teniendo PPR en México?",
     answerText:
       "Depende de tu situación fiscal. Si sigues tributando en México (residencia fiscal mexicana, ingresos de fuente mexicana, propiedades, empresa), el PPR sigue dándote deducción anual vía SAT (sujeto al cumplimiento de los requisitos del Art. 151 fracc V / Art. 185 LISR vigentes). Si tu residencia fiscal cambió por completo a EUA, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",

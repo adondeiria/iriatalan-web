@@ -15,6 +15,31 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Mi pareja del mismo sexo puede ser dependiente en mi GMM familiar?",
+    answerText:
+      "Por supuesto que sí.",
+  },
+  {
+    question: "¿Cómo se tratan fiscalmente los seguros heredados por mi pareja si no estamos casados?",
+    answerText:
+      "Con la designación de beneficiario, tu pareja recibe el capital del seguro de vida con el tratamiento fiscal aplicable a beneficiarios directos conforme al Art. 93 fracc XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales vigentes. El estatus civil no afecta tu capacidad de designarla como beneficiaria ni el funcionamiento del seguro: la designación irrevocable hace que el derecho de tu pareja se constituya como derecho propio (Art. 179 LCS vigente), independiente del estado civil. Donde el estatus civil sí importa es en la herencia tradicional (testamentos, sucesión legal) — pero el seguro de vida con designación irrevocable opera fuera de esa lógica.",
+  },
+  {
+    question: "¿Conviene casarnos legalmente o basta con designación irrevocable de beneficiario?",
+    answerText:
+      "Decisión personal con implicaciones distintas. La designación irrevocable iguala los efectos patrimoniales del seguro de vida — tu pareja recibe el capital igual que un cónyuge legal. Pero el matrimonio da derechos adicionales que el seguro NO cubre: pensión IMSS para cónyuge, derechos en la herencia legal de bienes no asegurados, decisiones médicas si tu pareja queda incapacitada, derechos migratorios, etc. Si solo necesitas asegurar que el capital de seguros y patrimonio financiero llegue a tu pareja: la designación irrevocable basta. Si quieres protección integral incluyendo pensiones públicas y herencia tradicional: el matrimonio aporta cobertura adicional. Lo correcto: decidir caso por caso con asesoría legal — yo cubro la parte de seguros.",
+  },
+  {
+    question: "Vamos a tener un hijo por gestación subrogada o adopción. ¿Cuándo conviene contratar el seguro de vida?",
+    answerText:
+      "Idealmente antes o durante el proceso, para que el plazo del seguro coincida con la mayoría de edad del menor (18-21 años típicamente). Esto te asegura: (1) primas más bajas al contratar más joven, (2) cobertura desde el momento en que tienes responsabilidad financiera del hijo, (3) tiempo suficiente para que un seguro con valor en efectivo acumule capital útil para gastos de universidad. La estructura típica para tu caso: seguro de vida con designación irrevocable hacia el hijo + plan educacional + GMM familiar que incluya al menor desde su llegada legal (adopción notarial o registro civil tras gestación subrogada).",
+  },
+  {
+    question: "Mi pareja y yo somos coparentes con otra pareja. ¿Cómo se estructura para 3 o 4 figuras parentales?",
+    answerText:
+      "Es viable, pero crece en complejidad. Opciones según tu caso: (1) Designaciones múltiples de beneficiarios con porcentajes específicos (ej. 25% cada copadre + 25% para el menor); (2) Fideicomiso con varios fideicomitentes (cada figura parental aporta y todos son co-titulares de las decisiones); (3) Estructuras paralelas donde cada pareja tiene su propio seguro con designación cruzada. Lo importante es documentar legalmente la relación de coparentalidad (acuerdos privados, sentencias de paternidad/maternidad reconocidas) para que las aseguradoras y fiduciarias acepten la estructura sin objeción. En la sesión inicial mapeamos el armado óptimo con tu abogado familiar.",
+  },
+  {
     question: "¿Por qué necesito asesoría especializada y no cualquier asesor?",
     answerText:
       "Porque las estructuras legales y de beneficiarios para familias diversas con hijos requieren combinaciones específicas que muchos asesores generales no conocen o no priorizan. La diferencia se nota el día que algo pasa.",
@@ -307,6 +332,46 @@ export default async function FamiliasArcoirisPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Mi pareja del mismo sexo puede ser dependiente en mi GMM familiar?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Por supuesto que sí.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo se tratan fiscalmente los seguros heredados por mi pareja si no estamos casados?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Con la designación de beneficiario, tu pareja recibe el capital del seguro de vida con el tratamiento fiscal aplicable a beneficiarios directos conforme al Art. 93 fracc XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales vigentes. El estatus civil no afecta tu capacidad de designarla como beneficiaria ni el funcionamiento del seguro: la designación irrevocable hace que el derecho de tu pareja se constituya como derecho propio (Art. 179 LCS vigente), independiente del estado civil. Donde el estatus civil sí importa es en la herencia tradicional (testamentos, sucesión legal) — pero el seguro de vida con designación irrevocable opera fuera de esa lógica.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Conviene casarnos legalmente o basta con designación irrevocable de beneficiario?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Decisión personal con implicaciones distintas. La designación irrevocable iguala los efectos patrimoniales del seguro de vida — tu pareja recibe el capital igual que un cónyuge legal. Pero el matrimonio da derechos adicionales que el seguro NO cubre: pensión IMSS para cónyuge, derechos en la herencia legal de bienes no asegurados, decisiones médicas si tu pareja queda incapacitada, derechos migratorios, etc. Si solo necesitas asegurar que el capital de seguros y patrimonio financiero llegue a tu pareja: la designación irrevocable basta. Si quieres protección integral incluyendo pensiones públicas y herencia tradicional: el matrimonio aporta cobertura adicional. Lo correcto: decidir caso por caso con asesoría legal — yo cubro la parte de seguros.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Vamos a tener un hijo por gestación subrogada o adopción. ¿Cuándo conviene contratar el seguro de vida?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Idealmente antes o durante el proceso, para que el plazo del seguro coincida con la mayoría de edad del menor (18-21 años típicamente). Esto te asegura: (1) primas más bajas al contratar más joven, (2) cobertura desde el momento en que tienes responsabilidad financiera del hijo, (3) tiempo suficiente para que un seguro con valor en efectivo acumule capital útil para gastos de universidad. La estructura típica para tu caso: seguro de vida con designación irrevocable hacia el hijo + plan educacional + GMM familiar que incluya al menor desde su llegada legal (adopción notarial o registro civil tras gestación subrogada).
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Mi pareja y yo somos coparentes con otra pareja. ¿Cómo se estructura para 3 o 4 figuras parentales?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Es viable, pero crece en complejidad. Opciones según tu caso: (1) Designaciones múltiples de beneficiarios con porcentajes específicos (ej. 25% cada copadre + 25% para el menor); (2) Fideicomiso con varios fideicomitentes (cada figura parental aporta y todos son co-titulares de las decisiones); (3) Estructuras paralelas donde cada pareja tiene su propio seguro con designación cruzada. Lo importante es documentar legalmente la relación de coparentalidad (acuerdos privados, sentencias de paternidad/maternidad reconocidas) para que las aseguradoras y fiduciarias acepten la estructura sin objeción. En la sesión inicial mapeamos el armado óptimo con tu abogado familiar.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Por qué necesito asesoría especializada y no cualquier asesor?

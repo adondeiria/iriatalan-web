@@ -15,6 +15,31 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "Soy viuda recientemente y heredé patrimonio. ¿Por dónde empiezo?",
+    answerText:
+      "Primera regla: NO prestes dinero o mal inviertas tu dinero. El duelo nubla el juicio financiero, y muchas viudas son blanco de propuestas oportunistas (inversiones, \"asesores\" que aparecen, presión de familiares). Mientras tanto: (1) inventaría lo que heredaste y los pendientes legales abiertos (cuentas, pólizas, propiedades, deudas, sucesión); (2) revisa tu propio GMM y seguros de vida y actualiza beneficiarios; (3) si tu cónyuge tenía seguros con designación irrevocable hacia ti, esos llegan rápido y dan oxígeno mientras se resuelve el resto. Una vez que tengas el mapa completo, estructuramos tu planeación propia con horizonte femenino (vivirás hasta 20 años más que tu cónyuge en promedio) y herederos propios.",
+  },
+  {
+    question: "Las mujeres vivimos más. ¿Eso cambia mi planeación de retiro?",
+    answerText:
+      "Sí — y es uno de los puntos ciegos más comunes. La esperanza de vida femenina en México es 5-8 años mayor que la masculina, lo que significa que tu retiro debe durar más años con el mismo capital acumulado, y tu pensión vitalicia debe protegerte contra \"vivir más de lo que el dinero alcanza\". Por eso para mujeres conviene: (1) monto objetivo del PPR más alto (mismo gasto mensual × más años de retiro); (2) priorizar productos con renta vitalicia garantizada de por vida sobre los de pago único; (3) considerar Modalidad 40 IMSS si tienes semanas cotizadas suficientes — la pensión IMSS también es vitalicia y ayuda a no descapitalizarte. La estrategia se calcula con tu perfil específico de edad, ingreso y patrimonio actual.",
+  },
+  {
+    question: "Soy madre soltera. ¿Cuál es la combinación mínima de seguros que debería tener?",
+    answerText:
+      "Como único sostén de tus hijos, la prioridad cambia: si te faltas tú, no hay segundo ingreso que compense. Combinación mínima recomendada: (1) Seguro de vida con designación irrevocable hacia un tutor de confianza y/o un fideicomiso que administre el capital para tus hijos hasta que sean adultos; (2) Plan educacional dedicado que cubra colegiaturas si tú llegas a faltar; (3) GMM familiar que cubra a ti y a tus hijos — sin esto, una hospitalización seria puede comerse meses de ingreso. Si tu situación financiera lo permite, además: PPR para tu propio retiro deducible (Art. 151 fracc V LISR vigente). El orden de prioridad se ajusta a tu edad, número de hijos y patrimonio actual.",
+  },
+  {
+    question: "Soy emprendedora y mis ingresos son variables. ¿Conviene el PPR si no sé cuánto voy a ganar este año?",
+    answerText:
+      "Sí, justamente por eso. El PPR no exige aportes fijos mensuales — puedes aportar cuando te conviene y los montos que decidas, hasta el tope deducible vigente (10% de tus ingresos acumulables o 5 UMAs anuales, el menor — ≈ $213,973 MXN en 2026, cifra vigente sujeta a actualización). Estrategia común para ingresos variables: aportar en los meses fuertes y reducir o pausar en los flojos. Al final del año fiscal, lo que aportaste se deduce vía SAT cada abril. Si tu año fue extraordinario, puedes aportar incluso hasta el último día del ejercicio para maximizar la deducción. Consulta con tu contadora para sincronizar aportes con tu declaración anual.",
+  },
+  {
+    question: "¿Cómo protejo mi patrimonio si me caso por bienes mancomunados?",
+    answerText:
+      "Tres palancas combinables: (1) Capítulos matrimoniales específicos en el régimen mancomunado que excluyan ciertos bienes pre-matrimoniales (requiere acuerdo notarial); (2) Designación irrevocable de beneficiarios en tus seguros de vida y PPR — esos productos quedan fuera de la masa divisible en caso de divorcio, conforme al Art. 179 LCS vigente; (3) Fideicomisos para activos personales pre-matrimonio o herencias recibidas durante el matrimonio (las herencias suelen ser bien propio, pero los rendimientos pueden caer en mancomunidad si no se separan). Coordinación con tu abogado matrimonialista es clave — yo cubro la pieza de seguros y planeación patrimonial; el resto requiere capitulaciones notariadas específicas.",
+  },
+  {
     question: "¿Trabajas solo con mujeres?",
     answerText:
       "No. Trabajo con familias, parejas, hombres y mujeres. Esta página existe porque muchas clientas mujeres buscan específicamente una asesora mujer y quería darles un espacio donde se reconozcan.",
@@ -317,6 +342,46 @@ export default async function MujeresPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Soy viuda recientemente y heredé patrimonio. ¿Por dónde empiezo?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Primera regla: NO prestes dinero o mal inviertas tu dinero. El duelo nubla el juicio financiero, y muchas viudas son blanco de propuestas oportunistas (inversiones, &quot;asesores&quot; que aparecen, presión de familiares). Mientras tanto: (1) inventaría lo que heredaste y los pendientes legales abiertos (cuentas, pólizas, propiedades, deudas, sucesión); (2) revisa tu propio GMM y seguros de vida y actualiza beneficiarios; (3) si tu cónyuge tenía seguros con designación irrevocable hacia ti, esos llegan rápido y dan oxígeno mientras se resuelve el resto. Una vez que tengas el mapa completo, estructuramos tu planeación propia con horizonte femenino (vivirás hasta 20 años más que tu cónyuge en promedio) y herederos propios.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Las mujeres vivimos más. ¿Eso cambia mi planeación de retiro?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí — y es uno de los puntos ciegos más comunes. La esperanza de vida femenina en México es 5-8 años mayor que la masculina, lo que significa que tu retiro debe durar más años con el mismo capital acumulado, y tu pensión vitalicia debe protegerte contra &quot;vivir más de lo que el dinero alcanza&quot;. Por eso para mujeres conviene: (1) monto objetivo del PPR más alto (mismo gasto mensual × más años de retiro); (2) priorizar productos con renta vitalicia garantizada de por vida sobre los de pago único; (3) considerar Modalidad 40 IMSS si tienes semanas cotizadas suficientes — la pensión IMSS también es vitalicia y ayuda a no descapitalizarte. La estrategia se calcula con tu perfil específico de edad, ingreso y patrimonio actual.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Soy madre soltera. ¿Cuál es la combinación mínima de seguros que debería tener?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Como único sostén de tus hijos, la prioridad cambia: si te faltas tú, no hay segundo ingreso que compense. Combinación mínima recomendada: (1) Seguro de vida con designación irrevocable hacia un tutor de confianza y/o un fideicomiso que administre el capital para tus hijos hasta que sean adultos; (2) Plan educacional dedicado que cubra colegiaturas si tú llegas a faltar; (3) GMM familiar que cubra a ti y a tus hijos — sin esto, una hospitalización seria puede comerse meses de ingreso. Si tu situación financiera lo permite, además: PPR para tu propio retiro deducible (Art. 151 fracc V LISR vigente). El orden de prioridad se ajusta a tu edad, número de hijos y patrimonio actual.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Soy emprendedora y mis ingresos son variables. ¿Conviene el PPR si no sé cuánto voy a ganar este año?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, justamente por eso. El PPR no exige aportes fijos mensuales — puedes aportar cuando te conviene y los montos que decidas, hasta el tope deducible vigente (10% de tus ingresos acumulables o 5 UMAs anuales, el menor — ≈ $213,973 MXN en 2026, cifra vigente sujeta a actualización). Estrategia común para ingresos variables: aportar en los meses fuertes y reducir o pausar en los flojos. Al final del año fiscal, lo que aportaste se deduce vía SAT cada abril. Si tu año fue extraordinario, puedes aportar incluso hasta el último día del ejercicio para maximizar la deducción. Consulta con tu contadora para sincronizar aportes con tu declaración anual.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo protejo mi patrimonio si me caso por bienes mancomunados?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Tres palancas combinables: (1) Capítulos matrimoniales específicos en el régimen mancomunado que excluyan ciertos bienes pre-matrimoniales (requiere acuerdo notarial); (2) Designación irrevocable de beneficiarios en tus seguros de vida y PPR — esos productos quedan fuera de la masa divisible en caso de divorcio, conforme al Art. 179 LCS vigente; (3) Fideicomisos para activos personales pre-matrimonio o herencias recibidas durante el matrimonio (las herencias suelen ser bien propio, pero los rendimientos pueden caer en mancomunidad si no se separan). Coordinación con tu abogado matrimonialista es clave — yo cubro la pieza de seguros y planeación patrimonial; el resto requiere capitulaciones notariadas específicas.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Trabajas solo con mujeres?
