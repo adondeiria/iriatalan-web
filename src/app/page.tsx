@@ -621,16 +621,27 @@ export default async function HomePage() {
                 Lo que más nos preguntan
               </h2>
             </div>
-            <div className="mt-14 space-y-10">
+            <div className="mt-14 space-y-3">
               {FAQS.map((faq) => (
-                <div key={faq.question}>
-                  <h3 className="font-serif text-xl sm:text-2xl leading-snug text-ink">
-                    {faq.question}
-                  </h3>
-                  <p className="mt-4 text-warm-brown leading-relaxed">
+                <details
+                  key={faq.question}
+                  className="group rounded-2xl border border-warm-brown/15 bg-cream px-6 py-5 sm:px-7 sm:py-6 transition-colors duration-300 hover:border-warm-brown/30 open:border-warm-brown/30"
+                >
+                  <summary className="flex items-start justify-between gap-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <h3 className="font-serif text-lg sm:text-xl leading-snug text-ink">
+                      {faq.question}
+                    </h3>
+                    <span
+                      aria-hidden
+                      className="mt-1 flex-shrink-0 size-6 rounded-full border border-burgundy/30 text-burgundy flex items-center justify-center text-base transition-transform duration-300 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-5 text-warm-brown leading-relaxed">
                     {faq.answerText}
                   </p>
-                </div>
+                </details>
               ))}
             </div>
           </div>
