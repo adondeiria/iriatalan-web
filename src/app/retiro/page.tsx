@@ -25,6 +25,26 @@ const FAQS: FAQItem[] = [
       "Modalidad 40 IMSS puede multiplicar tu pensión 5-8 veces, pero requiere pagar la cuota equivalente al SBC topado durante 5 años. El error frecuente es empezarla sin un plan para sostenerla — la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejarla con un Seguro de Ahorro / Retiro o un fondo de inversión que financie esos 5 años. Antes de inscribirte, calculamos cuánto necesitarías ahorrar mes a mes para que la estrategia sea sostenible — depende de tu SBC objetivo, semanas cotizadas y horizonte de inicio.",
   },
   {
+    question: "¿Cuánto cuesta Modalidad 40 al mes en 2026?",
+    answerText:
+      "El costo mensual de Modalidad 40 IMSS depende del Salario Base de Cotización (SBC) que declares, topado a 25 UMAs diarias conforme a la Ley del Seguro Social vigente. Como referencia estimada 2026, el rango va aproximadamente desde $2,000 MXN al mes (SBC bajo) hasta alrededor de $13,000 MXN al mes (SBC topado al máximo) — cifras referenciales sujetas a la UMA vigente y la cuota IMSS aplicable. El SBC se elige estratégicamente: más alto cotizas, más cuesta, pero también sube tu pensión vitalicia. El cálculo exacto se hace con tus datos antes de inscribirte, y de ahí decidimos si conviene financiarlo con un Seguro de Ahorro o un fondo de inversión.",
+  },
+  {
+    question: "¿A qué edad conviene empezar a aportar a un PPR / Plan de Retiro?",
+    answerText:
+      "En cuanto comiences a trabajar — entre más temprano, más aprovechas el interés compuesto. Cada peso que aportes hoy genera rendimientos durante décadas, y esos rendimientos a su vez generan más rendimientos: un aporte hecho a los 25 años puede multiplicarse muchas veces para cuando llegues a los 65, mientras que el mismo aporte hecho a los 50 tendría apenas 15 años para crecer. Aportar $50,000 anuales desde los 30 puede equivaler a aportar varias veces esa cantidad empezando a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente). A esto se suma una ventaja fiscal: más años aportando = más años de deducción acumulada vía SAT cada abril. Si ya pasaste los 40 o 50, no es tarde — solo significa que el monto sugerido es mayor para alcanzar el mismo objetivo. Lo correcto: arrancar ahora con lo que puedas y aumentar aportes según se estabilice tu ingreso.",
+  },
+  {
+    question: "¿Puedo sacar mi dinero del PPR antes de los 65?",
+    answerText:
+      "Sí, pero perderías el beneficio fiscal. El PPR está diseñado para retiro (edad 65 conforme al Art. 151 fracc V LISR vigente) o casos de invalidez/incapacidad. Si lo retiras antes por otro motivo, las cantidades retiradas son consideradas ingreso acumulable y la aseguradora retiene impuestos. Por eso es importante NO aportar al PPR dinero que sabes que vas a necesitar antes de los 65 — para liquidez de corto-mediano plazo conviene un instrumento distinto. Consulta la aplicabilidad fiscal a tu caso con tu asesor fiscal antes de decidir un retiro anticipado.",
+  },
+  {
+    question: "¿El PPR sustituye o complementa mi AFORE?",
+    answerText:
+      "Complementa. La AFORE es obligatoria (te la asigna el sistema cuando empiezas a trabajar formalmente) y administra tus aportes patronales y voluntarios — no te da deducción fiscal directa en tu declaración anual. El PPR es voluntario, lo contratas con una aseguradora autorizada, y sus aportaciones son deducibles conforme al Art. 151 fracc V LISR vigente. Para la mayoría de profesionistas con ISR alto, el PPR puede ser estructuralmente más rentable cuando se aprovecha la deducción fiscal, sujeto al perfil fiscal individual — pero NO sustituye a la AFORE: ambos coexisten y se suman al monto disponible al retiro.",
+  },
+  {
     question: "Estoy joven, falta mucho para mi retiro.",
     answerText:
       "El interés compuesto premia exponencialmente al que empieza joven. Aportar $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente). La deducción del PPR puede regresarte 30-35% dependiendo de tu tasa marginal de ISR.",
@@ -382,6 +402,38 @@ export default async function RetiroPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Modalidad 40 IMSS puede multiplicar tu pensión 5-8 veces, pero requiere pagar la cuota equivalente al SBC topado durante 5 años. El error frecuente es empezarla sin un plan para sostenerla — la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejarla con un Seguro de Ahorro / Retiro o un fondo de inversión que financie esos 5 años. Antes de inscribirte, calculamos cuánto necesitarías ahorrar mes a mes para que la estrategia sea sostenible — depende de tu SBC objetivo, semanas cotizadas y horizonte de inicio.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuánto cuesta Modalidad 40 al mes en 2026?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  El costo mensual de Modalidad 40 IMSS depende del Salario Base de Cotización (SBC) que declares, topado a 25 UMAs diarias conforme a la Ley del Seguro Social vigente. Como referencia estimada 2026, el rango va aproximadamente desde $2,000 MXN al mes (SBC bajo) hasta alrededor de $13,000 MXN al mes (SBC topado al máximo) — cifras referenciales sujetas a la UMA vigente y la cuota IMSS aplicable. El SBC se elige estratégicamente: más alto cotizas, más cuesta, pero también sube tu pensión vitalicia. El cálculo exacto se hace con tus datos antes de inscribirte, y de ahí decidimos si conviene financiarlo con un Seguro de Ahorro o un fondo de inversión.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿A qué edad conviene empezar a aportar a un PPR / Plan de Retiro?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  En cuanto comiences a trabajar — entre más temprano, más aprovechas el interés compuesto. Cada peso que aportes hoy genera rendimientos durante décadas, y esos rendimientos a su vez generan más rendimientos: un aporte hecho a los 25 años puede multiplicarse muchas veces para cuando llegues a los 65, mientras que el mismo aporte hecho a los 50 tendría apenas 15 años para crecer. Aportar $50,000 anuales desde los 30 puede equivaler a aportar varias veces esa cantidad empezando a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente). A esto se suma una ventaja fiscal: más años aportando = más años de deducción acumulada vía SAT cada abril. Si ya pasaste los 40 o 50, no es tarde — solo significa que el monto sugerido es mayor para alcanzar el mismo objetivo. Lo correcto: arrancar ahora con lo que puedas y aumentar aportes según se estabilice tu ingreso.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Puedo sacar mi dinero del PPR antes de los 65?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, pero perderías el beneficio fiscal. El PPR está diseñado para retiro (edad 65 conforme al Art. 151 fracc V LISR vigente) o casos de invalidez/incapacidad. Si lo retiras antes por otro motivo, las cantidades retiradas son consideradas ingreso acumulable y la aseguradora retiene impuestos. Por eso es importante NO aportar al PPR dinero que sabes que vas a necesitar antes de los 65 — para liquidez de corto-mediano plazo conviene un instrumento distinto. Consulta la aplicabilidad fiscal a tu caso con tu asesor fiscal antes de decidir un retiro anticipado.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿El PPR sustituye o complementa mi AFORE?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Complementa. La AFORE es obligatoria (te la asigna el sistema cuando empiezas a trabajar formalmente) y administra tus aportes patronales y voluntarios — no te da deducción fiscal directa en tu declaración anual. El PPR es voluntario, lo contratas con una aseguradora autorizada, y sus aportaciones son deducibles conforme al Art. 151 fracc V LISR vigente. Para la mayoría de profesionistas con ISR alto, el PPR puede ser estructuralmente más rentable cuando se aprovecha la deducción fiscal, sujeto al perfil fiscal individual — pero NO sustituye a la AFORE: ambos coexisten y se suman al monto disponible al retiro.
                 </p>
               </div>
               <div>

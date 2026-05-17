@@ -20,6 +20,31 @@ const FAQS: FAQItem[] = [
       "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
   },
   {
+    question: "¿Cubre el GMM enfermedades preexistentes?",
+    answerText:
+      "Las pólizas individuales y familiares de GMM en México generalmente NO cubren preexistencias declaradas al momento de contratar — esto aplica a la mayoría de las aseguradoras AAA del mercado. Algunas pólizas colectivas (GMM grupo de empresa) sí pueden cubrir preexistencias tras periodos de espera (24-48 meses son típicos, varían por aseguradora y diagnóstico), pero no es el estándar individual. Lo crítico: declarar TODO al contratar — diagnósticos, tratamientos, medicamentos — porque si la aseguradora descubre después que omitiste algo, puede negar el siniestro relacionado o cancelar por omisión dolosa. Mejor declarar y saber qué queda excluido desde el día 1, que tener falsa cobertura. Si tienes una preexistencia importante, hay aseguradoras y planes específicos que aceptan condiciones que otros rechazan — la sesión inicial identifica tus mejores opciones.",
+  },
+  {
+    question: "¿A qué edad conviene contratar GMM y hasta qué edad se renueva?",
+    answerText:
+      "Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde la prima sube significativamente. Las primas suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. La mayoría de las aseguradoras AAA mexicanas renuevan vitaliciamente si no hay incumplimientos de pago u omisiones de declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.",
+  },
+  {
+    question: "¿Cubre el GMM maternidad y parto?",
+    answerText:
+      "Sí, pero con periodo de espera — típicamente 10-12 meses desde la contratación o ampliación, según la aseguradora y plan. Esto significa que si quieres que tu GMM cubra el parto, debes contratar antes de embarazarte (o estar dentro del periodo de carencia que permita el plan). La cobertura del recién nacido (alta médica + primeros días de hospitalización) generalmente es un módulo aparte que conviene contratar al avisar el embarazo, dentro del plazo que marque la póliza. Las condiciones finales se rigen por la póliza emitida por la aseguradora.",
+  },
+  {
+    question: "¿Cuánto cuesta un GMM individual o familiar en 2026?",
+    answerText:
+      "La prima depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener primas anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente la prima. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.",
+  },
+  {
+    question: "¿Puedo mantener mi GMM si cambio de trabajo o me independizo?",
+    answerText:
+      "Sí — si tu GMM es póliza individual a tu nombre (no GMM colectivo de tu empleador), es totalmente portátil. Tú eres el contratante, tú pagas, tú decides cuándo renovar y con qué aseguradora. Esta es una de las razones por las que conviene NO depender solo del GMM colectivo del trabajo: si te despiden, renuncias o tu empresa cambia aseguradoras o condiciones, te quedas sin cobertura justo cuando puede ser difícil contratar uno individual (por edad o preexistencias adquiridas mientras estabas en el grupo). Estrategia recomendada: GMM individual base + grupo del empleador como complemento.",
+  },
+  {
     question: "Mi GMM subió 18% este año, ya no me alcanza.",
     answerText:
       "Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura sería el peor escenario.",
@@ -445,6 +470,46 @@ export default async function GmmPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Ninguna es &ldquo;mejor&rdquo; en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cubre el GMM enfermedades preexistentes?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Las pólizas individuales y familiares de GMM en México generalmente NO cubren preexistencias declaradas al momento de contratar — esto aplica a la mayoría de las aseguradoras AAA del mercado. Algunas pólizas colectivas (GMM grupo de empresa) sí pueden cubrir preexistencias tras periodos de espera (24-48 meses son típicos, varían por aseguradora y diagnóstico), pero no es el estándar individual. Lo crítico: declarar TODO al contratar — diagnósticos, tratamientos, medicamentos — porque si la aseguradora descubre después que omitiste algo, puede negar el siniestro relacionado o cancelar por omisión dolosa. Mejor declarar y saber qué queda excluido desde el día 1, que tener falsa cobertura. Si tienes una preexistencia importante, hay aseguradoras y planes específicos que aceptan condiciones que otros rechazan — la sesión inicial identifica tus mejores opciones.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿A qué edad conviene contratar GMM y hasta qué edad se renueva?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde la prima sube significativamente. Las primas suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. La mayoría de las aseguradoras AAA mexicanas renuevan vitaliciamente si no hay incumplimientos de pago u omisiones de declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cubre el GMM maternidad y parto?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí, pero con periodo de espera — típicamente 10-12 meses desde la contratación o ampliación, según la aseguradora y plan. Esto significa que si quieres que tu GMM cubra el parto, debes contratar antes de embarazarte (o estar dentro del periodo de carencia que permita el plan). La cobertura del recién nacido (alta médica + primeros días de hospitalización) generalmente es un módulo aparte que conviene contratar al avisar el embarazo, dentro del plazo que marque la póliza. Las condiciones finales se rigen por la póliza emitida por la aseguradora.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuánto cuesta un GMM individual o familiar en 2026?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  La prima depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener primas anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente la prima. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Puedo mantener mi GMM si cambio de trabajo o me independizo?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí — si tu GMM es póliza individual a tu nombre (no GMM colectivo de tu empleador), es totalmente portátil. Tú eres el contratante, tú pagas, tú decides cuándo renovar y con qué aseguradora. Esta es una de las razones por las que conviene NO depender solo del GMM colectivo del trabajo: si te despiden, renuncias o tu empresa cambia aseguradoras o condiciones, te quedas sin cobertura justo cuando puede ser difícil contratar uno individual (por edad o preexistencias adquiridas mientras estabas en el grupo). Estrategia recomendada: GMM individual base + grupo del empleador como complemento.
                 </p>
               </div>
               <div>

@@ -20,6 +20,21 @@ const FAQS: FAQItem[] = [
       "Tres estructuras clave: (1) Seguro de Persona Clave sobre cada socio o dueño, con la empresa como contratante y beneficiaria irrevocable — generalmente deducible conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT; (2) Acuerdo de compraventa (buy-sell) financiado con vida cruzada entre socios — al fallecer uno, la indemnización compra sus acciones a los herederos, evitando que entre familia política a la operación; (3) Vida grupo + GMM colectivo para empleados clave. La combinación específica depende del tamaño, estructura accionaria y giro de la empresa.",
   },
   {
+    question: "¿Conviene Vida Grupo o seguro individual para mis empleados clave?",
+    answerText:
+      "Depende del rol. Para la base general de empleados, Vida Grupo es la herramienta correcta: prestación masiva, prima per cápita baja, cubre a todos con un solo contrato. Para empleados clave (CFO, líderes técnicos, comerciales top), conviene complementar con seguro individual a su nombre, deducible para el empleado si es PPR o vida con valor en efectivo, y portátil si se va de la empresa. Estrategia común para retener talento: Vida Grupo como piso + seguro individual + Persona Clave (esta última pagada por la empresa, con la empresa como beneficiaria, cubriendo el riesgo operativo). Las tres se complementan, no compiten.",
+  },
+  {
+    question: "¿Cómo se contabiliza la prima de Persona Clave en mi estado de resultados?",
+    answerText:
+      "Como gasto deducible en el período en que se paga la prima, generalmente clasificado en cuenta de gastos operativos o prestaciones, conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes. Es importante coordinar con tu contador para que: (a) la prima se contabilice correctamente y soporte ante una eventual revisión del SAT, (b) la empresa figure como contratante Y beneficiaria irrevocable (requisito esencial), (c) la persona clave sea verificable como técnico o dirigente cuya pérdida afecte la productividad. Si la estructura no cumple los requisitos del SAT, se pierde la deducción — por eso recomendamos diseñar la póliza coordinados con tu contador desde el inicio.",
+  },
+  {
+    question: "¿Qué pasa si una persona clave se va de la empresa, puedo cancelar la póliza?",
+    answerText:
+      "Sí — la empresa es contratante y puede cancelar la póliza si lo decide. Algunas pólizas con valor en efectivo (típicas en planes de ahorro a 10-15-20 años) permiten rescatar el valor acumulado al cancelar, sujeto a los términos específicos de la póliza. También es común negociar que el exempleado pueda quedarse con la póliza individual transferida a su nombre (pagando él la prima desde entonces) — esto puede ser parte del paquete de salida o de retención previo. La estructura óptima depende del plan, antigüedad de la póliza y relación con el ex-empleado.",
+  },
+  {
     question: "¿La prima de Persona Clave es deducible para la empresa?",
     answerText:
       "Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos con tu contador para asegurar la deducibilidad. Marco legal: Art. 27 fracc XII LISR + Art. 51 RLISR vigentes.",
@@ -354,6 +369,30 @@ export default async function EmpresasPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Tres estructuras clave: (1) Seguro de Persona Clave sobre cada socio o dueño, con la empresa como contratante y beneficiaria irrevocable — generalmente deducible conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT; (2) Acuerdo de compraventa (buy-sell) financiado con vida cruzada entre socios — al fallecer uno, la indemnización compra sus acciones a los herederos, evitando que entre familia política a la operación; (3) Vida grupo + GMM colectivo para empleados clave. La combinación específica depende del tamaño, estructura accionaria y giro de la empresa.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Conviene Vida Grupo o seguro individual para mis empleados clave?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Depende del rol. Para la base general de empleados, Vida Grupo es la herramienta correcta: prestación masiva, prima per cápita baja, cubre a todos con un solo contrato. Para empleados clave (CFO, líderes técnicos, comerciales top), conviene complementar con seguro individual a su nombre, deducible para el empleado si es PPR o vida con valor en efectivo, y portátil si se va de la empresa. Estrategia común para retener talento: Vida Grupo como piso + seguro individual + Persona Clave (esta última pagada por la empresa, con la empresa como beneficiaria, cubriendo el riesgo operativo). Las tres se complementan, no compiten.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo se contabiliza la prima de Persona Clave en mi estado de resultados?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Como gasto deducible en el período en que se paga la prima, generalmente clasificado en cuenta de gastos operativos o prestaciones, conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes. Es importante coordinar con tu contador para que: (a) la prima se contabilice correctamente y soporte ante una eventual revisión del SAT, (b) la empresa figure como contratante Y beneficiaria irrevocable (requisito esencial), (c) la persona clave sea verificable como técnico o dirigente cuya pérdida afecte la productividad. Si la estructura no cumple los requisitos del SAT, se pierde la deducción — por eso recomendamos diseñar la póliza coordinados con tu contador desde el inicio.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué pasa si una persona clave se va de la empresa, puedo cancelar la póliza?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí — la empresa es contratante y puede cancelar la póliza si lo decide. Algunas pólizas con valor en efectivo (típicas en planes de ahorro a 10-15-20 años) permiten rescatar el valor acumulado al cancelar, sujeto a los términos específicos de la póliza. También es común negociar que el exempleado pueda quedarse con la póliza individual transferida a su nombre (pagando él la prima desde entonces) — esto puede ser parte del paquete de salida o de retención previo. La estructura óptima depende del plan, antigüedad de la póliza y relación con el ex-empleado.
                 </p>
               </div>
               <div>

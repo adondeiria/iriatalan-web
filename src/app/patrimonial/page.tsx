@@ -25,6 +25,26 @@ const FAQS: FAQItem[] = [
       "La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.",
   },
   {
+    question: "¿Cómo se evita el juicio sucesorio con un seguro de vida?",
+    answerText:
+      "Con la designación de tus beneficiarios. Conforme al Art. 179 LCS vigente, cuando designas a un beneficiario de forma irrevocable, el derecho de ese beneficiario se constituye como derecho propio — el capital asegurado NO forma parte de la masa hereditaria del fallecido y NO requiere juicio sucesorio para llegar al beneficiario. Esto permite que el dinero llegue en máximo 30 días directo a quien designaste, sin esperar protocolización notarial ni resolución judicial. Si además estructuras la designación irrevocable hacia un fideicomiso, ganas control sobre cómo y cuándo recibe el capital tu beneficiario.",
+  },
+  {
+    question: "¿Conviene contratar mi seguro de vida en pesos o en dólares?",
+    answerText:
+      "Depende de la moneda funcional de tus herederos y tu propio patrimonio. Si tus herederos viven o estudiarán en EUA, Europa, o tienen gastos dolarizados, un seguro en USD elimina el riesgo cambiario al momento del pago. Si todo tu patrimonio y los gastos de tus herederos están en pesos, contratar en MXN es más simple. Para patrimonios mixtos, lo común es estructurar parte en cada moneda según el destino esperado del capital. Varias de las 6 aseguradoras AAA con las que trabajo ofrecen productos en ambas monedas — la elección óptima la mapeamos en la sesión inicial.",
+  },
+  {
+    question: "¿Cómo se compara un fideicomiso testamentario vs un fideicomiso financiado por seguro de vida?",
+    answerText:
+      "Diferencia clave: liquidez al momento del fallecimiento. El fideicomiso testamentario hereda lo que el caudal hereditario contenga al fallecer — y ese caudal puede tardar meses o años en liberarse mientras se resuelve el juicio sucesorio. El fideicomiso financiado por seguro de vida recibe el capital asegurado en semanas, vía designación irrevocable, sin pasar por sucesión. En la práctica, ambos pueden coexistir: el testamentario administra activos heredados (inmuebles, negocios), y el financiado por seguro genera la liquidez inmediata para impuestos, deudas, sostenimiento de herederos durante el juicio sucesorio, y arranque del fideicomiso patrimonial.",
+  },
+  {
+    question: "¿Pueden mis seguros formar parte de mi planeación fiscal patrimonial?",
+    answerText:
+      "Sí — los seguros son una herramienta dentro de la planeación fiscal patrimonial. Tres palancas principales: (1) PPR para deducción anual conforme al Art. 151 fracc V LISR vigente; (2) Seguros de vida con designación irrevocable, con tratamiento fiscal del Art. 93 fracc XXI LISR vigente para beneficiarios directos, sujeto al cumplimiento de los requisitos fiscales aplicables; (3) Seguros de Persona Clave en estructura corporativa para socios y dueños, conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes. La estrategia óptima requiere coordinación con tu fiscalista y abogado patrimonial — yo aporto la pieza de seguros y diseño en conjunto con tu equipo legal/fiscal.",
+  },
+  {
     question: "¿A partir de qué patrimonio aplica?",
     answerText:
       "No hay umbral fijo — depende de la complejidad, no del monto absoluto. Una empresa familiar de mediano tamaño con socios y herederos múltiples puede beneficiarse tanto como un patrimonio HNWI tradicional.",
@@ -318,6 +338,38 @@ export default async function PatrimonialPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo se evita el juicio sucesorio con un seguro de vida?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Con la designación de tus beneficiarios. Conforme al Art. 179 LCS vigente, cuando designas a un beneficiario de forma irrevocable, el derecho de ese beneficiario se constituye como derecho propio — el capital asegurado NO forma parte de la masa hereditaria del fallecido y NO requiere juicio sucesorio para llegar al beneficiario. Esto permite que el dinero llegue en máximo 30 días directo a quien designaste, sin esperar protocolización notarial ni resolución judicial. Si además estructuras la designación irrevocable hacia un fideicomiso, ganas control sobre cómo y cuándo recibe el capital tu beneficiario.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Conviene contratar mi seguro de vida en pesos o en dólares?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Depende de la moneda funcional de tus herederos y tu propio patrimonio. Si tus herederos viven o estudiarán en EUA, Europa, o tienen gastos dolarizados, un seguro en USD elimina el riesgo cambiario al momento del pago. Si todo tu patrimonio y los gastos de tus herederos están en pesos, contratar en MXN es más simple. Para patrimonios mixtos, lo común es estructurar parte en cada moneda según el destino esperado del capital. Varias de las 6 aseguradoras AAA con las que trabajo ofrecen productos en ambas monedas — la elección óptima la mapeamos en la sesión inicial.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo se compara un fideicomiso testamentario vs un fideicomiso financiado por seguro de vida?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Diferencia clave: liquidez al momento del fallecimiento. El fideicomiso testamentario hereda lo que el caudal hereditario contenga al fallecer — y ese caudal puede tardar meses o años en liberarse mientras se resuelve el juicio sucesorio. El fideicomiso financiado por seguro de vida recibe el capital asegurado en semanas, vía designación irrevocable, sin pasar por sucesión. En la práctica, ambos pueden coexistir: el testamentario administra activos heredados (inmuebles, negocios), y el financiado por seguro genera la liquidez inmediata para impuestos, deudas, sostenimiento de herederos durante el juicio sucesorio, y arranque del fideicomiso patrimonial.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Pueden mis seguros formar parte de mi planeación fiscal patrimonial?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sí — los seguros son una herramienta dentro de la planeación fiscal patrimonial. Tres palancas principales: (1) PPR para deducción anual conforme al Art. 151 fracc V LISR vigente; (2) Seguros de vida con designación irrevocable, con tratamiento fiscal del Art. 93 fracc XXI LISR vigente para beneficiarios directos, sujeto al cumplimiento de los requisitos fiscales aplicables; (3) Seguros de Persona Clave en estructura corporativa para socios y dueños, conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes. La estrategia óptima requiere coordinación con tu fiscalista y abogado patrimonial — yo aporto la pieza de seguros y diseño en conjunto con tu equipo legal/fiscal.
                 </p>
               </div>
               <div>
