@@ -48,6 +48,26 @@ const FAQS: FAQItem[] = [
     answerText:
       "Yes, with some structural adjustments. Life insurance and GMM typically remain active as long as you keep paying premiums and maintain your Mexican CURP/RFC. PPR retirement plans stay in your name, but the income-tax deduction benefit ends if you lose Mexican fiscal residency — you would then evaluate whether to continue contributing or freeze the plan. Education plans for your children continue regardless of where you live. We schedule reviews aligned with major life changes, and moving back home is one of them.",
   },
+  {
+    question: "Can I deduct PPR contributions from my US tax return as a foreign retirement plan?",
+    answerText:
+      "The PPR (Plan Personal de Retiro) deduction is a Mexican-side benefit applied to your Mexican tax return under Art. 151 fracc V LISR currently in force. On the US side, the IRS generally does not recognize PPRs as qualified retirement plans for US deduction purposes, and they may trigger PFIC (Passive Foreign Investment Company) reporting requirements depending on the underlying investment structure. Coordinate with a US tax preparer familiar with cross-border filings BEFORE contributing — the Mexican tax benefit is real, but the US side has reporting nuances that need to be understood. A common alternative is a retirement plan structured under Article 93 LISR currently in force, which can offer favorable tax treatment on the payout side starting at age 60, subject to compliance with the applicable fiscal requirements. We help you map which products minimize US reporting friction.",
+  },
+  {
+    question: "Which Mexican hospitals are best for English-speaking expats?",
+    answerText:
+      "The most commonly preferred hospitals among English-speaking expats in Mexico include ABC Medical Center (Mexico City), Médica Sur (Mexico City), Hospital Ángeles (multiple cities), Christus Muguerza (Monterrey and others), and Star Médica (multiple cities). Most have English-speaking staff in international patient services. Critical step before contracting GMM: confirm that the carrier's network includes the specific hospitals you want — networks vary by carrier and plan tier. We help map this during the initial session based on the cities where you live, work, or travel frequently.",
+  },
+  {
+    question: "I'm a digital nomad on a Residente Temporal visa. Can I contract life insurance and GMM?",
+    answerText:
+      "Yes — Residente Temporal (RT) status with CURP and a Mexican address qualifies you for most life insurance and GMM products. Underwriting may take longer if your income is foreign-sourced (carriers may request additional documentation to verify ability to pay premiums and to assess risk). For GMM specifically, expect health questionnaire and possibly a medical exam depending on age and sum insured. The 6 AAA-rated insurers we work with have varying flexibility for digital nomads — we identify the most accommodating options during the initial session.",
+  },
+  {
+    question: "Do my Mexican policies cover me when I travel back to the US or Europe?",
+    answerText:
+      "It depends on the plan. Standard domestic Mexican GMM typically covers Mexico-only, sometimes with limited international emergency assistance (defined coverage caps and event types). For comprehensive coverage abroad, you'd need an international plan — BUPA International and GNP VIP are the most common options offering global networks. Life insurance pays out regardless of country of death, subject to standard policy terms.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -407,6 +427,74 @@ export default async function ForeignersInMexicoPage() {
                   contributing or freeze the plan. Education plans for your children
                   continue regardless of where you live. We schedule reviews aligned
                   with major life changes, and moving back home is one of them.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Can I deduct PPR contributions from my US tax return as a foreign retirement plan?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  The PPR (Plan Personal de Retiro) deduction is a Mexican-side
+                  benefit applied to your Mexican tax return under Art. 151 fracc V
+                  LISR currently in force. On the US side, the IRS generally does
+                  not recognize PPRs as qualified retirement plans for US deduction
+                  purposes, and they may trigger PFIC (Passive Foreign Investment
+                  Company) reporting requirements depending on the underlying
+                  investment structure. Coordinate with a US tax preparer familiar
+                  with cross-border filings BEFORE contributing — the Mexican tax
+                  benefit is real, but the US side has reporting nuances that need
+                  to be understood. A common alternative is a retirement plan
+                  structured under Article 93 LISR currently in force, which can
+                  offer favorable tax treatment on the payout side starting at age
+                  60, subject to compliance with the applicable fiscal requirements.
+                  We help you map which products minimize US reporting friction.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Which Mexican hospitals are best for English-speaking expats?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  The most commonly preferred hospitals among English-speaking
+                  expats in Mexico include ABC Medical Center (Mexico City), Médica
+                  Sur (Mexico City), Hospital Ángeles (multiple cities), Christus
+                  Muguerza (Monterrey and others), and Star Médica (multiple
+                  cities). Most have English-speaking staff in international patient
+                  services. Critical step before contracting GMM: confirm that the
+                  carrier&apos;s network includes the specific hospitals you want —
+                  networks vary by carrier and plan tier. We help map this during
+                  the initial session based on the cities where you live, work, or
+                  travel frequently.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  I&apos;m a digital nomad on a Residente Temporal visa. Can I contract life insurance and GMM?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Yes — Residente Temporal (RT) status with CURP and a Mexican
+                  address qualifies you for most life insurance and GMM products.
+                  Underwriting may take longer if your income is foreign-sourced
+                  (carriers may request additional documentation to verify ability
+                  to pay premiums and to assess risk). For GMM specifically, expect
+                  health questionnaire and possibly a medical exam depending on age
+                  and sum insured. The 6 AAA-rated insurers we work with have
+                  varying flexibility for digital nomads — we identify the most
+                  accommodating options during the initial session.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  Do my Mexican policies cover me when I travel back to the US or Europe?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  It depends on the plan. Standard domestic Mexican GMM typically
+                  covers Mexico-only, sometimes with limited international
+                  emergency assistance (defined coverage caps and event types). For
+                  comprehensive coverage abroad, you&apos;d need an international
+                  plan — BUPA International and GNP VIP are the most common
+                  options offering global networks. Life insurance pays out
+                  regardless of country of death, subject to standard policy terms.
                 </p>
               </div>
             </div>

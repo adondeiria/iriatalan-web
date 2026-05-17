@@ -3,8 +3,10 @@ import Link from "next/link";
 
 import {
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
+  type FAQItem,
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -54,6 +56,29 @@ const PERSONAS = [
   },
 ];
 
+const FAQS: FAQItem[] = [
+  {
+    question: "¿Cuál de los perfiles de Personas aplica a mi caso si no me identifico con ninguno?",
+    answerText:
+      "Los perfiles no son excluyentes — son entradas frecuentes que reflejan situaciones comunes (mujeres con patrimonio propio, familias diversas, hijos neurodivergentes, mexicanos en el extranjero), pero NO son los únicos casos que atendemos. Si tu situación no encaja exactamente en uno (familias mixtas, profesionistas independientes sin hijos, parejas binacionales, herencias multi-generacionales), agenda una conversación y mapeamos tu caso real. La planeación se diseña alrededor de tu situación específica, no al revés.",
+  },
+  {
+    question: "¿Puedo trabajar con Iria si no estoy en ninguno de los perfiles especializados?",
+    answerText:
+      "Sí. Los perfiles especializados existen porque tienen consideraciones únicas que vale la pena visibilizar (fideicomisos para hijos neurodivergentes, designaciones para familias diversas, residencia fiscal para mexicanos en el extranjero), pero la asesoría patrimonial integral aplica a cualquier persona física con necesidad de proteger patrimonio, optimizar fiscalidad, asegurar retiro o estructurar sucesión. La sesión inicial es el mismo punto de entrada para todos.",
+  },
+  {
+    question: "¿Qué hace distinta la asesoría para personas vs para empresas?",
+    answerText:
+      "Persona física: PPR personal, seguros de vida individual, GMM individual o familiar, planeación sucesoria personal vía fideicomisos, optimización fiscal de tu ISR individual. Empresa: Seguros de Persona Clave sobre socios/dueños, Vida grupo y GMM colectivo para empleados, acuerdos de compraventa entre socios (buy-sell), retiro empresarial deducible para la empresa. La diferencia clave: en la persona física los productos buscan optimizar TU patrimonio fiscal; en la empresa buscan proteger la continuidad operativa y dar herramientas de retención de talento. Muchas estructuras se complementan — dueños de empresa suelen necesitar ambas líneas coordinadas.",
+  },
+  {
+    question: "¿Cómo elijo entre asesoría individual y patrimonial?",
+    answerText:
+      "No se eligen excluyentemente — son enfoques complementarios. La asesoría individual cubre tus seguros, PPR y planeación personal. La asesoría patrimonial entra cuando existe complejidad adicional: estructuras corporativas, múltiples jurisdicciones, herederos con situaciones distintas, sucesiones de varios millones de pesos, fideicomisos, family office. El monto del patrimonio NO es el único criterio — un patrimonio mediano con sucesión compleja (familia mixta, herederos en otros países, hijos con condiciones especiales) puede requerir planeación patrimonial igual que un patrimonio mayor con situación simple.",
+  },
+];
+
 export default function PersonasHubPage() {
   const pageSchema = buildGraph(
     buildBreadcrumbSchema([
@@ -74,7 +99,8 @@ export default function PersonasHubPage() {
         name: p.title,
         description: p.description,
       })),
-    }
+    },
+    buildFAQPageSchema(FAQS)
   );
 
   return (
@@ -119,6 +145,26 @@ export default function PersonasHubPage() {
             </Link>
           ))}
         </div>
+
+        <section className="mt-20 pt-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-3xl">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Preguntas frecuentes
+            </h2>
+            <div className="mt-10 space-y-8">
+              {FAQS.map((faq) => (
+                <div key={faq.question}>
+                  <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                    {faq.question}
+                  </h3>
+                  <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                    {faq.answerText}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <div className="mt-20 max-w-3xl">
           <p className="text-sm text-warm-brown dark:text-cream-light/70 italic">

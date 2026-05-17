@@ -173,6 +173,31 @@ const FAQS: FAQItem[] = [
     answerText:
       "Un agente de seguros coloca un producto puntual a tu necesidad inmediata. Una asesora patrimonial diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, tengo formación en Wealth Management por Yale University y MBA Essentials por la London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA — sin cuota de ventas por ninguna. Eso me permite diseñar la solución alrededor de ti, no del producto del mes.",
   },
+  {
+    question: "¿Cuánto cuesta trabajar con Iria Talan?",
+    answerText:
+      "La primera sesión de diagnóstico (30-45 min) es sin costo y sin compromiso de contratar. A partir de ahí, la mayoría de los productos que recomiendo (seguros, GMM, PPR, inversiones) se pagan a través de una comisión pagada por la aseguradora — tú no me pagas honorarios separados por ellos. Para casos patrimoniales complejos que requieren diseño extensivo (estructuras corporativas, fideicomisos multi-vehículo, coordinación con tu equipo legal/fiscal) trabajamos honorarios separados, acordados con transparencia antes de empezar. Sin sorpresas, sin presión de venta — la conversación inicial sirve precisamente para entender qué necesitas y cómo se cobra.",
+  },
+  {
+    question: "¿Con qué aseguradoras trabajas y por qué solo 6?",
+    answerText:
+      "Trabajo con las mejores aseguradoras AAA en México: GNP, BUPA, AXA, MetLife, Seguros Monterrey New York Life y Allianz. Las seleccioné por calificación financiera (todas AAA), historial de pago de siniestros, calidad de red hospitalaria/médica, y solvencia económica. Esto me permite recomendar el producto óptimo dentro de mi catálogo y darte servicio post-venta consistente.",
+  },
+  {
+    question: "¿Cómo es la primera sesión y cuánto tarda?",
+    answerText:
+      "Dura entre 45 y 60 minutos, vía videollamada (zoom, meet o teams) o presencial si estás en CDMX. La estructura típica: (1) tu contexto — situación familiar, profesional, patrimonial actual; (2) tus prioridades y preocupaciones — qué te quita el sueño financieramente; (3) primera lectura de oportunidades concretas (no propuestas de venta, sino áreas a explorar); (4) siguientes pasos sugeridos sin compromiso. Sales con un mapa de prioridades. La decisión de avanzar es siempre tuya y a tu ritmo.",
+  },
+  {
+    question: "¿Atiendes en toda la República o solo CDMX?",
+    answerText:
+      "Todo el mundo por videollamada — la mayoría de mis clientes está fuera de CDMX. Presencial me muevo principalmente en CDMX, con visitas ocasionales a otros estados según agenda y volumen de casos. Para mexicanos en el extranjero también atiendo vía videollamada y herramientas digitales firmadas — ver landing específica /personas/mexicanos-en-el-extranjero para detalles del flujo cross-border.",
+  },
+  {
+    question: "¿En qué se diferencia una asesora MDRT Top of the Table de una asesora regular?",
+    answerText:
+      "MDRT (Million Dollar Round Table) es la asociación global del sector seguros que reconoce desempeño y estándares éticos. Top of the Table (TOT) es el nivel más alto — alrededor del 1% global de los asesores certificados MDRT alcanza este nivel cada año, generalmente por trabajar casos de mayor complejidad y volumen. En la práctica significa que el día a día son perfiles patrimoniales y casos transfronterizos, no colocación de seguros básicos. Para ti como cliente importa porque significa experiencia repetida con estructuras HNWI, fideicomisos, sucesiones multi-jurisdicción y planeación fiscal compleja.",
+  },
 ];
 
 export default async function HomePage() {
