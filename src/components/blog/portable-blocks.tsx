@@ -1,4 +1,61 @@
+import Image from "next/image";
 import Link from "next/link";
+import imageUrlBuilder from "@sanity/image-url";
+
+// =========================================================
+// InlineImage — bloque image dentro del body Portable Text
+// =========================================================
+// Construye URL CDN desde el _ref del asset (ej. "image-c41561f5...-1376x768-png").
+// Sin dependencia del cliente Sanity — solo necesita projectId + dataset (públicos).
+const SANITY_PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "0xa0dciq";
+const SANITY_DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const builder = imageUrlBuilder({ projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET });
+
+export type InlineImageValue = {
+  asset?: { _ref?: string; url?: string };
+  alt?: string;
+  caption?: string;
+};
+
+export function InlineImage({ value }: { value: InlineImageValue }) {
+  const ref = value?.asset?._ref;
+  const directUrl = value?.asset?.url;
+  if (!ref && !directUrl) return null;
+
+  // Extraer dimensiones del _ref: "image-<hash>-<width>x<height>-<ext>"
+  let width = 1600;
+  let height = 900;
+  if (ref) {
+    const dimMatch = ref.match(/-(\d+)x(\d+)-/);
+    if (dimMatch) {
+      width = parseInt(dimMatch[1], 10);
+      height = parseInt(dimMatch[2], 10);
+    }
+  }
+
+  const src = directUrl || builder.image(ref!).width(1600).fit("max").url();
+  const alt = value?.alt || "Imagen ilustrativa";
+
+  return (
+    <figure className="my-10">
+      <div className="relative w-full overflow-hidden rounded-2xl border border-warm-brown/10 dark:border-warm-brown/20">
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(min-width: 1024px) 768px, 100vw"
+          className="w-full h-auto"
+        />
+      </div>
+      {value?.caption ? (
+        <figcaption className="mt-3 text-sm text-warm-brown/70 dark:text-cream-light/65 italic text-center">
+          {value.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
 
 /**
  * Custom PortableText block renderers — usados por src/components/portable-text.tsx

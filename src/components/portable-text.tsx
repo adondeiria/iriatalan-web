@@ -10,6 +10,7 @@ import {
   DataCallout,
   DisclaimerBox,
   GlossaryReferenceLink,
+  InlineImage,
   KeyTakeaways,
   slugifyHeading,
 } from "@/components/blog/portable-blocks";
@@ -136,6 +137,7 @@ const components: PortableTextComponents = {
     number: ({ children }) => <li className="leading-relaxed">{children}</li>,
   },
   types: {
+    image: ({ value }) => <InlineImage value={value} />,
     keyTakeaways: ({ value }) => <KeyTakeaways value={value} />,
     comparisonTable: ({ value }) => <ComparisonTable value={value} />,
     disclaimer: ({ value }) => <DisclaimerBox value={value} />,

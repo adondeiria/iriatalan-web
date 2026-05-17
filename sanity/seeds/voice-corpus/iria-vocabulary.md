@@ -7,8 +7,8 @@
 - **Iria Talan** — sin acento en "Talan". Siempre. (2026-05-08)
 - **RIF** — Reingeniería Financiera (su firma).
 - **Credenciales** que se mencionan en bio/EEAT, en este orden de prioridad cuando hay espacio:
-  1. MDRT Top of the Table (MDRT TOT)
-  2. AMASFAC 8vo Lugar Nacional
+  1. **MDRT Court of the Table (COT) — 2025** · Top of the Table (TOT) — 2024. Verificar nivel del año en curso antes de publicar. (Actualizado 2026-05-16.)
+  2. AMASFAC 8º Lugar Nacional
   3. CNSF Cédula V388618
   4. Wealth Management Theory & Practice — Yale Executive Education
   5. MBA Essentials — LSE Executive Education

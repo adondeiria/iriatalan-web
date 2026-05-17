@@ -41,5 +41,60 @@
       "higgsfieldCreditsUsed": "number — del response del MCP (opcional)"
     }
   },
-  "blogs": []
+  "blogs": [
+    {
+      "slug": "incremento-costos-universitarios-mexico",
+      "title": "Cuánto cuesta hoy estudiar la universidad en México (ciclo 2026) — y por qué tu SEGUBECA puede haberse quedado corta",
+      "topic": "educacionales",
+      "format": "guia",
+      "phase": "done",
+      "primaryKeyword": "cuánto cuesta la universidad en méxico 2026",
+      "created": "2026-05-16T08:24:00-06:00",
+      "lastTouched": "2026-05-16T21:51:00-06:00",
+      "publishedUrl": "https://iriatalan.com.mx/blog/incremento-costos-universitarios-mexico",
+      "sanityDocId": "article-incremento-costos-universitarios-mexico",
+      "publishedAt": "2026-05-17T03:50:55.169Z",
+      "verifyMarkers": [
+        "Ciclo 2026: carrera privada de élite en México cuesta $1.6 a $2.1 millones",
+        "Los extras del intercambio que casi nunca aparecen en el cálculo familiar",
+        "Tu salario no le sigue el paso al costo universitario"
+      ],
+      "verifiedAt": "2026-05-17T03:51:30-06:00",
+      "draftHistoryFile": "sanity/seeds/draft-history/incremento-costos-universitarios-mexico__2026-05-16-085000.md",
+      "docxFile": "borradores/incremento-costos-universitarios-mexico.docx",
+      "imageConcept": {
+        "prompt": "Editorial documentary photography, intimate moment between a Mexican mestizo single mother and her teenage child at home holding laptop showing university acceptance — Magnum style, terracotta+cream palette with subtle red TALAN accent.",
+        "model": "nano_banana_2",
+        "approvedAt": "2026-05-16T13:48:00-06:00",
+        "attempts": 1
+      },
+      "imageAsset": {
+        "hero": {
+          "role": "featured / OG",
+          "higgsfieldUrl": "https://d8j0ntlcm91z4.cloudfront.net/user_3Cxf2SKL4VVOUjrX7ZE3rpE4pI3/hf_20260516_193956_c03231e9-c217-46dd-aafb-06f94bd2f967.png",
+          "higgsfieldJobId": "c03231e9-c217-46dd-aafb-06f94bd2f967",
+          "localPath": "public/img/blog/incremento-costos-universitarios-mexico-hero.png",
+          "sanityAssetRef": "image-c41561f51b5881ce96f619607fc66a9edfbf6357-1376x768-png",
+          "uploadedAt": "2026-05-17T03:58:30-06:00",
+          "patchedToHeroImage": true
+        },
+        "inline": {
+          "role": "inline ilustración sección Aeroméxico Formación",
+          "higgsfieldUrl": "https://d8j0ntlcm91z4.cloudfront.net/user_3Cxf2SKL4VVOUjrX7ZE3rpE4pI3/hf_20260516_194004_b3bb42fc-50f5-4faa-b958-d0f551c572be.png",
+          "higgsfieldJobId": "b3bb42fc-50f5-4faa-b958-d0f551c572be",
+          "localPath": "public/img/blog/incremento-costos-universitarios-mexico-piloto.png",
+          "sanityAssetRef": "image-9c83f63befb4559798ef10f619e30414db1d92ed-1376x768-png",
+          "uploadedAt": "2026-05-17T03:58:50-06:00",
+          "patchedToHeroImage": false,
+          "note": "Subida a Sanity pero NO auto-linkeada al body. Iria puede insertarla manualmente desde Studio en la sección Aeroméxico."
+        }
+      },
+      "notes": "Brief iterado v1-v9 con Iria. Fuente cifras top-13 MX 2026: contacto telefónico + página web oficial cada universidad (metodología TALAN). Validación cruzada con PDFs oficiales 2026: Anáhuac México Licenciaturas + CENTRO Arquitectura. UDEM e ITESO marcadas TBD — confirmación TALAN pendiente. Aeroméxico Formación $2,090,077 confirmado por teléfono directo con la institución. Iria autorizó saltar fases idea→drafting con 'genera - ocupa las skills necesarias para SEO y atraer clientes'. Skills usadas: sanity:seo-aeo-best-practices (EEAT, structured data, AEO). Voice corpus iria-voice-do/dont/vocabulary aplicados.",
+      "metrics": {
+        "factCheckPassed": false,
+        "voiceScore": null,
+        "aiMolestiesCount": null
+      }
+    }
+  ]
 }
