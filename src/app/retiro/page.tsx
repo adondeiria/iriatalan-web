@@ -17,7 +17,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Estoy joven, falta mucho para mi retiro.",
     answerText:
-      "El interés compuesto premia exponencialmente al que empieza joven. Aportar $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando a los 50. Y la deducción fiscal del PPR te puede dar 30-35% de regreso vía SAT cada año, según tu nivel de ingreso.",
+      "El interés compuesto premia exponencialmente al que empieza joven. Aportar $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente). La deducción del PPR puede regresarte 30-35% dependiendo de tu tasa marginal de ISR.",
   },
   {
     question: "El IMSS me va a alcanzar.",
@@ -27,7 +27,7 @@ const FAQS: FAQItem[] = [
   {
     question: "PPR vs AFORE: ¿cuál es mejor?",
     answerText:
-      "No compiten — se complementan. La AFORE es obligatoria, el PPR es voluntario. La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR es estructuralmente más rentable cuando se aprovecha la deducción fiscal.",
+      "No compiten — se complementan. La AFORE es obligatoria, el PPR es voluntario. La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR puede ser estructuralmente más rentable cuando se aprovecha la deducción fiscal, sujeto al perfil fiscal individual.",
   },
   {
     question: "Modalidad 40 IMSS suena complicada.",
@@ -49,7 +49,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Planeación de Retiro · PPR + Modalidad 40 IMSS",
   description:
-    "PPR con beneficio fiscal art. 151 fracc V y art. 185 LISR (hasta $213,973 MXN deducibles en 2026), Modalidad 40 IMSS y estructura combinada. MDRT Top of the Table · Asesora autorizada CNSF.",
+    "PPR con beneficio fiscal art. 151 fracc V y art. 185 LISR vigentes (hasta $213,973 MXN deducibles en 2026 — cifra vigente a 2026, la UMA se actualiza anualmente), Modalidad 40 IMSS y estructura combinada. MDRT Top of the Table · Asesora autorizada CNSF.",
   alternates: { canonical: `${SITE_URL}/retiro` },
   openGraph: {
     type: "website",
@@ -213,8 +213,8 @@ export default async function RetiroPage() {
                 <ul className="mt-4 space-y-2 text-sm text-warm-brown dark:text-cream-light/85">
                   <li>· Hasta <strong>10% de tus ingresos acumulables</strong></li>
                   <li>· Sin exceder <strong>5 UMAs anuales</strong></li>
-                  <li>· En 2026: ~<strong>$213,973 MXN</strong> deducibles</li>
-                  <li>· Recuperas 30-35% vía SAT según ISR</li>
+                  <li>· En 2026: ~<strong>$213,973 MXN</strong> deducibles (cifra vigente a 2026; la UMA se actualiza anualmente por INPC)</li>
+                  <li>· Puedes recuperar hasta 30-35% vía SAT dependiendo de tu tasa marginal de ISR</li>
                 </ul>
               </div>
 
@@ -269,8 +269,9 @@ export default async function RetiroPage() {
               <p>
                 <strong className="text-ink dark:text-cream-light">El costo:</strong>{" "}
                 en escenarios típicos, contratar Modalidad 40 con SBC tope durante 5 años
-                puede sumar inversiones del orden de <strong>$1.5 millones de pesos</strong>.
-                Pero el retorno en pensión vitalicia (que recibes hasta tu fallecimiento +
+                puede sumar inversiones del orden de <strong>$1.5 millones de pesos</strong>
+                (ejemplo ilustrativo; el monto exacto depende del SBC, semanas cotizadas y normativa
+                IMSS vigente). Pero el retorno en pensión vitalicia (que recibes hasta tu fallecimiento +
                 viudez si aplica) supera por mucho esa cifra.
               </p>
               <p>
@@ -364,8 +365,9 @@ export default async function RetiroPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   El interés compuesto premia exponencialmente al que empieza joven. Aportar
                   $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando
-                  a los 50. Y la deducción fiscal del PPR te puede dar 30-35% de regreso vía SAT
-                  cada año, según tu nivel de ingreso.
+                  a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente).
+                  La deducción del PPR puede regresarte hasta 30-35% vía SAT cada año, dependiendo
+                  de tu tasa marginal de ISR y del tope deducible vigente.
                 </p>
               </div>
               <div>
@@ -384,8 +386,9 @@ export default async function RetiroPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   No compiten — se complementan. La AFORE es obligatoria, el PPR es voluntario.
-                  La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR es
-                  estructuralmente más rentable cuando se aprovecha la deducción fiscal.
+                  La AFORE no te da deducción anual, el PPR sí. Para afluentes, el PPR puede ser
+                  estructuralmente más rentable cuando se aprovecha la deducción fiscal, sujeto al
+                  perfil fiscal individual.
                 </p>
               </div>
               <div>

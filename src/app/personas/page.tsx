@@ -44,13 +44,13 @@ const PERSONAS = [
     href: "/personas/mujeres",
     title: "Mujeres en construcción patrimonial",
     description:
-      "Asesoría diseñada por una mujer asesora: profesionistas con ISR alto, divorciadas con hijos, viudas con patrimonio heredado, empresarias. Optimización fiscal vía PPR Art. 151 LISR + estrategia de retiro propia.",
+      "Asesoría diseñada por una mujer asesora: profesionistas con ISR alto, divorciadas con hijos, viudas con patrimonio heredado, empresarias. Optimización fiscal vía PPR Art. 151 LISR vigente + estrategia de retiro propia (sujeto a los requisitos fiscales aplicables).",
   },
   {
     href: "/foreigners-in-mexico",
     title: "Foreigners living in Mexico (English)",
     description:
-      "Para extranjeros con residencia temporal o permanente en México. Asesoría bilingüe (español/inglés) sobre GMM con red premium nacional, seguros de vida con sucesión transfronteriza, planes de retiro Art. 93 LISR y planes educacionales en MXN o USD. Página de destino en inglés.",
+      "Para extranjeros con residencia temporal o permanente en México. Asesoría bilingüe (español/inglés) sobre GMM con red premium nacional, seguros de vida con sucesión transfronteriza, planes de retiro Art. 93 LISR vigente (régimen fiscal aplicable al pago) y planes educacionales en MXN o USD. Página de destino en inglés.",
   },
 ];
 

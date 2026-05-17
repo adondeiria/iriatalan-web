@@ -30,7 +30,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Vivo en EUA. ¿Puedo seguir teniendo PPR en México?",
     answerText:
-      "Depende de tu situación fiscal. Si sigues tributando en México (residencia fiscal mexicana, ingresos de fuente mexicana, propiedades, empresa), el PPR sigue dándote deducción anual vía SAT. Si tu residencia fiscal cambió por completo a EUA, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",
+      "Depende de tu situación fiscal. Si sigues tributando en México (residencia fiscal mexicana, ingresos de fuente mexicana, propiedades, empresa), el PPR sigue dándote deducción anual vía SAT (sujeto al cumplimiento de los requisitos del Art. 151 fracc V / Art. 185 LISR vigentes). Si tu residencia fiscal cambió por completo a EUA, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",
   },
   {
     question: "¿Cómo funciona la asesoría si no estoy en México?",
@@ -50,7 +50,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Tengo patrimonio en México y herederos también en México. ¿Cómo planeo sucesión viviendo afuera?",
     answerText:
-      "Es uno de los casos más comunes que veo. La estructura: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso mexicano. Eso permite que tu patrimonio en México llegue a tus herederos sin atraparse en juicio sucesorio internacional ni en disputas de leyes cruzadas. Mucho más limpio que un testamento bi-jurisdiccional.",
+      "Es uno de los casos más comunes que veo. La estructura: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso mexicano. Puede permitir que el capital asegurado en México llegue al beneficiario designado sin pasar por juicio sucesorio mexicano, conforme al Art. 179 LCS vigente. El tratamiento fiscal y sucesorio en la jurisdicción de residencia del heredero se rige por la ley local de ese país — por eso coordinamos siempre con tu fiscalista internacional. En la práctica, suele ser una estructura más limpia que un testamento bi-jurisdiccional.",
   },
   {
     question: "¿Y si estoy en proceso de regresar a México?",
@@ -98,7 +98,7 @@ const PRODUCTOS = [
   {
     title: "PPR deducible — Art. 151 fracc V LISR",
     desc:
-      "Si todavía tributas en México (residencia fiscal mexicana, ingresos de fuente mexicana, empresa propia, propiedades), el PPR sigue dándote deducción anual hasta ~$213,973 MXN (2026). Es una de las herramientas fiscales más rentables que tu país de residencia probablemente no replica.",
+      "Si todavía tributas en México (residencia fiscal mexicana, ingresos de fuente mexicana, empresa propia, propiedades), el PPR sigue dándote deducción anual hasta el tope vigente (~$213,973 MXN en 2026, equivalente a 5 UMAs anuales; cifra vigente a 2026). Es una de las herramientas fiscales más rentables que tu país de residencia probablemente no replica.",
   },
   {
     title: "GMM con red premium nacional",
@@ -113,7 +113,7 @@ const PRODUCTOS = [
   {
     title: "Vida con beneficio fiscal — Art. 185 LISR",
     desc:
-      "Si tienes patrimonio o herederos en México, una póliza de vida con designación irrevocable hacia fideicomiso es la estructura más limpia para sucesión transfronteriza. Evita juicio sucesorio internacional y disputas entre jurisdicciones.",
+      "Si tienes patrimonio o herederos en México, una póliza de vida con designación irrevocable hacia fideicomiso suele ser una de las estructuras más limpias para sucesión transfronteriza conforme a la normativa mexicana vigente. Evita juicio sucesorio internacional y disputas entre jurisdicciones.",
   },
 ];
 

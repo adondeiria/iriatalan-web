@@ -42,7 +42,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿El dinero está blindado contra embargos y problemas legales?",
     answerText:
-      "Sí. Cuando estructuramos la póliza con designación irrevocable de beneficiario, el derecho que adquiere tu hij@ es un derecho propio que nace del contrato de seguro — no es herencia. Por eso no forma parte de la masa hereditaria, no pasa por juicio sucesorio, y queda inembargable frente a acreedores tuyos, incluso en concurso o quiebra (Art. 179 de la Ley sobre el Contrato de Seguro). Y si tu hij@ es descendiente directo, las cantidades que reciba están exentas de ISR (Art. 93 fracc. XXI de la LISR). En la práctica te mando el contrato de la fiduciaria para que veas exactamente cómo opera.",
+      "Sí. Cuando estructuramos la póliza con designación irrevocable de beneficiario, el derecho propio del beneficiario se constituye conforme al Art. 179 LCS vigente, lo que generalmente lo coloca fuera del alcance de acreedores del contratante. Las cantidades recibidas por descendientes directos pueden estar exentas de ISR conforme al Art. 93 fracc. XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales aplicables — consulta la aplicabilidad a tu caso particular con tu asesor fiscal. En la práctica te mando el contrato de la fiduciaria para que veas exactamente cómo opera.",
   },
   {
     question: "¿Qué pasa con el dinero si mi hij@ llegara a fallecer?",
@@ -384,13 +384,14 @@ export default async function HijosNeurodivergentesPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí. Cuando estructuramos la póliza con designación irrevocable de
                   beneficiario, el derecho que adquiere tu hij@ es un derecho propio que
-                  nace del contrato de seguro — no es herencia. Por eso no forma parte
-                  de la masa hereditaria, no pasa por juicio sucesorio, y queda
-                  inembargable frente a acreedores tuyos, incluso en concurso o quiebra
-                  (Art. 179 de la Ley sobre el Contrato de Seguro). Y si tu hij@ es
-                  descendiente directo, las cantidades que reciba están exentas de ISR
-                  (Art. 93 fracc. XXI de la LISR). En la práctica te mando el contrato
-                  de la fiduciaria para que veas exactamente cómo opera.
+                  se constituye conforme al Art. 179 LCS vigente, lo que generalmente
+                  lo coloca fuera del alcance de acreedores del contratante. Las
+                  cantidades recibidas por descendientes directos pueden estar exentas
+                  de ISR conforme al Art. 93 fracc. XXI LISR vigente, sujeto al
+                  cumplimiento de los requisitos fiscales aplicables — consulta la
+                  aplicabilidad a tu caso particular con tu asesor fiscal. En la
+                  práctica te mando el contrato de la fiduciaria para que veas
+                  exactamente cómo opera.
                 </p>
               </div>
               <div>

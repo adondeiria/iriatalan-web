@@ -277,7 +277,7 @@ export default function RootLayout({
           </div>
           <div className="border-t border-warm-brown/10">
             <p className="max-w-6xl mx-auto px-6 py-5 text-[11px] text-warm-brown/55 leading-relaxed">
-              Esta página tiene fines informativos; las condiciones específicas de cada producto se rigen por la póliza emitida por la aseguradora correspondiente. Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
+              La información de este sitio tiene fines informativos. Iria Talan, Cédula CNSF V388618, actúa como Agente de Seguros autorizado. Las condiciones finales se rigen por la póliza emitida por la aseguradora y la normativa fiscal vigente al momento de la contratación o pago. Consulta con tu asesor fiscal la aplicabilidad a tu caso particular. Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
             </p>
           </div>
         </footer>

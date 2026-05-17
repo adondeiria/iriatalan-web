@@ -26,7 +26,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Are retirement plans (PPR) worth it for someone who may leave Mexico?",
     answerText:
-      "Worth analyzing case by case. PPRs (Planes Personales de Retiro) are most powerful for someone tributing in Mexico — Mexican fiscal residency or income from Mexican sources — because the annual income-tax deduction requires filing a Mexican return. If you may leave in 5 to 10 years, we evaluate options: maintain the plan with continued contributions, freeze contributions, or convert to a payout-aligned structure. The plan itself does not become void if you leave — it is the deduction benefit that depends on your fiscal residency. Mexican retirement plans qualifying under Article 93 of the Income Tax Law offer attractive tax treatment on the payout side, available in MXN (inflation-adjusted), UDIS, or USD.",
+      "Worth analyzing case by case. PPRs (Planes Personales de Retiro) are most powerful for someone tributing in Mexico — Mexican fiscal residency or income from Mexican sources — because the annual income-tax deduction requires filing a Mexican return. If you may leave in 5 to 10 years, we evaluate options: maintain the plan with continued contributions, freeze contributions, or convert to a payout-aligned structure. The plan itself does not become void if you leave — it is the deduction benefit that depends on your fiscal residency. Mexican retirement plans qualifying under Article 93 of the Income Tax Law currently in force offer attractive tax treatment on the payout side, subject to compliance with applicable fiscal requirements at the time of payout, available in MXN (inflation-adjusted), UDIS, or USD.",
   },
   {
     question: "How does cross-border succession work with Mexican life insurance?",
@@ -200,8 +200,9 @@ export default async function ForeignersInMexicoPage() {
                   With irrevocable beneficiary designation, proceeds bypass Mexican
                   probate and reach your beneficiary directly. Especially valuable
                   when your assets are in Mexico but heirs live abroad, or vice
-                  versa. Income-tax exempt for direct-family beneficiaries under
-                  Mexican law.
+                  versa. Generally income-tax exempt for direct-family beneficiaries
+                  under Article 93 fracc. XXI LISR, subject to compliance with
+                  applicable fiscal requirements.
                 </p>
                 <Link
                   href="/patrimonial"
@@ -218,9 +219,10 @@ export default async function ForeignersInMexicoPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
                   Mexican retirement plans with attractive tax treatment on both
                   sides — annual deduction while you contribute, favorable payout
-                  treatment under Article 93 of the Income Tax Law. Available in
-                  MXN (inflation-adjusted), UDIS, or USD. Lifetime annuity or
-                  lump-sum payout — and inheritable.
+                  treatment under Article 93 LISR currently in force, subject to
+                  Mexican fiscal residency and compliance with applicable fiscal
+                  requirements. Available in MXN (inflation-adjusted), UDIS, or USD.
+                  Lifetime annuity or lump-sum payout — and inheritable.
                 </p>
                 <Link
                   href="/retiro"

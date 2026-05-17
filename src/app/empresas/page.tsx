@@ -17,7 +17,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿La prima de Persona Clave es deducible para la empresa?",
     answerText:
-      "Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos con tu contador para asegurar la deducibilidad.",
+      "Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos con tu contador para asegurar la deducibilidad. Marco legal: Art. 27 fracc XII LISR + Art. 51 RLISR vigentes.",
   },
   {
     question: "¿Cuánto debe ser la suma asegurada por persona clave?",
@@ -256,7 +256,8 @@ export default async function EmpresasPage() {
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Vida grupo / colectivo</h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Seguro de vida para todos tus empleados con suma asegurada en múltiplos de salario
-                  (12, 24, 36 meses). Beneficio laboral deducible para la empresa.
+                  (12, 24, 36 meses). Beneficio laboral generalmente deducible para la empresa,
+                  sujeto al cumplimiento de requisitos fiscales vigentes.
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
@@ -349,7 +350,8 @@ export default async function EmpresasPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es
                   beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos
-                  con tu contador para asegurar la deducibilidad.
+                  con tu contador para asegurar la deducibilidad. Marco legal: Art. 27 fracc XII
+                  LISR + Art. 51 RLISR vigentes.
                 </p>
               </div>
               <div>
@@ -435,7 +437,7 @@ export default async function EmpresasPage() {
                   PPR para dueños y socios
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
-                  Retiro propio del dueño con deducción Art. 151 fracc V LISR, independiente de la estrategia patrimonial de la empresa.
+                  Retiro propio del dueño con deducción Art. 151 fracc V LISR vigente, independiente de la estrategia patrimonial de la empresa.
                 </p>
               </Link>
             </div>

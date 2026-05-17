@@ -272,7 +272,8 @@ export default async function GmmPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Subir tu deducible reduce la prima sin afectar tu suma asegurada total.
                   Si tu liquidez de emergencia te lo permite, asumir un deducible más alto
-                  en eventos chicos puede bajar tu prima 15-25%.
+                  en eventos chicos puede bajar tu prima del orden de 15-25% según carrier, plan
+                  y perfil — cifra referencial, no garantizada.
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
@@ -293,7 +294,8 @@ export default async function GmmPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Si nunca te has atendido en hospitales top (ABC, Médica Sur, Ángeles), un
-                  plan con red media puede ahorrarte 30-40% sin afectar la atención que sí usas.
+                  plan con red media puede ahorrar del orden de 30-40% sin afectar la atención que
+                  sí usas, según carrier y perfil — cifra referencial.
                 </p>
               </div>
             </div>

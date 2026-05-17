@@ -156,7 +156,8 @@ export default async function PatrimonialPage() {
               <p>
                 Cada caso requiere coordinación con tu notario, abogado fiscalista,
                 contador y banca privada. Yo trabajo con las 6 aseguradoras AAA en México y
-                conozco las estructuras que sobreviven a auditoría, sucesión y disputa familiar.
+                conozco las estructuras que sobreviven a auditoría, sucesión y disputa familiar
+                cuando se estructuran correctamente con asesoría legal.
               </p>
             </div>
           </div>
@@ -228,8 +229,9 @@ export default async function PatrimonialPage() {
                   Optimización fiscal vía PPR + estímulos
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
-                  Aprovechamiento estructurado de art. 151 fracc V y art. 185 LISR.
-                  Combinable con Modalidad 40 IMSS para perfiles que cotizaron antes. Ver{" "}
+                  Aprovechamiento estructurado de art. 151 fracc V y art. 185 LISR vigentes
+                  (sujeto al cumplimiento de los requisitos fiscales aplicables). Combinable con
+                  Modalidad 40 IMSS para perfiles que cotizaron antes. Ver{" "}
                   <Link href="/retiro" className="underline">/retiro</Link>.
                 </p>
               </div>

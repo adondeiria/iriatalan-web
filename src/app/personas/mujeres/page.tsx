@@ -42,12 +42,12 @@ const FAQS: FAQItem[] = [
   {
     question: "Ya tengo mis deducciones personales topadas. ¿El PPR sí me ayuda a deducir más impuestos?",
     answerText:
-      "Sí, porque la deducción del PPR es independiente del tope global del Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026). Ese tope es propio del PPR — no se suma al de tus deducciones personales clásicas (honorarios médicos, intereses hipotecarios, colegiaturas, etc.). En la práctica: aunque ya hayas usado todo el tope de deducciones personales, puedes seguir bajando tu base gravable aportando al PPR.",
+      "Sí, porque la deducción del PPR es independiente del tope global del Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026 — cifra vigente a 2026; la UMA se actualiza anualmente por INPC). Conforme al Art. 151 LISR vigente, la mecánica de aplicación del PPR puede analizarse de forma separada al tope global de deducciones personales clásicas (honorarios médicos, intereses hipotecarios, colegiaturas, etc.); consulta la aplicabilidad a tu caso con tu asesor fiscal antes de aportar. En la práctica: aunque ya hayas usado todo el tope de deducciones personales, puedes seguir bajando tu base gravable aportando al PPR.",
   },
   {
     question: "Soy dueña o socia de una empresa. ¿Qué es un seguro de Hombre Clave / Mujer Clave y cuándo me conviene contratarlo?",
     answerText:
-      "Para empresas con socios o personas estratégicas insustituibles, estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave). La empresa figura como contratante y beneficiaria irrevocable; la persona clave es la asegurada. Cubre fallecimiento, incapacidad total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos actualizables por inflación. Marco fiscal: las primas son 100% deducibles de ISR para la empresa (Art. 27 fracc. XII LISR + Art. 51 del Reglamento). Cuando se activa el seguro o vence el plazo, la aseguradora paga a la empresa sin retención de ISR. Para qué sirve en la práctica: liquidez inmediata si falta una persona estratégica, compra de acciones del socio fallecido o inválido (continuidad accionaria), como bono de antigüedad para tus directivos al término del plazo, como fondo de retiro para los socios, o como capital programado para reinvertir en la empresa (compra de equipo, remodelación, expansión).",
+      "Para empresas con socios o personas estratégicas insustituibles, estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave). La empresa figura como contratante y beneficiaria irrevocable; la persona clave es la asegurada. Cubre fallecimiento, incapacidad total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos actualizables por inflación. Marco fiscal: las primas son generalmente deducibles de ISR para la empresa conforme al Art. 27 fracc. XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT (empresa contratante y beneficiaria, persona clave verificable, contabilización adecuada). El tratamiento fiscal del pago al vencimiento o siniestro se rige por la normativa vigente y debe coordinarse con tu contador antes de contratar. Para qué sirve en la práctica: liquidez inmediata si falta una persona estratégica, compra de acciones del socio fallecido o inválido (continuidad accionaria), como bono de antigüedad para tus directivos al término del plazo, como fondo de retiro para los socios, o como capital programado para reinvertir en la empresa (compra de equipo, remodelación, expansión).",
   },
 ];
 
@@ -187,7 +187,7 @@ export default async function MujeresPage() {
                   quieres optimizar fiscalmente y proteger lo construido.
                 </p>
                 <p className="mt-3 text-xs text-warm-brown/70 dark:text-cream-light/60 leading-relaxed">
-                  PPR deducible Art. 151 fracc V LISR — hasta 5 UMAs anuales (~$213,973 MXN en 2026).
+                  PPR deducible Art. 151 fracc V LISR vigente — hasta 5 UMAs anuales (~$213,973 MXN en 2026; la UMA se actualiza anualmente).
                 </p>
                 <p className="mt-4 text-sm font-medium text-ink dark:text-cream-light">
                   Productos: PPR · Vida · GMM premium · Modalidad 40 IMSS
@@ -379,11 +379,14 @@ export default async function MujeresPage() {
                   Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan
                   Personal de Retiro hasta el menor de: el 10% de tus ingresos
                   acumulables del ejercicio, o el equivalente a 5 UMAs anuales
-                  (≈ $213,973 MXN en 2026). Ese tope es propio del PPR — no se suma al
-                  de tus deducciones personales clásicas (honorarios médicos, intereses
-                  hipotecarios, colegiaturas, etc.). En la práctica: aunque ya hayas
-                  usado todo el tope de deducciones personales, puedes seguir bajando
-                  tu base gravable aportando al PPR.
+                  (≈ $213,973 MXN en 2026 — cifra vigente a 2026; la UMA se actualiza
+                  anualmente por INPC). Conforme al Art. 151 LISR vigente, la mecánica
+                  de aplicación del PPR puede analizarse de forma separada al tope
+                  global de deducciones personales clásicas (honorarios médicos,
+                  intereses hipotecarios, colegiaturas, etc.); consulta la aplicabilidad
+                  a tu caso con tu asesor fiscal antes de aportar. En la práctica:
+                  aunque ya hayas usado todo el tope de deducciones personales, puedes
+                  seguir bajando tu base gravable aportando al PPR.
                 </p>
               </div>
               <div>
@@ -399,10 +402,13 @@ export default async function MujeresPage() {
                   actualizables por inflación.
                 </p>
                 <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Marco fiscal: las primas son 100% deducibles de ISR para la empresa
-                  (Art. 27 fracc. XII LISR + Art. 51 del Reglamento). Cuando se activa
-                  el seguro o vence el plazo, la aseguradora paga a la empresa sin
-                  retención de ISR.
+                  Marco fiscal: las primas son generalmente deducibles de ISR para la
+                  empresa conforme al Art. 27 fracc. XII LISR + Art. 51 RLISR vigentes,
+                  sujeto al cumplimiento de los requisitos del SAT (empresa contratante
+                  y beneficiaria, persona clave verificable, contabilización adecuada).
+                  El tratamiento fiscal del pago al vencimiento o siniestro se rige por
+                  la normativa vigente y debe coordinarse con tu contador antes de
+                  contratar.
                 </p>
                 <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Para qué sirve en la práctica: liquidez inmediata si falta una

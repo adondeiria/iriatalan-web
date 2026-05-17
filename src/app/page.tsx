@@ -113,7 +113,7 @@ const INDUSTRIA_SILENCIOS = [
   },
   {
     title: "Retiro deducible de impuestos — el instrumento perfecto",
-    body: "Construye tu retiro con la ayuda de PPR (Plan Personal de Retiro): te devuelve hasta el 35% en tu declaración anual de impuestos (Art. 151 fracc V LISR, hasta el tope deducible — alrededor de $213,973 MXN en 2026). Cobra tu dinero a edad 65 años en pago único o en pensión vitalicia (y puede ser heredable), sin retención de impuestos.",
+    body: "Construye tu retiro con la ayuda de PPR (Plan Personal de Retiro): puede regresarte hasta el 35% en tu declaración anual, dependiendo de tu tasa marginal de ISR (Art. 151 fracc V LISR vigente, hasta el tope deducible — alrededor de $213,973 MXN en 2026, cifras vigentes a verificar al momento de contratar). A partir de los 65 años puedes recibir tu dinero en pago único o pensión vitalicia (y puede ser heredable), bajo el régimen fiscal aplicable a planes personales de retiro conforme a la normativa vigente.",
     image: "/img/silencios/silencio-03-ppr.png",
   },
   {
