@@ -7,8 +7,10 @@ import Link from "next/link";
 
 import {
   ComparisonTable,
+  CtaWhatsApp,
   DataCallout,
   DisclaimerBox,
+  ExternalToolLink,
   GlossaryReferenceLink,
   InlineImage,
   KeyTakeaways,
@@ -143,6 +145,8 @@ const components: PortableTextComponents = {
     disclaimer: ({ value }) => <DisclaimerBox value={value} />,
     dataCallout: ({ value }) => <DataCallout value={value} />,
     glossaryReference: ({ value }) => <GlossaryReferenceLink value={value} />,
+    ctaWhatsApp: ({ value }) => <CtaWhatsApp value={value} />,
+    externalToolLink: ({ value }) => <ExternalToolLink value={value} />,
   },
 };
 

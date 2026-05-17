@@ -393,6 +393,111 @@ export const article = defineType({
             },
           },
         }),
+        // ----- CUSTOM BLOCK: ctaWhatsApp -----
+        defineArrayMember({
+          name: "ctaWhatsApp",
+          title: "CTA WhatsApp",
+          type: "object",
+          description:
+            "Tarjeta de llamada-a-acción que abre WhatsApp con mensaje pre-llenado.",
+          fields: [
+            defineField({
+              name: "heading",
+              title: "Encabezado",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "text",
+              title: "Texto descriptivo",
+              type: "text",
+              rows: 3,
+            }),
+            defineField({
+              name: "buttonLabel",
+              title: "Texto del botón",
+              type: "string",
+              initialValue: "Escríbeme por WhatsApp",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "preFilledMessage",
+              title: "Mensaje pre-llenado",
+              type: "text",
+              rows: 2,
+              description:
+                "Lo que aparece pre-escrito en WhatsApp. El visitante lo puede editar antes de mandar.",
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: { heading: "heading", buttonLabel: "buttonLabel" },
+            prepare({ heading, buttonLabel }) {
+              return {
+                title: `💬 ${heading ?? "CTA WhatsApp"}`,
+                subtitle: buttonLabel,
+              };
+            },
+          },
+        }),
+        // ----- CUSTOM BLOCK: externalToolLink -----
+        defineArrayMember({
+          name: "externalToolLink",
+          title: "Link a herramienta externa",
+          type: "object",
+          description:
+            "Tarjeta que invita al lector a usar una herramienta oficial externa (simulador IMSS, calculadora SAT, etc.).",
+          fields: [
+            defineField({
+              name: "badge",
+              title: "Etiqueta superior",
+              type: "string",
+              description: 'Ej: "Herramienta oficial", "Simulador IMSS".',
+              initialValue: "Herramienta oficial",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "title",
+              title: "Título de la tarjeta",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "description",
+              title: "Descripción",
+              type: "text",
+              rows: 3,
+            }),
+            defineField({
+              name: "url",
+              title: "URL externa",
+              type: "url",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "buttonLabel",
+              title: "Texto del botón",
+              type: "string",
+              initialValue: "Abrir herramienta →",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "publisher",
+              title: "Editor / institución",
+              type: "string",
+              description: "IMSS, SAT, CONDUSEF, Banxico, INEGI...",
+            }),
+          ],
+          preview: {
+            select: { title: "title", publisher: "publisher" },
+            prepare({ title, publisher }) {
+              return {
+                title: `🔗 ${title ?? "Herramienta externa"}`,
+                subtitle: publisher ?? "Sin publisher",
+              };
+            },
+          },
+        }),
       ],
       validation: (Rule) =>
         Rule.custom((value, ctx) => {
