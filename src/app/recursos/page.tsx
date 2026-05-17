@@ -56,13 +56,12 @@ type WhatsAppChannel = {
 };
 
 const WHATSAPP_CHANNELS: WhatsAppChannel[] = [
-  { carrier: "BUPA",    ramo: "Médico",         url: "https://whatsapp.com/channel/0029VaGVom8GehELQJ7iCA2v" },
-  { carrier: "GNP",     ramo: "Médico + Autos", url: "https://whatsapp.com/channel/0029VaBhwM6Dp2Q4uSPaB92l" },
-  { carrier: "SMNYL",   ramo: "Médico",         url: "https://whatsapp.com/channel/0029VaGvIyNAYlUPmGEDFQ2p" },
-  { carrier: "AXA",     ramo: "Médico + Autos", url: "https://whatsapp.com/channel/0029VaBbyzT0LKZCIHeDxz1p" },
-  { carrier: "MetLife", ramo: "Vida + GMM",     url: "https://whatsapp.com/channel/0029VaCLFhMAe5Vps0msnG3D" },
-  { carrier: "Keralty", ramo: "Médico",         url: "https://whatsapp.com/channel/0029Vb7fJI27dmeRo6pleH3X" },
-  { carrier: "Allianz", ramo: "Autos",          url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
+  { carrier: "BUPA",                              ramo: "Médico",                  url: "https://whatsapp.com/channel/0029VaGVom8GehELQJ7iCA2v" },
+  { carrier: "GNP",                               ramo: "Médico + Seguros Autos",  url: "https://whatsapp.com/channel/0029VaBhwM6Dp2Q4uSPaB92l" },
+  { carrier: "Seguros Monterrey New York Life",   ramo: "Médico",                  url: "https://whatsapp.com/channel/0029VaGvIyNAYlUPmGEDFQ2p" },
+  { carrier: "AXA",                               ramo: "Médico + Seguros Autos",  url: "https://whatsapp.com/channel/0029VaBbyzT0LKZCIHeDxz1p" },
+  { carrier: "MetLife",                           ramo: "Vida + GMM",              url: "https://whatsapp.com/channel/0029VaCLFhMAe5Vps0msnG3D" },
+  { carrier: "Allianz",                           ramo: "Seguros Autos",           url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
 ];
 
 type ResourceFolderRamo = "gmm" | "autos";
@@ -76,10 +75,22 @@ type ResourceFolder = {
 
 const RAMO_LABELS: Record<ResourceFolderRamo, string> = {
   gmm: "Gastos Médicos Mayores",
-  autos: "Autos",
+  autos: "Seguros Autos",
 };
 
 const RAMO_ORDER: ResourceFolderRamo[] = ["gmm", "autos"];
+
+// Orden custom para mostrar aseguradoras en la página /recursos. Cualquier
+// carrier no listado aquí (ej. nuevo) cae al final del bloque.
+const CARRIER_ORDER: string[] = [
+  "GNP",
+  "Seguros Monterrey New York Life",
+  "BUPA",
+  "AXA",
+  "MetLife",
+  "Allianz",
+  "Red Enlace",
+];
 
 // Cada entrada apunta a un folder de OneDrive compartido como
 // "Cualquier persona con el vínculo · Puede ver". Si folderUrl es null,
@@ -101,8 +112,8 @@ const RESOURCE_FOLDERS: ResourceFolder[] = [
   { carrier: "MetLife",    ramo: "gmm",   linea: "Planes Nacionales",       folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFqwEAAAAAAbVrwl-oOjWZDZJt-8TBKgo?e=8WpDx2" },
   // GMM · Red Enlace
   { carrier: "Red Enlace", ramo: "gmm",   linea: "Contrato y siniestros",   folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCii_lE-gCcRrW-ey338tncAeyGCuYsUn1utAiirnhPEtQ?e=URHnwo" },
-  // GMM · SMNYL
-  { carrier: "SMNYL",      ramo: "gmm",   linea: "Alfa Medical",            folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFIgMAAAAAARJLL2TixXjBsXEAC9M-ig8?e=pJ8yhB" },
+  // GMM · Seguros Monterrey New York Life
+  { carrier: "Seguros Monterrey New York Life", ramo: "gmm",   linea: "Alfa Medical",            folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFIgMAAAAAARJLL2TixXjBsXEAC9M-ig8?e=pJ8yhB" },
   // Autos · Allianz
   { carrier: "Allianz",    ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCZtxbwUopBRZZFJDxL4K63AWTpy3XrxNR1eEP6gKhJwNs?e=4UFdj7" },
   // Autos · AXA
@@ -128,7 +139,7 @@ const CARRIER_WEB_LINKS: CarrierWebLink[] = [
   { carrier: "GNP",     label: "Médicos sin pago directo",         url: "https://www.gnp.com.mx/content/pp/mx/es/footer/touch-navigation/listado-de-medicos-sin-pago-directo.html" },
   { carrier: "Keralty", label: "Buscador de médicos y hospitales", url: "https://axakeralty.mx/ubicaciones" },
   { carrier: "MetLife", label: "Buscador de médicos y hospitales", url: "https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/" },
-  { carrier: "SMNYL",   label: "Buscador de médicos y hospitales", url: "https://www.mnyl.com.mx/" },
+  { carrier: "Seguros Monterrey New York Life", label: "Buscador de médicos y hospitales", url: "https://www.mnyl.com.mx/" },
 ];
 
 // Metadata dinámico: noindex si la biblioteca está vacía (evita soft-404
@@ -287,9 +298,15 @@ export default async function RecursosPage({
                 const carrierSet = new Set<string>();
                 WHATSAPP_CHANNELS.forEach((c) => carrierSet.add(c.carrier));
                 RESOURCE_FOLDERS.forEach((f) => carrierSet.add(f.carrier));
-                const allCarriers = Array.from(carrierSet).sort((a, b) =>
-                  a.localeCompare(b, "es")
-                );
+                CARRIER_WEB_LINKS.forEach((l) => carrierSet.add(l.carrier));
+                const allCarriers = Array.from(carrierSet).sort((a, b) => {
+                  const ai = CARRIER_ORDER.indexOf(a);
+                  const bi = CARRIER_ORDER.indexOf(b);
+                  if (ai === -1 && bi === -1) return a.localeCompare(b, "es");
+                  if (ai === -1) return 1;
+                  if (bi === -1) return -1;
+                  return ai - bi;
+                });
                 return allCarriers.map((carrier) => {
                   const whatsapp = WHATSAPP_CHANNELS.find(
                     (c) => c.carrier === carrier
