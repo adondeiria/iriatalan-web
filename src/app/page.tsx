@@ -22,10 +22,12 @@ import { sanityFetch } from "../../sanity/lib/fetch";
 import { HOME_PAGE_QUERY, SOBRE_IRIA_QUERY } from "../../sanity/lib/queries";
 import {
   AuthorData,
+  buildFAQPageSchema,
   buildFinancialAdvisorSchema,
   buildGraph,
   buildLocalBusinessSchema,
   buildPersonSchema,
+  type FAQItem,
 } from "@/lib/seo";
 
 type HomeData = {
@@ -165,6 +167,14 @@ const INSIGHTS = [
   },
 ];
 
+const FAQS: FAQItem[] = [
+  {
+    question: "¿Qué hace una asesora patrimonial certificada y en qué se diferencia de un agente de seguros?",
+    answerText:
+      "Un agente de seguros coloca un producto puntual a tu necesidad inmediata. Una asesora patrimonial diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, tengo formación en Wealth Management por Yale University y MBA Essentials por la London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA — sin cuota de ventas por ninguna. Eso me permite diseñar la solución alrededor de ti, no del producto del mes.",
+  },
+];
+
 export default async function HomePage() {
   const [data, author] = await Promise.all([
     sanityFetch<HomeData>({
@@ -186,9 +196,10 @@ export default async function HomePage() {
     ? buildGraph(
         buildPersonSchema(author),
         buildFinancialAdvisorSchema(author),
-        buildLocalBusinessSchema(author)
+        buildLocalBusinessSchema(author),
+        buildFAQPageSchema(FAQS)
       )
-    : buildGraph(buildLocalBusinessSchema());
+    : buildGraph(buildLocalBusinessSchema(), buildFAQPageSchema(FAQS));
 
   return (
     <>
@@ -571,6 +582,31 @@ export default async function HomePage() {
                 Ver todos los artículos
                 <ArrowRight className="size-3" strokeWidth={2} />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-cream-light border-t border-warm-brown/15 px-6 py-20 sm:py-28">
+          <div className="max-w-3xl mx-auto w-full">
+            <div className="text-center">
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
+                Preguntas frecuentes
+              </p>
+              <h2 className="mt-5 font-serif font-light text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.01em] text-ink">
+                Lo que más nos preguntan
+              </h2>
+            </div>
+            <div className="mt-14 space-y-10">
+              {FAQS.map((faq) => (
+                <div key={faq.question}>
+                  <h3 className="font-serif text-xl sm:text-2xl leading-snug text-ink">
+                    {faq.question}
+                  </h3>
+                  <p className="mt-4 text-warm-brown leading-relaxed">
+                    {faq.answerText}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

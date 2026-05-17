@@ -15,6 +15,11 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Qué seguros necesita una empresa para proteger a sus socios?",
+    answerText:
+      "Tres estructuras clave: (1) Seguro de Persona Clave sobre cada socio o dueño, con la empresa como contratante y beneficiaria irrevocable — generalmente deducible conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT; (2) Acuerdo de compraventa (buy-sell) financiado con vida cruzada entre socios — al fallecer uno, la indemnización compra sus acciones a los herederos, evitando que entre familia política a la operación; (3) Vida grupo + GMM colectivo para empleados clave. La combinación específica depende del tamaño, estructura accionaria y giro de la empresa.",
+  },
+  {
     question: "¿La prima de Persona Clave es deducible para la empresa?",
     answerText:
       "Sí, generalmente, si la estructura cumple los requisitos del SAT (la empresa es beneficiaria, el asegurado es persona clave verificable, etc.). Lo coordinamos con tu contador para asegurar la deducibilidad. Marco legal: Art. 27 fracc XII LISR + Art. 51 RLISR vigentes.",
@@ -343,6 +348,14 @@ export default async function EmpresasPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué seguros necesita una empresa para proteger a sus socios?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Tres estructuras clave: (1) Seguro de Persona Clave sobre cada socio o dueño, con la empresa como contratante y beneficiaria irrevocable — generalmente deducible conforme al Art. 27 fracc XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT; (2) Acuerdo de compraventa (buy-sell) financiado con vida cruzada entre socios — al fallecer uno, la indemnización compra sus acciones a los herederos, evitando que entre familia política a la operación; (3) Vida grupo + GMM colectivo para empleados clave. La combinación específica depende del tamaño, estructura accionaria y giro de la empresa.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿La prima de Persona Clave es deducible para la empresa?

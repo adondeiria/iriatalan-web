@@ -14,6 +14,11 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "How much does private health insurance (GMM) cost in Mexico compared to the US?",
+    answerText:
+      "Mexican private health insurance (GMM) typically runs at a fraction of US ACA marketplace plans for comparable coverage — even with top hospital networks (ABC, Médica Sur, Hospital Ángeles, Star Médica) and international riders. Premiums depend on age, deductible, coinsurance, network tier, and chosen sum insured. A healthy family of 4 with top-network coverage and international rider commonly falls well below typical US family plan premiums, though specific quotes require underwriting. The exact comparison depends on your age, declared health history, and chosen carrier — we run live quotes during the initial session with the 6 AAA-rated Mexican insurers I work with.",
+  },
+  {
     question: "Do I need Mexican residency to qualify for these products?",
     answerText:
       "Yes. Mexican financial products covered here require legal residency status — either Residente Temporal (RT) or Residente Permanente (RP). Tourist visas do not qualify because contracting requires a CURP (Mexican tax ID) and proof of address. If you are in the process of obtaining residency, we can plan ahead so you are ready to contract once your status is approved.",
@@ -303,6 +308,14 @@ export default async function ForeignersInMexicoPage() {
               Frequently asked questions
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  How much does private health insurance (GMM) cost in Mexico compared to the US?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Mexican private health insurance (GMM) typically runs at a fraction of US ACA marketplace plans for comparable coverage — even with top hospital networks (ABC, Médica Sur, Hospital Ángeles, Star Médica) and international riders. Premiums depend on age, deductible, coinsurance, network tier, and chosen sum insured. A healthy family of 4 with top-network coverage and international rider commonly falls well below typical US family plan premiums, though specific quotes require underwriting. The exact comparison depends on your age, declared health history, and chosen carrier — we run live quotes during the initial session with the 6 AAA-rated Mexican insurers I work with.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Do I need Mexican residency to qualify for these products?

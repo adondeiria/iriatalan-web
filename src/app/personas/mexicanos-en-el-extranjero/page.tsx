@@ -28,6 +28,11 @@ export const metadata: Metadata = {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Puedo contratar productos en USD para evitar el riesgo cambiario?",
+    answerText:
+      "Sí — varias de las 6 aseguradoras AAA con las que trabajo ofrecen PPR, vida, ahorro y GMM internacional en USD. Es útil para mexicanos que cobran en USD/EUR, mantienen patrimonio en moneda dura, o tienen herederos cuyos gastos están dolarizados. La elección entre MXN y USD depende de tu moneda funcional de gastos e ingresos, los planes futuros (regresar a México o no), y el horizonte de inversión. En una sesión inicial mapeamos qué porción de tu portafolio asegurador conviene en cada moneda para minimizar fricción cambiaria.",
+  },
+  {
     question: "Vivo en EUA. ¿Puedo seguir teniendo PPR en México?",
     answerText:
       "Depende de tu situación fiscal. Si sigues tributando en México (residencia fiscal mexicana, ingresos de fuente mexicana, propiedades, empresa), el PPR sigue dándote deducción anual vía SAT (sujeto al cumplimiento de los requisitos del Art. 151 fracc V / Art. 185 LISR vigentes). Si tu residencia fiscal cambió por completo a EUA, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",

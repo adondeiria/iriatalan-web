@@ -15,6 +15,11 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Cómo proteger financieramente a un hijo neurodivergente cuando los padres ya no estén?",
+    answerText:
+      "La estructura que recomiendo combina dos vehículos: (1) un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo; y (2) un seguro de retiro con pensión vitalicia adicional. Esto crea dos fuentes de ingreso garantizadas para cuando ya no estés, sin sucesiones lentas ni tutores no idóneos. El fideicomiso lo administra la fiduciaria de la aseguradora o un banco fiduciario, supervisado opcionalmente por un protector (familiar de confianza o asociación). La estructura se diseña con tu caso específico: edad de tu hijo, nivel de autonomía esperado, otros hijos involucrados.",
+  },
+  {
     question: "Mi hijo es muy pequeño aún. ¿No es prematuro pensar en esto?",
     answerText:
       "Es lo opuesto. Mientras más temprano estructures, menos cuesta y más tiempo tiene el patrimonio para crecer. Y los seguros de vida son más baratos cuanto más joven los contrates. Empezar a los 35 con un hijo de 5 es muy distinto a empezar a los 50 con uno de 20.",
@@ -319,6 +324,14 @@ export default async function HijosNeurodivergentesPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cómo proteger financieramente a un hijo neurodivergente cuando los padres ya no estén?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  La estructura que recomiendo combina dos vehículos: (1) un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo; y (2) un seguro de retiro con pensión vitalicia adicional. Esto crea dos fuentes de ingreso garantizadas para cuando ya no estés, sin sucesiones lentas ni tutores no idóneos. El fideicomiso lo administra la fiduciaria de la aseguradora o un banco fiduciario, supervisado opcionalmente por un protector (familiar de confianza o asociación). La estructura se diseña con tu caso específico: edad de tu hijo, nivel de autonomía esperado, otros hijos involucrados.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Mi hijo es muy pequeño aún. ¿No es prematuro pensar en esto?

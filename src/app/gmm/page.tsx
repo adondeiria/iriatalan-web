@@ -15,6 +15,11 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife, SMNYL o Allianz?",
+    answerText:
+      "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
+  },
+  {
     question: "Mi GMM subió 18% este año, ya no me alcanza.",
     answerText:
       "Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura sería el peor escenario.",
@@ -434,6 +439,14 @@ export default async function GmmPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife, SMNYL o Allianz?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Ninguna es &ldquo;mejor&rdquo; en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Mi GMM subió 18% este año, ya no me alcanza.

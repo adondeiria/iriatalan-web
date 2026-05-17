@@ -15,6 +15,16 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Qué seguro de vida conviene para proteger a mi familia?",
+    answerText:
+      "No hay una respuesta única — el seguro correcto depende de tu patrimonio actual, edad de tus dependientes, gastos fijos del hogar y moneda funcional de tus herederos. Como referencia general, una familia con patrimonio en construcción suele requerir un seguro vitalicio con suma asegurada de 5-10 veces tu ingreso anual + designación irrevocable hacia los beneficiarios. Si hay patrimonio significativo o herederos en distintas jurisdicciones, conviene estructurar designación irrevocable hacia un fideicomiso para evitar juicio sucesorio. Trabajamos con 6 aseguradoras AAA en México y diseñamos la combinación según tu caso particular.",
+  },
+  {
+    question: "¿Qué pasa si mis beneficiarios no están actualizados?",
+    answerText:
+      "La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.",
+  },
+  {
     question: "¿A partir de qué patrimonio aplica?",
     answerText:
       "No hay umbral fijo — depende de la complejidad, no del monto absoluto. Una empresa familiar de mediano tamaño con socios y herederos múltiples puede beneficiarse tanto como un patrimonio HNWI tradicional.",
@@ -294,6 +304,22 @@ export default async function PatrimonialPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué seguro de vida conviene para proteger a mi familia?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  No hay una respuesta única — el seguro correcto depende de tu patrimonio actual, edad de tus dependientes, gastos fijos del hogar y moneda funcional de tus herederos. Como referencia general, una familia con patrimonio en construcción suele requerir un seguro vitalicio con suma asegurada de 5-10 veces tu ingreso anual + designación irrevocable hacia los beneficiarios. Si hay patrimonio significativo o herederos en distintas jurisdicciones, conviene estructurar designación irrevocable hacia un fideicomiso para evitar juicio sucesorio. Trabajamos con 6 aseguradoras AAA en México y diseñamos la combinación según tu caso particular.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Qué pasa si mis beneficiarios no están actualizados?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿A partir de qué patrimonio aplica?

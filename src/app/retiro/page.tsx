@@ -15,6 +15,16 @@ import {
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Cuánto puedo deducir con un PPR en México en 2026?",
+    answerText:
+      "Conforme al Art. 151 fracc V LISR vigente, puedes deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026 — cifra vigente a 2026; la UMA se actualiza anualmente por INPC). El beneficio real que recibes vía SAT depende de tu tasa marginal de ISR: puede regresarte 30-35% si estás en el tope. La mecánica del PPR se analiza de forma separada al tope global de deducciones personales clásicas — consulta la aplicabilidad a tu caso con tu asesor fiscal antes de aportar.",
+  },
+  {
+    question: "¿Conviene Modalidad 40 si no tengo ahorrado para pagarla?",
+    answerText:
+      "Modalidad 40 IMSS puede multiplicar tu pensión 5-8 veces, pero requiere pagar la cuota equivalente al SBC topado durante 5 años. El error frecuente es empezarla sin un plan para sostenerla — la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejarla con un Seguro de Ahorro / Retiro o un fondo de inversión que financie esos 5 años. Antes de inscribirte, calculamos cuánto necesitarías ahorrar mes a mes para que la estrategia sea sostenible — depende de tu SBC objetivo, semanas cotizadas y horizonte de inicio.",
+  },
+  {
     question: "Estoy joven, falta mucho para mi retiro.",
     answerText:
       "El interés compuesto premia exponencialmente al que empieza joven. Aportar $50,000 anuales desde los 30 puede equivaler a aportar $200,000 anuales empezando a los 50 (ejemplo ilustrativo, depende de tasa de rendimiento y régimen vigente). La deducción del PPR puede regresarte 30-35% dependiendo de tu tasa marginal de ISR.",
@@ -358,6 +368,22 @@ export default async function RetiroPage() {
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Cuánto puedo deducir con un PPR en México en 2026?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Conforme al Art. 151 fracc V LISR vigente, puedes deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026 — cifra vigente a 2026; la UMA se actualiza anualmente por INPC). El beneficio real que recibes vía SAT depende de tu tasa marginal de ISR: puede regresarte 30-35% si estás en el tope. La mecánica del PPR se analiza de forma separada al tope global de deducciones personales clásicas — consulta la aplicabilidad a tu caso con tu asesor fiscal antes de aportar.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  ¿Conviene Modalidad 40 si no tengo ahorrado para pagarla?
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Modalidad 40 IMSS puede multiplicar tu pensión 5-8 veces, pero requiere pagar la cuota equivalente al SBC topado durante 5 años. El error frecuente es empezarla sin un plan para sostenerla — la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejarla con un Seguro de Ahorro / Retiro o un fondo de inversión que financie esos 5 años. Antes de inscribirte, calculamos cuánto necesitarías ahorrar mes a mes para que la estrategia sea sostenible — depende de tu SBC objetivo, semanas cotizadas y horizonte de inicio.
+                </p>
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Estoy joven, falta mucho para mi retiro.
