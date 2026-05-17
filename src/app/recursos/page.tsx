@@ -65,6 +65,72 @@ const WHATSAPP_CHANNELS: WhatsAppChannel[] = [
   { carrier: "Allianz", ramo: "Autos",          url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
 ];
 
+type ResourceFolderRamo = "gmm" | "autos";
+
+type ResourceFolder = {
+  carrier: string;
+  ramo: ResourceFolderRamo;
+  linea: string;
+  folderUrl: string | null;
+};
+
+const RAMO_LABELS: Record<ResourceFolderRamo, string> = {
+  gmm: "Gastos Médicos Mayores",
+  autos: "Autos",
+};
+
+const RAMO_ORDER: ResourceFolderRamo[] = ["gmm", "autos"];
+
+// Cada entrada apunta a un folder de OneDrive compartido como
+// "Cualquier persona con el vínculo · Puede ver". Si folderUrl es null,
+// la card se muestra como "Próximamente". Para agregar/actualizar:
+// generar link en OneDrive (Compartir → ⚙ → Cualquier persona → Puede
+// ver → Aplicar → Copiar) y pegar el URL aquí.
+const RESOURCE_FOLDERS: ResourceFolder[] = [
+  // GMM · AXA
+  { carrier: "AXA",        ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgDuzvDNJdNtS7aoz1f3bM37ATWhoRwcexii6NbnmZOihns?e=laZo1o" },
+  { carrier: "AXA",        ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgAr9H8A8RElR7E0v6YH4tDuARFbGPEoZ5Ei4XsVgCBqb6s?e=MkhqeD" },
+  { carrier: "AXA",        ramo: "gmm",   linea: "Planmed Keralty",         folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFAQIAAAAAATQh3abCpqc7ZDmyV_HyFRI?e=yJPdM8" },
+  // GMM · BUPA
+  { carrier: "BUPA",       ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFzgEAAAAAAQPRu0tjwFpJdkMhyrcoIW0?e=OQmvK4" },
+  { carrier: "BUPA",       ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFzwEAAAAAAYFY8eOzCCTNjbElMhC_Kp4?e=t2V2AL" },
+  // GMM · GNP
+  { carrier: "GNP",        ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgArcdqbYL-hSYe79V5zO0u7AXF8nNF5YMFcVlnsquaUqcE?e=vjhX3n" },
+  { carrier: "GNP",        ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgDuNQ_prE8eRbFLBeTHUlVuAc_b3tRyJT-aD9SQG3pUuww?e=1I578h" },
+  // GMM · MetLife
+  { carrier: "MetLife",    ramo: "gmm",   linea: "Planes Nacionales",       folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFqwEAAAAAAbVrwl-oOjWZDZJt-8TBKgo?e=8WpDx2" },
+  // GMM · Red Enlace
+  { carrier: "Red Enlace", ramo: "gmm",   linea: "Contrato y siniestros",   folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCii_lE-gCcRrW-ey338tncAeyGCuYsUn1utAiirnhPEtQ?e=URHnwo" },
+  // GMM · SMNYL
+  { carrier: "SMNYL",      ramo: "gmm",   linea: "Alfa Medical",            folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFIgMAAAAAARJLL2TixXjBsXEAC9M-ig8?e=pJ8yhB" },
+  // Autos · Allianz
+  { carrier: "Allianz",    ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCZtxbwUopBRZZFJDxL4K63AWTpy3XrxNR1eEP6gKhJwNs?e=4UFdj7" },
+  // Autos · AXA
+  { carrier: "AXA",        ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCyqHai2b7GRbxOQkLM69GvAY_HzsFMIV43V_qxuJgstk4?e=IepI6B" },
+  // Autos · GNP
+  { carrier: "GNP",        ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgA6_3y9j0dlR5wAhH6wFNV_AVLY4JOhNkqXtm7Umt-z26o?e=zltjbC" },
+];
+
+type CarrierWebLink = {
+  carrier: string;
+  label: string;
+  url: string;
+};
+
+// Enlaces a sitios web oficiales de las aseguradoras (buscadores de médicos
+// y hospitales, info sobre médicos sin convenio / sin pago directo).
+// Se renderizan dentro del bloque de cada carrier, después de los folders.
+const CARRIER_WEB_LINKS: CarrierWebLink[] = [
+  { carrier: "AXA",     label: "Buscador de médicos y hospitales", url: "https://axa.mx/servicios/buscador-de-servicios" },
+  { carrier: "AXA",     label: "Médicos sin convenio",             url: "https://axa.mx/documents/51602/1266886/MedicoSinConvenio.pdf" },
+  { carrier: "BUPA",    label: "Buscador de médicos y hospitales", url: "https://www.bupasalud.com.mx/red-de-salud" },
+  { carrier: "GNP",     label: "Buscador de médicos y hospitales", url: "https://www.gnp.com.mx/directorio-proveedores-medicos" },
+  { carrier: "GNP",     label: "Médicos sin pago directo",         url: "https://www.gnp.com.mx/content/pp/mx/es/footer/touch-navigation/listado-de-medicos-sin-pago-directo.html" },
+  { carrier: "Keralty", label: "Buscador de médicos y hospitales", url: "https://axakeralty.mx/ubicaciones" },
+  { carrier: "MetLife", label: "Buscador de médicos y hospitales", url: "https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/" },
+  { carrier: "SMNYL",   label: "Buscador de médicos y hospitales", url: "https://www.mnyl.com.mx/" },
+];
+
 // Metadata dinámico: noindex si la biblioteca está vacía (evita soft-404
 // en Google y desindexa automáticamente cuando no hay contenido publicado).
 // En cuanto se agrega ≥1 recurso público en Sanity, vuelve a indexable.
@@ -203,43 +269,176 @@ export default async function RecursosPage({
         <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-cream-light0">
-              Avisos directos
+              Recursos por aseguradora
             </p>
             <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink dark:text-cream-light">
-              Canales oficiales de WhatsApp por aseguradora
+              Folletos, condiciones generales y canal de avisos
             </h2>
             <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-              Cada aseguradora publica avisos importantes (siniestros, cambios
-              de red, vencimientos, alertas) en su canal oficial de WhatsApp.
-              Únete a los canales de los productos que tienes contigo.
+              Por cada aseguradora con la que trabajo: el canal de WhatsApp
+              donde publico avisos para mis clientes y los folders con la
+              documentación vigente (folletos, condiciones generales,
+              formatos). Los documentos se actualizan continuamente; el link
+              siempre lleva a la versión más reciente.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {WHATSAPP_CHANNELS.map((c) => (
-                <a
-                  key={c.carrier}
-                  href={c.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-                >
-                  <div>
-                    <div className="font-semibold text-ink dark:text-cream-light">
-                      {c.carrier}
+
+            <div className="mt-8 space-y-12">
+              {(() => {
+                const carrierSet = new Set<string>();
+                WHATSAPP_CHANNELS.forEach((c) => carrierSet.add(c.carrier));
+                RESOURCE_FOLDERS.forEach((f) => carrierSet.add(f.carrier));
+                const allCarriers = Array.from(carrierSet).sort((a, b) =>
+                  a.localeCompare(b, "es")
+                );
+                return allCarriers.map((carrier) => {
+                  const whatsapp = WHATSAPP_CHANNELS.find(
+                    (c) => c.carrier === carrier
+                  );
+                  const carrierFolders = RESOURCE_FOLDERS.filter(
+                    (f) => f.carrier === carrier
+                  );
+                  return (
+                    <div key={carrier}>
+                      <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
+                        {carrier}
+                      </h3>
+
+                      {whatsapp && (
+                        <a
+                          href={whatsapp.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group mt-4 flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                        >
+                          <div>
+                            <div className="text-xs uppercase tracking-wider text-cream-light0">
+                              Canal WhatsApp
+                            </div>
+                            <div className="mt-0.5 font-medium text-ink dark:text-cream-light">
+                              Avisos de {carrier} — {whatsapp.ramo}
+                            </div>
+                          </div>
+                          <span className="text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
+                            Únete →
+                          </span>
+                        </a>
+                      )}
+
+                      {RAMO_ORDER.map((ramo) => {
+                        const lineas = carrierFolders.filter(
+                          (f) => f.ramo === ramo
+                        );
+                        if (!lineas.length) return null;
+                        return (
+                          <div key={ramo} className="mt-6">
+                            <h4 className="text-sm font-semibold uppercase tracking-wider text-warm-brown dark:text-cream-light/80">
+                              {RAMO_LABELS[ramo]}
+                            </h4>
+                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                              {lineas.map((f) => {
+                                const isPending = !f.folderUrl;
+                                const card = (
+                                  <>
+                                    <div className="font-medium text-ink dark:text-cream-light leading-snug">
+                                      {f.linea}
+                                    </div>
+                                    <span
+                                      className={`mt-3 inline-block text-sm font-medium whitespace-nowrap ${
+                                        isPending
+                                          ? "text-cream-light0"
+                                          : "text-rif-rojo group-hover:underline"
+                                      }`}
+                                    >
+                                      {isPending
+                                        ? "Próximamente"
+                                        : "Ver documentos →"}
+                                    </span>
+                                  </>
+                                );
+                                const baseClass =
+                                  "block p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 transition";
+                                if (isPending) {
+                                  return (
+                                    <div
+                                      key={`${f.carrier}-${f.ramo}-${f.linea}`}
+                                      className={`${baseClass} opacity-60`}
+                                      aria-disabled="true"
+                                    >
+                                      {card}
+                                    </div>
+                                  );
+                                }
+                                return (
+                                  <a
+                                    key={`${f.carrier}-${f.ramo}-${f.linea}`}
+                                    href={f.folderUrl!}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group ${baseClass} hover:border-rif-rojo dark:hover:border-rif-rojo`}
+                                  >
+                                    {card}
+                                  </a>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      {(() => {
+                        const webLinks = CARRIER_WEB_LINKS.filter(
+                          (l) => l.carrier === carrier
+                        );
+                        if (!webLinks.length) return null;
+                        return (
+                          <div className="mt-6">
+                            <h4 className="text-sm font-semibold uppercase tracking-wider text-warm-brown dark:text-cream-light/80">
+                              Sitios oficiales {carrier}
+                            </h4>
+                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                              {webLinks.map((l) => (
+                                <a
+                                  key={`${l.carrier}-${l.label}`}
+                                  href={l.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="group block p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                                >
+                                  <div className="font-medium text-ink dark:text-cream-light leading-snug">
+                                    {l.label}
+                                  </div>
+                                  <span className="mt-3 inline-block text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
+                                    Ir al sitio →
+                                  </span>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {!whatsapp &&
+                        !carrierFolders.length &&
+                        !CARRIER_WEB_LINKS.some(
+                          (l) => l.carrier === carrier
+                        ) && (
+                          <p className="mt-3 text-sm text-cream-light0">
+                            Documentación próximamente.
+                          </p>
+                        )}
                     </div>
-                    <div className="text-xs text-cream-light0 mt-0.5">
-                      {c.ramo}
-                    </div>
-                  </div>
-                  <span className="text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
-                    Únete →
-                  </span>
-                </a>
-              ))}
+                  );
+                });
+              })()}
             </div>
-            <p className="mt-4 text-xs text-cream-light0">
-              Los canales son administrados directamente por cada aseguradora;
-              al unirte aceptas sus términos. No publicamos contenido en estos
-              canales — solo compartimos los enlaces oficiales.
+
+            <p className="mt-8 text-xs text-cream-light0 leading-relaxed">
+              Los canales de WhatsApp son administrados por mí (Iria Talan /
+              RIF) e incluyen información práctica para mis clientes — no son
+              canales oficiales de los carriers; para comunicaciones formales
+              contacta directo a la aseguradora. Los folders enlazan a mi
+              OneDrive con la versión vigente de los documentos; si algún
+              enlace no carga o necesitas un documento específico, escríbeme.
             </p>
           </div>
         </section>
