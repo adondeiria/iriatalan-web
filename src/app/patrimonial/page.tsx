@@ -47,7 +47,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿A partir de qué patrimonio aplica?",
     answerText:
-      "No hay umbral fijo — depende de la complejidad, no del monto absoluto. Una empresa familiar de mediano tamaño con socios y herederos múltiples puede beneficiarse tanto como un patrimonio HNWI tradicional.",
+      "No hay umbral fijo — depende de la complejidad, no del monto absoluto. Una empresa familiar de mediano tamaño con socios y herederos múltiples puede beneficiarse tanto como un patrimonio complejo tradicional.",
   },
   {
     question: "¿Trabajas con bancas privadas?",
@@ -73,16 +73,16 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Patrimonios complejos · Asesoría discreta para HNWI",
+  title: "Patrimonios complejos · Asesoría discreta para familias con patrimonio",
   description:
-    "Asesoría patrimonial discreta para patrimonios HNWI: fideicomisos, sucesión, inversiones complejas y estructuras internacionales. MDRT Top of the Table · Asesora autorizada CNSF.",
+    "Asesoría patrimonial discreta para patrimonios complejos: fideicomisos, sucesión, inversiones complejas y estructuras internacionales. MDRT Top of the Table · Asesora autorizada CNSF.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/patrimonial`,
     title: "Patrimonios complejos · Asesoría discreta — Iria Talan",
     description:
-      "Para patrimonios HNWI con necesidades de fideicomisos, sucesión, inversiones complejas y estructuras internacionales.",
+      "Para familias con patrimonio que requieren fideicomisos, sucesión, inversiones complejas y estructuras internacionales.",
   },
 };
 
@@ -90,7 +90,7 @@ function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
     "@id": `${SITE_URL}/patrimonial#audience`,
-    audienceType: "HNWI · High-Net-Worth Individuals México",
+    audienceType: "Familias con patrimonio · HNWI México",
     geographicArea: { "@type": "Country", name: "México" },
   };
 }
@@ -140,7 +140,7 @@ export default async function PatrimonialPage() {
             {" / "}Patrimonios complejos
           </p>
           <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
-            Asesoría patrimonial discreta para patrimonios HNWI.
+            Asesoría patrimonial discreta para patrimonios complejos.
           </h1>
           <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Cuando tu patrimonio cruza ciertos umbrales, los productos estándar
@@ -211,7 +211,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Vida HNWI</div>
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Vida Patrimonial</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Seguros de vida con suma asegurada amplia
                 </h3>
@@ -379,7 +379,7 @@ export default async function PatrimonialPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   No hay umbral fijo — depende de la complejidad, no del monto absoluto.
                   Una empresa familiar de mediano tamaño con socios y herederos múltiples
-                  puede beneficiarse tanto como un patrimonio HNWI tradicional.
+                  puede beneficiarse tanto como un patrimonio complejo tradicional.
                 </p>
               </div>
               <div>

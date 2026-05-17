@@ -48,7 +48,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   vida_pillar: "Pillar — Seguros de Vida",
   gmm_pillar: "Pillar — GMM",
   individuos: "Individuos",
-  hnwi: "HNWI",
+  hnwi: "Patrimonios complejos",
   empresas: "Empresas",
   casos: "Casos especiales",
 };
@@ -112,7 +112,7 @@ function buildServiceSchema(service: ServiceData) {
     url: `${SITE_URL}/${service.slug}`,
     provider: { "@id": `${SITE_URL}#financialservice` },
     category: CATEGORY_LABELS[service.category] ?? service.category,
-    audience: { "@type": "Audience", audienceType: "Familias afluentes y HNWI México" },
+    audience: { "@type": "Audience", audienceType: "Familias afluentes y patrimonios complejos · HNWI México" },
     areaServed: { "@type": "Country", name: "México" },
   };
 }

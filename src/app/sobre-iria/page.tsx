@@ -32,7 +32,7 @@ const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   alternateName: "Iria Talán",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios HNWI en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios complejos en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
   awards: [
     "Million Dollar Round Table (MDRT) — Miembro desde 2008",
     "MDRT Court of the Table (COT) 2023",

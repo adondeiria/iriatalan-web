@@ -196,7 +196,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿En qué se diferencia una asesora MDRT Top of the Table de una asesora regular?",
     answerText:
-      "MDRT (Million Dollar Round Table) es la asociación global del sector seguros que reconoce desempeño y estándares éticos. Top of the Table (TOT) es el nivel más alto — alrededor del 1% global de los asesores certificados MDRT alcanza este nivel cada año, generalmente por trabajar casos de mayor complejidad y volumen. En la práctica significa que el día a día son perfiles patrimoniales y casos transfronterizos, no colocación de seguros básicos. Para ti como cliente importa porque significa experiencia repetida con estructuras HNWI, fideicomisos, sucesiones multi-jurisdicción y planeación fiscal compleja.",
+      "MDRT (Million Dollar Round Table) es la asociación global del sector seguros que reconoce desempeño y estándares éticos. Top of the Table (TOT) es el nivel más alto — alrededor del 1% global de los asesores certificados MDRT alcanza este nivel cada año, generalmente por trabajar casos de mayor complejidad y volumen. En la práctica significa que el día a día son perfiles patrimoniales y casos transfronterizos, no colocación de seguros básicos. Para ti como cliente importa porque significa experiencia repetida con estructuras patrimoniales complejas, fideicomisos, sucesiones multi-jurisdicción y planeación fiscal compleja.",
   },
 ];
 

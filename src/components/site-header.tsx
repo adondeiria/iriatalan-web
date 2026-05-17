@@ -69,7 +69,7 @@ const HELP_CATEGORIES: MenuCategory[] = [
       { label: "Familias diversas", href: "/personas/familias-arcoiris" },
       { label: "Fideicomisos", href: "/patrimonial" },
       { label: "Protección Patrimonial", href: "/patrimonial" },
-      { label: "HNWI", href: "/patrimonial" },
+      { label: "Patrimonios complejos", href: "/patrimonial" },
     ],
   },
 ];

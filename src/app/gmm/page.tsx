@@ -57,7 +57,7 @@ const FAQS: FAQItem[] = [
   {
     question: "El IMSS / mi prestación me cubre.",
     answerText:
-      "Son una capa importante — pero rara vez son suficiente capa única. Tiempos de respuesta variables y portabilidad limitada al cambiar de empleo. Para familias afluentes y HNWI funcionan mejor como complemento.",
+      "Son una capa importante — pero rara vez son suficiente capa única. Tiempos de respuesta variables y portabilidad limitada al cambiar de empleo. Para familias afluentes y con patrimonio funcionan mejor como complemento.",
   },
   {
     question: "Tengo dudas con el deducible.",
@@ -77,7 +77,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Y la cobertura internacional?",
     answerText:
-      "Crítica para HNWI con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA y MetLife tienen las redes internacionales más amplias.",
+      "Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA y MetLife tienen las redes internacionales más amplias.",
   },
 ];
 
@@ -265,7 +265,7 @@ export default async function GmmPage() {
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                 <h3 className="font-semibold text-ink dark:text-cream-light">Cobertura internacional</h3>
                 <p className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                  EUA, Europa — crítica para HNWI. BUPA y MetLife tienen las redes más amplias.
+                  EUA, Europa — crítica para clientes que se atienden allá. BUPA y MetLife tienen las redes más amplias.
                 </p>
               </div>
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
@@ -365,7 +365,7 @@ export default async function GmmPage() {
                 El IMSS y las prestaciones laborales son una capa importante de protección — pero
                 rara vez son suficiente capa única. Tiempos de respuesta del sistema público son
                 variables, y los GMM laborales se quedan en la empresa al cambiar de empleo.
-                Para familias afluentes y HNWI funcionan mejor como complemento.
+                Para familias afluentes y con patrimonio funcionan mejor como complemento.
               </p>
             </div>
           </div>
@@ -377,7 +377,7 @@ export default async function GmmPage() {
               Cobertura internacional
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
-              GMM internacional para HNWI
+              GMM internacional para familias con patrimonio
             </h2>
             <div className="mt-6 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
@@ -539,7 +539,7 @@ export default async function GmmPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Son una capa importante — pero rara vez son suficiente capa única. Tiempos
                   de respuesta variables y portabilidad limitada al cambiar de empleo. Para
-                  familias afluentes y HNWI funcionan mejor como complemento.
+                  familias afluentes y con patrimonio funcionan mejor como complemento.
                 </p>
               </div>
               <div>
@@ -576,7 +576,7 @@ export default async function GmmPage() {
                   ¿Y la cobertura internacional?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Crítica para HNWI con tratamientos en EUA o Europa. No todos los planes la
+                  Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la
                   incluyen. BUPA y MetLife tienen las redes internacionales más amplias.
                 </p>
               </div>

@@ -95,7 +95,7 @@ function buildAudienceSchema() {
   return {
     "@type": "Audience" as const,
     "@id": `${SITE_URL}/personas/mujeres#audience`,
-    audienceType: "Mujeres afluentes y HNWI México",
+    audienceType: "Mujeres con patrimonio · HNWI México",
     geographicArea: { "@type": "Country", name: "México" },
   };
 }
