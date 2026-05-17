@@ -42,7 +42,6 @@ const HELP_CATEGORIES: MenuCategory[] = [
       { label: "PPR y Planes de retiro deducibles", href: "/retiro" },
       { label: "Planeación de Retiro", href: "/retiro" },
       { label: "Ahorro para Modalidad 40", href: "/retiro" },
-      { label: "Mexicanos en el Extranjero", href: "/personas/mexicanos-en-el-extranjero" },
     ],
   },
   {
@@ -249,7 +248,16 @@ export function SiteHeader({ siteName }: Props) {
                 (overHero ? "hover:text-cream-light" : "hover:text-ink")
               }
             >
-              Sobre mí
+              Sobre Iria
+            </Link>
+            <Link
+              href="/contacto"
+              className={
+                "transition-colors duration-300 " +
+                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+              }
+            >
+              Contacto
             </Link>
             <Link
               href="/foreigners-in-mexico"
@@ -449,7 +457,14 @@ export function SiteHeader({ siteName }: Props) {
                 onClick={() => setMobileOpen(false)}
                 className="block text-lg font-medium text-ink"
               >
-                Sobre mí
+                Sobre Iria
+              </Link>
+              <Link
+                href="/contacto"
+                onClick={() => setMobileOpen(false)}
+                className="block text-lg font-medium text-ink"
+              >
+                Contacto
               </Link>
               <Link
                 href="/foreigners-in-mexico"
