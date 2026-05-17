@@ -35,10 +35,11 @@ type HomeData = {
   heroCtaUrl?: string;
 } | null;
 
-const FALLBACK_HERO_TITLE = "Decisiones financieras que protegen lo que más importa.";
+const FALLBACK_HERO_TITLE =
+  "Estrategias de seguros, retiro y patrimonio para pagar mejor tu futuro, optimizar impuestos y proteger lo que ya construiste.";
 const FALLBACK_HERO_SUBTITLE =
-  "Te ayudamos a proteger tu patrimonio, retiro y familia con estrategias claras y personalizadas.";
-const FALLBACK_CTA_TEXT = "Agenda sesión inicial";
+  "Te acompaño a tomar decisiones inteligentes en seguros, ahorro y retiro — sin complicaciones, sin promesas irreales y pensando en tu mayor beneficio.";
+const FALLBACK_CTA_TEXT = "Agenda tu sesión inicial";
 const FALLBACK_CTA_URL = "/contacto#agendar";
 
 const CREDENCIALES = [
