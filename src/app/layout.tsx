@@ -12,6 +12,7 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
+import { Analytics } from "@/components/analytics";
 import { CookieBanner } from "@/components/cookie-banner";
 import { SiteHeader } from "@/components/site-header";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Planeación patrimonial, seguros y retiro para personas, familias y empresas en México. Asesora MDRT Top of the Table · Cédula CNSF V388618 · Yale Wealth Management · 6 aseguradoras autorizadas.",
+    "Planeación patrimonial, seguros y retiro en México. Asesora MDRT Top of the Table · Cédula CNSF V388618 · Yale Wealth Management.",
   applicationName: SITE_NAME,
   authors: [{ name: "Iria Talan", url: `${SITE_URL}/sobre-iria` }],
   keywords: [
@@ -72,9 +73,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: `${SITE_NAME} — Planeación Patrimonial, Seguros y Retiro`,
+    description:
+      "Asesoría financiera independiente en México. MDRT Top of the Table · Cédula CNSF V388618.",
+    creator: "@iriatalan",
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      "es-MX": SITE_URL,
+      "en-US": `${SITE_URL}/foreigners-in-mexico`,
+    },
   },
   robots: {
     index: true,
@@ -213,14 +222,12 @@ export default function RootLayout({
               <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-5">Contáctame</p>
               <ul className="space-y-3 text-sm text-warm-brown">
                 <li>
-                  <a
+                  <Link
                     href="/contacto#agendar"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="hover:text-burgundy transition-colors duration-500"
                   >
                     Agenda sesión inicial
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -276,6 +283,7 @@ export default function RootLayout({
         </footer>
         <WhatsAppFloat />
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );

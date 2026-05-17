@@ -38,6 +38,9 @@ export function CookieBanner() {
   const handle = (value: "accepted" | "rejected") => {
     writeConsent(value);
     setVisible(false);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("rif-consent-change"));
+    }
   };
 
   return (

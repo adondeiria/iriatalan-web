@@ -52,19 +52,19 @@ const CREDENCIALES = [
 const SERVICIOS = [
   {
     icon: Shield,
-    title: "Protección Patrimonial",
+    title: "Protección Patrimonial y Fideicomisos",
     desc: "Estrategias para blindar lo que ya construiste.",
     href: "/patrimonial",
   },
   {
     icon: Heart,
-    title: "Seguros Personales",
+    title: "Seguros de Vida, Ahorro, y Gastos Médicos Mayores",
     desc: "Educacionales, ahorro, mujeres, retiro deducible, GMM, vida vitalicios y con fideicomiso.",
     href: "/gmm",
   },
   {
     icon: BarChart3,
-    title: "Retiro e Inversiones",
+    title: "Retiro: PPR, seguros de retiro y ahorro para garantizar Modalidad 40",
     desc: "PPR, Seguro de Ahorro para Modalidad 40 y fondos a edad 55-60.",
     href: "/retiro",
   },
@@ -233,8 +233,6 @@ export default async function HomePage() {
                 <div className="animate-fade-up stagger-3 mt-9">
                   <a
                     href={ctaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5"
                   >
                     {ctaText}
@@ -529,10 +527,10 @@ export default async function HomePage() {
           <div className="max-w-6xl mx-auto w-full">
             <div className="text-center max-w-3xl mx-auto">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
-                Insights destacados
+                Temas frecuentes
               </p>
               <h2 className="mt-5 font-serif font-light italic text-2xl sm:text-3xl leading-[1.3] text-ink/75">
-                Lectura recomendada
+                Explora un tema patrimonial
               </h2>
             </div>
             <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -599,8 +597,6 @@ export default async function HomePage() {
             </p>
             <a
               href={ctaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group mt-12 inline-flex items-center gap-3 rounded-full bg-cream-light text-burgundy px-9 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:shadow-[0_20px_48px_-12px_rgba(245,239,230,0.45)] transition-all duration-500 hover:-translate-y-0.5"
             >
               {ctaText}
