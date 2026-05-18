@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#B8956A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Medalla con ribbon">
+  <!-- Ribbons V detrás -->
+  <path d="M11 14 L8 28 L12 25 L16 28 L20 25 L24 28 L21 14" stroke-width="1.2" opacity="0.85"/>
+  <!-- Medalla círculo exterior -->
+  <circle cx="16" cy="11" r="7"/>
+  <!-- Medalla círculo interior (relief) -->
+  <circle cx="16" cy="11" r="4.2" stroke-width="1.1" opacity="0.7"/>
+  <!-- Estrella centro -->
+  <path d="M16 8 L17 10 L19 10.3 L17.5 11.7 L17.9 13.7 L16 12.7 L14.1 13.7 L14.5 11.7 L13 10.3 L15 10 Z" stroke-width="1" stroke-linejoin="miter"/>
+</svg>

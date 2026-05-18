@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#B8956A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Escudo — sin presión comercial">
+  <!-- Escudo exterior -->
+  <path d="M16 4 L26 7.5 V16 c0 6.5 -4.5 10.5 -10 12 -5.5 -1.5 -10 -5.5 -10 -12 V7.5 Z"/>
+  <!-- Escudo interior (relief) -->
+  <path d="M16 7.5 L23 10 V16 c0 4.5 -3 7.5 -7 9 -4 -1.5 -7 -4.5 -7 -9 V10 Z" stroke-width="1.1" opacity="0.7"/>
+  <!-- Check / línea zigzag dentro -->
+  <path d="M11.5 16 L14.5 19 L20.5 12.5" stroke-width="1.5"/>
+</svg>

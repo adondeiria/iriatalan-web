@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FCFAF6;
+  --background: #F3EFEC;
   --foreground: #14110F;
 }
 
@@ -32,8 +32,8 @@
   --color-rif-negro: #14110F;         /* aligned with ink */
 
   /* Cream + warm light — body backgrounds */
-  --color-cream: #FAF7F1;
-  --color-cream-light: #FCFAF6;
+  --color-cream: #ECE7E2;
+  --color-cream-light: #F3EFEC;
 
   /* Champagne / oro — premium accents, headlines secondarios */
   --color-champagne: #B8956A;

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" role="img" aria-label="MDRT — Top of the Table">
+  <g fill="#FCFAF6">
+    <text x="120" y="46" text-anchor="middle" font-family="Cormorant Garamond, Garamond, Georgia, serif" font-size="34" font-weight="500" letter-spacing="3">MDRT<tspan font-size="14" dy="-12">®</tspan></text>
+    <line x1="78" y1="56" x2="162" y2="56" stroke="#FCFAF6" stroke-width="0.6" opacity="0.45"/>
+    <text x="120" y="69" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="8" font-weight="500" letter-spacing="2.5" opacity="0.78">TOP OF THE TABLE</text>
+    <text x="120" y="81" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="7" font-weight="400" letter-spacing="1.8" opacity="0.6" font-style="italic">MILLION DOLLAR ROUND TABLE</text>
+  </g>
+</svg>

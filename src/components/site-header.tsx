@@ -150,12 +150,7 @@ export function SiteHeader({ siteName }: Props) {
   return (
     <>
       <header
-        className={
-          "sticky top-0 z-50 transition-colors duration-500 " +
-          (overHero
-            ? "bg-transparent border-b border-transparent"
-            : "bg-cream-light/85 backdrop-blur-md border-b border-warm-brown/15")
-        }
+        className="sticky top-0 z-50 bg-espresso/92 backdrop-blur-md border-b border-cream-light/10"
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
           <Link
@@ -182,14 +177,14 @@ export function SiteHeader({ siteName }: Props) {
           <nav
             className={
               "hidden md:flex items-center gap-9 text-[13px] tracking-wide transition-colors duration-500 " +
-              (overHero ? "text-cream-light/85" : "text-warm-brown")
+              (overHero ? "text-cream-light/85" : "text-cream-light/85")
             }
           >
             <Link
               href="/"
               className={
                 "transition-colors duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               Inicio
@@ -208,7 +203,7 @@ export function SiteHeader({ siteName }: Props) {
                 onClick={() => setMegaOpen((v) => !v)}
                 className={
                   "flex items-center gap-1.5 select-none transition-colors duration-300 " +
-                  (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                  (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
                 }
               >
                 Cómo te ayudo
@@ -227,7 +222,7 @@ export function SiteHeader({ siteName }: Props) {
               href="/blog"
               className={
                 "transition-colors duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               Blog
@@ -236,7 +231,7 @@ export function SiteHeader({ siteName }: Props) {
               href="/recursos"
               className={
                 "transition-colors duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               Recursos
@@ -245,7 +240,7 @@ export function SiteHeader({ siteName }: Props) {
               href="/sobre-iria"
               className={
                 "transition-colors duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               Sobre Iria
@@ -254,7 +249,7 @@ export function SiteHeader({ siteName }: Props) {
               href="/contacto"
               className={
                 "transition-colors duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               Contacto
@@ -265,7 +260,7 @@ export function SiteHeader({ siteName }: Props) {
               aria-label="Foreigners in Mexico — English"
               className={
                 "text-[11px] tracking-[0.18em] uppercase opacity-70 hover:opacity-100 transition-all duration-300 " +
-                (overHero ? "hover:text-cream-light" : "hover:text-ink")
+                (overHero ? "hover:text-cream-light" : "hover:text-cream-light")
               }
             >
               EN
@@ -276,12 +271,7 @@ export function SiteHeader({ siteName }: Props) {
           <div className="flex items-center gap-3">
             <Link
               href="/contacto"
-              className={
-                "hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium tracking-[0.18em] uppercase transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5 " +
-                (overHero
-                  ? "border border-cream-light/40 text-cream-light hover:bg-cream-light hover:text-burgundy hover:border-cream-light"
-                  : "bg-burgundy text-cream-light hover:bg-burgundy-deep shadow-[0_8px_24px_-8px_rgba(158,27,30,0.45)]")
-              }
+              className="hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-medium tracking-[0.18em] uppercase transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5 bg-burgundy text-cream-light hover:bg-burgundy-deep shadow-[0_8px_24px_-8px_rgba(158,27,30,0.65)]"
             >
               Agenda una sesión
               <ArrowRight className="size-3.5" strokeWidth={2} />
@@ -296,7 +286,7 @@ export function SiteHeader({ siteName }: Props) {
                 "md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-500 " +
                 (overHero
                   ? "text-cream-light hover:bg-cream-light/10"
-                  : "text-warm-brown hover:bg-warm-brown/10")
+                  : "text-cream-light hover:bg-cream-light/10")
               }
             >
               <Menu className="size-5" strokeWidth={1.5} />
@@ -309,7 +299,7 @@ export function SiteHeader({ siteName }: Props) {
           onMouseEnter={openMega}
           onMouseLeave={closeMega}
           className={
-            "absolute left-0 right-0 top-full hidden md:block bg-cream-light/95 backdrop-blur-xl border-b border-warm-brown/10 shadow-[0_24px_64px_-16px_rgba(20,17,15,0.18)] transition-all duration-300 origin-top " +
+            "absolute left-0 right-0 top-full hidden md:block bg-espresso/95 backdrop-blur-xl border-b border-cream-light/10 shadow-[0_24px_64px_-16px_rgba(20,17,15,0.55)] transition-all duration-300 origin-top " +
             (megaOpen
               ? "opacity-100 translate-y-0 pointer-events-auto"
               : "opacity-0 -translate-y-2 pointer-events-none")
@@ -328,11 +318,11 @@ export function SiteHeader({ siteName }: Props) {
                       <li key={item.label}>
                         {item.comingSoon ? (
                           <span
-                            className="block text-[13px] text-warm-brown/45 cursor-not-allowed leading-snug"
+                            className="block text-[13px] text-cream-light/40 cursor-not-allowed leading-snug"
                             {...(item.langEn ? { lang: "en" } : {})}
                           >
                             {item.label}
-                            <span className="ml-1.5 inline-block text-[9px] uppercase tracking-wider align-middle text-burgundy/55 border border-burgundy/25 rounded-full px-1.5 py-px">
+                            <span className="ml-1.5 inline-block text-[9px] uppercase tracking-wider align-middle text-burgundy/75 border border-burgundy/45 rounded-full px-1.5 py-px">
                               Próximamente
                             </span>
                           </span>
@@ -340,7 +330,7 @@ export function SiteHeader({ siteName }: Props) {
                           <Link
                             href={item.href ?? "/"}
                             onClick={() => setMegaOpen(false)}
-                            className="block text-[13px] text-warm-brown hover:text-ink transition-colors duration-300 leading-snug"
+                            className="block text-[13px] text-cream-light/80 hover:text-cream-light transition-colors duration-300 leading-snug"
                             {...(item.langEn ? { lang: "en" } : {})}
                           >
                             {item.label}
@@ -425,7 +415,7 @@ export function SiteHeader({ siteName }: Props) {
                         <Link
                           href={item.href ?? "/"}
                           onClick={() => setMobileOpen(false)}
-                          className="block text-base text-warm-brown hover:text-ink transition-colors duration-300 leading-snug"
+                          className="block text-base text-warm-brown hover:text-cream-light transition-colors duration-300 leading-snug"
                           {...(item.langEn ? { lang: "en" } : {})}
                         >
                           {item.label}

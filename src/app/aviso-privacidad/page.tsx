@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const LAST_UPDATED = "06 de abril de 2026";
-const ARCO_EMAIL = "admin@talan.com.mx";
+const ARCO_EMAIL = "soporte@talan.com.mx";
 const ARCO_OWNER = "Violeta Lindero";
 const RESPONSABLE_DOMICILIO =
   "Homero 203 -103, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";

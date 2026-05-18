@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" role="img" aria-label="LSE — The London School of Economics">
+  <g fill="#FCFAF6">
+    <text x="120" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="700" letter-spacing="4">LSE</text>
+    <line x1="80" y1="56" x2="160" y2="56" stroke="#FCFAF6" stroke-width="0.6" opacity="0.45"/>
+    <text x="120" y="68" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" opacity="0.78">THE LONDON SCHOOL</text>
+    <text x="120" y="79" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" opacity="0.78">OF ECONOMICS</text>
+  </g>
+</svg>
