@@ -233,7 +233,7 @@ export default async function HomePage() {
           {/* Foto background full-bleed */}
           <div className="absolute inset-0">
             <Image
-              src="/img/iria/IRIA_HERO_FINAL2.jpeg"
+              src="/img/iria/IRIA_HERO_FINAL3.PNG"
               alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
               fill
               sizes="100vw"
