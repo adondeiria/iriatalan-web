@@ -237,6 +237,7 @@ export default async function HomePage() {
               alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
               fill
               sizes="100vw"
+              quality={90}
               className="object-cover object-center"
               priority
             />
