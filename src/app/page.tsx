@@ -238,7 +238,7 @@ export default async function HomePage() {
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-center"
+              className="object-cover object-[70%_center] sm:object-[60%_center] lg:object-center"
               priority
             />
             {/* Gradient overlay — oscuro izq para legibilidad → transparente der */}
