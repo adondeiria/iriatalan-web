@@ -127,41 +127,21 @@ const EXPERIENCIA_RESPALDO = [
   { logo: "/img/logos/years.svg", alt: "+18 años asesorando personas, familias y empresas" },
 ];
 
-const INDUSTRIA_SILENCIOS = [
+const PROCESO_PASOS = [
   {
-    title: "Modalidad 40 — pensión dorada, si no abandonas el plan a la mitad",
-    body: "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión — pero casi nadie planea cómo va a pagar la mensualidad durante los 5 años que dura. Sin un esquema de ahorro que lo garantice (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60), la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
-    image: "/img/silencios/silencio-01-pension.png",
+    numero: "01",
+    titulo: "Diagnóstico",
+    descripcion: "Conversación inicial sin compromiso. Entiendo tu situación, prioridades y lo que te quita el sueño financieramente.",
   },
   {
-    title: "Universidades privadas más caras cada año, sin plan dedicado",
-    body: "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una internacional, mucho más. Y el costo educativo incrementa anualmente por encima de la inflación. La mayoría de papás ahorra “lo que pueda” — sin plan dedicado, sin un seguro que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, el dinero no alcanza.",
-    image: "/img/silencios/silencio-02-universidades.png",
+    numero: "02",
+    titulo: "Estrategia",
+    descripcion: "Diseño una estrategia patrimonial conectando protección, retiro, fiscal y sucesión — ajustada a tu realidad, no al producto del mes.",
   },
   {
-    title: "Retiro deducible de impuestos — el instrumento perfecto",
-    body: "Construye tu retiro con la ayuda de PPR (Plan Personal de Retiro): puede regresarte hasta el 35% en tu declaración anual, dependiendo de tu tasa marginal de ISR (Art. 151 fracc V LISR vigente, hasta el tope deducible — alrededor de $213,973 MXN en 2026, cifras vigentes a verificar al momento de contratar). A partir de los 65 años puedes recibir tu dinero en pago único o pensión vitalicia (y puede ser heredable), bajo el régimen fiscal aplicable a planes personales de retiro conforme a la normativa vigente.",
-    image: "/img/silencios/silencio-03-ppr.png",
-  },
-  {
-    title: "Beneficiarios desactualizados",
-    body: "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de los seguros de vida tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
-    image: "/img/silencios/silencio-04-beneficiarios.png",
-  },
-  {
-    title: "Empresas sin Persona Clave",
-    body: "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo, la operación se queda sin liquidez para resolver problemas inmediatos, no tienen estructura de ahorro para retiro, transición de mando o búsqueda de reemplazos. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria sobre el dueño, socios o cualquier persona insustituible. El ahorro al término del plazo también lo recibe la empresa, así cuando llega el momento, hay capital para sobrevivir el bache — no para liquidarse.",
-    image: "/img/silencios/silencio-05-empresas.png",
-  },
-  {
-    title: "Hijos neurodivergentes sin estructura financiera",
-    body: "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
-    image: "/img/silencios/silencio-06-neurodivergentes.png",
-  },
-  {
-    title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
-    body: "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedar atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
-    image: "/img/silencios/silencio-07-sucesion.png",
+    numero: "03",
+    titulo: "Acompañamiento",
+    descripcion: "Implementación y revisiones periódicas. Tu vida cambia, tu estrategia se ajusta. Sin presión comercial.",
   },
 ];
 
@@ -183,12 +163,6 @@ const INSIGHTS = [
     title: "Cómo proteger financieramente a un hijo neurodivergente",
     href: "/personas/hijos-neurodivergentes",
     image: "/img/nichos/hijos-neurodivergentes-hero.png",
-  },
-  {
-    category: "Patrimonial",
-    title: "Mexicanos en el extranjero: productos mexicanos que tu país no tiene",
-    href: "/personas/mexicanos-en-el-extranjero",
-    image: "/img/servicios/patrimonial-hero.png",
   },
 ];
 
@@ -560,74 +534,64 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* LO QUE NO TE EXPLICAN — horizontal scroll editorial */}
-        <section className="bg-cream border-y border-warm-brown/10 overflow-hidden">
-          <div className="px-6 py-20 sm:py-28">
-            <div className="max-w-3xl mx-auto text-center">
+        {/* CÓMO TRABAJAMOS JUNTAS — 3 pasos */}
+        <section className="bg-cream-light px-6 py-20 sm:py-28 border-t border-warm-brown/10">
+          <div className="max-w-6xl mx-auto w-full">
+            <div className="text-center max-w-3xl mx-auto">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
-                Diferenciación
+                Cómo trabajamos juntas
               </p>
               <h2 className="mt-6 font-serif font-light text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.01em] text-ink">
-                Lo que normalmente NO te explica la industria financiera
+                Un proceso claro, sin sorpresas.
               </h2>
-              <p className="mt-5 text-warm-brown/75 leading-relaxed italic">
-                No vendo seguros. Te ayudo a que tomes las decisiones correctas.
+              <p className="mt-5 text-warm-brown/75 leading-relaxed max-w-xl mx-auto">
+                Tres etapas para diseñar una estrategia patrimonial que se ajuste a tu vida — no al revés.
               </p>
             </div>
-          </div>
-
-          <div
-            className="scrollbar-hide flex gap-6 sm:gap-8 overflow-x-auto pb-12 px-6 sm:px-12 lg:px-[max(3rem,calc((100vw-72rem)/2+3rem))] snap-x snap-mandatory scroll-smooth"
-            style={{ scrollPaddingLeft: "1.5rem" }}
-          >
-            {INDUSTRIA_SILENCIOS.map((item, i) => (
-              <article
-                key={item.title}
-                className="group flex-shrink-0 w-[300px] sm:w-[340px] snap-start"
-              >
-                <div className="img-zoom relative aspect-[4/3] rounded-2xl overflow-hidden bg-warm-brown/10 shadow-[0_16px_40px_-16px_rgba(20,17,15,0.25)] transition-shadow duration-500 group-hover:shadow-[0_24px_56px_-16px_rgba(20,17,15,0.35)]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 300px, 340px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="mt-6">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-burgundy font-medium tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 font-serif text-xl leading-snug text-ink min-h-[3.5rem]">
-                    {item.title}
+            <div className="mt-16 grid gap-10 sm:gap-12 lg:grid-cols-3 lg:gap-16">
+              {PROCESO_PASOS.map(({ numero, titulo, descripcion }) => (
+                <div key={numero} className="relative">
+                  <span className="font-serif text-6xl sm:text-7xl font-light text-burgundy/20 leading-none tabular-nums">
+                    {numero}
+                  </span>
+                  <h3 className="mt-4 font-serif text-2xl sm:text-3xl leading-tight text-ink">
+                    {titulo}
                   </h3>
-                  <p className="mt-3 text-sm text-warm-brown/85 leading-relaxed">
-                    {item.body}
+                  <p className="mt-4 text-base text-warm-brown/80 leading-relaxed max-w-sm">
+                    {descripcion}
                   </p>
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="px-6 max-w-6xl mx-auto w-full">
-            <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 p-6 sm:p-8 rounded-2xl bg-cream-light border border-warm-brown/15">
-              <p className="text-ink/85 italic leading-relaxed max-w-xl">
-                ¿Reconoces alguno de estos en tu situación? Hagamos diagnóstico antes de que sea decisión.
-              </p>
+        {/* DIFERENCIACIÓN — banda compacta link a /blog/silencios */}
+        <section className="bg-cream border-y border-warm-brown/10 px-6 py-20 sm:py-24">
+          <div className="max-w-5xl mx-auto w-full">
+            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14">
+              <div>
+                <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
+                  Diferenciación
+                </p>
+                <h2 className="mt-5 font-serif font-light text-3xl sm:text-4xl lg:text-[2.5rem] leading-[1.1] tracking-[-0.01em] text-ink">
+                  Lo que normalmente NO te explica la industria financiera
+                </h2>
+                <p className="mt-5 text-warm-brown/80 leading-relaxed italic max-w-xl">
+                  No vendo seguros. Te ayudo a que tomes las decisiones correctas.
+                </p>
+              </div>
               <Link
-                href="/contacto"
-                className="group inline-flex items-center gap-2 rounded-full bg-burgundy text-cream-light px-7 py-4 text-[11px] font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5"
+                href="/blog/silencios"
+                className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 whitespace-nowrap hover:-translate-y-0.5 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] self-start lg:self-auto"
               >
-                Reserva tu sesión inicial · 30 min
+                Conoce los 7 temas
                 <ArrowRight
-                  className="size-4 transition-transform duration-500 group-hover:translate-x-1"
+                  className="size-4 transition-transform duration-500 group-hover:translate-x-1.5"
                   strokeWidth={2}
                 />
               </Link>
             </div>
-            <p className="mt-6 text-center text-xs text-warm-brown/55 italic">
-              Desliza horizontalmente para ver los 7 temas →
-            </p>
           </div>
         </section>
 
@@ -642,7 +606,7 @@ export default async function HomePage() {
                 Explora un tema patrimonial
               </h2>
             </div>
-            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {INSIGHTS.map((item) => (
                 <Link
                   key={item.href + item.title}
