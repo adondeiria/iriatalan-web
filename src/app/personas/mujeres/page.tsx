@@ -7,7 +7,6 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -70,9 +69,9 @@ const FAQS: FAQItem[] = [
       "Sí, porque la deducción del PPR es independiente del tope global del Art. 151 de la LISR. El SAT te permite deducir aportaciones a un Plan Personal de Retiro hasta el menor de: el 10% de tus ingresos acumulables del ejercicio, o el equivalente a 5 UMAs anuales (≈ $213,973 MXN en 2026 — cifra vigente a 2026; la UMA se actualiza anualmente por INPC). Conforme al Art. 151 LISR vigente, la mecánica de aplicación del PPR puede analizarse de forma separada al tope global de deducciones personales clásicas (honorarios médicos, intereses hipotecarios, colegiaturas, etc.); consulta la aplicabilidad a tu caso con tu asesor fiscal antes de aportar. En la práctica: aunque ya hayas usado todo el tope de deducciones personales, puedes seguir bajando tu base gravable aportando al PPR.",
   },
   {
-    question: "Soy dueña o socia de una empresa. ¿Qué es un seguro de Hombre Clave / Mujer Clave y cuándo me conviene contratarlo?",
+    question: "Soy dueña o socia de una empresa. ¿Cómo se coordina mi estructura personal con la empresarial?",
     answerText:
-      "Para empresas con socios o personas estratégicas insustituibles, estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave). La empresa figura como contratante y beneficiaria irrevocable; la persona clave es la asegurada. Cubre fallecimiento, incapacidad total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos actualizables por inflación. Marco fiscal: las primas son generalmente deducibles de ISR para la empresa conforme al Art. 27 fracc. XII LISR + Art. 51 RLISR vigentes, sujeto al cumplimiento de los requisitos del SAT (empresa contratante y beneficiaria, persona clave verificable, contabilización adecuada). El tratamiento fiscal del pago al vencimiento o siniestro se rige por la normativa vigente y debe coordinarse con tu contador antes de contratar. Para qué sirve en la práctica: liquidez inmediata si falta una persona estratégica, compra de acciones del socio fallecido o inválido (continuidad accionaria), como bono de antigüedad para tus directivos al término del plazo, como fondo de retiro para los socios, o como capital programado para reinvertir en la empresa (compra de equipo, remodelación, expansión).",
+      "El seguro de Persona Clave (Mujer Clave) protege a tu empresa cuando dependes de personas insustituibles — pero requiere coordinación específica con tu estructura personal de retiro y patrimonio. En la sesión inicial mapeamos cómo armar las dos pistas en paralelo: (1) tu estructura empresarial (Persona Clave, buy-sell, vida grupo, GMM colectivo), (2) tu pista personal (retiro deducible, patrimonio propio, sucesión). El detalle técnico del producto Persona Clave (deducibilidad ISR, requisitos SAT, configuración accionaria) lo abordo en la página dedicada a Empresas.",
   },
 ];
 
@@ -134,8 +133,7 @@ export default async function MujeresPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Asesoría para mujeres", path: "/personas/mujeres" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (
@@ -456,32 +454,26 @@ export default async function MujeresPage() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  Soy dueña o socia de una empresa. ¿Qué es un seguro de Hombre Clave / Mujer Clave y cuándo me conviene contratarlo?
+                  Soy dueña o socia de una empresa. ¿Cómo se coordina mi estructura personal con la empresarial?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Para empresas con socios o personas estratégicas insustituibles,
-                  estructuro un seguro de Persona Clave (Hombre Clave / Mujer Clave).
-                  La empresa figura como contratante y beneficiaria irrevocable; la
-                  persona clave es la asegurada. Cubre fallecimiento, incapacidad
-                  total, plazo de ahorro a 10, 15 o 20 años — en USD o pesos
-                  actualizables por inflación.
+                  El seguro de Persona Clave (Mujer Clave) protege a tu empresa
+                  cuando dependes de personas insustituibles — pero requiere
+                  coordinación específica con tu estructura personal de retiro y
+                  patrimonio. En la sesión inicial mapeamos cómo armar las dos pistas
+                  en paralelo: (1) tu estructura empresarial (Persona Clave, buy-sell,
+                  vida grupo, GMM colectivo), (2) tu pista personal (retiro deducible,
+                  patrimonio propio, sucesión).
                 </p>
                 <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Marco fiscal: las primas son generalmente deducibles de ISR para la
-                  empresa conforme al Art. 27 fracc. XII LISR + Art. 51 RLISR vigentes,
-                  sujeto al cumplimiento de los requisitos del SAT (empresa contratante
-                  y beneficiaria, persona clave verificable, contabilización adecuada).
-                  El tratamiento fiscal del pago al vencimiento o siniestro se rige por
-                  la normativa vigente y debe coordinarse con tu contador antes de
-                  contratar.
-                </p>
-                <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Para qué sirve en la práctica: liquidez inmediata si falta una
-                  persona estratégica, compra de acciones del socio fallecido o
-                  inválido (continuidad accionaria), como bono de antigüedad para tus
-                  directivos al término del plazo, como fondo de retiro para los
-                  socios, o como capital programado para reinvertir en la empresa
-                  (compra de equipo, remodelación, expansión).
+                  El detalle técnico del producto Persona Clave (deducibilidad ISR
+                  conforme Art. 27 fracc. XII LISR + Art. 51 RLISR, requisitos SAT,
+                  configuración accionaria, buy-sell entre socios) lo abordo en la
+                  página dedicada a{" "}
+                  <Link href="/empresas" className="text-burgundy hover:text-burgundy-deep underline underline-offset-2 transition-colors">
+                    Seguros para Empresas
+                  </Link>
+                  .
                 </p>
               </div>
             </div>

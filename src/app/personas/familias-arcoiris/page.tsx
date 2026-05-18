@@ -7,7 +7,6 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -69,11 +68,6 @@ const FAQS: FAQItem[] = [
     answerText:
       "Sí, la estructura sigue en pie. Cuando estructuramos con designación irrevocable de beneficiario, conforme al Art. 179 LCS vigente, el derecho del beneficiario irrevocable se constituye como derecho propio; la aplicabilidad a un caso de divorcio o embargo concreto debe consultarse con tu abogado. Lo que decidiste hoy queda con la mayor protección legal disponible bajo la LCS vigente. Y la designación irrevocable funciona igual sin importar el tipo de vínculo: cónyuge legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.",
   },
-  {
-    question: "¿Cuándo conviene actualizar a mis beneficiarios?",
-    answerText:
-      "Cualquier momento en que algo importante cambia en tu vida: un matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento de un beneficiario actual, o una mejora patrimonial significativa. Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando quieras — es un trámite simple con la aseguradora. Lo importante es que tu designación refleje a quién quieres proteger HOY, no a quién querías hace cinco años cuando firmaste la póliza.",
-  },
 ];
 
 
@@ -134,8 +128,7 @@ export default async function FamiliasArcoirisPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Familias arcoíris", path: "/personas/familias-arcoiris" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (
@@ -445,20 +438,6 @@ export default async function FamiliasArcoirisPage() {
                   protección legal disponible bajo la LCS vigente. Y la designación
                   irrevocable funciona igual sin importar el tipo de vínculo: cónyuge
                   legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Cuándo conviene actualizar a mis beneficiarios?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Cualquier momento en que algo importante cambia en tu vida: un
-                  matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento
-                  de un beneficiario actual, o una mejora patrimonial significativa.
-                  Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando
-                  quieras — es un trámite simple con la aseguradora. Lo importante es
-                  que tu designación refleje a quién quieres proteger HOY, no a quién
-                  querías hace cinco años cuando firmaste la póliza.
                 </p>
               </div>
             </div>

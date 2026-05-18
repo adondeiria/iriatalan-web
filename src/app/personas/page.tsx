@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import {
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -99,8 +98,7 @@ export default function PersonasHubPage() {
         name: p.title,
         description: p.description,
       })),
-    },
-    buildFAQPageSchema(FAQS)
+    }
   );
 
   return (

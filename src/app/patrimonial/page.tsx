@@ -7,7 +7,6 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -109,8 +108,7 @@ export default async function PatrimonialPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Patrimonios complejos", path: "/patrimonial" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (

@@ -7,7 +7,6 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -74,11 +73,6 @@ const FAQS: FAQItem[] = [
     answerText:
       "Solamente como beneficiarios contingentes y de hecho una de las razones por las que estructuramos así es justamente para que el cuidado de tu hij@ no recaiga económicamente en sus hermanos ni en otros familiares. La idea de generar una pensión vitalicia a través del fideicomiso es poder cubrir los gastos de su cuidado de por vida: terapias, vivienda asistida, cuidador, costo de seguro de gastos médicos. Tus otros hijos pueden estar cerca afectivamente, o supervisar — pero sin la presión de sostenerlo con sus propios ingresos ni sacrificar sus propios proyectos de vida.",
   },
-  {
-    question: "¿Cuándo conviene actualizar a mis beneficiarios?",
-    answerText:
-      "Cualquier momento en que algo importante cambia en tu vida: un matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento de un beneficiario actual, o una mejora patrimonial significativa. Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando quieras — es un trámite simple con la aseguradora. Lo importante es que tu designación refleje a quién quieres proteger HOY, no a quién querías hace cinco años cuando firmaste la póliza.",
-  },
 ];
 
 
@@ -139,8 +133,7 @@ export default async function HijosNeurodivergentesPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Hijos neurodivergentes", path: "/personas/hijos-neurodivergentes" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (
@@ -474,20 +467,6 @@ export default async function HijosNeurodivergentesPage() {
                   médicos. Tus otros hijos pueden estar cerca afectivamente, o
                   supervisar — pero sin la presión de sostenerlo con sus propios
                   ingresos ni sacrificar sus propios proyectos de vida.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Cuándo conviene actualizar a mis beneficiarios?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Cualquier momento en que algo importante cambia en tu vida: un
-                  matrimonio, un divorcio, el nacimiento de un hij@, el fallecimiento
-                  de un beneficiario actual, o una mejora patrimonial significativa.
-                  Yo te recuerdo revisarlo cada año, pero tú puedes pedirlo cuando
-                  quieras — es un trámite simple con la aseguradora. Lo importante es
-                  que tu designación refleje a quién quieres proteger HOY, no a quién
-                  querías hace cinco años cuando firmaste la póliza.
                 </p>
               </div>
             </div>

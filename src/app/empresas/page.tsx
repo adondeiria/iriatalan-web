@@ -7,7 +7,6 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -106,8 +105,7 @@ export default async function EmpresasPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Seguros para empresas", path: "/empresas" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (

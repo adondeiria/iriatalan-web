@@ -6,7 +6,6 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -177,8 +176,7 @@ export default async function MexicanosEnElExtranjeroPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Mexicanos en el extranjero", path: "/personas/mexicanos-en-el-extranjero" },
-    ]),
-    buildFAQPageSchema(FAQS)
+    ])
   );
 
   return (
