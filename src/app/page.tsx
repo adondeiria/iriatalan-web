@@ -461,8 +461,8 @@ export default async function HomePage() {
             {/* IZQ — foto full-bleed sin marco */}
             <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:min-h-[640px]">
               <Image
-                src="/img/iria/notebook-C3-marble-closeup.png"
-                alt="Cuaderno Iria Talan / RIF Reingeniería Financiera sobre mármol con pluma — planeación patrimonial"
+                src="/img/iria/tarjeta-marble-pen.png"
+                alt="Tarjeta corporativa RIF 'Con todo mi amor' sobre mármol con pluma — mensaje a beneficiarios, sucesión patrimonial"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
