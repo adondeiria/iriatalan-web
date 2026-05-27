@@ -73,8 +73,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 ## 4. Pendientes globales
 
 **De Iria (desde el cel):**
-- 🟢 **Prospección (guión 10):** saludo ✅ · calificar GMM ✅ + ahorro/retiro/educacional ✅
-  + autos ✅ (Vida ⬜) · cierre ✅ (regresa con cotización + **alerta inmediata a Iria**).
+- ✅ **Prospección (guión 10): COMPLETA.** Saludo ✅ · calificar todos los ramos
+  (GMM, ahorro/retiro/educacional, vida, autos) ✅ · cierre ✅ (regresa con cotización
+  + **alerta inmediata a Iria**).
 - 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
   martes. ❓¿hay una con datos/contacto/foto?
 - 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).

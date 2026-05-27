@@ -60,8 +60,8 @@ Y **avisa a Iria de inmediato** (mismo patrón de respuesta rápida que GMM).
 Aplica el aviso de privacidad por datos de salud (microcopy en `06`).
 
 ### Vida
-- ⬜ **Pendiente:** confirmar si la calificación es igual a ahorro/retiro (nombre,
-  edad, salud) o si pregunta algo más.
+Igual que **Ahorro / Retiro / Educacional**: nombre, edad, y si tiene o ha tenido
+enfermedad, siniestro u hospitalización. Avisa de inmediato + aviso de privacidad.
 
 ### Autos (Eliseo)
 
