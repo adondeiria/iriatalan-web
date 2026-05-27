@@ -30,13 +30,14 @@ Etapas leídas de tus capturas (orden izq. → der.):
 - De ahí, tú o Viole lo toman y lo mueven a su "Contactado" → el resto del pipeline
   (Propuesta, Seguimiento, Emisión) es trabajo humano. María no toca esas etapas.
 
-## Multiagente (Iria + Viole)
+## Multiagente (equipo de 5)
 
-Como Viole también atiende, en Aurora se configuran **dos usuarios** (Iria y Viole).
-El conmutador puede:
-- Asignar el lead a Iria o a Viole (automático por regla, o manual).
-- Al asignarse, el lead se mueve a **"Iria Contactado"** o **"Viole Contactado"**
-  según quién lo tomó.
+En Aurora se configuran los usuarios del equipo (Iria, Violeta, Eliseo, Ángeles,
+Eunice — ver `08-equipo-y-ruteo.md`). El conmutador asigna por ramo/intención:
+- Prospección → Iria/Violeta; al tomarlo, el lead pasa a "Iria Contactado" o
+  "Viole Contactado".
+- GMM → Ángeles · Autos → Eliseo · Vida/cobranza → Violeta.
+- El dueño del trato en Pipedrive = quien lo atiende.
 
 ---
 
