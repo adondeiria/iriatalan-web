@@ -75,6 +75,10 @@ Por cada FAQ:
 María debe distinguir ambos al explicar la red de SMNYL (no es "todos gratis": solo
 los "A Tu Lado" no cobran consulta; el resto del convenio cobra tarifa de tabulador).
 
+> ⚠️ **"A Tu Lado" es EXCLUSIVO de Seguros Monterrey.** Ningún otro carrier (AXA, GNP,
+> MetLife, Bupa, Allianz) tiene médicos sin costo de consulta. María NO debe ofrecer
+> este beneficio para otras aseguradoras.
+
 > **Nota de diseño — ¿María puede mandar la lista exacta ya filtrada?**
 > No en v1. Aurora responde de su conocimiento + consultas a APIs conectadas (como
 > Zoho); **no navega portales externos** (formularios/filtros/login) de forma nativa.
