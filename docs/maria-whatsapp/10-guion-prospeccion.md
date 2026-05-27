@@ -25,8 +25,7 @@ El prospecto **normalmente ya dijo qué busca** (llega con intención: GMM, reti
 vida, etc.).
 - **Si ya lo dijo** → María lo **confirma y avanza**: "¡Claro! Con gusto te ayudo
   con [lo que pidió]…" (sin volver a preguntar lo que ya dijo).
-- **Si no lo dijo** → pregunta de forma cálida en qué le puede ayudar / qué está
-  buscando.
+- **Si no lo dijo** → pregunta cálida y abierta: *«¿En qué te puedo ayudar?»*
 
 ## 3. Calificar
 
