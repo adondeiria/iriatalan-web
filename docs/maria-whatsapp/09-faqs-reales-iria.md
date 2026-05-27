@@ -112,28 +112,36 @@ tabulador).
 
 ---
 
-## 4. Cliente pide formatos de GMM (reembolso / programación de cirugía)
+## 4. Postventa GMM automatizable: siniestros, reembolso, cirugía, maternidad
 
-**Hoy (manual):** Ángeles crea el ticket y manda la plantilla. Es **una sola
-plantilla** que sirve igual para **reembolso y programación de cirugía**.
+**Alcance:** toda esta familia de trámites GMM es automatizable con el **mismo patrón**,
+porque sus **plantillas/mails ya viven en Zoho Desk** y sus **formularios en Zoho Forms**:
+- Reembolso
+- Programación de cirugía
+- Siniestros (en general)
+- Maternidad
+
+**Hoy (manual):** Ángeles crea el ticket y manda la plantilla/formulario. (Para
+reembolso y cirugía es **una sola plantilla**.)
 
 **Objetivo (automatizado con María):**
-1. Detecta la solicitud: **reembolso** o **programación de cirugía** (siniestro GMM).
+1. Detecta el **tipo de trámite** (reembolso, cirugía, siniestro, maternidad).
 2. Identifica el **carrier** del cliente (lookup de Zoho).
 3. **Abre el ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**,
-   con: cliente, carrier, tipo de solicitud y póliza.
-4. **Zoho Desk envía la plantilla** (la misma para reembolso/cirugía, ya existe ✅).
+   con: cliente, carrier, tipo de trámite y póliza.
+4. **Zoho envía la plantilla / el Zoho Form** correspondiente (ya existen ✅).
 5. **Ángeles solo da seguimiento** (ya no lo arma a mano).
 6. Avisa al cliente que Ángeles le da seguimiento.
 
-**Límites (YMYL):** María SOLO dispara el ticket/plantilla. **No llena** el formato,
-**no promete** reembolso ni autorización de cirugía, **no opina** de cobertura. Eso
-lo ve Ángeles.
+**Límites (YMYL):** María SOLO dispara el ticket / la plantilla / el formulario.
+**No llena** el formato, **no promete** reembolso, autorización ni cobertura. Eso lo
+ve Ángeles.
 
 **Pendientes para automatizar:**
-- ✅ Plantilla de GMM siniestros ya existe en Zoho (única, sirve reembolso + cirugía).
-- ⬜ Integración **Aurora → Zoho Desk** (crear ticket + autoenviar plantilla) —
-  confirmar con vendedor (pregunta #5) + armar vía Zapier/API.
+- ✅ Plantillas/formularios ya existen en **Zoho Desk** (mails) y **Zoho Forms**
+  (formularios) para siniestros, reembolso, cirugía y maternidad.
+- ⬜ Integración **Aurora → Zoho Desk + Zoho Forms** (abrir ticket + autoenviar
+  plantilla/form) — confirmar con vendedor (pregunta #5) + armar vía Zapier/API.
 
 ---
 

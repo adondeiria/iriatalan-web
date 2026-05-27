@@ -23,8 +23,9 @@ definen el riesgo y el costo real.
 5. **CRM de leads (Pipedrive) + Zoho:** *"Mis leads viven en **Pipedrive**. ¿Cómo
    conecto Aurora con Pipedrive — nativo, vía **Zapier** o por API? Quiero que cada
    lead calificado en WhatsApp cree un lead/deal en Pipedrive en su etapa. Aparte,
-   ¿pueden mandar trámites/siniestros a **Zoho Desk** como ticket? ¿Tiempos y costo
-   de cada integración (incluida la suscripción a Zapier si aplica)?"*
+   ¿pueden abrir tickets en **Zoho Desk** y disparar plantillas/formularios de
+   **Zoho Desk + Zoho Forms** (siniestros, reembolso, cirugía, maternidad)? ¿Tiempos
+   y costo de cada integración (incluida la suscripción a Zapier si aplica)?"*
 6. **Lookup en vivo (postventa):** *"Cuando un cliente me escribe, ¿el agente de IA
    puede consultar EN VIVO mi CRM por su teléfono y traer su aseguradora y plan para
    responder con ese dato (function calling), o solo crea/actualiza registros vía

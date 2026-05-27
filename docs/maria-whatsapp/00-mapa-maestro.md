@@ -52,8 +52,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Postventa (cross-ramo)**
 - ✅ ¿Dónde descargo mi factura? (links: AXA, SMNYL, GNP, MetLife, Allianz · Bupa = la consigue Ángeles)
-- 🟡 Formatos GMM (reembolso / cirugía) → María abre ticket Zoho Desk a Ángeles y Zoho
-  manda la plantilla (plantillas ya están en Zoho ✅). Falta: integración Aurora→Zoho Desk.
+- 🟡 Postventa GMM (siniestros, reembolso, cirugía, maternidad) → María abre ticket
+  Zoho Desk + Zoho manda plantilla/Form, Ángeles da seguimiento. Assets ya en Zoho ✅.
+  Falta: integración Aurora→Zoho Desk + Zoho Forms.
 
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
@@ -84,7 +85,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
   martes. ❓¿hay una con datos/contacto/foto?
 - 🟡 FAQs reales en su voz (van 3: hospital, médicos de convenio, facturación) + flujo de formatos GMM.
-- ✅ Formatos GMM siniestros: ya existen como plantillas en Zoho (Zoho Desk las envía).
+- ✅ Postventa GMM (siniestros/reembolso/cirugía/maternidad): plantillas en Zoho Desk
+  + formularios en Zoho Forms (ya existen; solo falta conectarlas a Aurora).
 - ⬜ Info básica de **autos** (qué cubre, carriers, proceso) + ¿pipeline propio?
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.
 
