@@ -6,6 +6,12 @@ Este documento consolida **todas las preguntas frecuentes (FAQs) que ya están e
 
 > **Categoría YMYL (finanzas/seguros en México):** El contenido cita CNSF, AMASFAC, CONSAR, IMSS, SAT, LISR, RLISR y LCS según aparece en el sitio. Las cifras fiscales (UMA, topes deducibles) son las vigentes a 2026 indicadas en la web y se actualizan anualmente.
 
+> **⚠️ Nota de voz (importante):** este texto es **correcto y aprobado en contenido**,
+> pero su **fraseo NO es la voz canónica de Iria al 100%** (se redactó con asistencia
+> de IA para el sitio). Úsalo como **conocimiento/hechos** (RAG), no como fuente de
+> tono. El **tono** de María debe entrenarse con el voice corpus
+> (`sanity/seeds/voice-corpus/`) y los ejemplos reales de Iria.
+
 ---
 
 ## Inicio (Home) — Asesoría patrimonial general

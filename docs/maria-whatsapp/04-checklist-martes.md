@@ -20,6 +20,9 @@ definen el riesgo y el costo real.
 4. **Datos / seguros:** *"¿Tienen ficha de seguridad y manejo de datos? Trabajo con
    datos sensibles de clientes (salud, financieros) y debo cumplir aviso de
    privacidad."*
+5. **Zoho:** *"¿Su integración con Zoho CRM y Zoho Desk es nativa (de un clic) o vía
+   API/webhooks? Quiero que los leads de WhatsApp lleguen a mi Zoho CRM y los
+   trámites/siniestros abran ticket en Zoho Desk. ¿Cuánto tarda configurarlo?"*
 
 ---
 
