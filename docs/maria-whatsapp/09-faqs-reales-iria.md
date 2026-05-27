@@ -74,4 +74,27 @@ Por cada FAQ:
 
 ---
 
+## 3. ¿Dónde descargo / consulto mi factura o recibo?
+
+**Cómo la contesta Iria:**
+> Le doy el link de facturación de su aseguradora para que la descargue ahí.
+
+**Regla para María:**
+- Igual que la FAQ del hospital: identifica el **carrier del cliente** (lookup de Zoho)
+  y le da el **link de facturación correcto** de la tabla.
+- Si es prospecto o no hay dato, pregunta con qué aseguradora está.
+
+**Portales de facturación por aseguradora:**
+
+| Aseguradora | Portal de facturación |
+| --- | --- |
+| AXA | https://axa.mx/web/my-axa/consultar-facturacion |
+| Seguros Monterrey (SMNYL) | https://www.smnyl-clientes.com.mx/SMNYL.POR.PortalFacturacion.SitioWeb/Paginas/CapturaPolizaForm.aspx |
+| MetLife | ⬜ pendiente — Iria lo pasa |
+| GNP | ⬜ pendiente — Iria lo pasa |
+| Bupa | ⬜ pendiente — Iria lo pasa |
+| Allianz | ⬜ pendiente — Iria lo pasa |
+
+---
+
 <!-- Próximas FAQs van aquí, mismo formato. -->

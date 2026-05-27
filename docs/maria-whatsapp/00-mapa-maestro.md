@@ -50,6 +50,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 > Las del sitio (03) son contenido OK pero no voz de Iria. Las vamos pasando a su voz
 > en `09-faqs-reales-iria.md`.
 
+**Postventa (cross-ramo)**
+- 🟡 ¿Dónde descargo mi factura? (link por carrier — AXA, SMNYL ✅; MetLife, GNP, Bupa, Allianz ⬜)
+
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
 - ✅ ¿Médicos de convenio? (mismos portales, filtro de médicos)
