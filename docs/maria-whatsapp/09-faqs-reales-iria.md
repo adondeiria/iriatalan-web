@@ -115,23 +115,25 @@ tabulador).
 ## 4. Cliente pide formatos de GMM (reembolso / programación de cirugía)
 
 **Qué hace María (flujo automatizado):**
-1. Detecta la solicitud: **reembolso** o **programación de cirugía**.
+1. Detecta la solicitud: **reembolso** o **programación de cirugía** (siniestro GMM).
 2. Identifica el **carrier** del cliente (lookup de Zoho).
-3. **Envía el formato correcto** de ese carrier (archivo/link) en automático.
-4. **Abre un ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**
+3. **Abre un ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**
    (GMM), con: cliente, carrier, tipo de solicitud (reembolso/cirugía) y póliza.
-5. Avisa al cliente que Ángeles/su equipo le da seguimiento.
+4. **Zoho Desk envía la plantilla ya hecha** (con el formato) al cliente — **las
+   plantillas de GMM siniestros YA existen en Zoho** ✅.
+5. Avisa al cliente que Ángeles le da seguimiento.
 
-**Límites (YMYL):** María SOLO manda el formato y abre el ticket. **No llena** el
-formato, **no promete** reembolso ni autorización de cirugía, **no opina** de
-cobertura. Eso lo ve Ángeles.
+**Límites (YMYL):** María SOLO dispara el ticket/formato. **No llena** el formato,
+**no promete** reembolso ni autorización de cirugía, **no opina** de cobertura. Eso
+lo ve Ángeles.
 
 **Pendientes para que funcione:**
-- ⬜ Los **formatos por carrier** (reembolso y programación de cirugía) — Iria los pasa
-  (archivos o links).
-- ⬜ Integración **Aurora → Zoho Desk** (crear ticket) — confirmar con vendedor
-  (pregunta #5) + armar vía Zapier/API.
-- ⬜ Definir campos del ticket y asignación automática a **Ángeles**.
+- ✅ **Plantillas de GMM siniestros ya existen en Zoho.**
+- ⬜ Integración **Aurora → Zoho Desk** (crear ticket / disparar) — confirmar con
+  vendedor (pregunta #5) + armar vía Zapier/API.
+- ❓ **Confirmar mecanismo:** ¿la plantilla de Zoho Desk se manda **sola** al crear el
+  ticket, o la dispara Ángeles? ¿Hay una plantilla por tipo (reembolso / cirugía) o
+  una sola de "siniestros"?
 
 ---
 
