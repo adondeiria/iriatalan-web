@@ -5,7 +5,7 @@
 
 ---
 
-## Antes de empezar — 5 preguntas para el vendedor de Aurora
+## Antes de empezar — 6 preguntas para el vendedor de Aurora
 
 Mándalas por WhatsApp (su número: 81 1481 0953) o en la llamada. Las respuestas
 definen el riesgo y el costo real.
@@ -25,6 +25,10 @@ definen el riesgo y el costo real.
    lead calificado en WhatsApp cree un lead/deal en Pipedrive en su etapa. Aparte,
    ¿pueden mandar trámites/siniestros a **Zoho Desk** como ticket? ¿Tiempos y costo
    de cada integración (incluida la suscripción a Zapier si aplica)?"*
+6. **Lookup en vivo (postventa):** *"Cuando un cliente me escribe, ¿el agente de IA
+   puede consultar EN VIVO mi CRM por su teléfono y traer su aseguradora y plan para
+   responder con ese dato (function calling), o solo crea/actualiza registros vía
+   Zapier? Quiero que María ya sepa qué tiene contratado el cliente."*
 
 ---
 
