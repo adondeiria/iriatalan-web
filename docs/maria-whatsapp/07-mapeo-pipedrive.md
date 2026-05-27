@@ -1,0 +1,91 @@
+# Mapeo Aurora (María) → Pipedrive
+
+> Cómo cada lead que María califica por WhatsApp aterriza en tu Pipedrive.
+> Se implementa el martes vía Zapier (o API). **No contiene datos de clientes** —
+> solo estructura.
+
+---
+
+## Tu pipeline actual — "Financial and insurance"
+
+Etapas leídas de tus capturas (orden izq. → der.):
+
+1. Calificado / Cliente Nueva propuesta
+2. **Viole Contactado**  · (Viole = persona de tu equipo)
+3. **Iria Contactado**
+4. Propuesta Presentada
+5. Seguimiento
+6. Pospuesto
+7. Fase Cierre
+8. Solicitud / Proceso / Cambio Asesor
+9. Emisión Vida
+10. Emisión GMM
+
+> **+ Etapa nueva a crear el martes: `WhatsApp – Nuevo`** al inicio del pipeline.
+> Ahí caen TODOS los leads que María califica, para distinguir lo que viene del bot.
+
+## Dónde actúa María (y dónde no)
+
+- María **solo crea y deja** el lead en **`WhatsApp – Nuevo`**.
+- De ahí, tú o Viole lo toman y lo mueven a su "Contactado" → el resto del pipeline
+  (Propuesta, Seguimiento, Emisión) es trabajo humano. María no toca esas etapas.
+
+## Multiagente (Iria + Viole)
+
+Como Viole también atiende, en Aurora se configuran **dos usuarios** (Iria y Viole).
+El conmutador puede:
+- Asignar el lead a Iria o a Viole (automático por regla, o manual).
+- Al asignarse, el lead se mueve a **"Iria Contactado"** o **"Viole Contactado"**
+  según quién lo tomó.
+
+---
+
+## Mapeo de campos: lo que María captura → Pipedrive
+
+| Dato que recaba María | Campo en Pipedrive |
+| --- | --- |
+| Nombre | **Persona** → Nombre  ·  y dentro del título del Trato |
+| Teléfono (WhatsApp) | **Persona** → Teléfono |
+| Email (si lo da) | **Persona** → Email |
+| Empresa (si aplica) | **Organización** → Nombre |
+| Producto de interés | Prefijo del título del Trato (+ campo "Producto" opcional) |
+| Resumen + respuestas de calificación | **Nota** del Trato |
+| — | **Valor:** `0` / vacío (María no cotiza) |
+| — | **Etapa:** `WhatsApp – Nuevo` |
+| — | **Etiqueta / Fuente:** `WhatsApp – María` |
+| — | **Pipeline:** Financial and insurance |
+| — | **Dueño:** según ruteo (Iria o Viole) |
+
+### Convención de título del Trato
+
+`[PRODUCTO] – [NOMBRE CLIENTE]` — ej. `GMM – Juan Pérez`, `PPR – María López`.
+Productos válidos (de tu taxonomía): GMM · PPR · Retiro · Ahorro / Seguro de Ahorro ·
+Vida · SEGUBECAS · Dotal · Patrimonial · Persona Clave · Inversión.
+
+---
+
+## El Zap (a configurar el martes)
+
+1. **Disparador (Aurora):** lead calificado / etiquetado "listo para CRM" (por
+   embudo, etiqueta o webhook de Aurora).
+2. **Acción 1 (Pipedrive):** buscar o crear **Persona** (nombre, teléfono, email).
+3. **Acción 2 (Pipedrive):** crear **Trato** — título por convención, etapa
+   `WhatsApp – Nuevo`, valor 0, etiqueta `WhatsApp – María`, organización si aplica,
+   dueño según ruteo.
+4. **Acción 3 (Pipedrive):** agregar **Nota** al Trato con el resumen de la charla.
+
+> **Caso cliente existente:** si el teléfono ya existe como Persona/cliente, NO crear
+> trato de prospección — mejor crear una **Actividad/Nota** y avisar a Iria (es
+> postventa, no lead nuevo).
+
+---
+
+## Tareas Pipedrive para el martes
+
+- [ ] Crear la etapa **`WhatsApp – Nuevo`** al inicio del pipeline.
+- [ ] (Opcional) Crear campo personalizado **"Producto"** y/o **"Fuente"** para medir
+      cuántos leads trae María.
+- [ ] Dar de alta a **Viole** como usuario en Aurora (multiagente).
+- [ ] Configurar el Zap con el mapeo de arriba.
+- [ ] Probar: lead de prueba por WhatsApp → verificar que aparece en
+      `WhatsApp – Nuevo` con nota y etiqueta correctas.

@@ -71,11 +71,12 @@ María pasa a Iria (toma de control manual o asignación automática) cuando det
 - **Fuera de horario:** María atiende, resuelve FAQs, califica y agenda; deja tarea
   con contexto para que Iria dé seguimiento personal al siguiente día hábil.
 
-## Multiagente (a futuro)
+## Multiagente (Iria + Viole)
 
-Si algún día Iria suma a alguien al equipo, el mismo número soporta varios agentes
-con asignación automática/manual. Por ahora el "humano" detrás del conmutador es
-solo Iria.
+Tu equipo ya es **dos personas (Iria y Viole)**, así que el conmutador opera en
+multiagente desde el inicio: el mismo número, con asignación automática o manual a
+Iria o a Viole. Al asignarse un lead, se refleja en su etapa de Pipedrive
+("Iria Contactado" / "Viole Contactado"). Ver `07-mapeo-pipedrive.md`.
 
 ---
 
