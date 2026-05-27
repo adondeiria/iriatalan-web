@@ -68,16 +68,17 @@ Por cada FAQ:
 **Caso Seguros Monterrey (SMNYL) — 2 escenarios de médicos de convenio:**
 1. **Médicos de convenio (general):** sí **cobran** la consulta al cliente, pero a
    **tarifa especial** ajustada al **tabulador** de la aseguradora.
-2. **Médicos "A Tu Lado":** **NO cobran** la consulta al cliente. Son de **ciertas
+2. **Médicos a tu lado:** **NO cobran** la consulta al cliente. Son de **ciertas
    especialidades** (no todas). Directorio:
    https://www.mnyl.com.mx/seguros-individuales/medicos-a-tu-lado/medicos-a-tu-lado.aspx
 
 María debe distinguir ambos al explicar la red de SMNYL (no es "todos gratis": solo
-los "A Tu Lado" no cobran consulta; el resto del convenio cobra tarifa de tabulador).
+los de **Médicos a tu lado** no cobran consulta; el resto del convenio cobra tarifa de
+tabulador).
 
-> ⚠️ **"A Tu Lado" es EXCLUSIVO de Seguros Monterrey.** Ningún otro carrier (AXA, GNP,
-> MetLife, Bupa, Allianz) tiene médicos sin costo de consulta. María NO debe ofrecer
-> este beneficio para otras aseguradoras.
+> ⚠️ **"Médicos a tu lado" es EXCLUSIVO de Seguros Monterrey.** Ningún otro carrier
+> (AXA, GNP, MetLife, Bupa, Allianz) tiene médicos sin costo de consulta. María NO debe
+> ofrecer este beneficio para otras aseguradoras.
 
 > **Nota de diseño — ¿María puede mandar la lista exacta ya filtrada?**
 > No en v1. Aurora responde de su conocimiento + consultas a APIs conectadas (como
