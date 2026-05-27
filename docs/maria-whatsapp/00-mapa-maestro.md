@@ -91,8 +91,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.
 
 **Del martes (con compu / frente a Aurora):**
-- ⬜ 6 preguntas al vendedor (Cloud API · costo · número · datos · Pipedrive/Zoho · lookup en vivo).
-- ⬜ Automatizar **ticket Aurora→Zoho Desk** (formatos GMM → Ángeles).
+- 🟡 1er contacto vendedor: respondidas 1/3/4 ✅; **5 (integraciones) y 6 (lookup) NO
+  confirmadas** + costo Meta pendiente → **llamada técnica = go/no-go** (agenda en `04`).
+- ⬜ Automatizar **ticket Aurora→Zoho Desk + Zoho Forms** (postventa GMM → Ángeles).
 - ⬜ **Alerta/asignación inmediata a Iria** al entrar un lead calificado (respuesta rápida).
 - ⬜ Confirmar nombre exacto del campo aseguradora/plan en Zoho (o crearlo).
 - ⬜ Conectar WhatsApp (Cloud API), pegar persona, subir RAG, armar conmutador.
@@ -100,7 +101,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - ⬜ Definir asientos en Aurora (equipo de 5).
 
 **Decidido (cerrado):**
-- ✅ Herramienta: Aurora Inbox (condicionado a Cloud API + lookup en vivo).
+- ✅ **Cloud API** confirmado (sin riesgo de baneo) + **número dedicado** para María.
+- 🟡 Herramienta Aurora Inbox: provisional — **gate = llamada técnica** (integraciones + lookup + costo).
 - ✅ Prospección nueva → a Iria primero.
 - ✅ Autos → agregar FAQs (no solo rutear).
 - ✅ Valor del trato lo deja en 0 (María no cotiza).

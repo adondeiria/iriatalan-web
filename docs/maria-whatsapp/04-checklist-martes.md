@@ -33,6 +33,36 @@ definen el riesgo y el costo real.
 
 ---
 
+## Respuestas del vendedor (1er contacto)
+
+| # | Tema | Respuesta | Estado |
+| --- | --- | --- | --- |
+| 1 | Cloud API | Sí, oficial. Con Cloud API el número ya no se usa en la app móvil. | ✅ confirmado |
+| 2 | Costo Meta | No tienen la tabla; lo cotiza un humano. | 🟡 pendiente |
+| 3 | Número | Migrar el actual = pierdes la app. Recomiendan número dedicado. | ✅ → número dedicado |
+| 4 | Datos/seguridad | Tienen aviso (aurorainbox.com/privacy-policy-2/); acceso controlado a BD. | ✅ ok (revisar policy) |
+| 5 | Pipedrive + Zoho Desk + Zoho Forms | "Vía Zapier, pero la factibilidad exacta la valida el equipo técnico." | 🟡 **NO confirmado** |
+| 6 | Lookup en vivo (function calling) | "No confirmado aquí; lo revisa técnico." | 🟡 **NO confirmado** |
+
+> **Go/no-go:** los puntos 5 y 6 son los que hacen funcionar toda la arquitectura
+> (leads→Pipedrive, tickets→Zoho Desk/Forms, María "ya sabe" la póliza). **No
+> comprometer dinero ni número hasta validarlos en la llamada técnica.**
+
+## Agenda para la llamada técnica (los 3 que deciden)
+
+1. **Integraciones:** ¿Pipedrive (crear lead/deal), Zoho Desk (abrir ticket + disparar
+   plantilla), Zoho Forms (disparar formulario) son factibles? ¿Nativo, Zapier o API?
+   ¿Tiempo y costo de cada una? ¿Incluye suscripción a Zapier?
+2. **Lookup en vivo (function calling):** ¿el agente IA consulta mi CRM por teléfono a
+   mitad de conversación y usa aseguradora+plan en su respuesta, o solo crea/actualiza
+   registros?
+3. **Costo total real:** plan Aurora + Meta por conversación a mi volumen + Zapier +
+   usuarios extra (somos 5). Estimado mensual todo incluido.
+
+Extra: logística del número dedicado y tiempo de onboarding/verificación de Meta.
+
+---
+
 ## Decisión clave: ¿qué número usa María?
 
 - **Opción A — número nuevo dedicado** (recomendado para arrancar): conservas tu
