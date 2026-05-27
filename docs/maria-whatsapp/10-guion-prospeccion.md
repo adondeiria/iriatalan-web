@@ -51,16 +51,19 @@ María pregunta, en este orden:
 ### Vida / Retiro / Autos / otros ramos
 - ⬜ **Pendiente:** Iria dice qué pregunta para calificar cada uno.
 
-## 4. Cerrar — el lead lo ve Iria primero
+## 4. Cerrar — Iria revisa primero, respuesta rápida con cotización
 
 **Regla:** en prospección, **todos los leads los revisa Iria primero.** María NO los
 auto-rutea a Ángeles ni a Violeta; eso lo decide Iria después.
 
-- María agradece y deja claro que **Iria lo atiende personalmente**.
+- María cierra con: *«¡Perfecto! Te regreso en breve con la cotización.»* — promete
+  seguimiento rápido, **no cotiza ella**.
+- María **avisa a Iria de inmediato** para contactar al prospecto **enseguida**.
+  → requiere que Aurora **notifique/asigne a Iria al instante** (no solo crear el
+  registro callado). Es la prioridad de respuesta rápida.
 - Crea el lead en Pipedrive (paso 5) con el resumen/intake.
-- Iria revisa y decide: tomarlo ella, pasarlo a Violeta (contacto) o a Ángeles (GMM).
-- ❓ **A confirmar:** ¿María propone un horario / agenda la cita, o solo avisa que
-  Iria le contacta?
+- Iria revisa y el equipo contacta de inmediato (ella decide si lo toma o lo pasa a
+  Ángeles/Violeta).
 
 ## 5. Registrar en Pipedrive
 

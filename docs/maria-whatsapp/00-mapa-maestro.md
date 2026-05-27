@@ -73,8 +73,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 ## 4. Pendientes globales
 
 **De Iria (desde el cel):**
-- 🟡 **Prospección (guión 10):** saludo ✅ · calificar GMM ✅ (otros ramos ⬜) ·
-  cierre = lead a Iria primero ✅ (¿María agenda o solo avisa? ⬜).
+- 🟢 **Prospección (guión 10):** saludo ✅ · calificar GMM ✅ (otros ramos ⬜) ·
+  cierre ✅ (María regresa con cotización + **alerta inmediata a Iria**, equipo
+  contacta enseguida).
 - 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
   martes. ❓¿hay una con datos/contacto/foto?
 - 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).
@@ -83,6 +84,7 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Del martes (con compu / frente a Aurora):**
 - ⬜ 6 preguntas al vendedor (Cloud API · costo · número · datos · Pipedrive/Zoho · lookup en vivo).
+- ⬜ **Alerta/asignación inmediata a Iria** al entrar un lead calificado (respuesta rápida).
 - ⬜ Confirmar nombre exacto del campo aseguradora/plan en Zoho (o crearlo).
 - ⬜ Conectar WhatsApp (Cloud API), pegar persona, subir RAG, armar conmutador.
 - ⬜ Crear etapa `WhatsApp – Nuevo` en Pipedrive + Zap.
