@@ -23,6 +23,7 @@ Leyenda de estado: ✅ listo · 🟡 en proceso / falta voz de Iria · ⬜ pendi
 | 08 | equipo-y-ruteo | Directorio del equipo + matriz de ruteo |
 | 09 | faqs-reales-iria | FAQs en voz de Iria + reglas (voz canónica) |
 | 10 | guion-prospeccion | Guión de primer contacto con prospecto (voz cálida) |
+| 11 | aurora-vs-respondio | Comparación de herramienta (lookup en vivo, precio, setup) |
 
 ## 2. Árbol del conmutador
 
@@ -105,7 +106,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Decidido (cerrado):**
 - ✅ **Cloud API** confirmado (sin riesgo de baneo) + **número dedicado** para María.
-- 🟡 Herramienta Aurora Inbox: provisional — **gate = llamada técnica** (integraciones + lookup + costo).
+- 🟡 **Herramienta — DECISIÓN ABIERTA** (ver `11`): Aurora NO hace lookup en vivo.
+  respond.io SÍ pero **solo en Advanced ($279 USD/mo)** + setup técnico (API Zoho).
+  Pragmático: Aurora v1 + fallback (preguntar) y respond.io como upgrade. Iria decide.
 - ✅ Prospección nueva → a Iria primero.
 - ✅ Autos → agregar FAQs (no solo rutear).
 - ✅ Valor del trato lo deja en 0 (María no cotiza).
