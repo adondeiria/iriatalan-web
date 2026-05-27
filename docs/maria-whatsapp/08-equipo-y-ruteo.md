@@ -19,11 +19,11 @@
 
 | Intención / ramo | María rutea a | Notas |
 | --- | --- | --- |
-| **Prospección nueva** (cualquier ramo) | Iria (dueña) → Violeta apoya contacto | Cae en `WhatsApp – Nuevo`; ⚠️ confirmar si va directo a Violeta |
+| **Prospección nueva** (cualquier ramo) | Iria primero (dueña); ella decide pasarlo a Violeta | Cae en `WhatsApp – Nuevo` → "Iria Contactado" |
 | **GMM** — cotización / emisión / duda | Ángeles (Eunice asiste) | |
 | **GMM** — siniestro | Ángeles | Caso sensible: capturar y escalar de inmediato |
 | **Vida** — emisión / servicio | Violeta (jefa de Vida) · emisiones también Ángeles | |
-| **Autos** — cotización / emisión / postventa | Eliseo | ⚠️ No hay contenido de autos en el RAG: María solo rutea, no responde |
+| **Autos** — cotización / emisión / postventa | Eliseo | FAQs básicas de autos pendientes (Iria las pasa); mientras tanto, solo rutea |
 | **Cobranza / pagos** | Violeta | |
 | **Oficina / administrativo** | Violeta | |
 | **Asesoría / cierre / decisión financiera** | Iria | Lo que sea YMYL real |
@@ -38,12 +38,13 @@
 
 ---
 
-## ⚠️ Pendientes a decidir
+## Decisiones tomadas / pendientes
 
-1. **Autos sin contenido:** ¿María solo rutea autos a Eliseo, o le agregamos FAQs
-   básicas de autos al RAG? (Hoy no hay nada de autos en el sitio.)
-   ¿Autos vive en este mismo pipeline de Pipedrive o en otro?
-2. **Prospección:** ¿el lead nuevo lo asigna María a Iria o directo a Violeta?
-3. **Asientos en Aurora:** son 5 personas; los planes traen 3 usuarios. Decidir
-   quién necesita asiento propio (+$240 MXN/mes c/u). Posible: los asistentes
-   (Eunice) comparten o no tienen asiento.
+1. ✅ **Prospección:** el lead nuevo se asigna **a Iria primero**; ella decide
+   pasarlo a Violeta para contactar.
+2. 🟡 **Autos:** decidido **agregar FAQs de autos** al RAG. **Falta que Iria pase la
+   info básica** (qué cubre, carriers, proceso de cotización/emisión). Pregunta extra:
+   ¿autos vive en este mismo pipeline de Pipedrive o en otro?
+3. 🟡 **Asientos Aurora:** responderán los **5** (Iria, Violeta, Eliseo, Ángeles,
+   Eunice). El plan trae 3 usuarios → +2 (~$240 MXN/mes c/u). Confirmar definitivo
+   con el vendedor (Iria aún no segura del esquema final).
