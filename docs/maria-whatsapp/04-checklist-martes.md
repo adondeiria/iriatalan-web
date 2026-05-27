@@ -5,7 +5,7 @@
 
 ---
 
-## Antes de empezar — 4 preguntas para el vendedor de Aurora
+## Antes de empezar — 5 preguntas para el vendedor de Aurora
 
 Mándalas por WhatsApp (su número: 81 1481 0953) o en la llamada. Las respuestas
 definen el riesgo y el costo real.
@@ -20,9 +20,11 @@ definen el riesgo y el costo real.
 4. **Datos / seguros:** *"¿Tienen ficha de seguridad y manejo de datos? Trabajo con
    datos sensibles de clientes (salud, financieros) y debo cumplir aviso de
    privacidad."*
-5. **Zoho:** *"¿Su integración con Zoho CRM y Zoho Desk es nativa (de un clic) o vía
-   API/webhooks? Quiero que los leads de WhatsApp lleguen a mi Zoho CRM y los
-   trámites/siniestros abran ticket en Zoho Desk. ¿Cuánto tarda configurarlo?"*
+5. **CRM de leads (Pipedrive) + Zoho:** *"Mis leads viven en **Pipedrive**. ¿Cómo
+   conecto Aurora con Pipedrive — nativo, vía **Zapier** o por API? Quiero que cada
+   lead calificado en WhatsApp cree un lead/deal en Pipedrive en su etapa. Aparte,
+   ¿pueden mandar trámites/siniestros a **Zoho Desk** como ticket? ¿Tiempos y costo
+   de cada integración (incluida la suscripción a Zapier si aplica)?"*
 
 ---
 
@@ -53,7 +55,11 @@ definen el riesgo y el costo real.
 6. [ ] Configurar **escalado a ti** (handoff): palabras clave + casos sensibles +
        horario de oficina.
 7. [ ] Conectar **agenda** (para que María agende citas reales).
-8. [ ] (Opcional) Integrar **Zoho** — ya lo usas para el form de contacto del sitio.
+8. [ ] **Conectar Pipedrive** (tu CRM de leads) — vía Zapier o API: "lead calificado
+       en Aurora → crea lead/deal en Pipedrive". Es la pieza que mantiene tu pipeline
+       como fuente de verdad.
+9. [ ] (Opcional) **Zoho Desk** para tickets de trámite/siniestro, y revisar el
+       form de contacto del sitio (hoy ya va a Zoho).
 
 ---
 
