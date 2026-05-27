@@ -93,7 +93,7 @@ Por cada FAQ:
 | MetLife | https://www.metlife.com.mx/tramites-y-servicios/facturacion/ |
 | GNP | https://soycliente.gnp.com.mx/portalsoycliente/ |
 | Bupa | ⬜ pendiente — Iria lo pasa |
-| Allianz | ⬜ pendiente — Iria lo pasa |
+| Allianz | https://clientes.allianz.com.mx |
 
 ---
 

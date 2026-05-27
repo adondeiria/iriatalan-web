@@ -51,7 +51,7 @@ WhatsApp (1 número) ─ María (recepción + triage)
 > en `09-faqs-reales-iria.md`.
 
 **Postventa (cross-ramo)**
-- 🟡 ¿Dónde descargo mi factura? (link por carrier — AXA, SMNYL, GNP, MetLife ✅; Bupa, Allianz ⬜)
+- 🟡 ¿Dónde descargo mi factura? (link por carrier — AXA, SMNYL, GNP, MetLife, Allianz ✅; Bupa ❓agente)
 
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
