@@ -29,6 +29,21 @@ Por cada FAQ:
   red de hospitales depende de cada aseguradora y plan.
 - Nunca inventar coberturas de red.
 
+**Directorios médicos oficiales por aseguradora** (link que da María según el carrier):
+
+| Aseguradora | Directorio médico |
+| --- | --- |
+| AXA | https://axa.mx/servicios/buscador-de-servicios |
+| Seguros Monterrey (SMNYL) | https://www.mnyl.com.mx/medical-directory-search.aspx |
+| MetLife | https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/ |
+| GNP | https://www.gnp.com.mx/directorio-proveedores-medicos |
+| Bupa | https://www.bupasalud.com/red-de-salud |
+| Allianz | ⚠️ pendiente — Iria lo pasa |
+
+> Nota SMNYL: el link que pasó Iria traía parámetros de un plan específico
+> (`?plan=5&associatedplan=11`). Aquí se dejó el buscador base; si la red depende del
+> plan, María debe indicar al cliente filtrar por su plan en el portal.
+
 ---
 
 <!-- Próximas FAQs van aquí, mismo formato. -->
