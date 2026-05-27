@@ -81,6 +81,30 @@ Vida · SEGUBECAS · Dotal · Patrimonial · Persona Clave · Inversión.
 
 ---
 
+## Lookup de entrada (postventa) — que María "ya sepa quién es"
+
+Para clientes actuales, Aurora consulta el CRM **al entrar el mensaje** y le pasa a
+María el contexto, para que conteste sin preguntar (ej. hospital → portal del carrier
+correcto). Datos confirmados: **Zoho CRM tiene a los clientes con su teléfono**, y la
+**aseguradora + plan están como campo** en Zoho.
+
+**Flujo:**
+1. Entra mensaje de WhatsApp → Aurora busca el **teléfono** en **Zoho CRM** (módulo
+   Contacts, match por Mobile/Phone).
+2. **Si hay match** → trae Nombre + **Aseguradora** + **Plan** y los inyecta como
+   contexto de María. Saluda por su nombre y responde según su póliza.
+3. **Si NO hay match** → es prospecto nuevo → flujo de prospección (crea lead en
+   Pipedrive, ver arriba).
+
+**Requisitos / pendientes:**
+- [ ] Aurora debe poder hacer **lookup en vivo** del CRM (function calling) — es la
+      **pregunta #6 al vendedor** (no solo crear registros vía Zapier).
+- [ ] Confirmar el **nombre exacto del campo** de aseguradora/plan en Zoho (ej.
+      "Aseguradora", "Plan") — verlo en Zoho el martes.
+- [ ] **Verificar identidad** antes de dar datos de póliza (un número se reasigna).
+
+---
+
 ## Tareas Pipedrive para el martes
 
 - [ ] Crear la etapa **`WhatsApp – Nuevo`** al inicio del pipeline.
