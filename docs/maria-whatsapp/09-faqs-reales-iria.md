@@ -28,6 +28,9 @@ Por cada FAQ:
 - **Prospecto / sin dato:** preguntar qué aseguradora y plan tiene, o explicar que la
   red de hospitales depende de cada aseguradora y plan.
 - Nunca inventar coberturas de red.
+- **GMM se vende con 5 carriers: AXA, SMNYL, MetLife, GNP, Bupa.** Allianz **NO**
+  ofrece GMM con Iria (Allianz es para Vida/ahorro). Si preguntan GMM con Allianz,
+  María aclara que no maneja GMM con esa aseguradora.
 
 **Directorios médicos oficiales por aseguradora** (link que da María según el carrier):
 
@@ -38,8 +41,9 @@ Por cada FAQ:
 | MetLife | https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/ |
 | GNP | https://www.gnp.com.mx/directorio-proveedores-medicos |
 | Bupa | https://www.bupasalud.com/red-de-salud |
-| Allianz | ⚠️ pendiente — Iria lo pasa |
 
+> Lista completa para GMM (5 carriers). Allianz no aplica para GMM.
+>
 > Nota SMNYL: el link que pasó Iria traía parámetros de un plan específico
 > (`?plan=5&associatedplan=11`). Aquí se dejó el buscador base; si la red depende del
 > plan, María debe indicar al cliente filtrar por su plan en el portal.
