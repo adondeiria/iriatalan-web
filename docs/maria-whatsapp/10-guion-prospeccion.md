@@ -30,10 +30,26 @@ vida, etc.).
   con [lo que pidió]…" (sin volver a preguntar lo que ya dijo).
 - **Si no lo dijo** → pregunta cálida y abierta: *«¿En qué te puedo ayudar?»*
 
-## 3. Calificar
+## 3. Calificar (varía por ramo)
 
-- ⬜ **Pendiente:** Iria dice qué pregunta para calificar (¿para quién es?, ¿qué
-  busca lograr?, ¿ya tiene algo contratado?, etc.).
+### GMM  →  intake que luego usa Ángeles
+
+María pregunta, en este orden:
+1. ¿La póliza es **individual** (para ti) o **familiar**?
+2. **Nombres y fechas de nacimiento** de cada persona a asegurar.
+3. **Código postal.**
+4. ¿**Tiene o ha tenido siniestros**?
+5. ¿**Tiene actualmente seguro médico**?
+   - **Si tiene póliza** → pedírsela (que comparta su póliza actual).
+   - **Si tenía y ya no** → preguntar **hace cuánto** que ya no la tiene.
+
+> ⚠️ **Datos sensibles (salud + PII):** antes de pedirlos, María avisa que son para
+> preparar la atención y que aplica el aviso de privacidad (microcopy en `06`). No
+> insiste si la persona prefiere darlos en la llamada. Al terminar, **rutea a Ángeles**
+> con todo el intake.
+
+### Vida / Retiro / Autos / otros ramos
+- ⬜ **Pendiente:** Iria dice qué pregunta para calificar cada uno.
 
 ## 4. Agendar
 
