@@ -74,7 +74,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **De Iria (desde el cel):**
 - 🟡 **Prospección (guión 10):** saludo ✅ · calificar ⬜ · agendar ⬜.
-- ⬜ **Tarjeta de presentación** (archivo) para que María la mande en el saludo.
+- 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
+  martes. ❓¿hay una con datos/contacto/foto?
 - 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).
 - ⬜ Info básica de **autos** (qué cubre, carriers, proceso) + ¿pipeline propio?
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.

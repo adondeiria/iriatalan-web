@@ -15,9 +15,12 @@ sobrio al explicar temas YMYL.)
 
 > ¡Hola! ¿Cómo estás? ¡Mucho gusto y gracias por contactarme!
 
-- Junto con el saludo, **envía la tarjeta de presentación de Iria**.
-  - ⬜ **Pendiente:** Iria pasa el archivo de la tarjeta (imagen/PDF/vCard) para
-    cargarlo en Aurora y que María lo mande automáticamente en el primer mensaje.
+- Junto con el saludo, **envía la tarjeta de presentación de Iria** — imagen de marca
+  RIF (fondo rojo + logo dorado "Iria Talan · Reingeniería Financiera®").
+  - **Acción (martes):** subir esa imagen a Aurora como asset que María manda en el
+    primer mensaje. Vive en Aurora, no en el repo.
+  - ❓ **A confirmar:** ¿es ésta la tarjeta completa, o hay una con datos (nombre,
+    cédula CNSF, credenciales, contacto, foto)? Una con datos suele convertir mejor.
 
 ## 2. Confirmar qué busca
 
