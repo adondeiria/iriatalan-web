@@ -50,4 +50,28 @@ Por cada FAQ:
 
 ---
 
+## 2. ¿Qué médicos de convenio / doctores cubre mi seguro?
+
+**Cómo la contesta Iria:**
+> Están en las mismas ligas (los directorios por aseguradora de la FAQ 1), pero hay
+> que darle clic en otros parámetros — filtrar por médicos/especialidad, no por
+> hospital.
+
+**Regla para María:**
+- Usar la **misma tabla de directorios** de la FAQ #1 (link según el carrier del
+  cliente, que viene del lookup de Zoho).
+- Indicar al cliente que dentro del portal elija la opción de **médicos /
+  especialistas** (no "hospitales") y filtre por **plan, ciudad y especialidad**.
+- **v1:** María manda el **link + las instrucciones de filtro**. NO intenta navegar
+  el portal ni enviar una lista "scrapeada" (ver nota de diseño abajo).
+
+> **Nota de diseño — ¿María puede mandar la lista exacta ya filtrada?**
+> No en v1. Aurora responde de su conocimiento + consultas a APIs conectadas (como
+> Zoho); **no navega portales externos** (formularios/filtros/login) de forma nativa.
+> Además, una lista "scrapeada" puede quedar **desactualizada** → riesgo YMYL de dar
+> red incorrecta al cliente. El portal oficial es la fuente viva. **A futuro** solo
+> sería viable si un carrier ofrece **API oficial** de su directorio (function calling).
+
+---
+
 <!-- Próximas FAQs van aquí, mismo formato. -->
