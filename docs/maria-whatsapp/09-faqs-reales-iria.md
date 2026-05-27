@@ -114,26 +114,26 @@ tabulador).
 
 ## 4. Cliente pide formatos de GMM (reembolso / programación de cirugía)
 
-**Qué hace María (flujo automatizado):**
+**Hoy (manual):** Ángeles crea el ticket y manda la plantilla. Es **una sola
+plantilla** que sirve igual para **reembolso y programación de cirugía**.
+
+**Objetivo (automatizado con María):**
 1. Detecta la solicitud: **reembolso** o **programación de cirugía** (siniestro GMM).
 2. Identifica el **carrier** del cliente (lookup de Zoho).
-3. **Abre un ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**
-   (GMM), con: cliente, carrier, tipo de solicitud (reembolso/cirugía) y póliza.
-4. **Zoho Desk envía la plantilla ya hecha** (con el formato) al cliente — **las
-   plantillas de GMM siniestros YA existen en Zoho** ✅.
-5. Avisa al cliente que Ángeles le da seguimiento.
+3. **Abre el ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**,
+   con: cliente, carrier, tipo de solicitud y póliza.
+4. **Zoho Desk envía la plantilla** (la misma para reembolso/cirugía, ya existe ✅).
+5. **Ángeles solo da seguimiento** (ya no lo arma a mano).
+6. Avisa al cliente que Ángeles le da seguimiento.
 
-**Límites (YMYL):** María SOLO dispara el ticket/formato. **No llena** el formato,
+**Límites (YMYL):** María SOLO dispara el ticket/plantilla. **No llena** el formato,
 **no promete** reembolso ni autorización de cirugía, **no opina** de cobertura. Eso
 lo ve Ángeles.
 
-**Pendientes para que funcione:**
-- ✅ **Plantillas de GMM siniestros ya existen en Zoho.**
-- ⬜ Integración **Aurora → Zoho Desk** (crear ticket / disparar) — confirmar con
-  vendedor (pregunta #5) + armar vía Zapier/API.
-- ❓ **Confirmar mecanismo:** ¿la plantilla de Zoho Desk se manda **sola** al crear el
-  ticket, o la dispara Ángeles? ¿Hay una plantilla por tipo (reembolso / cirugía) o
-  una sola de "siniestros"?
+**Pendientes para automatizar:**
+- ✅ Plantilla de GMM siniestros ya existe en Zoho (única, sirve reembolso + cirugía).
+- ⬜ Integración **Aurora → Zoho Desk** (crear ticket + autoenviar plantilla) —
+  confirmar con vendedor (pregunta #5) + armar vía Zapier/API.
 
 ---
 
