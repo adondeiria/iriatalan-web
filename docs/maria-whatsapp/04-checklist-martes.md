@@ -42,7 +42,7 @@ definen el riesgo y el costo real.
 | 3 | Número | Migrar el actual = pierdes la app. Recomiendan número dedicado. | ✅ → número dedicado |
 | 4 | Datos/seguridad | Tienen aviso (aurorainbox.com/privacy-policy-2/); acceso controlado a BD. | ✅ ok (revisar policy) |
 | 5 | Pipedrive + Zoho Desk + Zoho Forms | "Vía Zapier, pero la factibilidad exacta la valida el equipo técnico." | 🟡 **NO confirmado** |
-| 6 | Lookup en vivo (function calling) | "No confirmado aquí; lo revisa técnico." | 🟡 **NO confirmado** |
+| 6 | Lookup en vivo (function calling) | **NO.** Las automatizaciones solo crean/cambian registros; la IA no puede responder buscando info en otro CRM (Zoho). | ❌ **confirmado NO** |
 
 > **Go/no-go:** los puntos 5 y 6 son los que hacen funcionar toda la arquitectura
 > (leads→Pipedrive, tickets→Zoho Desk/Forms, María "ya sabe" la póliza). **No

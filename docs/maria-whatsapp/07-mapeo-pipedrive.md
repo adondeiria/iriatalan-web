@@ -83,6 +83,12 @@ Vida · SEGUBECAS · Dotal · Patrimonial · Persona Clave · Inversión.
 
 ## Lookup de entrada (postventa) — que María "ya sepa quién es"
 
+> ⚠️ **NO disponible en Aurora (confirmado por su técnico, may-2026):** las
+> automatizaciones de Aurora solo **crean/cambian registros**; **la IA no puede leer
+> otro CRM en vivo** para responder con esos datos. → **Fallback:** María **pregunta**
+> la aseguradora/plan al cliente (como hace Iria hoy). El flujo de abajo solo aplicaría
+> si se migra a una herramienta con function calling (ej. respond.io).
+
 Para clientes actuales, Aurora consulta el CRM **al entrar el mensaje** y le pasa a
 María el contexto, para que conteste sin preguntar (ej. hospital → portal del carrier
 correcto). Datos confirmados: **Zoho CRM tiene a los clientes con su teléfono**, y la

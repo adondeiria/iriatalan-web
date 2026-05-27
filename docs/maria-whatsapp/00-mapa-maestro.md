@@ -91,8 +91,11 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.
 
 **Del martes (con compu / frente a Aurora):**
-- 🟡 1er contacto vendedor: respondidas 1/3/4 ✅; **5 (integraciones) y 6 (lookup) NO
-  confirmadas** + costo Meta pendiente → **llamada técnica = go/no-go** (agenda en `04`).
+- 🔴 **Lookup en vivo (#6) = NO en Aurora** (técnico confirmó: la IA no lee otro CRM en
+  vivo, solo crea/cambia registros). Fallback: María **pregunta** la aseguradora. Si el
+  lookup fuera must-have → evaluar respond.io. **DECISIÓN PENDIENTE de Iria.**
+- 🟡 Integraciones (#5: Pipedrive/Zoho Desk/Forms) — push de registros probablemente sí;
+  confirmar specifics + costo Meta en llamada técnica.
 - ⬜ Automatizar **ticket Aurora→Zoho Desk + Zoho Forms** (postventa GMM → Ángeles).
 - ⬜ **Alerta/asignación inmediata a Iria** al entrar un lead calificado (respuesta rápida).
 - ⬜ Confirmar nombre exacto del campo aseguradora/plan en Zoho (o crearlo).
