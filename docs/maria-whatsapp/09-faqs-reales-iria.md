@@ -90,8 +90,8 @@ Por cada FAQ:
 | --- | --- |
 | AXA | https://axa.mx/web/my-axa/consultar-facturacion |
 | Seguros Monterrey (SMNYL) | https://www.smnyl-clientes.com.mx/SMNYL.POR.PortalFacturacion.SitioWeb/Paginas/CapturaPolizaForm.aspx |
-| MetLife | ⬜ pendiente — Iria lo pasa |
-| GNP | ⬜ pendiente — Iria lo pasa |
+| MetLife | https://www.metlife.com.mx/tramites-y-servicios/facturacion/ |
+| GNP | https://soycliente.gnp.com.mx/portalsoycliente/ |
 | Bupa | ⬜ pendiente — Iria lo pasa |
 | Allianz | ⬜ pendiente — Iria lo pasa |
 
