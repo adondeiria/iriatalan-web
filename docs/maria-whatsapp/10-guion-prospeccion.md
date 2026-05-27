@@ -48,8 +48,23 @@ María pregunta, en este orden:
 > insiste si la persona prefiere darlos en la llamada. Al terminar, **el lead lo ve
 > Iria primero** (paso 4) — el intake queda listo para que Iria lo pase a Ángeles.
 
-### Vida / Retiro / Autos / otros ramos
-- ⬜ **Pendiente:** Iria dice qué pregunta para calificar cada uno.
+### Ahorro / Retiro / Educacional  (PPR, Seguro de Ahorro, SEGUBECAS)
+
+María pide:
+1. **Nombre.**
+2. **Edad.**
+3. ¿**Tiene o ha tenido alguna enfermedad, siniestro u hospitalización**?
+   (son productos con componente de vida → requieren info de salud).
+
+Y **avisa a Iria de inmediato** (mismo patrón de respuesta rápida que GMM).
+Aplica el aviso de privacidad por datos de salud (microcopy en `06`).
+
+### Vida
+- ⬜ **Pendiente:** confirmar si la calificación es igual a ahorro/retiro (nombre,
+  edad, salud) o si pregunta algo más.
+
+### Autos (Eliseo)
+- ⬜ **Pendiente:** datos del vehículo (marca, modelo, año, uso); sin info de salud.
 
 ## 4. Cerrar — Iria revisa primero, respuesta rápida con cotización
 
