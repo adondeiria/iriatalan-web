@@ -92,7 +92,7 @@ Por cada FAQ:
 | Seguros Monterrey (SMNYL) | https://www.smnyl-clientes.com.mx/SMNYL.POR.PortalFacturacion.SitioWeb/Paginas/CapturaPolizaForm.aspx | — |
 | MetLife | https://www.metlife.com.mx/tramites-y-servicios/facturacion/ | — (existe también pág. CFDI: metlife.com.mx/servicios/cfdi/) |
 | GNP | https://soycliente.gnp.com.mx/portalsoycliente/ | https://www.youtube.com/watch?v=ujTmHXvZ57k |
-| Bupa | **Sin self-service** — la envía el equipo de Iria. María NO da link: dice *"te la conseguimos y te la mandamos"* y avisa al equipo (cobranza). | — |
+| Bupa | **Sin self-service** — María NO da link: dice *"te la conseguimos y te la mandamos"* y **redirige a Ángeles** (GMM), que la consigue y envía. | — |
 | Allianz | https://clientes.allianz.com.mx | https://www.youtube.com/watch?v=SJIW7VAAsYU |
 
 ---
