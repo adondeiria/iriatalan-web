@@ -65,6 +65,14 @@ Por cada FAQ:
 - **v1:** María manda el **link + las instrucciones de filtro**. NO intenta navegar
   el portal ni enviar una lista "scrapeada" (ver nota de diseño abajo).
 
+**Caso Seguros Monterrey (SMNYL) — 2 escenarios de médicos de convenio:**
+1. **Médicos de convenio (general):** sí **cobran** la consulta al cliente, pero a
+   **tarifa especial** ajustada al **tabulador** de la aseguradora.
+2. **Médicos "A Tu Lado":** **NO cobran** la consulta al cliente.
+
+María debe distinguir ambos al explicar la red de SMNYL (no es "todos gratis": solo
+los "A Tu Lado" no cobran consulta; el resto del convenio cobra tarifa de tabulador).
+
 > **Nota de diseño — ¿María puede mandar la lista exacta ya filtrada?**
 > No en v1. Aurora responde de su conocimiento + consultas a APIs conectadas (como
 > Zoho); **no navega portales externos** (formularios/filtros/login) de forma nativa.
