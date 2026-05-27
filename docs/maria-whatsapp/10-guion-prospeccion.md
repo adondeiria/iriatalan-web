@@ -45,16 +45,22 @@ María pregunta, en este orden:
 
 > ⚠️ **Datos sensibles (salud + PII):** antes de pedirlos, María avisa que son para
 > preparar la atención y que aplica el aviso de privacidad (microcopy en `06`). No
-> insiste si la persona prefiere darlos en la llamada. Al terminar, **rutea a Ángeles**
-> con todo el intake.
+> insiste si la persona prefiere darlos en la llamada. Al terminar, **el lead lo ve
+> Iria primero** (paso 4) — el intake queda listo para que Iria lo pase a Ángeles.
 
 ### Vida / Retiro / Autos / otros ramos
 - ⬜ **Pendiente:** Iria dice qué pregunta para calificar cada uno.
 
-## 4. Agendar
+## 4. Cerrar — el lead lo ve Iria primero
 
-- ⬜ **Pendiente:** cómo lleva Iria al prospecto a agendar (qué ofrece, cómo cierra
-  la cita, qué medio).
+**Regla:** en prospección, **todos los leads los revisa Iria primero.** María NO los
+auto-rutea a Ángeles ni a Violeta; eso lo decide Iria después.
+
+- María agradece y deja claro que **Iria lo atiende personalmente**.
+- Crea el lead en Pipedrive (paso 5) con el resumen/intake.
+- Iria revisa y decide: tomarlo ella, pasarlo a Violeta (contacto) o a Ángeles (GMM).
+- ❓ **A confirmar:** ¿María propone un horario / agenda la cita, o solo avisa que
+  Iria le contacta?
 
 ## 5. Registrar en Pipedrive
 
