@@ -52,6 +52,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Postventa (cross-ramo)**
 - ✅ ¿Dónde descargo mi factura? (links: AXA, SMNYL, GNP, MetLife, Allianz · Bupa = la consigue Ángeles)
+- 🟡 Formatos GMM (reembolso / cirugía) → María manda formato + abre ticket Zoho Desk
+  a Ángeles. Falta: formatos por carrier + integración Aurora→Zoho Desk.
 
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
@@ -81,12 +83,14 @@ WhatsApp (1 número) ─ María (recepción + triage)
   + **alerta inmediata a Iria**).
 - 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
   martes. ❓¿hay una con datos/contacto/foto?
-- 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).
+- 🟡 FAQs reales en su voz (van 3: hospital, médicos de convenio, facturación) + flujo de formatos GMM.
+- ⬜ **Formatos GMM por carrier** (reembolso y programación de cirugía) — archivos/links.
 - ⬜ Info básica de **autos** (qué cubre, carriers, proceso) + ¿pipeline propio?
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.
 
 **Del martes (con compu / frente a Aurora):**
 - ⬜ 6 preguntas al vendedor (Cloud API · costo · número · datos · Pipedrive/Zoho · lookup en vivo).
+- ⬜ Automatizar **ticket Aurora→Zoho Desk** (formatos GMM → Ángeles).
 - ⬜ **Alerta/asignación inmediata a Iria** al entrar un lead calificado (respuesta rápida).
 - ⬜ Confirmar nombre exacto del campo aseguradora/plan en Zoho (o crearlo).
 - ⬜ Conectar WhatsApp (Cloud API), pegar persona, subir RAG, armar conmutador.

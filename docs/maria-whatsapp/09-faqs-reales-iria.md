@@ -112,4 +112,27 @@ tabulador).
 
 ---
 
+## 4. Cliente pide formatos de GMM (reembolso / programación de cirugía)
+
+**Qué hace María (flujo automatizado):**
+1. Detecta la solicitud: **reembolso** o **programación de cirugía**.
+2. Identifica el **carrier** del cliente (lookup de Zoho).
+3. **Envía el formato correcto** de ese carrier (archivo/link) en automático.
+4. **Abre un ticket en Zoho Desk** (vía Aurora → Zapier/API) **asignado a Ángeles**
+   (GMM), con: cliente, carrier, tipo de solicitud (reembolso/cirugía) y póliza.
+5. Avisa al cliente que Ángeles/su equipo le da seguimiento.
+
+**Límites (YMYL):** María SOLO manda el formato y abre el ticket. **No llena** el
+formato, **no promete** reembolso ni autorización de cirugía, **no opina** de
+cobertura. Eso lo ve Ángeles.
+
+**Pendientes para que funcione:**
+- ⬜ Los **formatos por carrier** (reembolso y programación de cirugía) — Iria los pasa
+  (archivos o links).
+- ⬜ Integración **Aurora → Zoho Desk** (crear ticket) — confirmar con vendedor
+  (pregunta #5) + armar vía Zapier/API.
+- ⬜ Definir campos del ticket y asignación automática a **Ángeles**.
+
+---
+
 <!-- Próximas FAQs van aquí, mismo formato. -->
