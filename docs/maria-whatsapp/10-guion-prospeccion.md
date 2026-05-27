@@ -64,7 +64,16 @@ Aplica el aviso de privacidad por datos de salud (microcopy en `06`).
   edad, salud) o si pregunta algo más.
 
 ### Autos (Eliseo)
-- ⬜ **Pendiente:** datos del vehículo (marca, modelo, año, uso); sin info de salud.
+
+María pide:
+1. **Factura del vehículo** (de preferencia — trae todos los datos del auto). Es un
+   archivo: María debe poder recibir imagen/PDF.
+2. **Código postal.**
+3. **Nombre.**
+4. **Fecha de nacimiento.**
+
+Sin info de salud. Avisa de inmediato (respuesta rápida). Aplica aviso de privacidad
+por los datos del documento.
 
 ## 4. Cerrar — Iria revisa primero, respuesta rápida con cotización
 

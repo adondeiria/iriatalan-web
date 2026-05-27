@@ -74,7 +74,7 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **De Iria (desde el cel):**
 - 🟢 **Prospección (guión 10):** saludo ✅ · calificar GMM ✅ + ahorro/retiro/educacional ✅
-  (Vida, Autos ⬜) · cierre ✅ (regresa con cotización + **alerta inmediata a Iria**).
+  + autos ✅ (Vida ⬜) · cierre ✅ (regresa con cotización + **alerta inmediata a Iria**).
 - 🟡 **Tarjeta de presentación**: recibida (imagen de marca RIF). Subir a Aurora el
   martes. ❓¿hay una con datos/contacto/foto?
 - 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).
