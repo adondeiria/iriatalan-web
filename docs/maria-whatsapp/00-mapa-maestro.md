@@ -22,6 +22,7 @@ Leyenda de estado: ✅ listo · 🟡 en proceso / falta voz de Iria · ⬜ pendi
 | 07 | mapeo-pipedrive | Lead → Pipedrive + lookup Zoho (postventa) |
 | 08 | equipo-y-ruteo | Directorio del equipo + matriz de ruteo |
 | 09 | faqs-reales-iria | FAQs en voz de Iria + reglas (voz canónica) |
+| 10 | guion-prospeccion | Guión de primer contacto con prospecto (voz cálida) |
 
 ## 2. Árbol del conmutador
 
@@ -72,7 +73,9 @@ WhatsApp (1 número) ─ María (recepción + triage)
 ## 4. Pendientes globales
 
 **De Iria (desde el cel):**
-- 🟡 Seguir mandando FAQs en su voz (van 2: hospital, médicos de convenio).
+- 🟡 **Prospección (guión 10):** saludo ✅ · calificar ⬜ · agendar ⬜.
+- ⬜ **Tarjeta de presentación** (archivo) para que María la mande en el saludo.
+- 🟡 Seguir mandando FAQs de GMM en su voz (van 2: hospital, médicos de convenio).
 - ⬜ Info básica de **autos** (qué cubre, carriers, proceso) + ¿pipeline propio?
 - ⬜ 3-5 ejemplos reales de su voz → pase final a persona/plantillas/microcopys.
 
