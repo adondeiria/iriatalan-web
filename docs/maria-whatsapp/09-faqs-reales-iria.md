@@ -414,4 +414,80 @@ como respuesta al cliente. Aplica a maternidad, preexistencias, dental, mental, 
 
 ---
 
+## 11. "¿Por qué subió mi prima este año?"
+
+**Cómo la contesta Iria:**
+> La razón del alto precio de este año es debido a 5 factores: **edad**, **inflación
+> médica anual (18%)** y el **aumento del IVA por parte del gobierno** a todas las
+> aseguradoras en noviembre 2025.
+
+> ⬜ **Confirmar:** Iria menciona "5 factores" pero lista 3. Cuáles son los 2 restantes,
+> o ajustar el número.
+
+**Regla para María:** respuesta directa, educativa. **No requiere lookup**. Aplica
+a todos los carriers. Si el cliente cuestiona el monto o quiere ver opciones →
+**escala a Iria** para revisar el caso.
+
+---
+
+## 12. "¿Cómo funciona la renovación automática?"
+
+**Cómo la contesta Iria:**
+> Todas las aseguradoras que intermedio tienen **renovación vitalicia garantizada**
+> — mientras pagues, tendrás seguro no importa cuánto lo hayas ocupado.
+
+**Regla para María:** respuesta directa, definitiva, sin lookup. Aplica a todos los
+carriers de Iria.
+
+---
+
+## 13. "¿Cuándo vence mi póliza?" / "¿Cuál es la vigencia?"
+
+**Cómo la contesta Iria:**
+> La vigencia es **anual**. Déjame revisar tu póliza y te confirmo la fecha exacta de
+> vencimiento.
+
+**Regla para María:**
+- Genérica → contesta corto: *"Todas son anuales."*
+- Si el cliente quiere su **fecha exacta** → verificación de identidad (2º factor) +
+  lookup Zoho por fecha de vencimiento:
+  - Si Zoho tiene la fecha → María responde con la fecha y el disclaimer
+    *"según lo registrado en tu póliza vigente"*.
+  - Si Zoho NO la tiene → escala a Ángeles o dispara flujo de carátula (la fecha
+    viene en la carátula).
+- Validar póliza vigente. Si cancelada → escala (mismo patrón FAQ #5).
+
+---
+
+## 14. "¿Cómo agrego a mi bebé recién nacido al seguro?"
+
+**Cómo la contesta Iria:**
+> Al momento de nacer el bebé tienes **30 días naturales** para darlo de alta en tu
+> póliza y que tenga cobertura de enfermedades congénitas. **Ojo importante:** para
+> que aplique esta cobertura, debes haber tenido **mínimo 10 meses con tu póliza
+> contratada**.
+
+**Regla para María:** respuesta directa con regla doble (30 días + 10 meses). Si el
+cliente quiere proceder al alta:
+- María captura datos básicos (nombre del bebé, fecha de nacimiento).
+- **Abre ticket en Zoho Desk asignado a Ángeles** para gestionar el alta del bebé.
+- Avisa al cliente que Ángeles le da seguimiento.
+
+---
+
+## 15. "¿Mi seguro es deducible de impuestos?"
+
+**Cómo la contesta Iria:**
+> Sí. Nada más revisa que **tus datos fiscales estén dados de alta**. Si hiciste algún
+> cambio en tu **CSF** (Constancia de Situación Fiscal), **avísanos para hacer la
+> actualización** y tus facturas salgan correctas.
+
+**Regla para María:** respuesta directa afirmativa. Si el cliente menciona cambio en
+CSF o quiere actualizar datos fiscales:
+- María captura la información (o pide el archivo CSF actualizado).
+- **Abre ticket en Zoho Desk asignado a Violeta** (cobranza/facturas).
+- Avisa al cliente que Violeta le da seguimiento.
+
+---
+
 <!-- Próximas FAQs van aquí, mismo formato. -->
