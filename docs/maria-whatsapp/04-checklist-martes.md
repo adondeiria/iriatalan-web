@@ -5,7 +5,7 @@
 
 ---
 
-## Antes de empezar — 6 preguntas para el vendedor de Aurora
+## Antes de empezar — 7 preguntas para el vendedor de Aurora
 
 Mándalas por WhatsApp (su número: 81 1481 0953) o en la llamada. Las respuestas
 definen el riesgo y el costo real.
@@ -30,6 +30,11 @@ definen el riesgo y el costo real.
    puede consultar EN VIVO mi CRM por su teléfono y traer su aseguradora y plan para
    responder con ese dato (function calling), o solo crea/actualiza registros vía
    Zapier? Quiero que María ya sepa qué tiene contratado el cliente."*
+7. **Workaround Zoho→Aurora (campos nativos):** *"Si sincronizo desde Zoho a Aurora
+   (vía Zapier) un campo custom en cada contacto con su aseguradora y plan — o sea, el
+   dato vive dentro del contacto en Aurora —, ¿la IA puede usar ese campo del contacto
+   al responder (ej. 'veo que tienes Allianz PPR')? No es que la IA busque en otro
+   CRM; es que use un campo nativo de Aurora mantenido al día vía Zapier."*
 
 ---
 

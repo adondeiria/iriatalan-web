@@ -108,7 +108,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - ✅ **Cloud API** confirmado (sin riesgo de baneo) + **número dedicado** para María.
 - 🟡 **Herramienta — DECISIÓN ABIERTA** (ver `11`): Aurora NO hace lookup en vivo.
   respond.io SÍ pero **solo en Advanced ($279 USD/mo)** + setup técnico (API Zoho).
-  Pragmático: Aurora v1 + fallback (preguntar) y respond.io como upgrade. Iria decide.
+  **Workaround a confirmar:** sincronizar Zoho→Aurora (Zapier) y que la IA use el
+  campo nativo de Aurora — si Aurora dice SÍ, gana ella sin pagar Advanced.
 - ✅ Prospección nueva → a Iria primero.
 - ✅ Autos → agregar FAQs (no solo rutear).
 - ✅ Valor del trato lo deja en 0 (María no cotiza).

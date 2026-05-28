@@ -16,6 +16,20 @@
   - Requiere **setup técnico**: configurar el HTTP request a la API de Zoho (endpoint,
     token/auth, variables). No es no-code → necesita dev.
 
+## ❓ Workaround Aurora a confirmar (puede cambiar el cuadro)
+
+En lugar de que la IA de Aurora "lea Zoho en vivo", **sincronizar Zoho → Aurora**
+vía Zapier para que `aseguradora` y `plan` vivan como **campos custom del contacto en
+Aurora**. La IA de Aurora normalmente sí puede usar campos nativos del contacto en sus
+respuestas. → Pregunta #7 al vendedor (checklist `04`).
+
+- Si Aurora confirma **SÍ** → "María ya sabe" se logra sin pagar respond.io Advanced
+  ni meter dev. **Aurora vuelve a ser la mejor opción.**
+- Si confirma **NO** → respond.io Advanced sigue siendo el único camino al lookup.
+
+Sync no es 100% real-time pero Zapier corre casi al instante; suficiente para
+postventa.
+
 ## Tabla
 
 | Dimensión | Aurora Inbox | respond.io |
