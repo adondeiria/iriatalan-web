@@ -64,7 +64,7 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Postventa GMM cliente-específico (lookup)**
 - 🟡 ¿Qué deducible tengo? (lookup Zoho o trigger carátula) — confirmar campo Zoho
-- 🟡 ¿Cuánto cubre mi maternidad? (María contesta directo con tabla por carrier + PDF periodos) — montos pendientes
+- 🟢 ¿Cuánto cubre mi maternidad? Tabla por carrier+plan completa (tabulador RIF 25-26). SMNYL requiere plan+zona+deducible o manda PDF. Confirmar Bupa.
 - 🟡 ¿Cómo me doy de alta en el portal del cliente? (link/app por carrier) — links pendientes
 - 🟡 ¿Cuáles son los periodos de espera? (PDF general o por carrier) — PDF pendiente
 

@@ -265,18 +265,52 @@ aseguradora.
    [carrier+plan]). El periodo de espera estándar es de ~10-12 meses desde la
    contratación. El detalle completo está en tu carátula."*
 
-**Tabla de cobertura de maternidad por aseguradora** (Iria me la pasa):
+**Tabla de cobertura de maternidad por aseguradora** (Tabulador RIF 25-26):
 
-| Aseguradora | Plan(es) | Monto cobertura maternidad |
-| --- | --- | --- |
-| AXA | ⬜ | ⬜ |
-| Seguros Monterrey (SMNYL) | ⬜ | ⬜ |
-| MetLife | ⬜ | ⬜ |
-| GNP | ⬜ | ⬜ |
-| Bupa | ⬜ | ⬜ |
+| Aseguradora | Plan / Variante | Zona | Monto cobertura maternidad |
+| --- | --- | --- | --- |
+| **GNP** | Línea Azul Premium | — | $62,500 MXN |
+| GNP | Línea Azul Platino | — | $54,500 MXN |
+| GNP | VIP México | — | 11,000 USD |
+| GNP | VIP Extranjero | — | 13,000 USD |
+| GNP | Flexible Indigo | — | $48,500 MXN |
+| GNP | Flexible Ámbar | — | $39,000 MXN |
+| GNP | Flexible Cuarzo | — | $32,500 MXN |
+| GNP | Versátil — antigüedad 10-36 meses | — | $25,000 MXN |
+| GNP | Versátil — antigüedad 37-48 meses | — | $32,500 MXN |
+| GNP | Versátil — antigüedad 49+ meses | — | $41,500 MXN |
+| GNP | Internacional | — | 5,000 USD (con deducible nacional como internacional < 5,000 USD) |
+| GNP | Personaliza | — | Incluido en plan $20,000; costo adicional a $42,500 / $58,500 / $74,000 |
+| **Bupa** (a confirmar — etiqueta no visible en tabulador) | Premier 100 | — | $61,000 MXN |
+| Bupa | Premier 200 | — | $61,000 MXN |
+| Bupa | Premier 300 | — | $43,500 MXN |
+| Bupa | Premier 400 | — | $36,600 MXN |
+| **SMNYL** | Pleno (años 1, 2, 3) | CDMX | $60,000 MXN |
+| SMNYL | Pleno (años 1, 2, 3) | Otras zonas | $55,500 MXN |
+| SMNYL | Íntegro (años 1, 2, 3) | CDMX | $55,000 MXN |
+| SMNYL | Íntegro (años 1, 2, 3) | Otras zonas | $45,500 MXN |
+| SMNYL | Flex | — | $36,500 MXN |
+| **AXA** | Básica | — | $31,000 MXN |
+| AXA | Extendida | — | $60,000 MXN |
+| **MetLife** | General (10 meses periodo de espera) | — | $74,800 MXN |
 
-> **Pendiente:** Iria me pasa los montos exactos por carrier y, si aplica, por plan.
-> ¿Es el mismo monto para todos los planes de cada carrier, o varía por plan?
+> **Allianz no aplica** (no vende GMM con Iria; consistente con regla establecida).
+
+**Capa extra para SMNYL — "Aplica / No aplica" según deducible:**
+
+SMNYL tiene una tabla adicional (PDF "Beneficio de Maternidad — Deducibles aplicables")
+que indica que el beneficio **deja de aplicar** a partir de cierto nivel de deducible
+del cliente (a partir de ~$77,000 deja de aplicar en varios planes). Por eso para
+SMNYL María necesita **plan + zona + deducible** para responder con precisión, o
+manda el PDF.
+
+**Reglas para María:**
+- Identificar carrier + plan + (zona y/o antigüedad y/o deducible si aplica) desde
+  Zoho.
+- Si tiene los 3-4 datos → responde el monto exacto + disclaimer.
+- Si le falta algún dato (ej. Zoho no tiene zona) → preguntar al cliente o escalar.
+- SMNYL caso especial: si deducible > umbral → "tu deducible está por encima del nivel
+  donde aplica el beneficio; te paso con Ángeles para confirmarlo y ver opciones."
 
 **Reglas YMYL:**
 - María cita lo que está en la tabla con disclaimer ("según tu plan registrado").
