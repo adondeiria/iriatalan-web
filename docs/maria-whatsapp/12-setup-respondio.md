@@ -54,8 +54,15 @@ La pieza estrella. Configurar una acción del AI Agent:
 ### 7. Integraciones (Zapier o HTTP directo en Workflows)
 - **Pipedrive (prospección):** lead calificado en respond.io → crear Persona + Trato
   en Pipedrive en etapa `WhatsApp – Nuevo`, dueña Iria. Spec en `07-mapeo-pipedrive.md`.
-- **Zoho Desk (postventa GMM):** intención de siniestro/reembolso/cirugía/maternidad
-  → abrir ticket asignado a Ángeles + Zoho dispara la plantilla. Detalle en `09` FAQ #4.
+- **Zoho Desk (postventa GMM + Vida/Ahorro):** intención de
+  siniestro/reembolso/cirugía/maternidad → ticket a Ángeles + plantilla. Para Vida y
+  Ahorro (FAQ #5): ticket a Violeta para envío por email. Detalle en `09` FAQ #4 y #5.
+- **Microsoft Graph / SharePoint** (FAQ #5 — carátula/tarjeta GMM/Autos):
+  AI Agent HTTP request action que busca en SharePoint library "EXPEDIENTES CLIENTES"
+  por filename con `CARATULA [policy#].pdf` o `CREDENCIAL [policy#].pdf`, recupera el
+  archivo y respond.io lo envía como media. Requiere Azure AD app + OAuth con permisos
+  Sites.Read.All. Claude puede dejar lista la spec desde aquí porque tu M365 está
+  conectado al entorno.
 
 ### 8. Plantillas de WhatsApp aprobadas por Meta
 Subir las plantillas de `05-plantillas-whatsapp.md` y someter a Meta para aprobación

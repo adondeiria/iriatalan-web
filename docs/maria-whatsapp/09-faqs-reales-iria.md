@@ -145,4 +145,70 @@ ve Ángeles.
 
 ---
 
+## 5. Cliente pide su carátula / tarjeta (credencial)
+
+**Alcance por ramo:**
+- **GMM y Autos vigentes** → María **busca el PDF en SharePoint** y lo manda directo.
+- **Vida y Ahorro (cualquier estado)** → María **abre ticket en Zoho Desk asignado a
+  Violeta** (jefa de Vida) → Violeta lo manda **por email**, no por WhatsApp.
+- **Cancelada** (GMM/Autos) → María: *"Lo siento, no encuentro un plan activo a tu
+  nombre"* → **escala** a Ángeles (si era GMM) o Eliseo (si era Autos).
+
+**Verificación de identidad (siempre, antes de mandar o crear ticket):**
+1. Phone match: el número de WhatsApp del cliente debe coincidir con el de Zoho.
+2. Segundo factor en cascada: María pide **email registrado** primero; si el cliente
+   *"no me lo acuerdo"* → fallback a **fecha de nacimiento**. Ambos verificados contra
+   Zoho. Si ninguno coincide → escalar como caso sospechoso.
+
+---
+
+### Flujo A — GMM/Autos vigente
+
+1. Cliente: *"¿me mandas mi carátula / tarjeta?"*
+2. María lookup Zoho por teléfono → trae nombre, póliza(s), ramo, estado, email,
+   fecha nac.
+3. Validar: ramo ∈ {GMM, Autos} y estado = vigente. Si no, ir a la rama
+   correspondiente.
+4. María: *"Para confirmar, ¿me das tu email registrado con nosotros?"* (cascada).
+5. Match OK → María busca en SharePoint:
+   - Carátula: nombre del archivo contiene **`CARATULA`** + **número de póliza**.
+   - Tarjeta: nombre del archivo contiene **`CREDENCIAL`** + **número de póliza**.
+6. **Una sola póliza GMM/Autos vigente** → manda el PDF al WhatsApp.
+7. **Varias pólizas** → *"Tienes póliza de [ramo+carrier+ID] y [ramo+carrier+ID].
+   ¿Cuál necesitas?"* → busca la elegida → manda.
+
+### Flujo B — Vida o Ahorro (cualquier estado)
+
+1. Cliente: *"¿me mandas mi póliza de vida / ahorro?"*
+2. María lookup Zoho + verificación de identidad (mismo 2º factor).
+3. María: *"Claro, esa te llega por email — te la prepara Violeta. ¿Me confirmas que
+   tu email es el que tenemos registrado?"*
+4. Abre **ticket en Zoho Desk asignado a Violeta** con: cliente, póliza, email destino,
+   tipo de solicitud (carátula vida / ahorro).
+5. María: *"Listo, ya está en marcha. Violeta te la manda por email."*
+
+### Flujo C — Póliza cancelada (GMM/Autos)
+
+1. María detecta estado = cancelada en Zoho.
+2. María: *"Lo siento, no encuentro un plan activo a tu nombre."*
+3. **Escala** a Ángeles (si era GMM) o Eliseo (si era Autos), con contexto.
+
+---
+
+**Reglas YMYL (críticas):**
+- **Nunca** mandar a un número que no pase phone match + 2º factor.
+- **Nunca** mandar carátula de Vida/Ahorro directo por WhatsApp — siempre por email
+  vía Violeta.
+- **Nunca** mandar nada de una póliza cancelada — solo escalar.
+- Cada envío exitoso queda registrado (audit log).
+
+**Spec técnica respond.io (para `12-setup-respondio.md`):**
+- HTTP request 1 → Zoho CRM Contacts (search by `Mobile`).
+- HTTP request 2 → Microsoft Graph SharePoint search (`/sites/{site}/drive/search`)
+  por filename con `CARATULA [policy#]` o `CREDENCIAL [policy#]`.
+- Workflow action → enviar PDF como media en WhatsApp.
+- Zapier o HTTP → crear ticket Zoho Desk para flujo B (Vida/Ahorro).
+
+---
+
 <!-- Próximas FAQs van aquí, mismo formato. -->

@@ -57,6 +57,10 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - 🟡 Postventa GMM (siniestros, reembolso, cirugía, maternidad) → María abre ticket
   Zoho Desk + Zoho manda plantilla/Form, Ángeles da seguimiento. Assets ya en Zoho ✅.
   Falta: integración Aurora→Zoho Desk + Zoho Forms.
+- 🟡 Carátula / tarjeta (FAQ #5): **GMM/Autos vigente** → María busca SharePoint
+  (`CARATULA/CREDENCIAL [policy#].pdf`) y manda PDF (con 2º factor). **Vida/Ahorro** →
+  ticket Zoho Desk a Violeta, email. **Cancelada** → escala a Ángeles/Eliseo. Falta:
+  integración SharePoint (Microsoft Graph) en respond.io.
 
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
