@@ -254,20 +254,30 @@ vive en la carátula PDF. Si solo en PDF → ruta única = carátula.
 **Cómo se contesta:** María primero **evalúa 3 reglas de elegibilidad**; si cumple,
 da el monto exacto desde la tabla; si no cumple alguna, explica por qué y escala.
 
-### Reglas de elegibilidad — varían por aseguradora
+### Reglas de elegibilidad
 
-María verifica **antes** de dar monto, según el carrier del cliente:
+**🔴 Regla universal (TODAS las aseguradoras):** las **pólizas de exceso NO incluyen
+cobertura de maternidad** — sin importar el carrier. Si la póliza del cliente es de
+exceso → María explica que no aplica y escala a Ángeles.
 
-| Aseguradora | Edad límite | Deducible máximo | Pólizas de exceso |
-| --- | --- | --- | --- |
-| **GNP** | Sin límite | **< $60,000 MXN** | ⬜ confirmar |
-| **MetLife** | Sin límite | **< $60,000 MXN** | ⬜ confirmar |
-| **SMNYL** | **≤ 44 años** | **≤ $65,000 MXN** | **NO aplica** |
-| **AXA** | ⬜ pendiente | ⬜ pendiente | ⬜ pendiente |
-| **Bupa** | ⬜ Iria pasa martes | ⬜ Iria pasa martes | ⬜ Iria pasa martes |
+**Por carrier** (edad límite y deducible máximo):
 
-> **Pendientes:** confirmar reglas de AXA, completar las columnas vacías de GNP /
-> MetLife (¿pólizas de exceso aplica?), y datos de Bupa el martes.
+| Aseguradora | Edad límite | Deducible máximo |
+| --- | --- | --- |
+| **GNP** | Sin límite | **< $60,000 MXN** |
+| **MetLife** | Sin límite | **< $60,000 MXN** |
+| **SMNYL** | **≤ 44 años** | **≤ $65,000 MXN** |
+| **AXA** | ⬜ Iria confirma martes | ⬜ Iria confirma martes |
+| **Bupa** | ⬜ Iria pasa martes | ⬜ Iria pasa martes |
+
+> **Pendientes para el martes:** edad límite y deducible máximo de AXA + datos
+> completos de Bupa.
+
+**Caso AXA (cobertura Básica vs Extendida):**
+Por **default** un cliente de AXA tiene cobertura **Básica = $31,000 MXN**. Solo si
+**contrató Extendida** sube a **$60,000 MXN**. Esto **viene en la carátula** del
+cliente. María debe verificar (Zoho o carátula) cuál tipo tiene antes de dar el
+monto.
 
 ### Flujo
 
