@@ -26,26 +26,85 @@ Leyenda de estado: ✅ listo · 🟡 en proceso / falta voz de Iria · ⬜ pendi
 | 11 | aurora-vs-respondio | Comparación de herramienta (histórico de la decisión) |
 | 12 | setup-respondio | Plan de configuración de respond.io Advanced (vivo) |
 
-## 2. Árbol del conmutador
+## 2. Árbol del conmutador (vista completa)
 
 ```
-WhatsApp (1 número) ─ María (recepción + triage)
+WhatsApp → María
 │
-├─ Paso 0: lookup en Zoho por teléfono
-│    ├─ Cliente existente → trae aseguradora + plan → POSTVENTA con contexto
-│    └─ No aparece        → PROSPECTO → lead en Pipedrive (WhatsApp–Nuevo, dueña Iria)
+├── 🔍 Paso 0: Lookup Zoho por teléfono (HTTP request en vivo)
+│       ¿hay match?
+│       ├── Sí → CLIENTE (trae carrier, plan, estado, email, edad, RFC)
+│       └── No → PROSPECTO
 │
-├─ Rutea por ramo / intención:
-│    ├─ Prospección / asesoría ........ Iria (Violeta apoya contacto)
-│    ├─ GMM (cotiz / emisión / duda) ... Ángeles (Eunice asiste)
-│    ├─ GMM siniestro .................. Ángeles  → capturar + escalar
-│    ├─ Vida (emisión / servicio) ...... Violeta (emisiones también Ángeles)
-│    ├─ Autos (cotiz/emisión/postventa)  Eliseo   ⬜ contenido pendiente
-│    ├─ Cobranza / pagos ............... Violeta
-│    └─ Cierre / decisión financiera ... Iria
+├── 🟦 RAMA A — CLIENTE (postventa)
+│     │  saluda por nombre
+│     │
+│     ├── Info / portales (respuesta directa por carrier)
+│     │     • Hospital → portal del carrier
+│     │     • Médicos convenio → mismo portal, filtro médicos
+│     │     • Factura → portal por carrier (Bupa = la consigue Ángeles)
+│     │     • Alta portal cliente → app/link por carrier
+│     │     • Periodos de espera → manda PDF
+│     │
+│     ├── Datos de su póliza (con verificación 2º factor)
+│     │     • Deducible → lookup Zoho o trigger carátula
+│     │     • Cobertura maternidad → reglas elegibilidad + tabla carrier+plan
+│     │     • Vigencia / cuándo vence → lookup Zoho para fecha
+│     │     • Carátula/tarjeta
+│     │           ├── GMM/Autos vigente → busca SharePoint → manda PDF
+│     │           ├── Vida/Ahorro → ticket a Violeta → email
+│     │           └── Cancelada → escala (Ángeles GMM / Eliseo Autos)
+│     │
+│     ├── Trámites (ticket Zoho Desk + plantilla)
+│     │     • Siniestro / reembolso / cirugía / maternidad → Ángeles
+│     │     • Alta de bebé (30 días + 10 meses póliza) → Ángeles
+│     │     • CSF / cambios fiscales → Eunice
+│     │
+│     ├── Educativas (respuesta directa)
+│     │     • ¿Por qué subió mi prima? → 4 factores
+│     │     • Renovación automática → "vitalicia garantizada"
+│     │     • Deducible/coaseguro (⬜ pendiente voz de Iria)
+│     │     • ¿Es deducible de impuestos? → "sí + revisar CSF"
+│     │
+│     └── Casos sensibles / no resuelto
+│           • Verificación falla → escala humano
+│           • Queja / siniestro grave / abogado → Iria
 │
-└─ Siempre: no cotiza · no promete · no asesora → escala. Disclaimers.
+└── 🟩 RAMA B — PROSPECTO (prospección, guión 10)
+      │
+      ├── 1. Saludo cálido + tarjeta marca RIF
+      │      "¡Hola! ¿Cómo estás? ¡Mucho gusto y gracias por contactarme!"
+      │
+      ├── 2. ¿Qué busca?
+      │      Ya dijo → confirma y avanza
+      │      No dijo → "¿En qué te puedo ayudar?"
+      │
+      ├── 3. Calificar (según ramo)
+      │      • GMM → ind/fam · nombres+fechas · CP · siniestros · seguro actual
+      │      • Ahorro/Retiro/Educacional → nombre · edad · salud
+      │      • Vida → igual que ahorro
+      │      • Autos → factura del vehículo · CP · nombre · fecha nac
+      │
+      ├── 4. Cierre
+      │      "Te regreso en breve con la cotización"
+      │      🚨 alerta inmediata a Iria
+      │
+      └── 5. Crea lead en Pipedrive (WhatsApp – Nuevo, dueña Iria)
+              │
+              └── Iria revisa primero → decide:
+                    ├── Lo toma ella
+                    ├── Pasa a Violeta (contactar)
+                    └── Pasa a Ángeles (GMM) o Eliseo (Autos)
 ```
+
+**Reglas transversales (siempre):**
+- Verificación de identidad antes de datos sensibles = phone match + email registrado
+  (fallback: fecha nac).
+- Fuera de horario → María atiende, agenda, deja tarea al humano.
+- Palabras gatillo de escalado: *contratar* · *cotización exacta* · *siniestro* ·
+  *queja* · *cancelar* · *abogado* · *demanda*.
+- María NUNCA: cotiza · promete cobertura · firma · da asesoría regulada.
+- Pólizas de exceso = NO maternidad (regla universal en todas las aseguradoras).
 
 ## 3. Tracker de FAQs (por tema)
 
