@@ -25,6 +25,7 @@ Leyenda de estado: ✅ listo · 🟡 en proceso / falta voz de Iria · ⬜ pendi
 | 10 | guion-prospeccion | Guión de primer contacto con prospecto (voz cálida) |
 | 11 | aurora-vs-respondio | Comparación de herramienta (histórico de la decisión) |
 | 12 | setup-respondio | Plan de configuración de respond.io Advanced (vivo) |
+| 13 | bitacora-sesion | Resumen narrativo de la sesión + pendientes priorizados |
 
 ## 2. Árbol del conmutador (vista completa)
 
