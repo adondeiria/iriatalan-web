@@ -62,9 +62,9 @@ WhatsApp → María
 │           │           D2. Cómo funciona deducible / coaseguro
 │           │               (FAQ #8 ⬜ voz pendiente de Iria)
 │           │           D3. Otras dudas → "te comunicaré con Ángeles"
-│           │     E. Formatos reembolso / programar cirugía → submenu (propuesta):
-│           │           E1. Formato para reembolso → ticket Ángeles + plantilla
-│           │           E2. Programar cirugía → ticket Ángeles + plantilla
+│           │     E. Formatos reembolso / programar cirugía → submenu:
+│           │           E1. Quiero ingresar un reembolso → ticket Ángeles + plantilla
+│           │           E2. Quiero programar una cirugía → ticket Ángeles + plantilla
 │           │           E3. Maternidad / alta de bebé → ticket Ángeles
 │           │           E4. Otra cosa o duda diferente → Ángeles
 │           │     F. Otra cosa → escala a Ángeles
