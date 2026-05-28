@@ -37,38 +37,38 @@ WhatsApp → María
 │       └── No → PROSPECTO
 │
 ├── 🟦 RAMA A — CLIENTE (postventa)
-│     │  saluda por nombre
+│     │  María saluda: "Hola [nombre], ¿en qué te puedo ayudar hoy?"
 │     │
-│     ├── Info / portales (respuesta directa por carrier)
-│     │     • Hospital → portal del carrier
-│     │     • Médicos convenio → mismo portal, filtro médicos
-│     │     • Factura → portal por carrier (Bupa = la consigue Ángeles)
-│     │     • Alta portal cliente → app/link por carrier
-│     │     • Periodos de espera → manda PDF
-│     │
-│     ├── Datos de su póliza (con verificación 2º factor)
-│     │     • Deducible → lookup Zoho o trigger carátula
-│     │     • Cobertura maternidad → reglas elegibilidad + tabla carrier+plan
-│     │     • Vigencia / cuándo vence → lookup Zoho para fecha
-│     │     • Carátula/tarjeta
-│     │           ├── GMM/Autos vigente → busca SharePoint → manda PDF
-│     │           ├── Vida/Ahorro → ticket a Violeta → email
-│     │           └── Cancelada → escala (Ángeles GMM / Eliseo Autos)
-│     │
-│     ├── Trámites (ticket Zoho Desk + plantilla)
-│     │     • Siniestro / reembolso / cirugía / maternidad → Ángeles
-│     │     • Alta de bebé (30 días + 10 meses póliza) → Ángeles
-│     │     • CSF / cambios fiscales → Eunice
-│     │
-│     ├── Educativas (respuesta directa)
-│     │     • ¿Por qué subió mi prima? → 4 factores
-│     │     • Renovación automática → "vitalicia garantizada"
-│     │     • Deducible/coaseguro (⬜ pendiente voz de Iria)
-│     │     • ¿Es deducible de impuestos? → "sí + revisar CSF"
-│     │
-│     └── Casos sensibles / no resuelto
-│           • Verificación falla → escala humano
-│           • Queja / siniestro grave / abogado → Iria
+│     └── Menú principal:
+│           │
+│           ├── 1️⃣ Ahorro y Vida
+│           │     María pregunta libre: "¿Qué necesitas de tu plan?"
+│           │     • Estado de cuenta → ticket Violeta
+│           │     • Cambio fiscal / CSF → ticket Eunice
+│           │     • Carátula → ticket Violeta → email
+│           │     • Cualquier otra cosa → escala a Violeta
+│           │
+│           ├── 2️⃣ GMM — submenu: "¿En qué te puedo ayudar?"
+│           │     A. Carátula / tarjeta → SharePoint (con verificación)
+│           │     B. Hospital o médicos de convenio → portal por carrier
+│           │     C. Facturas → portal por carrier (Bupa → Ángeles)
+│           │     D. Dudas de coberturas → respuesta por carrier+plan
+│           │        (maternidad con reglas+tabla, deducible, etc.)
+│           │     E. Formatos reembolso / programar cirugía
+│           │        → ticket Zoho Desk + plantilla → Ángeles
+│           │     F. Otra cosa → escala a Ángeles
+│           │
+│           ├── 3️⃣ Auto — submenu: "¿En qué te podemos ayudar?"
+│           │     A. Carátula de tu póliza → SharePoint (con verificación)
+│           │     B. Teléfono de la aseguradora para reportar
+│           │        accidente / choque
+│           │        → María da el teléfono de emergencia del carrier
+│           │        ⬜ Iria pasa tabla de teléfonos por aseguradora
+│           │     C. Otra cosa → escala a Eliseo
+│           │
+│           └── 4️⃣ Info / contratar un nuevo plan
+│                 → Salta a la RAMA B (guión de prospección completo)
+│                   Aunque sea cliente, se trata como oportunidad nueva.
 │
 └── 🟩 RAMA B — PROSPECTO (prospección, guión 10)
       │
