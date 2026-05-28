@@ -44,6 +44,27 @@ postventa.
 | Lookup en vivo (María ya sabe) | ✅ HTTP requests | **Advanced** |
 | Multiagente equipo de 5 | ✅ 10 usuarios incl. | Growth |
 
+## Costo real con equipo de 5 (corregido may-2026)
+
+| | Aurora IA Plus | respond.io Advanced |
+| --- | --- | --- |
+| Plan base | $4,000 MXN | $279 USD (~$4,800 MXN @ 17.2) |
+| Usuarios incluidos | 3 (faltan 2) | 10 |
+| Extras de usuario | +$240 × 2 = **$480** | $0 |
+| **Total mensual** | **$4,480 MXN** | **~$4,800 MXN** |
+| **Diferencia anual** | — | **+$3,840 MXN/año** |
+
+A 5 usuarios, la diferencia se reduce a ~$320/mes. Esto debilita el argumento de
+costo que se tenía cuando se comparaba solo "$3,200 vs $4,800".
+
+**Otras dimensiones donde respond.io tiene ventaja en esta math:**
+- **IA sin límites** (fair use) vs Aurora IA Plus limitado a 20,000 respuestas/mes.
+- **+5 usuarios de cabeza** para crecer sin tarifa adicional.
+
+**Setup técnico del lookup (corregido):** OAuth a Zoho desde respond.io ~2–4 hrs de
+dev (~$1–4k MXN one-time). En este proyecto, Iria tiene a Claude con acceso a Zoho
+configurado → costo dev efectivo cercano a cero.
+
 ## Tabla
 
 | Dimensión | Aurora Inbox | respond.io |
