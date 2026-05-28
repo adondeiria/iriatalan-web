@@ -23,7 +23,8 @@ Leyenda de estado: ✅ listo · 🟡 en proceso / falta voz de Iria · ⬜ pendi
 | 08 | equipo-y-ruteo | Directorio del equipo + matriz de ruteo |
 | 09 | faqs-reales-iria | FAQs en voz de Iria + reglas (voz canónica) |
 | 10 | guion-prospeccion | Guión de primer contacto con prospecto (voz cálida) |
-| 11 | aurora-vs-respondio | Comparación de herramienta (lookup en vivo, precio, setup) |
+| 11 | aurora-vs-respondio | Comparación de herramienta (histórico de la decisión) |
+| 12 | setup-respondio | Plan de configuración de respond.io Advanced (vivo) |
 
 ## 2. Árbol del conmutador
 
@@ -106,10 +107,8 @@ WhatsApp (1 número) ─ María (recepción + triage)
 
 **Decidido (cerrado):**
 - ✅ **Cloud API** confirmado (sin riesgo de baneo) + **número dedicado** para María.
-- 🟡 **Herramienta — DECISIÓN ABIERTA** (ver `11`): Aurora NO hace lookup en vivo.
-  respond.io SÍ pero **solo en Advanced ($279 USD/mo)** + setup técnico (API Zoho).
-  **Workaround a confirmar:** sincronizar Zoho→Aurora (Zapier) y que la IA use el
-  campo nativo de Aurora — si Aurora dice SÍ, gana ella sin pagar Advanced.
+- ✅ **Herramienta = respond.io Advanced** ($279 USD/mo). Decisión tomada may-2026.
+  Plan de setup en `12-setup-respondio.md`. Comparación histórica en `11`.
 - ✅ Prospección nueva → a Iria primero.
 - ✅ Autos → agregar FAQs (no solo rutear).
 - ✅ Valor del trato lo deja en 0 (María no cotiza).

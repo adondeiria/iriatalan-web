@@ -1,7 +1,9 @@
-# Checklist para el martes — configurar a María en Aurora Inbox
+# Checklist Aurora — HISTÓRICO (superseded por respond.io)
 
-> Lo de "cerebro" (persona, flujo, FAQs) ya está listo en esta carpeta. Esto es lo
-> que SÍ requiere tus manos y tu celular el martes. En orden.
+> ⚠️ **Este doc es histórico.** La herramienta elegida fue **respond.io Advanced**
+> (ver `11-aurora-vs-respondio.md` para el racional y `12-setup-respondio.md` para el
+> plan de configuración real). Las preguntas y respuestas de Aurora se conservan aquí
+> como registro de la investigación.
 
 ---
 

@@ -1,4 +1,7 @@
-# Aurora Inbox vs respond.io — comparación para María
+# Aurora Inbox vs respond.io — comparación (decisión: respond.io)
+
+> ✅ **Decisión final (may-2026):** respond.io Advanced. Plan de setup en `12`.
+> Este doc conserva la comparación que llevó a esa decisión.
 
 > Lo que detonó esta comparación: el **lookup en vivo** (que María ya sepa la
 > aseguradora/plan del cliente desde Zoho). Aurora NO lo hace; respond.io SÍ, pero con
