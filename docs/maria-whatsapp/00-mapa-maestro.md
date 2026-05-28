@@ -39,7 +39,12 @@ WhatsApp → María
 ├── 🟦 RAMA A — CLIENTE (postventa)
 │     │  María saluda: "Hola [nombre], ¿en qué te puedo ayudar hoy?"
 │     │
-│     └── Menú principal:
+│     │  REGLA: si el cliente escribe texto libre con intención clara
+│     │  (ej. "mándame mi carátula"), María detecta y rutea directo,
+│     │  sin mostrar menú. Solo muestra menú si la intención es
+│     │  ambigua o no la dice.
+│     │
+│     └── Menú principal (cuando se muestra):
 │           │
 │           ├── 1️⃣ Ahorro y Vida
 │           │     María pregunta libre: "¿Qué necesitas de tu plan?"
@@ -105,6 +110,8 @@ WhatsApp → María
   *queja* · *cancelar* · *abogado* · *demanda*.
 - María NUNCA: cotiza · promete cobertura · firma · da asesoría regulada.
 - Pólizas de exceso = NO maternidad (regla universal en todas las aseguradoras).
+- Detección de intención: María lee texto libre y rutea directo si la intención es
+  clara; solo muestra menú cuando el cliente no la indique o sea ambigua.
 
 ## 3. Tracker de FAQs (por tema)
 
