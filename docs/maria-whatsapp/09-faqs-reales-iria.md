@@ -251,19 +251,45 @@ vive en la carátula PDF. Si solo en PDF → ruta única = carátula.
 
 ## 7. "¿Cuánto cubre mi maternidad?" (GMM, cliente-específico)
 
-**Cómo se contesta:** María **contesta directo** con el monto correspondiente a la
-aseguradora (y plan, si aplica) del cliente. Iria tiene los montos exactos por
-aseguradora.
+**Cómo se contesta:** María primero **evalúa 3 reglas de elegibilidad**; si cumple,
+da el monto exacto desde la tabla; si no cumple alguna, explica por qué y escala.
 
-**Flujo:**
+### Reglas de elegibilidad para el beneficio de maternidad
+
+María debe verificar **antes** de dar monto:
+
+1. **Edad:** la asegurada (mujer) debe tener **máximo 44 años**.
+2. **Deducible:** **igual o menor a $65,000 MXN**.
+3. **Tipo de póliza:** NO aplica en **pólizas de exceso**.
+
+> ⬜ **Confirmar con Iria:** ¿estas 3 reglas aplican a **todos los carriers** o solo
+> a algunos? (la del deducible $65k coincide con la matriz SMNYL).
+
+### Flujo
+
 1. Cliente: *"¿Cuánto cubre mi maternidad?"* / *"¿qué suma asegurada tengo de
    maternidad?"*
 2. María lookup Zoho + verificación de identidad (2º factor — email/fecha nac).
-3. Validar póliza vigente (si cancelada → escala a Ángeles).
-4. María consulta la **tabla de cobertura de maternidad** según carrier (y plan).
-5. María responde: *"Tu cobertura de maternidad es de $X (según tu plan
+3. Validar póliza vigente. Si cancelada → escala a Ángeles.
+4. **Evaluar las 3 reglas** (edad, deducible, tipo de póliza):
+   - Si NO cumple alguna → ver "Cuando no aplica" abajo.
+   - Si cumple las 3 → seguir al paso 5.
+5. María consulta la **tabla de cobertura de maternidad** según carrier+plan+zona.
+6. María responde: *"Tu cobertura de maternidad es de $X (según tu plan
    [carrier+plan]). El periodo de espera estándar es de ~10-12 meses desde la
    contratación. El detalle completo está en tu carátula."*
+
+### Cuando NO aplica (qué dice María)
+
+- **Edad > 44:** *"El beneficio de maternidad aplica para mujeres de hasta 44 años.
+  Si quieres ver opciones, te paso con Ángeles."*
+- **Deducible > $65,000:** *"El beneficio de maternidad aplica para deducibles de
+  hasta $65,000 MXN. Tu deducible está por arriba de ese nivel. Te paso con Ángeles
+  para revisar opciones."*
+- **Póliza de exceso:** *"Las pólizas de exceso no incluyen beneficio de maternidad.
+  Te paso con Ángeles si quieres ver alternativas."*
+
+En los 3 casos, María **escala a Ángeles** con el contexto.
 
 **Tabla de cobertura de maternidad por aseguradora** (Tabulador RIF 25-26):
 
@@ -298,21 +324,16 @@ aseguradora.
 > **Bupa no aparece en este tabulador** — ⬜ Iria me dice cuál es el monto de
 > maternidad para Bupa, o si para Bupa la respuesta también va por otra vía.
 
-**Capa extra para SMNYL — "Aplica / No aplica" según deducible:**
+**Datos que María necesita de Zoho** (para evaluar reglas + tabla):
+- Carrier (aseguradora)
+- Plan
+- Zona (cuando aplica — SMNYL)
+- Antigüedad de la póliza (cuando aplica — GNP Versátil)
+- **Deducible** (para regla #2)
+- Edad de la asegurada (calculada desde fecha de nacimiento)
+- **Tipo de póliza** — específicamente si es "de exceso"
 
-SMNYL tiene una tabla adicional (PDF "Beneficio de Maternidad — Deducibles aplicables")
-que indica que el beneficio **deja de aplicar** a partir de cierto nivel de deducible
-del cliente (a partir de ~$77,000 deja de aplicar en varios planes). Por eso para
-SMNYL María necesita **plan + zona + deducible** para responder con precisión, o
-manda el PDF.
-
-**Reglas para María:**
-- Identificar carrier + plan + (zona y/o antigüedad y/o deducible si aplica) desde
-  Zoho.
-- Si tiene los 3-4 datos → responde el monto exacto + disclaimer.
-- Si le falta algún dato (ej. Zoho no tiene zona) → preguntar al cliente o escalar.
-- SMNYL caso especial: si deducible > umbral → "tu deducible está por encima del nivel
-  donde aplica el beneficio; te paso con Ángeles para confirmarlo y ver opciones."
+Si Zoho NO tiene alguno de estos campos → preguntar al cliente o escalar.
 
 **Reglas YMYL:**
 - María cita lo que está en la tabla con disclaimer ("según tu plan registrado").
