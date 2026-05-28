@@ -254,16 +254,20 @@ vive en la carátula PDF. Si solo en PDF → ruta única = carátula.
 **Cómo se contesta:** María primero **evalúa 3 reglas de elegibilidad**; si cumple,
 da el monto exacto desde la tabla; si no cumple alguna, explica por qué y escala.
 
-### Reglas de elegibilidad para el beneficio de maternidad
+### Reglas de elegibilidad — varían por aseguradora
 
-María debe verificar **antes** de dar monto:
+María verifica **antes** de dar monto, según el carrier del cliente:
 
-1. **Edad:** la asegurada (mujer) debe tener **máximo 44 años**.
-2. **Deducible:** **igual o menor a $65,000 MXN**.
-3. **Tipo de póliza:** NO aplica en **pólizas de exceso**.
+| Aseguradora | Edad límite | Deducible máximo | Pólizas de exceso |
+| --- | --- | --- | --- |
+| **GNP** | Sin límite | **< $60,000 MXN** | ⬜ confirmar |
+| **MetLife** | Sin límite | **< $60,000 MXN** | ⬜ confirmar |
+| **SMNYL** | **≤ 44 años** | **≤ $65,000 MXN** | **NO aplica** |
+| **AXA** | ⬜ pendiente | ⬜ pendiente | ⬜ pendiente |
+| **Bupa** | ⬜ Iria pasa martes | ⬜ Iria pasa martes | ⬜ Iria pasa martes |
 
-> ⬜ **Confirmar con Iria:** ¿estas 3 reglas aplican a **todos los carriers** o solo
-> a algunos? (la del deducible $65k coincide con la matriz SMNYL).
+> **Pendientes:** confirmar reglas de AXA, completar las columnas vacías de GNP /
+> MetLife (¿pólizas de exceso aplica?), y datos de Bupa el martes.
 
 ### Flujo
 
@@ -271,9 +275,9 @@ María debe verificar **antes** de dar monto:
    maternidad?"*
 2. María lookup Zoho + verificación de identidad (2º factor — email/fecha nac).
 3. Validar póliza vigente. Si cancelada → escala a Ángeles.
-4. **Evaluar las 3 reglas** (edad, deducible, tipo de póliza):
+4. **Evaluar las reglas según el carrier** (tabla arriba):
    - Si NO cumple alguna → ver "Cuando no aplica" abajo.
-   - Si cumple las 3 → seguir al paso 5.
+   - Si cumple → seguir al paso 5.
 5. María consulta la **tabla de cobertura de maternidad** según carrier+plan+zona.
 6. María responde: *"Tu cobertura de maternidad es de $X (según tu plan
    [carrier+plan]). El periodo de espera estándar es de ~10-12 meses desde la
@@ -281,15 +285,18 @@ María debe verificar **antes** de dar monto:
 
 ### Cuando NO aplica (qué dice María)
 
-- **Edad > 44:** *"El beneficio de maternidad aplica para mujeres de hasta 44 años.
-  Si quieres ver opciones, te paso con Ángeles."*
-- **Deducible > $65,000:** *"El beneficio de maternidad aplica para deducibles de
-  hasta $65,000 MXN. Tu deducible está por arriba de ese nivel. Te paso con Ángeles
-  para revisar opciones."*
-- **Póliza de exceso:** *"Las pólizas de exceso no incluyen beneficio de maternidad.
-  Te paso con Ángeles si quieres ver alternativas."*
+Adapta el mensaje según el motivo y el carrier:
 
-En los 3 casos, María **escala a Ángeles** con el contexto.
+- **Edad > 44** (SMNYL): *"El beneficio de maternidad de Seguros Monterrey aplica
+  para mujeres de hasta 44 años. Te paso con Ángeles para revisar opciones."*
+- **Deducible por encima del umbral** ($60k GNP/MetLife · $65k SMNYL): *"El
+  beneficio de maternidad de [carrier] aplica para deducibles de hasta $X MXN. El
+  tuyo está por encima. Te paso con Ángeles para ver opciones."*
+- **Póliza de exceso** (SMNYL confirmado, otros por confirmar): *"Las pólizas de
+  exceso no incluyen beneficio de maternidad. Te paso con Ángeles si quieres ver
+  alternativas."*
+
+En todos los casos, María **escala a Ángeles** con el contexto.
 
 **Tabla de cobertura de maternidad por aseguradora** (Tabulador RIF 25-26):
 
