@@ -62,9 +62,15 @@ WhatsApp (1 número) ─ María (recepción + triage)
   ticket Zoho Desk a Violeta, email. **Cancelada** → escala a Ángeles/Eliseo. Falta:
   integración SharePoint (Microsoft Graph) en respond.io.
 
+**Postventa GMM cliente-específico (lookup)**
+- 🟡 ¿Qué deducible tengo? (lookup Zoho o trigger carátula) — confirmar campo Zoho
+- 🟡 ¿Cuánto cubre mi maternidad? (María contesta directo con tabla por carrier + PDF periodos) — montos pendientes
+- 🟡 ¿Cómo me doy de alta en el portal del cliente? (link/app por carrier) — links pendientes
+
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
 - ✅ ¿Médicos de convenio? (mismos portales, filtro de médicos)
+- ⬜ ¿Cómo funciona el deducible y el coaseguro? (educativa) — falta voz de Iria
 - 🟡 ¿Cubre preexistencias?
 - 🟡 ¿Cuánto cuesta?
 - 🟡 ¿Maternidad / parto?
