@@ -66,6 +66,7 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - 🟡 ¿Qué deducible tengo? (lookup Zoho o trigger carátula) — confirmar campo Zoho
 - 🟡 ¿Cuánto cubre mi maternidad? (María contesta directo con tabla por carrier + PDF periodos) — montos pendientes
 - 🟡 ¿Cómo me doy de alta en el portal del cliente? (link/app por carrier) — links pendientes
+- 🟡 ¿Cuáles son los periodos de espera? (PDF general o por carrier) — PDF pendiente
 
 **GMM**
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)

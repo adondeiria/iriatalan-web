@@ -284,9 +284,8 @@ aseguradora.
   Ángeles.
 - Nunca prometer cobertura más allá del dato citado.
 
-**Recurso adicional:** María también puede mandar el **PDF de periodos de espera**
-(Iria lo pasa) — útil para que el cliente vea condiciones generales sin abrir
-ticket. Vive en la knowledge base de respond.io como asset que María adjunta.
+Si el cliente pide detalle de **periodos de espera**, María dispara la FAQ #10
+(periodos de espera) aparte.
 
 ---
 
@@ -323,6 +322,21 @@ del hospital y la de facturación.
 | GNP | ⬜ pendiente | ⬜ |
 | Bupa | ⬜ pendiente | ⬜ |
 | Allianz | ⬜ pendiente | ⬜ |
+
+---
+
+## 10. "¿Cuáles son los periodos de espera?" (GMM, cross-coverage)
+
+**Cómo se contesta:** María manda el **PDF de periodos de espera** (Iria lo pasa)
+como respuesta al cliente. Aplica a maternidad, preexistencias, dental, mental, etc.
+
+**Pendientes:**
+- ⬜ Iria me pasa el PDF (o los PDFs).
+- ❓ **¿Es un solo PDF general** que sirve para todas las aseguradoras, **o uno
+  por carrier**? Si es por carrier, María identifica el carrier (lookup Zoho) y manda
+  el correcto.
+- ❓ ¿María dice algo además del PDF, o solo lo manda? (ej. *"Aquí están los periodos
+  de espera de tu plan. Si tienes una duda específica, te paso con Ángeles."*)
 
 ---
 
