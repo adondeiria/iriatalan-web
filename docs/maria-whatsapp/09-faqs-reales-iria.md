@@ -281,10 +281,10 @@ aseguradora.
 | GNP | Versátil — antigüedad 49+ meses | — | $41,500 MXN |
 | GNP | Internacional | — | 5,000 USD (con deducible nacional como internacional < 5,000 USD) |
 | GNP | Personaliza | — | Incluido en plan $20,000; costo adicional a $42,500 / $58,500 / $74,000 |
-| **Bupa** (a confirmar — etiqueta no visible en tabulador) | Premier 100 | — | $61,000 MXN |
-| Bupa | Premier 200 | — | $61,000 MXN |
-| Bupa | Premier 300 | — | $43,500 MXN |
-| Bupa | Premier 400 | — | $36,600 MXN |
+| GNP | Premier 100 | — | $61,000 MXN |
+| GNP | Premier 200 | — | $61,000 MXN |
+| GNP | Premier 300 | — | $43,500 MXN |
+| GNP | Premier 400 | — | $36,600 MXN |
 | **SMNYL** | Pleno (años 1, 2, 3) | CDMX | $60,000 MXN |
 | SMNYL | Pleno (años 1, 2, 3) | Otras zonas | $55,500 MXN |
 | SMNYL | Íntegro (años 1, 2, 3) | CDMX | $55,000 MXN |
@@ -295,6 +295,8 @@ aseguradora.
 | **MetLife** | General (10 meses periodo de espera) | — | $74,800 MXN |
 
 > **Allianz no aplica** (no vende GMM con Iria; consistente con regla establecida).
+> **Bupa no aparece en este tabulador** — ⬜ Iria me dice cuál es el monto de
+> maternidad para Bupa, o si para Bupa la respuesta también va por otra vía.
 
 **Capa extra para SMNYL — "Aplica / No aplica" según deducible:**
 
