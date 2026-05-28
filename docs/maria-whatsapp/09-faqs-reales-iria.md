@@ -417,12 +417,10 @@ como respuesta al cliente. Aplica a maternidad, preexistencias, dental, mental, 
 ## 11. "¿Por qué subió mi prima este año?"
 
 **Cómo la contesta Iria:**
-> La razón del alto precio de este año es debido a 5 factores: **edad**, **inflación
-> médica anual (18%)** y el **aumento del IVA por parte del gobierno** a todas las
-> aseguradoras en noviembre 2025.
-
-> ⬜ **Confirmar:** Iria menciona "5 factores" pero lista 3. Cuáles son los 2 restantes,
-> o ajustar el número.
+> La razón del alto precio de este año es debido a **4 factores**: **edad**,
+> **inflación médica anual (18%)**, el **aumento del IVA por parte del gobierno** a
+> todas las aseguradoras en **noviembre 2025**, y el **gasto total de la aseguradora
+> (siniestralidad)**.
 
 **Regla para María:** respuesta directa, educativa. **No requiere lookup**. Aplica
 a todos los carriers. Si el cliente cuestiona el monto o quiere ver opciones →
@@ -485,8 +483,8 @@ cliente quiere proceder al alta:
 **Regla para María:** respuesta directa afirmativa. Si el cliente menciona cambio en
 CSF o quiere actualizar datos fiscales:
 - María captura la información (o pide el archivo CSF actualizado).
-- **Abre ticket en Zoho Desk asignado a Violeta** (cobranza/facturas).
-- Avisa al cliente que Violeta le da seguimiento.
+- **Abre ticket en Zoho Desk asignado a Eunice**.
+- Avisa al cliente que Eunice le da seguimiento.
 
 ---
 

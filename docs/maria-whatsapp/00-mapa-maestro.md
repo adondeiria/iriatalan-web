@@ -72,11 +72,11 @@ WhatsApp (1 número) ─ María (recepción + triage)
 - ✅ ¿En qué hospital me atiendo? (→ portal por carrier, lookup Zoho)
 - ✅ ¿Médicos de convenio? (mismos portales, filtro de médicos)
 - ⬜ ¿Cómo funciona el deducible y el coaseguro? (educativa) — falta voz de Iria
-- ✅ ¿Por qué subió mi prima este año? (edad + inflación 18% + IVA nov-2025; 5 factores — 2 pendientes)
+- ✅ ¿Por qué subió mi prima este año? (4 factores: edad + inflación 18% + IVA nov-2025 + siniestralidad)
 - ✅ ¿Cómo funciona la renovación automática? (vitalicia garantizada)
 - ✅ ¿Cuándo vence mi póliza? / ¿vigencia? (anual; lookup Zoho para fecha exacta)
 - ✅ ¿Cómo agrego a mi bebé recién nacido? (30 días + mín. 10 meses póliza)
-- ✅ ¿Es deducible de impuestos? (sí + revisar CSF; ticket a Violeta si hay cambios)
+- ✅ ¿Es deducible de impuestos? (sí + revisar CSF; ticket a Eunice si hay cambios)
 - 🟡 ¿Cubre preexistencias?
 - 🟡 ¿Cuánto cuesta?
 - 🟡 ¿Maternidad / parto?
