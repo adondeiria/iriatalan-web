@@ -30,6 +30,20 @@ respuestas. → Pregunta #7 al vendedor (checklist `04`).
 Sync no es 100% real-time pero Zapier corre casi al instante; suficiente para
 postventa.
 
+## Lo que respond.io sí cubre de tu lista (confirmado)
+
+| Capacidad | respond.io | Plan |
+| --- | --- | --- |
+| Conmutador (menú, triage, ruteo) | ✅ Workflows | Growth |
+| Contestar a leads (greeting/calificar) | ✅ AI Agent | Growth |
+| Respuestas rápidas / snippets siniestros | ✅ Snippets + AI | Growth |
+| Automatizaciones por intención | ✅ Workflows | Growth |
+| Tickets en Zoho Desk | ✅ Zapier (Growth) o HTTP (Advanced) | Growth / Advanced |
+| Subir folletos como conocimiento | ✅ AI Knowledge Sources | Growth |
+| Enviar folletos/archivos al cliente | ✅ | todos |
+| Lookup en vivo (María ya sabe) | ✅ HTTP requests | **Advanced** |
+| Multiagente equipo de 5 | ✅ 10 usuarios incl. | Growth |
+
 ## Tabla
 
 | Dimensión | Aurora Inbox | respond.io |
