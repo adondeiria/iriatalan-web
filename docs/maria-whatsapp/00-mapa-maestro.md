@@ -57,10 +57,16 @@ WhatsApp → María
 │           │     A. Carátula / tarjeta → SharePoint (con verificación)
 │           │     B. Hospital o médicos de convenio → portal por carrier
 │           │     C. Facturas → portal por carrier (Bupa → Ángeles)
-│           │     D. Dudas de coberturas → respuesta por carrier+plan
-│           │        (maternidad con reglas+tabla, deducible, etc.)
-│           │     E. Formatos reembolso / programar cirugía
-│           │        → ticket Zoho Desk + plantilla → Ángeles
+│           │     D. Dudas de coberturas → submenu:
+│           │           D1. Maternidad → reglas elegibilidad + tabla
+│           │           D2. Cómo funciona deducible / coaseguro
+│           │               (FAQ #8 ⬜ voz pendiente de Iria)
+│           │           D3. Otras dudas → "te comunicaré con Ángeles"
+│           │     E. Formatos reembolso / programar cirugía → submenu (propuesta):
+│           │           E1. Formato para reembolso → ticket Ángeles + plantilla
+│           │           E2. Programar cirugía → ticket Ángeles + plantilla
+│           │           E3. Maternidad / alta de bebé → ticket Ángeles
+│           │           E4. Otra cosa o duda diferente → Ángeles
 │           │     F. Otra cosa → escala a Ángeles
 │           │
 │           ├── 3️⃣ Auto — submenu: "¿En qué te podemos ayudar?"
