@@ -5,17 +5,17 @@
 
 ## Objetivo
 
-El **día 15 de cada mes**, Zoho CRM envía **2 correos** con las pólizas que vencen
-en los **próximos 45 días** (ventana móvil desde la fecha de envío):
+El **día 15 de cada mes**, Zoho CRM envía **2 correos** (uno por ramo) con las
+pólizas que vencen durante el **mes calendario que cae 2 meses adelante**:
 
 | Correo | Tipo (`Tipo_de_poliza`) | Destinatarios |
 |--------|--------------------------|---------------|
 | Renovaciones **GMM** | `GMM` | `operaciones@talan.com.mx`, `operaciones2@talan.com.mx`, `clientes@talan.com.mx`, `iria@talan.com.mx` |
 | Renovaciones **Autos** | `AUTO` | `vida@talan.com.mx`, `clientes@talan.com.mx`, `iria@talan.com.mx` |
 
-Ejemplo: la corrida del **15 de junio** lista lo que vence entre el **15 de junio y
-el 30 de julio**. Las pólizas que se van renovando dejan de aparecer porque su
-`Estatus` cambia a `RENOVADA`.
+Ejemplo: la corrida del **15 de junio** lista todo lo que vence en **agosto**
+(1 al 31 de agosto). La del 15 de julio → septiembre completo. Cada póliza
+aparece una sola vez (sin traslape entre meses).
 
 ## Modelo de datos (verificado en vivo el 2026-05-29)
 
@@ -34,14 +34,21 @@ nombre sugerido `enviarRenovacionesMensuales`, sin argumentos.
 ```deluge
 void automation.enviarRenovacionesMensuales()
 {
-    // ---------- 1) Ventana móvil = próximos 45 días ----------
-    hoy = zoho.currentdate;
-    fechaInicio = hoy.toString("yyyy-MM-dd");              // hoy (día 15)
-    fechaFin    = hoy.addDay(45).toString("yyyy-MM-dd");   // +45 días
+    // ---------- 1) Ventana = mes calendario a 2 meses (15-jun => agosto) ----------
+    objetivo  = zoho.currentdate.addMonth(2);
+    primerDia = objetivo.toString("yyyy-MM-01").toDate("yyyy-MM-dd");
+    ultimoDia = primerDia.addMonth(1).addDay(-1);
 
-    inicioTxt = hoy.toString("dd/MM/yyyy");
-    finTxt    = hoy.addDay(45).toString("dd/MM/yyyy");
-    etiquetaRango = inicioTxt + " al " + finTxt;
+    fechaInicio = primerDia.toString("yyyy-MM-dd");
+    fechaFin    = ultimoDia.toString("yyyy-MM-dd");
+
+    nombresMes = Map();
+    nombresMes.put(1, "enero");   nombresMes.put(2, "febrero");  nombresMes.put(3, "marzo");
+    nombresMes.put(4, "abril");   nombresMes.put(5, "mayo");     nombresMes.put(6, "junio");
+    nombresMes.put(7, "julio");   nombresMes.put(8, "agosto");   nombresMes.put(9, "septiembre");
+    nombresMes.put(10, "octubre"); nombresMes.put(11, "noviembre"); nombresMes.put(12, "diciembre");
+    etiquetaMes = nombresMes.get(objetivo.getMonth()) + " " + objetivo.getYear();
+    hoyTxt = zoho.currentdate.toString("dd/MM/yyyy");
 
     // ---------- 2) Configuración por tipo ----------
     config = Map();
@@ -80,7 +87,7 @@ void automation.enviarRenovacionesMensuales()
         colCliente   = if(tipo == "GMM", "Asegurado", "Vehículo");
 
         cuerpo = "<div style='font-family:Arial,sans-serif;font-size:14px;color:#1a1a1a;'>";
-        cuerpo = cuerpo + "<p>Pólizas de <b>" + etiquetaTipo + "</b> por renovar en los <b>próximos 45 días</b> (" + etiquetaRango + ").</p>";
+        cuerpo = cuerpo + "<p>Pólizas de <b>" + etiquetaTipo + "</b> por renovar en <b>" + etiquetaMes + "</b>.</p>";
 
         if(polizas.size() == 0)
         {
@@ -112,9 +119,9 @@ void automation.enviarRenovacionesMensuales()
             cuerpo = cuerpo + "<p style='margin-top:12px;'>Total: <b>" + polizas.size() + "</b> pólizas.</p>";
         }
 
-        cuerpo = cuerpo + "<p style='color:#888888;font-size:12px;'>Generado automáticamente desde Zoho CRM el " + inicioTxt + ".</p></div>";
+        cuerpo = cuerpo + "<p style='color:#888888;font-size:12px;'>Generado automáticamente desde Zoho CRM el " + hoyTxt + ".</p></div>";
 
-        asunto = "Renovaciones " + if(tipo == "GMM", "GMM", "Autos") + " por vencer (próx. 45 días) — " + polizas.size() + " pólizas";
+        asunto = "Renovaciones " + if(tipo == "GMM", "GMM", "Autos") + " — " + etiquetaMes + " (" + polizas.size() + " pólizas)";
 
         sendmail
         [
@@ -137,7 +144,7 @@ void automation.enviarRenovacionesMensuales()
 2. **Probar antes de programar**
    - Botón **Ejecutar / Run** dentro del editor.
    - Verificar que lleguen los 2 correos y que la tabla se vea bien.
-   - La prueba listará lo que vence en los próximos 45 días contados desde hoy.
+   - Si lo corres en mayo, la prueba listará el mes de **julio** (mayo + 2).
 
 3. **Programar (día 15 de cada mes)**
    - Setup → Automatización → **Programaciones (Schedules)** → *Nueva programación*.
@@ -151,9 +158,12 @@ void automation.enviarRenovacionesMensuales()
 
 ## Notas
 
-- **Ventana**: móvil de 45 días desde el día de envío (15). Hay traslape natural
-  mes a mes; se autocorrige porque las renovadas pasan a `RENOVADA` y dejan de salir.
+- **Ventana**: mes calendario completo a 2 meses vista (día 15 → mes M+2). Cada
+  póliza aparece una sola vez; sin traslape entre meses.
+- Esto da entre ~47 y ~77 días de anticipación según el día de vencimiento dentro
+  del mes objetivo. Si prefieres más/menos colchón, se ajusta el `addMonth(2)`.
 - `searchRecords` en Deluge devuelve lista vacía cuando no hay coincidencias; el código
   ya lo contempla. Confirmar en la prueba real.
-- Volumen de referencia (29-may → 31-jul 2026): ~44 GMM, 2 Autos.
+- Validar en la prueba que `objetivo.getMonth()` devuelva 1–12 (para el nombre del mes);
+  si tu data center lo devolviera 0–11, sumar 1 en el `nombresMes.get(...)`.
 ```
