@@ -82,6 +82,23 @@ void automation.enviarRenovacionesMensuales()
             }
         }
 
+        // ---- Ordenar por fecha de vencimiento (ascendente) ----
+        // searchRecords no permite sort_by por este campo, así que ordenamos aquí.
+        ordenado = Map();
+        idx = 0;
+        for each p in polizas
+        {
+            idx = idx + 1;
+            fechaOrden = ifnull(p.get("Fecha_de_finalizaci_n_de_vigencia"), "9999-12-31");
+            // El sufijo _idx evita que dos pólizas con la misma fecha se pisen en el Map.
+            ordenado.put(fechaOrden + "_" + idx, p);
+        }
+        polizasOrdenadas = List();
+        for each clave in ordenado.keys().sort(true)
+        {
+            polizasOrdenadas.add(ordenado.get(clave));
+        }
+
         // ---- Construir tabla HTML ----
         etiquetaTipo = if(tipo == "GMM", "GMM (Gastos Médicos Mayores)", "Autos");
         colCliente   = if(tipo == "GMM", "Asegurado", "Vehículo");
@@ -100,7 +117,7 @@ void automation.enviarRenovacionesMensuales()
             cuerpo = cuerpo + "<th>#</th><th>Póliza</th><th>" + colCliente + "</th><th>Aseguradora</th><th>Vence</th><th>Prima</th></tr>";
 
             i = 0;
-            for each p in polizas
+            for each p in polizasOrdenadas
             {
                 i = i + 1;
                 fondo   = if(i % 2 == 0, "#f4f6f8", "#ffffff");
@@ -162,6 +179,10 @@ void automation.enviarRenovacionesMensuales()
   póliza aparece una sola vez; sin traslape entre meses.
 - Esto da entre ~47 y ~77 días de anticipación según el día de vencimiento dentro
   del mes objetivo. Si prefieres más/menos colchón, se ajusta el `addMonth(2)`.
+- **Ordenamiento**: el correo sale ordenado por `Fecha_de_finalizaci_n_de_vigencia`
+  ascendente (la API de búsqueda no deja ordenar por ese campo, se hace en el código).
+- **Ensayo en vivo (2026-05-29)**: la consulta para julio 2026 funcionó — devolvió
+  18 GMM y 2 Autos. Nombres de campo y filtro `between` confirmados.
 - `searchRecords` en Deluge devuelve lista vacía cuando no hay coincidencias; el código
   ya lo contempla. Confirmar en la prueba real.
 - Validar en la prueba que `objetivo.getMonth()` devuelva 1–12 (para el nombre del mes);
