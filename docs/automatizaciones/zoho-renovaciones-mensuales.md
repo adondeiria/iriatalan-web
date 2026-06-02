@@ -25,6 +25,9 @@ aparece una sola vez (sin traslape entre meses).
 - **Estatus**: `Estatus` → filtramos `VIGENTE` (las ya renovadas pasan a `RENOVADA`).
 - **Datos mostrados**: `Name` (no. de póliza), `Asegurado_1` (titular GMM),
   `Auto` (vehículo, en autos), `Aseguradora`, `Prima`.
+- **Pólizas colectivas**: no tienen `Asegurado_1` (es correcto, no es dato faltante).
+  El contratante vive en el lookup `Contacto` → `Contacto.name` (ej. "LDM DIGITAL
+  MEXICO SA DE CV"). El código usa ese nombre como respaldo cuando `Asegurado_1` es nulo.
 
 ## Función Deluge
 
@@ -122,6 +125,11 @@ void automation.enviarRenovacionesMensuales()
                 i = i + 1;
                 fondo   = if(i % 2 == 0, "#f4f6f8", "#ffffff");
                 cliente = if(tipo == "GMM", p.get("Asegurado_1"), p.get("Auto"));
+                // Pólizas colectivas no tienen Asegurado_1: usamos el contratante (Contacto).
+                if(cliente == null && p.get("Contacto") != null)
+                {
+                    cliente = p.get("Contacto").get("name");
+                }
                 cliente = ifnull(cliente, "—");
                 aseg    = ifnull(p.get("Aseguradora"), "—");
                 vence   = ifnull(p.get("Fecha_de_finalizaci_n_de_vigencia"), "—");
