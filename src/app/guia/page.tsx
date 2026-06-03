@@ -297,31 +297,7 @@ export default async function GuiaPage() {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
-          <div className="max-w-3xl mx-auto w-full">
-            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
-              Preguntas frecuentes
-            </h2>
-            <div className="mt-8 divide-y divide-warm-brown/15 dark:divide-warm-brown/30">
-              {FAQS.map((faq) => (
-                <details key={faq.question} className="group py-5">
-                  <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-ink dark:text-cream-light list-none">
-                    <span>{faq.question}</span>
-                    <span className="text-rif-rojo transition-transform duration-300 group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-warm-brown dark:text-cream-light/80 leading-relaxed">
-                    {faq.answerText}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA final — conversión a asesoría/plan con formulario */}
+        {/* Conversión a asesoría/plan con formulario */}
         <section className="px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30 bg-cream/40 dark:bg-coffee/20">
           <div className="max-w-2xl mx-auto w-full text-center">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-ink dark:text-cream-light">
@@ -351,6 +327,30 @@ export default async function GuiaPage() {
                 Hablemos por WhatsApp →
               </a>
             </p>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-3xl mx-auto w-full">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Preguntas frecuentes
+            </h2>
+            <div className="mt-8 divide-y divide-warm-brown/15 dark:divide-warm-brown/30">
+              {FAQS.map((faq) => (
+                <details key={faq.question} className="group py-5">
+                  <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-ink dark:text-cream-light list-none">
+                    <span>{faq.question}</span>
+                    <span className="text-rif-rojo transition-transform duration-300 group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                    {faq.answerText}
+                  </p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
       </main>
