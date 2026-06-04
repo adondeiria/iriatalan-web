@@ -2,16 +2,17 @@
  * Sanity Studio embedded en /studio
  * https://www.sanity.io/docs/embed-studio
  *
- * Studio usa React Context internamente — debe correr como Client Component.
- * El metadata/viewport se exporta desde un layout separado para evitar conflicto
- * con la directiva "use client".
+ * El Studio usa APIs de navegador (window, document) y no puede renderizarse en
+ * el servidor. El SSR del shell producía React #419 (un Suspense boundary no
+ * terminaba en el server y caía a client rendering, con flash en blanco).
+ * Lo montamos con next/dynamic { ssr: false } para que cargue solo en el cliente.
  */
 "use client";
 
-import { NextStudio } from "next-sanity/studio";
+import dynamic from "next/dynamic";
 
-import config from "../../../../sanity.config";
+const Studio = dynamic(() => import("./Studio"), { ssr: false });
 
 export default function StudioPage() {
-  return <NextStudio config={config} />;
+  return <Studio />;
 }
