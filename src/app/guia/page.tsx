@@ -308,8 +308,8 @@ export default async function GuiaPage() {
               usar de emergencia.
             </p>
             <p className="mt-4 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-              Si quieres revisar tu testamento, tus seguros o armar tu plan
-              patrimonial, déjame tus datos y te contacto. Sin compromiso.
+              Si quieres asesoría para armar o alinear tu plan patrimonial
+              —protección, sucesión y planeación—, déjame tus datos y te contacto. Sin compromiso.
             </p>
 
             <div className="mt-8">
