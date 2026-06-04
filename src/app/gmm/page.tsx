@@ -82,9 +82,9 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Gastos Médicos Mayores en México",
+  title: "¿Qué cubre un Seguro de Gastos Médicos Mayores?",
   description:
-    "GMM correcto: red hospitalaria, deducible y cobertura internacional adaptados. 6 aseguradoras AAA. Estrategia para renovaciones que subieron 15-20%. MDRT TOT · Asesora autorizada CNSF.",
+    "Qué cubre, cómo funciona y cuánto cuesta al año un GMM en México. Trabajo con 6 aseguradoras AAA para encontrar tu mejor plan, nacional e internacional.",
   alternates: { canonical: `${SITE_URL}/gmm` },
   openGraph: {
     type: "website",
@@ -229,7 +229,7 @@ export default async function GmmPage() {
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
-              Lo que mucha gente no sabe del GMM
+              ¿Qué cubre un GMM? Lo que define tu cobertura
             </h2>
             <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               Un GMM mal contratado cuesta lo mismo que uno bien contratado — pero el

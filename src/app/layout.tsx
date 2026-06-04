@@ -43,11 +43,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Asesoría Financiera y Seguros`,
+    default: "Iria Talan | Asesoría Patrimonial y Seguros en México",
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Planeación patrimonial, seguros y retiro en México. Asesora MDRT Top of the Table · Cédula CNSF V388618 · Yale Wealth Management.",
+    "Diseño de estrategias técnicas de protección, retiro e inversión. Asegura tu patrimonio y optimiza tus impuestos con soluciones de alto nivel.",
   applicationName: SITE_NAME,
   authors: [{ name: "Iria Talan", url: `${SITE_URL}/sobre-iria` }],
   keywords: [
