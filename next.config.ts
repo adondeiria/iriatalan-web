@@ -74,6 +74,20 @@ const nextConfig: NextConfig = {
       { source: "/familias-arcoiris/", destination: "/personas/familias-arcoiris", permanent: true },
       { source: "/mujeres", destination: "/personas/mujeres", permanent: true },
       { source: "/mujeres/", destination: "/personas/mujeres", permanent: true },
+      // WordPress demo/template posts indexados (descubierto en Search Console
+      // 2026-06-04). Contenido genérico de plantilla en inglés que Google sigue
+      // sirviendo como 404 — 571 impresiones/3meses perdidas. Redirect a destino
+      // temático o home. /aka-si-trais omitido: patrón de spam, no vale redirect.
+      { source: "/hello-world", destination: "/", permanent: true },
+      { source: "/hello-world/", destination: "/", permanent: true },
+      { source: "/how-to-become-a-better-leader-in-new-workplace", destination: "/", permanent: true },
+      { source: "/how-to-become-a-better-leader-in-new-workplace/", destination: "/", permanent: true },
+      { source: "/how-to-go-freelance-your-step-by-step-guide", destination: "/", permanent: true },
+      { source: "/how-to-go-freelance-your-step-by-step-guide/", destination: "/", permanent: true },
+      { source: "/what-consumers-want-from-businesses", destination: "/empresas", permanent: true },
+      { source: "/what-consumers-want-from-businesses/", destination: "/empresas", permanent: true },
+      { source: "/giving-buyers-more-options-with-financing", destination: "/", permanent: true },
+      { source: "/giving-buyers-more-options-with-financing/", destination: "/", permanent: true },
     ];
   },
 };
