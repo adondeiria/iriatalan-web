@@ -16,9 +16,9 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: { absolute: "Sobre Iria Talan — Asesora Financiera RIF" },
+  title: { absolute: "Sobre Iria Talan — Asesora Patrimonial y de Seguros" },
   description:
-    "Iria Talan: MDRT Top of the Table, AMASFAC 8vo Lugar Nacional, Yale Wealth Management, LSE MBA Essentials. Asesora financiera autorizada CNSF en CDMX.",
+    "Conoce a Iria Talan, Asesora Patrimonial y de seguros con +18 años ayudando a familias a proteger su patrimonio, su salud y su retiro. Autorizada CNSF.",
   alternates: { canonical: "/sobre-iria" },
   openGraph: {
     title: "Sobre Iria Talan — Asesora Financiera RIF",
