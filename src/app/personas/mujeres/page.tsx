@@ -79,7 +79,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría financiera para mujeres en México",
   description:
-    "Asesoría financiera diseñada por una mujer, para mujeres que toman decisiones: profesionistas, divorciadas, viudas y empresarias. Planes educacionales, PPR, fideicomisos, vida y GMM. MDRT Top of the Table.",
+    "Asesoría financiera diseñada por una mujer, para mujeres que toman decisiones: profesionistas, divorciadas, viudas y empresarias. Planes educacionales, PPR, fideicomisos, vida y GMM.",
   alternates: { canonical: `${SITE_URL}/personas/mujeres` },
   openGraph: {
     type: "website",

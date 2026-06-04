@@ -79,7 +79,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Planeación de Retiro · PPR + Modalidad 40 IMSS",
   description:
-    "PPR con beneficio fiscal art. 151 fracc V y art. 185 LISR vigentes (hasta $213,973 MXN deducibles en 2026 — cifra vigente a 2026, la UMA se actualiza anualmente), Modalidad 40 IMSS y estructura combinada. MDRT Top of the Table · Asesora autorizada CNSF.",
+    "Multiplica tu pensión con un PPR y Modalidad 40 IMSS. Deduce impuestos hoy y asegura tu retiro con una estrategia diseñada para ti.",
   alternates: { canonical: `${SITE_URL}/retiro` },
   openGraph: {
     type: "website",

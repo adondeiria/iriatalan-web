@@ -79,7 +79,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría financiera para familias con hijos neurodivergentes",
   description:
-    "Planeación financiera de por vida para familias con hijos con autismo, TDAH, síndrome de Down u otra condición neurodivergente. Fideicomisos, seguros de vida, planeación legal de tutela y patrimonio. MDRT Top of the Table.",
+    "Planeación financiera de por vida para familias con hijos con autismo, TDAH, síndrome de Down u otra condición neurodivergente. Fideicomisos, seguros de vida, planeación legal de tutela y patrimonio.",
   alternates: { canonical: `${SITE_URL}/personas/hijos-neurodivergentes` },
   openGraph: {
     type: "website",

@@ -29,6 +29,11 @@ const FAQS: FAQItem[] = [
       "Con la designación de tus beneficiarios. Conforme al Art. 179 LCS vigente, cuando designas a un beneficiario de forma irrevocable, el derecho de ese beneficiario se constituye como derecho propio — el capital asegurado NO forma parte de la masa hereditaria del fallecido y NO requiere juicio sucesorio para llegar al beneficiario. Esto permite que el dinero llegue en máximo 30 días directo a quien designaste, sin esperar protocolización notarial ni resolución judicial. Si además estructuras la designación irrevocable hacia un fideicomiso, ganas control sobre cómo y cuándo recibe el capital tu beneficiario.",
   },
   {
+    question: "¿Es cierto que un seguro de vida es inembargable?",
+    answerText:
+      "El crédito que un seguro de vida concede al asegurado o a sus beneficiarios goza de protección frente a embargos conforme al Art. 188 de la Ley sobre el Contrato de Seguro vigente: como regla general, los acreedores no pueden embargarlo ni ejecutarlo. Importante: la protección NO es absoluta — la ley prevé excepciones, principalmente cuando las primas se pagaron en fraude de acreedores o en montos desproporcionados respecto a tu capacidad económica. Por eso el blindaje real depende de cómo se estructura la póliza desde el inicio: lo revisamos en la sesión inicial para que tu protección sea efectiva y no impugnable.",
+  },
+  {
     question: "¿Conviene contratar mi seguro de vida en pesos o en dólares?",
     answerText:
       "Depende de la moneda funcional de tus herederos y tu propio patrimonio. Si tus herederos viven o estudiarán en EUA, Europa, o tienen gastos dolarizados, un seguro en USD elimina el riesgo cambiario al momento del pago. Si todo tu patrimonio y los gastos de tus herederos están en pesos, contratar en MXN es más simple. Para patrimonios mixtos, lo común es estructurar parte en cada moneda según el destino esperado del capital. Varias de las 6 aseguradoras AAA con las que trabajo ofrecen productos en ambas monedas — la elección óptima la mapeamos en la sesión inicial.",
@@ -72,9 +77,9 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Patrimonios complejos · Asesoría discreta para familias con patrimonio",
+  title: "Asesoría Patrimonial para Familias en México y el Extranjero",
   description:
-    "Asesoría patrimonial discreta para patrimonios complejos: fideicomisos, sucesión, inversiones complejas y estructuras internacionales. MDRT Top of the Table · Asesora autorizada CNSF.",
+    "Asesoría patrimonial para personas y familias en México y mexicanos en el extranjero: fideicomisos, sucesión, inversiones y seguros en dólares. Blinda y ordena tu patrimonio.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
