@@ -12,6 +12,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { GuiaLeadForm } from "./guia-form";
+import { CheckupGate } from "./checkup-gate";
 
 const PDF_PATH = "/descargas/guia-8-tramites-fallecimiento.pdf";
 
@@ -293,6 +294,36 @@ export default async function GuiaPage() {
               >
                 Conoce más sobre Iria →
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Lead magnet gateado: Check-up de Beneficiarios */}
+        <section className="px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-2xl mx-auto w-full text-center">
+            <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
+              Descarga gratuita
+            </p>
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-ink dark:text-cream-light">
+              Check-up de Beneficiarios
+            </h2>
+            <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/90 leading-relaxed">
+              Tener testamento no basta: tus seguros, cuentas, AFORE y créditos
+              se rigen por sus propios beneficiarios. Revisa en 16 puntos si los
+              tuyos están actualizados y alineados — antes de que tu familia lo
+              descubra en el peor momento.
+            </p>
+            <ul className="mt-6 text-left text-warm-brown dark:text-cream-light/85 leading-relaxed space-y-2 max-w-md mx-auto">
+              <li>✓ Seguros, cuentas, inversiones, AFORE y PPR</li>
+              <li>✓ Créditos con seguro de saldo deudor, fideicomisos y empresa</li>
+              <li>✓ Activos en el extranjero, digitales y tutela de menores</li>
+              <li>✓ En PDF para imprimir y en Excel para llenar</li>
+            </ul>
+            <p className="mt-6 text-sm text-warm-brown/80 dark:text-cream-light/70">
+              Déjame tus datos y te lo envío al instante.
+            </p>
+            <div className="mt-6">
+              <CheckupGate />
             </div>
           </div>
         </section>
