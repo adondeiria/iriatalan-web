@@ -12,7 +12,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { GuiaLeadForm } from "./guia-form";
-import { CheckupGate } from "./checkup-gate";
+import { CheckupGate } from "@/components/checkup-gate";
 
 const PDF_PATH = "/descargas/guia-8-tramites-fallecimiento.pdf";
 

@@ -6,6 +6,7 @@ import {
 import Link from "next/link";
 
 import {
+  CheckupDownloadBlock,
   ComparisonTable,
   CtaWhatsApp,
   DataCallout,
@@ -147,6 +148,7 @@ const components: PortableTextComponents = {
     glossaryReference: ({ value }) => <GlossaryReferenceLink value={value} />,
     ctaWhatsApp: ({ value }) => <CtaWhatsApp value={value} />,
     externalToolLink: ({ value }) => <ExternalToolLink value={value} />,
+    checkupDownload: () => <CheckupDownloadBlock />,
   },
 };
 

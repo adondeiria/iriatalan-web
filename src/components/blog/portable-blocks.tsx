@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 
+import { CheckupGate } from "@/components/checkup-gate";
+
 // =========================================================
 // InlineImage — bloque image dentro del body Portable Text
 // =========================================================
@@ -407,5 +409,29 @@ export function GlossaryReferenceLink({
     >
       {value.display ?? term.term ?? ""}
     </Link>
+  );
+}
+
+// CheckupDownloadBlock — lead magnet gateado embebido en el artículo.
+// Bloque `checkupDownload`: muestra un gancho + el form de captura que, al
+// enviarse, registra el lead en Zoho y revela la descarga (PDF + Excel).
+export function CheckupDownloadBlock() {
+  return (
+    <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
+      <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
+        Descarga gratuita
+      </p>
+      <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-ink dark:text-cream-light leading-tight">
+        Check-up de Beneficiarios
+      </h3>
+      <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+        Revisa en 16 puntos si los beneficiarios de tus seguros, cuentas, AFORE,
+        créditos y demás están actualizados y alineados con tu testamento. Déjame
+        tus datos y te lo envío al instante (PDF para imprimir y Excel para llenar).
+      </p>
+      <div className="mt-6">
+        <CheckupGate />
+      </div>
+    </div>
   );
 }

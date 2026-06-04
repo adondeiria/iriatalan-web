@@ -440,6 +440,29 @@ export const article = defineType({
             },
           },
         }),
+        // ----- CUSTOM BLOCK: checkupDownload -----
+        // Lead magnet gateado: inserta el formulario de descarga del
+        // "Check-up de Beneficiarios" (captura a Zoho + entrega PDF/Excel).
+        // El render vive en CheckupDownloadBlock; aquí solo es el marcador.
+        defineArrayMember({
+          name: "checkupDownload",
+          title: "Check-up de Beneficiarios (descarga con formulario)",
+          type: "object",
+          fields: [
+            defineField({
+              name: "nota",
+              title: "Nota interna (opcional)",
+              type: "string",
+              description:
+                "El contenido y el formulario son fijos; este campo es solo una nota para el editor.",
+            }),
+          ],
+          preview: {
+            prepare() {
+              return { title: "📥 Check-up de Beneficiarios (lead magnet)" };
+            },
+          },
+        }),
         // ----- CUSTOM BLOCK: externalToolLink -----
         defineArrayMember({
           name: "externalToolLink",
