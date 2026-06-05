@@ -4,6 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 
 import { CheckupGate } from "@/components/checkup-gate";
 import { CalculadoraEducacionalGate } from "@/components/calculadora-educacional-gate";
+import { ChecklistDiscapacidadGate } from "@/components/checklist-discapacidad-gate";
 
 // =========================================================
 // InlineImage — bloque image dentro del body Portable Text
@@ -456,6 +457,31 @@ export function CalculadoraEducacionalBlock() {
       </p>
       <div className="mt-6">
         <CalculadoraEducacionalGate />
+      </div>
+    </div>
+  );
+}
+
+// ChecklistDiscapacidadBlock — lead magnet gateado para el artículo de protección
+// patrimonial de familias con un hijo con discapacidad. Capta contacto y entrega
+// el checklist (PDF + Excel).
+export function ChecklistDiscapacidadBlock() {
+  return (
+    <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
+      <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
+        Checklist gratuito
+      </p>
+      <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-ink dark:text-cream-light leading-tight">
+        Protección patrimonial para familias neurodivergentes
+      </h3>
+      <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+        Detecta en pocos minutos qué ya tienes resuelto y qué necesitas ordenar
+        para proteger el cuidado y el futuro de tu hij@: testamento, beneficiarios,
+        seguros, fideicomiso, red de apoyo, carta de intención y documentación de
+        cuidados. Déjame tus datos y te lo envío al instante (PDF y Excel).
+      </p>
+      <div className="mt-6">
+        <ChecklistDiscapacidadGate />
       </div>
     </div>
   );

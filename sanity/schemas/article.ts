@@ -483,6 +483,26 @@ export const article = defineType({
             },
           },
         }),
+        // ----- CUSTOM BLOCK: checklistDiscapacidad -----
+        defineArrayMember({
+          name: "checklistDiscapacidad",
+          title: "Checklist discapacidad (descarga con formulario)",
+          type: "object",
+          fields: [
+            defineField({
+              name: "nota",
+              title: "Nota interna (opcional)",
+              type: "string",
+              description:
+                "El contenido y el formulario son fijos; este campo es solo una nota para el editor.",
+            }),
+          ],
+          preview: {
+            prepare() {
+              return { title: "🧩 Checklist discapacidad (lead magnet)" };
+            },
+          },
+        }),
         // ----- CUSTOM BLOCK: externalToolLink -----
         defineArrayMember({
           name: "externalToolLink",
