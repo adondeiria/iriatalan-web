@@ -3,6 +3,7 @@ import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 
 import { CheckupGate } from "@/components/checkup-gate";
+import { CalculadoraEducacionalGate } from "@/components/calculadora-educacional-gate";
 
 // =========================================================
 // InlineImage — bloque image dentro del body Portable Text
@@ -431,6 +432,30 @@ export function CheckupDownloadBlock() {
       </p>
       <div className="mt-6">
         <CheckupGate />
+      </div>
+    </div>
+  );
+}
+
+// CalculadoraEducacionalBlock — lead magnet gateado para el artículo de costos
+// universitarios. Capta edad del hijo + universidad objetivo + contacto, y
+// promete una estimación personalizada (Iria la envía tras recibir el lead).
+export function CalculadoraEducacionalBlock() {
+  return (
+    <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
+      <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
+        ¿Tu ahorro actual alcanza?
+      </p>
+      <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-ink dark:text-cream-light leading-tight">
+        Estimación personalizada del costo de la universidad
+      </h3>
+      <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+        Te ayudo a estimar cuánto podría costar la universidad de tu hij@ y a
+        comparar esa cifra contra tu plan de ahorro actual. Déjame tus datos y te
+        envío una estimación personalizada.
+      </p>
+      <div className="mt-6">
+        <CalculadoraEducacionalGate />
       </div>
     </div>
   );

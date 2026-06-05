@@ -6,6 +6,7 @@ import {
 import Link from "next/link";
 
 import {
+  CalculadoraEducacionalBlock,
   CheckupDownloadBlock,
   ComparisonTable,
   CtaWhatsApp,
@@ -149,6 +150,7 @@ const components: PortableTextComponents = {
     ctaWhatsApp: ({ value }) => <CtaWhatsApp value={value} />,
     externalToolLink: ({ value }) => <ExternalToolLink value={value} />,
     checkupDownload: () => <CheckupDownloadBlock />,
+    calculadoraEducacional: () => <CalculadoraEducacionalBlock />,
   },
 };
 

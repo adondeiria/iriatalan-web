@@ -463,6 +463,26 @@ export const article = defineType({
             },
           },
         }),
+        // ----- CUSTOM BLOCK: calculadoraEducacional -----
+        defineArrayMember({
+          name: "calculadoraEducacional",
+          title: "Calculadora educacional (estimación con formulario)",
+          type: "object",
+          fields: [
+            defineField({
+              name: "nota",
+              title: "Nota interna (opcional)",
+              type: "string",
+              description:
+                "El contenido y el formulario son fijos; este campo es solo una nota para el editor.",
+            }),
+          ],
+          preview: {
+            prepare() {
+              return { title: "🎓 Calculadora educacional (lead magnet)" };
+            },
+          },
+        }),
         // ----- CUSTOM BLOCK: externalToolLink -----
         defineArrayMember({
           name: "externalToolLink",
