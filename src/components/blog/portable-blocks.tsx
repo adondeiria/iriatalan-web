@@ -444,10 +444,10 @@ export function CalculadoraEducacionalBlock() {
   return (
     <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
       <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
-        ¿Tu ahorro actual alcanza?
+        Calculadora gratuita
       </p>
       <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-ink dark:text-cream-light leading-tight">
-        Estimación personalizada del costo de la universidad
+        Descubre si tu ahorro actual alcanzará para la universidad de tu hij@
       </h3>
       <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
         Te ayudo a estimar cuánto podría costar la universidad de tu hij@ y a
