@@ -90,7 +90,7 @@ export function CalculadoraEducacionalGate() {
         </h3>
         <p className="mt-3 text-warm-brown dark:text-cream-light/80 leading-relaxed">
           Te preparo una <strong>estimación personalizada</strong> del costo de
-          la universidad de tu hij@ y la comparo contra un plan de ahorro. Te la
+          la universidad de tu hijo o hija y la comparo contra un plan de ahorro. Te la
           envío en máximo <strong>24 horas hábiles</strong>.
         </p>
       </div>
@@ -106,7 +106,7 @@ export function CalculadoraEducacionalGate() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Tu nombre" name="nombre" required placeholder="Tu nombre" />
         <Field
-          label="Edad de tu hij@"
+          label="Edad de tu hijo o hija"
           name="edad"
           type="number"
           required

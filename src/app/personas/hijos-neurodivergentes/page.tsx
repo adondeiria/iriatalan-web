@@ -54,9 +54,9 @@ const FAQS: FAQItem[] = [
       "Sí. Si tu asociación quiere organizar una sesión informativa para varias familias a la vez, podemos coordinar — sin compromiso individual de contratar, solo educativa. Escríbeme.",
   },
   {
-    question: "¿Cómo dejarle una pensión vitalicia a mi hij@?",
+    question: "¿Cómo dejarle una pensión vitalicia a mi hijo o hija?",
     answerText:
-      "Lo que estructuro contigo es un seguro de vida combinado con un ahorro de rentas vitalicias. La aseguradora paga a tu hij@ una renta mensual o anual — actualizada por inflación, o pagada al TC del dólar, de acuerdo con la moneda del plan. La pensión se dispara en caso de fallecimiento o el vencimiento del plazo del seguro de ahorro. Tú decides cuánto recibe mensualmente; eso determina la suma asegurada que necesitamos. Es un contrato directo entre la aseguradora y tu hij@ como beneficiario — no entra en juicio de sucesión, ni depende del testamento.",
+      "Lo que estructuro contigo es un seguro de vida combinado con un ahorro de rentas vitalicias. La aseguradora paga a tu hijo o hija una renta mensual o anual — actualizada por inflación, o pagada al TC del dólar, de acuerdo con la moneda del plan. La pensión se dispara en caso de fallecimiento o el vencimiento del plazo del seguro de ahorro. Tú decides cuánto recibe mensualmente; eso determina la suma asegurada que necesitamos. Es un contrato directo entre la aseguradora y tu hijo o hija como beneficiario — no entra en juicio de sucesión, ni depende del testamento.",
   },
   {
     question: "¿El dinero está blindado contra embargos y problemas legales?",
@@ -64,14 +64,14 @@ const FAQS: FAQItem[] = [
       "Sí. Cuando estructuramos la póliza con designación irrevocable de beneficiario, el derecho propio del beneficiario se constituye conforme al Art. 179 LCS vigente, lo que generalmente lo coloca fuera del alcance de acreedores del contratante. Las cantidades recibidas por descendientes directos pueden estar exentas de ISR conforme al Art. 93 fracc. XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales aplicables — consulta la aplicabilidad a tu caso particular con tu asesor fiscal. En la práctica te mando el contrato de la fiduciaria para que veas exactamente cómo opera.",
   },
   {
-    question: "¿Qué pasa con el dinero si mi hij@ llegara a fallecer?",
+    question: "¿Qué pasa con el dinero si mi hijo o hija llegara a fallecer?",
     answerText:
-      "En la estructura nombramos beneficiarios sustitutos desde el inicio. Generalmente designamos a sus hermanos — no solo por afecto, sino porque son quienes conocieron a tu hij@ de cerca y van a entender el sentido del patrimonio que construiste. Si no hay hermanos, podemos definir otros familiares, tu pareja, o incluso una fundación dedicada a neurodivergencia. La cascada queda definida por escrito antes de firmar la póliza — no hay improvisación.",
+      "En la estructura nombramos beneficiarios sustitutos desde el inicio. Generalmente designamos a sus hermanos — no solo por afecto, sino porque son quienes conocieron a tu hijo o hija de cerca y van a entender el sentido del patrimonio que construiste. Si no hay hermanos, podemos definir otros familiares, tu pareja, o incluso una fundación dedicada a neurodivergencia. La cascada queda definida por escrito antes de firmar la póliza — no hay improvisación.",
   },
   {
     question: "¿Mis otros hijos también necesitan estar incluidos en la planeación?",
     answerText:
-      "Solamente como beneficiarios contingentes y de hecho una de las razones por las que estructuramos así es justamente para que el cuidado de tu hij@ no recaiga económicamente en sus hermanos ni en otros familiares. La idea de generar una pensión vitalicia a través del fideicomiso es poder cubrir los gastos de su cuidado de por vida: terapias, vivienda asistida, cuidador, costo de seguro de gastos médicos. Tus otros hijos pueden estar cerca afectivamente, o supervisar — pero sin la presión de sostenerlo con sus propios ingresos ni sacrificar sus propios proyectos de vida.",
+      "Solamente como beneficiarios contingentes y de hecho una de las razones por las que estructuramos así es justamente para que el cuidado de tu hijo o hija no recaiga económicamente en sus hermanos ni en otros familiares. La idea de generar una pensión vitalicia a través del fideicomiso es poder cubrir los gastos de su cuidado de por vida: terapias, vivienda asistida, cuidador, costo de seguro de gastos médicos. Tus otros hijos pueden estar cerca afectivamente, o supervisar — pero sin la presión de sostenerlo con sus propios ingresos ni sacrificar sus propios proyectos de vida.",
   },
 ];
 
@@ -409,16 +409,16 @@ export default async function HijosNeurodivergentesPage() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Cómo dejarle una pensión vitalicia a mi hij@?
+                  ¿Cómo dejarle una pensión vitalicia a mi hijo o hija?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Lo que estructuro contigo es un seguro de vida combinado con un ahorro
-                  de rentas vitalicias. La aseguradora paga a tu hij@ una renta mensual o
+                  de rentas vitalicias. La aseguradora paga a tu hijo o hija una renta mensual o
                   anual — actualizada por inflación, o pagada al TC del dólar, de acuerdo
                   con la moneda del plan. La pensión se dispara en caso de fallecimiento
                   o el vencimiento del plazo del seguro de ahorro. Tú decides cuánto
                   recibe mensualmente; eso determina la suma asegurada que necesitamos.
-                  Es un contrato directo entre la aseguradora y tu hij@ como beneficiario
+                  Es un contrato directo entre la aseguradora y tu hijo o hija como beneficiario
                   — no entra en juicio de sucesión, ni depende del testamento.
                 </p>
               </div>
@@ -428,7 +428,7 @@ export default async function HijosNeurodivergentesPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Sí. Cuando estructuramos la póliza con designación irrevocable de
-                  beneficiario, el derecho que adquiere tu hij@ es un derecho propio que
+                  beneficiario, el derecho que adquiere tu hijo o hija es un derecho propio que
                   se constituye conforme al Art. 179 LCS vigente, lo que generalmente
                   lo coloca fuera del alcance de acreedores del contratante. Las
                   cantidades recibidas por descendientes directos pueden estar exentas
@@ -441,12 +441,12 @@ export default async function HijosNeurodivergentesPage() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Qué pasa con el dinero si mi hij@ llegara a fallecer?
+                  ¿Qué pasa con el dinero si mi hijo o hija llegara a fallecer?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   En la estructura nombramos beneficiarios sustitutos desde el inicio.
                   Generalmente designamos a sus hermanos — no solo por afecto, sino
-                  porque son quienes conocieron a tu hij@ de cerca y van a entender el
+                  porque son quienes conocieron a tu hijo o hija de cerca y van a entender el
                   sentido del patrimonio que construiste. Si no hay hermanos, podemos
                   definir otros familiares, tu pareja, o incluso una fundación dedicada
                   a neurodivergencia. La cascada queda definida por escrito antes de
@@ -460,7 +460,7 @@ export default async function HijosNeurodivergentesPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Solamente como beneficiarios contingentes y de hecho una de las
                   razones por las que estructuramos así es justamente para que el
-                  cuidado de tu hij@ no recaiga económicamente en sus hermanos ni en
+                  cuidado de tu hijo o hija no recaiga económicamente en sus hermanos ni en
                   otros familiares. La idea de generar una pensión vitalicia a través
                   del fideicomiso es poder cubrir los gastos de su cuidado de por vida:
                   terapias, vivienda asistida, cuidador, costo de seguro de gastos

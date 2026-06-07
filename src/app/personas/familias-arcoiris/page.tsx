@@ -61,12 +61,12 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Podemos contratar seguros (educacionales, retiro, vida) y poner a nuestra pareja como beneficiaria?",
     answerText:
-      "Las aseguradoras autorizadas en México generalmente permiten designar a cualquier persona como beneficiaria, incluido pareja afectiva independientemente del estatus civil, sujeto a los requisitos de asegurabilidad de cada aseguradora. Si están casados con acta de registro civil, tu espos@ puede recibir el capital asegurado con el tratamiento fiscal aplicable a beneficiarios directos conforme al Art. 93 fracc. XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales vigentes. Si no están casados, lo armamos con designación irrevocable de beneficiario — el efecto patrimonial es prácticamente el mismo: el dinero llega directo a tu pareja sin pasar por juicio sucesorio.",
+      "Las aseguradoras autorizadas en México generalmente permiten designar a cualquier persona como beneficiaria, incluido pareja afectiva independientemente del estatus civil, sujeto a los requisitos de asegurabilidad de cada aseguradora. Si están casados con acta de registro civil, tu esposo o esposa puede recibir el capital asegurado con el tratamiento fiscal aplicable a beneficiarios directos conforme al Art. 93 fracc. XXI LISR vigente, sujeto al cumplimiento de los requisitos fiscales vigentes. Si no están casados, lo armamos con designación irrevocable de beneficiario — el efecto patrimonial es prácticamente el mismo: el dinero llega directo a tu pareja sin pasar por juicio sucesorio.",
   },
   {
     question: "En caso de separación o divorcio, ¿lo que estructuramos sigue protegiendo a quien yo decidí?",
     answerText:
-      "Sí, la estructura sigue en pie. Cuando estructuramos con designación irrevocable de beneficiario, conforme al Art. 179 LCS vigente, el derecho del beneficiario irrevocable se constituye como derecho propio; la aplicabilidad a un caso de divorcio o embargo concreto debe consultarse con tu abogado. Lo que decidiste hoy queda con la mayor protección legal disponible bajo la LCS vigente. Y la designación irrevocable funciona igual sin importar el tipo de vínculo: cónyuge legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.",
+      "Sí, la estructura sigue en pie. Cuando estructuramos con designación irrevocable de beneficiario, conforme al Art. 179 LCS vigente, el derecho del beneficiario irrevocable se constituye como derecho propio; la aplicabilidad a un caso de divorcio o embargo concreto debe consultarse con tu abogado. Lo que decidiste hoy queda con la mayor protección legal disponible bajo la LCS vigente. Y la designación irrevocable funciona igual sin importar el tipo de vínculo: cónyuge legal, pareja afectiva, hijos — quien tú elijas como beneficiari@.",
   },
 ];
 
@@ -416,7 +416,7 @@ export default async function FamiliasArcoirisPage() {
                   a cualquier persona como beneficiaria, incluido pareja afectiva
                   independientemente del estatus civil, sujeto a los requisitos de
                   asegurabilidad de cada aseguradora. Si están casados con acta de
-                  registro civil, tu espos@ puede recibir el capital asegurado con el
+                  registro civil, tu esposo o esposa puede recibir el capital asegurado con el
                   tratamiento fiscal aplicable a beneficiarios directos conforme al
                   Art. 93 fracc. XXI LISR vigente, sujeto al cumplimiento de los
                   requisitos fiscales vigentes. Si no están casados, lo armamos con
@@ -437,7 +437,7 @@ export default async function FamiliasArcoirisPage() {
                   consultarse con tu abogado. Lo que decidiste hoy queda con la mayor
                   protección legal disponible bajo la LCS vigente. Y la designación
                   irrevocable funciona igual sin importar el tipo de vínculo: cónyuge
-                  legal, pareja afectiva, hij@s — quien tú elijas como beneficiari@.
+                  legal, pareja afectiva, hijos — quien tú elijas como beneficiari@.
                 </p>
               </div>
             </div>

@@ -448,10 +448,10 @@ export function CalculadoraEducacionalBlock() {
         Calculadora gratuita
       </p>
       <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-ink dark:text-cream-light leading-tight">
-        Descubre si tu ahorro actual alcanzará para la universidad de tu hij@
+        Descubre si tu ahorro actual alcanzará para la universidad de tu hijo o hija
       </h3>
       <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-        Te ayudo a estimar cuánto podría costar la universidad de tu hij@ y a
+        Te ayudo a estimar cuánto podría costar la universidad de tu hijo o hija y a
         comparar esa cifra contra tu plan de ahorro actual. Déjame tus datos y te
         envío una estimación personalizada.
       </p>
@@ -476,7 +476,7 @@ export function ChecklistDiscapacidadBlock() {
       </h3>
       <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
         Detecta en pocos minutos qué ya tienes resuelto y qué necesitas ordenar
-        para proteger el cuidado y el futuro de tu hij@: testamento, beneficiarios,
+        para proteger el cuidado y el futuro de tu hijo o hija: testamento, beneficiarios,
         seguros, fideicomiso, red de apoyo, carta de intención y documentación de
         cuidados. Déjame tus datos y te lo envío al instante (PDF y Excel).
       </p>
