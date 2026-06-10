@@ -110,7 +110,7 @@ export default async function RetiroPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -601,7 +601,7 @@ export default async function RetiroPage() {
                   Calcula tu pensión gratis
                 </div>
                 <div className="mt-2 text-sm opacity-80">
-                  Calendly · 30 min
+                  Agenda · 30 min
                 </div>
               </a>
             </div>

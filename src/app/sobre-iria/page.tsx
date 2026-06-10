@@ -76,7 +76,7 @@ export default async function SobreIriaPage() {
       tags: ["author"],
     }).catch(() => null)) ?? FALLBACK_AUTHOR;
 
-  const ctaUrl = author.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
 
   const pageSchema = buildGraph(
     buildPersonSchema(author),
@@ -288,21 +288,17 @@ export default async function SobreIriaPage() {
                   </div>
                 </a>
               )}
-              {author.socialLinks?.calendly && (
-                <a
-                  href={author.socialLinks.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-                >
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
-                    Agenda en Calendly
-                  </div>
-                  <div className="text-lg font-medium text-ink dark:text-cream-light">
-                    Sesión inicial · 30 min
-                  </div>
-                </a>
-              )}
+              <a
+                href="/contacto#agendar"
+                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+              >
+                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                  Agenda tu sesión
+                </div>
+                <div className="text-lg font-medium text-ink dark:text-cream-light">
+                  Sesión inicial · 30 min
+                </div>
+              </a>
               {author.officeAddress && (
                 <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                   <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">

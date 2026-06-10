@@ -165,7 +165,7 @@ export default async function MexicanosEnElExtranjeroPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -389,7 +389,7 @@ export default async function MexicanosEnElExtranjeroPage() {
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Videollamada</div>
                 <div className="text-lg font-medium">Agenda sesión inicial</div>
-                <div className="mt-2 text-sm opacity-80">Calendly · sin compromiso</div>
+                <div className="mt-2 text-sm opacity-80">Agenda · sin compromiso</div>
               </a>
             </div>
           </div>

@@ -96,7 +96,7 @@ export default async function EmpresasPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -529,7 +529,7 @@ export default async function EmpresasPage() {
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Diagnóstico</div>
                 <div className="text-lg font-medium">Agenda sesión inicial</div>
-                <div className="mt-2 text-sm opacity-80">Calendly · sin costo</div>
+                <div className="mt-2 text-sm opacity-80">Agenda · sin costo</div>
               </a>
             </div>
           </div>

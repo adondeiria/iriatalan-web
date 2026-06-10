@@ -122,7 +122,7 @@ export default async function MujeresPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -532,7 +532,7 @@ export default async function MujeresPage() {
                   Agenda sesión inicial
                 </div>
                 <div className="mt-2 text-sm opacity-80">
-                  Calendly · sin compromiso
+                  Agenda · sin compromiso
                 </div>
               </a>
             </div>

@@ -118,7 +118,7 @@ export default async function ForeignersInMexicoPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -604,7 +604,7 @@ export default async function ForeignersInMexicoPage() {
                   Schedule an introductory call
                 </div>
                 <div className="mt-2 text-sm opacity-80">
-                  Calendly · no commitment
+                  Schedule · no commitment
                 </div>
               </a>
             </div>

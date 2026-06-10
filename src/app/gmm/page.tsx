@@ -15,9 +15,9 @@ import {
 
 const FAQS: FAQItem[] = [
   {
-    question: "¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife, SMNYL o Allianz?",
+    question: "¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife o SMNYL?",
     answerText:
-      "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
+      "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada aseguradora. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA y Seguros Monterrey New York Life tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
   },
   {
     question: "¿Cubre el GMM enfermedades preexistentes?",
@@ -27,7 +27,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿A qué edad conviene contratar GMM y hasta qué edad se renueva?",
     answerText:
-      "Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde la prima sube significativamente. Las primas suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. La mayoría de las aseguradoras AAA mexicanas renuevan vitaliciamente si no hay incumplimientos de pago u omisiones de declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.",
+      "Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde el costo sube significativamente. Los costos suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. Muchos planes del mercado contemplan renovación vitalicia, sujeta a las condiciones de la póliza, el pago oportuno y la no omisión en la declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.",
   },
   {
     question: "¿Cubre el GMM maternidad y parto?",
@@ -37,7 +37,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cuánto cuesta un GMM individual o familiar en 2026?",
     answerText:
-      "La prima depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener primas anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente la prima. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.",
+      "El costo depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener costos anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente el costo. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.",
   },
   {
     question: "¿Puedo mantener mi GMM si cambio de trabajo o me independizo?",
@@ -47,7 +47,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Mi GMM subió 18% este año, ya no me alcanza.",
     answerText:
-      "Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura sería el peor escenario.",
+      "Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías defensivas (deducible · optimizar tu plan actual · red ajustada). Cancelar tu cobertura sería el peor escenario.",
   },
   {
     question: "Es muy caro.",
@@ -62,36 +62,36 @@ const FAQS: FAQItem[] = [
   {
     question: "Tengo dudas con el deducible.",
     answerText:
-      "Es la decisión más importante. Bajo = prima alta, cobertura desde el primer peso. Alto = prima baja, asumes los primeros gastos tú. Depende de tu liquidez de emergencia y aversión al riesgo. Lo cuantificamos juntos.",
+      "Es la decisión más importante. Bajo = costo alto, cobertura desde el primer peso. Alto = costo bajo, asumes los primeros gastos tú. Depende de tu liquidez de emergencia y aversión al riesgo. Lo cuantificamos juntos.",
   },
   {
     question: "¿Qué hospitales cubre?",
     answerText:
-      "Depende del carrier y plan. ABC + Médica Sur + Ángeles está en planes premium de varios. Christus Muguerza en otros. Te muestro la red exacta antes de decidir.",
+      "Depende de la aseguradora y plan. ABC + Médica Sur + Ángeles está en planes premium de varios. Christus Muguerza en otros. Te muestro la red exacta antes de decidir.",
   },
   {
     question: "¿Y si me niegan un siniestro?",
     answerText:
-      "La CNSF regula y arbitra disputas. La mayoría de \"negativas\" son por documentación incompleta o por aplicar plan equivocado para el caso — cosas que se corrigen. Te acompaño personalmente en el proceso.",
+      "La CNSF regula y arbitra disputas. Muchas controversias se originan en documentación incompleta, exclusiones o la declaración inicial — por eso la revisión previa es crítica. Varias se corrigen acompañando bien el proceso, y te acompaño personalmente.",
   },
   {
     question: "¿Y la cobertura internacional?",
     answerText:
-      "Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA y MetLife tienen las redes internacionales más amplias.",
+      "Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA, MetLife y otros planes internacionales pueden ofrecer redes amplias; conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "¿Qué cubre un Seguro de Gastos Médicos Mayores?",
   description:
-    "Qué cubre, cómo funciona y cuánto cuesta al año un GMM en México. Trabajo con 6 aseguradoras AAA para encontrar tu mejor plan, nacional e internacional.",
+    "Qué cubre, cómo funciona y cuánto cuesta al año un GMM en México. Trabajo con 5 aseguradoras AAA para encontrar tu mejor plan, nacional e internacional.",
   alternates: { canonical: `${SITE_URL}/gmm` },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/gmm`,
     title: "Gastos Médicos Mayores — Iria Talan",
     description:
-      "Si tu GMM subió este año, hay 3 vías para bajar prima sin perder cobertura crítica.",
+      "Si tu GMM subió este año, hay 3 vías para bajar el costo sin perder cobertura crítica.",
   },
 };
 
@@ -101,7 +101,7 @@ function buildServiceSchema() {
     "@id": `${SITE_URL}/gmm#service`,
     name: "Gastos Médicos Mayores",
     description:
-      "Cobertura médica privada estructurada: red hospitalaria, deducible, coaseguro y cobertura internacional adaptados al perfil del cliente. Comparación entre 6 aseguradoras AAA en México.",
+      "Cobertura médica privada estructurada: red hospitalaria, deducible, coaseguro y cobertura internacional adaptados al perfil del cliente. Comparación entre 5 aseguradoras AAA en México.",
     url: `${SITE_URL}/gmm`,
     provider: { "@id": `${SITE_URL}#financialservice` },
     category: "Seguros de salud privada",
@@ -115,7 +115,7 @@ export default async function GmmPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const ctaUrl = author?.socialLinks?.calendly ?? "/contacto#agendar";
+  const ctaUrl = "/contacto#agendar";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
@@ -155,13 +155,16 @@ export default async function GmmPage() {
             {" / "}Gastos Médicos Mayores
           </p>
           <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
-            La diferencia entre un GMM bien y uno mal estructurado no es la prima.
+            Gastos Médicos Mayores en México, estructurados para proteger tu patrimonio.
           </h1>
-          <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-            Es si tu familia recibe la red hospitalaria, el deducible y la cobertura
-            internacional correctas para tu caso real. Trabajo con BUPA, MetLife,
-            Allianz, Seguros Monterrey New York Life, AXA y GNP. Según tu situación
-            específica, te recomiendo la(s) más adecuada(s) para ti.
+          <h2 className="mt-6 font-serif text-2xl sm:text-3xl tracking-tight leading-snug text-warm-brown dark:text-cream-light/90 max-w-2xl">
+            La diferencia entre un GMM bien y uno mal estructurado no es el costo: es si
+            tu familia recibe la red hospitalaria, el deducible y la cobertura
+            internacional correctas para tu caso real.
+          </h2>
+          <p className="mt-6 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
+            Trabajo con BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP.
+            Según tu situación específica, te recomiendo la(s) más adecuada(s) para ti.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
@@ -178,6 +181,21 @@ export default async function GmmPage() {
             >
               Conoce a Iria
             </Link>
+          </div>
+
+          <p className="mt-5 text-sm text-warm-brown/85 dark:text-cream-light/65 max-w-2xl leading-relaxed">
+            Sesión inicial de 60 min, sin costo. Sales con una comparación de 2–3
+            estructuras posibles según red, deducible y cobertura internacional para tu perfil.
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 text-xs text-warm-brown/80 dark:text-cream-light/60">
+            <span className="flex items-center gap-3">
+              <Image src="/img/logos/mdrt-official.svg" alt="MDRT — Million Dollar Round Table" width={28} height={27} className="h-7 w-auto opacity-90" />
+              <Image src="/img/logos/amasfac.svg" alt="AMASFAC" width={75} height={28} className="h-7 w-auto opacity-90" />
+            </span>
+            <span className="leading-snug">
+              MDRT Top of the Table 2024 · 8vo Lugar Nacional AMASFAC · Asesora Diamante GNP y Seguros Monterrey New York Life · Cédula CNSF V388618
+            </span>
           </div>
         </section>
 
@@ -199,8 +217,9 @@ export default async function GmmPage() {
                   &ldquo;Mi GMM subió 15-20% este año.&rdquo;
                 </h3>
                 <p className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed flex-1">
-                  Es la queja #1 que escucho hoy. Hay 3 vías para bajar prima sin
-                  perder cobertura crítica. No canceles antes de hablar.
+                  Es la queja #1 que escucho hoy. Hay 3 vías que pueden reducir el costo
+                  sin sacrificar cobertura clave, según aseguradora, edad, siniestralidad
+                  y tu estructura actual. No canceles antes de hablar.
                 </p>
                 <span className="mt-5 text-sm font-medium text-ink dark:text-cream-light group-hover:underline">
                   Estrategias defensivas →
@@ -265,7 +284,7 @@ export default async function GmmPage() {
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                 <h3 className="font-semibold text-ink dark:text-cream-light">Cobertura internacional</h3>
                 <p className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                  EUA, Europa — crítica para clientes que se atienden allá. BUPA y MetLife tienen las redes más amplias.
+                  EUA, Europa — crítica para clientes que se atienden allá. BUPA, MetLife y otros planes internacionales pueden ofrecer redes amplias; conviene revisar hospitales elegibles y territorialidad.
                 </p>
               </div>
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
@@ -275,6 +294,14 @@ export default async function GmmPage() {
                 </p>
               </div>
             </div>
+
+            <p className="mt-8 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+              ¿Quieres ver el detalle real? Consulta las{" "}
+              <Link href="/recursos" className="font-medium text-ink dark:text-cream-light underline underline-offset-4 decoration-warm-brown/40 hover:decoration-rif-rojo">
+                condiciones generales y cuadros médicos por aseguradora
+              </Link>{" "}
+              en Recursos.
+            </p>
           </div>
         </section>
 
@@ -284,12 +311,12 @@ export default async function GmmPage() {
               Estrategia defensiva
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
-              Si ya tienes GMM y te subió la prima
+              Si ya tienes GMM y te subió el costo
             </h2>
             <p className="mt-4 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
               La inflación médica es real, los reajustes anuales son inevitables. Pero hay
               <strong className="text-ink dark:text-cream-light"> 3 vías concretas</strong> que
-              pueden bajar tu prima sin perder cobertura crítica. Antes de cancelar — peor escenario —
+              pueden bajar tu costo sin perder cobertura crítica. Antes de cancelar — peor escenario —
               hagamos esta evaluación.
             </p>
 
@@ -300,21 +327,30 @@ export default async function GmmPage() {
                   Optimizar el deducible
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Subir tu deducible reduce la prima sin afectar tu suma asegurada total.
+                  Subir tu deducible reduce el costo sin afectar tu suma asegurada total.
                   Si tu liquidez de emergencia te lo permite, asumir un deducible más alto
-                  en eventos chicos puede bajar tu prima del orden de 15-25% según carrier, plan
+                  en eventos chicos puede bajar tu costo del orden de 15-25% según aseguradora, plan
                   y perfil — cifra referencial, no garantizada.
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
                 <div className="text-xs uppercase tracking-wider text-cream-light0 mb-1">Vía 2</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
-                  Cambio estratégico de carrier (sin perder antigüedad)
+                  Optimizar tu plan dentro de la misma aseguradora
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Algunas aseguradoras te aceptan con conservación de antigüedad si vienes
-                  de otro carrier reconocido. Esto puede ahorrarte el período de espera por
-                  preexistencias y darte mejor prima por perfil.
+                  Antes de pensar en cambiarte, casi siempre se puede bajar el costo sin tocar
+                  tu antigüedad ni tus preexistencias: ajustar el coaseguro o el tope, bajar a un
+                  plan de la misma aseguradora con red más acotada, quitar coberturas adicionales
+                  que no usas, o cambiar a pago anual para evitar el recargo por fraccionamiento.
+                  Todo esto conserva tu historial médico y tus condiciones ya cubiertas.
+                </p>
+                <p className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed border-l-2 border-rif-rojo/50 pl-3">
+                  Cambiar de aseguradora es un recurso de último momento, solo para casos
+                  extremos: en México la nueva aseguradora vuelve a evaluar tu salud y normalmente
+                  no reconoce tus preexistencias — lo que hoy tienes cubierto puede quedar excluido.
+                  Por eso solo lo valoramos cuando de verdad es la mejor (o única) salida, y siempre
+                  revisándolo juntos antes de mover nada.
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
@@ -325,7 +361,7 @@ export default async function GmmPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Si nunca te has atendido en hospitales top (ABC, Médica Sur, Ángeles), un
                   plan con red media puede ahorrar del orden de 30-40% sin afectar la atención que
-                  sí usas, según carrier y perfil — cifra referencial.
+                  sí usas, según aseguradora y perfil — cifra referencial.
                 </p>
               </div>
             </div>
@@ -344,15 +380,18 @@ export default async function GmmPage() {
               <p>
                 Una intervención médica privada compleja en CDMX (cirugía mayor, terapia intensiva,
                 hospitalización oncológica) puede acumular varios cientos de miles a millones
-                de pesos en cuestión de días. Una familia afluente puede ver borrado años
-                de ahorro patrimonial sin previo aviso.
+                de pesos en cuestión de días. El riesgo real para un patrimonio no es{" "}
+                &ldquo;no poder pagar la cuenta&rdquo;: es tener que{" "}
+                <strong className="text-ink dark:text-cream-light">desinvertir activos productivos</strong>{" "}
+                —acciones, bienes raíces, el capital de tu negocio— de emergencia para liquidar
+                una factura médica de millones.
               </p>
               <p>
                 <strong className="text-ink dark:text-cream-light">El cálculo correcto:</strong>{" "}
-                la prima anual de un GMM correcto rara vez supera el 5% del costo de un solo
-                evento médico mayor. Para una familia de 4 con red top y cobertura internacional,
-                rangos típicos en México 2025 van de $80,000 a $180,000 anuales según edades,
-                deducible y carrier.
+                el costo anual de un GMM bien estructurado suele ser una fracción del costo de un
+                solo evento médico mayor. Para una familia de 4 con red top y cobertura internacional,
+                los rangos referenciales en México 2025 van de $80,000 a $180,000 anuales
+                (Aseguratemexico, 2025), sujetos a edades, deducible, suma asegurada, red y aseguradora.
               </p>
               <p>
                 <span className="block mt-3 mb-3 text-xs text-cream-light0 italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3">
@@ -383,7 +422,7 @@ export default async function GmmPage() {
               <p>
                 Para patrimonios con tratamientos en EUA o Europa, contratar GMM solo nacional
                 puede salir en millones cuando aparece el caso complejo. La diferencia entre
-                BUPA o MetLife internacional vs un GMM nacional estándar no es cosmética —
+                un GMM internacional vs un GMM nacional estándar no es cosmética —
                 es de capa, de techo y de red hospitalaria internacional aceptada.
               </p>
               <div>
@@ -400,18 +439,21 @@ export default async function GmmPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
-                  Carriers con redes internacionales más amplias
+                  Aseguradoras que suelen destacar en cobertura internacional
                 </h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong className="text-ink dark:text-cream-light">BUPA</strong> — red global muy amplia, especialmente Reino Unido, Europa y Asia</li>
-                  <li><strong className="text-ink dark:text-cream-light">MetLife</strong> — red EUA muy fuerte, opciones flexibles de deducible</li>
-                  <li><strong className="text-ink dark:text-cream-light">Allianz</strong> — cobertura europea premium</li>
+                  <li><strong className="text-ink dark:text-cream-light">BUPA</strong> — depende del plan internacional que tengas contratado, puedes tener acceso a los mejores hospitales de México y el mundo.</li>
+                  <li><strong className="text-ink dark:text-cream-light">GNP VIP</strong> — red fuerte en EUA, cobertura con hospitales en convenio internacionales y acceso a todos los hospitales en México.</li>
+                  <li><strong className="text-ink dark:text-cream-light">AXA</strong> — cobertura con hospitales internacionales en convenio.</li>
                 </ul>
+                <p className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65">
+                  La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso.
+                </p>
               </div>
               <p>
                 <strong className="text-ink dark:text-cream-light">Lo que cuesta NO tener:</strong>{" "}
                 un solo evento mayor en EUA puede acumular varios millones de dólares en cuestión de
-                semanas. La prima anual de un GMM internacional bien estructurado es una fracción de eso.
+                semanas. El costo anual de un GMM internacional bien estructurado es una fracción de eso.
               </p>
               <p className="text-xs text-cream-light0 italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3 mt-3">
                 Las cifras de costos médicos son ilustrativas y dependen del país, hospital, tipo de evento, aseguradora, plan contratado y evaluación individual.
@@ -440,7 +482,7 @@ export default async function GmmPage() {
                   2. Recomendación de la(s) aseguradora(s) adecuada(s) para ti
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Trabajo con BUPA, MetLife, Allianz, Seguros Monterrey New York Life,
+                  Trabajo con BUPA, MetLife, Seguros Monterrey New York Life,
                   AXA y GNP. Según tu situación específica, te recomiendo la(s) más
                   adecuada(s) para ti.
                 </p>
@@ -466,10 +508,10 @@ export default async function GmmPage() {
             <div className="mt-10 space-y-8">
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife, SMNYL o Allianz?
+                  ¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife o SMNYL?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Ninguna es &ldquo;mejor&rdquo; en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada carrier. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA, Seguros Monterrey New York Life y Allianz tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.
+                  Ninguna es &ldquo;mejor&rdquo; en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada aseguradora. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA y Seguros Monterrey New York Life tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.
                 </p>
               </div>
               <div>
@@ -485,7 +527,7 @@ export default async function GmmPage() {
                   ¿A qué edad conviene contratar GMM y hasta qué edad se renueva?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde la prima sube significativamente. Las primas suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. La mayoría de las aseguradoras AAA mexicanas renuevan vitaliciamente si no hay incumplimientos de pago u omisiones de declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.
+                  Lo más pronto posible — antes de cualquier diagnóstico que después se convierta en preexistencia y antes de cumplir edades donde el costo sube significativamente. Los costos suben con la edad de contratación de forma no lineal: contratar a los 30 vs a los 50 puede significar diferencias importantes en el costo total del plan a lo largo de la vida. Muchos planes del mercado contemplan renovación vitalicia, sujeta a las condiciones de la póliza, el pago oportuno y la no omisión en la declaración. Las edades máximas de alta varían por aseguradora — conviene revisar antes de cumplir la edad límite de tu aseguradora preferida.
                 </p>
               </div>
               <div>
@@ -501,7 +543,7 @@ export default async function GmmPage() {
                   ¿Cuánto cuesta un GMM individual o familiar en 2026?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  La prima depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener primas anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente la prima. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.
+                  El costo depende de edad de cada asegurado, deducible, coaseguro, red hospitalaria, suma asegurada, preexistencias declaradas, y si incluye cobertura internacional. Como referencia general 2026, una familia mexicana típica con plan de red top y cobertura internacional puede tener costos anuales en el rango de $80,000 a $180,000 MXN (rangos referenciales según fuentes del sector); planes con red restringida y deducibles más altos pueden bajar considerablemente el costo. La cifra exacta requiere cotización individual con cada aseguradora — eso lo hacemos en la sesión inicial.
                 </p>
               </div>
               <div>
@@ -518,7 +560,7 @@ export default async function GmmPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Es la queja #1 que escucho hoy. Antes de cancelar, evaluemos las 3 vías
-                  defensivas (deducible · cambio carrier · red ajustada). Cancelar tu cobertura
+                  defensivas (deducible · optimizar tu plan actual · red ajustada). Cancelar tu cobertura
                   sería el peor escenario.
                 </p>
               </div>
@@ -547,8 +589,8 @@ export default async function GmmPage() {
                   Tengo dudas con el deducible.
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Es la decisión más importante. Bajo = prima alta, cobertura desde el primer peso.
-                  Alto = prima baja, asumes los primeros gastos tú. Depende de tu liquidez de
+                  Es la decisión más importante. Bajo = costo alto, cobertura desde el primer peso.
+                  Alto = costo bajo, asumes los primeros gastos tú. Depende de tu liquidez de
                   emergencia y aversión al riesgo. Lo cuantificamos juntos.
                 </p>
               </div>
@@ -557,7 +599,7 @@ export default async function GmmPage() {
                   ¿Qué hospitales cubre?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Depende del carrier y plan. ABC + Médica Sur + Ángeles está en planes premium
+                  Depende de la aseguradora y plan. ABC + Médica Sur + Ángeles está en planes premium
                   de varios. Christus Muguerza en otros. Te muestro la red exacta antes de decidir.
                 </p>
               </div>
@@ -566,9 +608,10 @@ export default async function GmmPage() {
                   ¿Y si me niegan un siniestro?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  La CNSF regula y arbitra disputas. La mayoría de &ldquo;negativas&rdquo; son por documentación
-                  incompleta o por aplicar plan equivocado para el caso — cosas que se corrigen.
-                  Te acompaño personalmente en el proceso.
+                  La CNSF regula y arbitra disputas. Muchas controversias se originan en
+                  documentación incompleta, exclusiones o la declaración inicial — por eso la
+                  revisión previa es crítica. Varias se corrigen acompañando bien el proceso, y
+                  te acompaño personalmente.
                 </p>
               </div>
               <div>
@@ -577,7 +620,7 @@ export default async function GmmPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la
-                  incluyen. BUPA y MetLife tienen las redes internacionales más amplias.
+                  incluyen. BUPA, MetLife y otros planes internacionales pueden ofrecer redes amplias; conviene revisar hospitales elegibles, territorialidad y deducibles por país.
                 </p>
               </div>
             </div>
@@ -612,7 +655,7 @@ export default async function GmmPage() {
                   Mujeres planeando GMM sustentable
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
-                  GMM diseñado para sostener primas a largo plazo sin sorpresas, alineado con cambios hormonales y patrones de salud específicos.
+                  GMM diseñado para sostener costos a largo plazo sin sorpresas, alineado con cambios hormonales y patrones de salud específicos.
                 </p>
               </Link>
               <Link
@@ -633,40 +676,40 @@ export default async function GmmPage() {
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
-              Tres formas de empezar
+              Demos el primer paso
             </h2>
             <p className="mt-3 text-warm-brown dark:text-cream-light/85">
-              Lo único que pido: que vengas con tus dudas, no con respuestas.
+              No necesitas saber de seguros para empezar, yo te guío.
             </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <a
-                href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-              >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
-                <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
-                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
-              </a>
-              <a
-                href={`mailto:${email}`}
-                className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-              >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
-                <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
-                <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
-              </a>
+            <div className="mt-10 space-y-4">
               <a
                 href={ctaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
+                className="block p-7 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">Revisión directa</div>
-                <div className="text-lg font-medium">Agenda sesión inicial</div>
-                <div className="mt-2 text-sm opacity-80">Calendly · sin costo</div>
+                <div className="text-xl font-semibold">Diseñar mi estructura de GMM</div>
+                <div className="mt-2 text-sm opacity-80">Sesión inicial sin costo</div>
               </a>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <a
+                  href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                >
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                  <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
+                  <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
+                </a>
+                <a
+                  href={`mailto:${email}`}
+                  className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
+                >
+                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                  <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
+                  <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
+                </a>
+              </div>
             </div>
           </div>
         </section>
