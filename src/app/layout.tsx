@@ -180,10 +180,10 @@ export default function RootLayout({
           <div className="relative max-w-6xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
             <div>
               <Image
-                src="/LOGOVECTORRIF.svg"
+                src="/logo-rif.svg"
                 alt={`${SITE_NAME} — Reingeniería Financiera`}
-                width={56}
-                height={56}
+                width={740}
+                height={258}
                 className="h-14 w-auto brightness-0 invert opacity-95"
               />
               <p className="mt-6 text-sm text-cream-light/75 leading-relaxed max-w-xs">
