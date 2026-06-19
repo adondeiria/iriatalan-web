@@ -152,7 +152,7 @@ export function SiteHeader({ siteName }: Props) {
       <header
         className="sticky top-0 z-50 bg-espresso/92 backdrop-blur-md border-b border-cream-light/10"
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-6 py-4 md:py-[9px] flex items-center justify-between gap-6">
           <Link
             href="/"
             className="flex items-center gap-2 whitespace-nowrap"
@@ -163,12 +163,12 @@ export function SiteHeader({ siteName }: Props) {
             }}
           >
             <Image
-              src="/LOGOVECTORRIF.svg"
+              src="/logo-rif.svg"
               alt={`${siteName} — Reingeniería Financiera`}
-              width={48}
-              height={48}
+              width={740}
+              height={258}
               priority
-              className="h-10 w-auto sm:h-12"
+              className="h-[44px] w-auto sm:h-[54px] lg:h-[57px]"
             />
             <span className="sr-only">{siteName}</span>
           </Link>
@@ -366,11 +366,11 @@ export function SiteHeader({ siteName }: Props) {
               aria-label={`${siteName} — Inicio`}
             >
               <Image
-                src="/LOGOVECTORRIF.svg"
+                src="/logo-rif.svg"
                 alt={`${siteName} — Reingeniería Financiera`}
-                width={48}
-                height={48}
-                className="h-10 w-auto"
+                width={740}
+                height={258}
+                className="h-[44px] w-auto"
               />
               <span className="sr-only">{siteName}</span>
             </Link>
