@@ -130,7 +130,7 @@ export default async function EmpresasPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Seguros para empresas
           </p>
@@ -188,7 +188,7 @@ export default async function EmpresasPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Producto pillar B2B
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -270,7 +270,7 @@ export default async function EmpresasPage() {
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">B2B core</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">B2B core</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Vida grupo / colectivo</h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Seguro de vida para todos tus empleados con suma asegurada en múltiplos de salario
@@ -279,7 +279,7 @@ export default async function EmpresasPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Salud B2B</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Salud B2B</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">GMM colectivo</h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Cobertura médica privada para empleados con red hospitalaria y deducibles
@@ -287,7 +287,7 @@ export default async function EmpresasPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Sucesión</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Sucesión</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Buy-sell agreement asegurado</h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   Si tienes socios y uno falta, la empresa recibe la suma para comprar su participación
@@ -295,7 +295,7 @@ export default async function EmpresasPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Beneficios extra</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Beneficios extra</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">Plan de retiro empresarial</h3>
                 <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                   PPR colectivo o vehículos de ahorro para retiro como prestación. Combinable con
@@ -509,7 +509,7 @@ export default async function EmpresasPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Mensaje rápido</div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
                 <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
               </a>
@@ -517,7 +517,7 @@ export default async function EmpresasPage() {
                 href={`mailto:${email}`}
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Email reflexivo</div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
                 <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
               </a>

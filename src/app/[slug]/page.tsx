@@ -163,7 +163,7 @@ export default async function ServicePage({
 
       <main className="flex flex-col">
         <section className="px-6 pt-16 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">
               Inicio
             </Link>
@@ -258,7 +258,7 @@ export default async function ServicePage({
         {service.carriersAvailable && service.carriersAvailable.length > 0 && (
           <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
             <div className="max-w-4xl mx-auto w-full">
-              <p className="text-sm uppercase tracking-wider text-cream-light0">
+              <p className="text-sm uppercase tracking-wider text-rif-gris">
                 Aseguradoras disponibles
               </p>
               <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-warm-brown dark:text-cream-light/85">

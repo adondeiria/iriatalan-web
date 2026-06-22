@@ -158,7 +158,7 @@ export default async function MujeresPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Asesoría para mujeres
           </p>
@@ -199,7 +199,7 @@ export default async function MujeresPage() {
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Perfil 1
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -218,7 +218,7 @@ export default async function MujeresPage() {
               </div>
 
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Perfil 2
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -234,7 +234,7 @@ export default async function MujeresPage() {
               </div>
 
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Perfil 3
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -250,7 +250,7 @@ export default async function MujeresPage() {
               </div>
 
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Perfil 4
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -495,7 +495,7 @@ export default async function MujeresPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Mensaje rápido
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">
@@ -509,7 +509,7 @@ export default async function MujeresPage() {
                 href={`mailto:${email}`}
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Email reflexivo
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">

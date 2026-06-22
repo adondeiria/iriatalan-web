@@ -177,7 +177,7 @@ export default async function ResourcePage({
 
       <main className="flex flex-col">
         <section className="px-6 pt-16 pb-8 max-w-3xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}
             <Link href="/recursos" className="hover:underline">Recursos</Link>
@@ -230,7 +230,7 @@ export default async function ResourcePage({
         )}
 
         <section className="px-6 py-10 border-t border-warm-brown/15 dark:border-warm-brown/30 max-w-3xl mx-auto w-full">
-          <p className="text-xs text-cream-light0 leading-relaxed">
+          <p className="text-xs text-rif-gris leading-relaxed">
             Este documento es provisto por {resource.carrier} con fines
             informativos. La versión vigente de cada póliza prevalece sobre
             cualquier copia descargada. Para confirmar vigencia o resolver dudas,{" "}

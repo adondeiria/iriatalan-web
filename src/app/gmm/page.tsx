@@ -150,7 +150,7 @@ export default async function GmmPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Gastos Médicos Mayores
           </p>
@@ -210,7 +210,7 @@ export default async function GmmPage() {
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <a href="#defensivo" className="group p-7 rounded-2xl border-2 border-warm-brown/20 dark:border-warm-brown/40 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Si ya tienes GMM
                 </div>
                 <h3 className="text-2xl font-semibold tracking-tight text-ink dark:text-cream-light">
@@ -227,7 +227,7 @@ export default async function GmmPage() {
               </a>
 
               <a href="#ofensivo" className="group p-7 rounded-2xl border-2 border-warm-brown/20 dark:border-warm-brown/40 hover:border-rif-rojo dark:hover:border-rif-rojo transition flex flex-col">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Si aún no tienes GMM
                 </div>
                 <h3 className="text-2xl font-semibold tracking-tight text-ink dark:text-cream-light">
@@ -307,7 +307,7 @@ export default async function GmmPage() {
 
         <section id="defensivo" className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30 bg-cream dark:bg-coffee/40">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Estrategia defensiva
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -322,7 +322,7 @@ export default async function GmmPage() {
 
             <div className="mt-10 space-y-6">
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-1">Vía 1</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-1">Vía 1</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
                   Optimizar el deducible
                 </h3>
@@ -334,7 +334,7 @@ export default async function GmmPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-1">Vía 2</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-1">Vía 2</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
                   Optimizar tu plan dentro de la misma aseguradora
                 </h3>
@@ -354,7 +354,7 @@ export default async function GmmPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-cream-light dark:bg-espresso border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-1">Vía 3</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-1">Vía 3</div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
                   Ajustar la red hospitalaria
                 </h3>
@@ -370,7 +370,7 @@ export default async function GmmPage() {
 
         <section id="ofensivo" className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Estrategia ofensiva
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -394,7 +394,7 @@ export default async function GmmPage() {
                 (Aseguratemexico, 2025), sujetos a edades, deducible, suma asegurada, red y aseguradora.
               </p>
               <p>
-                <span className="block mt-3 mb-3 text-xs text-cream-light0 italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3">
+                <span className="block mt-3 mb-3 text-xs text-rif-gris italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3">
                 Las cifras son ilustrativas y dependen del perfil, edad, aseguradora, producto, legislación vigente y evaluación individual.
               </span>
               <strong className="text-ink dark:text-cream-light">La pregunta no es &ldquo;¿es caro?&rdquo;.</strong>{" "}
@@ -412,7 +412,7 @@ export default async function GmmPage() {
 
         <section id="internacional" className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Cobertura internacional
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -455,7 +455,7 @@ export default async function GmmPage() {
                 un solo evento mayor en EUA puede acumular varios millones de dólares en cuestión de
                 semanas. El costo anual de un GMM internacional bien estructurado es una fracción de eso.
               </p>
-              <p className="text-xs text-cream-light0 italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3 mt-3">
+              <p className="text-xs text-rif-gris italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3 mt-3">
                 Las cifras de costos médicos son ilustrativas y dependen del país, hospital, tipo de evento, aseguradora, plan contratado y evaluación individual.
               </p>
             </div>
@@ -697,7 +697,7 @@ export default async function GmmPage() {
                   rel="noopener noreferrer"
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                  <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Mensaje rápido</div>
                   <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
                   <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
                 </a>
@@ -705,7 +705,7 @@ export default async function GmmPage() {
                   href={`mailto:${email}`}
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                  <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Email reflexivo</div>
                   <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
                   <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
                 </a>

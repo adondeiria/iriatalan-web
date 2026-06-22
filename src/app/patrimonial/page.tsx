@@ -138,7 +138,7 @@ export default async function PatrimonialPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Patrimonios complejos
           </p>
@@ -203,7 +203,7 @@ export default async function PatrimonialPage() {
             </h2>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Sucesión</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Sucesión</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Fideicomisos patrimoniales
                 </h3>
@@ -214,7 +214,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Vida Patrimonial</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Vida Patrimonial</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Seguros de vida con suma asegurada amplia
                 </h3>
@@ -224,7 +224,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Inversión</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Inversión</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Inversiones aseguradas
                 </h3>
@@ -234,7 +234,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Internacional</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Internacional</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Coberturas y estructuras transfronterizas
                 </h3>
@@ -245,7 +245,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Empresarial</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Empresarial</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Buy-sell agreement asegurado
                 </h3>
@@ -257,7 +257,7 @@ export default async function PatrimonialPage() {
                 </p>
               </div>
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Fiscal</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Fiscal</div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   Optimización fiscal vía PPR + estímulos
                 </h3>
@@ -503,7 +503,7 @@ export default async function PatrimonialPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Mensaje directo
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">

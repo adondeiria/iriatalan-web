@@ -127,7 +127,7 @@ export default async function GlossaryTermPage({
       <main className="flex flex-col">
         <article>
           <section className="px-6 pt-16 pb-6 max-w-2xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               <Link href="/" className="hover:underline">
                 Inicio
               </Link>

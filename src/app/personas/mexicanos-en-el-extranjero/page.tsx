@@ -188,7 +188,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
       <main className="flex flex-col">
         <section className="px-6 pt-16 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Mexicanos en el extranjero
           </p>
@@ -221,7 +221,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Por qué importa
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -248,7 +248,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Productos clave
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -277,7 +277,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Para quién es
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -303,7 +303,7 @@ export default async function MexicanosEnElExtranjeroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Cómo funcionamos a distancia
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -369,7 +369,7 @@ export default async function MexicanosEnElExtranjeroPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Mensaje rápido</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Mensaje rápido</div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">WhatsApp</div>
                 <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{whatsapp}</div>
               </a>
@@ -377,7 +377,7 @@ export default async function MexicanosEnElExtranjeroPage() {
                 href={`mailto:${email}`}
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">Email reflexivo</div>
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">Email reflexivo</div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">Cuéntame por correo</div>
                 <div className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 break-all">{email}</div>
               </a>

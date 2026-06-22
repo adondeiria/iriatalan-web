@@ -158,7 +158,7 @@ export default async function HijosNeurodivergentesPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Hijos neurodivergentes
           </p>
@@ -488,7 +488,7 @@ export default async function HijosNeurodivergentesPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Mensaje rápido
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">
@@ -502,7 +502,7 @@ export default async function HijosNeurodivergentesPage() {
                 href={`mailto:${email}`}
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Email reflexivo
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">

@@ -264,7 +264,7 @@ export default async function RecursosPage({
 
       <main className="flex flex-col">
         <section className="px-6 pt-20 pb-10 max-w-5xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             Recursos
           </p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-ink dark:text-cream-light">
@@ -279,7 +279,7 @@ export default async function RecursosPage({
 
         <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Recursos por aseguradora
             </p>
             <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink dark:text-cream-light">
@@ -328,7 +328,7 @@ export default async function RecursosPage({
                           className="group mt-4 flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                         >
                           <div>
-                            <div className="text-xs uppercase tracking-wider text-cream-light0">
+                            <div className="text-xs uppercase tracking-wider text-rif-gris">
                               Canal WhatsApp
                             </div>
                             <div className="mt-0.5 font-medium text-ink dark:text-cream-light">
@@ -362,7 +362,7 @@ export default async function RecursosPage({
                                     <span
                                       className={`mt-3 inline-block text-sm font-medium whitespace-nowrap ${
                                         isPending
-                                          ? "text-cream-light0"
+                                          ? "text-rif-gris"
                                           : "text-rif-rojo group-hover:underline"
                                       }`}
                                     >
@@ -439,7 +439,7 @@ export default async function RecursosPage({
                         !CARRIER_WEB_LINKS.some(
                           (l) => l.carrier === carrier
                         ) && (
-                          <p className="mt-3 text-sm text-cream-light0">
+                          <p className="mt-3 text-sm text-rif-gris">
                             Documentación próximamente.
                           </p>
                         )}
@@ -449,7 +449,7 @@ export default async function RecursosPage({
               })()}
             </div>
 
-            <p className="mt-8 text-xs text-cream-light0 leading-relaxed">
+            <p className="mt-8 text-xs text-rif-gris leading-relaxed">
               Los canales de WhatsApp son administrados por mí (Iria Talan /
               RIF) e incluyen información práctica para mis clientes — no son
               canales oficiales de los carriers; para comunicaciones formales
@@ -463,7 +463,7 @@ export default async function RecursosPage({
         {!isEmpty && (
           <section className="px-6 pb-8 max-w-5xl mx-auto w-full">
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-cream-light0 mr-2">Filtrar:</span>
+              <span className="text-sm text-rif-gris mr-2">Filtrar:</span>
               <Link
                 href="/recursos"
                 className={`text-sm px-3 py-1.5 rounded-full border ${
@@ -490,7 +490,7 @@ export default async function RecursosPage({
             </div>
             {categoriesAvailable.length > 1 && (
               <div className="mt-3 flex flex-wrap gap-2 items-center">
-                <span className="text-sm text-cream-light0 mr-2">Categoría:</span>
+                <span className="text-sm text-rif-gris mr-2">Categoría:</span>
                 {categoriesAvailable.map((cat) => (
                   <Link
                     key={cat}
@@ -552,7 +552,7 @@ export default async function RecursosPage({
                       const size = formatFileSize(r.fileSize);
                       const card = (
                         <>
-                          <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                          <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                             {CATEGORY_LABELS[r.category] ?? r.category}
                             {r.productLine &&
                               r.productLine !== "otro" &&
@@ -572,10 +572,10 @@ export default async function RecursosPage({
                               {r.fileUrl ? "Descargar PDF" : "Ver documento"}
                             </span>
                             {size && (
-                              <span className="text-cream-light0">({size})</span>
+                              <span className="text-rif-gris">({size})</span>
                             )}
                             {!r.fileUrl && r.externalUrl && (
-                              <span className="text-cream-light0 text-xs">
+                              <span className="text-rif-gris text-xs">
                                 → sitio de {r.carrier}
                               </span>
                             )}
@@ -612,7 +612,7 @@ export default async function RecursosPage({
 
         <section className="px-6 py-10 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-5xl mx-auto w-full">
-            <p className="text-xs text-cream-light0 leading-relaxed">
+            <p className="text-xs text-rif-gris leading-relaxed">
               Los documentos aquí publicados son provistos por las aseguradoras
               con fines informativos. La versión vigente de cada póliza
               prevalece sobre cualquier copia descargada. Para confirmar

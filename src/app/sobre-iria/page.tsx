@@ -170,7 +170,7 @@ export default async function SobreIriaPage() {
               <div className="mt-10 space-y-12">
                 {Object.entries(credentialsByCategory).map(([cat, items]) => (
                   <div key={cat}>
-                    <h3 className="text-xs uppercase tracking-wider text-cream-light0 mb-4">
+                    <h3 className="text-xs uppercase tracking-wider text-rif-gris mb-4">
                       {categoryLabels[cat] ?? cat}
                     </h3>
                     <ul className="space-y-3">
@@ -264,7 +264,7 @@ export default async function SobreIriaPage() {
                   rel="noopener noreferrer"
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                     WhatsApp
                   </div>
                   <div className="text-lg font-medium text-ink dark:text-cream-light">
@@ -280,7 +280,7 @@ export default async function SobreIriaPage() {
                   href={`mailto:${author.socialLinks.email}`}
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
                 >
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                     Email
                   </div>
                   <div className="text-lg font-medium text-ink dark:text-cream-light break-all">
@@ -292,7 +292,7 @@ export default async function SobreIriaPage() {
                 href="/contacto#agendar"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Agenda tu sesión
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">
@@ -301,7 +301,7 @@ export default async function SobreIriaPage() {
               </a>
               {author.officeAddress && (
                 <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                  <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                  <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                     Oficina
                   </div>
                   <div className="text-lg font-medium text-ink dark:text-cream-light leading-snug">

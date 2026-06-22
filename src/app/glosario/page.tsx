@@ -90,7 +90,7 @@ export default async function GlossaryIndexPage() {
 
       <main className="flex flex-col">
         <section className="px-6 pt-20 pb-10 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">
               Inicio
             </Link>

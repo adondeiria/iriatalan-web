@@ -32,7 +32,7 @@ export default function AvisoPrivacidadPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
       <section className="px-6 py-10 sm:py-20 max-w-3xl mx-auto w-full">
-        <p className="text-sm uppercase tracking-wider text-cream-light0">
+        <p className="text-sm uppercase tracking-wider text-rif-gris">
           Cumplimiento legal
         </p>
         <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight text-ink dark:text-cream-light">
@@ -342,7 +342,7 @@ export default function AvisoPrivacidadPage() {
 
         <hr className="border-warm-brown/15 dark:border-warm-brown/30" />
 
-        <p className="text-sm text-cream-light0">
+        <p className="text-sm text-rif-gris">
           Versión {LAST_UPDATED}. Para dudas o cualquier asunto relacionado
           con la protección de sus datos personales, escríbanos a{" "}
           <a

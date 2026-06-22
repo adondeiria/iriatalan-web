@@ -207,7 +207,7 @@ export default async function ArticlePage({
       <main className="flex flex-col">
         <article>
           <section className="px-6 pt-16 pb-6 max-w-3xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               <Link href="/" className="hover:underline">
                 Inicio
               </Link>
@@ -327,7 +327,7 @@ export default async function ArticlePage({
           {article.sources && article.sources.length > 0 && (
             <section className="px-6 py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
               <div className="max-w-3xl mx-auto w-full">
-                <h2 className="text-sm uppercase tracking-wider text-cream-light0">
+                <h2 className="text-sm uppercase tracking-wider text-rif-gris">
                   Fuentes
                 </h2>
                 <ul className="mt-4 space-y-2 text-sm text-warm-brown/85 dark:text-cream-light/65">

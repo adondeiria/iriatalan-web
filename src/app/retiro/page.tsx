@@ -145,7 +145,7 @@ export default async function RetiroPage() {
         </section>
 
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-cream-light0">
+          <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
             {" / "}Planeación de Retiro
           </p>
@@ -178,7 +178,7 @@ export default async function RetiroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               El gap del retiro mexicano
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -204,7 +204,7 @@ export default async function RetiroPage() {
                 </p>
               </div>
             </div>
-            <p className="mt-6 text-xs text-cream-light0 italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3">
+            <p className="mt-6 text-xs text-rif-gris italic border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-3">
               Las cifras son ilustrativas y dependen del perfil, edad, aseguradora, producto, legislación vigente y evaluación individual.
             </p>
             <p className="mt-6 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
@@ -217,7 +217,7 @@ export default async function RetiroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Herramienta 1
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -231,7 +231,7 @@ export default async function RetiroPage() {
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Vía A
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -249,7 +249,7 @@ export default async function RetiroPage() {
               </div>
 
               <div className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Vía B
                 </div>
                 <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -267,7 +267,7 @@ export default async function RetiroPage() {
               </div>
             </div>
 
-            <p className="mt-8 text-sm text-cream-light0 leading-relaxed max-w-2xl">
+            <p className="mt-8 text-sm text-rif-gris leading-relaxed max-w-2xl">
               Nota: el monto total de deducciones personales del art. 151 no puede exceder
               el menor de 5 UMAs anuales o 15% de los ingresos totales. Lo cuantificamos
               juntos antes de decidir.
@@ -277,7 +277,7 @@ export default async function RetiroPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-cream-light0">
+            <p className="text-sm uppercase tracking-wider text-rif-gris">
               Herramienta 2
             </p>
             <h2 className="mt-3 font-serif text-3xl sm:text-4xl tracking-tight leading-tight">
@@ -564,7 +564,7 @@ export default async function RetiroPage() {
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Mensaje rápido
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">
@@ -578,7 +578,7 @@ export default async function RetiroPage() {
                 href={`mailto:${email}`}
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
               >
-                <div className="text-xs uppercase tracking-wider text-cream-light0 mb-2">
+                <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
                   Email reflexivo
                 </div>
                 <div className="text-lg font-medium text-ink dark:text-cream-light">
