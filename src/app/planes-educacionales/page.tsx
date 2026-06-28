@@ -99,7 +99,7 @@ export default async function PlanesEducacionalesPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/retiro-hero.png"
+              src="/img/servicios/planes-educacionales-hero.jpg"
               alt="Padre e hija revisando papeles de ahorro para la universidad — plan educacional"
               fill
               sizes="100vw"
