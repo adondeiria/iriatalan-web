@@ -96,5 +96,32 @@
         "aiMolestiesCount": null
       }
     }
+  ,
+    {
+      "slug": "st6-imss-pension-orfandad-sin-limite-edad",
+      "title": "El ST-6 del IMSS: la pensión sin límite de edad para tu hijo con discapacidad o neurodivergencia (paso a paso)",
+      "topic": "patrimonial",
+      "format": "guia",
+      "phase": "published",
+      "primaryKeyword": "st6 imss pensión orfandad sin límite edad",
+      "created": "2026-06-21T12:00:00-06:00",
+      "lastTouched": "2026-06-28T16:00:00-06:00",
+      "publishedUrl": "https://iriatalan.com.mx/blog/st6-imss-pension-orfandad-sin-limite-edad",
+      "sanityDocId": "article-st6-imss-pension-orfandad-sin-limite-edad",
+      "draftHistoryFile": "sanity/seeds/draft-history/st6-imss-pension-orfandad-sin-limite-edad__2026-06-21-120000.md",
+      "notes": "Serie neurodivergencia. Draft revisado por Iria (HTML). Publicado sin imagen hero — pendiente agregar foto en Studio (revisión con Tamara). Imagen Higgsfield pendiente de aprobar.",
+      "imageAsset": {
+        "hero": {
+          "status": "pendiente",
+          "higgsfieldJobId": "88d0be65-9f20-4aef-981e-72e63557a927",
+          "note": "Imagen pre-aprobada por Iria, pendiente subir a Sanity Studio. Revisar con Tamara 2026-06-29."
+        }
+      },
+      "metrics": {
+        "factCheckPassed": true,
+        "voiceScore": null,
+        "aiMolestiesCount": null
+      }
+    }
   ]
 }
