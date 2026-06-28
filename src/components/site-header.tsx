@@ -28,10 +28,10 @@ const HELP_CATEGORIES: MenuCategory[] = [
   {
     title: "Ahorro e Inversión",
     items: [
-      { label: "Seguros de Ahorro y Educacionales", comingSoon: true },
+      { label: "Seguros de Ahorro y Educacionales", href: "/planes-educacionales" },
       { label: "Planes para Mujeres con patrimonio", href: "/personas/mujeres" },
       { label: "Gastos Médicos Mayores", href: "/gmm" },
-      { label: "Seguros de Vida y Protección Familiar", href: "/patrimonial" },
+      { label: "Seguros de Vida y Protección Familiar", href: "/seguros-vida" },
       { label: "Fondos de Inversión", comingSoon: true },
       { label: "Mexicanos en el Extranjero", href: "/personas/mexicanos-en-el-extranjero" },
     ],
