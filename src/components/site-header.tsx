@@ -31,7 +31,6 @@ const HELP_CATEGORIES: MenuCategory[] = [
       { label: "Seguros de Ahorro y Educacionales", href: "/planes-educacionales" },
       { label: "Planes para Mujeres con patrimonio", href: "/personas/mujeres" },
       { label: "Gastos Médicos Mayores", href: "/gmm" },
-      { label: "Seguros de Vida y Protección Familiar", href: "/seguros-vida" },
       { label: "Fondos de Inversión", comingSoon: true },
       { label: "Mexicanos en el Extranjero", href: "/personas/mexicanos-en-el-extranjero" },
     ],
@@ -63,13 +62,14 @@ const HELP_CATEGORIES: MenuCategory[] = [
     ],
   },
   {
-    title: "Situaciones Especiales",
+    title: "Planeación Patrimonial",
     items: [
-      { label: "Familias neurodivergentes", href: "/personas/hijos-neurodivergentes" },
-      { label: "Familias diversas", href: "/personas/familias-arcoiris" },
+      { label: "Seguros de Vida y Protección Familiar", href: "/seguros-vida" },
       { label: "Fideicomisos", href: "/patrimonial" },
       { label: "Protección Patrimonial", href: "/patrimonial" },
       { label: "Patrimonios complejos", href: "/patrimonial" },
+      { label: "Familias neurodivergentes", href: "/personas/hijos-neurodivergentes" },
+      { label: "Familias diversas", href: "/personas/familias-arcoiris" },
     ],
   },
 ];
