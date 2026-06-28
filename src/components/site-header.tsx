@@ -37,7 +37,7 @@ const HELP_CATEGORIES: MenuCategory[] = [
     ],
   },
   {
-    title: "Retiro & Patrimonio",
+    title: "Planeación de Retiro",
     items: [
       { label: "PPR y Planes de retiro deducibles", href: "/retiro" },
       { label: "Planeación de Retiro", href: "/retiro" },
