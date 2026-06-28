@@ -14,31 +14,6 @@ import {
 
 const FAQS: FAQItem[] = [
   {
-    question: "¿Qué seguro de vida conviene para proteger a mi familia?",
-    answerText:
-      "No hay una respuesta única — el seguro correcto depende de tu patrimonio actual, edad de tus dependientes, gastos fijos del hogar y moneda funcional de tus herederos. Como referencia general, una familia con patrimonio en construcción suele requerir un seguro vitalicio con suma asegurada de 5-10 veces tu ingreso anual + designación irrevocable hacia los beneficiarios. Si hay patrimonio significativo o herederos en distintas jurisdicciones, conviene estructurar designación irrevocable hacia un fideicomiso para evitar juicio sucesorio. Trabajamos con 6 aseguradoras AAA en México y diseñamos la combinación según tu caso particular.",
-  },
-  {
-    question: "¿Qué pasa si mis beneficiarios no están actualizados?",
-    answerText:
-      "La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.",
-  },
-  {
-    question: "¿Cómo se evita el juicio sucesorio con un seguro de vida?",
-    answerText:
-      "Con la designación de tus beneficiarios. Conforme al Art. 179 LCS vigente, cuando designas a un beneficiario de forma irrevocable, el derecho de ese beneficiario se constituye como derecho propio — el capital asegurado NO forma parte de la masa hereditaria del fallecido y NO requiere juicio sucesorio para llegar al beneficiario. Esto permite que el dinero llegue en máximo 30 días directo a quien designaste, sin esperar protocolización notarial ni resolución judicial. Si además estructuras la designación irrevocable hacia un fideicomiso, ganas control sobre cómo y cuándo recibe el capital tu beneficiario.",
-  },
-  {
-    question: "¿Es cierto que un seguro de vida es inembargable?",
-    answerText:
-      "El crédito que un seguro de vida concede al asegurado o a sus beneficiarios goza de protección frente a embargos conforme al Art. 188 de la Ley sobre el Contrato de Seguro vigente: como regla general, los acreedores no pueden embargarlo ni ejecutarlo. Importante: la protección NO es absoluta — la ley prevé excepciones, principalmente cuando las primas se pagaron en fraude de acreedores o en montos desproporcionados respecto a tu capacidad económica. Por eso el blindaje real depende de cómo se estructura la póliza desde el inicio: lo revisamos en la sesión inicial para que tu protección sea efectiva y no impugnable.",
-  },
-  {
-    question: "¿Conviene contratar mi seguro de vida en pesos o en dólares?",
-    answerText:
-      "Depende de la moneda funcional de tus herederos y tu propio patrimonio. Si tus herederos viven o estudiarán en EUA, Europa, o tienen gastos dolarizados, un seguro en USD elimina el riesgo cambiario al momento del pago. Si todo tu patrimonio y los gastos de tus herederos están en pesos, contratar en MXN es más simple. Para patrimonios mixtos, lo común es estructurar parte en cada moneda según el destino esperado del capital. Varias de las 6 aseguradoras AAA con las que trabajo ofrecen productos en ambas monedas — la elección óptima la mapeamos en la sesión inicial.",
-  },
-  {
     question: "¿Cómo se compara un fideicomiso testamentario vs un fideicomiso financiado por seguro de vida?",
     answerText:
       "Diferencia clave: liquidez al momento del fallecimiento. El fideicomiso testamentario hereda lo que el caudal hereditario contenga al fallecer — y ese caudal puede tardar meses o años en liberarse mientras se resuelve el juicio sucesorio. El fideicomiso financiado por seguro de vida recibe el capital asegurado en semanas, vía designación irrevocable, sin pasar por sucesión. En la práctica, ambos pueden coexistir: el testamentario administra activos heredados (inmuebles, negocios), y el financiado por seguro genera la liquidez inmediata para impuestos, deudas, sostenimiento de herederos durante el juicio sucesorio, y arranque del fideicomiso patrimonial.",
@@ -323,42 +298,78 @@ export default async function PatrimonialPage() {
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Por qué es necesario
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
+              5 problemas que resuelvo
+            </h2>
+            <div className="mt-10 space-y-8">
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  1. El juicio sucesorio tarda años y cuesta caro
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Sin estructura previa, tu herencia puede estar bloqueada en proceso
+                  judicial 2-5 años. Mientras tanto, tus herederos no pueden vender,
+                  rentar ni disponer de los bienes. Un fideicomiso bien estructurado
+                  traslada el patrimonio sin pasar por sucesión.
+                </p>
+              </div>
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  2. Herederos múltiples sin mecanismo de reparto equitativo
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Cuando hay un inmueble, un negocio y varios herederos, la disputa es
+                  casi inevitable si no existe un instrumento que defina cómo se divide.
+                  El seguro de vida financiado más el fideicomiso dan las reglas antes
+                  de que tú faltes.
+                </p>
+              </div>
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  3. El negocio familiar no tiene quien lo compre si falta el dueño
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Si tienes socios, sin un buy-sell agreement asegurado, los herederos del
+                  fallecido se convierten en socios involuntarios — o el negocio se liquida
+                  a precio de urgencia. El seguro financia la compra de participación
+                  accionaria sin afectar la operación.
+                </p>
+              </div>
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  4. Patrimonio o herederos transfronterizos sin estructura
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Si tus bienes están en México y tus hijos viven en EUA, o al revés,
+                  hay un conflicto de jurisdicciones sin resolver. Las estructuras
+                  internacionales correctas (coberturas en USD, fideicomisos con beneficiarios
+                  extranjeros, inversiones portátiles) evitan ese conflicto desde ahora.
+                </p>
+              </div>
+              <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
+                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                  5. Impuestos y costos de sucesión sin planeación
+                </h3>
+                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                  Los derechos notariales representan aproximadamente 8% del valor del
+                  patrimonio. A eso se suman ISR por enajenación, avalúos, honorarios
+                  y gastos de gestión. Sin liquidez destinada específicamente a eso,
+                  tus herederos venden activos en condiciones desfavorables.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Preguntas frecuentes
             </h2>
             <div className="mt-10 space-y-8">
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Qué seguro de vida conviene para proteger a mi familia?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  No hay una respuesta única — el seguro correcto depende de tu patrimonio actual, edad de tus dependientes, gastos fijos del hogar y moneda funcional de tus herederos. Como referencia general, una familia con patrimonio en construcción suele requerir un seguro vitalicio con suma asegurada de 5-10 veces tu ingreso anual + designación irrevocable hacia los beneficiarios. Si hay patrimonio significativo o herederos en distintas jurisdicciones, conviene estructurar designación irrevocable hacia un fideicomiso para evitar juicio sucesorio. Trabajamos con 6 aseguradoras AAA en México y diseñamos la combinación según tu caso particular.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Qué pasa si mis beneficiarios no están actualizados?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  La aseguradora paga al último beneficiario designado en el contrato, aunque ya no refleje tu voluntad real. Divorcios, hijos nuevos, segundas parejas, socios que entran y salen — todos cambian quién debería recibir el capital. Cuando llega el siniestro, el dinero llega a la persona equivocada y no hay vuelta atrás. Por eso revisar designación de beneficiarios cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica. Recomendamos revisión anual + revisión inmediata tras matrimonio, divorcio, nacimiento, fallecimiento de un beneficiario, o cambio significativo de patrimonio.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Cómo se evita el juicio sucesorio con un seguro de vida?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Con la designación de tus beneficiarios. Conforme al Art. 179 LCS vigente, cuando designas a un beneficiario de forma irrevocable, el derecho de ese beneficiario se constituye como derecho propio — el capital asegurado NO forma parte de la masa hereditaria del fallecido y NO requiere juicio sucesorio para llegar al beneficiario. Esto permite que el dinero llegue en máximo 30 días directo a quien designaste, sin esperar protocolización notarial ni resolución judicial. Si además estructuras la designación irrevocable hacia un fideicomiso, ganas control sobre cómo y cuándo recibe el capital tu beneficiario.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  ¿Conviene contratar mi seguro de vida en pesos o en dólares?
-                </h3>
-                <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Depende de la moneda funcional de tus herederos y tu propio patrimonio. Si tus herederos viven o estudiarán en EUA, Europa, o tienen gastos dolarizados, un seguro en USD elimina el riesgo cambiario al momento del pago. Si todo tu patrimonio y los gastos de tus herederos están en pesos, contratar en MXN es más simple. Para patrimonios mixtos, lo común es estructurar parte en cada moneda según el destino esperado del capital. Varias de las 6 aseguradoras AAA con las que trabajo ofrecen productos en ambas monedas — la elección óptima la mapeamos en la sesión inicial.
-                </p>
-              </div>
               <div>
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
                   ¿Cómo se compara un fideicomiso testamentario vs un fideicomiso financiado por seguro de vida?
