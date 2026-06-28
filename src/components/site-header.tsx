@@ -310,7 +310,7 @@ export function SiteHeader({ siteName }: Props) {
             <div className="grid gap-x-10 gap-y-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
               {HELP_CATEGORIES.map((cat) => (
                 <div key={cat.title} {...(cat.langEn ? { lang: "en" } : {})}>
-                  <h3 className="text-sm uppercase tracking-[0.15em] text-burgundy font-bold mb-5">
+                  <h3 className="text-base uppercase tracking-[0.12em] text-burgundy font-bold mb-5">
                     {cat.title}
                   </h3>
                   <ul className="space-y-3.5">
@@ -395,7 +395,7 @@ export function SiteHeader({ siteName }: Props) {
 
             {HELP_CATEGORIES.map((cat) => (
               <div key={cat.title} {...(cat.langEn ? { lang: "en" } : {})}>
-                <h3 className="text-sm uppercase tracking-[0.15em] text-burgundy font-bold mb-4">
+                <h3 className="text-base uppercase tracking-[0.12em] text-burgundy font-bold mb-4">
                   {cat.title}
                 </h3>
                 <ul className="space-y-3">
