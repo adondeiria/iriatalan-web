@@ -31,7 +31,7 @@ const HELP_CATEGORIES: MenuCategory[] = [
       { label: "Seguros de Ahorro y Educacionales", href: "/planes-educacionales" },
       { label: "Planes para Mujeres con patrimonio", href: "/personas/mujeres" },
       { label: "Gastos Médicos Mayores", href: "/gmm" },
-      { label: "Fondos de Inversión", comingSoon: true },
+      { label: "Fondos de Inversión", href: "/fondos-de-inversion" },
       { label: "Mexicanos en el Extranjero", href: "/personas/mexicanos-en-el-extranjero" },
     ],
   },
