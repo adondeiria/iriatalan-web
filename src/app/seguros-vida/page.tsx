@@ -104,8 +104,8 @@ export default async function SegurosVidaPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/retiro-hero.png"
-              alt="Familia sentada en sala firmando documentos de protección financiera — seguro de vida"
+              src="/img/servicios/seguros-vida-hero.jpg"
+              alt="Mamá fotografiando a papá jugando con sus hijos en el mar al atardecer — seguro de vida"
               fill
               sizes="100vw"
               className="object-cover"
