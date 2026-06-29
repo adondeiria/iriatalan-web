@@ -99,8 +99,8 @@ export default async function FondosDeInversionPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/retiro-hero.png"
-              alt="Fondos de inversión con protección patrimonial — Iria Talan"
+              src="/img/servicios/fondos-de-inversion-hero.jpg"
+              alt="Pareja revisando su plan de inversión en terraza con vista a la ciudad al atardecer — fondos de inversión"
               fill
               sizes="100vw"
               className="object-cover"
