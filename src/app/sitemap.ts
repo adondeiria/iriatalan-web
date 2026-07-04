@@ -28,7 +28,6 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/personas/hijos-neurodivergentes", priority: 0.85 },
   { path: "/personas/mexicanos-en-el-extranjero", priority: 0.85 },
   { path: "/foreigners-in-mexico", priority: 0.85 },
-  { path: "/recursos", priority: 0.8 },
   { path: "/guia", priority: 0.8 },
   { path: "/contacto", priority: 0.7 },
 ];
@@ -106,10 +105,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ]
       : [];
 
+  // /recursos index — solo si hay recursos publicados (cuando está vacía, la
+  // página se auto-noindexea; incluirla en el sitemap crearía señal contradictoria).
+  const recursosIndexUrl: MetadataRoute.Sitemap =
+    resourceUrls.length > 0
+      ? [
+          {
+            url: `${SITE_URL}/recursos`,
+            lastModified: now,
+            priority: 0.8,
+          },
+        ]
+      : [];
+
   return [
     ...staticUrls,
     ...blogIndexUrl,
     ...glossaryIndexUrl,
+    ...recursosIndexUrl,
     ...serviceUrls,
     ...articleUrls,
     ...glossaryUrls,
