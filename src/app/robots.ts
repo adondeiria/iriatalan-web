@@ -29,11 +29,15 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/studio", "/api/"] },
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/studio", "/api/", "/_next/static/"],
+      },
       ...llmAllowedAgents.map((ua) => ({
         userAgent: ua,
         allow: "/",
-        disallow: ["/studio", "/api/"],
+        disallow: ["/studio", "/api/", "/_next/static/"],
       })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
