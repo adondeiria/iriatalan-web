@@ -80,6 +80,7 @@ Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobra
 ### Límites de acceso conocidos (para no re-descubrirlos cada sesión)
 
 - `ZohoCRM_getWorkflowRuleById` y todo el servidor CRM standalone piden aprobación manual → inalcanzables desde sesiones remotas no interactivas. La lista `getWorkflowRules` del servidor combinado SÍ funciona.
+- **Las ESCRITURAS del servidor combinado también piden aprobación server-side** (verificado 2026-07-17 con `ZohoDesk_createTicket`: error "MCP tool call requires approval"; las lecturas Desk/CRM fluyen sin fricción). Impacto: el puente automático no puede escribir desde sesiones headless hasta desbloquear. **Desbloqueo A (preferido):** Iria pone las herramientas de escritura necesarias (`ZohoDesk_createTicket`, `ZohoDesk_updateTicket`, `ZohoCRM_updateRecord`, opc. `createFields`) en "permitir siempre" en la configuración del conector Zoho de claude.ai. **Desbloqueo B (robusto):** Zoho Self Client OAuth (api-console.zoho.com, scopes Desk.tickets.ALL + ZohoCRM.modules.ALL) con credenciales como secrets del environment CCR; el puente escribe vía REST con curl, sin depender del conector.
 - Las conversaciones de sesiones previas de Claude no son accesibles desde ninguna sesión. El Gmail conectado (buscado 2026-07-17) no tiene correos-resumen de sesiones ni rastro de la configuración WhatsApp. **Este archivo es el único puente entre sesiones.**
 
 ---
