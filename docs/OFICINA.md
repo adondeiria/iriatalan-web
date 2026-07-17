@@ -112,6 +112,27 @@ Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobra
 
 **Pendiente de anotar aquí:** el número emisor y los textos de las plantillas existentes (CRM → Setup → Channels → Business Messaging).
 
+### Plan B ACTIVADO (2026-07-17): puente por API directa con credenciales propias
+
+Las escrituras vía conector MCP están bloqueadas por aprobación server-side (ver §Límites), así que el puente corre por REST API con OAuth propio. **El script ya existe: `scripts/oficina/renovaciones-bridge.mjs`** (dry-run por default; `--execute` para escribir; máx 20 tickets/corrida; CRM primero y Desk después para reintentos seguros; casos sin póliza se saltan con aviso).
+
+**Setup de credenciales (Iria, ~10 min, una sola vez):**
+1. Entrar a `api-console.zoho.com` (con la cuenta iria@talan.com.mx) → **Add Client → Self Client → Create**. Copiar `Client ID` y `Client Secret`.
+2. Pestaña **Generate Code**: pegar en Scope exactamente:
+   `Desk.tickets.ALL,Desk.basic.READ,Desk.contacts.READ,ZohoCRM.modules.ALL,ZohoCRM.settings.fields.ALL`
+   Duración 10 minutos → Create → copiar el código (caduca rápido; el paso 3 se hace enseguida).
+3. En una terminal (o me pasas el código en el chat y lo guío en vivo), canjear el código por el refresh token:
+   ```
+   curl -s -X POST "https://accounts.zoho.com/oauth/v2/token" \
+     -d "grant_type=authorization_code" -d "client_id=TU_CLIENT_ID" \
+     -d "client_secret=TU_CLIENT_SECRET" -d "code=EL_CODIGO"
+   ```
+   Del JSON de respuesta, guardar el valor de `refresh_token` (no caduca).
+4. En la configuración del **environment de Claude Code** (code.claude.com → el environment de este repo → variables de entorno) crear los secrets: `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN`.
+   (Si la cuenta Zoho vive en otro data center — la URL de login lo dice, p.ej. accounts.zoho.eu — agregar también `ZOHO_ACCOUNTS_BASE`, `ZOHO_CRM_BASE`, `ZOHO_DESK_BASE`.)
+
+**Con las credenciales listas, Claude ejecuta:** crear el campo `Fecha_propuesta_enviada` en Polizas vía API (ya no es paso de UI de Iria), pre-flight del script en dry-run, prueba end-to-end, y el Routine horario que corre el script. Queda en UI de Iria solamente: plantilla en Meta, estado "Propuesta enviada" en Desk, y el workflow de CRM (guiado).
+
 ---
 
 ## 5. Historial de decisiones
