@@ -1,0 +1,77 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Función Deluge para Zoho Desk — Aviso WhatsApp de renovación
+// ─────────────────────────────────────────────────────────────────────────────
+// ALTERNATIVA por código al puente Desk→CRM (la opción recomendada es Zoho Flow,
+// sin código — ver docs/OFICINA.md §4). Esta función corre DENTRO de Zoho, así
+// que NO sufre el bloqueo de egress que impide a Claude hablar con Zoho por curl.
+//
+// CÓMO SE INSTALA (una sola vez):
+//   1. Desk → Setup → Automation → Workflows → Create Rule.
+//      Módulo: Tickets. Ejecutar en: Create/Edit.
+//      Criterio: Status = "Propuesta Enviada".
+//   2. En Actions de esa regla → Custom Function → pegar este código.
+//   3. Argumento de la función: ticketId  (tipo Long, mapear al ID del ticket).
+//   4. La primera vez que uses invokeurl con connection:"zohocrm", Desk pedirá
+//      crear/autorizar una conexión OAuth a Zoho CRM (scope ZohoCRM.modules.ALL).
+//      Es un clic de "Connect". Nombra la conexión exactamente "zohocrm".
+//   5. Requiere que el campo fecha Fecha_propuesta_enviada exista en el módulo
+//      Polizas del CRM (créalo en CRM → Setup → Modules → Polizas).
+//
+// NOTA: Deluge tiene manías de sintaxis; corre una prueba con un ticket real
+// (estado "Propuesta Enviada") y revisa el log de la función antes de confiar.
+// ─────────────────────────────────────────────────────────────────────────────
+
+orgId = "674011166";
+
+ticketDetail = zoho.desk.getRecordById(orgId, "tickets", ticketId);
+cf = ticketDetail.get("cf");
+tipoGestion = cf.get("cf_tipo_de_gestion");
+seguimientoAvisado = cf.get("cf_seguimiento_avisado");
+noPoliza = cf.get("cf_no_de_poliza");
+
+if(tipoGestion == "Renovacion" && seguimientoAvisado != "true" && noPoliza != null && noPoliza != "")
+{
+	// 1) Buscar la póliza en CRM: Name empieza con el número de póliza (ej. "143290 2025").
+	searchUrl = "https://www.zohoapis.com/crm/v8/Polizas/search?criteria=(Name:starts_with:" + noPoliza + ")&fields=Name,Fecha_de_finalizaci_n_de_vigencia,Contacto&per_page=5";
+	searchResp = invokeurl
+	[
+		url : searchUrl
+		type : GET
+		connection : "zohocrm"
+	];
+	polizas = searchResp.get("data");
+	if(polizas != null && polizas.size() > 0)
+	{
+		poliza = polizas.get(0);
+		polizaId = poliza.get("id");
+		today = zoho.currentdate.toString("yyyy-MM-dd");
+
+		// 2) Estampar la fecha en la póliza → dispara el workflow de WhatsApp del CRM.
+		rec = Map();
+		rec.put("Fecha_propuesta_enviada", today);
+		payload = Map();
+		payload.put("data", {rec});
+		updateResp = invokeurl
+		[
+			url : "https://www.zohoapis.com/crm/v8/Polizas/" + polizaId
+			type : PUT
+			parameters : payload.toString()
+			connection : "zohocrm"
+		];
+		info "CRM update: " + updateResp;
+
+		// 3) Cerrar el loop en el ticket de Desk.
+		prox = zoho.currentdate.addDay(3).toString("yyyy-MM-dd'T'HH:mm:ss") + ".000Z";
+		deskCf = Map();
+		deskCf.put("cf_seguimiento_avisado", true);
+		deskCf.put("cf_proximo_seguimiento", prox);
+		deskUpdate = Map();
+		deskUpdate.put("cf", deskCf);
+		updateTicket = zoho.desk.updateRecord(orgId, "tickets", ticketId, deskUpdate);
+		info "Desk update: " + updateTicket;
+	}
+	else
+	{
+		info "Póliza no encontrada para No. de Poliza=" + noPoliza + " — revisar a mano.";
+	}
+}

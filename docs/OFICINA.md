@@ -112,26 +112,31 @@ Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobra
 
 **Pendiente de anotar aquí:** el número emisor y los textos de las plantillas existentes (CRM → Setup → Channels → Business Messaging).
 
-### Plan B ACTIVADO (2026-07-17): puente por API directa con credenciales propias
+### Plan B DESCARTADO (2026-07-17): la red bloquea Zoho, el puente debe ser nativo
 
-Las escrituras vía conector MCP están bloqueadas por aprobación server-side (ver §Límites), así que el puente corre por REST API con OAuth propio. **El script ya existe: `scripts/oficina/renovaciones-bridge.mjs`** (dry-run por default; `--execute` para escribir; máx 20 tickets/corrida; CRM primero y Desk después para reintentos seguros; casos sin póliza se saltan con aviso).
+Se intentó el puente por REST API con credenciales Self Client propias. **Falló por la política de egress:** el proxy de las sesiones de Claude Code responde **403 al CONNECT hacia `accounts.zoho.com`** (verificado en `$HTTPS_PROXY/__agentproxy/status`). Sin `accounts.zoho.com` no hay token OAuth, y `www.zohoapis.com`/`desk.zoho.com` caen bajo la misma política. **Conclusión firme: ningún script de Claude —curl o el `.mjs`, en esta sesión o en una Routine de este entorno— puede escribir en Zoho.** No reintentar este camino.
 
-**Setup de credenciales (Iria, ~10 min, una sola vez):**
-1. Entrar a `api-console.zoho.com` (con la cuenta iria@talan.com.mx) → **Add Client → Self Client → Create**. Copiar `Client ID` y `Client Secret`.
-2. Pestaña **Generate Code**: pegar en Scope exactamente:
-   `Desk.tickets.ALL,Desk.basic.READ,Desk.contacts.READ,ZohoCRM.modules.ALL,ZohoCRM.settings.fields.ALL`
-   Duración 10 minutos → Create → copiar el código (caduca rápido; el paso 3 se hace enseguida).
-3. En una terminal (o me pasas el código en el chat y lo guío en vivo), canjear el código por el refresh token:
-   ```
-   curl -s -X POST "https://accounts.zoho.com/oauth/v2/token" \
-     -d "grant_type=authorization_code" -d "client_id=TU_CLIENT_ID" \
-     -d "client_secret=TU_CLIENT_SECRET" -d "code=EL_CODIGO"
-   ```
-   Del JSON de respuesta, guardar el valor de `refresh_token` (no caduca).
-4. En la configuración del **environment de Claude Code** (code.claude.com → el environment de este repo → variables de entorno) crear los secrets: `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN`.
-   (Si la cuenta Zoho vive en otro data center — la URL de login lo dice, p.ej. accounts.zoho.eu — agregar también `ZOHO_ACCOUNTS_BASE`, `ZOHO_CRM_BASE`, `ZOHO_DESK_BASE`.)
+Combinado con que las escrituras del conector MCP piden aprobación manual (no automatizable), **queda claro que el puente NO puede vivir en Claude.** Debe correr dentro de Zoho.
 
-**Con las credenciales listas, Claude ejecuta:** crear el campo `Fecha_propuesta_enviada` en Polizas vía API (ya no es paso de UI de Iria), pre-flight del script en dry-run, prueba end-to-end, y el Routine horario que corre el script. Queda en UI de Iria solamente: plantilla en Meta, estado "Propuesta enviada" en Desk, y el workflow de CRM (guiado).
+> Seguridad: el Self Client creado el 2026-07-17 (Client ID `1000.44GF3759…`) quedó inservible y su secret se compartió en chat. **Iria debe borrarlo** en api-console.zoho.com → el client → Delete, para anular la exposición.
+
+### Arquitectura DEFINITIVA (2026-07-17): 100% nativa en Zoho, sin Claude en el camino
+
+El aviso corre enteramente dentro de Zoho (instantáneo, 24/7, sin depender de Claude). Rol de Claude: guiar la configuración y auditar por lecturas MCP (que sí funcionan). Dos formas de armar el puente Desk→CRM:
+
+- **Opción recomendada — Zoho Flow (sin código):** trigger "ticket actualizado" en Desk → filtro (status = "Propuesta Enviada" && Tipo de gestión = Renovacion && Seguimiento avisado = false) → buscar Poliza en CRM por No. de Poliza → actualizar `Fecha_propuesta_enviada` = hoy → actualizar ticket (Seguimiento avisado = true, Próximo seguimiento = +3d). OAuth de Desk y CRM se conecta con un clic. Ideal para mantener sin desarrollador.
+- **Alternativa — función Deluge en Desk (con código):** misma lógica, ya escrita en `scripts/oficina/renovaciones-deluge-desk.txt`. Se pega en un Custom Function de un workflow de Desk. Corre dentro de Zoho (sin bloqueo de red). Requiere una conexión CRM (clic OAuth) y probar por las manías de Deluge.
+
+Ambas terminan igual: al estampar `Fecha_propuesta_enviada` en la póliza, el **workflow de CRM** (field_update → enviar plantilla WhatsApp por el canal Business Messaging existente) manda el aviso. Ese workflow + el campo + la plantilla de Meta se configuran igual en las dos opciones.
+
+**Checklist de configuración (todo en UI de Zoho + Meta):**
+1. Campo fecha `Fecha_propuesta_enviada` en Polizas (CRM → Setup → Modules → Polizas). ~2 min.
+2. Plantilla `renovacion_enviada_v1` en Meta (texto en §4 arriba). Aprobación de Meta.
+3. Workflow CRM "WHATSAPP RENOVACIÓN — PROPUESTA ENVIADA" (Polizas, field_update de `Fecha_propuesta_enviada` → enviar WhatsApp). Guiado por Claude.
+4. El puente: Zoho Flow (recomendado) **o** la función Deluge.
+5. Prueba con un ticket real en "Propuesta Enviada" y móvil interno → verificar aviso + flags.
+
+Auditoría de Claude (lecturas MCP, sí permitidas): revisar tickets en "Propuesta Enviada" con Seguimiento avisado=false que lleven >X horas sin cerrarse (indicaría que el puente falló). Vía Routine de solo-lectura.
 
 ---
 
