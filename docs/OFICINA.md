@@ -65,6 +65,23 @@ Volumen: ~4,500 tickets históricos matching "renovaci", ~3,700 matching "cobran
 - **Twilio: DESCARTADO** por decisión previa de Iria (confirmado 2026-07-17). No proponer de nuevo. (El conector Twilio de las sesiones es además solo búsqueda de documentación, sin acceso a cuenta.)
 - Desk no tiene canal WhatsApp propio; no hace falta para el diseño actual (el envío sale de CRM).
 
+### Inventario de workflows WhatsApp en CRM (verificado 2026-07-17)
+
+| Workflow | Módulo | Dispara | Última ejecución |
+|---|---|---|---|
+| WHATSAPP COBRANZA 30D ANTES — ANUAL/SEMESTRAL | Cobros | 1 mes antes de `Fecha_estimada_de_pago`, 09:00 | 2026-07-12 |
+| WhatsApp Vida Mujer año 5 / 9 / 15 / 17 / 20 | Polizas | 1 mes antes del campo `Vida_Mujer_a_o_N`, 08:00 | entre 2026-05-12 y 2026-07-12 |
+| WhatsApp Vida Mujer año 7 / 11 / 13 | Polizas | ídem | aún sin ejecuciones (ningún registro ha cumplido la fecha todavía) |
+| WhatsApp Ratificación SEGUBECA | Polizas | 1 mes antes de `Fecha_de_retiro_de_segubeca`, 08:00 | 2026-07-02 |
+
+Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobranza). Los nombres/textos de las demás plantillas y el número emisor solo se ven en CRM → Setup → Channels → Business Messaging (WhatsApp) — anotarlos aquí cuando Iria los pase.
+(El workflow "CZ - Aviso 25 días después de vencer" es por correo, no WhatsApp.)
+
+### Límites de acceso conocidos (para no re-descubrirlos cada sesión)
+
+- `ZohoCRM_getWorkflowRuleById` y todo el servidor CRM standalone piden aprobación manual → inalcanzables desde sesiones remotas no interactivas. La lista `getWorkflowRules` del servidor combinado SÍ funciona.
+- Las conversaciones de sesiones previas de Claude no son accesibles desde ninguna sesión. El Gmail conectado (buscado 2026-07-17) no tiene correos-resumen de sesiones ni rastro de la configuración WhatsApp. **Este archivo es el único puente entre sesiones.**
+
 ---
 
 ## 4. PENDIENTE ACTIVO: aviso automático post-envío de propuesta de renovación
