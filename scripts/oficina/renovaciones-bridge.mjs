@@ -29,7 +29,7 @@ const CRM = process.env.ZOHO_CRM_BASE ?? "https://www.zohoapis.com";
 const DESK = process.env.ZOHO_DESK_BASE ?? "https://desk.zoho.com";
 const ORG_ID = process.env.DESK_ORG_ID ?? "674011166";
 const DEPT_DIRECCION = "317055000000006907";
-const ESTADO_TRIGGER = "Propuesta enviada";
+const ESTADO_TRIGGER = "Propuesta Enviada"; // nombre exacto del estado creado en Desk (2026-07-17)
 const MAX_POR_CORRIDA = 20;
 
 function requireEnv(name) {

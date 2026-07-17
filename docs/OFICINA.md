@@ -143,6 +143,7 @@ Las escrituras vía conector MCP están bloqueadas por aprobación server-side (
 | 2026-05-02 | Workflow WhatsApp cobranza 30d antes activo (plantilla pago_proximo_v3). |
 | 2026-07-17 | Aviso de renovación será 100% automático vía API reutilizando canal CRM (no semi-automático). Este archivo se crea como memoria operativa. |
 | 2026-07-17 | Trigger del aviso definido por Iria: estado de ticket Desk "Propuesta enviada". Puente vía módulo Polizas (Renovaciones está vacío). Runbook final en sección 4. |
+| 2026-07-17 (tarde) | Estado **"Propuesta Enviada"** ya creado en Desk y EN USO (5 tickets reales marcados en cola). Pendiente: credenciales Self Client, campo `Fecha_propuesta_enviada`, plantilla Meta, workflow CRM. |
 
 ## 6. IDs útiles
 
