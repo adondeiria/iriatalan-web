@@ -86,23 +86,30 @@ Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobra
 
 ## 4. PENDIENTE ACTIVO: aviso automático post-envío de propuesta de renovación
 
-**Decisión de Iria (2026-07-17):** 100% automático vía API (sin pasos manuales), reutilizando el canal WhatsApp de CRM. Nada de semi-automático.
+**Decisiones de Iria (2026-07-17):** 100% automático vía API. Trigger = **marcar en Desk el estado del ticket "Propuesta enviada"**. Envío por el **mismo número/canal WhatsApp ya operando en CRM** (no se toca el canal). Twilio descartado.
 
-**Diseño propuesto (clonar el patrón de cobranza, cambiando el trigger de fecha → evento):**
-1. **Plantilla nueva** (someter desde el mismo canal del CRM, categoría Utility, es_MX), nombre sugerido `renovacion_enviada_v1`:
-   > Hola {{1}} 👋 Te enviamos a tu correo {{2}} la propuesta de renovación de tu seguro (póliza {{3}}), con renovación y cargo el {{4}}. Si no la encuentras, revisa spam o respóndenos por aquí y te la reenviamos con gusto. — Oficina de Iria Talan
-2. **Puente Desk→CRM** (el evento "propuesta enviada" vive en el ticket): opción A — Zoho Flow (ya lo usan para CRM↔Desk) con trigger de respuesta/actualización de ticket que cumpla `Tipo de gestion=Renovacion` + correo saliente + `Seguimiento avisado=false`, acción: marcar campo tipo `Propuesta_enviada` (checkbox o fecha) en el registro **Renovaciones** vinculado. Opción B — función Deluge en Desk (workflow on update) que haga lo mismo vía API.
-3. **Workflow CRM nuevo** en módulo Renovaciones, execute_on=field_update (`Propuesta_enviada` → true): acción "enviar mensaje WhatsApp" con `renovacion_enviada_v1` — misma acción que usa el de cobranza.
-4. **Cerrar el loop en Desk:** el mismo Flow/Deluge marca `Seguimiento avisado=true` y programa `Próximo seguimiento` en el ticket.
-5. **Prueba controlada** con un número interno antes de encender para todos.
+**Hechos verificados que fijan el diseño:**
+- El módulo **Renovaciones está vacío** (sin registros) → el puente va por **Polizas**, donde ya corren los WhatsApp de Vida Mujer y donde existe el precedente exacto: el campo booleano `Ticket_Generado` que el workflow de renovación marca al crear el ticket en Desk.
+- Mapeo ticket→póliza: `Polizas.Name` = "No. de póliza + espacio + año" (ej. `143290 2025`); el ticket trae `No. de Poliza`. Buscar con starts_with y quedarse con el de vigencia vigente.
+- Variables disponibles en Polizas: lookup `Contacto` (de ahí sale el móvil, igual que cobranza), `Fecha_de_finalizaci_n_de_vigencia` (fecha de renovación/cargo — coincide con la fecha que Eunice comunica), `Asegurado_1` (persona asegurada; útil cuando `Contacto` es empresa).
 
-**Fallback si el trigger por evento se complica:** date-based puro como cobranza (p.ej. X días antes de `Fecha de vencimiento`, si `Seguimiento avisado=false`) — menos preciso semánticamente pero idéntico al patrón que ya corre.
+### Runbook de implementación (todo en UI de Zoho; ~40 min de configuración + aprobación de plantilla)
 
-**Para la próxima sesión (en orden):**
-1. Pedir a Iria el número designado y anotarlo en la sección 3.
-2. Leer campos del módulo Renovaciones (un `ZohoCRM_getRecords` module=Renovaciones en el servidor combinado) para confirmar api_names y el link al ticket de Desk.
-3. Confirmar si el aviso de renovación se dispara por evento (diseño principal) o date-based (fallback) — decisión de Iria.
-4. Redactar la config exacta de Flow (o la función Deluge) y la plantilla final para que el equipo la configure en UI; verificar la primera ejecución real contra un ticket de prueba.
+1. **Desk (2 min):** crear estado custom de ticket **"Propuesta enviada"** (tipo Abierto) para el departamento DIRECCION.
+2. **CRM (3 min):** en Polizas, crear campo **fecha** `Fecha propuesta enviada` (api ~`Fecha_propuesta_enviada`). Fecha y no checkbox para que re-dispare cada año al cambiar el valor.
+3. **Plantilla (10 min + aprobación Meta, típicamente minutos-horas):** en el canal Business Messaging existente, plantilla `renovacion_enviada_v1`, categoría Utility, es_MX:
+   > Hola {{1}} 👋 Ya enviamos a tu correo la propuesta de renovación de tu seguro (póliza {{2}}), con renovación y cargo el {{3}}. Si no la encuentras, revisa la bandeja de spam o respóndenos por aquí y te la reenviamos con gusto. — Oficina de Iria Talan
+4. **Zoho Flow (15 min):** flow "Desk Propuesta enviada → CRM aviso WhatsApp":
+   - Trigger: Zoho Desk — ticket actualizado (depto DIRECCION).
+   - Condición: estado == "Propuesta enviada" **y** `Tipo de gestion` == "Renovacion" **y** `Seguimiento avisado` == false.
+   - Acciones: (a) buscar Poliza por Name starts_with `No. de Poliza`; (b) actualizar `Fecha_propuesta_enviada` = hoy; (c) actualizar ticket: `Seguimiento avisado` = true y `Próximo seguimiento` = +3 días.
+5. **Workflow CRM (5 min):** módulo Polizas, nombre "WHATSAPP RENOVACIÓN — PROPUESTA ENVIADA", execute_on = **field_update** de `Fecha_propuesta_enviada` → acción instantánea "Enviar mensaje WhatsApp" con `renovacion_enviada_v1` al `Contacto`. Mapeo: {{1}} nombre del contacto · {{2}} No. de póliza · {{3}} `Fecha_de_finalizaci_n_de_vigencia`.
+   - *Verificar al configurar:* que la acción WhatsApp aparezca con trigger field_update (los workflows existentes son date-based). Si no apareciera, fallback: trigger date_or_datetime sobre `Fecha_propuesta_enviada` + 0 días (dispara al día siguiente a la hora configurada).
+   - *Nota empresas:* si `Contacto` es persona moral (ej. FONI ENTERTAINMENT), {{1}} saldría con razón social; evaluar en la prueba usar `Asegurado_1`.
+6. **Prueba controlada:** póliza de prueba con el móvil de Eunice/Iria en el contacto → marcar el estado en un ticket de prueba → verificar llegada del mensaje y flags. Encender.
+7. **Auditoría (Claude, cuando esté vivo):** sesión semanal read-only que alerte tickets en "Propuesta enviada" con `Seguimiento avisado` == false. Pedirla como Routine cuando el flujo esté encendido.
+
+**Pendiente de anotar aquí:** el número emisor y los textos de las plantillas existentes (CRM → Setup → Channels → Business Messaging).
 
 ---
 
@@ -113,6 +120,7 @@ Todos activos. Única plantilla con nombre documentado: `pago_proximo_v3` (cobra
 | pre-2026-07 | Twilio descartado como canal WhatsApp. Número designado para mensajes a clientes ya operando (cobranza). |
 | 2026-05-02 | Workflow WhatsApp cobranza 30d antes activo (plantilla pago_proximo_v3). |
 | 2026-07-17 | Aviso de renovación será 100% automático vía API reutilizando canal CRM (no semi-automático). Este archivo se crea como memoria operativa. |
+| 2026-07-17 | Trigger del aviso definido por Iria: estado de ticket Desk "Propuesta enviada". Puente vía módulo Polizas (Renovaciones está vacío). Runbook final en sección 4. |
 
 ## 6. IDs útiles
 
