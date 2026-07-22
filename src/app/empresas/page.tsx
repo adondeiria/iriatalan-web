@@ -119,7 +119,7 @@ export default async function EmpresasPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/empresas-hero.png"
+              src="/img/servicios/empresas-hero.jpg"
               alt="Director ejecutivo mexicano de 52 años en su oficina firmando documentos con su equipo trabajando al fondo"
               fill
               sizes="100vw"

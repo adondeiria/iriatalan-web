@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // AVIF primero (30-50% más ligero que WebP); el optimizador negocia por
+    // header Accept. Cache de 31 días para no re-transformar en cada miss.
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2678400,
+    // Calidades permitidas: 75 default (escenas), 82/85 para héroes con rostros
+    // (el retrato mostraba artefactos a 75). Next 16 exige declararlas.
+    qualities: [75, 82, 85],
     remotePatterns: [
       {
         protocol: "https",

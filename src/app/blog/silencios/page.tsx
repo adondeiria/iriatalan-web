@@ -25,49 +25,49 @@ const SILENCIOS = [
     title: "Modalidad 40 — pensión dorada, si no abandonas el plan a la mitad",
     body:
       "Mucha gente sabe que Modalidad 40 IMSS puede multiplicar tu pensión — pero casi nadie planea cómo va a pagar la mensualidad durante los 5 años que dura. Sin un esquema de ahorro que lo garantice (Seguro de Ahorro / Retiro o Fondo de Inversión a edad 55-60), la cuota se vuelve insostenible y se pierde la pensión máxima. Lo correcto: emparejar Modalidad 40 con un plan de retiro que la financie y garantice.",
-    image: "/img/silencios/silencio-01-pension.png",
+    image: "/img/silencios/silencio-01-pension.jpg",
   },
   {
     slug: "universidades-privadas-sin-plan",
     title: "Universidades privadas más caras cada año, sin plan dedicado",
     body:
       "Una colegiatura privada en México puede superar los $45,000 MXN al mes. Una internacional, mucho más. Y el costo educativo incrementa anualmente por encima de la inflación. La mayoría de papás ahorra “lo que pueda” — sin plan dedicado, sin un seguro que complete las cuotas si tú llegas a faltar, sin cobertura específica para universidad nacional o internacional. Cuando llega el momento, el dinero no alcanza.",
-    image: "/img/silencios/silencio-02-universidades.png",
+    image: "/img/silencios/silencio-02-universidades.jpg",
   },
   {
     slug: "ppr-retiro-deducible",
     title: "Retiro deducible de impuestos — el instrumento perfecto",
     body:
       "Construye tu retiro con la ayuda de PPR (Plan Personal de Retiro): puede regresarte hasta el 35% en tu declaración anual, dependiendo de tu tasa marginal de ISR (Art. 151 fracc V LISR vigente, hasta el tope deducible — alrededor de $213,973 MXN en 2026, cifras vigentes a verificar al momento de contratar). A partir de los 65 años puedes recibir tu dinero en pago único o pensión vitalicia (y puede ser heredable), bajo el régimen fiscal aplicable a planes personales de retiro conforme a la normativa vigente.",
-    image: "/img/silencios/silencio-03-ppr.png",
+    image: "/img/silencios/silencio-03-ppr.jpg",
   },
   {
     slug: "beneficiarios-desactualizados",
     title: "Beneficiarios desactualizados",
     body:
       "Divorcios, hijos nuevos, segundas parejas, socios que entran y salen. La mayoría de los seguros de vida tienen beneficiarios que ya no reflejan la realidad del cliente. Cuando llega el siniestro, el dinero llega a la persona equivocada — y no hay vuelta atrás. Revisar designación cada vez que tu vida cambia no es paranoia — es disciplina patrimonial básica.",
-    image: "/img/silencios/silencio-04-beneficiarios.png",
+    image: "/img/silencios/silencio-04-beneficiarios.jpg",
   },
   {
     slug: "empresas-sin-persona-clave",
     title: "Empresas sin Persona Clave",
     body:
       "El dueño generalmente no se asegura para la empresa que construyó. Muchos socios mexicanos lo descubren tarde — el día que pasa algo, la operación se queda sin liquidez para resolver problemas inmediatos, no tienen estructura de ahorro para retiro, transición de mando o búsqueda de reemplazos. La estructura correcta: un seguro de Persona Clave donde la empresa es beneficiaria sobre el dueño, socios o cualquier persona insustituible. El ahorro al término del plazo también lo recibe la empresa, así cuando llega el momento, hay capital para sobrevivir el bache — no para liquidarse.",
-    image: "/img/silencios/silencio-05-empresas.png",
+    image: "/img/silencios/silencio-05-empresas.jpg",
   },
   {
     slug: "hijos-neurodivergentes-estructura",
     title: "Hijos neurodivergentes sin estructura financiera",
     body:
       "Padres y madres piensan en seguros generales, pero pocos en estructuras específicas que protejan financieramente a su hijo de por vida. La estructura que recomiendo: un seguro de vida cuya suma asegurada va, vía designación irrevocable, a un fideicomiso que invierte el capital y le genera una pensión mensual al hijo — junto con un seguro de retiro con pensión vitalicia adicional. Dos fuentes de ingreso garantizadas para cuando tú ya no estás, sin sucesiones lentas ni tutores no idóneos.",
-    image: "/img/silencios/silencio-06-neurodivergentes.png",
+    image: "/img/silencios/silencio-06-neurodivergentes.jpg",
   },
   {
     slug: "sucesion-fideicomiso-aseguradora",
     title: "Sucesión patrimonial sin fideicomiso vía aseguradora",
     body:
       "Para patrimonios complejos, un testamento solo no basta. La estructura más limpia que existe: un seguro de vida con designación irrevocable de beneficiario hacia un fideicomiso. Eso permite que el capital llegue al heredero correcto en semanas (no en años de juicio sucesorio), con eficiencia fiscal y sin quedar atrapado en disputas familiares. No estructuro fideicomisos notariales puros — los armo a través del vehículo aseguradora porque ahí vive la liquidez inmediata, no en patrimonio inmovilizado que tarda años en disolverse.",
-    image: "/img/silencios/silencio-07-sucesion.png",
+    image: "/img/silencios/silencio-07-sucesion.jpg",
   },
 ];
 

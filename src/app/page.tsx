@@ -54,35 +54,35 @@ const SERVICIOS = [
     title: "Proteger a tu familia",
     desc: "Seguros de vida y protección para lo que más te importa.",
     href: "/personas",
-    image: "/img/nichos/familias-arcoiris-hero.png",
+    image: "/img/nichos/familias-arcoiris-hero.jpg",
   },
   {
     icon: BarChart3,
     title: "Planear tu retiro",
     desc: "Estrategias para que disfrutes hoy y mañana con tranquilidad.",
     href: "/retiro",
-    image: "/img/servicios/retiro-hero.png",
+    image: "/img/servicios/retiro-hero.jpg",
   },
   {
     icon: Heart,
     title: "Cuidar tu salud",
     desc: "Gastos médicos mayores y seguros de salud a tu medida.",
     href: "/gmm",
-    image: "/img/servicios/gmm-hero.png",
+    image: "/img/servicios/gmm-hero.jpg",
   },
   {
     icon: Sparkles,
     title: "Ordenar tu patrimonio",
     desc: "Planeación patrimonial e inversiones alineadas a tus objetivos.",
     href: "/patrimonial",
-    image: "/img/servicios/patrimonial-hero.png",
+    image: "/img/servicios/patrimonial-hero.jpg",
   },
   {
     icon: Briefcase,
     title: "Proteger tu empresa",
     desc: "Soluciones para empresarios, socios y colaboradores clave.",
     href: "/empresas",
-    image: "/img/servicios/empresas-hero.png",
+    image: "/img/servicios/empresas-hero.jpg",
   },
 ];
 
@@ -150,19 +150,19 @@ const INSIGHTS = [
     category: "Retiro e Inversiones",
     title: "Modalidad 40 IMSS: cuándo sí y cuándo no conviene",
     href: "/retiro",
-    image: "/img/servicios/retiro-hero.png",
+    image: "/img/servicios/retiro-hero.jpg",
   },
   {
     category: "Seguros Personales",
     title: "Errores comunes en seguros de gastos médicos mayores",
     href: "/gmm",
-    image: "/img/servicios/gmm-hero.png",
+    image: "/img/servicios/gmm-hero.jpg",
   },
   {
     category: "Planeación Familiar",
     title: "Cómo proteger financieramente a un hijo neurodivergente",
     href: "/personas/hijos-neurodivergentes",
-    image: "/img/nichos/hijos-neurodivergentes-hero.png",
+    image: "/img/nichos/hijos-neurodivergentes-hero.jpg",
   },
 ];
 
@@ -233,11 +233,11 @@ export default async function HomePage() {
           {/* Foto background full-bleed */}
           <div className="absolute inset-0">
             <Image
-              src="/img/iria/IRIA_HERO_FINAL4.png"
+              src="/img/iria/IRIA_HERO_FINAL4.webp"
               alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
               fill
               sizes="100vw"
-              quality={90}
+              quality={85}
               className="object-cover object-[70%_center] sm:object-[60%_center] lg:object-center"
               priority
             />
@@ -281,13 +281,13 @@ export default async function HomePage() {
                 <span className="text-champagne" aria-hidden>·</span>
                 <span>Retiro</span>
               </p>
-              <h1 className="animate-fade-up stagger-1 mt-7 font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em] text-cream-light">
+              <h1 className="animate-rise-in mt-7 font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em] text-cream-light">
                 {heroTitle}
               </h1>
-              <p className="animate-fade-up stagger-2 mt-7 text-base sm:text-lg text-cream-light/85 leading-relaxed max-w-xl">
+              <p className="animate-fade-up stagger-1 mt-7 text-base sm:text-lg text-cream-light/85 leading-relaxed max-w-xl">
                 {heroSubtitle}
               </p>
-              <div className="animate-fade-up stagger-3 mt-9 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="animate-fade-up stagger-2 mt-9 flex flex-col sm:flex-row sm:items-center gap-4">
                 <a
                   href={ctaUrl}
                   className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5"
@@ -300,7 +300,7 @@ export default async function HomePage() {
                 </a>
                 <a
                   href="#servicios"
-                  className="group inline-flex items-center gap-3 rounded-full border border-cream-light/40 text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:border-cream-light hover:bg-cream-light/[0.06] transition-all duration-500 backdrop-blur-sm"
+                  className="group inline-flex items-center gap-3 rounded-full border border-cream-light/40 text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:border-cream-light hover:bg-cream-light/[0.06] transition-all duration-500"
                 >
                   Explorar estrategias
                   <ArrowRight
@@ -312,13 +312,13 @@ export default async function HomePage() {
             </div>
 
             {/* Banda de propósitos abajo */}
-            <ul className="animate-fade-up stagger-4 mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-7 max-w-4xl">
+            <ul className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-7 max-w-4xl">
               {PROPOSITOS_HERO.map(({ icon, label }) => (
                 <li
                   key={label}
                   className="flex flex-col items-start gap-3 text-cream-light/85"
                 >
-                  <span className="flex items-center justify-center size-10 rounded-full ring-1 ring-champagne/40 bg-espresso/40 backdrop-blur-sm">
+                  <span className="flex items-center justify-center size-10 rounded-full ring-1 ring-champagne/40 bg-espresso/60">
                     <Image
                       src={icon}
                       alt=""

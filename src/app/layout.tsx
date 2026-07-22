@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Geist_Mono, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,24 +19,21 @@ import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 import "./globals.css";
 
+// Inter (body) — solo los pesos usados: 400 base, 500 font-medium, 600 font-semibold.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
+// Cormorant (headings h1-h4) — 300 (font-light), 400 base, 700 (font-bold),
+// en normal + italic. Se quitaron 500/600 (sin uso). De 10 archivos a 6.
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "700"],
   style: ["normal", "italic"],
 });
 
@@ -126,7 +123,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-MX"
-      className={`${inter.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

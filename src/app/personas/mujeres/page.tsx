@@ -147,7 +147,8 @@ export default async function MujeresPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[4/3] sm:aspect-[21/9] w-full">
             <Image
-              src="/img/nichos/mujeres-hero.png"
+              src="/img/nichos/mujeres-hero.jpg"
+              quality={82}
               alt="Mujer mexicana CEO de 40 años en su oficina ejecutiva con vista a Paseo de la Reforma en Ciudad de México"
               fill
               sizes="100vw"

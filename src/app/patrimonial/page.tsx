@@ -102,7 +102,7 @@ export default async function PatrimonialPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/patrimonial-hero.png"
+              src="/img/servicios/patrimonial-hero.jpg"
               alt="Manos firmando un documento de fideicomiso con pluma fountain en escritorio de notaría — planeación patrimonial discreta"
               fill
               sizes="100vw"

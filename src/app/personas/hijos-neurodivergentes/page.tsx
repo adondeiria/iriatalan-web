@@ -147,7 +147,8 @@ export default async function HijosNeurodivergentesPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/nichos/hijos-neurodivergentes-hero.png"
+              src="/img/nichos/hijos-neurodivergentes-hero.jpg"
+              quality={82}
               alt="Madre mexicana acompañando a su hijo neurodivergente en un momento cotidiano de juego en casa"
               fill
               sizes="100vw"

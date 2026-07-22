@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-serif: var(--font-cormorant);
 }
 
@@ -88,6 +88,17 @@ h1, h2, h3, h4 {
   }
 }
 
+/* rise-in — para el elemento LCP (H1 del hero): NO arranca en opacity:0, así
+ * pinta desde el frame 0 y no retrasa el LCP; solo anima el transform (compositor). */
+@keyframes rise-in {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -109,7 +120,11 @@ h1, h2, h3, h4 {
 }
 
 .animate-fade-up {
-  animation: fade-up 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-rise-in {
+  animation: rise-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-in {
@@ -140,7 +155,8 @@ html {
   }
   .animate-fade-up,
   .animate-fade-in,
-  .animate-scale-in {
+  .animate-scale-in,
+  .animate-rise-in {
     animation: none !important;
     opacity: 1;
     transform: none;

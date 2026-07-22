@@ -139,7 +139,7 @@ export default async function RetiroPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/retiro-hero.png"
+              src="/img/servicios/retiro-hero.jpg"
               alt="Pareja mexicana disfrutando una cena en un bistró parisino con la Torre Eiffel al fondo"
               fill
               sizes="100vw"

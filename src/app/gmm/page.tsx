@@ -144,7 +144,7 @@ export default async function GmmPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/servicios/gmm-hero.png"
+              src="/img/servicios/gmm-hero.jpg"
               alt="Hombre mexicano recuperándose en hospital de Londres tras un accidente de viaje — cobertura GMM internacional"
               fill
               sizes="100vw"

@@ -142,7 +142,8 @@ export default async function FamiliasArcoirisPage() {
         <section className="relative w-full overflow-hidden">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/img/nichos/familias-arcoiris-hero.png"
+              src="/img/nichos/familias-arcoiris-hero.jpg"
+              quality={82}
               alt="Familia mexicana con dos papás del mismo sexo y sus hijos en un momento cotidiano en casa"
               fill
               sizes="100vw"
