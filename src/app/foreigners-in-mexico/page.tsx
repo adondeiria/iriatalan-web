@@ -8,6 +8,7 @@ import {
   buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildGraph,
+  buildHreflangAlternates,
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
@@ -26,7 +27,7 @@ const FAQS: FAQItem[] = [
   {
     question: "I have a US health plan. Do I really need Mexican GMM?",
     answerText:
-      "For procedures you actually do in Mexico — generally yes. Mexican Major Medical Insurance (GMM) with carriers like BUPA, MetLife or Allianz gives you access to the country's top private hospitals (Médica Sur, Hospital Ángeles, Christus Muguerza, Hospital ABC) at a fraction of US costs. Many of my US-resident clients keep their stateside coverage for emergencies back home and add Mexican GMM as a complementary layer for elective procedures or in-country emergencies. We model the right mix together.",
+      "For procedures you actually do in Mexico — generally yes. Mexican Major Medical Insurance (GMM) with carriers like BUPA, MetLife or GNP gives you access to the country's top private hospitals (Médica Sur, Hospital Ángeles, Christus Muguerza, Hospital ABC) at a fraction of US costs. Many of my US-resident clients keep their stateside coverage for emergencies back home and add Mexican GMM as a complementary layer for elective procedures or in-country emergencies. We model the right mix together.",
   },
   {
     question: "Are retirement plans (PPR) worth it for someone who may leave Mexico?",
@@ -74,7 +75,11 @@ export const metadata: Metadata = {
   title: "Financial Advisor for Foreigners Living in Mexico — Iria Talan",
   description:
     "Bilingual (Spanish & English) financial advisory for foreigners with Mexican residency (RT/RP). Major medical insurance, life insurance, retirement plans, and education plans. MDRT Top of the Table.",
-  alternates: { canonical: `${SITE_URL}/foreigners-in-mexico` },
+  alternates: buildHreflangAlternates(
+    "/foreigners-in-mexico",
+    "/",
+    "/foreigners-in-mexico",
+  ),
   openGraph: {
     type: "website",
     url: `${SITE_URL}/foreigners-in-mexico`,
@@ -209,7 +214,7 @@ export default async function ForeignersInMexicoPage() {
                   Major Medical Insurance (GMM)
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 text-sm leading-relaxed">
-                  Premium Mexican carriers (BUPA, MetLife, Allianz) with access to
+                  Premium Mexican carriers (BUPA, MetLife, GNP) with access to
                   the country&apos;s top private hospitals — Médica Sur, Hospital Ángeles,
                   Christus Muguerza, Hospital ABC. Lower cost per procedure than
                   equivalent US coverage. Often paired with your home-country plan
@@ -356,7 +361,7 @@ export default async function ForeignersInMexicoPage() {
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   For procedures you actually do in Mexico — generally yes. Mexican
                   Major Medical Insurance (GMM) with carriers like BUPA, MetLife or
-                  Allianz gives you access to the country&apos;s top private hospitals
+                  GNP gives you access to the country&apos;s top private hospitals
                   (Médica Sur, Hospital Ángeles, Christus Muguerza, Hospital ABC) at
                   a fraction of US costs. Many of my US-resident clients keep their
                   stateside coverage for emergencies back home and add Mexican GMM as

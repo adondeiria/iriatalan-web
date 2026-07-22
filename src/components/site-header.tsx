@@ -57,8 +57,8 @@ const HELP_CATEGORIES: MenuCategory[] = [
     langEn: true,
     items: [
       { label: "Foreigners living in Mexico", href: "/foreigners-in-mexico", langEn: true },
-      { label: "International Health Insurance", comingSoon: true, langEn: true },
-      { label: "Retirement Planning", comingSoon: true, langEn: true },
+      { label: "International Health Insurance", href: "/international-health-insurance", langEn: true },
+      { label: "Retirement Planning", href: "/retirement-planning", langEn: true },
     ],
   },
   {

@@ -122,7 +122,7 @@ const PRODUCTOS = [
   {
     title: "GMM con red premium nacional",
     desc:
-      "Para cuando vienes a tratamientos electivos o emergencias en visitas familiares. BUPA, MetLife o Allianz con red ABC, Médica Sur, Ángeles, Christus Muguerza — costo menor que la equivalente en EUA o Europa para procedimientos planificados. Muchos clientes residentes en EUA lo mantienen como capa complementaria.",
+      "Para cuando vienes a tratamientos electivos o emergencias en visitas familiares. BUPA, MetLife o GNP con red ABC, Médica Sur, Ángeles, Christus Muguerza — costo menor que la equivalente en EUA o Europa para procedimientos planificados. Muchos clientes residentes en EUA lo mantienen como capa complementaria.",
   },
   {
     title: "Planes educacionales — peso o dólar",
