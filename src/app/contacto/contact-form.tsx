@@ -4,6 +4,8 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 
+import { trackEvent } from "@/lib/analytics";
+
 /**
  * Form de pre-cualificación — captura todos los leads y los reenvía a Zoho Forms
  * via /api/contact (server-side proxy). El form en Zoho está configurado para
@@ -88,6 +90,10 @@ export function ContactForm() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
+        trackEvent("generate_lead", {
+          method: "form_contacto",
+          servicio: payload.servicio || "no_especificado",
+        });
         setSubmitState("success");
       } else {
         setSubmitState("error");

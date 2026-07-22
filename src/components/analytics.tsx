@@ -3,6 +3,8 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
+import { trackEvent } from "@/lib/analytics";
+
 const COOKIE_NAME = "rif-cookie-consent";
 
 function hasAcceptedAnalytics(): boolean {
@@ -28,6 +30,25 @@ export function Analytics() {
     const onChange = () => setConsented(hasAcceptedAnalytics());
     window.addEventListener("rif-consent-change", onChange);
     return () => window.removeEventListener("rif-consent-change", onChange);
+  }, []);
+
+  // Tracking de conversiones por delegación: un solo listener captura clics
+  // a WhatsApp y a "Agendar / Contacto" en TODO el sitio (float, footer, hero,
+  // CTAs) sin tocar cada componente. trackEvent es no-op si no hay consentimiento.
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      const anchor = (e.target as HTMLElement | null)?.closest?.("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") ?? "";
+      if (/wa\.me|whatsapp\.com|^https?:\/\/api\.whatsapp/i.test(href)) {
+        trackEvent("whatsapp_click", { link_url: href });
+      } else if (/\/contacto/.test(href) || /#agendar/.test(href)) {
+        trackEvent("click_agendar", { link_url: href });
+      }
+    }
+    document.addEventListener("click", onClick, { capture: true });
+    return () =>
+      document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
   if (!consented) return null;
