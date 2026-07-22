@@ -49,6 +49,9 @@ const nextConfig: NextConfig = {
       // /clientes — descubierto por firecrawl 2026-05-10 (Google sigue indexándola)
       { source: "/clientes", destination: "/recursos", permanent: true },
       { source: "/clientes/", destination: "/recursos", permanent: true },
+      // /clientes-resp — portal-cliente WP viejo, rastreada sin indexar (GSC 2026-07)
+      { source: "/clientes-resp", destination: "/recursos", permanent: true },
+      { source: "/clientes-resp/", destination: "/recursos", permanent: true },
       { source: "/our-services", destination: "/", permanent: true },
       { source: "/our-services/", destination: "/", permanent: true },
       { source: "/hablemos", destination: "/", permanent: true },

@@ -9,6 +9,7 @@ import {
   buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildGraph,
+  buildHreflangAlternates,
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
@@ -85,7 +86,11 @@ export const metadata: Metadata = {
   title: "¿Qué cubre un Seguro de Gastos Médicos Mayores?",
   description:
     "Qué cubre, cómo funciona y cuánto cuesta al año un GMM en México. Trabajo con 5 aseguradoras AAA para encontrar tu mejor plan, nacional e internacional.",
-  alternates: { canonical: `${SITE_URL}/gmm` },
+  alternates: buildHreflangAlternates(
+    "/gmm",
+    "/gmm",
+    "/international-health-insurance",
+  ),
   openGraph: {
     type: "website",
     url: `${SITE_URL}/gmm`,

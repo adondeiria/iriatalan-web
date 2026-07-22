@@ -9,6 +9,7 @@ import {
   buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildGraph,
+  buildHreflangAlternates,
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
@@ -80,7 +81,11 @@ export const metadata: Metadata = {
   title: "Planeación de Retiro · PPR + Modalidad 40 IMSS",
   description:
     "Multiplica tu pensión con un PPR y Modalidad 40 IMSS. Deduce impuestos hoy y asegura tu retiro con una estrategia diseñada para ti.",
-  alternates: { canonical: `${SITE_URL}/retiro` },
+  alternates: buildHreflangAlternates(
+    "/retiro",
+    "/retiro",
+    "/retirement-planning",
+  ),
   openGraph: {
     type: "website",
     url: `${SITE_URL}/retiro`,

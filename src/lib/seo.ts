@@ -7,6 +7,34 @@ export const SITE_URL = "https://iriatalan.com.mx";
 export const SITE_NAME = "Iria Talan / RIF";
 
 /**
+ * Construye `alternates` con canonical absoluto + hreflang recíproco
+ * es-MX / en-US / x-default.
+ *
+ * Necesario porque cuando una página sobreescribe `metadata.alternates`, Next
+ * reemplaza el objeto completo y se pierde el mapa `languages` heredado del
+ * root layout — dejando el hreflang emitido solo en el home. Usar en cualquier
+ * página que tenga una contraparte real en el otro idioma.
+ *
+ * @param self   ruta canónica de esta página, ej. "/gmm"
+ * @param esPath ruta de la versión en español (x-default apunta aquí)
+ * @param enPath ruta de la versión en inglés
+ */
+export function buildHreflangAlternates(
+  self: string,
+  esPath: string,
+  enPath: string,
+) {
+  return {
+    canonical: `${SITE_URL}${self}`,
+    languages: {
+      "es-MX": `${SITE_URL}${esPath}`,
+      "en-US": `${SITE_URL}${enPath}`,
+      "x-default": `${SITE_URL}${esPath}`,
+    },
+  };
+}
+
+/**
  * SameAs fallback — perfiles canonical públicos de Iria Talan.
  * Usado cuando el campo `author.sameAs` de Sanity está vacío.
  * Crítico para EEAT (Person.sameAs) y entity disambiguation en LLMs.

@@ -22,13 +22,20 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/gmm", priority: 0.9 },
   { path: "/empresas", priority: 0.9 },
   { path: "/patrimonial", priority: 0.9 },
+  { path: "/seguros-vida", priority: 0.9 },
+  { path: "/planes-educacionales", priority: 0.85 },
+  { path: "/fondos-de-inversion", priority: 0.85 },
   { path: "/personas", priority: 0.9 },
   { path: "/personas/mujeres", priority: 0.85 },
   { path: "/personas/familias-arcoiris", priority: 0.85 },
   { path: "/personas/hijos-neurodivergentes", priority: 0.85 },
   { path: "/personas/mexicanos-en-el-extranjero", priority: 0.85 },
+  // Páginas en inglés (International Families).
   { path: "/foreigners-in-mexico", priority: 0.85 },
+  { path: "/international-health-insurance", priority: 0.8 },
+  { path: "/retirement-planning", priority: 0.8 },
   { path: "/guia", priority: 0.8 },
+  { path: "/blog/silencios", priority: 0.6 },
   { path: "/contacto", priority: 0.7 },
 ];
 
