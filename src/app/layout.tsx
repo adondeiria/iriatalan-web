@@ -146,8 +146,8 @@ export default function RootLayout({
           />
 
           {/* Bloque superior: CTA grande */}
-          <div className="relative max-w-6xl mx-auto px-6 pt-20 sm:pt-24 pb-14">
-            <div className="grid gap-10 lg:grid-cols-[5fr_4fr] lg:items-center lg:gap-16">
+          <div className="relative max-w-5xl mx-auto px-6 pt-20 sm:pt-24 pb-14">
+            <div className="grid gap-8 lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-10">
               <div>
                 <h2 className="font-serif font-light text-4xl sm:text-5xl lg:text-6xl leading-[1.02] tracking-[-0.01em] text-cream-light">
                   Hablemos de tu patrimonio<br className="hidden sm:inline" /> y tu futuro.
@@ -174,7 +174,7 @@ export default function RootLayout({
           <div className="hairline-x-light relative" />
 
           {/* Bloque medio: 5 columnas (logo+sociales / Servicios / Recursos / Información / Contacto) */}
-          <div className="relative max-w-6xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
+          <div className="relative max-w-5xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
             <div>
               <Image
                 src="/logo-rif.svg"
@@ -294,7 +294,7 @@ export default function RootLayout({
           <div className="hairline-x-light relative" />
 
           {/* Bloque inferior: copyright + disclaimer */}
-          <div className="relative max-w-6xl mx-auto px-6 py-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wide text-cream-light/55">
+          <div className="relative max-w-5xl mx-auto px-6 py-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wide text-cream-light/55">
             <p>
               © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados. · Cédula CNSF{" "}
               <strong className="font-medium tabular-nums">V388618</strong> ·{" "}
@@ -315,7 +315,7 @@ export default function RootLayout({
             </Link>
           </div>
           <div className="relative border-t border-cream-light/10">
-            <p className="max-w-6xl mx-auto px-6 py-5 text-[11px] text-cream-light/45 leading-relaxed">
+            <p className="max-w-5xl mx-auto px-6 py-5 text-[11px] text-cream-light/45 leading-relaxed">
               La información de este sitio tiene fines informativos. Iria Talan, Cédula CNSF V388618, actúa como Agente de Seguros autorizado. Las condiciones finales se rigen por la póliza emitida por la aseguradora y la normativa fiscal vigente al momento de la contratación o pago. Consulta con tu asesor fiscal la aplicabilidad a tu caso particular. Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
             </p>
           </div>
