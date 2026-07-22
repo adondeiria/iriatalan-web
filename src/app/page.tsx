@@ -273,24 +273,28 @@ export default async function HomePage() {
 
           {/* Contenido overlay */}
           <div className="relative px-6 sm:px-10 lg:px-16 pt-20 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 max-w-[1440px] mx-auto w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-between">
-            <div className="max-w-2xl">
-              <p className="animate-fade-up text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy flex flex-wrap items-center gap-x-3 gap-y-1">
-                <span>Planeación patrimonial</span>
-                <span className="text-champagne" aria-hidden>·</span>
-                <span>Seguros</span>
-                <span className="text-champagne" aria-hidden>·</span>
-                <span>Retiro</span>
-              </p>
-              <h1 className="animate-rise-in mt-7 font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em] text-cream-light">
-                {heroTitle}
-              </h1>
-              <p className="animate-fade-up stagger-1 mt-7 text-base sm:text-lg text-cream-light/85 leading-relaxed max-w-xl">
-                {heroSubtitle}
-              </p>
-              <div className="animate-fade-up stagger-2 mt-9 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-12">
+              {/* Texto — columna angosta a la izquierda */}
+              <div className="max-w-xl">
+                <p className="animate-fade-up text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span>Planeación patrimonial</span>
+                  <span className="text-champagne" aria-hidden>·</span>
+                  <span>Seguros</span>
+                  <span className="text-champagne" aria-hidden>·</span>
+                  <span>Retiro</span>
+                </p>
+                <h1 className="animate-rise-in mt-7 font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em] text-cream-light">
+                  {heroTitle}
+                </h1>
+                <p className="animate-fade-up stagger-1 mt-7 text-base sm:text-lg text-cream-light/85 leading-relaxed">
+                  {heroSubtitle}
+                </p>
+              </div>
+              {/* Botones — a la derecha */}
+              <div className="animate-fade-up stagger-2 flex flex-col sm:flex-row lg:flex-col gap-4 lg:shrink-0 lg:pb-2">
                 <a
                   href={ctaUrl}
-                  className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5"
                 >
                   Reserva tu sesión inicial · 30 min
                   <ArrowRight
@@ -300,7 +304,7 @@ export default async function HomePage() {
                 </a>
                 <a
                   href="#servicios"
-                  className="group inline-flex items-center gap-3 rounded-full border border-cream-light/40 text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:border-cream-light hover:bg-cream-light/[0.06] transition-all duration-500"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full border border-cream-light/40 text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:border-cream-light hover:bg-cream-light/[0.06] transition-all duration-500 backdrop-blur-sm bg-espresso/20"
                 >
                   Explorar estrategias
                   <ArrowRight
