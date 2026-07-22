@@ -47,6 +47,21 @@ const SERVICIOS_APORTACION: Servicio[] = [
   "Ahorro para Modalidad 40",
 ];
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Normaliza un móvil mexicano a 10 dígitos; devuelve null si no es válido.
+ * Espejo de la validación server-side en /api/contact.
+ */
+function normalizeMxMobile(raw: string): string | null {
+  const digits = raw.replace(/\D/g, "");
+  let d = digits;
+  if (d.length === 13 && d.startsWith("521")) d = d.slice(3);
+  else if (d.length === 12 && d.startsWith("52")) d = d.slice(2);
+  else if (d.length === 11 && d.startsWith("1")) d = d.slice(1);
+  return d.length === 10 ? d : null;
+}
+
 type SubmitState = "idle" | "submitting" | "success" | "error";
 type CondicionMedica = "SI" | "NO" | "N/A" | "";
 
@@ -56,6 +71,8 @@ export function ContactForm() {
   const [privacyAccepted, setPrivacyAccepted] = useState<boolean>(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
+  // Marca de tiempo de render — el server rechaza submits < 3s (anti-bot).
+  const [loadedAt] = useState<number>(() => Date.now());
 
   const isGMM = servicio === SERVICIO_GMM;
   const askAportacion =
@@ -68,10 +85,38 @@ export function ContactForm() {
 
     const formData = new FormData(e.currentTarget);
 
+    const nombre = String(formData.get("nombre") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const whatsappRaw = String(formData.get("whatsapp") ?? "").trim();
+
+    // Validación client-side (el form usa noValidate, así que la hacemos aquí).
+    if (nombre.length < 2) {
+      setSubmitState("error");
+      setErrorMsg("Escribe tu nombre para poder contactarte.");
+      return;
+    }
+    if (!EMAIL_RE.test(email)) {
+      setSubmitState("error");
+      setErrorMsg("Revisa tu correo — parece que tiene un error de formato.");
+      return;
+    }
+    if (!normalizeMxMobile(whatsappRaw)) {
+      setSubmitState("error");
+      setErrorMsg(
+        "Ingresa un WhatsApp válido a 10 dígitos (ej. 55 1234 5678).",
+      );
+      return;
+    }
+    if (!servicio) {
+      setSubmitState("error");
+      setErrorMsg("Selecciona qué quieres resolver.");
+      return;
+    }
+
     const payload = {
-      nombre: String(formData.get("nombre") ?? "").trim(),
-      whatsapp: String(formData.get("whatsapp") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
+      nombre,
+      whatsapp: whatsappRaw,
+      email,
       ciudad: String(formData.get("ciudad") ?? "").trim(),
       servicio: servicio || "",
       condicion_medica: isGMM ? condicionMedica : "",
@@ -80,6 +125,10 @@ export function ContactForm() {
         : "",
       mensaje: String(formData.get("mensaje") ?? "").trim(),
       privacy_accepted: privacyAccepted,
+      // Anti-spam: honeypot (debe ir vacío), tiempo de llenado, y origen.
+      website: String(formData.get("website") ?? ""),
+      elapsed_ms: Date.now() - loadedAt,
+      source: "contacto",
     };
 
     try {
@@ -143,6 +192,23 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-7" noValidate>
+      {/* Honeypot anti-bot — invisible para humanos; los bots lo llenan y el
+          server responde éxito falso sin reenviar a Zoho. */}
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden"
+      >
+        <label htmlFor="website">No llenar este campo</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
+
       {/* Datos básicos */}
       <fieldset className="space-y-5">
         <legend className="text-xs font-medium uppercase tracking-[0.24em] text-burgundy mb-4">
@@ -159,7 +225,9 @@ export function ContactForm() {
             label="WhatsApp"
             name="whatsapp"
             type="tel"
-            placeholder="+52 55 XXXX XXXX"
+            required
+            placeholder="55 1234 5678"
+            helperText="A 10 dígitos — es mi vía principal de contacto."
           />
           <Field
             label="Email"
