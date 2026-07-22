@@ -228,52 +228,43 @@ export default async function HomePage() {
       />
 
       <main className="flex flex-col">
-        {/* HERO — banner full-width con foto background + texto izq overlay */}
+        {/* HERO — split: retrato (der/arriba) + mensaje (izq/abajo) */}
         <section className="relative bg-espresso text-cream-light overflow-hidden">
-          {/* Foto background full-bleed */}
-          <div className="absolute inset-0">
-            <Image
-              src="/img/iria/IRIA_HERO_FINAL4.webp"
-              alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
-              fill
-              sizes="100vw"
-              quality={85}
-              className="object-cover object-[70%_center] sm:object-[60%_center] lg:object-center"
-              priority
-            />
-            {/* Gradient overlay — oscuro izq para legibilidad → transparente der */}
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(31,22,18,0.92) 0%, rgba(31,22,18,0.78) 28%, rgba(31,22,18,0.35) 55%, rgba(31,22,18,0.05) 78%, transparent 95%)",
-              }}
-            />
-            {/* Gradient inferior sutil para banda de propósitos */}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-56"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(31,22,18,0.88) 0%, rgba(31,22,18,0.45) 60%, transparent 100%)",
-              }}
-            />
-          </div>
-
           {/* Burgundy ambient glow */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -top-32 -right-24 size-[640px] rounded-full opacity-40"
+            className="pointer-events-none absolute -top-24 left-1/4 size-[520px] rounded-full opacity-30"
             style={{
               background:
                 "radial-gradient(circle, rgba(158,27,30,0.20) 0%, rgba(158,27,30,0.05) 35%, transparent 65%)",
             }}
           />
 
-          {/* Contenido overlay */}
-          <div className="relative px-6 sm:px-10 lg:px-16 pt-20 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 max-w-[1440px] mx-auto w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-between">
-            <div className="max-w-2xl">
+          <div className="relative max-w-[1440px] mx-auto w-full grid lg:grid-cols-2 lg:items-stretch">
+            {/* Retrato — arriba en móvil, derecha en desktop */}
+            <div className="relative order-first lg:order-last h-[50vh] min-h-[360px] sm:h-[58vh] lg:h-auto lg:min-h-[700px]">
+              <Image
+                src="/img/iria/iria-sitting-hero-dark.jpg"
+                alt="Iria Talan, asesora financiera RIF — MDRT Top of the Table, Cédula CNSF V388618"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                quality={85}
+                className="object-cover object-[center_top]"
+                priority
+              />
+              {/* Fundido hacia el panel de texto (izq en desktop, abajo en móvil) */}
+              <div
+                aria-hidden
+                className="absolute inset-0 lg:bg-[linear-gradient(to_right,rgba(31,22,18,0.9)_0%,rgba(31,22,18,0.15)_20%,transparent_38%)]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(to_top,var(--color-espresso),transparent)] lg:hidden"
+              />
+            </div>
+
+            {/* Mensaje */}
+            <div className="relative order-last lg:order-first px-6 sm:px-10 lg:px-16 pb-16 pt-2 sm:pt-6 lg:py-24 flex flex-col justify-center">
               <p className="animate-fade-up text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span>Planeación patrimonial</span>
                 <span className="text-champagne" aria-hidden>·</span>
@@ -281,13 +272,13 @@ export default async function HomePage() {
                 <span className="text-champagne" aria-hidden>·</span>
                 <span>Retiro</span>
               </p>
-              <h1 className="animate-rise-in mt-7 font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em] text-cream-light">
+              <h1 className="animate-rise-in mt-6 font-serif font-light text-4xl sm:text-5xl lg:text-6xl leading-[1.0] tracking-[-0.02em] text-cream-light">
                 {heroTitle}
               </h1>
-              <p className="animate-fade-up stagger-1 mt-7 text-base sm:text-lg text-cream-light/85 leading-relaxed max-w-xl">
+              <p className="animate-fade-up stagger-1 mt-6 text-base sm:text-lg text-cream-light/85 leading-relaxed max-w-xl">
                 {heroSubtitle}
               </p>
-              <div className="animate-fade-up stagger-2 mt-9 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="animate-fade-up stagger-2 mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
                 <a
                   href={ctaUrl}
                   className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-8 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.55)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.75)] hover:-translate-y-0.5"
@@ -309,31 +300,31 @@ export default async function HomePage() {
                   />
                 </a>
               </div>
-            </div>
 
-            {/* Banda de propósitos abajo */}
-            <ul className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-7 max-w-4xl">
-              {PROPOSITOS_HERO.map(({ icon, label }) => (
-                <li
-                  key={label}
-                  className="flex flex-col items-start gap-3 text-cream-light/85"
-                >
-                  <span className="flex items-center justify-center size-10 rounded-full ring-1 ring-champagne/40 bg-espresso/60">
-                    <Image
-                      src={icon}
-                      alt=""
-                      width={22}
-                      height={22}
-                      className="size-[22px]"
-                      aria-hidden
-                    />
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] leading-[1.4] max-w-[130px]">
-                    {label}
-                  </span>
-                </li>
-              ))}
-            </ul>
+              {/* Banda de propósitos */}
+              <ul className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-6 max-w-lg">
+                {PROPOSITOS_HERO.map(({ icon, label }) => (
+                  <li
+                    key={label}
+                    className="flex flex-col items-start gap-3 text-cream-light/85"
+                  >
+                    <span className="flex items-center justify-center size-10 rounded-full ring-1 ring-champagne/40 bg-espresso/60">
+                      <Image
+                        src={icon}
+                        alt=""
+                        width={22}
+                        height={22}
+                        className="size-[22px]"
+                        aria-hidden
+                      />
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] leading-[1.4] max-w-[130px]">
+                      {label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
