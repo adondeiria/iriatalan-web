@@ -7,6 +7,7 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -74,7 +75,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría financiera para familias arcoíris en México",
   description:
-    "Planeación financiera y patrimonial para familias diversas con hijos: seguros de vida, fideicomisos, planes educacionales y estructuras de tutela diseñadas para que la ley reconozca a tu familia tal como es.",
+    "Asesoría financiera para familias arcoíris LGBT en México: seguros de vida, fideicomisos y tutela para que la ley reconozca a tu familia tal como es.",
   alternates: { canonical: `${SITE_URL}/personas/familias-arcoiris` },
   openGraph: {
     type: "website",
@@ -128,7 +129,8 @@ export default async function FamiliasArcoirisPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Familias arcoíris", path: "/personas/familias-arcoiris" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS),
   );
 
   return (

@@ -7,6 +7,7 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -64,7 +65,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Seguros para Empresas · Persona Clave / Hombre Clave",
   description:
-    "Seguros empresariales: Persona Clave (Hombre Clave), Vida grupo, GMM colectivo y beneficios para empleados. Protege tu negocio cuando depende de personas insustituibles. MDRT TOT · CNSF.",
+    "Seguros para empresas: Persona Clave, Vida grupo y GMM colectivo. Protege tu negocio cuando depende de personas insustituibles. Agenda una consulta.",
   alternates: { canonical: `${SITE_URL}/empresas` },
   openGraph: {
     type: "website",
@@ -105,7 +106,8 @@ export default async function EmpresasPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Seguros para empresas", path: "/empresas" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS),
   );
 
   return (

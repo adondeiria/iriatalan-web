@@ -7,6 +7,7 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -79,7 +80,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría financiera para mujeres en México",
   description:
-    "Asesoría financiera diseñada por una mujer, para mujeres que toman decisiones: profesionistas, divorciadas, viudas y empresarias. Planes educacionales, PPR, fideicomisos, vida y GMM.",
+    "Asesoría financiera para mujeres en México, diseñada por una mujer: profesionistas, divorciadas, viudas y empresarias. Retiro (PPR), fideicomisos, vida y GMM.",
   alternates: { canonical: `${SITE_URL}/personas/mujeres` },
   openGraph: {
     type: "website",
@@ -133,7 +134,8 @@ export default async function MujeresPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Asesoría para mujeres", path: "/personas/mujeres" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS),
   );
 
   return (

@@ -57,9 +57,9 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Fondos de Inversión con Protección Patrimonial en México | Iria Talan / RIF",
+  title: "Fondos de Inversión con Protección Patrimonial en México",
   description:
-    "Invierte en S&P 500, Nasdaq, PIMCO y mercados globales con la protección patrimonial de un seguro. Inembargable, sin juicio sucesorio, algunos planes con beneficio fiscal. Agenda consulta.",
+    "Fondos de inversión en México con la protección de un seguro: S&P 500, Nasdaq y mercados globales, inembargables y sin juicio sucesorio. Agenda tu consulta.",
   alternates: { canonical: `${SITE_URL}/fondos-de-inversion` },
   openGraph: {
     type: "website",
@@ -69,6 +69,20 @@ export const metadata: Metadata = {
       "Tu dinero en los mercados globales — S&P 500, Nasdaq, PIMCO — con inembargabilidad, herencia sin trámites y beneficio fiscal en planes seleccionados.",
   },
 };
+
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/fondos-de-inversion#service`,
+    name: "Fondos de Inversión con Protección Patrimonial",
+    description:
+      "Inversión en mercados globales (S&P 500, Nasdaq, PIMCO) dentro de una estructura de seguro: inembargable, sin juicio sucesorio y con beneficio fiscal en planes seleccionados.",
+    serviceType: "Fondo de Inversión",
+    category: "Inversión Patrimonial",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+  };
+}
 
 export default async function FondosDeInversionPage() {
   const author = await sanityFetch<AuthorData | null>({
@@ -81,6 +95,7 @@ export default async function FondosDeInversionPage() {
 
   const faqSchema = buildFAQPageSchema(FAQS);
   const pageSchema = buildGraph(
+    buildServiceSchema(),
     faqSchema,
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },

@@ -7,6 +7,7 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -54,7 +55,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría Patrimonial para Familias en México y el Extranjero",
   description:
-    "Asesoría patrimonial para personas y familias en México y mexicanos en el extranjero: fideicomisos, sucesión, inversiones y seguros en dólares. Blinda y ordena tu patrimonio.",
+    "Asesoría patrimonial en México para familias y mexicanos en el extranjero: fideicomisos, sucesión, inversiones y seguros en dólares. Ordena tu patrimonio.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
@@ -88,7 +89,8 @@ export default async function PatrimonialPage() {
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Patrimonios complejos", path: "/patrimonial" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS),
   );
 
   return (

@@ -72,9 +72,9 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Financial Advisor for Foreigners Living in Mexico — Iria Talan",
+  title: "Financial Advisor for Foreigners Living in Mexico",
   description:
-    "Bilingual (Spanish & English) financial advisory for foreigners with Mexican residency (RT/RP). Major medical insurance, life insurance, retirement plans, and education plans. MDRT Top of the Table.",
+    "Bilingual financial advisor for foreigners living in Mexico (RT/RP): major medical, life insurance, retirement and education plans. MDRT Top of the Table.",
   alternates: buildHreflangAlternates(
     "/foreigners-in-mexico",
     "/",

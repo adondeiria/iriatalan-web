@@ -3,15 +3,16 @@ import Link from "next/link";
 
 import {
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Personas que asesoro — Iria Talan / RIF",
+  title: "Personas que asesoro",
   description:
-    "Asesoría patrimonial boutique para 5 perfiles específicos: mexicanos viviendo en el extranjero, familias con hijos neurodivergentes, familias arcoíris, mujeres en construcción patrimonial, y extranjeros residentes en México (asesoría bilingüe). Cada plan se diseña desde tu situación real.",
+    "Asesoría patrimonial boutique por perfil: mexicanos en el extranjero, hijos neurodivergentes, familias arcoíris, mujeres y extranjeros en México. A tu medida.",
   alternates: { canonical: `${SITE_URL}/personas` },
   openGraph: {
     type: "website",
@@ -98,7 +99,8 @@ export default function PersonasHubPage() {
         name: p.title,
         description: p.description,
       })),
-    }
+    },
+    buildFAQPageSchema(FAQS),
   );
 
   return (

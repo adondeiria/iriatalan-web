@@ -57,9 +57,9 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Planes Educacionales — Ahorro para la Universidad de tus Hijos | Iria Talan",
+  title: "Planes Educacionales — Ahorro para la Universidad de tus Hijos",
   description:
-    "Planes de ahorro educacional con garantía de continuidad si falleces. Calcula cuánto necesitas para la universidad de tu hijo — en México o en el extranjero — y elige el producto que llega.",
+    "Plan de ahorro para la universidad de tus hijos, en México o el extranjero, con garantía de continuidad si tú faltas. Calcula cuánto necesitas.",
   alternates: { canonical: `${SITE_URL}/planes-educacionales` },
   openGraph: {
     type: "website",
@@ -69,6 +69,20 @@ export const metadata: Metadata = {
       "Ahorro estructurado para la universidad con protección de vida incluida. Si algo te pasa, la aseguradora completa el fondo. Tu hijo estudia sin importar lo que pase.",
   },
 };
+
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/planes-educacionales#service`,
+    name: "Planes Educacionales",
+    description:
+      "Planes de ahorro para la universidad de tus hijos, en México o el extranjero, con garantía de continuidad: si el padre o madre fallece, la aseguradora completa el fondo.",
+    serviceType: "Plan Educacional",
+    category: "Ahorro e Inversión",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+  };
+}
 
 export default async function PlanesEducacionalesPage() {
   const author = await sanityFetch<AuthorData | null>({
@@ -81,6 +95,7 @@ export default async function PlanesEducacionalesPage() {
 
   const faqSchema = buildFAQPageSchema(FAQS);
   const pageSchema = buildGraph(
+    buildServiceSchema(),
     faqSchema,
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },

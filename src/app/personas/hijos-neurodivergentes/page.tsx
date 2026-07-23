@@ -7,6 +7,7 @@ import { SOBRE_IRIA_QUERY } from "../../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
   buildGraph,
   SITE_URL,
   type FAQItem,
@@ -79,7 +80,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Asesoría financiera para familias con hijos neurodivergentes",
   description:
-    "Planeación financiera de por vida para familias con hijos con autismo, TDAH, síndrome de Down u otra condición neurodivergente. Fideicomisos, seguros de vida, planeación legal de tutela y patrimonio.",
+    "Planeación financiera de por vida para familias con hijos neurodivergentes (autismo, TDAH, Down): seguro de vida a fideicomiso, pensión y tutela.",
   alternates: { canonical: `${SITE_URL}/personas/hijos-neurodivergentes` },
   openGraph: {
     type: "website",
@@ -133,7 +134,8 @@ export default async function HijosNeurodivergentesPage() {
       { name: "Inicio", path: "/" },
       { name: "Personas", path: "/personas" },
       { name: "Hijos neurodivergentes", path: "/personas/hijos-neurodivergentes" },
-    ])
+    ]),
+    buildFAQPageSchema(FAQS),
   );
 
   return (

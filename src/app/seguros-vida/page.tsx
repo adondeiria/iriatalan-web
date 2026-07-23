@@ -62,9 +62,9 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Seguros de Vida y Protección Familiar en México | Iria Talan / RIF",
+  title: "Seguros de Vida y Protección Familiar en México",
   description:
-    "Seguro de vida en México: cuánto necesitas, qué tipo conviene y para qué más sirve más allá de la protección básica. Temporal, vitalicio, enfermedades graves. Agenda consulta sin costo.",
+    "Seguro de vida en México: cuánto necesitas, qué tipo conviene (temporal, vitalicio, enfermedades graves) y para qué más sirve. Agenda tu consulta sin costo.",
   alternates: { canonical: `${SITE_URL}/seguros-vida` },
   openGraph: {
     type: "website",
@@ -74,6 +74,20 @@ export const metadata: Metadata = {
       "Seguro de vida temporal o vitalicio, coberturas de enfermedades graves y usos estratégicos para proteger a tu familia y ordenar tu herencia.",
   },
 };
+
+function buildServiceSchema() {
+  return {
+    "@type": "Service" as const,
+    "@id": `${SITE_URL}/seguros-vida#service`,
+    name: "Seguros de Vida y Protección Familiar",
+    description:
+      "Seguros de vida en México —temporal, vitalicio y por enfermedades graves— con enfoque patrimonial: cuánto necesitas, qué tipo conviene y designación de beneficiarios hacia fideicomiso.",
+    serviceType: "Seguro de Vida",
+    category: "Protección Patrimonial",
+    provider: { "@id": `${SITE_URL}/sobre-iria#person` },
+    areaServed: { "@type": "Country", name: "México" },
+  };
+}
 
 export default async function SegurosVidaPage() {
   const author = await sanityFetch<AuthorData | null>({
@@ -86,6 +100,7 @@ export default async function SegurosVidaPage() {
 
   const faqSchema = buildFAQPageSchema(FAQS);
   const pageSchema = buildGraph(
+    buildServiceSchema(),
     faqSchema,
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },

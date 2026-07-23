@@ -99,7 +99,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Guía gratis: 8 trámites cuando fallece un familiar",
   description:
-    "Descarga gratis la checklist de qué hacer cuando fallece un familiar en México: testamento, deudas, seguros, AFORE, pensiones, SAT y más. Por Iria Talan, asesora autorizada CNSF.",
+    "Descarga gratis la checklist de qué hacer cuando fallece un familiar en México: testamento, deudas, seguros, AFORE, SAT y más. Por Iria Talan, cédula CNSF.",
   alternates: { canonical: `${SITE_URL}/guia` },
   openGraph: {
     type: "website",
