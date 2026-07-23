@@ -146,20 +146,20 @@ export default function RootLayout({
           />
 
           {/* Bloque superior: CTA grande */}
-          <div className="relative max-w-5xl mx-auto px-6 pt-20 sm:pt-24 pb-14">
-            <div className="grid gap-8 lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-10">
+          <div className="relative max-w-4xl mx-auto px-6 pt-12 sm:pt-14 pb-10">
+            <div className="grid gap-6 lg:grid-cols-[3fr_2fr] lg:items-end lg:gap-10">
               <div>
-                <h2 className="font-serif font-light text-4xl sm:text-5xl lg:text-6xl leading-[1.02] tracking-[-0.01em] text-cream-light">
+                <h2 className="font-serif font-light text-3xl sm:text-4xl lg:text-5xl leading-[1.05] tracking-[-0.01em] text-cream-light">
                   Hablemos de tu patrimonio<br className="hidden sm:inline" /> y tu futuro.
                 </h2>
-                <p className="mt-6 text-base sm:text-lg text-cream-light/75 leading-relaxed max-w-lg">
+              </div>
+              <div className="flex flex-col lg:items-end gap-5">
+                <p className="text-sm sm:text-base text-cream-light/75 leading-relaxed lg:text-right max-w-xs">
                   Estoy para ayudarte a tomar decisiones con claridad y confianza.
                 </p>
-              </div>
-              <div className="flex lg:justify-end">
                 <Link
                   href="/contacto#agendar"
-                  className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-9 py-4 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.6)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.8)] hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-3 rounded-full bg-burgundy text-cream-light px-7 py-3.5 text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition-all duration-500 shadow-[0_12px_32px_-12px_rgba(158,27,30,0.6)] hover:shadow-[0_20px_48px_-12px_rgba(158,27,30,0.8)] hover:-translate-y-0.5"
                 >
                   Reserva tu sesión inicial · 30 min
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" aria-hidden>
@@ -174,7 +174,7 @@ export default function RootLayout({
           <div className="hairline-x-light relative" />
 
           {/* Bloque medio: 5 columnas (logo+sociales / Servicios / Recursos / Información / Contacto) */}
-          <div className="relative max-w-5xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
+          <div className="relative max-w-4xl mx-auto px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
             <div>
               <Image
                 src="/logo-rif.svg"
@@ -294,7 +294,7 @@ export default function RootLayout({
           <div className="hairline-x-light relative" />
 
           {/* Bloque inferior: copyright + disclaimer */}
-          <div className="relative max-w-5xl mx-auto px-6 py-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wide text-cream-light/55">
+          <div className="relative max-w-4xl mx-auto px-6 py-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wide text-cream-light/55">
             <p>
               © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados. · Cédula CNSF{" "}
               <strong className="font-medium tabular-nums">V388618</strong> ·{" "}
@@ -315,7 +315,7 @@ export default function RootLayout({
             </Link>
           </div>
           <div className="relative border-t border-cream-light/10">
-            <p className="max-w-5xl mx-auto px-6 py-5 text-[11px] text-cream-light/45 leading-relaxed">
+            <p className="max-w-4xl mx-auto px-6 py-5 text-[11px] text-cream-light/45 leading-relaxed">
               La información de este sitio tiene fines informativos. Iria Talan, Cédula CNSF V388618, actúa como Agente de Seguros autorizado. Las condiciones finales se rigen por la póliza emitida por la aseguradora y la normativa fiscal vigente al momento de la contratación o pago. Consulta con tu asesor fiscal la aplicabilidad a tu caso particular. Las cifras de costos mencionadas son ilustrativas y sujetas a evaluación individual por aseguradora.
             </p>
           </div>
