@@ -170,27 +170,27 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Qué hace una asesora patrimonial certificada y en qué se diferencia de un agente de seguros?",
     answerText:
-      "Un agente de seguros coloca un producto puntual a tu necesidad inmediata. Una asesora patrimonial diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, tengo formación en Wealth Management por Yale University y MBA Essentials por la London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA — sin cuota de ventas por ninguna. Eso me permite diseñar la solución alrededor de ti, no del producto del mes.",
+      "Un agente de seguros coloca un producto puntual a tu necesidad inmediata en la compañía de seguros que trabaja el asesor (generalmente es una). Un Asesor Patrimonial Profesional diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, tengo formación en Wealth Management por Yale University y en London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA. Esto me permite diseñar la solución alrededor de ti, no del producto de la Aseguradora.",
   },
   {
     question: "¿Cómo funciona el pago de honorarios y comisiones?",
     answerText:
-      "La primera sesión de diagnóstico (30 min) es sin costo y sin compromiso de contratar. La mayoría de los productos que recomiendo (seguros, GMM, PPR, inversiones) se pagan mediante una comisión pagada por la aseguradora — tú no me pagas honorarios separados por esos. Para diseños patrimoniales complejos (estructuras corporativas, fideicomisos multi-vehículo, coordinación con tu equipo legal/fiscal) trabajamos honorarios separados, acordados con transparencia antes de empezar. Sin sorpresas, sin presión de venta. Para rangos numéricos específicos por producto, consulta las páginas de cada servicio en el menú.",
+      "La primera sesión de diagnóstico (15-30 min) es sin costo y sin compromiso de contratar ningún plan o servicio. En la mayoría de los planes que recomiendo (seguros, GMM, PPR, inversiones), es la aseguradora quien me paga una comisión por intermediación —así que tú no pagas honorarios adicionales por ellos. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos, reestructuras financieras o coordinación con tu equipo legal y fiscal) trabajamos honorarios por separado, siempre acordados con transparencia antes de empezar.",
   },
   {
     question: "¿Con qué aseguradoras trabajas?",
     answerText:
-      "Trabajo con las 6 mejores aseguradoras AAA en México. Los criterios de selección (calificación financiera, historial de pago de siniestros, red hospitalaria, solvencia económica) y la lista completa de aseguradoras los explico en la página de Gastos Médicos Mayores.",
+      "Trabajo únicamente con las mejores aseguradoras AAA de México: GNP, AXA, MetLife, BUPA, Seguros Monterrey New York Life y Allianz. Elijo solo compañías con la máxima solidez financiera y buen historial de pago de siniestros —porque de nada sirve el mejor plan si la aseguradora no responde el día que la necesitas.",
   },
   {
     question: "¿Cómo es la primera sesión y cuánto tarda?",
     answerText:
-      "Dura entre 30 y 60 minutos, vía videollamada (zoom, meet o teams) o presencial si estás en CDMX. La estructura típica: (1) tu contexto — situación familiar, profesional, patrimonial actual; (2) tus prioridades y preocupaciones — qué te quita el sueño financieramente; (3) primera lectura de oportunidades concretas (no propuestas de venta, sino áreas a explorar); (4) siguientes pasos sugeridos sin compromiso. Sales con un mapa de prioridades. La decisión de avanzar es siempre tuya y a tu ritmo.",
+      "Generalmente dura entre 30 y 60 minutos, por videollamada (Zoom, Meet o Teams) o presencial si estás en la CDMX. Es una conversación, no una junta de ventas, y sigue una estructura sencilla: (1) escucho tu contexto —tu situación familiar, profesional y patrimonial actual—; (2) identificamos juntos tus prioridades, preocupaciones y metas; (3) te comparto una primera propuesta de estrategia, a grandes rasgos; y (4) acordamos los siguientes pasos, siempre sin compromiso. Sales con un mapa claro de tus prioridades y de las oportunidades que vale la pena explorar. La decisión de avanzar es siempre tuya y a tu ritmo.",
   },
   {
     question: "¿Atiendes en toda la República o solo CDMX?",
     answerText:
-      "Todo el mundo por videollamada — la mayoría de mis clientes está fuera de CDMX. Presencial me muevo principalmente en CDMX, con visitas ocasionales a otros estados según agenda y volumen de casos. Para mexicanos en el extranjero también atiendo vía videollamada y herramientas digitales firmadas — ver landing específica /personas/mexicanos-en-el-extranjero para detalles del flujo cross-border.",
+      "Te acompaño estés donde estés. La mayoría de mis clientes está fuera de la CDMX, así que trabajamos por videollamada sin ningún problema; las citas presenciales las hago principalmente en la CDMX. Y si eres mexicano viviendo en el extranjero, la asesoría es 100% por videollamada y con herramientas digitales.",
   },
 ];
 
