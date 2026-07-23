@@ -1,18 +1,16 @@
+import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
+
 /**
  * Floating WhatsApp button — sticky bottom-right.
  * Mejor canal de contacto en Latam para mass-affluent / HNWI que prefieren
  * conversación directa antes de llenar form.
  *
- * Mensaje pre-llenado redirige al cliente a WhatsApp con context.
+ * Vive en todas las páginas, así que usa el mensaje genérico: el contextual por
+ * página lo llevan los CTAs dentro del contenido.
  */
 
-const WA_NUMBER = "525512683401";
-const WA_MESSAGE = encodeURIComponent(
-  "Hola Iria, vi tu sitio y me gustaría agendar una primera plática.",
-);
-
 export function WhatsAppFloat() {
-  const href = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
+  const href = waHref(WA_NUMBER_FALLBACK, WA_MESSAGES.default);
 
   return (
     <a

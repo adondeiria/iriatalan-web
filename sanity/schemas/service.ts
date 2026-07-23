@@ -128,7 +128,7 @@ export const service = defineType({
       name: "ctaUrl",
       title: "URL CTA",
       type: "url",
-      description: "Default: link a Calendly de Iria",
+      description: "Por defecto /contacto#agendar (form de pre-cualificación)",
     }),
     defineField({
       name: "carriersAvailable",

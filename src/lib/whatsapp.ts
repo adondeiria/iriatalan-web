@@ -1,0 +1,70 @@
+/**
+ * Enlaces de WhatsApp con mensaje precargado.
+ *
+ * Un `wa.me` pelón abre un chat en blanco: Iria recibe un "Hola" sin contexto y
+ * tiene que preguntar de qué se trata. Con `?text=` el visitante llega ya
+ * diciendo qué página estaba viendo y qué quiere — el lead entra
+ * auto-etiquetado y la conversación empieza en el segundo mensaje, no en el
+ * quinto.
+ *
+ * Los mensajes están escritos en primera persona del visitante y en el idioma
+ * de la página (las páginas /foreigners-in-mexico, /international-health-insurance
+ * y /retirement-planning son EN).
+ */
+
+/** Número de respaldo si Sanity no trae el del autor. */
+export const WA_NUMBER_FALLBACK = "525512683401";
+
+export const WA_MESSAGES = {
+  /** Footer, botón flotante y cualquier CTA sin página específica. */
+  default:
+    "Hola Iria, vi tu sitio y me gustaría agendar una primera plática.",
+
+  // — Páginas de producto (ES) —
+  retiro:
+    "Hola Iria, estoy viendo la página de Retiro y quiero saber cómo empezar mi plan.",
+  gmm:
+    "Hola Iria, estoy viendo la página de Gastos Médicos Mayores y quiero una cotización.",
+  patrimonial:
+    "Hola Iria, estoy viendo la página de Asesoría Patrimonial y quiero platicar de mi caso.",
+  segurosVida:
+    "Hola Iria, estoy viendo la página de Seguros de Vida y quiero saber qué opción me conviene.",
+  planesEducacionales:
+    "Hola Iria, estoy viendo la página de Planes Educacionales y quiero planear la universidad de mi hijo.",
+  fondosInversion:
+    "Hola Iria, estoy viendo la página de Fondos de Inversión y quiero saber cómo empezar a invertir.",
+  empresas:
+    "Hola Iria, estoy viendo la página de Empresas y quiero información de beneficios para mi equipo.",
+
+  // — Páginas de audiencia (ES) —
+  mujeres:
+    "Hola Iria, estoy viendo la página de Mujeres y quiero asesoría para construir mi patrimonio.",
+  familiasArcoiris:
+    "Hola Iria, estoy viendo la página de Familias Arcoíris y quiero proteger a mi familia.",
+  hijosNeurodivergentes:
+    "Hola Iria, estoy viendo la página de Hijos Neurodivergentes y quiero asegurar el futuro de mi hijo.",
+  mexicanosExtranjero:
+    "Hola Iria, estoy viendo la página de Mexicanos en el Extranjero y quiero asesoría viviendo fuera de México.",
+  sobreIria:
+    "Hola Iria, vi tu perfil en el sitio y me gustaría agendar una primera plática.",
+
+  // — Páginas en inglés —
+  internationalHealth:
+    "Hi Iria, I'm on your International Health Insurance page and I'd like a quote.",
+  foreignersInMexico:
+    "Hi Iria, I'm on your Foreigners in Mexico page and I'd like advice on coverage in Mexico.",
+  retirementPlanning:
+    "Hi Iria, I'm on your Retirement Planning page and I'd like to start a retirement plan.",
+} as const;
+
+/**
+ * Construye el enlace de WhatsApp. Acepta el número en cualquier formato
+ * (con espacios, guiones o lada) porque viene de Sanity y no está normalizado.
+ */
+export function waHref(
+  numero: string | undefined | null,
+  mensaje: string = WA_MESSAGES.default,
+): string {
+  const digits = (numero ?? WA_NUMBER_FALLBACK).replace(/\D/g, "");
+  return `https://wa.me/${digits || WA_NUMBER_FALLBACK}?text=${encodeURIComponent(mensaje)}`;
+}

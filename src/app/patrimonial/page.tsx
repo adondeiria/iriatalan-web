@@ -12,6 +12,7 @@ import {
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
+import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 
 const FAQS: FAQItem[] = [
   {
@@ -129,12 +130,12 @@ export default async function PatrimonialPage() {
             y profundidad técnica que el caso exige.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <a
-              href={`mailto:${email}?subject=Consulta%20patrimonios%20complejos`}
+            <Link
+              href="/contacto#agendar"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
-              Conversación confidencial por email
-            </a>
+              Agenda una conversación confidencial
+            </Link>
             <Link
               href="/sobre-iria"
               className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
@@ -495,23 +496,25 @@ export default async function PatrimonialPage() {
               Iniciar conversación
             </h2>
             <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-              Por la naturaleza confidencial de los temas, prefiero que el primer contacto
-              sea por email o WhatsApp directo. Después coordinamos sesión privada según
-              tu agenda.
+              Por la naturaleza confidencial de los temas, el primer contacto es
+              privado: me cuentas lo esencial y yo te busco. Después coordinamos
+              sesión privada según tu agenda.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <a
-                href={`mailto:${email}?subject=Consulta%20patrimonios%20complejos`}
+              <Link
+                href="/contacto#agendar"
                 className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">
                   Recomendado
                 </div>
-                <div className="text-lg font-medium">Email reflexivo</div>
-                <div className="mt-2 text-sm opacity-80 break-all">{email}</div>
-              </a>
+                <div className="text-lg font-medium">Conversación privada</div>
+                <div className="mt-2 text-sm opacity-80">
+                  Cuéntame tu caso y te contacto
+                </div>
+              </Link>
               <a
-                href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                href={waHref(whatsapp, WA_MESSAGES.patrimonial)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
@@ -527,6 +530,15 @@ export default async function PatrimonialPage() {
                 </div>
               </a>
             </div>
+            <p className="mt-6 text-sm text-warm-brown/85 dark:text-cream-light/65">
+              ¿Prefieres escribir con calma?{" "}
+              <a
+                href={`mailto:${email}?subject=Consulta%20patrimonios%20complejos`}
+                className="underline underline-offset-4 hover:text-rif-rojo transition break-all"
+              >
+                {email}
+              </a>
+            </p>
           </div>
         </section>
       </main>

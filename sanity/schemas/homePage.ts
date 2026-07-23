@@ -29,7 +29,7 @@ export const homePage = defineType({
       name: "heroCtaUrl",
       title: "Hero CTA — URL",
       type: "url",
-      description: "Calendly de Iria",
+      description: "Por defecto /contacto#agendar (form de pre-cualificación)",
     }),
     defineField({
       name: "heroImage",

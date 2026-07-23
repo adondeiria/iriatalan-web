@@ -11,6 +11,7 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 
 import { Analytics } from "@/components/analytics";
 import { CookieBanner } from "@/components/cookie-banner";
@@ -278,7 +279,7 @@ export default function RootLayout({
                 </li>
               </ul>
               <a
-                href="https://wa.me/525512683401"
+                href={waHref(WA_NUMBER_FALLBACK, WA_MESSAGES.default)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mt-7 inline-flex items-center gap-3 rounded-full bg-cream-light text-ink px-7 py-3.5 text-[11px] font-medium tracking-[0.18em] uppercase hover:bg-cream transition-all duration-500 hover:-translate-y-0.5"

@@ -142,7 +142,6 @@ export const author = defineType({
           description: "Formato +52...",
         }),
         defineField({ name: "email", title: "Email", type: "string" }),
-        defineField({ name: "calendly", title: "Calendly URL", type: "url" }),
       ],
     }),
     defineField({

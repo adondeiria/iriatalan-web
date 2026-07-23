@@ -13,6 +13,7 @@ import {
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
+import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 
 const FAQS: FAQItem[] = [
   {
@@ -697,7 +698,7 @@ export default async function GmmPage() {
               </a>
               <div className="grid gap-4 sm:grid-cols-2">
                 <a
-                  href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                  href={waHref(whatsapp, WA_MESSAGES.gmm)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"

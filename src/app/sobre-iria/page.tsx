@@ -14,6 +14,7 @@ import {
   buildGraph,
   buildPersonSchema,
 } from "@/lib/seo";
+import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: { absolute: "Sobre Iria Talan — Asesora Patrimonial y de Seguros" },
@@ -64,9 +65,7 @@ const FALLBACK_AUTHOR: AuthorData = {
     { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
   ],
   officeAddress: "Bosque de Chapultepec, Ciudad de México",
-  socialLinks: {
-    calendly: "/contacto#agendar",
-  },
+  socialLinks: {},
 };
 
 export default async function SobreIriaPage() {
@@ -259,7 +258,7 @@ export default async function SobreIriaPage() {
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {author.socialLinks?.whatsapp && (
                 <a
-                  href={`https://wa.me/${author.socialLinks.whatsapp.replace(/[^\d]/g, "")}`}
+                  href={waHref(author.socialLinks.whatsapp, WA_MESSAGES.sobreIria)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"

@@ -12,6 +12,7 @@ import {
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
+import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 
 const FAQS: FAQItem[] = [
   {
@@ -90,7 +91,6 @@ export default async function FondosDeInversionPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const calendly = author?.socialLinks?.calendly ?? "https://calendly.com/iriatalan";
   const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
 
   const faqSchema = buildFAQPageSchema(FAQS);
@@ -138,14 +138,12 @@ export default async function FondosDeInversionPage() {
             inembargable, sin juicio sucesorio, y con beneficio fiscal en planes seleccionados.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <a
-              href={calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contacto#agendar"
               className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-7 py-3.5 font-medium hover:opacity-90 transition"
             >
               Consulta sin costo — 30 min
-            </a>
+            </Link>
             <Link
               href="/sobre-iria"
               className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-3.5 font-medium hover:bg-cream dark:hover:bg-coffee/40 transition"
@@ -435,20 +433,20 @@ export default async function FondosDeInversionPage() {
               En 30 minutos revisamos tu situación, tus objetivos y qué plan se adapta mejor.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <a
-                href={calendly}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contacto#agendar"
                 className="p-6 rounded-2xl bg-rif-rojo text-white hover:opacity-90 transition"
               >
                 <div className="text-xs uppercase tracking-wider opacity-70 mb-2">
                   30 min · sin costo
                 </div>
                 <div className="text-lg font-medium">Agenda consulta</div>
-                <div className="mt-2 text-sm opacity-80">Calendly · elige tu horario</div>
-              </a>
+                <div className="mt-2 text-sm opacity-80">
+                  Cuéntame tu caso y te contacto
+                </div>
+              </Link>
               <a
-                href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                href={waHref(whatsapp, WA_MESSAGES.fondosInversion)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-6 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"

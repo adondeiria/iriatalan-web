@@ -79,7 +79,6 @@ export type AuthorData = {
     facebook?: string;
     whatsapp?: string;
     email?: string;
-    calendly?: string;
   };
   officeAddress?: string;
   sameAs?: string[];
