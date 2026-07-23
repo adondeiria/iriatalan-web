@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 
 import { trackEvent } from "@/lib/analytics";
+import { captureAttribution } from "@/lib/attribution";
 
 const COOKIE_NAME = "rif-cookie-consent";
 
@@ -30,6 +31,12 @@ export function Analytics() {
     const onChange = () => setConsented(hasAcceptedAnalytics());
     window.addEventListener("rif-consent-change", onChange);
     return () => window.removeEventListener("rif-consent-change", onChange);
+  }, []);
+
+  // Guarda de qué red social o campaña llegó el visitante, en el primer
+  // aterrizaje: si navega antes de llenar el form, los UTM ya no están en la URL.
+  useEffect(() => {
+    captureAttribution();
   }, []);
 
   // Tracking de conversiones por delegación: un solo listener captura clics

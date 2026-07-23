@@ -4,12 +4,15 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 
+import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
+
 /**
  * Lead magnet gateado: "¿Tu ahorro alcanza para la universidad?". El visitante
  * deja edad del hijo, universidad objetivo, correo y WhatsApp para recibir una
- * estimación personalizada. Reenvía a /api/contact (mismo proxy a Zoho); la
- * edad y la universidad viajan en el campo `mensaje`. Iria envía la estimación
- * a mano tras recibir el lead.
+ * estimación personalizada. Reenvía a /api/contact (Pipedrive + Zoho de
+ * respaldo); la edad y la universidad viajan en el campo `mensaje`. Iria envía
+ * la estimación a mano tras recibir el lead.
  */
 
 const SERVICIO_FIJO = "Otro / no estoy seguro";
@@ -39,6 +42,9 @@ export function CalculadoraEducacionalGate() {
       aportacion: "",
       mensaje: `Calculadora educacional — Edad del hijo: ${edad || "(sin dato)"} · Universidad objetivo: ${universidad || "(sin dato)"}`,
       privacy_accepted: privacyAccepted,
+      source: "calculadora",
+      origin_path: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {
@@ -49,6 +55,7 @@ export function CalculadoraEducacionalGate() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
+        trackEvent("generate_lead", { method: "form_calculadora_educacional" });
         setSubmitState("success");
       } else {
         setSubmitState("error");

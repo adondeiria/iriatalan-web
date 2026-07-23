@@ -5,6 +5,7 @@ import type { FormEvent } from "react";
 import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
 
 /**
  * Form de pre-cualificación — captura todos los leads y los reenvía a Zoho Forms
@@ -129,6 +130,8 @@ export function ContactForm() {
       website: String(formData.get("website") ?? ""),
       elapsed_ms: Date.now() - loadedAt,
       source: "contacto",
+      origin_path: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {

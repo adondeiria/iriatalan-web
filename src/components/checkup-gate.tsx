@@ -4,13 +4,16 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 
+import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
+
 /**
  * Lead magnet gateado: el visitante deja nombre + email + WhatsApp para
  * descargar el "Check-up Patrimonial de Beneficiarios". Reenvía a /api/contact
- * (mismo proxy a Zoho que el form de asesoría) con un mensaje de contexto, y al
- * tener éxito revela los botones de descarga (PDF + Excel).
+ * con un mensaje de contexto, y al tener éxito revela los botones de descarga
+ * (PDF + Excel).
  *
- * Migración a Pipedrive: cambiar /api/contact, este form no se toca.
+ * El endpoint decide a qué CRM va (Pipedrive + Zoho de respaldo).
  */
 
 const SERVICIO_FIJO = "Otro / no estoy seguro";
@@ -42,6 +45,9 @@ export function CheckupGate() {
       aportacion: "",
       mensaje: MENSAJE_CONTEXTO,
       privacy_accepted: privacyAccepted,
+      source: "checkup",
+      origin_path: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {
@@ -52,6 +58,7 @@ export function CheckupGate() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
+        trackEvent("generate_lead", { method: "form_checkup_beneficiarios" });
         setSubmitState("success");
       } else {
         setSubmitState("error");

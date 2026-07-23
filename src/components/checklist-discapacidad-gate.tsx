@@ -4,11 +4,14 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 
+import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
+
 /**
  * Lead magnet gateado: "Checklist de Protección Patrimonial para familias con un
  * hijo con discapacidad". El visitante deja nombre + email + WhatsApp para
- * descargar el checklist. Reenvía a /api/contact (mismo proxy a Zoho) y, al tener
- * éxito, revela los botones de descarga (PDF + Excel).
+ * descargar el checklist. Reenvía a /api/contact (Pipedrive + Zoho de respaldo)
+ * y, al tener éxito, revela los botones de descarga (PDF + Excel).
  */
 
 const SERVICIO_FIJO = "Otro / no estoy seguro";
@@ -40,6 +43,9 @@ export function ChecklistDiscapacidadGate() {
       aportacion: "",
       mensaje: MENSAJE_CONTEXTO,
       privacy_accepted: privacyAccepted,
+      source: "checklist",
+      origin_path: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {
@@ -50,6 +56,7 @@ export function ChecklistDiscapacidadGate() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
+        trackEvent("generate_lead", { method: "form_checklist_discapacidad" });
         setSubmitState("success");
       } else {
         setSubmitState("error");

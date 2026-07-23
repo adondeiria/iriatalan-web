@@ -4,14 +4,16 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 
+import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
+
 /**
  * Form de la landing /guia — captura al lector del lead magnet que quiere
- * asesoría/plan y lo reenvía a /api/contact (mismo proxy a Zoho que el form
- * de contacto). Servicio fijo "Otro / no estoy seguro" + mensaje con contexto
- * de que viene de la guía de fallecimiento.
+ * asesoría/plan y lo reenvía a /api/contact. Servicio fijo "Otro / no estoy
+ * seguro" + mensaje con contexto de que viene de la guía de fallecimiento.
  *
- * Cuando se migre a Pipedrive, basta actualizar /api/contact — este form
- * viaja gratis porque usa el mismo endpoint.
+ * El endpoint decide a qué CRM va (Pipedrive + Zoho de respaldo); este form
+ * solo declara quién es y de dónde viene.
  */
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -41,6 +43,9 @@ export function GuiaLeadForm() {
       aportacion: "",
       mensaje: MENSAJE_CONTEXTO,
       privacy_accepted: privacyAccepted,
+      source: "guia",
+      origin_path: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {
@@ -51,6 +56,7 @@ export function GuiaLeadForm() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
+        trackEvent("generate_lead", { method: "form_guia" });
         setSubmitState("success");
       } else {
         setSubmitState("error");
