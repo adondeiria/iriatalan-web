@@ -13,6 +13,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
@@ -283,7 +284,7 @@ export default async function SegurosVidaPage() {
                 { tag: "Rider", titulo: "Muerte accidental", desc: "Duplica o triplica la suma asegurada si el fallecimiento ocurre por accidente. Doble indemnización al costo más bajo." },
                 { tag: "Rider", titulo: "Enfermedades graves", desc: "Pago en vida al diagnóstico de cáncer, infarto, AVC, trasplante, insuficiencia renal, bypass y otras. Cubre lo que el GMM no cubre." },
                 { tag: "Rider", titulo: "Invalidez total y permanente", desc: "Si quedas imposibilitado para trabajar permanentemente, la póliza exime el pago de primas y/o paga la suma asegurada en vida." },
-                { tag: "Rider", titulo: "Exención de primas", desc: "Si sufrés una incapacidad temporal, la aseguradora paga las primas por ti. Tu cobertura no se cancela." },
+                { tag: "Rider", titulo: "Exención de primas", desc: "Si sufres una incapacidad temporal, la aseguradora paga las primas por ti. Tu cobertura no se cancela." },
                 { tag: "Rider", titulo: "Gastos funerarios", desc: "Pago anticipado y directo para cubrir gastos funerarios sin que tu familia tenga que adelantar dinero." },
               ].map((item) => (
                 <div
@@ -414,6 +415,17 @@ export default async function SegurosVidaPage() {
             </div>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["vida","patrimonial"]}
+          heading="Sobre seguros de vida, a fondo"
+          intro="Cómo se estructura un seguro de vida para que el dinero llegue a quien tiene que llegar, y sin pasar por juicio."
+        />
+
       </main>
     </>
   );
