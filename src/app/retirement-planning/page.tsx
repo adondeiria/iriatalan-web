@@ -54,7 +54,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Can you advise me in English?",
     answerText:
-      "Yes. I advise bilingually — English and Spanish — for clients from the US, Canada, Europe and Latin America. Formal plan documents are issued in Spanish because Mexican law requires it, but I walk you through each one in English and answer your questions in whichever language you prefer. I am MDRT Top of the Table and ranked 8th nationally by AMASFAC. None of this is tax advice — I coordinate with your tax advisor on both sides of the border.",
+      "Yes. I advise bilingually — English and Spanish — for clients from the US, Canada, Europe and Latin America. Formal plan documents are issued in Spanish because Mexican law requires it, but I walk you through each one in English and answer your questions in whichever language you prefer. I studied Wealth Management Theory & Practice at Yale School of Management (Executive Education), and I am MDRT Top of the Table and ranked 8th nationally by AMASFAC. None of this is tax advice — I coordinate with your tax advisor on both sides of the border.",
   },
 ];
 

@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blog — Planeación patrimonial y seguros en México",
     description:
-      "Artículos firmados sobre planeación patrimonial, seguros, retiro, PPR, GMM y casos especiales. Por Iria Talan, MDRT Top of the Table.",
+      "Artículos firmados sobre planeación patrimonial, seguros, retiro, PPR, GMM y casos especiales. Por Iria Talan — Wealth Management por Yale School of Management (Exec. Ed.), MDRT Top of the Table.",
     alternates: { canonical: `${SITE_URL}/blog` },
     robots: isEmpty
       ? { index: false, follow: true }
@@ -107,8 +107,9 @@ export default async function BlogIndexPage() {
           </h1>
           <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Artículos firmados sobre planeación patrimonial, retiro, seguros y
-            casos especiales — escritos por Iria Talan, MDRT Top of the Table,
-            con citas a CNSF, AMIS y Banxico.
+            casos especiales — escritos por Iria Talan, formada en Wealth
+            Management por Yale School of Management (Exec. Ed.) y MDRT Top of
+            the Table, con citas a CNSF, AMIS y Banxico.
           </p>
 
           {topicsWithContent.length > 0 && (

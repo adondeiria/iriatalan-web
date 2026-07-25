@@ -43,7 +43,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Can you advise me in English?",
     answerText:
-      "Yes. I work bilingually — Spanish and English — with clients from the US, Europe, and Latin America. All formal documents (policies, fiscal receipts, regulatory paperwork) are issued in Spanish because Mexican law requires it, but I walk you through each document in English and answer your questions in whichever language you prefer. I am MDRT Top of the Table and ranked 8th nationally by AMASFAC — credentials I earned advising clients across both languages.",
+      "Yes. I work bilingually — Spanish and English — with clients from the US, Europe, and Latin America. All formal documents (policies, fiscal receipts, regulatory paperwork) are issued in Spanish because Mexican law requires it, but I walk you through each document in English and answer your questions in whichever language you prefer. I studied Wealth Management Theory & Practice at Yale School of Management (Executive Education) and MBA Essentials at the London School of Economics, and I am MDRT Top of the Table and ranked 8th nationally by AMASFAC.",
   },
   {
     question: "What if I leave Mexico in 5 or 10 years — can I keep the plans?",
@@ -75,7 +75,7 @@ const FAQS: FAQItem[] = [
 export const metadata: Metadata = {
   title: "Financial Advisor for Foreigners Living in Mexico",
   description:
-    "Bilingual financial advisor for foreigners living in Mexico (RT/RP): major medical, life insurance, retirement and education plans. MDRT Top of the Table.",
+    "Bilingual financial advisor for foreigners living in Mexico (RT/RP): major medical, life insurance, retirement and education plans. Yale School of Management (Exec. Ed.), MDRT Top of the Table.",
   alternates: buildHreflangAlternates(
     "/foreigners-in-mexico",
     "/",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/foreigners-in-mexico`,
     title: "Financial Advisor for Foreigners Living in Mexico — Iria Talan",
     description:
-      "Strategic financial planning for foreigners building a life in Mexico. Bilingual advisory, MDRT Top of the Table.",
+      "Strategic financial planning for foreigners building a life in Mexico. Bilingual advisory. Yale School of Management (Exec. Ed.), MDRT Top of the Table.",
   },
 };
 
@@ -416,8 +416,10 @@ export default async function ForeignersInMexicoPage() {
                   fiscal receipts, regulatory paperwork) are issued in Spanish because
                   Mexican law requires it, but I walk you through each document in
                   English and answer your questions in whichever language you prefer.
-                  I am MDRT Top of the Table and ranked 8th nationally by AMASFAC —
-                  credentials I earned advising clients across both languages.
+                  I studied Wealth Management Theory &amp; Practice at Yale School of
+                  Management (Executive Education) and MBA Essentials at the London
+                  School of Economics, and I am MDRT Top of the Table and ranked 8th
+                  nationally by AMASFAC.
                 </p>
               </div>
               <div>

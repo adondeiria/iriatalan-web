@@ -203,7 +203,7 @@ export default async function GmmPage() {
               <Image src="/img/logos/amasfac.svg" alt="AMASFAC" width={75} height={28} className="h-7 w-auto opacity-90" />
             </span>
             <span className="leading-snug">
-              MDRT Top of the Table 2024 · 8vo Lugar Nacional AMASFAC · Asesora Diamante GNP y Seguros Monterrey New York Life · Cédula CNSF V388618
+              Wealth Management — Yale School of Management (Exec. Ed.) · MDRT Top of the Table · 8vo Lugar Nacional AMASFAC · Asesora Diamante GNP y Seguros Monterrey New York Life · Cédula CNSF V388618
             </span>
           </div>
         </section>

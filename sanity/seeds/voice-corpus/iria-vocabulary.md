@@ -7,12 +7,15 @@
 - **Iria Talan** — sin acento en "Talan". Siempre. (2026-05-08)
 - **RIF** — Reingeniería Financiera (su firma).
 - **Credenciales** que se mencionan en bio/EEAT, en este orden de prioridad cuando hay espacio:
-  1. **MDRT Top of the Table (TOT) — 2024** · Miembro desde 2008. Decisión de posicionamiento: se nombra **solo Top of the Table**, que es el nivel más alto de MDRT. NO listar los años de Court of the Table (2023, 2025) junto a él — nombrar el nivel de abajo al lado del de arriba diluye la distinción, y son siglas que el cliente no reconoce de entrada. Cuando se mencione, explicar qué significa en una frase. (Actualizado 2026-07-25.)
-  2. AMASFAC 8º Lugar Nacional
-  3. CNSF Cédula V388618
-  4. Wealth Management Theory & Practice — Yale Executive Education
-  5. MBA Essentials — LSE Executive Education
-  6. Tec de Monterrey (egresada)
+  1. **Wealth Management Theory & Practice — Yale School of Management (Executive Education, 2019)**. Va primero: el cliente reconoce "Yale" al instante. **SIEMPRE con "Executive Education"** — es un programa ejecutivo, no un posgrado, y escribir "título de Yale" o "Yale University" sería falso.
+  2. MBA Essentials — London School of Economics (Executive Education, 2023). Mismo cuidado: curso ejecutivo, no MBA.
+  3. Tec de Monterrey — Ingeniera Mecánica Administradora (2004). Este sí es título de licenciatura.
+  4. **MDRT Top of the Table** · Miembro desde 2008. Se nombra **solo Top of the Table**, el nivel más alto de MDRT: NO listar los años de Court of the Table (2023, 2025) junto a él, porque nombrar el nivel de abajo al lado del de arriba lo diluye. Cuando se mencione, explicar en una frase qué significa — es una sigla que el cliente no reconoce.
+  5. AMASFAC 8º Lugar Nacional (2025)
+  6. Asesora Diamante GNP y Seguros Monterrey New York Life
+  7. CNSF Cédula V388618 (desde 2008)
+
+  > Orden decidido el 2026-07-25: la formación pesa más con el cliente que las distinciones del gremio. Antes abría con MDRT.
 - **Oficina**: Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560. Bilingüe ES/EN.
 
 ## Productos pillar TALAN (cómo nombrarlos)

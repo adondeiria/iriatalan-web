@@ -20,12 +20,12 @@ import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: { absolute: "Sobre Iria Talan — Asesora Patrimonial y de Seguros" },
   description:
-    "Conoce a Iria Talan, Asesora Patrimonial y de seguros con +18 años ayudando a familias a proteger su patrimonio, su salud y su retiro. Autorizada CNSF.",
+    "Conoce a Iria Talan, Asesora Patrimonial y de seguros con +18 años ayudando a familias a proteger su patrimonio, su salud y su retiro. Formación en Yale School of Management (Executive Education). Autorizada CNSF.",
   alternates: { canonical: "/sobre-iria" },
   openGraph: {
     title: "Sobre Iria Talan — Asesora Financiera RIF",
     description:
-      "MDRT TOT · AMASFAC · Yale · LSE · CNSF. Especialista en seguros de vida, GMM y planeación patrimonial.",
+      "Wealth Management por Yale School of Management (Exec. Ed.) · LSE · MDRT Top of the Table · AMASFAC · CNSF. Especialista en seguros de vida, GMM y planeación patrimonial.",
     url: "/sobre-iria",
   },
 };
@@ -75,7 +75,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Qué es MDRT Top of the Table y por qué importa?",
       answerText:
-        "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros, y Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008 y alcanzó Top of the Table en 2024. Para un cliente significa que trabaja con una asesora del grupo más alto del sector, no que pague más por ello.",
+        "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros, y Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008 y Top of the Table en MDRT. Para un cliente significa que trabaja con una asesora del grupo más alto del sector, no que pague más por ello.",
     },
     {
       question: "¿En qué se especializa Iria Talan?",

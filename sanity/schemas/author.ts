@@ -55,7 +55,7 @@ export const author = defineType({
       name: "credentials",
       title: "Credenciales (E-E-A-T)",
       description:
-        "MDRT TOT, AMASFAC, Yale, LSE, BMV, IMEF, Tec Monterrey, CNSF, etc. Orden de mayor a menor relevancia.",
+        "El ORDEN de este arreglo decide el orden de los grupos en /sobre-iria y del award[] en el JSON-LD. Orden acordado: Yale (Executive Education) → LSE → Tec de Monterrey → MDRT Top of the Table → AMASFAC → Asesora Diamante → CNSF. La formación va primero porque el cliente reconoce 'Yale' y no 'Top of the Table'. Yale y LSE SIEMPRE con 'Executive Education': son programas ejecutivos, no posgrados.",
       type: "array",
       of: [
         defineArrayMember({

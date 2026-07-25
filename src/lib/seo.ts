@@ -150,13 +150,15 @@ export function buildPersonSchema(author: AuthorData) {
       ? author.awards
       : isIria
         ? [
-            // Decisión de posicionamiento: solo Top of the Table, que es el
-            // nivel más alto de MDRT. Listar además los años de Court of the
-            // Table (un nivel abajo) diluye la distinción, y son siglas que el
-            // cliente no reconoce de entrada. La membresía desde 2008 sí se
-            // conserva: los 18 años son la señal que se entiende sin explicación.
+            // Mismo orden y mismas reglas que FALLBACK_AUTHOR.awards (ver la
+            // nota extensa en src/lib/author.ts): la formación va primero porque
+            // "Yale" se reconoce y "Top of the Table" no; Yale y LSE siempre con
+            // "Executive Education" para no insinuar un posgrado; y de MDRT solo
+            // Top of the Table, sin los años de Court of the Table.
+            "Wealth Management Theory & Practice — Yale School of Management (Executive Education), 2019",
+            "MBA Essentials — London School of Economics (Executive Education), 2023",
+            "MDRT Top of the Table (TOT) 2024 — Million Dollar Round Table",
             "Million Dollar Round Table (MDRT) — Miembro desde 2008",
-            "MDRT Top of the Table (TOT) 2024",
             "AMASFAC — 8vo Lugar Nacional",
             "GNP Seguros — Asesora Diamante",
             "Seguros Monterrey New York Life — Asesora Diamante",

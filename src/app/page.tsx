@@ -162,7 +162,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Qué hace una asesora patrimonial certificada y en qué se diferencia de un agente de seguros?",
     answerText:
-      "Un agente de seguros coloca un producto puntual a tu necesidad inmediata en la compañía de seguros que trabaja el asesor (generalmente es una). Un Asesor Patrimonial Profesional diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, tengo formación en Wealth Management por Yale University y en London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA. Esto me permite diseñar la solución alrededor de ti, no del producto de la Aseguradora.",
+      "Un agente de seguros coloca un producto puntual a tu necesidad inmediata en la compañía de seguros que trabaja el asesor (generalmente es una). Un Asesor Patrimonial Profesional diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, cursé Wealth Management Theory & Practice en Yale School of Management (Executive Education) y MBA Essentials en London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA. Esto me permite diseñar la solución alrededor de ti, no del producto de la Aseguradora.",
   },
   {
     question: "¿Cómo funciona el pago de honorarios y comisiones?",

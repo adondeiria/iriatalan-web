@@ -53,7 +53,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Can you handle all of this in English?",
     answerText:
-      "Yes. I advise bilingually — English and Spanish — for clients from the US, Canada, Europe and Latin America. Mexican law requires the formal policy documents to be issued in Spanish, but I walk you through every document in English and answer your questions in whichever language you prefer. I am MDRT Top of the Table and ranked 8th nationally by AMASFAC.",
+      "Yes. I advise bilingually — English and Spanish — for clients from the US, Canada, Europe and Latin America. Mexican law requires the formal policy documents to be issued in Spanish, but I walk you through every document in English and answer your questions in whichever language you prefer. I studied Wealth Management Theory & Practice at Yale School of Management (Executive Education), and I am MDRT Top of the Table and ranked 8th nationally by AMASFAC.",
   },
 ];
 
