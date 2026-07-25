@@ -10,17 +10,28 @@
 // comparisonTable, glossaryReference), y pushea con `createOrReplace` al
 // Content Lake manteniendo `draft: true`.
 //
-// Idempotente: re-correrlo sobrescribe el documento existente con el nuevo
-// contenido. NO publica — Iria revisa en Studio y apaga el toggle Draft a mano.
+// Idempotente: re-correrlo actualiza el contenido del documento existente.
+// NO publica — Iria revisa en Studio y apaga el toggle Draft a mano.
+//
+// IMPORTANTE — el push es `createOrReplace`, que reemplaza el documento
+// ENTERO. Por eso, antes de mutar, se lee el doc que ya vive en Sanity y se
+// fusionan los campos que solo existen en Studio (autor, hero, SEO, faqs,
+// relatedArticles) más la fecha de publicación original. Sin ese merge, cada
+// re-push dejaba el artículo sin autor ni imagen y le borraba `publishedAt`,
+// que es justo lo que lo saca del índice del blog y del sitemap.
+// Un artículo ya publicado tampoco se regresa a borrador al empujarle
+// contenido: para eso está `--force-draft`.
 //
 // Lee SANITY_API_WRITE_TOKEN de .env.local. Sin token → exit 1.
-// Sin `--apply` corre en dry-run (imprime el doc, sin pushear).
+// Sin `--apply` corre en dry-run (imprime el doc y el merge, sin pushear).
 //
 // Usage:
-//   node scripts/draft-push.mjs <slug>                # dry-run
-//   node scripts/draft-push.mjs <slug> --apply        # push real
-//   node scripts/draft-push.mjs <slug> --file <path>  # archivo específico
-//   node scripts/draft-push.mjs <slug> --verbose      # imprime body JSON
+//   node scripts/draft-push.mjs <slug>                 # dry-run
+//   node scripts/draft-push.mjs <slug> --apply         # push real
+//   node scripts/draft-push.mjs <slug> --apply --publish  # push + publicar
+//   node scripts/draft-push.mjs <slug> --file <path>   # archivo específico
+//   node scripts/draft-push.mjs <slug> --verbose       # imprime body JSON
+//   node scripts/draft-push.mjs <slug> --apply --force-draft  # regresar a borrador
 
 import fs from "node:fs";
 import path from "node:path";
@@ -53,7 +64,7 @@ const env = Object.fromEntries(
         .trim()
         .replace(/^['"]|['"]$/g, "");
       return [key, val];
-    })
+    }),
 );
 
 const PROJECT_ID = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -65,11 +76,14 @@ const args = process.argv.slice(2);
 const APPLY = args.includes("--apply");
 const PUBLISH = args.includes("--publish");
 const VERBOSE = args.includes("--verbose");
+// Regresa a borrador un artículo que ya estaba publicado. Por defecto NO se
+// hace: un push de contenido a un artículo vivo lo actualiza, no lo baja.
+const FORCE_DRAFT = args.includes("--force-draft");
 const fileFlagIdx = args.indexOf("--file");
 const FILE_OVERRIDE = fileFlagIdx >= 0 ? args[fileFlagIdx + 1] : null;
 const slug = args.find(
   (a, i) =>
-    !a.startsWith("--") && a !== FILE_OVERRIDE && args[i - 1] !== "--file"
+    !a.startsWith("--") && a !== FILE_OVERRIDE && args[i - 1] !== "--file",
 );
 
 const REVALIDATE_SECRET = env.REVALIDATE_SECRET;
@@ -83,13 +97,13 @@ if (PUBLISH && !APPLY) {
 
 if (PUBLISH && !REVALIDATE_SECRET) {
   console.error(
-    "⚠️  --publish: falta REVALIDATE_SECRET en .env.local. El push procederá con draft:false pero el revalidate fallará y dependerá del ISR (30s) para refrescar producción."
+    "⚠️  --publish: falta REVALIDATE_SECRET en .env.local. El push procederá con draft:false pero el revalidate fallará y dependerá del ISR (30s) para refrescar producción.",
   );
 }
 
 if (!slug) {
   console.error(
-    "❌ Falta el slug. Uso: node scripts/draft-push.mjs <slug> [--apply]"
+    "❌ Falta el slug. Uso: node scripts/draft-push.mjs <slug> [--apply]",
   );
   process.exit(1);
 }
@@ -97,7 +111,7 @@ if (!slug) {
 if (APPLY && !TOKEN) {
   console.error("❌ Falta SANITY_API_WRITE_TOKEN en .env.local");
   console.error(
-    "   Crear en: https://sanity.io/manage → IRIA TALAN RIF → API → Tokens (scope Editor)"
+    "   Crear en: https://sanity.io/manage → IRIA TALAN RIF → API → Tokens (scope Editor)",
   );
   process.exit(1);
 }
@@ -126,7 +140,7 @@ function resolveDraftFile(slug, override) {
     .reverse();
   if (matches.length === 0) {
     console.error(
-      `❌ No hay archivos en draft-history para slug "${slug}". Buscado: ${slug}__*.md`
+      `❌ No hay archivos en draft-history para slug "${slug}". Buscado: ${slug}__*.md`,
     );
     process.exit(1);
   }
@@ -193,8 +207,7 @@ function parseInlineMarks(text) {
     // Plain text — acumula hasta próximo marker
     let next = i;
     while (next < text.length) {
-      if (text[next] === "[" || text[next] === "*" || text[next] === "`")
-        break;
+      if (text[next] === "[" || text[next] === "*" || text[next] === "`") break;
       next++;
     }
     if (next > i) {
@@ -377,7 +390,7 @@ function parseDraft(md) {
       if (/Disclaimer/i.test(heading)) {
         let variant = "financiero";
         const variantMatch = heading.match(
-          /(financiero|m[eé]dico|legal|gen[eé]rico)/i
+          /(financiero|m[eé]dico|legal|gen[eé]rico)/i,
         );
         if (variantMatch) {
           variant = variantMatch[1]
@@ -452,7 +465,10 @@ function parseDraft(md) {
         let title = sourceText;
         if (urlMatch) {
           const idxUrl = sourceText.indexOf(urlMatch[0]);
-          title = sourceText.slice(0, idxUrl).replace(/\s*[—–]\s*$/, "").trim();
+          title = sourceText
+            .slice(0, idxUrl)
+            .replace(/\s*[—–]\s*$/, "")
+            .trim();
         }
         title = title.replace(/[*`]/g, "").replace(/\s+/g, " ").trim();
         out.sources.push({
@@ -584,21 +600,115 @@ function buildSanityDoc(parsed) {
     lastReviewed: new Date().toISOString().slice(0, 10),
   };
 
-  if (PUBLISH) {
-    doc.publishedAt = new Date().toISOString();
-    doc.updatedAt = doc.publishedAt;
+  return doc;
+}
+
+// ============================================================
+// 6.5 MERGE CON LO QUE YA VIVE EN SANITY
+// ============================================================
+
+/**
+ * Campos que se llenan SOLO en Studio: el markdown del repo no los produce.
+ * Un `createOrReplace` ciego los borraba en cada push, así que después de
+ * re-empujar un artículo había que volver a poner autor, hero y SEO a mano —
+ * y si nadie se daba cuenta, el artículo quedaba sin atribución.
+ */
+const CAMPOS_DE_STUDIO = [
+  "author",
+  "heroImage",
+  "reviewedBy",
+  "seoTitle",
+  "seoDescription",
+  "relatedArticles",
+  "faqs",
+  "wordCount",
+];
+
+/**
+ * Campos que el script SÍ produce, pero que pueden venir vacíos del markdown
+ * (p.ej. un draft sin sección "Fuentes"). Vacío no debe pisar contenido real.
+ */
+const CAMPOS_VACIABLES = ["sources", "questionsAnswered"];
+
+function estaVacio(v) {
+  return v === undefined || v === null || (Array.isArray(v) && v.length === 0);
+}
+
+async function fetchExistingDoc(docId) {
+  const q = encodeURIComponent(`*[_id == "${docId}"][0]`);
+  const url = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}?query=${q}`;
+  const r = await fetch(url, {
+    headers: { Authorization: `Bearer ${TOKEN}` },
+  });
+  if (!r.ok) {
+    throw new Error(`Query falló: ${r.status} ${await r.text()}`);
+  }
+  return (await r.json()).result ?? null;
+}
+
+/**
+ * Fusiona el doc recién parseado con el que ya existe en Sanity.
+ * Devuelve qué se preservó y qué avisos hay que mostrar, para que el dry-run
+ * enseñe exactamente lo que va a pasar antes de tocar producción.
+ */
+function mergeConExistente(doc, existing) {
+  const preservados = [];
+  const avisos = [];
+  const ahora = new Date().toISOString();
+
+  if (!existing) {
+    if (PUBLISH) {
+      doc.publishedAt = ahora;
+      doc.updatedAt = ahora;
+    }
+    return { preservados, avisos, esNuevo: true };
   }
 
-  return doc;
+  for (const campo of CAMPOS_DE_STUDIO) {
+    if (!estaVacio(existing[campo])) {
+      doc[campo] = existing[campo];
+      preservados.push(campo);
+    }
+  }
+
+  for (const campo of CAMPOS_VACIABLES) {
+    if (estaVacio(doc[campo]) && !estaVacio(existing[campo])) {
+      doc[campo] = existing[campo];
+      preservados.push(`${campo} (el draft venía vacío)`);
+    }
+  }
+
+  // La fecha de publicación original es historia: no se re-escribe nunca.
+  // Sobreescribirla movía el artículo en el orden del blog y cambiaba el
+  // `datePublished` del JSON-LD, que es señal de frescura para buscadores e IA.
+  if (existing.publishedAt) {
+    doc.publishedAt = existing.publishedAt;
+    preservados.push("publishedAt");
+  } else if (PUBLISH) {
+    doc.publishedAt = ahora;
+  }
+
+  // Un artículo vivo no se baja por empujarle contenido nuevo.
+  if (existing.draft === false && !FORCE_DRAFT) {
+    doc.draft = false;
+    if (!PUBLISH) {
+      avisos.push(
+        "Ya estaba publicado → se mantiene en línea (usa --force-draft para regresarlo a borrador).",
+      );
+    }
+  }
+
+  doc.updatedAt =
+    doc.draft === false ? ahora : (existing.updatedAt ?? undefined);
+
+  return { preservados, avisos, esNuevo: false };
 }
 
 function extractQuestionsFromBody(body) {
   const questions = [];
   for (const block of body) {
     if (block._type === "block" && block.style === "h2") {
-      const text = (block.children || [])
-        .map((c) => c.text || "")
-        .join("");
+      const text = (block.children || []).map((c) => c.text || "").join("");
       if (text.startsWith("¿")) questions.push(text.trim());
     }
   }
@@ -654,7 +764,28 @@ function validate(doc) {
 
 const parsed = parseDraft(raw);
 const doc = buildSanityDoc(parsed);
+
+// Antes de reemplazar el documento hay que saber qué hay del otro lado: el
+// push usa `createOrReplace`, y sin este merge cada re-push borraba autor,
+// hero, SEO y la fecha de publicación que se habían puesto en Studio.
+const existing = await fetchExistingDoc(doc._id);
+const { preservados, avisos, esNuevo } = mergeConExistente(doc, existing);
+
 const errors = validate(doc);
+
+if (esNuevo) {
+  console.log("\n🆕 No existe en Sanity — se crea desde cero.");
+} else {
+  console.log(
+    `\n♻️  Ya existe en Sanity (draft: ${existing.draft}) — se hace merge, no reemplazo ciego.`,
+  );
+  console.log(
+    preservados.length > 0
+      ? `   Se conservan: ${preservados.join(", ")}`
+      : "   (nada que conservar: el doc existente no tenía campos de Studio)",
+  );
+  avisos.forEach((a) => console.log(`   ⚠️  ${a}`));
+}
 
 console.log("\n📦 Documento que se va a pushear a Sanity:");
 console.log("   _id:", doc._id);
@@ -667,13 +798,13 @@ console.log("   format:", doc.format);
 console.log("   tldr:", doc.tldr ? `${doc.tldr.length} chars` : "(vacío)");
 console.log(
   "   excerpt:",
-  doc.excerpt ? `${doc.excerpt.length} chars` : "(vacío)"
+  doc.excerpt ? `${doc.excerpt.length} chars` : "(vacío)",
 );
 console.log("   questionsAnswered:", doc.questionsAnswered.length);
 console.log("   body blocks:", doc.body.length);
 console.log(
   "   keyTakeaways:",
-  doc.body[0]?._type === "keyTakeaways" ? doc.body[0].items.length : 0
+  doc.body[0]?._type === "keyTakeaways" ? doc.body[0].items.length : 0,
 );
 const dataCallouts = doc.body.filter((b) => b._type === "dataCallout").length;
 console.log("   dataCallout(s):", dataCallouts);
@@ -692,76 +823,81 @@ if (errors.length > 0) {
 
 if (!APPLY) {
   console.log("\n🟡 DRY-RUN — corre con `--apply` para pushear a Sanity.");
-  if (PUBLISH) {
-    console.log(
-      "   El doc se publicará con `draft: false` (visible en la web tras revalidate)."
-    );
-  } else {
-    console.log(
-      "   El doc se subirá con `draft: true`, listo para revisar en Studio."
-    );
-  }
+  // El estado se lee del doc ya fusionado, no del flag: un artículo que ya
+  // estaba publicado sigue publicado aunque se empuje sin `--publish`.
+  console.log(
+    doc.draft === false
+      ? "   El doc quedará con `draft: false` (visible en la web tras revalidate)."
+      : "   El doc se subirá con `draft: true`, listo para revisar en Studio.",
+  );
   if (VERBOSE) {
     console.log("\n--- BODY (verbose) ---");
     console.log(JSON.stringify(doc.body, null, 2));
   }
-  process.exit(0);
-}
-
-console.log(
-  PUBLISH
-    ? "\n🟢 Pusheando + publicando a Sanity (draft:false)..."
-    : "\n🟢 Pusheando a Sanity con createOrReplace..."
-);
-const result = await mutate([{ createOrReplace: doc }]);
-console.log("\n✅ Done.");
-console.log("   Document ID:", doc._id);
-
-if (PUBLISH) {
-  // Trigger revalidate del path público para que producción sirva el contenido nuevo sin esperar ISR (30s)
-  if (REVALIDATE_SECRET) {
-    const revalidateUrl = `${SITE_URL}/api/revalidate?path=/blog/${doc.slug.current}&secret=${encodeURIComponent(REVALIDATE_SECRET)}`;
-    console.log("\n🔄 Disparando revalidate en producción...");
-    try {
-      const r = await fetch(revalidateUrl, { method: "POST" });
-      const json = await r.json().catch(() => ({}));
-      if (r.ok && json.revalidated) {
-        console.log(`   ✅ Revalidate OK — ${json.now || "sin timestamp"}`);
-      } else {
-        console.log(
-          `   ⚠️  Revalidate respondió ${r.status}. Response: ${JSON.stringify(json)}`
-        );
-        console.log(
-          "   Producción debería actualizarse en ~30s vía ISR de cualquier forma."
-        );
-      }
-    } catch (err) {
-      console.log(`   ⚠️  Revalidate falló: ${err.message}`);
-      console.log(
-        "   Producción debería actualizarse en ~30s vía ISR de cualquier forma."
-      );
-    }
-  }
-  console.log(`\n📍 URL pública: ${SITE_URL}/blog/${doc.slug.current}`);
-  console.log(
-    `\n   Verifica que producción ya sirve el contenido nuevo con:`
-  );
-  console.log(`   node scripts/draft-verify-live.mjs ${doc.slug.current}`);
-  console.log(
-    `\n   ⚠️  Si publicaste sin imagen hero/autor en Sanity, complétalos en Studio:`
-  );
-  console.log(`   https://iriatalan.com.mx/studio/structure/article;${doc._id}`);
+  // Sin `process.exit()` a propósito: la lectura previa a Sanity deja un socket
+  // keep-alive abierto, y forzar la salida dispara una assertion de libuv en
+  // Windows que devuelve exit code 9 — el workflow lo leería como fallo.
+  // Dejamos que el proceso termine solo cuando el socket se cierre.
 } else {
   console.log(
-    `   Studio URL: https://iriatalan.com.mx/studio/structure/article;${doc._id}`
+    PUBLISH
+      ? "\n🟢 Pusheando + publicando a Sanity (draft:false)..."
+      : `\n🟢 Pusheando a Sanity (createOrReplace con merge, draft:${doc.draft})...`,
   );
-  console.log("\n   Próximos pasos en Studio:");
-  console.log("   1. Verifica el body — todos los bloques bien estructurados");
-  console.log("   2. Selecciona Autor (reference a Iria Talan)");
-  console.log("   3. Sube imagen hero con alt text");
-  console.log("   4. Revisa Sources — todos con publisher y URL real");
-  console.log(
-    "   5. Para los dataCallout, completa sourceUrl real (los pendientes están marcados)"
-  );
-  console.log("   6. Apaga toggle 🔴 Draft → click Publish");
-}
+  await mutate([{ createOrReplace: doc }]);
+  console.log("\n✅ Done.");
+  console.log("   Document ID:", doc._id);
+
+  if (PUBLISH) {
+    // Trigger revalidate del path público para que producción sirva el contenido nuevo sin esperar ISR (30s)
+    if (REVALIDATE_SECRET) {
+      const revalidateUrl = `${SITE_URL}/api/revalidate?path=/blog/${doc.slug.current}&secret=${encodeURIComponent(REVALIDATE_SECRET)}`;
+      console.log("\n🔄 Disparando revalidate en producción...");
+      try {
+        const r = await fetch(revalidateUrl, { method: "POST" });
+        const json = await r.json().catch(() => ({}));
+        if (r.ok && json.revalidated) {
+          console.log(`   ✅ Revalidate OK — ${json.now || "sin timestamp"}`);
+        } else {
+          console.log(
+            `   ⚠️  Revalidate respondió ${r.status}. Response: ${JSON.stringify(json)}`,
+          );
+          console.log(
+            "   Producción debería actualizarse en ~30s vía ISR de cualquier forma.",
+          );
+        }
+      } catch (err) {
+        console.log(`   ⚠️  Revalidate falló: ${err.message}`);
+        console.log(
+          "   Producción debería actualizarse en ~30s vía ISR de cualquier forma.",
+        );
+      }
+    }
+    console.log(`\n📍 URL pública: ${SITE_URL}/blog/${doc.slug.current}`);
+    console.log(
+      `\n   Verifica que producción ya sirve el contenido nuevo con:`,
+    );
+    console.log(`   node scripts/draft-verify-live.mjs ${doc.slug.current}`);
+    console.log(
+      `\n   ⚠️  Si publicaste sin imagen hero/autor en Sanity, complétalos en Studio:`,
+    );
+    console.log(
+      `   https://iriatalan.com.mx/studio/structure/article;${doc._id}`,
+    );
+  } else {
+    console.log(
+      `   Studio URL: https://iriatalan.com.mx/studio/structure/article;${doc._id}`,
+    );
+    console.log("\n   Próximos pasos en Studio:");
+    console.log(
+      "   1. Verifica el body — todos los bloques bien estructurados",
+    );
+    console.log("   2. Selecciona Autor (reference a Iria Talan)");
+    console.log("   3. Sube imagen hero con alt text");
+    console.log("   4. Revisa Sources — todos con publisher y URL real");
+    console.log(
+      "   5. Para los dataCallout, completa sourceUrl real (los pendientes están marcados)",
+    );
+    console.log("   6. Apaga toggle 🔴 Draft → click Publish");
+  }
+} // fin del bloque --apply
