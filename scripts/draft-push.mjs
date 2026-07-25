@@ -559,6 +559,57 @@ function parseDraft(md) {
 // 6. BUILD SANITY DOC
 // ============================================================
 
+/**
+ * Los bloques custom (keyTakeaways, comparisonTable, disclaimer, dataCallout) y
+ * los campos tldr/excerpt se renderizan como STRING PLANO en React
+ * (`{item}`, `{cell}`, `{value.caption}`) — no pasan por PortableText, así que
+ * no interpretan markdown. Si el markdown del draft trae `**negritas**`, los
+ * asteriscos salen visibles en la página.
+ *
+ * En los párrafos normales esto no pasa porque parseInlineMarks() ya convierte
+ * `**` en marks de Portable Text. Aquí se hace lo equivalente para los planos:
+ * quitar los marcadores y quedarse con el texto.
+ */
+function aTextoPlano(s) {
+  if (typeof s !== "string") return s;
+  return s
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // [texto](url) → texto
+    .replace(/\*\*(.+?)\*\*/gs, "$1") // **negrita** → negrita
+    .replace(/(^|[\s(])\*(?!\s)(.+?)(?<!\s)\*(?=[\s.,;:)!?]|$)/gs, "$1$2") // *cursiva* → cursiva
+    .replace(/`([^`]+)`/g, "$1") // `código` → código
+    .replace(/\*\*/g, ""); // marcador huérfano (bold sin cerrar)
+}
+
+/** Campos de string plano por tipo de bloque custom. */
+const CAMPOS_PLANOS = {
+  keyTakeaways: ["items"],
+  comparisonTable: ["caption", "headers", "rows"],
+  disclaimer: ["text"],
+  dataCallout: ["claim", "sourceName", "publisher"],
+};
+
+function limpiarBloquesPlanos(body) {
+  for (const bloque of body) {
+    const campos = CAMPOS_PLANOS[bloque._type];
+    if (!campos) continue; // los `block` normales usan marks, no se tocan
+    for (const campo of campos) {
+      const v = bloque[campo];
+      if (typeof v === "string") {
+        bloque[campo] = aTextoPlano(v);
+      } else if (Array.isArray(v)) {
+        bloque[campo] = v.map((item) =>
+          typeof item === "string"
+            ? aTextoPlano(item)
+            : item && Array.isArray(item.cells)
+              ? { ...item, cells: item.cells.map(aTextoPlano) }
+              : item,
+        );
+      }
+    }
+  }
+  return body;
+}
+
 function buildSanityDoc(parsed) {
   const slugVal = parsed.fields.slug || slug;
   const docId = `article-${slugVal}`;
@@ -588,14 +639,14 @@ function buildSanityDoc(parsed) {
     _id: docId,
     _type: "article",
     draft: !PUBLISH,
-    title: parsed.title,
+    title: aTextoPlano(parsed.title),
     slug: { _type: "slug", current: slugVal },
     topic: parsed.fields.topic,
     format: parsed.fields.format,
-    tldr: parsed.tldr,
-    excerpt: parsed.excerpt,
+    tldr: aTextoPlano(parsed.tldr),
+    excerpt: aTextoPlano(parsed.excerpt),
     questionsAnswered: extractQuestionsFromBody(parsed.body),
-    body,
+    body: limpiarBloquesPlanos(body),
     sources: parsed.sources,
     lastReviewed: new Date().toISOString().slice(0, 10),
   };
@@ -686,6 +737,44 @@ function mergeConExistente(doc, existing) {
     preservados.push("publishedAt");
   } else if (PUBLISH) {
     doc.publishedAt = ahora;
+  }
+
+  // El `body` SÍ se reemplaza — es justo lo que el push viene a actualizar.
+  // Pero lo que se insertó a mano en Studio (un ctaWhatsApp, un glossaryReference,
+  // una imagen intercalada) no existe en el markdown del repo, así que se va a
+  // perder. No se puede fusionar automáticamente sin saber dónde va cada bloque,
+  // así que al menos se avisa antes de tocar producción.
+  const tipos = (body) => {
+    const m = new Map();
+    for (const b of body ?? []) m.set(b._type, (m.get(b._type) ?? 0) + 1);
+    return m;
+  };
+  const tiposViejos = tipos(existing.body);
+  const tiposNuevos = tipos(doc.body);
+  const enPeligro = [];
+  for (const [tipo, n] of tiposViejos) {
+    const nuevos = tiposNuevos.get(tipo) ?? 0;
+    if (nuevos < n) enPeligro.push(`${n - nuevos}× ${tipo}`);
+  }
+  if (enPeligro.length > 0) {
+    avisos.push(
+      `El body se reemplaza: desaparecen bloques que hoy están en Sanity y no vienen del markdown → ${enPeligro.join(", ")}. Re-insértalos en Studio o agrégalos al draft.`,
+    );
+  }
+
+  // Los enlaces in-body (markDefs) que se agregaron por script/Studio tampoco
+  // están en el markdown y se van con el reemplazo.
+  const links = (body) =>
+    (body ?? []).reduce(
+      (n, b) => n + (b.markDefs ?? []).filter((d) => d._type === "link").length,
+      0,
+    );
+  const linksViejos = links(existing.body);
+  const linksNuevos = links(doc.body);
+  if (linksViejos > linksNuevos) {
+    avisos.push(
+      `Enlaces in-body: hay ${linksViejos} en Sanity y el draft trae ${linksNuevos} → se pierden ${linksViejos - linksNuevos}. Ponlos en el markdown como [texto](/ruta) para que sobrevivan.`,
+    );
   }
 
   // Un artículo vivo no se baja por empujarle contenido nuevo.
