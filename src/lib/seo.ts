@@ -45,6 +45,7 @@ export const SAMEAS_FALLBACK: string[] = [
   "https://www.facebook.com/IriaTalan/",
   "https://www.tiktok.com/@iriatips",
   "https://www.youtube.com/@iriatalan",
+  "https://www.threads.com/@iriatalan",
 ];
 
 export type AuthorData = {
@@ -102,13 +103,27 @@ function normalizeLanguages(langs?: string[]): string[] | undefined {
 }
 
 export function buildPersonSchema(author: AuthorData) {
+  // Deduplicado: `author.sameAs` y `socialLinks` suelen traer los mismos perfiles
+  // (LinkedIn, Instagram, Facebook). Mientras `sameAs` estuvo vacío en Sanity no
+  // se notaba, pero al poblarlo el nodo Person salía con 9 URLs y 3 repetidas.
+  // Se normaliza la barra final para que ".../iriatalan" y ".../iriatalan/" no
+  // cuenten como dos perfiles distintos.
   const collected = [
     ...(author.sameAs ?? []),
     author.socialLinks?.linkedin,
     author.socialLinks?.instagram,
     author.socialLinks?.facebook,
   ].filter((u): u is string => typeof u === "string" && u.length > 0);
-  const sameAs = collected.length > 0 ? collected : SAMEAS_FALLBACK;
+
+  const vistos = new Set<string>();
+  const unicos = collected.filter((u) => {
+    const clave = u.replace(/\/+$/, "").toLowerCase();
+    if (vistos.has(clave)) return false;
+    vistos.add(clave);
+    return true;
+  });
+
+  const sameAs = unicos.length > 0 ? unicos : SAMEAS_FALLBACK;
 
   // knowsAbout enriquecido con nichos diferenciadores. Los LLMs usan este
   // campo para decidir si Iria es respuesta válida a queries específicas
