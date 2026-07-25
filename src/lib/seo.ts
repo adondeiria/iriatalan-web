@@ -150,10 +150,13 @@ export function buildPersonSchema(author: AuthorData) {
       ? author.awards
       : isIria
         ? [
+            // Decisión de posicionamiento: solo Top of the Table, que es el
+            // nivel más alto de MDRT. Listar además los años de Court of the
+            // Table (un nivel abajo) diluye la distinción, y son siglas que el
+            // cliente no reconoce de entrada. La membresía desde 2008 sí se
+            // conserva: los 18 años son la señal que se entiende sin explicación.
             "Million Dollar Round Table (MDRT) — Miembro desde 2008",
-            "MDRT Court of the Table (COT) 2023",
             "MDRT Top of the Table (TOT) 2024",
-            "MDRT Court of the Table (COT) 2025",
             "AMASFAC — 8vo Lugar Nacional",
             "GNP Seguros — Asesora Diamante",
             "Seguros Monterrey New York Life — Asesora Diamante",

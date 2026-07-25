@@ -75,7 +75,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Qué es MDRT Top of the Table y por qué importa?",
       answerText:
-        "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros. Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008, con Court of the Table en 2023 y 2025, y Top of the Table en 2024. También ocupa el 8° lugar nacional de AMASFAC.",
+        "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros, y Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008 y alcanzó Top of the Table en 2024. Para un cliente significa que trabaja con una asesora del grupo más alto del sector, no que pague más por ello.",
     },
     {
       question: "¿En qué se especializa Iria Talan?",

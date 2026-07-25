@@ -7,7 +7,7 @@
 - **Iria Talan** — sin acento en "Talan". Siempre. (2026-05-08)
 - **RIF** — Reingeniería Financiera (su firma).
 - **Credenciales** que se mencionan en bio/EEAT, en este orden de prioridad cuando hay espacio:
-  1. **MDRT Court of the Table (COT) — 2025** · Top of the Table (TOT) — 2024. Verificar nivel del año en curso antes de publicar. (Actualizado 2026-05-16.)
+  1. **MDRT Top of the Table (TOT) — 2024** · Miembro desde 2008. Decisión de posicionamiento: se nombra **solo Top of the Table**, que es el nivel más alto de MDRT. NO listar los años de Court of the Table (2023, 2025) junto a él — nombrar el nivel de abajo al lado del de arriba diluye la distinción, y son siglas que el cliente no reconoce de entrada. Cuando se mencione, explicar qué significa en una frase. (Actualizado 2026-07-25.)
   2. AMASFAC 8º Lugar Nacional
   3. CNSF Cédula V388618
   4. Wealth Management Theory & Practice — Yale Executive Education

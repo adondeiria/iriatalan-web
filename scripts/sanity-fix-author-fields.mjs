@@ -54,7 +54,9 @@ async function mutate(mutations) {
 }
 
 const NEW_CREDENTIALS = [
-  { _key: "cred-mdrt", _type: "credential", title: "Miembro MDRT desde 2008 · Top of the Table 2024 · Court of the Table 2025", issuer: "Million Dollar Round Table — élite mundial de la industria de seguros", category: "industria" },
+  // Solo Top of the Table por decisión de posicionamiento: es el nivel más alto
+  // de MDRT, y nombrar los años de Court of the Table al lado lo diluye.
+  { _key: "cred-mdrt", _type: "credential", title: "Miembro MDRT desde 2008 · Top of the Table 2024", issuer: "Million Dollar Round Table — nivel más alto de la élite mundial de la industria de seguros", category: "industria" },
   { _key: "cred-amasfac", _type: "credential", title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", year: "2025", category: "industria" },
   { _key: "cred-gnp", _type: "credential", title: "Asesora Diamante", issuer: "GNP Seguros", year: "Desde 2016", category: "carrier" },
   { _key: "cred-smnyl", _type: "credential", title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", year: "Desde 2008", category: "carrier" },
@@ -65,10 +67,10 @@ const NEW_CREDENTIALS = [
   { _key: "cred-cnsf", _type: "credential", title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "Desde 2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
 ];
 
-// OJO: este script reemplaza las credenciales ENTERAS. Si se re-corre, hay que
-// revisar NEW_CREDENTIALS primero — le falta "Court of the Table 2023" que sí
-// está en FALLBACK_AUTHOR (src/lib/author.ts), y esa diferencia ya provocó que
-// la página mostrara una lista de credenciales distinta a la de su FAQ.
+// OJO: este script reemplaza las credenciales ENTERAS. Si se re-corre, revisa
+// primero que NEW_CREDENTIALS siga coincidiendo con FALLBACK_AUTHOR
+// (src/lib/author.ts): cuando divergieron, la página mostró una lista de
+// credenciales distinta a la de su propia FAQ.
 const NEW_OFFICE_ADDRESS = "Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560";
 
 const doc = await query(
