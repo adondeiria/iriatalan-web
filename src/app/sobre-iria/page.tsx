@@ -80,7 +80,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Qué es el 8° lugar nacional de AMASFAC?",
       answerText:
-        "AMASFAC es la Asociación Mexicana de Agentes de Seguros y Fianzas, la red de agentes más grande del país, fundada en 1958. Su Trofeo AMASFAC reconoce a los mejores agentes de Vida y Gastos Médicos Mayores de México, y Iria Talan ocupó el 8° lugar nacional. Es una evaluación de sus pares del gremio, no de la aseguradora que le paga comisión.",
+        "AMASFAC es la Asociación Mexicana de Agentes de Seguros y Fianzas, la red de agentes más grande del país, fundada en 1958. Su Trofeo AMASFAC reconoce a los mejores agentes de Vida y Gastos Médicos Mayores de México, y en 2024 Iria Talan ocupó el 8° lugar nacional. Es una evaluación de sus pares del gremio, no de la aseguradora que le paga comisión.",
     },
     {
       question: "¿Qué significa que Iria Talan sea Asesora Diamante?",

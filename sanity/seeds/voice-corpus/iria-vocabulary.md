@@ -11,7 +11,7 @@
   2. MBA Essentials — London School of Economics (Executive Education, 2023). Mismo cuidado: curso ejecutivo, no MBA.
   3. Tec de Monterrey — Ingeniera Mecánica Administradora (2004). Este sí es título de licenciatura.
   4. **MDRT Top of the Table** · Miembro desde 2008. Se nombra **solo Top of the Table**, el nivel más alto de MDRT: NO listar los años de Court of the Table (2023, 2025) junto a él, porque nombrar el nivel de abajo al lado del de arriba lo diluye. Cuando se mencione, explicar en una frase qué significa — es una sigla que el cliente no reconoce.
-  5. AMASFAC 8º Lugar Nacional (2025)
+  5. AMASFAC 8º Lugar Nacional, **Trofeo AMASFAC 2024** (NO 2025: ese trofeo aún no se entrega — no anunciarlo hasta que sea oficial). AMASFAC = **Asociación Mexicana de Agentes de Seguros y Fianzas** (nunca "Asesores"), la red de agentes más grande del país, fundada en 1958; su Trofeo reconoce a los mejores agentes de Vida y GMM de México.
   6. Asesora Diamante GNP y Seguros Monterrey New York Life
   7. CNSF Cédula V388618 (desde 2008)
 

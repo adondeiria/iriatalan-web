@@ -65,7 +65,9 @@ export const FALLBACK_AUTHOR: AuthorData = {
     { title: "MBA Essentials", issuer: "London School of Economics — Executive Education (curso ejecutivo, no MBA)", year: "2023", category: "academica" },
     { title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", year: "2004", category: "academica" },
     { title: "Miembro MDRT desde 2008 · Top of the Table 2024", issuer: "Million Dollar Round Table — nivel más alto de la élite mundial de la industria de seguros", category: "industria" },
-    { title: "8vo Lugar Nacional — Trofeo AMASFAC", issuer: "AMASFAC (Asociación Mexicana de Agentes de Seguros y Fianzas)", year: "2025", category: "industria" },
+    // 2024, no 2025: el Trofeo del 2025 aún no se entrega. Ponerlo antes sería
+    // afirmar un reconocimiento no recibido. Cuando se confirme, se agrega.
+    { title: "8vo Lugar Nacional — Trofeo AMASFAC", issuer: "AMASFAC (Asociación Mexicana de Agentes de Seguros y Fianzas)", year: "2024", category: "industria" },
     { title: "Asesora Diamante", issuer: "GNP Seguros", year: "Desde 2016", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", year: "Desde 2008", category: "carrier" },
     // Regulatorio al final, como estaba: la cédula es el cierre que respalda todo
