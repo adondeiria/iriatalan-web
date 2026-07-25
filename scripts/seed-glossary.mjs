@@ -1,12 +1,17 @@
 // Seed: importa los 14 términos del glosario desde sanity/seeds/glossary-terms.ndjson
 // al Sanity Content Lake usando `createIfNotExists` (idempotente).
 //
+// Los términos del NDJSON traen `draft: true`, así que seedearlos NO los hace
+// públicos: siguen ocultos hasta que se apaga el toggle. `--publish` hace ese
+// segundo paso sobre los 14 de golpe, en vez de a mano en Studio.
+//
 // Lee SANITY_API_WRITE_TOKEN de .env.local. Sin token → exit 1.
 // Sin `--apply` corre en dry-run.
 //
 // Usage:
-//   node scripts/seed-glossary.mjs            (dry-run)
-//   node scripts/seed-glossary.mjs --apply    (ejecuta)
+//   node scripts/seed-glossary.mjs                      (dry-run)
+//   node scripts/seed-glossary.mjs --apply              (crea, ocultos)
+//   node scripts/seed-glossary.mjs --apply --publish    (crea + publica)
 
 import fs from "node:fs";
 import path from "node:path";
@@ -31,9 +36,15 @@ const DATASET = env.NEXT_PUBLIC_SANITY_DATASET;
 const API_VERSION = env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-02-19";
 const TOKEN = env.SANITY_API_WRITE_TOKEN;
 const APPLY = process.argv.includes("--apply");
+const PUBLISH = process.argv.includes("--publish");
 
 if (!TOKEN) {
   console.error("❌ Missing SANITY_API_WRITE_TOKEN in .env.local");
+  process.exit(1);
+}
+
+if (PUBLISH && !APPLY) {
+  console.error("❌ --publish requiere --apply (sin --apply no hace nada).");
   process.exit(1);
 }
 
@@ -111,6 +122,20 @@ const skipped = (result.results ?? []).filter(
 
 console.log(`\n✅ ${created.length} creados`);
 console.log(`⏭  ${skipped.length} ya existían (no tocados)`);
+
+if (PUBLISH) {
+  // `createIfNotExists` no toca los que ya existen, así que el patch es lo
+  // único que realmente publica — tanto los recién creados como los que ya
+  // estaban ahí en borrador.
+  console.log("\n🟢 Publicando (draft: false)…");
+  await mutate(docs.map((d) => ({ patch: { id: d._id, set: { draft: false } } })));
+  console.log(`✅ ${docs.length} términos publicados — visibles en /glosario`);
+} else {
+  console.log(
+    "\n🔒 Siguen ocultos (draft: true). Corre con `--publish` para publicarlos."
+  );
+}
+
 console.log(
   "\nVer en Studio: https://iriatalan.com.mx/studio/structure/glossaryTerm"
 );
