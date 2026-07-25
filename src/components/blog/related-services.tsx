@@ -43,7 +43,10 @@ const SERVICES: Record<string, ServiceLink> = {
   },
   patrimonial: {
     href: "/patrimonial",
-    title: "Planeación patrimonial",
+    // "Asesoría patrimonial" y no "Planeación": es la consulta con demanda medida
+    // en GSC (429 impresiones/3 meses en sus 3 variantes) y el anchor text del
+    // bloque es señal de relevancia hacia /patrimonial, hoy en posición ~16.
+    title: "Asesoría patrimonial",
     blurb:
       "Fideicomisos, sucesión y blindaje para patrimonios complejos y familias con necesidades especiales.",
   },
