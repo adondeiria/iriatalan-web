@@ -194,8 +194,13 @@ export function buildPersonSchema(author: AuthorData) {
           url: "https://www.mdrt.org",
         },
         {
+          // El nombre correcto es "Agentes de Seguros y Fianzas" — verificado
+          // contra los materiales oficiales de AMASFAC. Aquí decía "Asesores
+          // Financieros", que es otra asociación distinta; un `affiliation` con
+          // el nombre equivocado no resuelve la entidad y desperdicia la señal.
           "@type": "Organization" as const,
-          name: "AMASFAC — Asociación Mexicana de Asesores Financieros",
+          name: "AMASFAC — Asociación Mexicana de Agentes de Seguros y Fianzas",
+          url: "https://www.amasfac.org",
         },
       ]
     : undefined;

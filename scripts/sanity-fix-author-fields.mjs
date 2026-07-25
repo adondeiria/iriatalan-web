@@ -63,7 +63,7 @@ const NEW_CREDENTIALS = [
   { _key: "cred-lse", _type: "credential", title: "MBA Essentials", issuer: "London School of Economics — Executive Education (curso ejecutivo, no MBA)", year: "2023", category: "academica" },
   { _key: "cred-tec", _type: "credential", title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", year: "2004", category: "academica" },
   { _key: "cred-mdrt", _type: "credential", title: "Miembro MDRT desde 2008 · Top of the Table 2024", issuer: "Million Dollar Round Table — nivel más alto de la élite mundial de la industria de seguros", category: "industria" },
-  { _key: "cred-amasfac", _type: "credential", title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", year: "2025", category: "industria" },
+  { _key: "cred-amasfac", _type: "credential", title: "8vo Lugar Nacional — Trofeo AMASFAC", issuer: "AMASFAC (Asociación Mexicana de Agentes de Seguros y Fianzas)", year: "2025", category: "industria" },
   { _key: "cred-gnp", _type: "credential", title: "Asesora Diamante", issuer: "GNP Seguros", year: "Desde 2016", category: "carrier" },
   { _key: "cred-smnyl", _type: "credential", title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", year: "Desde 2008", category: "carrier" },
   { _key: "cred-bmv", _type: "credential", title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", year: "2015", category: "regulatoria" },

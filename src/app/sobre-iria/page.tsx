@@ -78,6 +78,16 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
         "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros, y Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008 y Top of the Table en MDRT. Para un cliente significa que trabaja con una asesora del grupo más alto del sector, no que pague más por ello.",
     },
     {
+      question: "¿Qué es el 8° lugar nacional de AMASFAC?",
+      answerText:
+        "AMASFAC es la Asociación Mexicana de Agentes de Seguros y Fianzas, la red de agentes más grande del país, fundada en 1958. Su Trofeo AMASFAC reconoce a los mejores agentes de Vida y Gastos Médicos Mayores de México, y Iria Talan ocupó el 8° lugar nacional. Es una evaluación de sus pares del gremio, no de la aseguradora que le paga comisión.",
+    },
+    {
+      question: "¿Qué significa que Iria Talan sea Asesora Diamante?",
+      answerText:
+        "Diamante es el nivel más alto que una aseguradora otorga a sus agentes. Iria Talan lo tiene en dos a la vez: en Seguros Monterrey New York Life desde 2008 y en GNP Seguros desde 2016 — casi dos décadas sosteniéndolo en ambas. A diferencia del reconocimiento de AMASFAC, que viene del gremio, este lo concede cada aseguradora sobre su propia cartera.",
+    },
+    {
       question: "¿En qué se especializa Iria Talan?",
       answerText:
         "En seguros de vida, gastos médicos mayores, planeación de retiro (PPR y Modalidad 40 del IMSS), planes educacionales, fideicomisos y planeación patrimonial. Atiende además casos que la mayoría de los asesores no cubre: familias con hijos neurodivergentes, familias diversas, mexicanos viviendo en el extranjero y extranjeros residentes en México.",
