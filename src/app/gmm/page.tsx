@@ -451,14 +451,49 @@ export default async function GmmPage() {
                 <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
                   Aseguradoras que suelen destacar en cobertura internacional
                 </h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li><strong className="text-ink dark:text-cream-light">BUPA</strong> — depende del plan internacional que tengas contratado, puedes tener acceso a los mejores hospitales de México y el mundo.</li>
-                  <li><strong className="text-ink dark:text-cream-light">GNP VIP</strong> — red fuerte en EUA, cobertura con hospitales en convenio internacionales y acceso a todos los hospitales en México.</li>
-                  <li><strong className="text-ink dark:text-cream-light">AXA</strong> — cobertura con hospitales internacionales en convenio.</li>
-                </ul>
-                <p className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                  La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso.
-                </p>
+                {/* Tabla HTML real, no imagen ni prosa: es la estructura que los
+                    answer engines extraen y citan textual. Es el mismo contenido
+                    que estaba en viñetas — no se agregó ninguna afirmación nueva.
+                    Cubre solo las 3 que la página caracteriza; MetLife y Seguros
+                    Monterrey no tienen aquí datos de red verificados, y ponerles
+                    una fila vacía o inventada sería peor que dejarlas fuera de un
+                    bloque que, por su encabezado, ya es un subconjunto. */}
+                <figure className="mt-2 -mx-2 sm:mx-0">
+                  <div className="overflow-x-auto rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
+                    <table className="w-full text-left text-sm border-collapse">
+                      <caption className="sr-only">
+                        Aseguradoras que destacan en cobertura internacional de gastos médicos mayores: red en México y alcance internacional
+                      </caption>
+                      <thead className="bg-cream/40 dark:bg-coffee/30">
+                        <tr>
+                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Aseguradora</th>
+                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Red en México</th>
+                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Alcance internacional</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-warm-brown/10 dark:border-warm-brown/20">
+                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">BUPA</th>
+                          <td className="px-4 py-3 align-top">Acceso a los mejores hospitales del país, según el plan contratado</td>
+                          <td className="px-4 py-3 align-top">Acceso a los mejores hospitales del mundo, según el plan internacional contratado</td>
+                        </tr>
+                        <tr className="border-b border-warm-brown/10 dark:border-warm-brown/20">
+                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">GNP VIP</th>
+                          <td className="px-4 py-3 align-top">Acceso a todos los hospitales en México</td>
+                          <td className="px-4 py-3 align-top">Red fuerte en EUA y hospitales internacionales en convenio</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">AXA</th>
+                          <td className="px-4 py-3 align-top">Se revisa por producto y plan</td>
+                          <td className="px-4 py-3 align-top">Hospitales internacionales en convenio</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <figcaption className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65">
+                    La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso. MetLife y Seguros Monterrey New York Life también ofrecen planes con alcance internacional — el detalle de red depende del producto y lo reviso contigo en la sesión.
+                  </figcaption>
+                </figure>
               </div>
               <p>
                 <strong className="text-ink dark:text-cream-light">Lo que cuesta NO tener:</strong>{" "}
