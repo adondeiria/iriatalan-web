@@ -13,7 +13,7 @@
   4. Wealth Management Theory & Practice — Yale Executive Education
   5. MBA Essentials — LSE Executive Education
   6. Tec de Monterrey (egresada)
-- **Oficina**: Bosque de Chapultepec, CDMX. Bilingüe ES/EN.
+- **Oficina**: Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560. Bilingüe ES/EN.
 
 ## Productos pillar TALAN (cómo nombrarlos)
 

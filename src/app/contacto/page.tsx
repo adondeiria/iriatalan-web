@@ -29,9 +29,14 @@ const FAQS: FAQItem[] = [
       "Cero. La consulta es informativa. Si lo que recomiendo te hace sentido, seguimos. Si no, te entregué información que ya es tuya.",
   },
   {
+    // La dirección salió de esta respuesta a propósito: esta página no lee el
+    // autor de Sanity, así que escribirla aquí garantizaba que se quedara vieja
+    // (y ya había pasado). La oficina se sirve desde el nodo LocalBusiness del
+    // grafo global, que sí toma el dato de Sanity. Aquí se responde lo que la
+    // pregunta pide: los idiomas.
     question: "¿Atiendes en español o inglés?",
     answerText:
-      "Ambos. Mi oficina está en Bosque de Chapultepec, CDMX. Atiendo presencial o por videollamada según prefieras.",
+      "Ambos, indistintamente. Atiendo en persona en mi oficina de Polanco, Ciudad de México, o por videollamada y WhatsApp desde cualquier parte de México y del extranjero, según lo que te acomode.",
   },
   {
     question: "¿En cuánto tiempo respondes WhatsApp o correo?",

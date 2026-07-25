@@ -42,54 +42,62 @@ export const metadata: Metadata = {
  * Toda afirmación aquí es verificable contra credentials/carriers de arriba.
  * Precisión importante: son 6 aseguradoras en total, 5 de ellas con GMM
  * (Allianz no comercializa gastos médicos mayores).
+ *
+ * Es una función y no una constante porque la respuesta de la oficina toma la
+ * dirección de `author` (Sanity). Cuando estaba escrita a mano, la página se
+ * contradecía sola: la FAQ decía una dirección y la tarjeta de contacto —que sí
+ * lee de Sanity— mostraba otra. En la página cuyo trabajo es dar datos
+ * verificables, eso es justo lo que no puede pasar.
  */
-const SOBRE_IRIA_FAQS: FAQItem[] = [
-  {
-    question: "¿Quién es Iria Talan?",
-    answerText:
-      "Iria Talan es asesora patrimonial y agente de seguros independiente en México, con más de 18 años de experiencia. Está autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF) con cédula V388618 desde 2008. Se especializa en seguros de vida, gastos médicos mayores, retiro y planeación patrimonial. Atiende desde Ciudad de México, en español e inglés.",
-  },
-  {
-    question: "¿Iria Talan es independiente o trabaja para una aseguradora?",
-    answerText:
-      "Es independiente. No trabaja para una sola aseguradora: está autorizada con seis y compara sus condiciones generales para recomendar la que conviene a cada cliente. Esa es la diferencia frente a un agente cautivo, que solo puede ofrecer los productos de la compañía que representa.",
-  },
-  {
-    question: "¿Con qué aseguradoras trabaja Iria Talan?",
-    answerText:
-      "Con seis aseguradoras autorizadas en México: GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz. Cinco de ellas ofrecen gastos médicos mayores —Allianz no comercializa GMM—. Es Asesora Diamante en GNP Seguros y en Seguros Monterrey New York Life.",
-  },
-  {
-    question: "¿Cómo verifico la cédula de Iria Talan ante la CNSF?",
-    answerText:
-      "Su cédula es V388618, vigente desde 2008. Puedes verificarla en el registro público de agentes y ajustadores de la Comisión Nacional de Seguros y Fianzas, en agentesajustadores.cnsf.gob.mx. En México, todo agente de seguros debe estar autorizado por la CNSF para poder asesorarte y emitir pólizas.",
-  },
-  {
-    question: "¿Qué es MDRT Top of the Table y por qué importa?",
-    answerText:
-      "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros. Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008, con Court of the Table en 2023 y 2025, y Top of the Table en 2024. También ocupa el 8° lugar nacional de AMASFAC.",
-  },
-  {
-    question: "¿En qué se especializa Iria Talan?",
-    answerText:
-      "En seguros de vida, gastos médicos mayores, planeación de retiro (PPR y Modalidad 40 del IMSS), planes educacionales, fideicomisos y planeación patrimonial. Atiende además casos que la mayoría de los asesores no cubre: familias con hijos neurodivergentes, familias diversas, mexicanos viviendo en el extranjero y extranjeros residentes en México.",
-  },
-  {
-    question: "¿Qué formación académica tiene Iria Talan?",
-    answerText:
-      "Es Ingeniera Mecánica Administradora por el Tecnológico de Monterrey. Cursó Wealth Management Theory & Practice en Yale School of Management (2019) y MBA Essentials en London School of Economics, ambos en educación ejecutiva. Tiene también un Diplomado en Análisis Financiero por la Bolsa Mexicana de Valores.",
-  },
-  {
-    question: "¿Cuánto cuesta una asesoría con Iria Talan?",
-    answerText:
-      "La sesión inicial de 30 minutos no tiene costo ni compromiso. Como agente de seguros, su ingreso proviene de la comisión que paga la aseguradora sobre la póliza contratada, no de un honorario que cobre al cliente. El precio de tu póliza es el mismo que si la contrataras directamente.",
-  },
-  {
-    question: "¿Atiende clientes fuera de la Ciudad de México?",
-    answerText:
-      "Sí. Su oficina está en Bosque de Chapultepec, Ciudad de México, pero atiende en todo México de forma remota, por videollamada o WhatsApp. También asesora a mexicanos que viven en el extranjero y a extranjeros con residencia en México, en español o en inglés.",
-  },
-];
+function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
+  const oficina = author.officeAddress ?? "Ciudad de México";
+  return [
+    {
+      question: "¿Quién es Iria Talan?",
+      answerText:
+        "Iria Talan es asesora patrimonial y agente de seguros independiente en México, con más de 18 años de experiencia. Está autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF) con cédula V388618 desde 2008. Se especializa en seguros de vida, gastos médicos mayores, retiro y planeación patrimonial. Atiende desde Ciudad de México, en español e inglés.",
+    },
+    {
+      question: "¿Iria Talan es independiente o trabaja para una aseguradora?",
+      answerText:
+        "Es independiente. No trabaja para una sola aseguradora: está autorizada con seis y compara sus condiciones generales para recomendar la que conviene a cada cliente. Esa es la diferencia frente a un agente cautivo, que solo puede ofrecer los productos de la compañía que representa.",
+    },
+    {
+      question: "¿Con qué aseguradoras trabaja Iria Talan?",
+      answerText:
+        "Con seis aseguradoras autorizadas en México: GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz. Cinco de ellas ofrecen gastos médicos mayores —Allianz no comercializa GMM—. Es Asesora Diamante en GNP Seguros y en Seguros Monterrey New York Life.",
+    },
+    {
+      question: "¿Cómo verifico la cédula de Iria Talan ante la CNSF?",
+      answerText:
+        "Su cédula es V388618, vigente desde 2008. Puedes verificarla en el registro público de agentes y ajustadores de la Comisión Nacional de Seguros y Fianzas, en agentesajustadores.cnsf.gob.mx. En México, todo agente de seguros debe estar autorizado por la CNSF para poder asesorarte y emitir pólizas.",
+    },
+    {
+      question: "¿Qué es MDRT Top of the Table y por qué importa?",
+      answerText:
+        "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros. Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008, con Court of the Table en 2023 y 2025, y Top of the Table en 2024. También ocupa el 8° lugar nacional de AMASFAC.",
+    },
+    {
+      question: "¿En qué se especializa Iria Talan?",
+      answerText:
+        "En seguros de vida, gastos médicos mayores, planeación de retiro (PPR y Modalidad 40 del IMSS), planes educacionales, fideicomisos y planeación patrimonial. Atiende además casos que la mayoría de los asesores no cubre: familias con hijos neurodivergentes, familias diversas, mexicanos viviendo en el extranjero y extranjeros residentes en México.",
+    },
+    {
+      question: "¿Qué formación académica tiene Iria Talan?",
+      answerText:
+        "Es Ingeniera Mecánica Administradora por el Tecnológico de Monterrey. Cursó Wealth Management Theory & Practice en Yale School of Management (2019) y MBA Essentials en London School of Economics, ambos en educación ejecutiva. Tiene también un Diplomado en Análisis Financiero por la Bolsa Mexicana de Valores.",
+    },
+    {
+      question: "¿Cuánto cuesta una asesoría con Iria Talan?",
+      answerText:
+        "La sesión inicial de 30 minutos no tiene costo ni compromiso. Como agente de seguros, su ingreso proviene de la comisión que paga la aseguradora sobre la póliza contratada, no de un honorario que cobre al cliente. El precio de tu póliza es el mismo que si la contrataras directamente.",
+    },
+    {
+      question: "¿Atiende clientes fuera de la Ciudad de México?",
+      answerText: `Sí. Su oficina está en ${oficina}, pero atiende en todo México de forma remota, por videollamada o WhatsApp. También asesora a mexicanos que viven en el extranjero y a extranjeros con residencia en México, en español o en inglés.`,
+    },
+  ];
+}
 
 export default async function SobreIriaPage() {
   const author =
@@ -100,6 +108,10 @@ export default async function SobreIriaPage() {
 
   const ctaUrl = "/contacto#agendar";
 
+  // Una sola fuente para las FAQs: el mismo array alimenta el FAQPage del
+  // JSON-LD y lo que se ve en pantalla, así que no pueden divergir.
+  const faqs = buildSobreIriaFaqs(author);
+
   // Person y FinancialService ya vienen del grafo global del layout — emitirlos
   // otra vez aquí duplicaba los mismos @id en la página.
   const pageSchema = buildGraph(
@@ -107,7 +119,7 @@ export default async function SobreIriaPage() {
       { name: "Inicio", path: "/" },
       { name: "Sobre Iria", path: "/sobre-iria" },
     ]),
-    buildFAQPageSchema(SOBRE_IRIA_FAQS)
+    buildFAQPageSchema(faqs)
   );
 
   const credentialsByCategory = (author.credentials ?? []).reduce(
@@ -283,7 +295,7 @@ export default async function SobreIriaPage() {
               Lo que suelen preguntarme antes de la primera sesión.
             </p>
             <div className="mt-10 space-y-8">
-              {SOBRE_IRIA_FAQS.map((f) => (
+              {faqs.map((f) => (
                 <div
                   key={f.question}
                   className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6"

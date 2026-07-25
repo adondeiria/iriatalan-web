@@ -49,6 +49,9 @@ export const FALLBACK_AUTHOR: AuthorData = {
     { title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
     { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
   ],
-  officeAddress: "Bosque de Chapultepec, Ciudad de México",
+  // Tiene que coincidir con `officeAddress` del autor en Sanity: este fallback
+  // solo entra si el fetch falla, y si dijera otra cosa la dirección cambiaría
+  // sola en el JSON-LD (LocalBusiness.streetAddress) durante una caída.
+  officeAddress: "Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
   socialLinks: {},
 };

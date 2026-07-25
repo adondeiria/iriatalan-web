@@ -16,8 +16,11 @@ export const metadata: Metadata = {
 const LAST_UPDATED = "06 de abril de 2026";
 const ARCO_EMAIL = "soporte@talan.com.mx";
 const ARCO_OWNER = "Violeta Lindero";
+// Domicilio del responsable conforme a la LFPDPPP. Cambió con la mudanza de
+// oficina (antes Homero 203 int. 103). Tiene que coincidir con `officeAddress`
+// del autor en Sanity, que es lo que alimenta el LocalBusiness del JSON-LD.
 const RESPONSABLE_DOMICILIO =
-  "Homero 203 -103, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
+  "Homero 205 Int. 702, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
 
 export default function AvisoPrivacidadPage() {
   const pageSchema = buildGraph(

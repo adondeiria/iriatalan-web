@@ -581,8 +581,14 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     image: author?.photo?.asset?.url ?? `${SITE_URL}/img/iria/iria-portrait-02.jpg`,
     telephone: author?.socialLinks?.whatsapp ?? "+525512683401",
     email: author?.socialLinks?.email ?? "soporte@talan.com.mx",
+    // `streetAddress` sale de `officeAddress` del autor (Sanity), igual que en
+    // buildFinancialAdvisorSchema. Antes este nodo solo declaraba ciudad y país:
+    // un LocalBusiness sin calle es más débil para búsqueda local, y es
+    // precisamente el nodo al que /contacto apunta como `mainEntity` y el que
+    // debe coincidir con la ficha de Google Business.
     address: {
       "@type": "PostalAddress",
+      ...(author?.officeAddress ? { streetAddress: author.officeAddress } : {}),
       addressLocality: "Ciudad de México",
       addressRegion: "CDMX",
       addressCountry: "MX",

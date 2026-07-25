@@ -149,7 +149,8 @@ export const author = defineType({
       title: "Dirección oficina",
       type: "text",
       rows: 2,
-      description: "Ej: Bosque de Chapultepec, CDMX. Usado en schema.org Person.address",
+      description:
+        "Dirección completa, ej: Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560. Es la fuente de verdad: alimenta LocalBusiness.address y Person.workLocation del JSON-LD, y la FAQ de oficina en /sobre-iria. Conviene que coincida letra por letra con la ficha de Google Business y con el aviso de privacidad.",
     }),
     defineField({
       name: "sameAs",

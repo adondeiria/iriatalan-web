@@ -65,7 +65,11 @@ const NEW_CREDENTIALS = [
   { _key: "cred-cnsf", _type: "credential", title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "Desde 2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
 ];
 
-const NEW_OFFICE_ADDRESS = "Homero 203 int 104, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560";
+// OJO: este script reemplaza las credenciales ENTERAS. Si se re-corre, hay que
+// revisar NEW_CREDENTIALS primero — le falta "Court of the Table 2023" que sí
+// está en FALLBACK_AUTHOR (src/lib/author.ts), y esa diferencia ya provocó que
+// la página mostrara una lista de credenciales distinta a la de su FAQ.
+const NEW_OFFICE_ADDRESS = "Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560";
 
 const doc = await query(
   `*[_type == "author"] | order(_updatedAt desc)[0]{_id, name, credentials, specialties, officeAddress}`
