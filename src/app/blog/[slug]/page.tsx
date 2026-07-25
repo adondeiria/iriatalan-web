@@ -11,6 +11,7 @@ import {
   TLDRBox,
 } from "@/components/blog/article-meta";
 import { PortableTextRenderer } from "@/components/portable-text";
+import { GlossaryMentions } from "@/components/blog/glossary-mentions";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { RelatedServices } from "@/components/blog/related-services";
 import { TableOfContents } from "@/components/blog/table-of-contents";
@@ -376,6 +377,8 @@ export default async function ArticlePage({
               reviewedBy={article.reviewedBy ?? null}
             />
           </section>
+
+          <GlossaryMentions body={article.body ?? undefined} />
 
           <RelatedPosts
             topic={article.topic}

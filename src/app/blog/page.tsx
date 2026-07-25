@@ -127,6 +127,22 @@ export default async function BlogIndexPage() {
               ))}
             </nav>
           )}
+
+          {/* El glosario es contenido editorial hermano del blog, pero no está
+              en el nav del header (ahí compite con páginas de venta y tiene
+              baja intención comercial). Este enlace le da entrada desde una
+              página fuerte y cierra el circuito con GlossaryMentions, que
+              enlaza en sentido contrario desde cada artículo. */}
+          <p className="mt-6 text-warm-brown/85 dark:text-cream-light/65">
+            ¿Te topaste con una palabra que no conoces?{" "}
+            <Link
+              href="/glosario"
+              className="font-medium text-ink dark:text-cream-light underline hover:text-burgundy dark:hover:text-burgundy transition"
+            >
+              Consulta el glosario
+            </Link>
+            .
+          </p>
         </section>
 
         <section className="px-6 pb-24 max-w-5xl mx-auto w-full">
