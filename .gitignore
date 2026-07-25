@@ -45,3 +45,8 @@ next-env.d.ts
 
 # borradores Word (export de iriatalan-blog-conductor — uso humano, no deploy)
 /borradores/
+
+# scratch: logs, scripts de un solo uso y exports de trabajo.
+# Si algo de aquí vale conservarse, muévelo antes: los borradores de artículo
+# van a sanity/seeds/draft-history/ y los scripts reutilizables a scripts/.
+/tmp/
