@@ -40,8 +40,9 @@ export function Analytics() {
   }, []);
 
   // Tracking de conversiones por delegación: un solo listener captura clics
-  // a WhatsApp y a "Agendar / Contacto" en TODO el sitio (float, footer, hero,
-  // CTAs) sin tocar cada componente. trackEvent es no-op si no hay consentimiento.
+  // a WhatsApp, a "Agendar / Contacto" y a descargas de archivos en TODO el
+  // sitio (float, footer, hero, CTAs, lead magnets) sin tocar cada componente.
+  // trackEvent es no-op si no hay consentimiento.
   useEffect(() => {
     function onClick(e: MouseEvent) {
       const anchor = (e.target as HTMLElement | null)?.closest?.("a");
@@ -49,6 +50,19 @@ export function Analytics() {
       const href = anchor.getAttribute("href") ?? "";
       if (/wa\.me|whatsapp\.com|^https?:\/\/api\.whatsapp/i.test(href)) {
         trackEvent("whatsapp_click", { link_url: href });
+      } else if (/\/descargas\//i.test(href) || /\.(pdf|xlsx)(\?|$)/i.test(href)) {
+        // Los lead magnets (guía de trámites, check-up de beneficiarios,
+        // checklist de discapacidad) eran invisibles en GA4: el listener solo
+        // miraba WhatsApp y /contacto. `file_download` es el nombre canónico
+        // de GA4, así que encaja con su medición mejorada.
+        const fileName = href.split("/").pop()?.split("?")[0] ?? href;
+        trackEvent("file_download", {
+          link_url: href,
+          file_name: fileName,
+          file_extension: fileName.includes(".")
+            ? fileName.split(".").pop()!.toLowerCase()
+            : "",
+        });
       } else if (/\/contacto/.test(href) || /#agendar/.test(href)) {
         trackEvent("click_agendar", { link_url: href });
       }

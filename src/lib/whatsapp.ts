@@ -48,6 +48,11 @@ export const WA_MESSAGES = {
   sobreIria:
     "Hola Iria, vi tu perfil en el sitio y me gustaría agendar una primera plática.",
 
+  // — Blog —
+  /** Respaldo para el blog cuando no se conoce el artículo (índice, categorías). */
+  blog:
+    "Hola Iria, estoy leyendo tu blog y me gustaría platicar contigo sobre mi caso.",
+
   // — Páginas en inglés —
   internationalHealth:
     "Hi Iria, I'm on your International Health Insurance page and I'd like a quote.",
@@ -56,6 +61,21 @@ export const WA_MESSAGES = {
   retirementPlanning:
     "Hi Iria, I'm on your Retirement Planning page and I'd like to start a retirement plan.",
 } as const;
+
+/**
+ * Mensaje para el lector que termina un artículo — el lead más caliente del
+ * blog. Nombrar el artículo evita el "Hola" sin contexto: Iria abre el chat
+ * sabiendo qué leyó y por qué escribe.
+ *
+ * El título se recorta porque algunos pasan de 90 caracteres y el mensaje
+ * precargado se vuelve ilegible en el móvil.
+ */
+export function waBlogMessage(articleTitle?: string | null): string {
+  const t = articleTitle?.trim();
+  if (!t) return WA_MESSAGES.blog;
+  const corto = t.length > 70 ? `${t.slice(0, 70).trimEnd()}…` : t;
+  return `Hola Iria, leí tu artículo "${corto}" y me gustaría platicar contigo sobre mi caso.`;
+}
 
 /**
  * Construye el enlace de WhatsApp. Acepta el número en cualquier formato

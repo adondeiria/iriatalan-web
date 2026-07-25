@@ -21,6 +21,7 @@ import {
   ARTICLE_QUERY,
 } from "../../../../sanity/lib/queries";
 import { TOPIC_LABELS, topicHref } from "@/lib/blog";
+import { WA_NUMBER_FALLBACK, waBlogMessage, waHref } from "@/lib/whatsapp";
 import {
   AuthorData,
   buildArticleSchema,
@@ -390,15 +391,32 @@ export default async function ArticlePage({
                 ¿Tienes una situación específica?
               </h2>
               <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-xl mx-auto">
-                Cada caso es distinto. Agenda una sesión inicial sin compromiso
-                — te escucho primero, recomiendo después.
+                Cada caso es distinto. Escríbeme y lo vemos con calma — te
+                escucho primero, recomiendo después.
               </p>
-              <Link
-                href="/contacto"
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-burgundy text-cream-light px-7 py-3.5 text-[11px] font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition"
-              >
-                Agenda sesión inicial
-              </Link>
+              {/* WhatsApp como acción principal: el lector que llegó hasta aquí
+                  es el lead más caliente del artículo, y el mensaje ya llega
+                  con el título del artículo precargado. "Agenda sesión" queda
+                  como secundaria para quien prefiere el formulario. */}
+              <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={waHref(
+                    WA_NUMBER_FALLBACK,
+                    waBlogMessage(article.title)
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-burgundy text-cream-light px-7 py-3.5 text-[11px] font-medium tracking-[0.18em] uppercase hover:bg-burgundy-deep transition"
+                >
+                  Escríbeme por WhatsApp
+                </a>
+                <Link
+                  href="/contacto#agendar"
+                  className="inline-flex items-center justify-center rounded-full border border-warm-brown/30 dark:border-warm-brown/50 px-7 py-3.5 text-[11px] font-medium tracking-[0.18em] uppercase text-ink dark:text-cream-light hover:border-burgundy transition"
+                >
+                  Agenda sesión inicial
+                </Link>
+              </div>
             </div>
           </section>
         </article>
