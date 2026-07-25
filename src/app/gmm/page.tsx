@@ -20,7 +20,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife o SMNYL?",
     answerText:
-      "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, red preferida, necesidad internacional, presupuesto, preexistencias declaradas) y del producto específico de cada aseguradora. Como referencia general: GNP tiene red amplia en México; BUPA y MetLife destacan en cobertura internacional; AXA y Seguros Monterrey New York Life tienen líneas competitivas para perfiles afluentes. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
+      "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, hospitales donde quieres atenderte, necesidad internacional, presupuesto, preexistencias declaradas) y del plan específico que contrates. Dos precisiones que cambian la comparación: la red hospitalaria no es un atributo fijo de cada aseguradora, porque las cinco manejan varios niveles de red y el nivel lo decide el plan que pagas; y de GMM internacional solo dos tienen oferta, BUPA y GNP. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
   },
   {
     question: "¿Cubre el GMM enfermedades preexistentes?",
@@ -80,7 +80,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Y la cobertura internacional?",
     answerText:
-      "Crítica para clientes con tratamientos en EUA o Europa. No todos los planes la incluyen. BUPA, MetLife y otros planes internacionales pueden ofrecer redes amplias; conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
+      "Crítica para clientes con tratamientos en EUA o Europa, y no todos los planes la incluyen. De las cinco aseguradoras con las que trabajo, solo dos manejan GMM internacional: BUPA y GNP. Un plan internacional da acceso a una red de hospitales en el extranjero y, dentro de México, a todos los hospitales y clínicas autorizados por COFEPRIS. Conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
   },
 ];
 
@@ -294,7 +294,7 @@ export default async function GmmPage() {
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                 <h3 className="font-semibold text-ink dark:text-cream-light">Cobertura internacional</h3>
                 <p className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                  EUA, Europa — crítica para clientes que se atienden allá. BUPA, MetLife y otros planes internacionales pueden ofrecer redes amplias; conviene revisar hospitales elegibles y territorialidad.
+                  EUA, Europa — crítica para clientes que se atienden allá. Solo dos de las cinco aseguradoras con las que trabajo manejan GMM internacional: BUPA y GNP. Conviene revisar hospitales elegibles y territorialidad.
                 </p>
               </div>
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
@@ -435,6 +435,31 @@ export default async function GmmPage() {
                 un GMM internacional vs un GMM nacional estándar no es cosmética —
                 es de capa, de techo y de red hospitalaria internacional aceptada.
               </p>
+              {/* Encuadre que ningún comparador da: la red hospitalaria no es un
+                  atributo fijo de la aseguradora, es una decisión de plan. Cambia
+                  la pregunta del cliente de "¿cuál aseguradora tiene mejor red?"
+                  (que no tiene respuesta) a "¿qué nivel de red necesito y estoy
+                  dispuesto a pagar?" (que sí la tiene). */}
+              <div>
+                <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
+                  La red hospitalaria no la define la aseguradora: la define tu plan
+                </h3>
+                <p>
+                  Las cinco aseguradoras con las que trabajo manejan distintos
+                  niveles de red hospitalaria dentro de su propia oferta, y el nivel
+                  lo decide el plan que contratas — es decir, lo que estés dispuesto
+                  a pagar. Por eso la pregunta útil no es{" "}
+                  <em>¿cuál aseguradora tiene la mejor red?</em>, sino{" "}
+                  <em>¿a qué hospitales quiero poder ir, y cuánto cuesta ese nivel
+                  en cada aseguradora?</em>
+                </p>
+                <p className="mt-3">
+                  Esto corta en los dos sentidos: si te atiendes en hospitales de
+                  primer nivel, hay que verificar que tu plan los incluya de verdad.
+                  Y si nunca lo has hecho, estar pagando el nivel más alto es dinero
+                  que se puede reasignar a suma asegurada o a bajar el deducible.
+                </p>
+              </div>
               <div>
                 <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
                   Cuándo importa la cobertura internacional
@@ -449,49 +474,53 @@ export default async function GmmPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
-                  Aseguradoras que suelen destacar en cobertura internacional
+                  Los dos GMM internacionales que ofrezco
                 </h3>
-                {/* Tabla HTML real, no imagen ni prosa: es la estructura que los
-                    answer engines extraen y citan textual. Es el mismo contenido
-                    que estaba en viñetas — no se agregó ninguna afirmación nueva.
-                    Cubre solo las 3 que la página caracteriza; MetLife y Seguros
-                    Monterrey no tienen aquí datos de red verificados, y ponerles
-                    una fila vacía o inventada sería peor que dejarlas fuera de un
-                    bloque que, por su encabezado, ya es un subconjunto. */}
+                <p className="mb-4">
+                  De las cinco aseguradoras con las que trabajo, solo dos manejan
+                  GMM internacional: <strong className="text-ink dark:text-cream-light">BUPA y GNP</strong>.
+                  Un plan internacional te da una red de hospitales en el extranjero
+                  a los que puedes acudir y, dentro de México, acceso a todos los
+                  hospitales y clínicas autorizados por COFEPRIS.
+                </p>
+                {/* Tabla HTML real, no prosa: es la estructura que los answer
+                    engines extraen y citan textual.
+
+                    Son DOS filas, no cinco, porque Iria solo ofrece GMM
+                    internacional de BUPA y GNP. La versión anterior listaba
+                    también a AXA y afirmaba al pie que MetLife y Seguros
+                    Monterrey ofrecían planes internacionales — las dos cosas eran
+                    incorrectas. Un comparador que infla la lista es justo lo que
+                    esta página no debe ser. */}
                 <figure className="mt-2 -mx-2 sm:mx-0">
                   <div className="overflow-x-auto rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                     <table className="w-full text-left text-sm border-collapse">
                       <caption className="sr-only">
-                        Aseguradoras que destacan en cobertura internacional de gastos médicos mayores: red en México y alcance internacional
+                        Los dos seguros de gastos médicos mayores internacionales que ofrece Iria Talan: cobertura dentro de México y fuera de México
                       </caption>
                       <thead className="bg-cream/40 dark:bg-coffee/30">
                         <tr>
                           <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Aseguradora</th>
-                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Red en México</th>
-                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Alcance internacional</th>
+                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Dentro de México</th>
+                          <th scope="col" className="px-4 py-3 font-semibold text-ink dark:text-cream-light">Fuera de México</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr className="border-b border-warm-brown/10 dark:border-warm-brown/20">
                           <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">BUPA</th>
-                          <td className="px-4 py-3 align-top">Acceso a los mejores hospitales del país, según el plan contratado</td>
-                          <td className="px-4 py-3 align-top">Acceso a los mejores hospitales del mundo, según el plan internacional contratado</td>
-                        </tr>
-                        <tr className="border-b border-warm-brown/10 dark:border-warm-brown/20">
-                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">GNP VIP</th>
-                          <td className="px-4 py-3 align-top">Acceso a todos los hospitales en México</td>
-                          <td className="px-4 py-3 align-top">Red fuerte en EUA y hospitales internacionales en convenio</td>
+                          <td className="px-4 py-3 align-top">Todos los hospitales y clínicas autorizados por COFEPRIS</td>
+                          <td className="px-4 py-3 align-top">Red internacional de hospitales, según el plan contratado</td>
                         </tr>
                         <tr>
-                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">AXA</th>
-                          <td className="px-4 py-3 align-top">Se revisa por producto y plan</td>
-                          <td className="px-4 py-3 align-top">Hospitales internacionales en convenio</td>
+                          <th scope="row" className="px-4 py-3 font-semibold text-ink dark:text-cream-light align-top">GNP</th>
+                          <td className="px-4 py-3 align-top">Todos los hospitales y clínicas autorizados por COFEPRIS</td>
+                          <td className="px-4 py-3 align-top">Red internacional de hospitales, con presencia fuerte en Estados Unidos</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                   <figcaption className="mt-3 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                    La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso. MetLife y Seguros Monterrey New York Life también ofrecen planes con alcance internacional — el detalle de red depende del producto y lo reviso contigo en la sesión.
+                    La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso.
                   </figcaption>
                 </figure>
               </div>
