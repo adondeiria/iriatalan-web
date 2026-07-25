@@ -375,8 +375,12 @@ export default async function SegurosVidaPage() {
               Cotizar sin costo y sin compromiso
             </h2>
             <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-              Trabajo con 6 aseguradoras AAA en México. En 30 minutos tienes la comparativa
-              de opciones para tu perfil específico — no una presentación genérica.
+              Trabajo con 6 aseguradoras AAA en México:{" "}
+              <strong className="font-semibold text-ink dark:text-cream-light">GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz</strong>.
+              Las 6 ofrecen seguro de vida, así que aquí la comparativa es entre todas.
+              (En gastos médicos mayores son 5, porque Allianz no vende GMM en México.)
+              En 30 minutos tienes la comparativa de opciones para tu perfil específico
+              — no una presentación genérica.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <Link

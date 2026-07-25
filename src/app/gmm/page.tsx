@@ -169,8 +169,11 @@ export default async function GmmPage() {
             internacional correctas para tu caso real.
           </h2>
           <p className="mt-6 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-            Trabajo con BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP.
-            Según tu situación específica, te recomiendo la(s) más adecuada(s) para ti.
+            Soy corredora independiente de 6 aseguradoras AAA en México, y{" "}
+            <strong className="font-semibold text-ink dark:text-cream-light">5 de ellas venden gastos médicos mayores</strong>:
+            BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP. La sexta es
+            Allianz, que en México no ofrece GMM — solo vida y ahorro. Según tu
+            situación específica, te recomiendo la(s) más adecuada(s) para ti.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
@@ -488,9 +491,11 @@ export default async function GmmPage() {
                   2. Recomendación de la(s) aseguradora(s) adecuada(s) para ti
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Trabajo con BUPA, MetLife, Seguros Monterrey New York Life,
-                  AXA y GNP. Según tu situación específica, te recomiendo la(s) más
-                  adecuada(s) para ti.
+                  Para GMM comparo las 5 aseguradoras que lo venden: BUPA, MetLife,
+                  Seguros Monterrey New York Life, AXA y GNP. En total represento a 6
+                  —la sexta es Allianz, que en México no maneja gastos médicos mayores—,
+                  así que en esta línea la comparación honesta es entre 5. Según tu
+                  situación específica, te recomiendo la(s) más adecuada(s) para ti.
                 </p>
               </div>
               <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
