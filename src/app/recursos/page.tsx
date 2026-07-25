@@ -267,6 +267,27 @@ export default async function RecursosPage({
             acceso público a la documentación oficial de las 6 aseguradoras
             autorizadas con las que trabajo.
           </p>
+
+          {/* /glosario solo estaba enlazado desde el footer: quedaba casi
+              huérfano pese a emitir DefinedTermSet. Recursos es su hub natural
+              — quien viene a leer condiciones generales es justo quien necesita
+              saber qué significa "coaseguro". */}
+          <Link
+            href="/glosario"
+            className="mt-8 group flex items-start gap-4 rounded-2xl border border-warm-brown/20 dark:border-warm-brown/40 p-5 max-w-2xl hover:border-burgundy/50 hover:bg-cream dark:hover:bg-coffee/40 transition-colors duration-500"
+          >
+            <span aria-hidden="true" className="text-2xl leading-none mt-0.5">📖</span>
+            <span>
+              <span className="block font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                Glosario de seguros
+              </span>
+              <span className="mt-1 block text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                Deducible, coaseguro, suma asegurada, periodo de espera — los
+                términos que aparecen en cada condición general, explicados en
+                español claro.
+              </span>
+            </span>
+          </Link>
         </section>
 
         <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">

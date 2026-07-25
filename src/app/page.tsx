@@ -626,7 +626,13 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="bg-cream-light border-t border-warm-brown/15 px-6 py-20 sm:py-28">
+        {/* id="faqs": destino del enlace "Preguntas Frecuentes" del footer, que
+            antes apuntaba a /recursos#faqs — un ancla que no existía en ninguna
+            página. Estas FAQs son las que emiten el FAQPage del home. */}
+        <section
+          id="faqs"
+          className="scroll-mt-24 bg-cream-light border-t border-warm-brown/15 px-6 py-20 sm:py-28"
+        >
           <div className="max-w-3xl mx-auto w-full">
             <div className="text-center">
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">

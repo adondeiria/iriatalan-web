@@ -259,7 +259,10 @@ export default async function RootLayout({
               <ul className="space-y-3 text-sm text-cream-light/80">
                 <li><Link href="/blog" className="hover:text-cream-light transition-colors duration-500">Blog</Link></li>
                 <li><Link href="/recursos" className="hover:text-cream-light transition-colors duration-500">Guías Gratuitas</Link></li>
-                <li><Link href="/recursos#faqs" className="hover:text-cream-light transition-colors duration-500">Preguntas Frecuentes</Link></li>
+                {/* Apuntaba a /recursos#faqs, un ancla inexistente: /recursos no
+                    tiene sección de FAQs. Las FAQs del home sí existen y emiten
+                    FAQPage, así que el enlace del footer va ahí. */}
+                <li><Link href="/#faqs" className="hover:text-cream-light transition-colors duration-500">Preguntas Frecuentes</Link></li>
                 <li><Link href="/glosario" className="hover:text-cream-light transition-colors duration-500">Glosario</Link></li>
                 <li><Link href="/guia" className="hover:text-cream-light transition-colors duration-500">Guía: trámites por fallecimiento</Link></li>
               </ul>
