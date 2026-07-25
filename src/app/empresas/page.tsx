@@ -13,6 +13,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
@@ -537,6 +538,16 @@ export default async function EmpresasPage() {
             </div>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["empresas","retiro"]}
+          heading="Para dueños de negocio, a fondo"
+        />
+
       </main>
     </>
   );

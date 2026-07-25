@@ -13,6 +13,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
@@ -576,6 +577,17 @@ export default async function PatrimonialPage() {
             </p>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["patrimonial","fideicomisos"]}
+          heading="Sobre planeación patrimonial, a fondo"
+          intro="Casos reales de sucesión, fideicomisos y protección de familias con necesidades de apoyo."
+        />
+
       </main>
     </>
   );

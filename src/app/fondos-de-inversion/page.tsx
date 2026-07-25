@@ -13,6 +13,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
@@ -510,6 +511,17 @@ export default async function FondosDeInversionPage() {
             </div>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["retiro","patrimonial"]}
+          heading="Sobre inversión y patrimonio, a fondo"
+          intro="Vehículos de largo plazo, retiro y estructura patrimonial explicados con números."
+        />
+
       </main>
     </>
   );

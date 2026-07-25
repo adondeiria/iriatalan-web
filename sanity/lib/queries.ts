@@ -195,6 +195,28 @@ export const BLOG_BY_TOPIC_QUERY = defineQuery(`
 `);
 
 /**
+ * ARTICLES_BY_TOPICS_QUERY — artículos publicados de uno o varios topics.
+ *
+ * Alimenta el bloque "artículos relacionados" de las páginas de servicio, que
+ * cierra el interlinking en el sentido que faltaba: `related-services.tsx` ya
+ * llevaba del artículo al servicio, pero ninguna página de servicio enlazaba a un
+ * solo artículo — el cluster era una calle de un solo sentido.
+ *
+ * Acepta varios topics porque algunas páginas de servicio no tienen artículos
+ * propios todavía y conviene que tomen de temas vecinos en vez de quedar vacías.
+ * El orden del array `$topics` NO ordena el resultado: eso se decide por fecha,
+ * para que lo más reciente salga primero.
+ *
+ * Sin límite en la query (GROQ no acepta slices con variable); el componente
+ * recorta. Trae 6 como máximo razonable para elegir.
+ */
+export const ARTICLES_BY_TOPICS_QUERY = defineQuery(`
+  *[_type == "article" && !draft && publishedAt <= now() && topic in $topics] | order(publishedAt desc)[0...6]{
+    _id, title, "slug": slug.current, excerpt, tldr, topic, format, publishedAt
+  }
+`);
+
+/**
  * RELATED_ARTICLES_QUERY — fallback automático cuando relatedArticles está vacío.
  * Trae 3 del mismo topic, excluyendo el artículo actual.
  */

@@ -74,11 +74,46 @@ export default async function BlogIndexPage() {
       tags: ["article"],
     }).catch(() => null)) ?? [];
 
+  // El índice emitía SOLO BreadcrumbList, mientras sus propias páginas hijas de
+  // categoría ya declaraban CollectionPage + ItemList. El hub principal quedaba
+  // peor marcado que sus ramas: un crawler no tenía forma de saber que esta URL
+  // es una colección ni qué artículos la componen.
+  //
+  // El ItemList va en orden de publicación (el mismo que se ve en pantalla) y
+  // lleva `datePublished`, que es la señal que usan los answer engines para
+  // decidir qué tan fresco es el contenido de una colección.
+  //
+  // Si no hay artículos no se emite nada: un CollectionPage vacío es soft-404, y
+  // por eso la página ya se marca `noindex` en ese caso.
   const schema = buildGraph(
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Blog", path: "/blog" },
-    ])
+    ]),
+    articles.length > 0
+      ? {
+          "@type": "CollectionPage",
+          "@id": `${SITE_URL}/blog#collection`,
+          name: `Blog — ${SITE_NAME}`,
+          description:
+            "Artículos firmados sobre planeación patrimonial, seguros, retiro, PPR, GMM y casos especiales.",
+          url: `${SITE_URL}/blog`,
+          inLanguage: "es-MX",
+          isPartOf: { "@id": `${SITE_URL}#website` },
+          about: { "@id": `${SITE_URL}/sobre-iria#person` },
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: articles.length,
+            itemListElement: articles.map((a, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `${SITE_URL}/blog/${a.slug}`,
+              name: a.title,
+              ...(a.publishedAt ? { datePublished: a.publishedAt } : {}),
+            })),
+          },
+        }
+      : null
   );
 
   // Categorías que tienen al menos 1 artículo publicado. Solo se muestran

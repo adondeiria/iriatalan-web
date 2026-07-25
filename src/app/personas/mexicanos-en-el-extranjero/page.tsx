@@ -12,6 +12,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 export const metadata: Metadata = {
   title: "Seguros y Ahorro en Dólares para Mexicanos en el Extranjero",
@@ -397,6 +398,16 @@ export default async function MexicanosEnElExtranjeroPage() {
             </div>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["patrimonial","retiro"]}
+          heading="Patrimonio a distancia, a fondo"
+        />
+
       </main>
     </>
   );

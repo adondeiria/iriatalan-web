@@ -13,6 +13,7 @@ import {
   type FAQItem,
 } from "@/lib/seo";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
+import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
@@ -535,6 +536,17 @@ export default async function HijosNeurodivergentesPage() {
             </div>
           </div>
         </section>
+
+        {/* Interlinking inverso: la página de servicio devuelve autoridad al
+            blog y señala de qué temas hay profundidad. Se puebla desde Sanity,
+            así que no hay lista que se quede vieja. No renderiza si no hay
+            artículos de estos topics. */}
+        <RelatedArticles
+          topics={["casos","patrimonial"]}
+          heading="Guías para familias neurodivergentes"
+          intro="Las dos guías completas: qué papeles dejar listos y cómo estructurar el dinero para que dure décadas."
+        />
+
       </main>
     </>
   );
