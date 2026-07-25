@@ -54,9 +54,9 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Asesoría Patrimonial para Familias en México y el Extranjero",
+  title: "Asesoría Patrimonial y Seguros en México",
   description:
-    "Asesoría patrimonial en México para familias y mexicanos en el extranjero: fideicomisos, sucesión, inversiones y seguros en dólares. Ordena tu patrimonio.",
+    "Asesoría patrimonial personalizada: fideicomisos, sucesión, inversiones y seguros en dólares para familias en México y el extranjero. Ordena tu patrimonio.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
