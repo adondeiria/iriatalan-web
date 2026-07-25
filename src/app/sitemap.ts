@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { sanityFetch } from "../../sanity/lib/fetch";
 import { SITEMAP_QUERY } from "../../sanity/lib/queries";
 import { SITE_URL } from "@/lib/seo";
+import { TOPIC_TO_URL_SLUG, type ArticleTopic } from "@/lib/blog";
 
 // ISR: regenerar sitemap cada 60 seg para que crawlers vean nuevos slugs
 // publicados sin necesidad de redeploy.
@@ -10,10 +11,23 @@ export const revalidate = 60;
 
 type SitemapData = {
   services: Array<{ slug: string; _updatedAt: string }>;
-  articles: Array<{ slug: string; _updatedAt: string; publishedAt?: string }>;
+  articles: Array<{
+    slug: string;
+    _updatedAt: string;
+    publishedAt?: string;
+    topic?: string;
+  }>;
   glossaryTerms: Array<{ slug: string; _updatedAt: string }>;
   resources: Array<{ slug: string; _updatedAt: string }>;
 } | null;
+
+/** Fecha más reciente de una colección; undefined si está vacía. */
+function newestDate(items: Array<{ _updatedAt: string }>): Date | undefined {
+  if (items.length === 0) return undefined;
+  return new Date(
+    Math.max(...items.map((i) => new Date(i._updatedAt).getTime()))
+  );
+}
 
 const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/", priority: 1.0 },
@@ -45,11 +59,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     revalidate: 3600,
   }).catch(() => null);
 
-  const now = new Date();
+  const articles = data?.articles ?? [];
 
+  // Sin `lastModified` en rutas estáticas: antes se emitía `new Date()`, que
+  // con ISR reporta "modificado ahora mismo" en cada regeneración. Un lastmod
+  // que nunca envejece es una señal falsa y los buscadores terminan
+  // descartando el lastmod de TODO el sitemap. Omitirlo es honesto; las rutas
+  // dinámicas de abajo sí llevan fecha real desde Sanity.
   const staticUrls: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => ({
     url: `${SITE_URL}${r.path}`,
-    lastModified: now,
     priority: r.priority,
   }));
 
@@ -66,12 +84,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })) ?? [];
 
   // /blog/[slug] — drafts ya excluidos por SITEMAP_QUERY (`!draft && publishedAt <= now()`)
-  const articleUrls: MetadataRoute.Sitemap =
-    data?.articles?.map((a) => ({
-      url: `${SITE_URL}/blog/${a.slug}`,
-      lastModified: new Date(a._updatedAt),
-      priority: 0.7,
-    })) ?? [];
+  const articleUrls: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${SITE_URL}/blog/${a.slug}`,
+    lastModified: new Date(a._updatedAt),
+    priority: 0.7,
+  }));
 
   // /glosario/[slug] — drafts excluidos por SITEMAP_QUERY
   const glossaryUrls: MetadataRoute.Sitemap =
@@ -88,13 +105,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })) ?? [];
 
-  // /blog index — solo si hay artículos publicados (evita soft-404)
+  // /blog/categoria/[slug] — un hub por topic con artículos publicados.
+  // Emiten CollectionPage + ItemList y son indexables, pero faltaban en el
+  // sitemap. Solo se incluyen los topics con contenido: /blog/categoria/[slug]
+  // se marca noindex cuando está vacío, así que emitirlos daría soft-404.
+  const articlesByTopic = new Map<string, typeof articles>();
+  for (const a of articles) {
+    if (!a.topic || !(a.topic in TOPIC_TO_URL_SLUG)) continue;
+    const bucket = articlesByTopic.get(a.topic) ?? [];
+    bucket.push(a);
+    articlesByTopic.set(a.topic, bucket);
+  }
+
+  const categoryUrls: MetadataRoute.Sitemap = [...articlesByTopic.entries()].map(
+    ([topic, items]) => ({
+      url: `${SITE_URL}/blog/categoria/${TOPIC_TO_URL_SLUG[topic as ArticleTopic]}`,
+      lastModified: newestDate(items),
+      priority: 0.7,
+    })
+  );
+
+  // /blog index — solo si hay artículos publicados (evita soft-404).
+  // lastModified = artículo más reciente, no "ahora".
   const blogIndexUrl: MetadataRoute.Sitemap =
     articleUrls.length > 0
       ? [
           {
             url: `${SITE_URL}/blog`,
-            lastModified: now,
+            lastModified: newestDate(articles),
             priority: 0.8,
           },
         ]
@@ -106,28 +144,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? [
           {
             url: `${SITE_URL}/glosario`,
-            lastModified: now,
+            lastModified: newestDate(data?.glossaryTerms ?? []),
             priority: 0.7,
           },
         ]
       : [];
 
-  // /recursos index — solo si hay recursos publicados (cuando está vacía, la
-  // página se auto-noindexea; incluirla en el sitemap crearía señal contradictoria).
-  const recursosIndexUrl: MetadataRoute.Sitemap =
-    resourceUrls.length > 0
-      ? [
-          {
-            url: `${SITE_URL}/recursos`,
-            lastModified: now,
-            priority: 0.8,
-          },
-        ]
-      : [];
+  // /recursos index — SIEMPRE presente: la página sirve contenido estático
+  // estable (canales WhatsApp, folders OneDrive de condiciones generales,
+  // buscadores de médicos) y es indexable aunque no haya recursos en Sanity.
+  const recursosIndexUrl: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/recursos`,
+      lastModified: newestDate(data?.resources ?? []),
+      priority: 0.8,
+    },
+  ];
 
   return [
     ...staticUrls,
     ...blogIndexUrl,
+    ...categoryUrls,
     ...glossaryIndexUrl,
     ...recursosIndexUrl,
     ...serviceUrls,

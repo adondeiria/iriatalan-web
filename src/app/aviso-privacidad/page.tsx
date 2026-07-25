@@ -4,7 +4,9 @@ import Link from "next/link";
 import { buildBreadcrumbSchema, buildGraph, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Aviso de Privacidad — Iria Talan / RIF",
+  // `absolute`: el title ya trae la marca; sin esto el template del root la
+  // pegaba una segunda vez.
+  title: { absolute: "Aviso de Privacidad — Iria Talan / RIF" },
   description:
     "Aviso de Privacidad Integral conforme a la LFPDPPP. Responsable: Iria Talan Hernández (REINGENIERÍA FINANCIERA). Datos personales tratados, finalidades, transferencias y derechos ARCO.",
   alternates: { canonical: `${SITE_URL}/aviso-privacidad` },

@@ -30,7 +30,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const isEmpty = terms.length === 0;
 
   return {
-    title: `Glosario — Seguros y planeación patrimonial | ${SITE_NAME}`,
+    // `absolute`: el title ya trae la marca; sin esto el template del root la
+    // pegaba una segunda vez.
+    title: {
+      absolute: `Glosario — Seguros y planeación patrimonial | ${SITE_NAME}`,
+    },
     description:
       "Definiciones breves de términos comunes en seguros, retiro y planeación patrimonial en México: deducible, coaseguro, suma asegurada, AFORE, PPR, fideicomiso y más.",
     alternates: { canonical: `${SITE_URL}/glosario` },

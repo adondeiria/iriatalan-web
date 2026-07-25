@@ -10,10 +10,11 @@ import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
 import {
   AuthorData,
   buildBreadcrumbSchema,
-  buildFinancialAdvisorSchema,
+  buildFAQPageSchema,
   buildGraph,
-  buildPersonSchema,
+  type FAQItem,
 } from "@/lib/seo";
+import { FALLBACK_AUTHOR } from "@/lib/author";
 import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -29,44 +30,66 @@ export const metadata: Metadata = {
   },
 };
 
-const FALLBACK_AUTHOR: AuthorData = {
-  name: "Iria Talan",
-  alternateName: "Iria Talán",
-  title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios complejos en México. Reconocida por la calidad del cuidado, no por volumen. Miembro MDRT desde 2008 — Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025 — élite mundial de la industria de seguros. AMASFAC 8vo Lugar Nacional. Asesora Diamante GNP y Seguros Monterrey NYL.",
-  awards: [
-    "Million Dollar Round Table (MDRT) — Miembro desde 2008",
-    "MDRT Court of the Table (COT) 2023",
-    "MDRT Top of the Table (TOT) 2024",
-    "MDRT Court of the Table (COT) 2025",
-    "AMASFAC — 8vo Lugar Nacional",
-    "GNP Seguros — Asesora Diamante",
-    "Seguros Monterrey New York Life — Asesora Diamante",
-  ],
-  carriers: ["BUPA", "MetLife", "Allianz", "Seguros Monterrey NYL", "AXA", "GNP"],
-  specialties: [
-    "Seguros de Vida",
-    "Gastos Médicos Mayores",
-    "Planeación Patrimonial",
-    "Fideicomisos",
-    "Planes Educacionales",
-    "Retiro y Pensiones",
-  ],
-  languages: ["Español", "English"],
-  credentials: [
-    { title: "Miembro MDRT desde 2008 · Court of the Table 2023 · Top of the Table 2024 · Court of the Table 2025", issuer: "Million Dollar Round Table — élite mundial de la industria de seguros", category: "industria" },
-    { title: "8vo Lugar Nacional", issuer: "AMASFAC (Asoc. Mexicana de Asesores en Seguros y Fianzas)", category: "industria" },
-    { title: "Asesora Diamante", issuer: "GNP Seguros", category: "carrier" },
-    { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", category: "carrier" },
-    { title: "Wealth Management Theory & Practice", issuer: "Yale School of Management — Executive Education", year: "2019", category: "academica" },
-    { title: "MBA Essentials", issuer: "London School of Economics — Executive Education", category: "academica" },
-    { title: "Ingeniera Mecánica Administradora", issuer: "Tecnológico de Monterrey", category: "academica" },
-    { title: "Diplomado en Análisis Financiero", issuer: "Bolsa Mexicana de Valores", category: "regulatoria" },
-    { title: "Asesora Autorizada · Cédula V388618", issuer: "Comisión Nacional de Seguros y Fianzas (CNSF)", year: "2008", url: "https://agentesajustadores.cnsf.gob.mx/", category: "regulatoria" },
-  ],
-  officeAddress: "Bosque de Chapultepec, Ciudad de México",
-  socialLinks: {},
-};
+// FALLBACK_AUTHOR vive en `@/lib/author`: el layout también lo necesita para
+// emitir los nodos Person / FinancialService del grafo global.
+
+/**
+ * FAQs de entidad — la superficie que responden los motores de IA cuando
+ * alguien pregunta "¿quién es Iria Talan?" o "¿me recomiendas un asesor de
+ * seguros en México?". Respuestas autocontenidas de 40-60 palabras: cada una
+ * debe funcionar como cita aislada, sin el resto de la página.
+ *
+ * Toda afirmación aquí es verificable contra credentials/carriers de arriba.
+ * Precisión importante: son 6 aseguradoras en total, 5 de ellas con GMM
+ * (Allianz no comercializa gastos médicos mayores).
+ */
+const SOBRE_IRIA_FAQS: FAQItem[] = [
+  {
+    question: "¿Quién es Iria Talan?",
+    answerText:
+      "Iria Talan es asesora patrimonial y agente de seguros independiente en México, con más de 18 años de experiencia. Está autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF) con cédula V388618 desde 2008. Se especializa en seguros de vida, gastos médicos mayores, retiro y planeación patrimonial. Atiende desde Ciudad de México, en español e inglés.",
+  },
+  {
+    question: "¿Iria Talan es independiente o trabaja para una aseguradora?",
+    answerText:
+      "Es independiente. No trabaja para una sola aseguradora: está autorizada con seis y compara sus condiciones generales para recomendar la que conviene a cada cliente. Esa es la diferencia frente a un agente cautivo, que solo puede ofrecer los productos de la compañía que representa.",
+  },
+  {
+    question: "¿Con qué aseguradoras trabaja Iria Talan?",
+    answerText:
+      "Con seis aseguradoras autorizadas en México: GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz. Cinco de ellas ofrecen gastos médicos mayores —Allianz no comercializa GMM—. Es Asesora Diamante en GNP Seguros y en Seguros Monterrey New York Life.",
+  },
+  {
+    question: "¿Cómo verifico la cédula de Iria Talan ante la CNSF?",
+    answerText:
+      "Su cédula es V388618, vigente desde 2008. Puedes verificarla en el registro público de agentes y ajustadores de la Comisión Nacional de Seguros y Fianzas, en agentesajustadores.cnsf.gob.mx. En México, todo agente de seguros debe estar autorizado por la CNSF para poder asesorarte y emitir pólizas.",
+  },
+  {
+    question: "¿Qué es MDRT Top of the Table y por qué importa?",
+    answerText:
+      "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros. Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008, con Court of the Table en 2023 y 2025, y Top of the Table en 2024. También ocupa el 8° lugar nacional de AMASFAC.",
+  },
+  {
+    question: "¿En qué se especializa Iria Talan?",
+    answerText:
+      "En seguros de vida, gastos médicos mayores, planeación de retiro (PPR y Modalidad 40 del IMSS), planes educacionales, fideicomisos y planeación patrimonial. Atiende además casos que la mayoría de los asesores no cubre: familias con hijos neurodivergentes, familias diversas, mexicanos viviendo en el extranjero y extranjeros residentes en México.",
+  },
+  {
+    question: "¿Qué formación académica tiene Iria Talan?",
+    answerText:
+      "Es Ingeniera Mecánica Administradora por el Tecnológico de Monterrey. Cursó Wealth Management Theory & Practice en Yale School of Management (2019) y MBA Essentials en London School of Economics, ambos en educación ejecutiva. Tiene también un Diplomado en Análisis Financiero por la Bolsa Mexicana de Valores.",
+  },
+  {
+    question: "¿Cuánto cuesta una asesoría con Iria Talan?",
+    answerText:
+      "La sesión inicial de 30 minutos no tiene costo ni compromiso. Como agente de seguros, su ingreso proviene de la comisión que paga la aseguradora sobre la póliza contratada, no de un honorario que cobre al cliente. El precio de tu póliza es el mismo que si la contrataras directamente.",
+  },
+  {
+    question: "¿Atiende clientes fuera de la Ciudad de México?",
+    answerText:
+      "Sí. Su oficina está en Bosque de Chapultepec, Ciudad de México, pero atiende en todo México de forma remota, por videollamada o WhatsApp. También asesora a mexicanos que viven en el extranjero y a extranjeros con residencia en México, en español o en inglés.",
+  },
+];
 
 export default async function SobreIriaPage() {
   const author =
@@ -77,13 +100,14 @@ export default async function SobreIriaPage() {
 
   const ctaUrl = "/contacto#agendar";
 
+  // Person y FinancialService ya vienen del grafo global del layout — emitirlos
+  // otra vez aquí duplicaba los mismos @id en la página.
   const pageSchema = buildGraph(
-    buildPersonSchema(author),
-    buildFinancialAdvisorSchema(author),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Sobre Iria", path: "/sobre-iria" },
-    ])
+    ]),
+    buildFAQPageSchema(SOBRE_IRIA_FAQS)
   );
 
   const credentialsByCategory = (author.credentials ?? []).reduce(
@@ -249,6 +273,32 @@ export default async function SobreIriaPage() {
             </div>
           </section>
         )}
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Preguntas frecuentes
+            </h2>
+            <p className="mt-2 text-warm-brown/85 dark:text-cream-light/65">
+              Lo que suelen preguntarme antes de la primera sesión.
+            </p>
+            <div className="mt-10 space-y-8">
+              {SOBRE_IRIA_FAQS.map((f) => (
+                <div
+                  key={f.question}
+                  className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6"
+                >
+                  <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                    {f.question}
+                  </h3>
+                  <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                    {f.answerText}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-4xl mx-auto w-full">

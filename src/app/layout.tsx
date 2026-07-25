@@ -3,14 +3,20 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
+import { sanityFetch } from "../../sanity/lib/fetch";
+import { SOBRE_IRIA_QUERY } from "../../sanity/lib/queries";
 import {
+  AuthorData,
+  buildFinancialAdvisorSchema,
   buildGraph,
   buildLocalBusinessSchema,
   buildOrganizationSchema,
+  buildPersonSchema,
   buildWebSiteSchema,
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+import { FALLBACK_AUTHOR } from "@/lib/author";
 import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 
 import { Analytics } from "@/components/analytics";
@@ -110,15 +116,30 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // El autor se resuelve aquí, en el layout, porque los nodos `Person` y
+  // `FinancialService` tienen que existir en TODAS las páginas: las 14 páginas
+  // de servicio apuntan a esos `@id` desde su campo `provider`, y los crawlers
+  // no resuelven un `@id` que vive en otra URL. Antes solo se emitían en `/` y
+  // `/sobre-iria`, así que en /gmm, /seguros-vida, /personas/* y las páginas EN
+  // la referencia quedaba colgando y se perdía la atribución a Iria — justo en
+  // las páginas que convierten.
+  const author =
+    (await sanityFetch<AuthorData | null>({
+      query: SOBRE_IRIA_QUERY,
+      tags: ["author"],
+    }).catch(() => null)) ?? FALLBACK_AUTHOR;
+
   const globalSchema = buildGraph(
-    buildOrganizationSchema(),
+    buildOrganizationSchema(author),
     buildWebSiteSchema(),
-    buildLocalBusinessSchema()
+    buildLocalBusinessSchema(author),
+    buildPersonSchema(author),
+    buildFinancialAdvisorSchema(author)
   );
 
   return (
@@ -240,6 +261,7 @@ export default function RootLayout({
                 <li><Link href="/recursos" className="hover:text-cream-light transition-colors duration-500">Guías Gratuitas</Link></li>
                 <li><Link href="/recursos#faqs" className="hover:text-cream-light transition-colors duration-500">Preguntas Frecuentes</Link></li>
                 <li><Link href="/glosario" className="hover:text-cream-light transition-colors duration-500">Glosario</Link></li>
+                <li><Link href="/guia" className="hover:text-cream-light transition-colors duration-500">Guía: trámites por fallecimiento</Link></li>
               </ul>
             </div>
             <div>

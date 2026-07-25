@@ -87,7 +87,9 @@ export async function generateMetadata({
     `Asesoría especializada en ${service.title}. Iria Talan, MDRT Top of the Table.`;
 
   return {
-    title,
+    // `absolute`: el title ya trae la marca; sin esto el template del root la
+    // pegaba una segunda vez.
+    title: { absolute: title },
     description,
     alternates: { canonical: `/${slug}` },
     openGraph: {

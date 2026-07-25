@@ -12,6 +12,7 @@ import {
 } from "@/components/blog/article-meta";
 import { PortableTextRenderer } from "@/components/portable-text";
 import { RelatedPosts } from "@/components/blog/related-posts";
+import { RelatedServices } from "@/components/blog/related-services";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 
 import { sanityFetch } from "../../../../sanity/lib/fetch";
@@ -117,7 +118,10 @@ export async function generateMetadata({
     }.`;
 
   return {
-    title,
+    // `absolute` evita que el template del root (`%s | ${SITE_NAME}`) vuelva a
+    // pegar la marca: `title` ya la incluye, y sin esto salía duplicada
+    // ("… | Iria Talan / RIF | Iria Talan / RIF") en todo artículo.
+    title: { absolute: title },
     description,
     alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {
@@ -377,6 +381,8 @@ export default async function ArticlePage({
             currentSlug={article.slug}
             manual={article.relatedArticles ?? undefined}
           />
+
+          <RelatedServices topic={article.topic} />
 
           <section className="px-6 py-16 border-t border-warm-brown/15 dark:border-warm-brown/30 bg-cream/40 dark:bg-coffee/30">
             <div className="max-w-3xl mx-auto w-full text-center">

@@ -58,7 +58,8 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "International Health Insurance in Mexico (GMM) for Foreigners — Iria Talan",
+  // Sin "— Iria Talan": el template del root ya agrega "| Iria Talan / RIF".
+  title: "International Health Insurance in Mexico (GMM) for Foreigners",
   description:
     "Major Medical Insurance (GMM) for foreign residents in Mexico. Top private hospital networks, international riders, bilingual advisory. BUPA, MetLife, GNP, AXA, SMNYL — AAA-rated carriers. MDRT Top of the Table.",
   alternates: buildHreflangAlternates(

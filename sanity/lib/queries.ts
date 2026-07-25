@@ -239,7 +239,8 @@ export const SITEMAP_QUERY = defineQuery(`
     "articles": *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now()]{
       "slug": slug.current,
       _updatedAt,
-      publishedAt
+      publishedAt,
+      topic
     },
     "glossaryTerms": *[_type == "glossaryTerm" && defined(slug.current) && !draft]{
       "slug": slug.current,

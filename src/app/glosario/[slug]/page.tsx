@@ -66,7 +66,9 @@ export async function generateMetadata({
   const description = term.shortDefinition ?? `Definición de ${term.term}`;
 
   return {
-    title,
+    // `absolute`: el title ya trae la marca; sin esto el template del root la
+    // pegaba una segunda vez.
+    title: { absolute: title },
     description,
     alternates: { canonical: `${SITE_URL}/glosario/${slug}` },
     openGraph: {

@@ -59,7 +59,8 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Retirement Planning in Mexico for Foreigners (PPR) — Iria Talan",
+  // Sin "— Iria Talan": el template del root ya agrega "| Iria Talan / RIF".
+  title: "Retirement Planning in Mexico for Foreigners (PPR)",
   description:
     "Personal retirement plans (PPR) in Mexico for foreign residents. Mexican tax-deductible contributions, USD/UDIS/MXN options, cross-border and PFIC considerations. Bilingual advisory. MDRT Top of the Table.",
   alternates: buildHreflangAlternates(

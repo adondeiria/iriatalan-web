@@ -322,6 +322,41 @@ export default async function PlanesEducacionalesPage() {
         </section>
 
         <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-4xl mx-auto w-full">
+            <p className="text-xs uppercase tracking-[0.22em] text-burgundy font-medium mb-4">
+              Servicios relacionados
+            </p>
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight text-ink dark:text-cream-light">
+              Otras formas de asegurar su futuro
+            </h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <Link
+                href="/seguros-vida"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Seguros de vida con ahorro
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Garantiza la universidad de tus hijos incluso si tú faltas: la póliza aporta el capital que tú ya no podrías.
+                </p>
+              </Link>
+              <Link
+                href="/fondos-de-inversion"
+                className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
+              >
+                <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+                  Fondos de inversión
+                </h3>
+                <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+                  Vehículo alterno para el ahorro educativo, con más liquidez y flexibilidad de aportación.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
           <div className="max-w-3xl mx-auto w-full">
             <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
               Calcular el plan de tu hijo

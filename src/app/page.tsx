@@ -16,16 +16,8 @@ import {
 } from "lucide-react";
 
 import { sanityFetch } from "../../sanity/lib/fetch";
-import { HOME_PAGE_QUERY, SOBRE_IRIA_QUERY } from "../../sanity/lib/queries";
-import {
-  AuthorData,
-  buildFAQPageSchema,
-  buildFinancialAdvisorSchema,
-  buildGraph,
-  buildLocalBusinessSchema,
-  buildPersonSchema,
-  type FAQItem,
-} from "@/lib/seo";
+import { HOME_PAGE_QUERY } from "../../sanity/lib/queries";
+import { buildFAQPageSchema, buildGraph, type FAQItem } from "@/lib/seo";
 
 type HomeData = {
   heroTitle?: string;
@@ -195,30 +187,21 @@ const FAQS: FAQItem[] = [
 ];
 
 export default async function HomePage() {
-  const [data, author] = await Promise.all([
-    sanityFetch<HomeData>({
-      query: HOME_PAGE_QUERY,
-      tags: ["homePage"],
-    }).catch(() => null),
-    sanityFetch<AuthorData | null>({
-      query: SOBRE_IRIA_QUERY,
-      tags: ["author"],
-    }).catch(() => null),
-  ]);
+  const data = await sanityFetch<HomeData>({
+    query: HOME_PAGE_QUERY,
+    tags: ["homePage"],
+  }).catch(() => null);
 
   const heroTitle = data?.heroTitle ?? FALLBACK_HERO_TITLE;
   const heroSubtitle = data?.heroSubtitle ?? FALLBACK_HERO_SUBTITLE;
   const ctaText = data?.heroCtaText ?? FALLBACK_CTA_TEXT;
   const ctaUrl = data?.heroCtaUrl ?? FALLBACK_CTA_URL;
 
-  const homeSchema = author
-    ? buildGraph(
-        buildPersonSchema(author),
-        buildFinancialAdvisorSchema(author),
-        buildLocalBusinessSchema(author),
-        buildFAQPageSchema(FAQS)
-      )
-    : buildGraph(buildLocalBusinessSchema(), buildFAQPageSchema(FAQS));
+  // Person / FinancialService / LocalBusiness ya se emiten en el grafo global
+  // del layout (en todas las páginas). Antes se repetían aquí, lo que producía
+  // dos nodos `#localbusiness` con valores distintos en el mismo documento.
+  // Aquí queda solo lo propio del home: sus FAQs.
+  const homeSchema = buildGraph(buildFAQPageSchema(FAQS));
 
   return (
     <>

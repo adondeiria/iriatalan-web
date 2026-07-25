@@ -70,7 +70,9 @@ export async function generateMetadata({
   const isEmpty = articles.length === 0;
 
   return {
-    title: `${label} | Blog ${SITE_NAME}`,
+    // `absolute`: el title ya trae la marca; sin esto el template del root la
+    // pegaba una segunda vez.
+    title: { absolute: `${label} — Blog | ${SITE_NAME}` },
     description,
     alternates: { canonical: `${SITE_URL}/blog/categoria/${slug}` },
     robots: isEmpty

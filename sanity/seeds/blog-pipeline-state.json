@@ -43,6 +43,31 @@
   },
   "blogs": [
     {
+      "slug": "seguro-gastos-medicos-maternidad",
+      "title": "¿Qué seguro de gastos médicos mayores cubre mejor la maternidad en México?",
+      "topic": "gmm",
+      "format": "guia",
+      "phase": "published",
+      "created": "2026-07-24T12:00:00-06:00",
+      "lastTouched": "2026-07-25T00:40:00-06:00",
+      "publishedUrl": "https://iriatalan.com.mx/blog/seguro-gastos-medicos-maternidad",
+      "publishedAt": "2026-07-25T00:35:50.627Z",
+      "verifyMarkers": [
+        "La cobertura que solo tiene Seguros Monterrey: maternidad por in vitro",
+        "un deducible más alto que tu monto de maternidad puede dejarte sin cobertura de maternidad",
+        "Formar una familia empieza como una ilusión"
+      ],
+      "sanityDocId": "article-seguro-gastos-medicos-maternidad",
+      "draftHistoryFile": "sanity/seeds/draft-history/seguro-gastos-medicos-maternidad__2026-07-23-190000.md",
+      "imageAsset": {
+        "hero": {
+          "role": "featured / OG",
+          "localPath": "public/img/blog/seguro-gastos-medicos-maternidad-hero.png"
+        }
+      },
+      "notes": "Comparativa GMM maternidad (5 aseguradoras nacionales) basada en condiciones generales 2026. Incluye sección in vitro (Alfa Medical). Imagen hero propuesta por Iria (pareja + asesora). Rev.9 con pase editorial. Pendiente: autor + publicar en Studio."
+    },
+    {
       "slug": "incremento-costos-universitarios-mexico",
       "title": "Cuánto cuesta hoy estudiar la universidad en México (ciclo 2026) — y por qué tu SEGUBECA puede haberse quedado corta",
       "topic": "educacionales",
@@ -117,6 +142,36 @@
           "note": "Imagen pre-aprobada por Iria, pendiente subir a Sanity Studio. Revisar con Tamara 2026-06-29."
         }
       },
+      "metrics": {
+        "factCheckPassed": true,
+        "voiceScore": null,
+        "aiMolestiesCount": null
+      }
+    }
+  ,
+    {
+      "slug": "rentas-vitalicias-mexico",
+      "title": "Renta vitalicia en México: cómo garantizar ingresos aunque vivas 100 años",
+      "topic": "retiro",
+      "format": "guia",
+      "phase": "published",
+      "primaryKeyword": "renta vitalicia en México",
+      "created": "2026-06-28T20:00:00-06:00",
+      "lastTouched": "2026-06-29T20:00:00-06:00",
+      "publishedUrl": "https://iriatalan.com.mx/blog/rentas-vitalicias-mexico",
+      "sanityDocId": "article-rentas-vitalicias-mexico",
+      "draftHistoryFile": "sanity/seeds/draft-history/rentas-vitalicias-mexico__2026-06-28-200000.md",
+      "imageAsset": {
+        "hero": {
+          "role": "featured / OG",
+          "localPath": "public/img/blog/rentas-vitalicias-mexico-hero.png",
+          "source": "ChatGPT generada por Iria — 'ChatGPT pensión vitalicia 3.png'",
+          "sanityAssetRef": "image-9cddb5722445fcaa9774f162ee74d66db709644f-1536x1024-png",
+          "uploadedAt": "2026-06-29T20:00:00-06:00",
+          "patchedToHeroImage": true
+        }
+      },
+      "notes": "Draft iterado con Perplexity, ChatGPT y Gemini. Secciones: longevidad, mujeres, PPR vs renta vitalicia, neurodivergencia, empresarios. Imagen hero generada por ChatGPT aprobada por Iria.",
       "metrics": {
         "factCheckPassed": true,
         "voiceScore": null,

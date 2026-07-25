@@ -108,7 +108,9 @@ export async function generateMetadata({
     }. Documento oficial publicado por la aseguradora.`;
 
   return {
-    title,
+    // `absolute`: el title ya trae la marca; sin esto el template del root la
+    // pegaba una segunda vez.
+    title: { absolute: title },
     description,
     alternates: { canonical: `${SITE_URL}/recursos/${slug}` },
     openGraph: {
