@@ -88,10 +88,24 @@ export const FEATURED_SERVICES_QUERY = defineQuery(`
 
 /**
  * ARTICLE_QUERY — un solo artículo por slug.
- * Filtra `!draft` → drafts retornan null → /blog/[slug] llama notFound().
+ * Filtra `!draft && publishedAt <= now()` → drafts y fechas futuras retornan
+ * null → /blog/[slug] llama notFound().
+ *
+ * El filtro de fecha es el MISMO predicado que usan BLOG_INDEX_QUERY, las
+ * categorías, related y el sitemap. Antes esta query solo filtraba `!draft`, y
+ * esa diferencia creaba "artículos fantasma": un artículo con `publishedAt`
+ * nulo o futuro respondía 200 por URL directa —y hasta generaba página
+ * estática— pero no aparecía en ningún listado ni en el sitemap. Google lo
+ * indexaba como página huérfana. Fue exactamente lo que le pasó a
+ * `rentas-vitalicias-mexico`.
+ *
+ * Consecuencia buscada: un artículo programado a futuro da 404 hasta su fecha,
+ * y uno sin `publishedAt` da 404 hasta que se le ponga. La revisión previa a
+ * publicar se hace en Studio, no por URL pública, así que esto no estorba el
+ * flujo.
  */
 export const ARTICLE_QUERY = defineQuery(`
-  *[_type == "article" && slug.current == $slug && !draft][0]{
+  *[_type == "article" && slug.current == $slug && !draft && publishedAt <= now()][0]{
     _id, title, "slug": slug.current,
     "author": author->{ _id, name, "slug": slug.current, title, bio, photo{ ..., asset-> }, sameAs, socialLinks, credentials[]{ title, issuer, year, category } },
     "reviewedBy": reviewedBy->{ _id, name, "slug": slug.current, title },
@@ -129,10 +143,16 @@ export const ARTICLE_QUERY = defineQuery(`
 
 /**
  * ALL_ARTICLES_SLUGS_QUERY — para generateStaticParams.
- * Filtra `!draft` → drafts NO generan páginas estáticas.
+ * Filtra `!draft && publishedAt <= now()` → drafts y fechas futuras NO generan
+ * páginas estáticas.
+ *
+ * Mismo predicado que ARTICLE_QUERY a propósito: si aquí se pre-renderizara un
+ * slug que allá da null, el build generaría una página que solo sabe hacer
+ * notFound(). Con `dynamicParams` por defecto, un slug fuera de esta lista se
+ * resuelve on-demand y cae en el 404 correcto.
  */
 export const ALL_ARTICLES_SLUGS_QUERY = defineQuery(`
-  *[_type == "article" && defined(slug.current) && !draft]{
+  *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now()]{
     "slug": slug.current,
     _updatedAt,
     publishedAt
