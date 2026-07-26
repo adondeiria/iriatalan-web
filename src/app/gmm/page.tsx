@@ -80,7 +80,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Y la cobertura internacional?",
     answerText:
-      "Crítica para clientes con tratamientos en EUA o Europa, y no todos los planes la incluyen. De las cinco aseguradoras con las que trabajo, solo dos manejan GMM internacional: BUPA y GNP. Un plan internacional da acceso a una red de hospitales en el extranjero y, dentro de México, a todos los hospitales y clínicas autorizados por COFEPRIS. Conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
+      "Hay que separar dos cosas. Emergencia en el extranjero: las cinco aseguradoras la contemplan hasta por USD $100,000, aunque en la mayoría tiene costo extra sobre la prima y no viene incluida por defecto. Plan internacional: de las cinco, solo dos lo manejan —BUPA y GNP— y te dan una red de hospitales en el extranjero más, dentro de México, todos los hospitales y clínicas autorizados por COFEPRIS. La emergencia responde a lo imprevisto durante un viaje; el plan internacional te deja elegir tratarte fuera para algo programado, como una cirugía compleja o un protocolo oncológico. Conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
   },
 ];
 
@@ -294,7 +294,7 @@ export default async function GmmPage() {
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
                 <h3 className="font-semibold text-ink dark:text-cream-light">Cobertura internacional</h3>
                 <p className="mt-1 text-sm text-warm-brown/85 dark:text-cream-light/65">
-                  EUA, Europa — crítica para clientes que se atienden allá. Solo dos de las cinco aseguradoras con las que trabajo manejan GMM internacional: BUPA y GNP. Conviene revisar hospitales elegibles y territorialidad.
+                  EUA, Europa — crítica para clientes que se atienden allá. Las cinco contemplan emergencia en el extranjero hasta por USD $100,000 (en la mayoría, con costo extra), pero solo dos manejan GMM internacional: BUPA y GNP. Conviene revisar hospitales elegibles y territorialidad.
                 </p>
               </div>
               <div className="p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30">
@@ -523,6 +523,39 @@ export default async function GmmPage() {
                     La elegibilidad de hospitales, la territorialidad y los deducibles varían por producto y país; se revisan caso por caso.
                   </figcaption>
                 </figure>
+              </div>
+
+              {/* Sin esto, la tabla de arriba se lee al revés: "solo dos tienen
+                  internacional" invita a concluir que con las otras tres te
+                  quedas sin nada al viajar, y no es cierto. La distinción real
+                  no es tener o no tener cobertura afuera — es emergencia contra
+                  tratamiento planeado. */}
+              <div>
+                <h3 className="font-semibold text-ink dark:text-cream-light mb-3">
+                  ¿Y si viajo con un plan nacional y me pasa algo?
+                </h3>
+                <p>
+                  No te quedas sin nada. Las cinco aseguradoras contemplan{" "}
+                  <strong className="text-ink dark:text-cream-light">atención por emergencia en el extranjero hasta por USD $100,000</strong>.
+                  En la mayoría, esa cobertura tiene un costo extra sobre la prima
+                  — no viene incluida por defecto, así que vale la pena revisar si
+                  tu póliza actual la trae.
+                </p>
+                <p className="mt-3">
+                  La diferencia con un plan internacional está en el tipo de
+                  atención, no solo en el monto:{" "}
+                  <strong className="text-ink dark:text-cream-light">la cobertura de emergencia responde a lo imprevisto mientras estás de viaje</strong>{" "}
+                  — un accidente, un infarto, una apendicitis. Un plan
+                  internacional es otra cosa: es poder{" "}
+                  <em>elegir</em> atenderte fuera de México para un tratamiento
+                  programado, como una cirugía compleja o un protocolo oncológico
+                  en un hospital específico.
+                </p>
+                <p className="mt-3">
+                  Por eso la pregunta no es si viajas, sino qué quieres poder hacer
+                  si aparece algo grave: resolver la emergencia y volver, o tratarte
+                  allá.
+                </p>
               </div>
               <p>
                 <strong className="text-ink dark:text-cream-light">Lo que cuesta NO tener:</strong>{" "}
