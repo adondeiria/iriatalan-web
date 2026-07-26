@@ -295,14 +295,20 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
     ],
     // serviceType ampliado al posicionamiento wealth advisory boutique.
     // Cada string es señal entity para LLMs cuando responden "¿qué hace X?".
+    //
+    // ORDEN DELIBERADO (Día 6): "Seguros de Vida" abre porque es el centro del
+    // negocio — antes estaba en la posición 7 y la lista decía otra cosa.
+    // "Asesoría Patrimonial Boutique" bajó al 7: sigue siendo señal válida de
+    // wealth advisory para el segmento HNWI, pero nadie la busca y como primer
+    // término proyectaba una firma más chica de lo que es.
     serviceType: [
-      "Asesoría Patrimonial Boutique",
+      "Seguros de Vida",
       "Wealth Advisory",
       "Planeación Patrimonial Internacional",
       "Protección Patrimonial",
       "Estructura Patrimonial Familiar",
       "Retiro y Pensiones",
-      "Seguros de Vida",
+      "Asesoría Patrimonial Boutique",
       "Seguros Internacionales",
       "Gastos Médicos Mayores",
       "Gastos Médicos Mayores Internacional",
@@ -644,7 +650,9 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     },
     areaServed: { "@type": "Country", name: "México" },
     priceRange: "$$$$",
-    openingHours: "Mo-Fr 09:00-18:00",
+    // Horario real de la oficina, confirmado por Iria: cierra a las 5 pm.
+    // El sitio declaraba 18:00 y la ficha de Google 17:00 — ganó la ficha.
+    openingHours: "Mo-Fr 09:00-17:00",
     sameAs,
   };
 }

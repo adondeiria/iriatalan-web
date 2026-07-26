@@ -24,8 +24,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/sobre-iria" },
   openGraph: {
     title: "Sobre Iria Talan — Asesora Financiera RIF",
+    // Sin LSE (decisión de Iria, Día 6): el MBA Essentials es un curso ejecutivo
+    // corto y no va junto a Yale. Además el "·" hacía que "Wealth Management"
+    // colgara de las dos escuelas, y eso es falso — LSE fue MBA Essentials.
     description:
-      "Wealth Management por Yale School of Management (Exec. Ed.) · LSE · MDRT Top of the Table · AMASFAC · CNSF. Especialista en seguros de vida, GMM y planeación patrimonial.",
+      "Wealth Management por Yale School of Management (Exec. Ed.) · MDRT Top of the Table · AMASFAC · CNSF. Especialista en seguros de vida, GMM y planeación patrimonial.",
     url: "/sobre-iria",
   },
 };
