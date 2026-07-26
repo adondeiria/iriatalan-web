@@ -80,7 +80,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Y la cobertura internacional?",
     answerText:
-      "Hay que separar dos cosas. Emergencia en el extranjero: las cinco aseguradoras la contemplan hasta por USD $100,000, aunque en la mayoría tiene costo extra sobre la prima y no viene incluida por defecto. Plan internacional: de las cinco, solo dos lo manejan —BUPA y GNP— y te dan una red de hospitales en el extranjero más, dentro de México, todos los hospitales y clínicas autorizados por COFEPRIS. La emergencia responde a lo imprevisto durante un viaje; el plan internacional te deja elegir tratarte fuera para algo programado, como una cirugía compleja o un protocolo oncológico. Conviene revisar hospitales elegibles, territorialidad y deducibles por país.",
+      "Hay que separar dos cosas. Emergencia en el extranjero: las cinco aseguradoras la contemplan hasta por USD $100,000 por evento, con deducible de USD $100, aunque en la mayoría tiene costo extra sobre la prima y no viene incluida por defecto. Importante: hay que avisar a la aseguradora en el momento del siniestro, no al regresar a México — ese aviso es lo que activa la cobertura. Plan internacional: de las cinco, solo dos lo manejan —BUPA y GNP— y te dan una red de hospitales en el extranjero más, dentro de México, todos los hospitales y clínicas autorizados por COFEPRIS. La emergencia responde a lo imprevisto durante un viaje; el plan internacional te deja elegir tratarte fuera para algo programado, como una cirugía compleja o un protocolo oncológico.",
   },
 ];
 
@@ -536,10 +536,18 @@ export default async function GmmPage() {
                 </h3>
                 <p>
                   No te quedas sin nada. Las cinco aseguradoras contemplan{" "}
-                  <strong className="text-ink dark:text-cream-light">atención por emergencia en el extranjero hasta por USD $100,000</strong>.
-                  En la mayoría, esa cobertura tiene un costo extra sobre la prima
-                  — no viene incluida por defecto, así que vale la pena revisar si
-                  tu póliza actual la trae.
+                  <strong className="text-ink dark:text-cream-light">atención por emergencia en el extranjero hasta por USD $100,000 por evento</strong>,
+                  con un deducible de USD $100. En la mayoría, esa cobertura tiene
+                  un costo extra sobre la prima — no viene incluida por defecto,
+                  así que vale la pena revisar si tu póliza actual la trae.
+                </p>
+                <p className="mt-3 rounded-2xl border-l-2 border-burgundy bg-cream/40 dark:bg-coffee/30 px-5 py-4">
+                  <strong className="text-ink dark:text-cream-light">El detalle que hace que esta cobertura sirva o no:</strong>{" "}
+                  tienes que avisar a la aseguradora en el momento del siniestro.
+                  No al volver a México, no cuando llegue la factura. Es el paso
+                  que más se pasa por alto y el que puede dejarte pagando de tu
+                  bolsa una atención que sí estaba cubierta. Guarda el teléfono de
+                  asistencia de tu póliza en el celular antes de viajar.
                 </p>
                 <p className="mt-3">
                   La diferencia con un plan internacional está en el tipo de
