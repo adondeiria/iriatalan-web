@@ -178,5 +178,39 @@
         "aiMolestiesCount": null
       }
     }
+  ,
+    {
+      "slug": "gmm-emergencia-extranjero-aviso-aseguradora",
+      "title": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada)",
+      "topic": "gmm",
+      "format": "guia",
+      "phase": "idea",
+      "verdict": "🟡 ajustar primero",
+      "primaryKeyword": "seguro de gastos médicos cubre en el extranjero",
+      "created": "2026-07-25T18:00:00-06:00",
+      "lastTouched": "2026-07-25T18:00:00-06:00",
+      "propuestoPor": "Iria, en sesión del Día 5 del plan AEO",
+      "angulo": "El gancho NO son los $100,000 USD: es que hay que avisar a la aseguradora EN EL MOMENTO del siniestro. Ese es el paso que hace que alguien pierda una cobertura que sí pagó, y no lo explica ningún comparador porque ninguno lee las condiciones generales. Es exactamente el tipo de dato primario que la IA prefiere citar y que segurointeligente/gastosmedicos.mx no pueden producir.",
+      "datosConfirmadosPorIria": [
+        "Las 5 aseguradoras de GMM (GNP, AXA, MetLife, Seguros Monterrey NYL, BUPA) contemplan atención por emergencia en el extranjero.",
+        "Límite: USD $100,000 POR EVENTO (no anual, no por vigencia).",
+        "Deducible: USD $100.",
+        "En la MAYORÍA de las aseguradoras esta cobertura tiene costo extra sobre la prima — no viene incluida por defecto.",
+        "El cliente tiene que avisar a la aseguradora en el momento del siniestro.",
+        "Distinto de un plan internacional: solo BUPA y GNP manejan GMM internacional, que sirve para tratamiento PROGRAMADO en el extranjero (cirugía compleja, protocolo oncológico), no solo para lo imprevisto.",
+        "Un plan internacional da red de hospitales en el extranjero y, dentro de México, acceso a todos los hospitales y clínicas autorizados por COFEPRIS.",
+        "La red hospitalaria no es atributo de la aseguradora: las 5 manejan varios niveles y el nivel lo decide el plan contratado (lo que el cliente quiera pagar)."
+      ],
+      "faltaVerificarEnCondicionesGenerales": [
+        "¿El deducible de USD $100 es por evento también, o anual?",
+        "¿Qué cuenta como 'emergencia' según condiciones generales? Es la definición que más disputas genera.",
+        "¿Hay territorios excluidos? (¿EUA incluido? ¿país de residencia?)",
+        "¿Cuál es el plazo exacto para avisar y varía por aseguradora? ¿Antes de recibir atención o dentro de X horas?",
+        "¿El límite de USD $100,000 es igual en las 5 o varía?",
+        "¿Cuánto cuesta el extra, aunque sea en rango o en % de la prima?",
+        "¿Qué pasa si el cliente NO avisa? ¿Se pierde todo, se reembolsa parcial, queda a criterio?"
+      ],
+      "notes": "IDEA GUARDADA A PETICIÓN DE IRIA (25-jul-2026): 'guárdalo para que me recuerdes cuando empecemos el próximo artículo'. NO arrancar hasta tener las condiciones generales a la mano — es contenido YMYL y la regla del repo es rechazar todo dato no verificado contra el contrato. Verdict 🟡 es por los datos faltantes, NO por el tema: el tema es fuerte y es de los pocos con dato primario real. Sugerencia de proceso: usar el agente iriatalan-seo-blog con quórum YMYL, igual que en la comparativa de maternidad. Interlinking natural: /gmm (sección 'cobertura internacional', que ya tiene la tabla y el bloque de emergencia), el hub GMM, y /personas/mexicanos-en-el-extranjero. Contexto: la sección de /gmm ya publica los datos confirmados de arriba, así que el artículo debe profundizar, no repetir."
+    }
   ]
 }
