@@ -163,6 +163,10 @@ export function buildPersonSchema(author: AuthorData) {
     "Mujeres y Finanzas",
     "Empresas y Persona Clave",
     "Planes Educacionales",
+    // Autos va al final a propósito: se coloca (GNP, AXA y Allianz, con canales
+    // propios en /recursos) pero NO es el core. Se declara porque la ficha de
+    // Google lo declara, y el sitio y la ficha tienen que decir lo mismo.
+    "Seguros de Auto",
   ];
 
   // alumniOf derivado de credentials academic. schema.org Person.alumniOf
@@ -315,6 +319,8 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
       "Fideicomisos vía Aseguradora",
       "Planes Educacionales",
       "Asesoría para Mexicanos en el Extranjero",
+      // Último de la lista, igual que en knowsAbout: se vende, no es el core.
+      "Seguros de Auto",
     ],
     // audience — schema.org canonical para "¿para quién es este servicio?".
     // LLMs lo citan textualmente al responder queries de matching.
