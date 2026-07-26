@@ -80,6 +80,11 @@ export const FALLBACK_AUTHOR: AuthorData = {
   // Tiene que coincidir con `officeAddress` del autor en Sanity: este fallback
   // solo entra si el fetch falla, y si dijera otra cosa la dirección cambiaría
   // sola en el JSON-LD (LocalBusiness.streetAddress) durante una caída.
-  officeAddress: "Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
+  //
+  // SIN interior a propósito: la ficha de Google Business muestra "Homero 205", y
+  // el NAP (nombre, dirección, teléfono) tiene que coincidir letra por letra
+  // entre la ficha y el JSON-LD del sitio. El "Int. 702" vive solo en el aviso de
+  // privacidad, donde el domicilio completo corresponde por ser documento legal.
+  officeAddress: "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
   socialLinks: {},
 };

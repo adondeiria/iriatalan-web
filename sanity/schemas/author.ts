@@ -150,7 +150,7 @@ export const author = defineType({
       type: "text",
       rows: 2,
       description:
-        "Dirección completa, ej: Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560. Es la fuente de verdad: alimenta LocalBusiness.address y Person.workLocation del JSON-LD, y la FAQ de oficina en /sobre-iria. Conviene que coincida letra por letra con la ficha de Google Business y con el aviso de privacidad.",
+        "Dirección PÚBLICA, sin número interior. Ej: Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560. Es la fuente de verdad: alimenta LocalBusiness.address y Person.workLocation del JSON-LD, y la FAQ de oficina en /sobre-iria. Tiene que coincidir LETRA POR LETRA con la ficha de Google Business (el NAP). El número interior va solo en el aviso de privacidad, que es documento legal.",
     }),
     defineField({
       name: "sameAs",

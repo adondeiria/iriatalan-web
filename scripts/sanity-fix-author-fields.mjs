@@ -74,7 +74,9 @@ const NEW_CREDENTIALS = [
 // primero que NEW_CREDENTIALS siga coincidiendo con FALLBACK_AUTHOR
 // (src/lib/author.ts): cuando divergieron, la página mostró una lista de
 // credenciales distinta a la de su propia FAQ.
-const NEW_OFFICE_ADDRESS = "Homero 205 Int 702, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560";
+// Sin interior: tiene que empatar letra por letra con la ficha de Google Business.
+// El 702 va solo en el aviso de privacidad (documento legal).
+const NEW_OFFICE_ADDRESS = "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560";
 
 const doc = await query(
   `*[_type == "author"] | order(_updatedAt desc)[0]{_id, name, credentials, specialties, officeAddress}`
