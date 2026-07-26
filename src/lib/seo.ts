@@ -4,7 +4,27 @@
  */
 
 export const SITE_URL = "https://iriatalan.com.mx";
+
+/**
+ * Forma corta del nombre. Se usa en `<title>` y en el template de metadata,
+ * donde el espacio es escaso y un nombre largo se trunca en resultados.
+ */
 export const SITE_NAME = "Iria Talan / RIF";
+
+/**
+ * Forma completa, la que va en la ficha de Google Business.
+ *
+ * El negocio se nombra de dos maneras según la superficie: corta en los títulos,
+ * completa en la ficha y en el nodo Organization. Para que Google entienda que
+ * son el MISMO negocio y no dos, ambas se declaran explícitamente — la completa
+ * como `name` y la corta (más "RIF" a secas) como `alternateName`.
+ *
+ * Sin esto, una ficha llamada "Iria Talan · Reingeniería Financiera" y un sitio
+ * que se llama "Iria Talan / RIF" son, para un crawler, dos entidades parecidas
+ * en vez de una sola con más señales.
+ */
+export const SITE_NAME_FULL = "Iria Talan · Reingeniería Financiera";
+export const SITE_NAME_ALTERNATES = [SITE_NAME, "RIF", "Reingeniería Financiera"];
 
 /**
  * Construye `alternates` con canonical absoluto + hreflang recíproco
@@ -371,7 +391,8 @@ export function buildOrganizationSchema(author?: AuthorData) {
   return {
     "@type": "Organization" as const,
     "@id": `${SITE_URL}#organization`,
-    name: SITE_NAME,
+    name: SITE_NAME_FULL,
+    alternateName: SITE_NAME_ALTERNATES,
     url: SITE_URL,
     logo: `${SITE_URL}/logo-rif.svg`,
     founder: author ? { "@id": `${SITE_URL}/sobre-iria#person` } : undefined,
@@ -601,7 +622,10 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     // Preserva señales locales (address, openingHours, areaServed).
     "@type": ["FinancialService", "ProfessionalService"] as const,
     "@id": `${SITE_URL}#localbusiness`,
-    name: SITE_NAME,
+    // Forma completa igual que en la ficha de Google Business: este es el nodo
+    // que Google cruza con la ficha, así que el nombre debe ser el mismo.
+    name: SITE_NAME_FULL,
+    alternateName: SITE_NAME_ALTERNATES,
     url: SITE_URL,
     image: author?.photo?.asset?.url ?? `${SITE_URL}/img/iria/iria-portrait-02.jpg`,
     telephone: author?.socialLinks?.whatsapp ?? "+525512683401",

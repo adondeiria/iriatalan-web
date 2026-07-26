@@ -16,7 +16,7 @@
   7. CNSF Cédula V388618 (desde 2008)
 
   > Orden decidido el 2026-07-25: la formación pesa más con el cliente que las distinciones del gremio. Antes abría con MDRT.
-- **Oficina**: `Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560` — **sin interior**. El 702 solo va en el aviso de privacidad (documento legal); en contenido publicado se omite para que empate letra por letra con la ficha de Google Business. Bilingüe ES/EN.
+- **Oficina**: `Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560` — **sin número interior, nunca**. Esta es la única forma de la dirección: se usa igual en el sitio, el JSON-LD, llms.txt, el aviso de privacidad y la ficha de Google Business. Bilingüe ES/EN.
 
 ## Productos pillar TALAN (cómo nombrarlos)
 

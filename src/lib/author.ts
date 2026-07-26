@@ -81,10 +81,10 @@ export const FALLBACK_AUTHOR: AuthorData = {
   // solo entra si el fetch falla, y si dijera otra cosa la dirección cambiaría
   // sola en el JSON-LD (LocalBusiness.streetAddress) durante una caída.
   //
-  // SIN interior a propósito: la ficha de Google Business muestra "Homero 205", y
-  // el NAP (nombre, dirección, teléfono) tiene que coincidir letra por letra
-  // entre la ficha y el JSON-LD del sitio. El "Int. 702" vive solo en el aviso de
-  // privacidad, donde el domicilio completo corresponde por ser documento legal.
+  // SIN número interior, en ninguna superficie: sitio, JSON-LD, llms.txt, aviso de
+  // privacidad y ficha de Google Business dicen exactamente lo mismo. El NAP
+  // (nombre, dirección, teléfono) es como Google confirma que la ficha y el sitio
+  // son el mismo negocio, así que una sola forma de la dirección, sin variantes.
   officeAddress: "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
   socialLinks: {},
 };

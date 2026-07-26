@@ -17,10 +17,12 @@ const LAST_UPDATED = "06 de abril de 2026";
 const ARCO_EMAIL = "soporte@talan.com.mx";
 const ARCO_OWNER = "Violeta Lindero";
 // Domicilio del responsable conforme a la LFPDPPP. Cambió con la mudanza de
-// oficina (antes Homero 203 int. 103). Tiene que coincidir con `officeAddress`
-// del autor en Sanity, que es lo que alimenta el LocalBusiness del JSON-LD.
+// oficina (antes Homero 203). Sin número interior, igual que en `officeAddress`
+// del autor en Sanity y en la ficha de Google Business: una sola forma de la
+// dirección en todas las superficies. La ley pide un domicilio identificable,
+// no el interior, y calle + colonia + alcaldía + CP lo cumple.
 const RESPONSABLE_DOMICILIO =
-  "Homero 205 Int. 702, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
+  "Homero 205, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
 
 export default function AvisoPrivacidadPage() {
   const pageSchema = buildGraph(
