@@ -294,7 +294,7 @@ export default async function MujeresPage() {
               </p>
               <p>
                 Ese es el espacio. La metodología es la misma que usan los asesores top mundiales —
-                MDRT Top of the Table, Yale Wealth Management, LSE — pero el espacio es diferente.
+                MDRT Top of the Table, Yale Wealth Management — pero el espacio es diferente.
               </p>
             </div>
           </div>

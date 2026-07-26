@@ -77,7 +77,10 @@ export default function OpengraphImage() {
           }}
         >
           <span>iriatalan.com.mx</span>
-          <span>Yale Wealth Management · LSE MBA Essentials</span>
+          {/* Sin LSE (Día 6): el MBA Essentials es un curso ejecutivo corto y
+              aquí quedaba lado a lado con Yale, como si pesaran igual. LSE sigue
+              en los inventarios completos de credenciales, no en los titulares. */}
+          <span>Wealth Management · Yale School of Management (Exec. Ed.)</span>
         </div>
       </div>
     ),
