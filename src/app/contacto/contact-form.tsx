@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
 import { getAttribution } from "@/lib/attribution";
+import { CampoTrampa, useAntispam } from "@/components/antispam";
 
 /**
  * Form de pre-cualificación — captura todos los leads y los reenvía a Zoho Forms
@@ -72,8 +73,12 @@ export function ContactForm() {
   const [privacyAccepted, setPrivacyAccepted] = useState<boolean>(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
-  // Marca de tiempo de render — el server rechaza submits < 3s (anti-bot).
-  const [loadedAt] = useState<number>(() => Date.now());
+  // Honeypot + marca de tiempo de render (el server rechaza submits < 3s).
+  // Antes vivían escritos a mano aquí; ahora salen del módulo compartido, que
+  // es también el que usan los 4 lead magnets. El honeypot solo funciona si el
+  // `name` del campo y el que valida la API coinciden — con una copia por
+  // formulario eso se desincroniza sin que nadie se entere.
+  const antispam = useAntispam();
 
   const isGMM = servicio === SERVICIO_GMM;
   const askAportacion =
@@ -126,12 +131,11 @@ export function ContactForm() {
         : "",
       mensaje: String(formData.get("mensaje") ?? "").trim(),
       privacy_accepted: privacyAccepted,
-      // Anti-spam: honeypot (debe ir vacío), tiempo de llenado, y origen.
-      website: String(formData.get("website") ?? ""),
-      elapsed_ms: Date.now() - loadedAt,
       source: "contacto",
       origin_path: window.location.pathname,
       ...getAttribution(),
+      // Anti-spam: honeypot (debe ir vacío) + tiempo de llenado.
+      ...antispam.datos(formData),
     };
 
     try {
@@ -197,20 +201,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-7" noValidate>
       {/* Honeypot anti-bot — invisible para humanos; los bots lo llenan y el
           server responde éxito falso sin reenviar a Zoho. */}
-      <div
-        aria-hidden="true"
-        className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden"
-      >
-        <label htmlFor="website">No llenar este campo</label>
-        <input
-          type="text"
-          id="website"
-          name="website"
-          tabIndex={-1}
-          autoComplete="off"
-          defaultValue=""
-        />
-      </div>
+      <CampoTrampa idPrefix="contacto" />
 
       {/* Datos básicos */}
       <fieldset className="space-y-5">

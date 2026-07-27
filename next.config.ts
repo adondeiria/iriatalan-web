@@ -41,6 +41,26 @@ const nextConfig: NextConfig = {
           { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
         ],
       },
+      // Los PDF/XLSX de los lead magnets son el pago del formulario. Si Google
+      // los indexa, quien busque "checklist protección hijo discapacidad pdf"
+      // llega al archivo y nunca deja sus datos: la puerta queda de adorno.
+      //
+      // Es `X-Robots-Tag: noindex` y NO un `Disallow` en robots.txt, y la
+      // diferencia importa: Disallow impide rastrear, no indexar. Una URL
+      // bloqueada que alguien enlace puede acabar igual en el índice — y como
+      // el crawler tiene prohibido leerla, nunca vería un noindex dentro. Con
+      // la cabecera pasa lo contrario: se rastrea, se lee la orden y se acata.
+      // Por eso las dos cosas juntas serían un error, no un refuerzo.
+      //
+      // No se pierde nada de citabilidad: un PDF de checklist es mal candidato
+      // a cita frente a una página HTML, y el artículo que aloja el formulario
+      // sigue indexable y citable.
+      //
+      // Verificado el 2026-07-26: todavía no están indexados. Esto los previene.
+      {
+        source: "/descargas/:archivo*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, noarchive" }],
+      },
     ];
   },
 

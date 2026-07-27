@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
 import { getAttribution } from "@/lib/attribution";
+import { CampoTrampa, useAntispam } from "@/components/antispam";
 
 /**
  * Lead magnet gateado: "Checklist de Protección Patrimonial para familias con un
@@ -23,6 +24,7 @@ const XLSX = "/descargas/checklist-proteccion-hijo-discapacidad.xlsx";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function ChecklistDiscapacidadGate() {
+  const antispam = useAntispam();
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -46,6 +48,7 @@ export function ChecklistDiscapacidadGate() {
       source: "checklist",
       origin_path: window.location.pathname,
       ...getAttribution(),
+      ...antispam.datos(formData),
     };
 
     try {
@@ -126,6 +129,8 @@ export function ChecklistDiscapacidadGate() {
       className="rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-cream-light dark:bg-coffee/30 p-6 sm:p-8 text-left space-y-5"
       noValidate
     >
+      <CampoTrampa idPrefix="checklist" />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Nombre" name="nombre" required placeholder="Tu nombre" />
         <Field

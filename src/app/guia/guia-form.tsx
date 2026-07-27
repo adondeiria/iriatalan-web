@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
 import { getAttribution } from "@/lib/attribution";
+import { CampoTrampa, useAntispam } from "@/components/antispam";
 
 /**
  * Form de la landing /guia — captura al lector del lead magnet que quiere
@@ -23,6 +24,7 @@ const MENSAJE_CONTEXTO =
   "Descargó la Guía de 8 trámites por fallecimiento — solicita asesoría / plan.";
 
 export function GuiaLeadForm() {
+  const antispam = useAntispam();
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -46,6 +48,7 @@ export function GuiaLeadForm() {
       source: "guia",
       origin_path: window.location.pathname,
       ...getAttribution(),
+      ...antispam.datos(formData),
     };
 
     try {
@@ -110,6 +113,8 @@ export function GuiaLeadForm() {
       className="rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-cream-light dark:bg-coffee/30 p-6 sm:p-8 text-left space-y-5"
       noValidate
     >
+      <CampoTrampa idPrefix="guia" />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Nombre" name="nombre" required placeholder="Tu nombre" />
         <Field

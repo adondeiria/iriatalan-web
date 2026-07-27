@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
 import { getAttribution } from "@/lib/attribution";
+import { CampoTrampa, useAntispam } from "@/components/antispam";
 
 /**
  * Lead magnet gateado: el visitante deja nombre + email + WhatsApp para
@@ -25,6 +26,7 @@ const XLSX = "/descargas/check-up-patrimonial-beneficiarios.xlsx";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function CheckupGate() {
+  const antispam = useAntispam();
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -48,6 +50,7 @@ export function CheckupGate() {
       source: "checkup",
       origin_path: window.location.pathname,
       ...getAttribution(),
+      ...antispam.datos(formData),
     };
 
     try {
@@ -128,6 +131,8 @@ export function CheckupGate() {
       className="rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-cream-light dark:bg-coffee/30 p-6 sm:p-8 text-left space-y-5"
       noValidate
     >
+      <CampoTrampa idPrefix="checkup" />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Nombre" name="nombre" required placeholder="Tu nombre" />
         <Field

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { trackEvent } from "@/lib/analytics";
 import { getAttribution } from "@/lib/attribution";
+import { CampoTrampa, useAntispam } from "@/components/antispam";
 
 /**
  * Lead magnet gateado: "¿Tu ahorro alcanza para la universidad?". El visitante
@@ -20,6 +21,7 @@ const SERVICIO_FIJO = "Otro / no estoy seguro";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function CalculadoraEducacionalGate() {
+  const antispam = useAntispam();
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -45,6 +47,7 @@ export function CalculadoraEducacionalGate() {
       source: "calculadora",
       origin_path: window.location.pathname,
       ...getAttribution(),
+      ...antispam.datos(fd),
     };
 
     try {
@@ -110,6 +113,8 @@ export function CalculadoraEducacionalGate() {
       className="rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-cream-light dark:bg-coffee/30 p-6 sm:p-8 text-left space-y-5"
       noValidate
     >
+      <CampoTrampa idPrefix="calculadora" />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Tu nombre" name="nombre" required placeholder="Tu nombre" />
         <Field
