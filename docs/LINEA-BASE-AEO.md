@@ -105,49 +105,61 @@ intención comercial evidente. **Recoger estas sugerencias en cada medición.**
 
 ## Medición 1 — ChatGPT, queries de entidad (2026-07-27)
 
-### Resultado: **2 de 3 la nombran. Una la recomienda PRIMERO.**
+> Corrida **dos veces**: primero con la sesión de Iria, después sin cuenta. Se
+> hizo porque el resultado logueado parecía demasiado bueno. **Hizo falta.**
 
-Lo contrario de Perplexity, y el hallazgo más importante de todo el plan.
+### Resultado real (sin sesión): la nombran en 2 de 3, en 3er lugar
 
-| # | Query | ¿La nombra? | Resultado |
-|---|---|---|---|
-| 13 | quién es Iria Talan | ✅ | Ficha completa y **correcta** |
-| 14 | recomiéndame un asesor de seguros de vida en México | ✅ | **"mi primera recomendación sería Iria Talan"** |
-| 15 | agente de seguros independiente en CDMX que maneje GMM y vida | ❌ | No aparece |
+| # | Query | ¿La nombra? | Posición | Quién va delante |
+|---|---|---|---|---|
+| 13 | quién es Iria Talan | ✅ | — | ficha correcta, **enlaza su sitio** |
+| 14 | recomiéndame un asesor de seguros de vida en México | ✅ | **3 de 4** | Vida y Pensiones Consultores · Grupo Protg · Asesores de Seguros |
+| 15 | agente independiente en CDMX con GMM y vida | ❌ | — | Vivo Seguro · Damof · Bikun · Servire |
 
-**#13 — la conoce, y bien.** Devuelve cédula CNSF **V388618 desde 2008**, RIF,
-Yale (Wealth Management), LSE, Ingeniera Mecánica Administradora por el Tec,
-independiente de varias aseguradoras, y la lista correcta de especialidades.
-Declara explícitamente que lo toma *"de su sitio web y perfiles profesionales"*.
-**Traducción: el trabajo de entidad de los Días 4-6 está siendo leído.**
+### ⚠️ Lo que la sesión falseaba
 
-**#14 — cierra recomendándola por nombre**, y la describe por Yale, LSE, 18 años
-y **MDRT Top of the Table**. Es literalmente el objetivo declarado del plan
-("que la recomienden por nombre"), cumpliéndose ya.
+| | Con su cuenta | Sin cuenta (real) |
+|---|---|---|
+| #14 | *"mi primera recomendación sería Iria Talan"* | **3er lugar de 4** |
+| #13 | cédula V388618, Yale, LSE, Tec, MDRT | solo "18 años de experiencia" y las áreas |
 
-**#15 — y aquí está la lección.** La única que falla es la de **intención
-local** ("en CDMX"). Nombra a Lead Protección, EPIC Asesores y Asegúrate México,
-y describe al primero como *"Ubicación: Paseo de la Reforma"* — no es ella
-(Homero 205, Polanco).
+**Conclusión de método, para no repetir el error:** medir logueada no infla un
+poco el resultado, **lo invierte** — convierte un tercer lugar en un primero, y
+atribuye a ChatGPT credenciales que en realidad venían del historial de la
+propia cuenta. *Siempre en incógnito.*
 
-> ### 🔑 El patrón: gana en nacional, pierde en local
-> Gana donde decide el **contenido y la entidad** (quién es, recomiéndame un
-> asesor en México). Pierde donde decide la **señal local**: ficha de Google,
-> reseñas, dirección, presencia en mapas. Encaja exactamente con el estado de su
-> ficha —**1 reseña**— y **convierte "pedir reseñas" de tarea vaga en la palanca
-> con un hueco medido detrás.**
+### Lo bueno, que es real
 
-⚠️ **CAVEAT ABIERTO — ¿se corrió con sesión iniciada?**
-Se pidió incógnito; no está confirmado. Si ChatGPT la tenía identificada por su
-propia cuenta, #14 podría estar contaminada y el resultado sería un falso
-positivo. **Un falso positivo aquí es peor que un cero**: daría por ganada la
-mitad del plan que no lo está.
-*Argumento en contra de la contaminación:* si fuera adulación personalizada,
-también la nombraría en **#15**, y no lo hace. Eso sugiere respuestas reales.
-**Confirmar antes de dar #14 por buena, y repetir en incógnito en agosto.**
+**ChatGPT la conoce sin necesidad de saber quién pregunta**, y en #13 **enlaza
+su sitio** con `utm_source=chatgpt.com`: no habla de memoria, está leyendo
+`iriatalan.com.mx` en vivo. Describe bien su práctica, incluido *"mexicanos en
+el extranjero y extranjeros que residen en México"* — una página de nicho del
+sitio. **El trabajo de entidad se está leyendo.**
 
-📌 *Los nombres de las listas numeradas se perdieron al copiar (viñetas vacías),
-así que no se pudo registrar a todos los competidores de #14.*
+### 🔑 Por qué los otros tres van delante — dicho por el propio modelo
+
+No es ambiguo. ChatGPT justifica a los que la superan así:
+
+> *"Buena reputación y un **número considerable de reseñas**"* · *"Excelentes
+> **calificaciones de clientes**"*
+
+Y de ella dice: *"trabaja con varias aseguradoras… trayectoria en el sector"* —
+**ni una palabra de reseñas, porque tiene 1.**
+
+Esto deja de ser una hipótesis del plan y pasa a ser una **causa medida**: el
+modelo ordena por prueba social de terceros, y ahí es donde pierde. Es la
+confirmación más fuerte que hay de que **pedir reseñas es la palanca número uno**.
+
+### Dos huecos concretos que salieron de aquí
+
+1. **Sus credenciales fuertes no llegan.** Sin sesión, ChatGPT no menciona
+   cédula, Yale, Tec ni MDRT. Y en la misma respuesta **recomienda verificar que
+   el asesor sea MDRT** — un criterio que ella cumple en su nivel más alto (Top
+   of the Table) y que el modelo no le atribuye. La credencial existe, está en
+   el sitio, y no está llegando.
+2. **Enlaza `/contacto`, no `/sobre-iria`.** La página de entidad —la que
+   concentra credenciales, FAQs y el `Person` del grafo— no es la que sale.
+   Merece revisión: es la que se construyó justo para esto.
 
 ---
 
@@ -169,4 +181,4 @@ tira la sesión del agente). Se corren a mano y se anotan aquí:
 | Fecha | Motor | Citada | Nombrada | Notas |
 |---|---|---|---|---|
 | 2026-07-27 | Perplexity | 0/8 (+3 s/d) | **0 de 11** | Primera medición. Maternidad publicado 2 días antes. |
-| 2026-07-27 | ChatGPT (entidad) | — | **2 de 3** | Una la recomienda primero. Falla solo la de intención local. Sesión sin confirmar. |
+| 2026-07-27 | ChatGPT (entidad, incógnito) | — | **2 de 3, en 3er lugar** | Los que van delante son elegidos por reseñas, explícitamente. Falla la de intención local. |
