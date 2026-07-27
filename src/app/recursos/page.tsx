@@ -134,10 +134,15 @@ type CarrierWebLink = {
 const CARRIER_WEB_LINKS: CarrierWebLink[] = [
   { carrier: "AXA",     label: "Buscador de médicos y hospitales", url: "https://axa.mx/servicios/buscador-de-servicios" },
   { carrier: "AXA",     label: "Médicos sin convenio",             url: "https://axa.mx/documents/51602/1266886/MedicoSinConvenio.pdf" },
+  // Va bajo AXA, no como carrier propio: AXA Keralty es la red de clínicas de
+  // AXA, no una séptima aseguradora. Como "Keralty" no está en CARRIER_ORDER
+  // pero sí entraba al `carrierSet` de más abajo, esta línea abría un bloque
+  // suelto al final de la página — /recursos era otra superficie del negocio
+  // diciendo siete aseguradoras en vez de seis.
+  { carrier: "AXA",     label: "Clínicas AXA Keralty — ubicaciones", url: "https://axakeralty.mx/ubicaciones" },
   { carrier: "BUPA",    label: "Buscador de médicos y hospitales", url: "https://www.bupasalud.com.mx/red-de-salud" },
   { carrier: "GNP",     label: "Buscador de médicos y hospitales", url: "https://www.gnp.com.mx/directorio-proveedores-medicos" },
   { carrier: "GNP",     label: "Médicos sin pago directo",         url: "https://www.gnp.com.mx/content/pp/mx/es/footer/touch-navigation/listado-de-medicos-sin-pago-directo.html" },
-  { carrier: "Keralty", label: "Buscador de médicos y hospitales", url: "https://axakeralty.mx/ubicaciones" },
   { carrier: "MetLife", label: "Buscador de médicos y hospitales", url: "https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/" },
   { carrier: "Seguros Monterrey New York Life", label: "Buscador de médicos y hospitales", url: "https://www.mnyl.com.mx/" },
 ];

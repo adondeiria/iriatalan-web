@@ -192,8 +192,14 @@ export default function AvisoPrivacidadPage() {
               <strong className="text-ink dark:text-cream-light">
                 Aseguradoras autorizadas:
               </strong>{" "}
+              {/* Seis, las mismas que el resto del sitio y que el documento
+                  `author` de Sanity. Antes decía "y Keralty" — una séptima
+                  aseguradora que no existe como tal: Keralty es de AXA, que ya
+                  está en la lista. Era la única superficie del sitio que
+                  declaraba siete, y justo en el documento legal que dice a
+                  quién se transfieren los datos del cliente. */}
               GNP, Seguros Monterrey New York Life (SMNYL), BUPA, AXA,
-              MetLife, Allianz y Keralty, exclusivamente para la cotización,
+              MetLife y Allianz, exclusivamente para la cotización,
               contratación, administración y atención de reclamaciones de
               pólizas.
             </li>
