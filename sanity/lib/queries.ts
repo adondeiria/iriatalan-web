@@ -118,6 +118,7 @@ export const ARTICLE_QUERY = defineQuery(`
     questionsAnswered,
     excerpt,
     heroImage{ ..., asset-> },
+    video{ videoId, name, description, uploadDate, duration },
     body[]{
       ...,
       _type == "glossaryReference" => {

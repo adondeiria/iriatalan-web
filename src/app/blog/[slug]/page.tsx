@@ -11,6 +11,7 @@ import {
   TLDRBox,
 } from "@/components/blog/article-meta";
 import { PortableTextRenderer } from "@/components/portable-text";
+import { YouTubeFacade } from "@/components/youtube-embed";
 import { GlossaryMentions } from "@/components/blog/glossary-mentions";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { RelatedServices } from "@/components/blog/related-services";
@@ -29,8 +30,10 @@ import {
   buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildGraph,
+  buildVideoSchema,
   SITE_NAME,
   SITE_URL,
+  type ArticleVideoData,
   type FAQItem,
 } from "@/lib/seo";
 
@@ -60,6 +63,7 @@ type ArticleData = {
   questionsAnswered?: string[];
   excerpt?: string;
   heroImage?: { asset?: { url?: string }; alt?: string } | null;
+  video?: ArticleVideoData | null;
   body?: unknown[] | null;
   faqs?: Array<{
     _id?: string;
@@ -191,7 +195,9 @@ export default async function ArticlePage({
       sources: article.sources ?? undefined,
       topic: article.topic,
       wordCount: article.wordCount,
+      video: article.video ?? undefined,
     }),
+    buildVideoSchema(article.video, `/blog/${article.slug}`),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Blog", path: "/blog" },
@@ -291,6 +297,18 @@ export default async function ArticlePage({
                   priority
                 />
               </div>
+            </section>
+          )}
+
+          {/* El video va después del hero y antes del cuerpo: el lector que
+              prefiere ver a leer lo encuentra sin scrollear, y el que viene a
+              leer solo pasa una tarjeta. */}
+          {article.video?.videoId && (
+            <section className="px-6 mt-10 max-w-3xl mx-auto w-full">
+              <YouTubeFacade
+                video={article.video}
+                fallbackTitle={article.title}
+              />
             </section>
           )}
 

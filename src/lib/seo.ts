@@ -473,7 +473,66 @@ export type ArticleData = {
    */
   questionsAnswered?: string[];
   wordCount?: number;
+  /**
+   * Video del canal que cubre el mismo tema. Emite un `VideoObject` propio en
+   * el grafo y se referencia desde el `video` del Article.
+   */
+  video?: ArticleVideoData | null;
 };
+
+// ------------------------------------------------------------------
+// VIDEO — schema.org VideoObject
+// ------------------------------------------------------------------
+
+export type ArticleVideoData = {
+  videoId?: string;
+  name?: string;
+  description?: string;
+  uploadDate?: string;
+  duration?: string;
+};
+
+/** URL canónica de la miniatura de YouTube (siempre existe para un ID válido). */
+export function youtubeThumbnail(videoId: string) {
+  return `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+}
+
+/**
+ * VideoObject del video de YouTube que acompaña al artículo.
+ *
+ * Por qué importa para el objetivo del sitio: Google AI Overviews cita video
+ * con mucha frecuencia, y un artículo que enseña el mismo dato en texto y en
+ * video —con el canal declarado en `sameAs` de la entidad— une dos superficies
+ * que hoy no se conocen entre sí. El `@id` permite que el Article lo referencie
+ * sin duplicar el nodo.
+ *
+ * `name`, `description`, `thumbnailUrl` y `uploadDate` son los cuatro campos que
+ * schema.org marca como requeridos; si falta alguno se devuelve null en vez de
+ * emitir un nodo inválido que ensucie el grafo.
+ */
+export function buildVideoSchema(
+  video: ArticleVideoData | null | undefined,
+  /** Ruta de la página que lo aloja, con `/` inicial. Ej: `/blog/mi-slug`, `/sobre-iria`. */
+  path: string
+) {
+  if (!video?.videoId || !video.name || !video.description || !video.uploadDate) {
+    return null;
+  }
+  return {
+    "@type": "VideoObject" as const,
+    "@id": `${SITE_URL}${path}#video`,
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: youtubeThumbnail(video.videoId),
+    uploadDate: video.uploadDate,
+    duration: video.duration,
+    contentUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${video.videoId}`,
+    inLanguage: "es-MX",
+    creator: { "@id": `${SITE_URL}/sobre-iria#person` },
+    publisher: { "@id": `${SITE_URL}#organization` },
+  };
+}
 
 // Mapeo topic → schema.org `about` Thing.
 // Refuerza entity matching para LLMs que responden "¿qué dice X sobre concepto Y?".
@@ -541,6 +600,15 @@ export function buildArticleSchema(article: ArticleData) {
       : undefined,
     mainEntity,
     speakable,
+    // Referencia al VideoObject que buildVideoSchema emite como nodo hermano
+    // en el mismo grafo. Se usa @id (no el nodo inline) para no duplicarlo.
+    video:
+      article.video?.videoId &&
+      article.video.name &&
+      article.video.description &&
+      article.video.uploadDate
+        ? { "@id": `${SITE_URL}/blog/${article.slug}#video` }
+        : undefined,
     author: article.author
       ? { "@id": `${SITE_URL}/sobre-iria#person` }
       : undefined,

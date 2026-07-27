@@ -164,6 +164,101 @@ export const article = defineType({
         }),
       ],
     }),
+    // ----- VIDEO DE YOUTUBE -----
+    // El canal y el blog cubren los mismos temas sin conocerse: es trabajo
+    // hecho dos veces que no se suma. Este campo enlaza artículo→video y emite
+    // `VideoObject` en el JSON-LD (Google AI Overviews cita video con
+    // frecuencia, y un artículo con video respaldando el mismo dato pesa más).
+    // El enlace inverso (video→artículo) vive en la descripción de YouTube.
+    // Se renderiza como facade: la miniatura pasa por el optimizador de Next,
+    // así que el navegador NO contacta a YouTube hasta que el visitante da
+    // clic — coherente con el banner de consentimiento.
+    defineField({
+      name: "video",
+      title: "Video de YouTube relacionado",
+      type: "object",
+      group: "content",
+      description:
+        "Opcional. Si el canal ya tiene un video del mismo tema, enlázalo aquí. Acuérdate de poner también el enlace al artículo en la descripción del video en YouTube — el valor está en que sea bidireccional.",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "videoId",
+          title: "ID del video (11 caracteres)",
+          type: "string",
+          description:
+            "Solo el ID, no la URL completa. En https://www.youtube.com/watch?v=s5OHhBvQbYs el ID es s5OHhBvQbYs.",
+          validation: (Rule) =>
+            Rule.custom((value) => {
+              if (!value) return true; // objeto vacío = sin video
+              if (typeof value !== "string" || !/^[\w-]{11}$/.test(value)) {
+                return "Debe ser el ID de 11 caracteres (letras, números, - y _), no la URL.";
+              }
+              return true;
+            }),
+        }),
+        defineField({
+          name: "name",
+          title: "Título del video",
+          type: "string",
+          description: "Como aparece en YouTube. Va al `name` del VideoObject.",
+        }),
+        defineField({
+          name: "description",
+          title: "Descripción del video (1-3 líneas)",
+          type: "text",
+          rows: 3,
+          description:
+            "Qué explica el video, en limpio. NO pegues la descripción de YouTube con hashtags — esto lo lee el buscador.",
+        }),
+        defineField({
+          name: "uploadDate",
+          title: "Fecha de publicación en YouTube",
+          type: "date",
+          description: "Requerida por schema.org VideoObject.",
+        }),
+        defineField({
+          name: "duration",
+          title: "Duración (ISO 8601, opcional)",
+          type: "string",
+          description: 'Formato PT#M#S. Ej: 1 min 45 seg → "PT1M45S".',
+          validation: (Rule) =>
+            Rule.custom((value) => {
+              if (!value) return true;
+              if (typeof value !== "string" || !/^PT(\d+M)?(\d+S)?$/.test(value)) {
+                return 'Formato ISO 8601: "PT1M45S", "PT48S", "PT3M".';
+              }
+              return true;
+            }),
+        }),
+      ],
+      // Si hay videoId, los campos que VideoObject exige dejan de ser opcionales.
+      validation: (Rule) =>
+        Rule.custom((value) => {
+          const v = value as
+            | {
+                videoId?: string;
+                name?: string;
+                description?: string;
+                uploadDate?: string;
+              }
+            | undefined;
+          if (!v?.videoId) return true;
+          const faltan = (
+            [
+              ["name", "título"],
+              ["description", "descripción"],
+              ["uploadDate", "fecha de publicación"],
+            ] as const
+          )
+            .filter(([k]) => !v[k])
+            .map(([, etiqueta]) => etiqueta);
+          if (faltan.length > 0) {
+            return `Con videoId hay que llenar también: ${faltan.join(", ")} (schema.org VideoObject los exige).`;
+          }
+          return true;
+        }),
+    }),
     defineField({
       name: "body",
       title: "Contenido (Portable Text)",

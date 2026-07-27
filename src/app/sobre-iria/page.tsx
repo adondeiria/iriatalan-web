@@ -4,6 +4,7 @@ import Link from "next/link";
 import { type PortableTextBlock } from "@portabletext/react";
 
 import { PortableTextRenderer } from "@/components/portable-text";
+import { YouTubeFacade } from "@/components/youtube-embed";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { SOBRE_IRIA_QUERY } from "../../../sanity/lib/queries";
@@ -12,6 +13,8 @@ import {
   buildBreadcrumbSchema,
   buildFAQPageSchema,
   buildGraph,
+  buildVideoSchema,
+  type ArticleVideoData,
   type FAQItem,
 } from "@/lib/seo";
 import { FALLBACK_AUTHOR } from "@/lib/author";
@@ -121,6 +124,24 @@ export default async function SobreIriaPage() {
 
   const ctaUrl = "/contacto#agendar";
 
+  // Video de presentación del canal. Va cableado aquí (no en Sanity) porque
+  // /sobre-iria no es un artículo: su contenido vive entre el documento `author`
+  // y esta página.
+  //
+  // Es el par más valioso de los tres que quedaron identificados: /sobre-iria es
+  // la página que decide si un motor de IA la recomienda POR NOMBRE, y un video
+  // donde ella se presenta a cámara es la clase de señal de entidad que no se
+  // puede fabricar con texto. Datos tomados del canal, no de memoria:
+  // publicado 2026-06-03, 224 s = PT3M44S.
+  const videoPresentacion: ArticleVideoData = {
+    videoId: "Dpo_No0sBuk",
+    name: "Iria Talan, Asesora Patrimonial y de Seguros — mi historia",
+    description:
+      "Iria Talan se presenta: cómo llegó a la asesoría patrimonial, con qué aseguradoras trabaja y qué tipo de acompañamiento da a las familias que asesora.",
+    uploadDate: "2026-06-03",
+    duration: "PT3M44S",
+  };
+
   // Una sola fuente para las FAQs: el mismo array alimenta el FAQPage del
   // JSON-LD y lo que se ve en pantalla, así que no pueden divergir.
   const faqs = buildSobreIriaFaqs(author);
@@ -132,7 +153,8 @@ export default async function SobreIriaPage() {
       { name: "Inicio", path: "/" },
       { name: "Sobre Iria", path: "/sobre-iria" },
     ]),
-    buildFAQPageSchema(faqs)
+    buildFAQPageSchema(faqs),
+    buildVideoSchema(videoPresentacion, "/sobre-iria")
   );
 
   const credentialsByCategory = (author.credentials ?? []).reduce(
@@ -203,6 +225,14 @@ export default async function SobreIriaPage() {
               )}
             </div>
           </div>
+        </section>
+
+        <section className="px-6 pb-12 sm:pb-16 max-w-3xl mx-auto w-full">
+          <YouTubeFacade
+            video={videoPresentacion}
+            eyebrow="Conóceme en video"
+            fallbackTitle={author.name}
+          />
         </section>
 
         {author.credentials && author.credentials.length > 0 && (

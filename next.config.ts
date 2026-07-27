@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      // Miniaturas de YouTube para el facade de video en artículos.
+      // Pasarlas por el optimizador (en vez de un <img> directo) hace que el
+      // navegador NUNCA contacte a YouTube antes del clic: la trae el servidor.
+      // Eso mantiene el embed del lado correcto del banner de consentimiento.
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
     ],
   },
   // X-Robots-Tag noindex defense-in-depth para Sanity Studio.
