@@ -23,7 +23,7 @@ la medición del mes que viene no será comparable con esta.
 
 ## Medición 1 — 2026-07-27 (Perplexity)
 
-### Resultado global: **0 de 11** — cero menciones por nombre
+### Resultado global: **0 de 12** — cero menciones por nombre
 
 Ni una sola cita. Ni una sola mención por nombre.
 
@@ -40,6 +40,7 @@ Ni una sola cita. Ni una sola mención por nombre.
 | 9 | cuánto cuesta una universidad privada en México y cuánto ahorrar | s/d | ❌ | *(lista de fuentes no capturada)* |
 | 10 | qué es una renta vitalicia en México y conviene | s/d | ❌ | *(no capturada)* |
 | 11 | ST-6 IMSS pensión de orfandad sin límite de edad, hijo con discapacidad | s/d | ❌ | IMSS (citado en el cuerpo) |
+| 12 | cómo dejar dinero a un hijo con discapacidad en México | s/d | ❌ | *(no capturada)* |
 
 > **9-11 corridas a mano el 2026-07-27.** El `s/d` es **una limitación del método,
 > no un dato que falte**: se copió la respuesta completa tal como la da Perplexity,
@@ -89,12 +90,28 @@ ganar**, que es lo accionable:
   el derecho con el tiempo, y qué pasa con el patrimonio del hijo — terreno de
   la asesora, no del trámite.
 - **Renta vitalicia (#10):** respuesta genérica y correcta. Espacio medio.
+- **Hijo con discapacidad (#12) — el más doloroso.** Iria tiene **dos artículos
+  largos** sobre exactamente esto (`proteger-hijo-con-discapacidad-cuando-yo-falte`
+  y `como-dejar-dinero-hijo-autismo-discapacidad-mexico`, ~200 bloques cada uno,
+  publicados en junio) y **no aparece**. Peor aún: Perplexity llega sola a la
+  tesis central de ella —*"evitar que el dinero quede directamente a nombre de la
+  persona con discapacidad"*— sin citarla. Dos meses publicados no bastaron.
+  **Es la prueba más clara de que el problema no es el contenido, es la
+  distribución** — que es la mitad del plan que sigue floja.
 
 ### 🔑 Las preguntas de seguimiento son una lista de tareas gratis
 
 Tras la del ST-6, Perplexity sugirió: *lista exacta de documentos* · *qué pasos
 seguir primero en la UMF* · *cuánto tarda el dictamen* · *qué pasa si ya recibía
 la pensión* · ***¿necesito contratar a un abogado?***
+
+Y tras la #12: *estructura para patrimonio **pequeño / medio / alto*** · *pasos
+para iniciar un fideicomiso* · ***qué pasa si no tengo quién sea el
+administrador***.
+
+Esa última es oro: es la pregunta que más angustia a un padre en esa situación,
+y no la responde ningún comparador. Y la de "pequeño / medio / alto" es, tal
+cual, **la estructura de un artículo**.
 
 Eso no es adorno: es el modelo diciendo **qué se pregunta la gente después**. Un
 artículo que responda esas cinco literalmente, con los H2 en forma de pregunta,
@@ -163,16 +180,13 @@ confirmación más fuerte que hay de que **pedir reseñas es la palanca número 
 
 ---
 
-## Pendiente de esta primera medición
+## Estado de esta primera medición
 
-Falta **1 query**, que no se pudieron correr por vía automatizada (Perplexity
-tira la sesión del agente). Se corren a mano y se anotan aquí:
+**Cerrada.** Las 4 últimas de Perplexity y las 3 de ChatGPT se corrieron a mano
+porque Perplexity tira la sesión del agente — anotar eso para agosto y no
+perder tiempo automatizándolo.
 
-**Perplexity:**
-
-12. cómo dejar dinero a un hijo con discapacidad en México
-
-*(Las 3 de ChatGPT ya se corrieron — ver arriba.)*
+*Ninguno. Las 15 quedaron medidas el 2026-07-27.*
 
 ---
 
@@ -180,5 +194,5 @@ tira la sesión del agente). Se corren a mano y se anotan aquí:
 
 | Fecha | Motor | Citada | Nombrada | Notas |
 |---|---|---|---|---|
-| 2026-07-27 | Perplexity | 0/8 (+3 s/d) | **0 de 11** | Primera medición. Maternidad publicado 2 días antes. |
+| 2026-07-27 | Perplexity | 0/8 (+4 s/d) | **0 de 12** | Primera medición. Maternidad publicado 2 días antes. |
 | 2026-07-27 | ChatGPT (entidad, incógnito) | — | **2 de 3, en 3er lugar** | Los que van delante son elegidos por reseñas, explícitamente. Falla la de intención local. |
