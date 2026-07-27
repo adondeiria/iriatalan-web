@@ -23,7 +23,7 @@ la medición del mes que viene no será comparable con esta.
 
 ## Medición 1 — 2026-07-27 (Perplexity)
 
-### Resultado global: **0 de 8**
+### Resultado global: **0 de 11** — cero menciones por nombre
 
 Ni una sola cita. Ni una sola mención por nombre.
 
@@ -37,6 +37,14 @@ Ni una sola cita. Ni una sola mención por nombre.
 | 6 | cómo calcular la suma asegurada de mi seguro de vida (México) | ❌ | ❌ | zenpoliza.com |
 | 7 | por qué subió tanto mi seguro de gastos médicos en la renovación | ❌ | ❌ | aseguratemexico.com |
 | 8 | conviene la modalidad 40 del IMSS | ❌ | ❌ | youtube.com · segurosmexico.mx |
+| 9 | cuánto cuesta una universidad privada en México y cuánto ahorrar | s/d | ❌ | *(lista de fuentes no capturada)* |
+| 10 | qué es una renta vitalicia en México y conviene | s/d | ❌ | *(no capturada)* |
+| 11 | ST-6 IMSS pensión de orfandad sin límite de edad, hijo con discapacidad | s/d | ❌ | IMSS (citado en el cuerpo) |
+
+> **9-11 corridas a mano el 2026-07-27.** Se capturó el cuerpo de la respuesta, no
+> el panel de fuentes: de ahí el `s/d` en "¿citada?". La columna que sí es firme
+> es **"¿la nombra?"**, y es la que más importa —es la mitad "recomendada"— y en
+> las tres es **no**.
 
 ### Lo que dice este resultado
 
@@ -57,19 +65,45 @@ Ninguno lee condiciones generales. `internationalstudentinsurance.com` citado
 para explicar deducible y coaseguro *en México* es, directamente, una mala
 respuesta — y es el hueco más barato de disputar con el glosario.
 
+### Lo que se aprendió leyendo las respuestas, no solo contando ceros
+
+Contar citas dice *si* la citan. Leer las respuestas dice **dónde se puede
+ganar**, que es lo accionable:
+
+- **Universidades (#9) — el hueco más grande.** Perplexity contesta con rangos
+  vagos ("$20,000–$40,000 por semestre", "$140,000–$190,000") y **no da una sola
+  cifra atribuida a una institución**, aunque nombra Tec, Ibero, Anáhuac e ITAM.
+  El artículo de Iria tiene **costos por institución con 7 fuentes verificadas**,
+  varias por consulta telefónica directa. Es justo el dato primario que una
+  respuesta genérica no puede igualar. **Máxima prioridad.**
+- **ST-6 (#11) — el hueco más pequeño.** Aquí el modelo ya responde bien:
+  explica el dictamen, las 150 semanas cotizadas y el trámite en la UMF, apoyado
+  en el IMSS. Contra la fuente oficial no se compite por exactitud. El espacio
+  está en lo que el IMSS **no** cubre: qué hacer si lo niegan, cómo se sostiene
+  el derecho con el tiempo, y qué pasa con el patrimonio del hijo — terreno de
+  la asesora, no del trámite.
+- **Renta vitalicia (#10):** respuesta genérica y correcta. Espacio medio.
+
+### 🔑 Las preguntas de seguimiento son una lista de tareas gratis
+
+Tras la del ST-6, Perplexity sugirió: *lista exacta de documentos* · *qué pasos
+seguir primero en la UMF* · *cuánto tarda el dictamen* · *qué pasa si ya recibía
+la pensión* · ***¿necesito contratar a un abogado?***
+
+Eso no es adorno: es el modelo diciendo **qué se pregunta la gente después**. Un
+artículo que responda esas cinco literalmente, con los H2 en forma de pregunta,
+ataca queries que ya sabemos que existen. Y "¿necesito un abogado?" tiene
+intención comercial evidente. **Recoger estas sugerencias en cada medición.**
+
 ---
 
 ## Pendiente de esta primera medición
 
-Faltan **7 queries**, que no se pudieron correr por vía automatizada (Perplexity
+Faltan **4 queries**, que no se pudieron correr por vía automatizada (Perplexity
 tira la sesión del agente). Se corren a mano y se anotan aquí:
 
-**Perplexity — temas de artículos YA publicados** (el test más filoso: si no la
-citan aquí, no la citan en ningún lado):
+**Perplexity:**
 
-9. cuánto cuesta una universidad privada en México y cuánto ahorrar
-10. qué es una renta vitalicia en México y conviene
-11. ST-6 IMSS pensión de orfandad sin límite de edad hijo con discapacidad
 12. cómo dejar dinero a un hijo con discapacidad en México
 
 **ChatGPT — las de entidad** (la mitad "recomendada por nombre", que es la que
@@ -85,4 +119,4 @@ decide la Fase 5):
 
 | Fecha | Motor | Citada | Nombrada | Notas |
 |---|---|---|---|---|
-| 2026-07-27 | Perplexity | 0/8 | 0/8 | Primera medición. Maternidad publicado 2 días antes. |
+| 2026-07-27 | Perplexity | 0/8 (+3 s/d) | 0/11 | Primera medición. Maternidad publicado 2 días antes. |
