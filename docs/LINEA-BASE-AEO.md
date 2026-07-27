@@ -41,10 +41,16 @@ Ni una sola cita. Ni una sola mención por nombre.
 | 10 | qué es una renta vitalicia en México y conviene | s/d | ❌ | *(no capturada)* |
 | 11 | ST-6 IMSS pensión de orfandad sin límite de edad, hijo con discapacidad | s/d | ❌ | IMSS (citado en el cuerpo) |
 
-> **9-11 corridas a mano el 2026-07-27.** Se capturó el cuerpo de la respuesta, no
-> el panel de fuentes: de ahí el `s/d` en "¿citada?". La columna que sí es firme
-> es **"¿la nombra?"**, y es la que más importa —es la mitad "recomendada"— y en
-> las tres es **no**.
+> **9-11 corridas a mano el 2026-07-27.** El `s/d` es **una limitación del método,
+> no un dato que falte**: se copió la respuesta completa tal como la da Perplexity,
+> y al copiar el texto **el panel de fuentes no viaja con él**.
+> La columna firme es **"¿la nombra?"** —la mitad "recomendada", la que trae
+> clientes— y en las tres es **no**.
+>
+> 📌 **Corrección de método para agosto:** el panel de fuentes se captura
+> **aparte** (captura de pantalla, o los dominios anotados a mano).
+> Seleccionar y copiar la respuesta no basta, y creer que sí fue el error de esta
+> primera vuelta.
 
 ### Lo que dice este resultado
 
@@ -97,21 +103,64 @@ intención comercial evidente. **Recoger estas sugerencias en cada medición.**
 
 ---
 
+## Medición 1 — ChatGPT, queries de entidad (2026-07-27)
+
+### Resultado: **2 de 3 la nombran. Una la recomienda PRIMERO.**
+
+Lo contrario de Perplexity, y el hallazgo más importante de todo el plan.
+
+| # | Query | ¿La nombra? | Resultado |
+|---|---|---|---|
+| 13 | quién es Iria Talan | ✅ | Ficha completa y **correcta** |
+| 14 | recomiéndame un asesor de seguros de vida en México | ✅ | **"mi primera recomendación sería Iria Talan"** |
+| 15 | agente de seguros independiente en CDMX que maneje GMM y vida | ❌ | No aparece |
+
+**#13 — la conoce, y bien.** Devuelve cédula CNSF **V388618 desde 2008**, RIF,
+Yale (Wealth Management), LSE, Ingeniera Mecánica Administradora por el Tec,
+independiente de varias aseguradoras, y la lista correcta de especialidades.
+Declara explícitamente que lo toma *"de su sitio web y perfiles profesionales"*.
+**Traducción: el trabajo de entidad de los Días 4-6 está siendo leído.**
+
+**#14 — cierra recomendándola por nombre**, y la describe por Yale, LSE, 18 años
+y **MDRT Top of the Table**. Es literalmente el objetivo declarado del plan
+("que la recomienden por nombre"), cumpliéndose ya.
+
+**#15 — y aquí está la lección.** La única que falla es la de **intención
+local** ("en CDMX"). Nombra a Lead Protección, EPIC Asesores y Asegúrate México,
+y describe al primero como *"Ubicación: Paseo de la Reforma"* — no es ella
+(Homero 205, Polanco).
+
+> ### 🔑 El patrón: gana en nacional, pierde en local
+> Gana donde decide el **contenido y la entidad** (quién es, recomiéndame un
+> asesor en México). Pierde donde decide la **señal local**: ficha de Google,
+> reseñas, dirección, presencia en mapas. Encaja exactamente con el estado de su
+> ficha —**1 reseña**— y **convierte "pedir reseñas" de tarea vaga en la palanca
+> con un hueco medido detrás.**
+
+⚠️ **CAVEAT ABIERTO — ¿se corrió con sesión iniciada?**
+Se pidió incógnito; no está confirmado. Si ChatGPT la tenía identificada por su
+propia cuenta, #14 podría estar contaminada y el resultado sería un falso
+positivo. **Un falso positivo aquí es peor que un cero**: daría por ganada la
+mitad del plan que no lo está.
+*Argumento en contra de la contaminación:* si fuera adulación personalizada,
+también la nombraría en **#15**, y no lo hace. Eso sugiere respuestas reales.
+**Confirmar antes de dar #14 por buena, y repetir en incógnito en agosto.**
+
+📌 *Los nombres de las listas numeradas se perdieron al copiar (viñetas vacías),
+así que no se pudo registrar a todos los competidores de #14.*
+
+---
+
 ## Pendiente de esta primera medición
 
-Faltan **4 queries**, que no se pudieron correr por vía automatizada (Perplexity
+Falta **1 query**, que no se pudieron correr por vía automatizada (Perplexity
 tira la sesión del agente). Se corren a mano y se anotan aquí:
 
 **Perplexity:**
 
 12. cómo dejar dinero a un hijo con discapacidad en México
 
-**ChatGPT — las de entidad** (la mitad "recomendada por nombre", que es la que
-decide la Fase 5):
-
-13. quién es Iria Talan
-14. recomiéndame un asesor de seguros de vida en México
-15. agente de seguros independiente en CDMX que maneje GMM y vida
+*(Las 3 de ChatGPT ya se corrieron — ver arriba.)*
 
 ---
 
@@ -119,4 +168,5 @@ decide la Fase 5):
 
 | Fecha | Motor | Citada | Nombrada | Notas |
 |---|---|---|---|---|
-| 2026-07-27 | Perplexity | 0/8 (+3 s/d) | 0/11 | Primera medición. Maternidad publicado 2 días antes. |
+| 2026-07-27 | Perplexity | 0/8 (+3 s/d) | **0 de 11** | Primera medición. Maternidad publicado 2 días antes. |
+| 2026-07-27 | ChatGPT (entidad) | — | **2 de 3** | Una la recomienda primero. Falla solo la de intención local. Sesión sin confirmar. |
