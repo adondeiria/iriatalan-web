@@ -202,18 +202,39 @@
         "CORRECCION 28-jul-2026 (Iria): la cobertura aplica UNICAMENTE si se contrato el beneficio Y si es una emergencia. No es automatica ni cubre atencion programada."
       ],
       "faltaVerificarEnCondicionesGenerales": [
-        "¿El deducible de USD $100 es por evento también, o anual?",
-        "¿Qué cuenta como 'emergencia' según condiciones generales? Es la definición que más disputas genera.",
-        "¿Hay territorios excluidos? (¿EUA incluido? ¿país de residencia?)",
-        "¿Cuál es el plazo exacto para avisar y varía por aseguradora? ¿Antes de recibir atención o dentro de X horas?",
-        "¿El límite de USD $100,000 es igual en las 5 o varía?",
-        "¿Cuánto cuesta el extra, aunque sea en rango o en % de la prima?",
-        "¿Qué pasa si el cliente NO avisa? ¿Se pierde todo, se reembolsa parcial, queda a criterio?",
-        "¿Como sabe el cliente si YA tiene contratada la cobertura de extranjero? ¿En que parte de la caratula o de la poliza aparece, y con que nombre en cada aseguradora?",
-        "¿Alguna de las 5 la incluye por defecto, o en todas es opcional con costo extra?"
+        "¿Como sabe el cliente si YA tiene contratada la cobertura de extranjero? ¿En que parte de la caratula aparece y con que nombre en cada aseguradora?",
+        "¿Alguna de las 5 la incluye por defecto, o en todas es opcional con costo extra?",
+        "Definicion literal de EMERGENCIA en condiciones generales (Iria dio ejemplos, falta la redaccion del contrato).",
+        "El costo aproximado de 1500/ano: ¿es en pesos o en dolares?"
       ],
       "notes": "IDEA GUARDADA A PETICIÓN DE IRIA (25-jul-2026): 'guárdalo para que me recuerdes cuando empecemos el próximo artículo'. NO arrancar hasta tener las condiciones generales a la mano — es contenido YMYL y la regla del repo es rechazar todo dato no verificado contra el contrato. Verdict 🟡 es por los datos faltantes, NO por el tema: el tema es fuerte y es de los pocos con dato primario real. Sugerencia de proceso: usar el agente iriatalan-seo-blog con quórum YMYL, igual que en la comparativa de maternidad. Interlinking natural: /gmm (sección 'cobertura internacional', que ya tiene la tabla y el bloque de emergencia), el hub GMM, y /personas/mexicanos-en-el-extranjero. Contexto: la sección de /gmm ya publica los datos confirmados de arriba, así que el artículo debe profundizar, no repetir.",
-      "tituloDescartado": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada) — DESCARTADO 2026-07-28"
+      "tituloDescartado": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada) — DESCARTADO 2026-07-28",
+      "respuestasDeIria": {
+        "fecha": "2026-07-28",
+        "deducible": "Por evento (igual que el limite). CONFIRMADO.",
+        "queEsEmergencia": "EJEMPLOS dados por Iria: fractura expuesta, intoxicacion alimentaria. OJO: son ejemplos ilustrativos, NO la definicion contractual. Para el articulo hace falta la redaccion literal de condiciones generales — es la definicion que mas disputas genera.",
+        "territorios": "HALLAZGO: aplica en TODO EL MUNDO, pero solo en HOSPITALES DE CONVENIO. El cliente debe hablar primero a la aseguradora o buscar en el portal de hospitales en convenio. No es un tema de paises excluidos sino de red.",
+        "plazoAviso": "Al momento del evento. Iria tiene un video en YouTube que lo explica -> candidato a VideoObject (par video<->articulo).",
+        "limite": "VARIA por plan y por aseguradora; generalmente USD $100,000. NO afirmar que es igual en las 5.",
+        "costo": "Aproximadamente 1500 al ano por persona. PENDIENTE: ¿pesos o dolares? Iria no lo especifico y la diferencia es enorme para el lector.",
+        "siNoAvisa": "No se pierde: puede solicitar REEMBOLSO, presentando invoices, estudios, comprobantes de pago e informes medicos."
+      },
+      "estructuraPropuesta": "Tres candados, y una sola llamada resuelve dos: (1) ¿contrataste el beneficio?; (2) ¿es emergencia Y estas en hospital de convenio?; (3) ¿avisaste al momento? Llamar a la aseguradora en el momento cumple el aviso Y sirve para que te dirijan al hospital de convenio.",
+      "videosCandidatos": [
+        {
+          "id": "vDkmJiJZAKk",
+          "titulo": "Mi experiencia en el extranjero con el seguro de Gastos medicos mayores"
+        },
+        {
+          "id": "GnGfPKCpdzg",
+          "titulo": "Como funciona la cobertura en el extranjero de GMM de GNP"
+        },
+        {
+          "id": "xtbQ8K5mhCI",
+          "titulo": "Cobertura de Asistencia en el Extranjero de Seguros Monterrey New York Life"
+        }
+      ],
+      "notaVideo": "Iria menciona tener un video que explica el aviso al momento del evento. Se localizaron 3 candidatos en su canal; falta que ella confirme cual es, para emitir VideoObject y enlazar video<->articulo."
     }
   ]
 }
