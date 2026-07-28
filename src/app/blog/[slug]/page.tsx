@@ -6,7 +6,6 @@ import { type PortableTextBlock } from "@portabletext/react";
 
 import {
   AuthorCard,
-  CategoryBadge,
   LastUpdated,
   TLDRBox,
 } from "@/components/blog/article-meta";
@@ -237,6 +236,20 @@ export default async function ArticlePage({
     ? TOPIC_LABELS[article.topic] ?? article.topic
     : null;
 
+  // Tiempo de lectura: se usa el wordCount de Sanity si viene; si no, se
+  // cuenta el texto de los bloques. 200 ppm es el promedio de lectura en
+  // español para prosa divulgativa.
+  const palabras =
+    article.wordCount && article.wordCount > 0
+      ? article.wordCount
+      : (article.body ?? []).reduce((total: number, bloque) => {
+          const b = bloque as { _type?: string; children?: Array<{ text?: string }> };
+          if (b._type !== "block") return total;
+          const texto = (b.children ?? []).map((c) => c.text ?? "").join(" ");
+          return total + texto.split(/\s+/).filter(Boolean).length;
+        }, 0);
+  const readingMinutes = palabras > 0 ? Math.max(1, Math.round(palabras / 200)) : 0;
+
   // CTA del riel: la oferta se nombra en los términos del artículo que el
   // lector tiene enfrente. Un genérico ("agenda una sesión") convierte peor
   // que uno que retoma el tema que lo trajo.
@@ -285,85 +298,129 @@ export default async function ArticlePage({
 
       <main className="flex flex-col">
         <article>
-          <section className="px-6 pt-16 pb-6 max-w-3xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-rif-gris">
-              <Link href="/" className="hover:underline">
-                Inicio
-              </Link>
-              {" / "}
-              <Link href="/blog" className="hover:underline">
-                Blog
-              </Link>
-              {categoryHref && topicLabel && (
-                <>
+          {/* HERO — banda oscura partida, como la maqueta: texto a la
+              izquierda, imagen del propio artículo a la derecha. En móvil la
+              imagen va arriba y el texto debajo, para que el titular nunca
+              compita con la foto por legibilidad.
+              La imagen es SIEMPRE la del artículo en Sanity, y el retrato de
+              la firma es la foto real de Iria: nada de imágenes de maqueta. */}
+          <section className="relative bg-espresso text-cream-light overflow-hidden">
+            <div className="mx-auto grid w-full max-w-[86rem] lg:grid-cols-[1fr_44%]">
+              {article.heroImage?.asset?.url && (
+                <div className="relative order-first aspect-[16/10] w-full lg:order-last lg:aspect-auto lg:min-h-[27rem]">
+                  <Image
+                    src={article.heroImage.asset.url}
+                    alt={article.heroImage.alt ?? article.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 44vw"
+                    className="object-cover"
+                    priority
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent lg:bg-gradient-to-r lg:from-espresso lg:via-espresso/20 lg:to-transparent"
+                  />
+                </div>
+              )}
+
+              <div className="px-6 py-12 sm:py-14 lg:py-20 lg:pr-12">
+                <p className="text-[13px] text-cream-light/55">
+                  <Link href="/" className="hover:text-cream-light transition-colors">
+                    Inicio
+                  </Link>
                   {" / "}
-                  <Link href={categoryHref} className="hover:underline">
-                    {topicLabel}
+                  <Link href="/blog" className="hover:text-cream-light transition-colors">
+                    Blog
                   </Link>
-                </>
-              )}
-            </p>
-            {article.topic && (
-              <div className="mt-5">
-                <CategoryBadge topic={article.topic} />
+                </p>
+
+                {topicLabel && (
+                  <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">
+                    {categoryHref ? (
+                      <Link href={categoryHref} className="hover:text-cream-light transition-colors">
+                        {topicLabel}
+                      </Link>
+                    ) : (
+                      topicLabel
+                    )}
+                  </p>
+                )}
+
+                <h1
+                  data-speakable="title"
+                  className="mt-4 font-serif font-light text-4xl sm:text-5xl lg:text-[3.3rem] leading-[1.06] tracking-[-0.015em] text-cream-light"
+                >
+                  {article.title}
+                </h1>
+
+                {article.excerpt && (
+                  <p className="mt-6 text-lg text-cream-light/80 leading-relaxed max-w-xl">
+                    {article.excerpt}
+                  </p>
+                )}
+
+                <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4">
+                  {article.author?.photo?.asset?.url && (
+                    <Image
+                      src={article.author.photo.asset.url}
+                      alt={article.author.photo.alt ?? article.author.name ?? "Iria Talan"}
+                      width={48}
+                      height={48}
+                      className="size-12 rounded-full object-cover ring-1 ring-champagne/40"
+                    />
+                  )}
+                  <div className="text-[13px] leading-snug">
+                    {article.author?.name && (
+                      <Link
+                        href="/sobre-iria"
+                        className="block font-medium text-cream-light hover:underline"
+                      >
+                        {article.author.name}
+                      </Link>
+                    )}
+                    {article.author?.title && (
+                      <span className="text-cream-light/60">{article.author.title}</span>
+                    )}
+                  </div>
+                  {readingMinutes > 0 && (
+                    <span className="flex items-center gap-2 border-l border-cream-light/15 pl-5 text-[13px] text-cream-light/60">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        className="size-4"
+                        aria-hidden
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <polyline points="12 7 12 12 15.5 14" />
+                      </svg>
+                      {readingMinutes} min de lectura
+                    </span>
+                  )}
+                </div>
+
+                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-cream-light/55">
+                  <LastUpdated
+                    publishedAt={article.publishedAt}
+                    updatedAt={article.updatedAt}
+                    lastReviewed={article.lastReviewed}
+                  />
+                  {article.reviewedBy?.name && (
+                    <>
+                      <span aria-hidden>·</span>
+                      <span>Revisado por {article.reviewedBy.name}</span>
+                    </>
+                  )}
+                </div>
               </div>
-            )}
-            <h1
-              data-speakable="title"
-              className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light"
-            >
-              {article.title}
-            </h1>
-            {article.excerpt && (
-              <p className="mt-5 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                {article.excerpt}
-              </p>
-            )}
-            <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-warm-brown/70 dark:text-cream-light/65">
-              {article.author?.name && (
-                <span>
-                  Por{" "}
-                  <Link
-                    href="/sobre-iria"
-                    className="font-medium text-ink dark:text-cream-light hover:underline"
-                  >
-                    {article.author.name}
-                  </Link>
-                </span>
-              )}
-              <span aria-hidden>·</span>
-              <LastUpdated
-                publishedAt={article.publishedAt}
-                updatedAt={article.updatedAt}
-                lastReviewed={article.lastReviewed}
-              />
-              {article.reviewedBy?.name && (
-                <>
-                  <span aria-hidden>·</span>
-                  <span>Revisado por {article.reviewedBy.name}</span>
-                </>
-              )}
             </div>
           </section>
 
           {article.tldr && (
-            <section className="px-6 max-w-3xl mx-auto w-full">
+            <section className="px-6 pt-10 max-w-3xl mx-auto w-full">
               <TLDRBox>{article.tldr}</TLDRBox>
-            </section>
-          )}
-
-          {article.heroImage?.asset?.url && (
-            <section className="px-6 mt-6 max-w-4xl mx-auto w-full">
-              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-warm-brown/10">
-                <Image
-                  src={article.heroImage.asset.url}
-                  alt={article.heroImage.alt ?? article.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 64rem"
-                  className="object-cover"
-                  priority
-                />
-              </div>
             </section>
           )}
 
