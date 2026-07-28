@@ -13,6 +13,7 @@ import {
 import { PortableTextRenderer } from "@/components/portable-text";
 import { YouTubeFacade } from "@/components/youtube-embed";
 import { GlossaryMentions } from "@/components/blog/glossary-mentions";
+import { ArticleCtaCard } from "@/components/blog/article-rails";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { RelatedServices } from "@/components/blog/related-services";
 import { TableOfContents } from "@/components/blog/table-of-contents";
@@ -43,6 +44,64 @@ import {
 // caen a SSR + cache (default true en App Router, lo dejamos explícito).
 export const revalidate = 30;
 export const dynamicParams = true;
+
+/**
+ * Copy del CTA lateral por tema del artículo. Las claves son los valores de
+ * `topic` en Sanity; cualquier tema sin entrada cae en el genérico.
+ */
+const CTA_GENERICO = {
+  heading: "¿Quieres revisar cómo aplica esto a tu caso?",
+  body: "Agendemos una conversación. Te escucho primero y recomiendo después, sin compromiso.",
+  cta: "Agendar ahora",
+};
+
+// Las claves son los valores de `topic` en Sanity — los mismos de
+// TOPIC_LABELS en lib/blog, no los slugs de las URLs de categoría.
+const CTA_POR_TEMA: Record<
+  string,
+  { heading: string; body: string; cta: string }
+> = {
+  retiro: {
+    heading: "¿Quieres saber si esta estrategia tiene sentido para tu retiro?",
+    body: "Revisamos tus semanas cotizadas y tu situación real antes de mover nada.",
+    cta: "Revisar mi retiro",
+  },
+  gmm: {
+    heading: "¿Tu cobertura te protege de verdad?",
+    body: "Comparamos tu póliza actual contra las opciones del mercado, sin costo.",
+    cta: "Revisar mi seguro",
+  },
+  vida: {
+    heading: "¿Tu seguro de vida cubre lo que tu familia necesitaría?",
+    body: "Calculamos la suma asegurada que corresponde a tu situación, sin costo.",
+    cta: "Revisar mi cobertura",
+  },
+  patrimonial: {
+    heading: "¿Tu patrimonio está ordenado para tu familia?",
+    body: "Beneficiarios, sucesión y estructura: lo revisamos en una conversación confidencial.",
+    cta: "Agendar conversación",
+  },
+  educacionales: {
+    heading: "¿Cuánto necesitas para la universidad de tus hijos?",
+    body: "Calculamos el monto real según la carrera y el año en que entra.",
+    cta: "Calcular mi caso",
+  },
+  fideicomisos: {
+    heading: "¿Un fideicomiso es lo que tu caso necesita?",
+    body: "No siempre lo es. Lo revisamos con calma antes de que gastes en constituir uno.",
+    cta: "Agendar conversación",
+  },
+  empresas: {
+    heading: "¿Tu empresa está protegida si falta una persona clave?",
+    body: "Diagnóstico de continuidad y beneficios para tu equipo, sin compromiso.",
+    cta: "Agendar diagnóstico",
+  },
+  casos: {
+    heading: "¿Tu caso no encaja en lo estándar?",
+    body: "Es justo lo que más trabajo. Cuéntame tu situación y vemos qué aplica.",
+    cta: "Agendar conversación",
+  },
+};
 
 type ArticleAuthor = AuthorData & {
   credentials?: Array<{ title?: string; issuer?: string; category?: string }>;
@@ -177,6 +236,14 @@ export default async function ArticlePage({
   const topicLabel = article.topic
     ? TOPIC_LABELS[article.topic] ?? article.topic
     : null;
+
+  // CTA del riel: la oferta se nombra en los términos del artículo que el
+  // lector tiene enfrente. Un genérico ("agenda una sesión") convierte peor
+  // que uno que retoma el tema que lo trajo.
+  const articleCta = {
+    href: "/contacto#agendar",
+    ...(CTA_POR_TEMA[article.topic ?? ""] ?? CTA_GENERICO),
+  };
 
   const pageSchema = buildGraph(
     buildArticleSchema({
@@ -315,11 +382,43 @@ export default async function ArticlePage({
           {article.body &&
             Array.isArray(article.body) &&
             article.body.length > 0 && (
-              <section className="px-6 py-10 sm:py-12 max-w-3xl mx-auto w-full">
-                <TableOfContents body={article.body as unknown[]} />
-                <PortableTextRenderer
-                  value={article.body as PortableTextBlock[]}
-                />
+              <section className="px-6 py-10 sm:py-12">
+                {/* Tres columnas en escritorio: índice + CTA a la izquierda,
+                    cuerpo al centro, autora a la derecha. Los rieles se van
+                    cayendo al flujo conforme se angosta la pantalla, para que
+                    en móvil el lector no tenga que pasar sobre ellos antes de
+                    llegar al texto. */}
+                <div className="mx-auto grid w-full max-w-[86rem] justify-center gap-x-10 gap-y-10 lg:grid-cols-[15rem_minmax(0,44rem)] xl:grid-cols-[15rem_minmax(0,44rem)_17rem]">
+                  <div className="hidden lg:block">
+                    <div className="sticky top-24 flex flex-col gap-8">
+                      <TableOfContents
+                        body={article.body as unknown[]}
+                        variant="rail"
+                      />
+                      <ArticleCtaCard {...articleCta} />
+                    </div>
+                  </div>
+
+                  <div className="min-w-0">
+                    <div className="lg:hidden">
+                      <TableOfContents body={article.body as unknown[]} />
+                    </div>
+                    <PortableTextRenderer
+                      value={article.body as PortableTextBlock[]}
+                    />
+                  </div>
+
+                  <div className="hidden xl:block">
+                    <div className="sticky top-24">
+                      <AuthorCard author={article.author} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Debajo del cuerpo cuando no hay riel donde ponerlos. */}
+                <div className="mx-auto mt-12 w-full max-w-3xl lg:hidden">
+                  <ArticleCtaCard {...articleCta} />
+                </div>
               </section>
             )}
 
@@ -379,7 +478,9 @@ export default async function ArticlePage({
             </section>
           )}
 
-          <section className="px-6 pt-8 max-w-3xl mx-auto w-full">
+          {/* En xl la autora ya vive en el riel derecho, junto al texto: aquí
+              solo se emite cuando ese riel no cabe. */}
+          <section className="px-6 pt-8 max-w-3xl mx-auto w-full xl:hidden">
             <AuthorCard
               author={
                 article.author

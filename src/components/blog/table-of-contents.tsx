@@ -39,13 +39,44 @@ function extractHeadings(body: unknown[] | null | undefined): TocItem[] {
   return items;
 }
 
+/**
+ * `card` — tarjeta en el flujo del artículo (móvil y tablet).
+ * `rail` — lista sin marco para el riel lateral fijo en escritorio, con
+ *          filete vertical a la izquierda a modo de guía de lectura.
+ */
 export function TableOfContents({
   body,
+  variant = "card",
 }: {
   body: PortableTextBlock[] | unknown[] | null | undefined;
+  variant?: "card" | "rail";
 }) {
   const items = extractHeadings(body as unknown[] | null | undefined);
   if (items.length < 3) return null; // <3 headings = no aporta
+
+  if (variant === "rail") {
+    return (
+      <nav aria-label="Tabla de contenido">
+        <p className="text-[11px] uppercase tracking-[0.22em] font-medium text-burgundy">
+          En esta guía
+        </p>
+        <ol className="mt-4 list-none border-l border-warm-brown/20 dark:border-cream-light/15">
+          {items.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={`block border-l-2 border-transparent py-1.5 text-[13px] leading-snug text-warm-brown/85 dark:text-cream-light/70 transition-colors duration-300 hover:border-burgundy hover:text-burgundy dark:hover:text-burgundy ${
+                  item.level === 3 ? "pl-7" : "pl-4"
+                }`}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    );
+  }
 
   return (
     <nav
