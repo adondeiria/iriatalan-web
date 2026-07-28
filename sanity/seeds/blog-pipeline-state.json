@@ -202,10 +202,8 @@
         "CORRECCION 28-jul-2026 (Iria): la cobertura aplica UNICAMENTE si se contrato el beneficio Y si es una emergencia. No es automatica ni cubre atencion programada."
       ],
       "faltaVerificarEnCondicionesGenerales": [
-        "¿Como sabe el cliente si YA tiene contratada la cobertura de extranjero? ¿En que parte de la caratula aparece y con que nombre en cada aseguradora?",
-        "¿Alguna de las 5 la incluye por defecto, o en todas es opcional con costo extra?",
-        "Definicion literal de EMERGENCIA en condiciones generales (Iria dio ejemplos, falta la redaccion del contrato).",
-        "El costo aproximado de 1500/ano: ¿es en pesos o en dolares?"
+        "BLOQUEANTE: el costo aproximado de 1500/ano, ¿es en pesos o en dolares?",
+        "Definicion literal de EMERGENCIA en condiciones generales (o acordar redactarlo como ejemplos practicos + remitir al contrato)."
       ],
       "notes": "IDEA GUARDADA A PETICIÓN DE IRIA (25-jul-2026): 'guárdalo para que me recuerdes cuando empecemos el próximo artículo'. NO arrancar hasta tener las condiciones generales a la mano — es contenido YMYL y la regla del repo es rechazar todo dato no verificado contra el contrato. Verdict 🟡 es por los datos faltantes, NO por el tema: el tema es fuerte y es de los pocos con dato primario real. Sugerencia de proceso: usar el agente iriatalan-seo-blog con quórum YMYL, igual que en la comparativa de maternidad. Interlinking natural: /gmm (sección 'cobertura internacional', que ya tiene la tabla y el bloque de emergencia), el hub GMM, y /personas/mexicanos-en-el-extranjero. Contexto: la sección de /gmm ya publica los datos confirmados de arriba, así que el artículo debe profundizar, no repetir.",
       "tituloDescartado": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada) — DESCARTADO 2026-07-28",
@@ -234,7 +232,16 @@
           "titulo": "Cobertura de Asistencia en el Extranjero de Seguros Monterrey New York Life"
         }
       ],
-      "notaVideo": "Iria menciona tener un video que explica el aviso al momento del evento. Se localizaron 3 candidatos en su canal; falta que ella confirme cual es, para emitir VideoObject y enlazar video<->articulo."
+      "notaVideo": "Iria menciona tener un video que explica el aviso al momento del evento. Se localizaron 3 candidatos en su canal; falta que ella confirme cual es, para emitir VideoObject y enlazar video<->articulo.",
+      "nombreDeLaCobertura": "ASISTENCIA EN EL EXTRANJERO — asi la encuentran los clientes en su poliza. Confirmado por Iria 28-jul-2026. Corrobora: su propio video de SMNYL se titula \"Cobertura de Asistencia en el Extranjero\".",
+      "videoElegido": {
+        "videoId": "vDkmJiJZAKk",
+        "name": "Iriatips parte 1: Mi experiencia en el extranjero con el seguro de Gastos medicos mayores",
+        "uploadDate": "2024-10-29",
+        "duration": "PT6M30S",
+        "nota": "Es un StoryTime en primera persona: a su esposo le dio una INTOXICACION en el extranjero. Conecta con el ejemplo de emergencia que dio Iria. Experiencia vivida = la E de E-E-A-T; deberia abrir el articulo. OJO: dice \"parte 1\", verificar si hay parte 2 para enlazar ambas."
+      },
+      "incluidaPorDefecto": "GNP la incluye por defecto EN ALGUNOS de sus productos (no en todos). En las demas es opcional con costo extra. Confirmado por Iria 28-jul-2026. REDACCION: no se puede escribir \"GNP la incluye\" a secas — el matiz \"en algunos productos\" es lo que evita que un cliente de GNP asuma que la tiene."
     }
   ]
 }
