@@ -145,10 +145,62 @@ const components: PortableTextComponents = {
         {children}
       </ol>
     ),
+    // Listas de "conviene / no conviene". El icono va acompañado de color,
+    // nunca solo de color: quien no distingue verde de rojo tiene que poder
+    // leer igual cuál es cuál.
+    check: ({ children }) => (
+      <ul className="mt-5 space-y-2.5 text-warm-brown dark:text-cream-light/85">
+        {children}
+      </ul>
+    ),
+    cross: ({ children }) => (
+      <ul className="mt-5 space-y-2.5 text-warm-brown dark:text-cream-light/85">
+        {children}
+      </ul>
+    ),
   },
   listItem: {
     bullet: ({ children }) => <li className="leading-relaxed">{children}</li>,
     number: ({ children }) => <li className="leading-relaxed">{children}</li>,
+    check: ({ children }) => (
+      <li className="flex items-start gap-3 leading-relaxed">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="mt-1 size-[18px] flex-shrink-0 text-[#2F6B4F] dark:text-[#7FBE9C]"
+          role="img"
+          aria-label="Sí"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="8 12.5 11 15.5 16 9.5" />
+        </svg>
+        <span>{children}</span>
+      </li>
+    ),
+    cross: ({ children }) => (
+      <li className="flex items-start gap-3 leading-relaxed">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="mt-1 size-[18px] flex-shrink-0 text-burgundy"
+          role="img"
+          aria-label="No"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="9" y1="9" x2="15" y2="15" />
+          <line x1="15" y1="9" x2="9" y2="15" />
+        </svg>
+        <span>{children}</span>
+      </li>
+    ),
   },
   types: {
     image: ({ value }) => <InlineImage value={value} />,

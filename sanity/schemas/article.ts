@@ -267,7 +267,18 @@ export const article = defineType({
       description:
         "Headings H2 = preguntas literales del usuario. Párrafos cortos. Tablas en HTML (no imagen).",
       of: [
-        { type: "block" },
+        {
+          type: "block",
+          // Dos listas además de las de siempre, para los pasajes de
+          // "cuándo sí conviene / cuándo no". Al declarar `lists` hay que
+          // repetir bullet y number: si no, desaparecen del editor.
+          lists: [
+            { title: "Viñetas", value: "bullet" },
+            { title: "Numerada", value: "number" },
+            { title: "Sí — a favor / conviene", value: "check" },
+            { title: "No — en contra / no conviene", value: "cross" },
+          ],
+        },
         {
           type: "image",
           options: { hotspot: true },
