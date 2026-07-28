@@ -481,23 +481,35 @@ export default async function ArticlePage({
 
           {faqItems.length > 0 && (
             <section className="px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
-              <div className="max-w-3xl mx-auto w-full">
+              {/* Dos columnas de acordeones, como la maqueta: con 8-13 FAQs
+                  por artículo, la lista abierta a una columna obligaba a un
+                  scroll larguísimo justo antes del cierre. Se usa <details>
+                  para que abra sin JS y siga siendo texto indexable. */}
+              <div className="max-w-5xl mx-auto w-full">
                 <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
                   Preguntas relacionadas
                 </h2>
-                <div className="mt-8 space-y-8">
+                <div className="mt-8 grid gap-3 md:grid-cols-2 md:gap-x-5">
                   {faqItems.map((f, i) => (
-                    <div
+                    <details
                       key={i}
-                      className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6"
+                      className="group h-fit rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 bg-cream/30 dark:bg-coffee/20 px-5 py-4 transition-colors duration-300 hover:border-warm-brown/30 open:border-warm-brown/30"
                     >
-                      <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                        {f.question}
-                      </h3>
-                      <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-[15px] font-medium leading-snug text-ink dark:text-cream-light">
+                          {f.question}
+                        </h3>
+                        <span
+                          aria-hidden
+                          className="mt-0.5 flex size-5 flex-shrink-0 items-center justify-center rounded-full border border-burgundy/30 text-burgundy transition-transform duration-300 group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+                      <p className="mt-3 text-[15px] leading-relaxed text-warm-brown dark:text-cream-light/85">
                         {f.answerText}
                       </p>
-                    </div>
+                    </details>
                   ))}
                 </div>
               </div>

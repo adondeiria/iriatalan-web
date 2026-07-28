@@ -21,10 +21,26 @@ export function TLDRBox({ children }: { children: string }) {
       data-speakable="tldr"
       className="mt-8 mb-2 rounded-2xl border border-burgundy/20 bg-cream/40 dark:bg-coffee/20 dark:border-burgundy/30 px-6 py-5"
     >
-      <p className="text-[11px] uppercase tracking-[0.22em] font-medium text-burgundy">
-        Respuesta corta
-      </p>
-      <p className="mt-3 text-lg text-ink dark:text-cream-light leading-relaxed">
+      {/* "Lo más importante" en vez de "Respuesta corta": mismo bloque
+          speakable para AEO, pero con la jerarquía de la maqueta. */}
+      <div className="flex items-center gap-3">
+        <span
+          aria-hidden
+          className="flex size-7 flex-shrink-0 items-center justify-center rounded-full bg-burgundy"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-[15px] text-cream-light"
+          >
+            <path d="M12 2.6l2.75 5.57 6.15.9-4.45 4.34 1.05 6.12L12 16.64l-5.5 2.89 1.05-6.12L3.1 9.07l6.15-.9z" />
+          </svg>
+        </span>
+        <p className="font-serif text-xl leading-tight text-ink dark:text-cream-light">
+          Lo más importante
+        </p>
+      </div>
+      <p className="mt-4 text-[17px] leading-relaxed text-warm-brown dark:text-cream-light/85">
         {children}
       </p>
     </aside>

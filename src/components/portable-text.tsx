@@ -87,8 +87,17 @@ const components: PortableTextComponents = {
         {children}
       </p>
     ),
+    // OJO antes de "mejorar" esto: en estos artículos el blockquote NO se usa
+    // como cita destacada, sino como nota de referencia — artículos de ley,
+    // fichas técnicas del IMSS, precisiones de trámite (el de ST-6 tiene 11).
+    // Un tratamiento de pull quote (serif grande, comillas decorativas) le
+    // daría a una referencia legal un peso retórico que no le toca, y en
+    // contenido YMYL eso desinforma. Se queda como nota: legible, acotada y
+    // visualmente subordinada a la prosa.
+    // Si algún día se quieren citas destacadas de verdad, va como tipo de
+    // bloque aparte en Sanity, no reinterpretando este.
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 border-l-4 border-warm-brown/20 dark:border-warm-brown/40 pl-4 italic text-warm-brown dark:text-cream-light/85">
+      <blockquote className="my-7 rounded-r-xl border-l-[3px] border-burgundy/40 bg-cream/40 dark:bg-coffee/20 py-4 pl-5 pr-5 text-[15px] leading-relaxed text-warm-brown dark:text-cream-light/85 [&>p]:mt-0 [&>p+p]:mt-3">
         {children}
       </blockquote>
     ),
