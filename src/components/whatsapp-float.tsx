@@ -62,7 +62,9 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center justify-center size-14 rounded-full bg-[#25D366] text-white shadow-[0_8px_28px_-6px_rgba(37,211,102,0.6)] hover:bg-[#1FB658] hover:shadow-[0_12px_36px_-6px_rgba(37,211,102,0.8)] hover:-translate-y-0.5 transition-all duration-300"
+      /* z-[70] lo mantiene por encima de la barra de consentimiento (z-[60]):
+         durante la primera visita las dos rutas de contacto siguen visibles. */
+      className="wa-float fixed bottom-5 right-5 z-[70] inline-flex items-center justify-center size-14 rounded-full bg-[#25D366] text-white shadow-[0_8px_28px_-6px_rgba(37,211,102,0.6)] hover:bg-[#1FB658] hover:shadow-[0_12px_36px_-6px_rgba(37,211,102,0.8)] hover:-translate-y-0.5 transition-all duration-300"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

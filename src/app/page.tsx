@@ -616,7 +616,7 @@ export default async function HomePage() {
             </div>
             <div className="mt-16 text-center">
               <Link
-                href="/recursos"
+                href="/blog"
                 className="link-underline inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-burgundy"
               >
                 Ver todos los artículos

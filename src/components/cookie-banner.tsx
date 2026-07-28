@@ -47,10 +47,10 @@ export function CookieBanner() {
     <div
       role="region"
       aria-label="Aviso de cookies"
-      className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6"
+      className="fixed inset-x-0 bottom-0 z-[60] border-t border-warm-brown/15 dark:border-warm-brown/30 bg-white/97 dark:bg-espresso/97 backdrop-blur shadow-[0_-8px_24px_-12px_rgba(20,17,15,0.25)]"
     >
-      <div className="mx-auto max-w-3xl rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 bg-white/95 dark:bg-espresso/95 backdrop-blur shadow-lg p-5 sm:p-6">
-        <p className="text-sm leading-relaxed text-warm-brown dark:text-cream-light/85">
+      <div className="mx-auto max-w-6xl px-4 py-2.5 sm:px-6 sm:py-3.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+        <p className="text-[12px] sm:text-[13px] leading-[1.45] text-warm-brown dark:text-cream-light/85 sm:flex-1">
           Usamos cookies para analizar el uso del sitio y mejorar tu
           experiencia. Puedes aceptarlas o rechazarlas; tu decisión se
           guarda por 12 meses. Detalles en nuestro{" "}
@@ -62,18 +62,18 @@ export function CookieBanner() {
           </Link>
           .
         </p>
-        <div className="mt-4 flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
+        <div className="flex gap-2.5 sm:flex-shrink-0">
           <button
             type="button"
             onClick={() => handle("rejected")}
-            className="inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-5 py-2.5 text-sm font-medium text-warm-brown dark:text-cream-light/85 hover:bg-cream dark:hover:bg-coffee/40 transition"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-full border border-warm-brown/20 dark:border-warm-brown/40 px-5 py-2.5 text-[13px] font-medium text-warm-brown dark:text-cream-light/85 hover:bg-cream dark:hover:bg-coffee/40 transition"
           >
             Rechazar
           </button>
           <button
             type="button"
             onClick={() => handle("accepted")}
-            className="inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-5 py-2.5 text-sm font-medium hover:opacity-90 transition"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-full bg-rif-rojo text-white px-5 py-2.5 text-[13px] font-medium hover:opacity-90 transition"
           >
             Aceptar
           </button>
