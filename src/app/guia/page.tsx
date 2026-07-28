@@ -282,8 +282,8 @@ export default async function GuiaPage() {
             </h2>
             <p className="mt-4 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               Soy <strong>Iria Talan</strong>, asesora patrimonial y de seguros
-              con 16 años de experiencia, reconocimiento MDRT Top 1% a nivel
-              mundial y cédula CNSF <strong>V388618</strong>. Acompaño a familias
+              en México <strong>desde 2008</strong>, MDRT Top of the Table y
+              cédula CNSF <strong>V388618</strong>. Acompaño a familias
               a proteger su patrimonio antes —y también después— de los momentos
               difíciles.
             </p>
