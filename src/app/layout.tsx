@@ -17,6 +17,7 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 import { FALLBACK_AUTHOR } from "@/lib/author";
+import { GOOGLE_REVIEWS_URL, GOOGLE_WRITE_REVIEW_URL } from "@/lib/google-business";
 import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 
 import { Analytics } from "@/components/analytics";
@@ -241,6 +242,46 @@ export default async function RootLayout({
                   <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden>
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.86a8.16 8.16 0 0 0 4.77 1.52V6.93a4.85 4.85 0 0 1-1.84-.24z" />
                   </svg>
+                </a>
+                {/* YouTube existía en el `sameAs` del schema pero no como enlace
+                    visible: el canal tiene contenido y ayuda a consolidar la entidad. */}
+                <a
+                  href="https://www.youtube.com/@iriatalan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="text-cream-light/65 hover:text-cream-light transition-colors duration-500"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden>
+                    <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" />
+                  </svg>
+                </a>
+              </div>
+
+              {/* Reseñas de Google. Dos intenciones distintas y deliberadas:
+                  leerlas (prospecto) y dejarla (cliente actual). */}
+              <div className="mt-7 flex flex-col items-start gap-2">
+                <a
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-cream-light/80 hover:text-cream-light transition-colors duration-500"
+                >
+                  <svg viewBox="0 0 24 24" className="size-4 flex-shrink-0" aria-hidden>
+                    <path
+                      fill="currentColor"
+                      d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94z"
+                    />
+                  </svg>
+                  Reseñas en Google
+                </a>
+                <a
+                  href={GOOGLE_WRITE_REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-cream-light/55 hover:text-cream-light/85 underline underline-offset-4 transition-colors duration-500"
+                >
+                  ¿Ya trabajamos juntas? Deja tu reseña
                 </a>
               </div>
             </div>
