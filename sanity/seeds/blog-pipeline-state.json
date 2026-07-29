@@ -183,7 +183,7 @@
       "title": "Así te protege tu seguro si tienes una emergencia en el extranjero",
       "topic": "gmm",
       "format": "guia",
-      "phase": "borrador-v5",
+      "phase": "borrador-v6",
       "verdict": "🟡 ajustar primero",
       "primaryKeyword": "seguro de gastos médicos cubre en el extranjero",
       "created": "2026-07-25T18:00:00-06:00",
@@ -316,7 +316,20 @@
           "BUPA: la CG base EXCLUYE el extranjero textualmente; se agrega por ANEXO opcional que prevalece sobre la CG — mejor ejemplo del articulo para la condicion 1",
           "BUPA def. de emergencia es la unica con reloj: atencion en menos de 24 horas"
         ]
-      }
+      },
+      "aportacionesPerplexity": {
+        "fecha": "2026-07-28",
+        "adoptadas": [
+          "disclaimer de vigencia",
+          "CTA contextual a media lectura",
+          "5 FAQs en campo faqs"
+        ],
+        "corregidas": [
+          "precio: quito \"y edad\" (no verificado)",
+          "plazos: quito \"la mayoria de las aseguradoras\" — solo SMNYL y MetLife tienen regla de 3 meses verificada, AXA exige residencia; GNP y BUPA sin dato"
+        ]
+      },
+      "primerArticuloConFaqs": true
     }
   ]
 }
