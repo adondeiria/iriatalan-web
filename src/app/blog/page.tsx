@@ -148,6 +148,34 @@ export default async function BlogIndexPage() {
             ser la palabra "Blog" (cero valor para búsqueda) y pasó a decir lo
             que el lector viene a hacer. */}
         <section className="relative bg-espresso text-cream-light overflow-hidden">
+          {/* La tarjeta corporativa "Con todo mi amor" llena el vacío de la
+              derecha. Se reutiliza el asset que ya vive en la home
+              (tarjeta-marble-pen.png) en vez de subir un duplicado.
+              Mismo tratamiento aprobado en el hero de los artículos: foto
+              NÍTIDA, sin blur ni opacidad reducida, y un degradado real en
+              capa aparte que oscurece hacia el texto. `object-center` porque
+              al simular el recorte es la única posición donde caben completos
+              el logo dorado y el "Con todo mi amor". */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] overflow-hidden lg:block"
+          >
+            <Image
+              src="/img/iria/tarjeta-marble-pen.png"
+              alt=""
+              fill
+              sizes="60vw"
+              className="object-cover object-center"
+              priority
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.94) 15%, rgba(31,22,18,0.6) 38%, rgba(31,22,18,0.18) 65%, transparent 88%)",
+              }}
+            />
+          </div>
           <div className="relative mx-auto w-full max-w-[86rem] px-6 py-16 sm:py-20">
             <div className="max-w-2xl">
               <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">

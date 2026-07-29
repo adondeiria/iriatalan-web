@@ -517,8 +517,12 @@ export default async function HomePage() {
         <section className="bg-cream-light px-6 py-20 sm:py-28 border-t border-warm-brown/10">
           <div className="max-w-6xl mx-auto w-full">
             <div className="text-center max-w-3xl mx-auto">
+              {/* "juntas" asumía que quien lee es mujer. La cartera de Iria es
+                  mixta —hombres, mujeres y parejas—, así que el copy no puede
+                  tener género. "Cómo es trabajar conmigo" lo evita sin caer en
+                  el masculino genérico. */}
               <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.24em] text-burgundy">
-                Cómo trabajamos juntas
+                Cómo es trabajar conmigo
               </p>
               <h2 className="mt-6 font-serif font-light text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.01em] text-ink">
                 Un proceso claro, sin sorpresas.

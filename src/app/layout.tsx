@@ -281,7 +281,7 @@ export default async function RootLayout({
                   rel="noopener noreferrer"
                   className="text-[13px] text-cream-light/55 hover:text-cream-light/85 underline underline-offset-4 transition-colors duration-500"
                 >
-                  ¿Ya trabajamos juntas? Deja tu reseña
+                  ¿Ya eres cliente? Deja tu reseña
                 </a>
               </div>
             </div>
