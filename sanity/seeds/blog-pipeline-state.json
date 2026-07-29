@@ -365,10 +365,11 @@
       "imageAsset": {
         "hero": {
           "localPath": "public/img/blog/gmm-emergencia-extranjero-hero.png",
-          "alt": "Pareja mexicana en un hospital en el extranjero — él estable en la camilla, ella llamando a la aseguradora desde el celular"
+          "alt": "Pareja mexicana en un hospital en el extranjero — él estable en la cama, ella llamando a la aseguradora, con señalización de EMERGENCY al fondo"
         }
       },
-      "imagenAlternativa": "public/img/blog/gmm-emergencia-extranjero-hero-alt.png (pared limpia, sin carteles; misma escena, lectura más sobria)"
+      "imagenAlternativa": "public/img/blog/gmm-emergencia-extranjero-hero-alt.png (pared limpia, sin carteles; misma escena, lectura más sobria)",
+      "notaImagen": "v3 hibrida: senaletica EMERGENCY/RADIOLOGY legible en ingles (aporte de ChatGPT: dice extranjero al instante) + paleta calida y expresiones serenas (marca de Iria: no vender por miedo). La propuesta de ChatGPT se descarto por paleta azul clinica, caras angustiadas y degradado azul quemado en el archivo, que chocaria con el degradado espresso que aplica el hero por CSS."
     }
   ]
 }
