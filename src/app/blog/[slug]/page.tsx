@@ -316,9 +316,28 @@ export default async function ArticlePage({
                     className="object-cover"
                     priority
                   />
+                  {/* Costura entre la banda oscura y la foto. Va con paradas
+                      explícitas y NO con las utilidades de gradiente de
+                      Tailwind: el `to-transparent` por defecto llega hasta el
+                      100%, así que dejaba un velo espresso sobre TODA la
+                      imagen y la foto se veía sepia. Aquí se despeja pronto
+                      (42% en escritorio, 38% de alto en móvil) y el resto de
+                      la foto queda con su color real. */}
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent lg:bg-gradient-to-r lg:from-espresso lg:via-espresso/20 lg:to-transparent"
+                    className="absolute inset-0 lg:hidden"
+                    style={{
+                      background:
+                        "linear-gradient(to top, #1F1612 0%, rgba(31,22,18,0.55) 14%, rgba(31,22,18,0) 38%)",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 hidden lg:block"
+                    style={{
+                      background:
+                        "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.55) 12%, rgba(31,22,18,0) 42%)",
+                    }}
                   />
                 </div>
               )}
