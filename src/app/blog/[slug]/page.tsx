@@ -320,12 +320,12 @@ export default async function ArticlePage({
             {article.heroImage?.asset?.url && (
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] lg:block"
+                className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
                 style={{
                   maskImage:
-                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.8) 100%)",
+                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.9) 60%, #000 100%)",
                   WebkitMaskImage:
-                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.8) 100%)",
+                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.9) 60%, #000 100%)",
                 }}
               >
                 <Image
@@ -333,8 +333,8 @@ export default async function ArticlePage({
                   alt=""
                   fill
                   sizes="40vw"
-                  quality={10}
-                  className="scale-125 object-cover opacity-[0.22] blur-2xl"
+                  quality={15}
+                  className="scale-125 object-cover opacity-[0.42] blur-xl"
                 />
               </div>
             )}
