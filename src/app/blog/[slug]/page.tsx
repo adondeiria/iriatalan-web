@@ -308,7 +308,37 @@ export default async function ArticlePage({
               y no hay costura vertical ni velo encima de la imagen.
               El retrato de la firma es la foto real de Iria desde Sanity. */}
           <section className="relative bg-espresso text-cream-light overflow-hidden">
-            <div className="mx-auto w-full max-w-[86rem]">
+            {/* Fondo difuminado para el vacío de la derecha. Es la MISMA foto
+                del artículo, muy desenfocada y atenuada: llena el hueco con
+                textura propia del contenido en vez de con un color plano, sin
+                competir con el titular.
+                Coste cero de red: `quality={10}` + `sizes="40vw"` hacen que
+                Next sirva una miniatura de pocos KB — al desenfocarla tanto,
+                la resolución da igual. La máscara la desvanece hacia la
+                izquierda para que el texto siempre caiga sobre espresso sólido
+                y el contraste no dependa de la imagen. */}
+            {article.heroImage?.asset?.url && (
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] lg:block"
+                style={{
+                  maskImage:
+                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.8) 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.8) 100%)",
+                }}
+              >
+                <Image
+                  src={article.heroImage.asset.url}
+                  alt=""
+                  fill
+                  sizes="40vw"
+                  quality={10}
+                  className="scale-125 object-cover opacity-[0.22] blur-2xl"
+                />
+              </div>
+            )}
+            <div className="relative mx-auto w-full max-w-[86rem]">
               <div className="px-6 py-14 sm:py-16 lg:py-20 max-w-3xl">
                 <p className="text-[13px] text-cream-light/55">
                   <Link href="/" className="hover:text-cream-light transition-colors">
