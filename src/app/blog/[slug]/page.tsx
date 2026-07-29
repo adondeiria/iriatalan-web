@@ -298,51 +298,18 @@ export default async function ArticlePage({
 
       <main className="flex flex-col">
         <article>
-          {/* HERO — banda oscura partida, como la maqueta: texto a la
-              izquierda, imagen del propio artículo a la derecha. En móvil la
-              imagen va arriba y el texto debajo, para que el titular nunca
-              compita con la foto por legibilidad.
-              La imagen es SIEMPRE la del artículo en Sanity, y el retrato de
-              la firma es la foto real de Iria: nada de imágenes de maqueta. */}
+          {/* HERO — banda oscura con el titular, y la foto a todo lo ancho
+              justo debajo.
+              Antes era un split (texto izq / foto der). Se cambió porque el
+              split forzaba a la foto a estirarse hasta la altura del texto y
+              la recortaba sin control: dependía de que cada imagen se hubiera
+              compuesto para ese hueco exacto, cosa que no se sostiene artículo
+              tras artículo. Así el texto tiene su aire, la foto tiene el suyo,
+              y no hay costura vertical ni velo encima de la imagen.
+              El retrato de la firma es la foto real de Iria desde Sanity. */}
           <section className="relative bg-espresso text-cream-light overflow-hidden">
-            <div className="mx-auto grid w-full max-w-[86rem] lg:grid-cols-[1fr_44%]">
-              {article.heroImage?.asset?.url && (
-                <div className="relative order-first aspect-[16/10] w-full lg:order-last lg:aspect-auto lg:min-h-[27rem]">
-                  <Image
-                    src={article.heroImage.asset.url}
-                    alt={article.heroImage.alt ?? article.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 44vw"
-                    className="object-cover"
-                    priority
-                  />
-                  {/* Costura entre la banda oscura y la foto. Va con paradas
-                      explícitas y NO con las utilidades de gradiente de
-                      Tailwind: el `to-transparent` por defecto llega hasta el
-                      100%, así que dejaba un velo espresso sobre TODA la
-                      imagen y la foto se veía sepia. Aquí se despeja pronto
-                      (42% en escritorio, 38% de alto en móvil) y el resto de
-                      la foto queda con su color real. */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 lg:hidden"
-                    style={{
-                      background:
-                        "linear-gradient(to top, #1F1612 0%, rgba(31,22,18,0.55) 14%, rgba(31,22,18,0) 38%)",
-                    }}
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 hidden lg:block"
-                    style={{
-                      background:
-                        "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.55) 12%, rgba(31,22,18,0) 42%)",
-                    }}
-                  />
-                </div>
-              )}
-
-              <div className="px-6 py-12 sm:py-14 lg:py-20 lg:pr-12">
+            <div className="mx-auto w-full max-w-[86rem]">
+              <div className="px-6 py-14 sm:py-16 lg:py-20 max-w-3xl">
                 <p className="text-[13px] text-cream-light/55">
                   <Link href="/" className="hover:text-cream-light transition-colors">
                     Inicio
@@ -437,8 +404,30 @@ export default async function ArticlePage({
             </div>
           </section>
 
+          {/* La foto va a todo lo ancho DEBAJO de la banda de texto, no a un
+              costado. El split anterior obligaba a la imagen a estirarse hasta
+              igualar la altura del texto, y `object-cover` la recortaba tanto
+              que decapitaba al sujeto — en este artículo se comía el letrero
+              de EMERGENCY, que era el punto de la foto. Aquí la banda tiene su
+              propia proporción, así que el recorte es predecible con cualquier
+              imagen y no depende de que la foto se haya compuesto para un
+              hueco específico. `object-[center_38%]` sesga hacia arriba, que
+              es donde suele estar la acción (caras, señalización). */}
+          {article.heroImage?.asset?.url && (
+            <figure className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[16/7] bg-espresso">
+              <Image
+                src={article.heroImage.asset.url}
+                alt={article.heroImage.alt ?? article.title}
+                fill
+                sizes="100vw"
+                className="object-cover object-[center_38%]"
+                priority
+              />
+            </figure>
+          )}
+
           {article.tldr && (
-            <section className="px-6 pt-10 max-w-3xl mx-auto w-full">
+            <section className="px-6 pt-12 max-w-3xl mx-auto w-full">
               <TLDRBox>{article.tldr}</TLDRBox>
             </section>
           )}
