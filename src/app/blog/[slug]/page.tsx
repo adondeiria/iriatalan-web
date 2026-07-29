@@ -308,33 +308,34 @@ export default async function ArticlePage({
               y no hay costura vertical ni velo encima de la imagen.
               El retrato de la firma es la foto real de Iria desde Sanity. */}
           <section className="relative bg-espresso text-cream-light overflow-hidden">
-            {/* Fondo difuminado para el vacío de la derecha. Es la MISMA foto
-                del artículo, muy desenfocada y atenuada: llena el hueco con
-                textura propia del contenido en vez de con un color plano, sin
-                competir con el titular.
-                Coste cero de red: `quality={10}` + `sizes="40vw"` hacen que
-                Next sirva una miniatura de pocos KB — al desenfocarla tanto,
-                la resolución da igual. La máscara la desvanece hacia la
-                izquierda para que el texto siempre caiga sobre espresso sólido
-                y el contraste no dependa de la imagen. */}
+            {/* Fondo del vacío de la derecha: la MISMA foto del artículo, a
+                toda su nitidez — sin blur, sin opacidad reducida, sin máscara.
+                Dos intentos previos combinaban blur + opacidad baja + máscara
+                para "esconder" la foto, y el resultado se leía como mancha,
+                no como fondo intencional.
+                La técnica correcta —y la misma que ya usa el hero del home—
+                es servir la foto nítida y poner un degradado REAL encima, en
+                su propia capa, que oscurece hacia el texto y se aclara hacia
+                la derecha. La foto nunca se toca; el degradado hace todo el
+                trabajo de contraste. */}
             {article.heroImage?.asset?.url && (
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
-                style={{
-                  maskImage:
-                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.9) 60%, #000 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.9) 60%, #000 100%)",
-                }}
+                className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] overflow-hidden lg:block"
               >
                 <Image
                   src={article.heroImage.asset.url}
                   alt=""
                   fill
-                  sizes="40vw"
-                  quality={15}
-                  className="scale-125 object-cover opacity-[0.42] blur-xl"
+                  sizes="60vw"
+                  className="object-cover object-center"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.94) 15%, rgba(31,22,18,0.6) 38%, rgba(31,22,18,0.18) 65%, transparent 88%)",
+                  }}
                 />
               </div>
             )}
