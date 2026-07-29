@@ -3,14 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CategoryBadge } from "@/components/blog/article-meta";
+import { BlogSearch } from "@/components/blog/blog-search";
+import { TopicGrid } from "@/components/blog/topic-grid";
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { BLOG_INDEX_QUERY } from "../../../sanity/lib/queries";
-import {
-  formatDateMx,
-  TOPIC_LABELS,
-  TOPIC_TO_URL_SLUG,
-  type ArticleTopic,
-} from "@/lib/blog";
+import { formatDateMx, TOPIC_LABELS } from "@/lib/blog";
 import {
   buildBreadcrumbSchema,
   buildGraph,
@@ -116,11 +113,27 @@ export default async function BlogIndexPage() {
       : null
   );
 
-  // Categorías que tienen al menos 1 artículo publicado. Solo se muestran
-  // las que existen — evita exponer hubs vacíos como soft-404 implícito.
-  const topicsWithContent = Array.from(
-    new Set(articles.map((a) => a.topic).filter(Boolean))
-  ) as string[];
+  // Conteo por tema. Solo se muestran los que existen — evita exponer hubs
+  // vacíos como soft-404 implícito. La rejilla de temas y el listado se arman
+  // solos con esto, así que publicar un artículo nuevo actualiza la página sin
+  // tocar código.
+  const conteoPorTema = articles.reduce<Record<string, number>>((acc, a) => {
+    if (a.topic) acc[a.topic] = (acc[a.topic] ?? 0) + 1;
+    return acc;
+  }, {});
+
+  // Artículo destacado = el más reciente. Se saca del grid de "recientes" para
+  // no repetirlo, y así el índice tiene una entrada evidente en vez de pedirle
+  // al lector que elija entre nueve tarjetas iguales.
+  const [destacado, ...resto] = articles;
+
+  // Lo que se puede buscar en el cliente: título, entradilla y etiqueta de tema.
+  const buscables = articles.map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    excerpt: a.excerpt ?? a.tldr,
+    topic: a.topic,
+  }));
 
   return (
     <>
@@ -130,58 +143,228 @@ export default async function BlogIndexPage() {
       />
 
       <main className="flex flex-col">
-        <section className="px-6 pt-20 pb-10 max-w-5xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-rif-gris">
-            <Link href="/" className="hover:underline">
-              Inicio
-            </Link>
-            {" / Blog"}
-          </p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
-            Blog
-          </h1>
-          <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-            Artículos firmados sobre planeación patrimonial, retiro, seguros y
-            casos especiales — escritos por Iria Talan, formada en Wealth
-            Management por Yale School of Management (Exec. Ed.) y MDRT Top of
-            the Table, con citas a CNSF, AMIS y Banxico.
-          </p>
+        {/* HERO — "Centro de conocimiento". Antes era un H1 "Blog" sobre fondo
+            claro; ahora la banda oscura del sitio, con buscador. El H1 dejó de
+            ser la palabra "Blog" (cero valor para búsqueda) y pasó a decir lo
+            que el lector viene a hacer. */}
+        <section className="relative bg-espresso text-cream-light overflow-hidden">
+          <div className="relative mx-auto w-full max-w-[86rem] px-6 py-16 sm:py-20">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">
+                Centro de conocimiento
+              </p>
+              <h1 className="mt-5 font-serif font-light text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-[-0.015em] text-cream-light">
+                {/* `champagne`, no `burgundy`: sobre la banda espresso el
+                    burdeos casi no contrasta. Y `burgundy-light` no existe en
+                    la paleta — se habría renderizado sin color. */}
+                Aprende antes de{" "}
+                <span className="italic text-champagne">decidir.</span>
+              </h1>
+              <p className="mt-6 text-lg text-cream-light/80 leading-relaxed max-w-xl">
+                Guías sobre seguros, retiro y patrimonio, escritas leyendo
+                condiciones generales reales — no folletos. Para que tomes
+                decisiones con la información completa.
+              </p>
 
-          {topicsWithContent.length > 0 && (
-            <nav
-              aria-label="Categorías del blog"
-              className="mt-8 flex flex-wrap gap-x-5 gap-y-2"
-            >
-              {topicsWithContent.map((t) => (
-                <Link
-                  key={t}
-                  href={`/blog/categoria/${TOPIC_TO_URL_SLUG[t as ArticleTopic] ?? t}`}
-                  className="text-[11px] uppercase tracking-[0.22em] font-medium text-burgundy hover:opacity-75 transition-opacity duration-300"
-                >
-                  {TOPIC_LABELS[t] ?? t}
-                </Link>
-              ))}
-            </nav>
-          )}
-
-          {/* El glosario es contenido editorial hermano del blog, pero no está
-              en el nav del header (ahí compite con páginas de venta y tiene
-              baja intención comercial). Este enlace le da entrada desde una
-              página fuerte y cierra el circuito con GlossaryMentions, que
-              enlaza en sentido contrario desde cada artículo. */}
-          <p className="mt-6 text-warm-brown/85 dark:text-cream-light/65">
-            ¿Te topaste con una palabra que no conoces?{" "}
-            <Link
-              href="/glosario"
-              className="font-medium text-ink dark:text-cream-light underline hover:text-burgundy dark:hover:text-burgundy transition"
-            >
-              Consulta el glosario
-            </Link>
-            .
-          </p>
+              {articles.length > 0 && (
+                <div className="mt-9">
+                  <BlogSearch articles={buscables} />
+                </div>
+              )}
+            </div>
+          </div>
         </section>
 
-        <section className="px-6 pb-24 max-w-5xl mx-auto w-full">
+        {/* ARTÍCULO DESTACADO — el más reciente, en tarjeta horizontal. Le da
+            al índice una entrada obvia en vez de nueve tarjetas equivalentes. */}
+        {destacado && (
+          <section className="px-6 -mt-8 sm:-mt-12 max-w-6xl mx-auto w-full">
+            <Link
+              href={`/blog/${destacado.slug}`}
+              className="group grid overflow-hidden rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/20 shadow-[0_24px_60px_-28px_rgba(20,17,15,0.4)] sm:grid-cols-[42%_1fr]"
+            >
+              {destacado.heroImage?.asset?.url && (
+                <div className="relative aspect-[16/10] sm:aspect-auto sm:min-h-[15rem]">
+                  <Image
+                    src={destacado.heroImage.asset.url}
+                    alt={destacado.heroImage.alt ?? destacado.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 42vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    priority
+                  />
+                </div>
+              )}
+              <div className="flex flex-col justify-center p-6 sm:p-8">
+                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                  Artículo destacado
+                </p>
+                <h2 className="mt-3 font-serif text-2xl sm:text-3xl leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+                  {destacado.title}
+                </h2>
+                {(destacado.excerpt || destacado.tldr) && (
+                  <p className="mt-3 text-[15px] leading-relaxed text-warm-brown/85 dark:text-cream-light/65 line-clamp-3">
+                    {destacado.excerpt ?? destacado.tldr}
+                  </p>
+                )}
+                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-warm-brown/65 dark:text-cream-light/55">
+                  {destacado.topic && (
+                    <span className="uppercase tracking-[0.18em] text-burgundy">
+                      {TOPIC_LABELS[destacado.topic] ?? destacado.topic}
+                    </span>
+                  )}
+                  <span>{formatDateMx(destacado.publishedAt)}</span>
+                </div>
+                <span className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-burgundy px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 group-hover:bg-burgundy-deep">
+                  Leer el artículo
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className="size-3.5"
+                    aria-hidden
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </Link>
+          </section>
+        )}
+
+        {/* EXPLORA POR TEMA — la arquitectura de clusters, visible. */}
+        {Object.keys(conteoPorTema).length > 0 && (
+          <section className="px-6 pt-20 max-w-6xl mx-auto w-full">
+            <div className="max-w-2xl">
+              <h2 className="font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                Explora por tema
+              </h2>
+              <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
+                Elige lo que necesitas entender. Cada tema agrupa las guías que
+                se complementan entre sí.
+              </p>
+            </div>
+            <div className="mt-10">
+              <TopicGrid conteoPorTema={conteoPorTema} />
+            </div>
+          </section>
+        )}
+
+        {/* RECURSOS GRATUITOS — los TRES descargables que existen de verdad en
+            /public/descargas. La maqueta proponía una "Calculadora de retiro"
+            que no existe; en su lugar va el checklist de protección para hijo
+            con discapacidad, que sí existe y además alimenta el cluster más
+            fuerte del blog. Si algún día se construye la calculadora, se
+            agrega aquí como cuarta tarjeta. */}
+        <section className="px-6 pt-20 max-w-6xl mx-auto w-full">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,18rem)_1fr] lg:gap-12 lg:items-start">
+            <div>
+              <h2 className="font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                Recursos gratuitos
+              </h2>
+              <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
+                Guías y listas de verificación para ordenar tus decisiones. Sin
+                costo y sin compromiso.
+              </p>
+              <Link
+                href="/recursos"
+                className="group mt-6 inline-flex items-center gap-2 rounded-full border border-burgundy/30 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy transition-colors duration-500 hover:border-burgundy hover:bg-burgundy/[0.04]"
+              >
+                Ver todos los recursos
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                  aria-hidden
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
+
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  etiqueta: "Guía gratuita",
+                  titulo: "8 trámites después de un fallecimiento",
+                  desc: "Qué hacer y en qué orden: testamento, deudas, seguros, AFORE y SAT.",
+                  href: "/guia",
+                },
+                {
+                  etiqueta: "Check-up",
+                  titulo: "Revisión de beneficiarios y patrimonio",
+                  desc: "Detecta en minutos si tu patrimonio llegaría a quien tú quieres.",
+                  href: "/recursos",
+                },
+                {
+                  etiqueta: "Checklist",
+                  titulo: "Protección para un hijo con discapacidad",
+                  desc: "Los puntos que hay que cerrar para que su cuidado no dependa de ti.",
+                  href: "/blog/proteger-hijo-con-discapacidad-cuando-yo-falte",
+                },
+              ].map((r) => (
+                <li key={r.titulo}>
+                  <Link
+                    href={r.href}
+                    className="group flex h-full flex-col rounded-2xl bg-espresso p-6 text-cream-light transition-transform duration-500 hover:-translate-y-1"
+                  >
+                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-champagne">
+                      {r.etiqueta}
+                    </p>
+                    <h3 className="mt-3 font-serif text-lg leading-snug">
+                      {r.titulo}
+                    </h3>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-cream-light/70">
+                      {r.desc}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light">
+                      Ver
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                        aria-hidden
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="px-6 pt-20 pb-24 max-w-6xl mx-auto w-full">
+          {articles.length > 1 && (
+            <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                Más artículos
+              </h2>
+              {/* El glosario es contenido editorial hermano del blog pero no
+                  vive en el nav (ahí competiría con páginas de venta). Este
+                  enlace le da entrada desde una página fuerte y cierra el
+                  circuito con GlossaryMentions, que enlaza de vuelta desde
+                  cada artículo. */}
+              <Link
+                href="/glosario"
+                className="text-sm text-warm-brown/85 dark:text-cream-light/65 underline underline-offset-4 transition-colors hover:text-burgundy"
+              >
+                ¿Una palabra que no conoces? Consulta el glosario
+              </Link>
+            </div>
+          )}
           {articles.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-warm-brown/20 dark:border-warm-brown/40 p-12 text-center">
               <h2 className="text-xl font-semibold text-ink dark:text-cream-light">
@@ -201,7 +384,9 @@ export default async function BlogIndexPage() {
             </div>
           ) : (
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {articles.map((a) => (
+              {/* `resto`, no `articles`: el más reciente ya se muestra arriba
+                  como destacado y repetirlo se lee como error. */}
+              {resto.map((a) => (
                 <Link
                   key={a._id}
                   href={`/blog/${a.slug}`}
