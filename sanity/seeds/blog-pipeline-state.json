@@ -183,7 +183,7 @@
       "title": "Así te protege tu seguro si tienes una emergencia en el extranjero",
       "topic": "gmm",
       "format": "guia",
-      "phase": "borrador-v4",
+      "phase": "borrador-v5",
       "verdict": "🟡 ajustar primero",
       "primaryKeyword": "seguro de gastos médicos cubre en el extranjero",
       "created": "2026-07-25T18:00:00-06:00",
@@ -201,9 +201,7 @@
         "La red hospitalaria no es atributo de la aseguradora: las 5 manejan varios niveles y el nivel lo decide el plan contratado (lo que el cliente quiera pagar).",
         "CORRECCION 28-jul-2026 (Iria): la cobertura aplica UNICAMENTE si se contrato el beneficio Y si es una emergencia. No es automatica ni cubre atencion programada."
       ],
-      "faltaVerificarEnCondicionesGenerales": [
-        "CG de BUPA Nacional Plus — Nacional Vital 2023 EXCLUYE el extranjero; sin la CG de Plus el articulo dice \"depende del plan\" en la fila BUPA"
-      ],
+      "faltaVerificarEnCondicionesGenerales": [],
       "notes": "IDEA GUARDADA A PETICIÓN DE IRIA (25-jul-2026): 'guárdalo para que me recuerdes cuando empecemos el próximo artículo'. NO arrancar hasta tener las condiciones generales a la mano — es contenido YMYL y la regla del repo es rechazar todo dato no verificado contra el contrato. Verdict 🟡 es por los datos faltantes, NO por el tema: el tema es fuerte y es de los pocos con dato primario real. Sugerencia de proceso: usar el agente iriatalan-seo-blog con quórum YMYL, igual que en la comparativa de maternidad. Interlinking natural: /gmm (sección 'cobertura internacional', que ya tiene la tabla y el bloque de emergencia), el hub GMM, y /personas/mexicanos-en-el-extranjero. Contexto: la sección de /gmm ya publica los datos confirmados de arriba, así que el artículo debe profundizar, no repetir.",
       "tituloDescartado": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada) — DESCARTADO 2026-07-28",
       "respuestasDeIria": {
@@ -297,14 +295,15 @@
           "AXA Flex Plus feb-2026",
           "MetLife MedicaLife abr-2026",
           "SMNYL Alfa Medical 2026",
-          "GNP Beneficios Adicionales 407001_CNSF_022420"
+          "GNP Beneficios Adicionales 407001_CNSF_022420",
+          "BUPA Nacional Plus 2026 (CG) + folleto Nacional Plus"
         ],
         "nombresPorAseguradora": {
           "SMNYL": "Asistencia en el Extranjero",
           "AXA": "Emergencia Médica en el Extranjero (EMER)",
           "GNP": "Emergencia Médica en el Extranjero",
           "MetLife": "Emergencia en el extranjero",
-          "BUPA": "depende del plan — Vital la EXCLUYE"
+          "BUPA": "Asistencia en el extranjero (Nacional Plus, opcional). En Nacional Vital NO existe."
         },
         "hallazgosClave": [
           "AXA solo reembolso",
@@ -313,7 +312,9 @@
           "regla 3 meses (viajero, no residente)",
           "GNP: todos los asegurados deben contratarla",
           "definicion de emergencia RESUELTA con citas",
-          "aviso por familiar RESPALDADO (fuerza mayor AXA)"
+          "aviso por familiar RESPALDADO (fuerza mayor AXA)",
+          "BUPA: la CG base EXCLUYE el extranjero textualmente; se agrega por ANEXO opcional que prevalece sobre la CG — mejor ejemplo del articulo para la condicion 1",
+          "BUPA def. de emergencia es la unica con reloj: atencion en menos de 24 horas"
         ]
       }
     }

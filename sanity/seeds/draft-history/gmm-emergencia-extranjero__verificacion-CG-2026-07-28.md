@@ -184,26 +184,86 @@ cobertura y el GMM internacional — respalda la sección SÍ cubre / NO cubre.
 
 ---
 
-## 🚨 ALERTA BUPA — no publicable sin resolver
+## 8. BUPA — RESUELTO parcialmente (28-jul, folleto Nacional Plus)
 
-La única CG de BUPA nacional en disco es **Nacional Vital 2023**, y dice
-textual: "Esta póliza tiene cobertura en la zona geográfica de cobertura
-detallada en la carátula de la póliza, siempre dentro del territorio de la
-República Mexicana. **Queda excluida cualquier cobertura en el extranjero.**"
+Iria aportó `FOLLETO BUPA NACIONAL PLUS.pdf`. Resultado: **la diferencia no
+era "BUPA sí/no", era el PRODUCTO.** Los dos coexisten:
 
-El producto que Iria vende es **Nacional Plus**, cuya CG NO está en disco
-(solo folleto y cotizaciones). Hasta tener esa CG:
-- El artículo NO puede afirmar "las 5 aseguradoras contemplan emergencia en
-  el extranjero" — en BUPA depende del producto y al menos Vital LO EXCLUYE.
-- Opciones: (a) Iria consigue la CG de Nacional Plus y se verifica; (b) el
-  artículo dice "en BUPA depende del plan: Nacional Vital no la incluye;
-  confirma en tu carátula" — que además refuerza la tesis del artículo.
+- **Bupa Nacional Vital** (CG 2023, textual): "Esta póliza tiene cobertura en
+  la zona geográfica... siempre dentro del territorio de la República
+  Mexicana. **Queda excluida cualquier cobertura en el extranjero.**"
+- **Bupa Nacional Plus** (folleto): **"Asistencia en el extranjero
+  (contratación opcional con costo)"** — mismo nombre que usa SMNYL —
+  "**Hasta US$100,000** en caso de enfermedad repentina y/o accidente en viaje
+  en el extranjero."
+
+Con esto la tabla de nombres queda COMPLETA para las 5, y la fila de BUPA gana
+precisión: ya no es "depende del plan, revisa", es "en Nacional Plus sí, como
+opcional; en Nacional Vital no existe".
+
+**Extra citable — BUPA es el más generoso en servicios de asistencia.** El
+folleto lista, además del gasto médico: ambulancia aérea y terrestre; hospedaje
+de un familiar en caso de hospitalización; traslado de un familiar por
+convalecencia; interrupción de viaje; repatriación o traslado funerario;
+localización y envío de equipaje; gastos dentales por emergencia en viaje;
+hotel por convalecencia; monitoreo médico; cuidado y traslado de acompañantes;
+e información previa al viaje (sin costo).
+
+### 8.1 CG de Nacional Plus 2026 — la arquitectura, ahora sí verificada
+
+Iria aportó después `MEX_Condiciones Generales_BUPA_NACIONAL_PLUS_2026.pdf`.
+Lo que revela es la **estructura contractual**, y es el mejor ejemplo del
+artículo entero:
+
+- **Cláusula 5.8 (textual):** "Esta póliza tiene cobertura en la zona
+  geográfica de cobertura detallada en la carátula de la póliza, siempre
+  dentro del territorio de la República Mexicana. **Queda excluida cualquier
+  cobertura en el extranjero.**" — Es decir, en Nacional Plus la CG base
+  excluye el extranjero, igual que Vital.
+- La cobertura del folleto NO aparece en el cuerpo de la CG. Se contrata por
+  documento aparte, y la propia CG lo define:
+  - **"ANEXO** (def. 6): Un documento añadido a la póliza por Bupa que agrega
+    y detalla una cobertura opcional."
+  - **"ENDOSO** (def. 29): ...que aclara, explica o modifica las condiciones
+    generales. **Lo estipulado en un endoso siempre prevalecerá sobre las
+    condiciones generales en todo aquello que se contraponga.**"
+
+**No hay contradicción entre folleto y CG: es la arquitectura prevista.** La
+póliza base excluye el extranjero; el anexo/endoso opcional lo agrega y
+prevalece. Por eso en BUPA, si NO contrataste el anexo, el contrato dice
+expresamente que no estás cubierta fuera de México.
+
+→ Para el artículo esto es oro: es la ilustración más limpia de la condición 1.
+En las otras cuatro "no la tienes" significa que el beneficio no está listado;
+en BUPA significa que el contrato **excluye expresamente** el extranjero.
+
+### 8.2 Definición de emergencia de BUPA — la única con reloj
+
+**BUPA** (def. 28, textual): "Enfermedad o padecimiento que se manifiesta por
+signos o síntomas agudos que pueden resultar en peligro inmediato para la vida
+y/o integridad física del asegurado **si no se proporciona atención médica en
+menos de 24 (veinticuatro) horas**."
+
+Es la única de las cinco con **criterio temporal explícito**. Las otras cuatro
+dicen "atención inmediata" sin cuantificar. Dato citable y diferenciador.
+
+⚠️ **Lo que sigue sin poder afirmarse de BUPA:** el **deducible** de la
+cobertura de extranjero (no está en folleto ni en la CG base; vive en el
+anexo, que no tenemos) y sus **exclusiones particulares**. Ojo de no confundir:
+el deducible anual del folleto ($17,000 a $200,000) es el de la cobertura
+NACIONAL, no el de extranjero.
+
+De BUPA sí se puede afirmar: que en Nacional Plus existe como opcional con
+costo, cómo se llama, el tope de US$100,000, la lista de servicios de
+asistencia, su definición de emergencia (24 h) y que sin contratarla la póliza
+excluye el extranjero expresamente.
 
 ---
 
 ## Pendientes que siguen abiertos
 
-1. CG de BUPA Nacional Plus (Iria).
+1. CG de BUPA Nacional Plus, si se quiere afirmar deducible/exclusiones de esa
+   cobertura. Para lo que el artículo dice hoy, el folleto basta.
 2. Costo ~$1,500 MXN/año: es dato de experiencia de Iria, no viene en CG
    (las CG no traen precios). Se mantiene como "aproximado, según cotización".
 3. GNP "la incluye por defecto en algunos productos": la CG dice "en caso de
