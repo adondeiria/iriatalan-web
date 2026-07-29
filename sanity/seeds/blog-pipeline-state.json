@@ -183,7 +183,7 @@
       "title": "Así te protege tu seguro si tienes una emergencia en el extranjero",
       "topic": "gmm",
       "format": "guia",
-      "phase": "borrador-v7-listo",
+      "phase": "listo-para-subir",
       "verdict": "🟡 ajustar primero",
       "primaryKeyword": "seguro de gastos médicos cubre en el extranjero",
       "created": "2026-07-25T18:00:00-06:00",
@@ -349,7 +349,19 @@
           "mas CTAs visuales: ya existen en la plantilla (riel fijo, TLDR, autora, tabla, listas, FAQs) — ChatGPT leyo texto plano y no podia verlos"
         ]
       },
-      "pendienteAparte": "Lead magnet: checklist descargable \"antes de viajar con tu GMM\" para captar correos. Buena idea de ChatGPT pero es proyecto aparte (redactar + PDF + formulario). Reutilizable: infraestructura de /guia."
+      "pendienteAparte": "Lead magnet: checklist descargable \"antes de viajar con tu GMM\" para captar correos. Buena idea de ChatGPT pero es proyecto aparte (redactar + PDF + formulario). Reutilizable: infraestructura de /guia.",
+      "revisionFinal": {
+        "fecha": "2026-07-28",
+        "veredictoChatGPT": "publicable",
+        "corregido": [
+          "TLDR ya no enumera las 3 condiciones (se repetian 3 veces en 400 palabras)",
+          "items de keyTakeaways sin ✔: el componente ya pinta sus propias vinetas, habrian salido dos marcas"
+        ],
+        "yaResuelto": [
+          "emojis: no estaban en el articulo, eran anotaciones del chat",
+          "tabla: ComparisonTable emite <table> semantica con scroll en movil — verificado en codigo"
+        ]
+      }
     }
   ]
 }
