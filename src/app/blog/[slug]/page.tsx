@@ -404,25 +404,32 @@ export default async function ArticlePage({
             </div>
           </section>
 
-          {/* La foto va a todo lo ancho DEBAJO de la banda de texto, no a un
-              costado. El split anterior obligaba a la imagen a estirarse hasta
-              igualar la altura del texto, y `object-cover` la recortaba tanto
-              que decapitaba al sujeto — en este artículo se comía el letrero
-              de EMERGENCY, que era el punto de la foto. Aquí la banda tiene su
-              propia proporción, así que el recorte es predecible con cualquier
-              imagen y no depende de que la foto se haya compuesto para un
-              hueco específico. `object-[center_38%]` sesga hacia arriba, que
-              es donde suele estar la acción (caras, señalización). */}
+          {/* La foto va DEBAJO de la banda de texto, como figura contenida
+              que monta ligeramente sobre la banda oscura (-mt).
+              Historia de este bloque, para que nadie lo "arregle" de vuelta:
+              1) Era un split (texto izq / foto der). La foto se estiraba hasta
+                 igualar la altura del texto y `object-cover` la recortaba sin
+                 control — en este artículo decapitaba el letrero de EMERGENCY,
+                 que era el punto de la imagen.
+              2) Se probó a todo lo ancho en 16:7 y 16:9: cualquier banda
+                 panorámica recorta demasiado una fuente 3:2 y vuelve a comerse
+                 la señalización.
+              Se simularon los recortes con la imagen real antes de decidir:
+              16:10 es la única proporción donde caben el letrero completo Y la
+              pareja. Contenida a max-w-5xl para que 16:10 no se traduzca en
+              900px de alto en escritorio. */}
           {article.heroImage?.asset?.url && (
-            <figure className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[16/7] bg-espresso">
-              <Image
-                src={article.heroImage.asset.url}
-                alt={article.heroImage.alt ?? article.title}
-                fill
-                sizes="100vw"
-                className="object-cover object-[center_38%]"
-                priority
-              />
+            <figure className="mx-auto w-full max-w-5xl px-6 -mt-10 sm:-mt-14">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-espresso shadow-[0_24px_60px_-24px_rgba(20,17,15,0.45)]">
+                <Image
+                  src={article.heroImage.asset.url}
+                  alt={article.heroImage.alt ?? article.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 64rem"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </figure>
           )}
 
