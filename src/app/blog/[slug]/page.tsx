@@ -435,22 +435,19 @@ export default async function ArticlePage({
             </div>
           </section>
 
-          {/* La foto va DEBAJO de la banda de texto, como figura contenida
-              que monta ligeramente sobre la banda oscura (-mt).
-              Historia de este bloque, para que nadie lo "arregle" de vuelta:
-              1) Era un split (texto izq / foto der). La foto se estiraba hasta
-                 igualar la altura del texto y `object-cover` la recortaba sin
-                 control — en este artículo decapitaba el letrero de EMERGENCY,
-                 que era el punto de la imagen.
-              2) Se probó a todo lo ancho en 16:7 y 16:9: cualquier banda
-                 panorámica recorta demasiado una fuente 3:2 y vuelve a comerse
-                 la señalización.
-              Se simularon los recortes con la imagen real antes de decidir:
-              16:10 es la única proporción donde caben el letrero completo Y la
-              pareja. Contenida a max-w-5xl para que 16:10 no se traduzca en
-              900px de alto en escritorio. */}
+          {/* Esta figura SOLO se ve en móvil/tablet (`lg:hidden`).
+              En escritorio la foto ya vive como fondo de la banda oscura de
+              arriba — dejar esta figura visible ahí la duplicaba (Iria lo
+              reportó: "elimina la fotografía de abajo, se duplica"). Pero el
+              fondo de la banda es `hidden lg:block`, es decir NO existe por
+              debajo de `lg`: sin esta figura, el móvil se quedaría sin
+              ninguna imagen del artículo. Por eso se oculta en escritorio en
+              vez de borrarse.
+              Aspect 16:10 elegido simulando el recorte con la imagen real:
+              es la única proporción donde caben el letrero EMERGENCY completo
+              y la pareja a la vez (16:7 y 16:9 los cortan). */}
           {article.heroImage?.asset?.url && (
-            <figure className="mx-auto w-full max-w-5xl px-6 -mt-10 sm:-mt-14">
+            <figure className="mx-auto w-full max-w-5xl px-6 -mt-10 sm:-mt-14 lg:hidden">
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-espresso shadow-[0_24px_60px_-24px_rgba(20,17,15,0.45)]">
                 <Image
                   src={article.heroImage.asset.url}
