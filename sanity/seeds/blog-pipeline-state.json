@@ -180,7 +180,7 @@
     },
     {
       "slug": "gmm-emergencia-extranjero-aviso-aseguradora",
-      "title": "¿Tu seguro te cubre si te enfermas en el extranjero? Depende de tres cosas",
+      "title": "Lo que debes saber para que tu seguro te cubra en el extranjero (PENDIENTE confirmar con Iria — 2 alternativas dadas)",
       "topic": "gmm",
       "format": "guia",
       "phase": "borrador",
@@ -268,6 +268,18 @@
           "BUPA"
         ],
         "oportunidad": "El articulo puede abrir con el StoryTime y cerrar con la serie por aseguradora como recurso. Conforme Iria grabe AXA, MetLife y BUPA, el articulo se actualiza y gana frescura sin reescribirse. Cada video se enlaza con VideoObject."
+      },
+      "tituloDescartadoV2": "¿Tu seguro te cubre si te enfermas en el extranjero? Depende de tres cosas",
+      "correccionesRondaDos": {
+        "fecha": "2026-07-28",
+        "motivo": "Iria: el titulo se sentia condicional/desmotivador (\"si no hago las 3 cosas, no me cubre\"). Pidio ademas: (1) distinguir Asistencia en el Extranjero de Cobertura Internacional -no puedes irte a atender al extranjero con ella-, (2) aclarar que si la cuenta supera USD 100,000 la diferencia la paga el cliente.",
+        "cambios": [
+          "Titulo reescrito con framing habilitante (\"para que te cubra\") en vez de condicional (\"depende de\"). 3 opciones dadas, Iria debe elegir.",
+          "Se agrego contraste visual SI/NO cubre (tipos check/cross) distinguiendo Asistencia en el Extranjero de GMM internacional.",
+          "Se agrego que el limite de USD 100,000 es un TOPE: si la cuenta es mayor, la diferencia la paga el cliente.",
+          "Se agrego que el aviso lo puede dar un familiar o acompanante si el cliente no puede (inferido de su edicion de seoDescription, PENDIENTE confirmar que la lectura es correcta).",
+          "Se adoptaron todas sus ediciones de redaccion (parrafo de apertura, remocion de \"por defecto\"->\"automaticamente\", \"o en tus condiciones\", \"revisa tu poliza igual\", \"nacional\", transicion \"Aqui hay dos cosas que la gente confunde\")."
+        ]
       }
     }
   ]
