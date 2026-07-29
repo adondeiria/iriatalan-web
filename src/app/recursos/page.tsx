@@ -514,28 +514,147 @@ export default async function RecursosPage({
           </Link>
         </section>
 
-        {/* PARA CLIENTES — separador antes de la documentación operativa. */}
+        {/* PARA CLIENTES — dos columnas como la maqueta: a la izquierda el
+            texto con su CTA, a la derecha las 4 tarjetas con icono.
+            Las 4 describen los TIPOS de material que hay y todas bajan a la
+            misma sección (#por-aseguradora), porque ahí es donde vive todo
+            organizado por compañía. No se inventaron cuatro destinos
+            separados: sería prometer una estructura que no existe. */}
         <section
           id="para-clientes"
           className="scroll-mt-24 px-6 pt-20 max-w-6xl mx-auto w-full"
         >
-          <div className="max-w-2xl">
-            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
-              Para clientes
-            </p>
-            <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
-              Documentos oficiales de tus planes
-            </h2>
-            <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
-              Condiciones generales, formatos, cuadros médicos y canales de
-              atención de las 6 aseguradoras con las que trabajo. Los documentos
-              se actualizan continuamente; cada enlace lleva a la versión más
-              reciente.
-            </p>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-12 lg:items-start">
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                Para clientes
+              </p>
+              <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                Documentos oficiales de tus planes
+              </h2>
+              <p className="mt-4 text-[14.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/65">
+                Consulta condiciones generales, formatos, directorios médicos,
+                tabuladores y canales de atención de las aseguradoras.
+              </p>
+              <a
+                href="#por-aseguradora"
+                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-burgundy px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:bg-burgundy-deep"
+              >
+                Ir a documentos de aseguradoras
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  className="size-3.5 transition-transform duration-500 group-hover:translate-x-1"
+                  aria-hidden
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
+
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  titulo: "Documentos y formatos",
+                  desc: "Condiciones generales, formatos y material oficial de cada aseguradora.",
+                  icono: (
+                    <>
+                      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 3 14 8 19 8" />
+                      <line x1="9" y1="13" x2="15" y2="13" />
+                      <line x1="9" y1="17" x2="13" y2="17" />
+                    </>
+                  ),
+                },
+                {
+                  titulo: "Directorios médicos",
+                  desc: "Cuadros médicos, hospitales y tabuladores actualizados.",
+                  icono: (
+                    <>
+                      <path d="M6 3v6a4 4 0 0 0 8 0V3" />
+                      <line x1="6" y1="3" x2="6" y2="3.01" />
+                      <line x1="14" y1="3" x2="14" y2="3.01" />
+                      <path d="M10 13v3a3.5 3.5 0 0 0 7 0v-1.5" />
+                      <circle cx="17.5" cy="13" r="1.6" />
+                    </>
+                  ),
+                },
+                {
+                  titulo: "Canales oficiales",
+                  desc: "WhatsApp y medios de atención de cada aseguradora.",
+                  icono: (
+                    <>
+                      <path d="M4 13a8 8 0 0 1 16 0" />
+                      <rect x="3" y="13" width="4" height="7" rx="1.6" />
+                      <rect x="17" y="13" width="4" height="7" rx="1.6" />
+                    </>
+                  ),
+                },
+                {
+                  titulo: "Avisos importantes",
+                  desc: "Actualizaciones relevantes sobre tus coberturas y servicios.",
+                  icono: (
+                    <>
+                      <path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6" />
+                      <path d="M10.3 19a2 2 0 0 0 3.4 0" />
+                    </>
+                  ),
+                },
+              ].map((c) => (
+                <li key={c.titulo}>
+                  <a
+                    href="#por-aseguradora"
+                    className="group flex h-full flex-col items-center rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/20 p-6 text-center transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="size-9 text-burgundy"
+                      aria-hidden
+                    >
+                      {c.icono}
+                    </svg>
+                    <h3 className="mt-4 font-serif text-[17px] leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+                      {c.titulo}
+                    </h3>
+                    <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-warm-brown/80 dark:text-cream-light/60">
+                      {c.desc}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
+                      Consultar
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                        aria-hidden
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
+        {/* Destino de las 4 tarjetas y del CTA de "Para clientes". */}
+        <section
+          id="por-aseguradora"
+          className="scroll-mt-24 px-6 py-8 sm:py-12 mt-12 border-t border-warm-brown/15 dark:border-warm-brown/30"
+        >
           <div className="max-w-5xl mx-auto w-full">
             <p className="text-sm uppercase tracking-wider text-rif-gris">
               Recursos por aseguradora
