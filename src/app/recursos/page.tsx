@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
@@ -154,17 +155,21 @@ const CARRIER_WEB_LINKS: CarrierWebLink[] = [
 // del conteo de documentos en Sanity para decidir index/noindex.
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Recursos — Documentos de aseguradoras",
+    // El title describía solo la mitad de la página. Ahora que /recursos
+    // también aloja guías descargables y herramientas, la metadata cubre las
+    // dos audiencias — el cliente que busca su documentación y el prospecto
+    // que llega buscando entender antes de contratar.
+    title: "Recursos: guías, herramientas y documentos de aseguradoras",
     description:
-      "Biblioteca pública de Condiciones Generales, formatos, cuadros médicos y tabuladores de las aseguradoras autorizadas: BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP.",
+      "Guías descargables gratuitas, herramientas de cálculo y la documentación oficial de las 6 aseguradoras con las que trabajo: condiciones generales, formatos y cuadros médicos.",
     alternates: { canonical: `${SITE_URL}/recursos` },
     robots: { index: true, follow: true },
     openGraph: {
       type: "website",
       url: `${SITE_URL}/recursos`,
-      title: "Recursos — Documentos de aseguradoras | Iria Talan / RIF",
+      title: "Recursos — Guías, herramientas y documentos | Iria Talan / RIF",
       description:
-        "Condiciones Generales, formatos y cuadros médicos. Acceso público a documentación oficial de carriers.",
+        "Guías gratuitas, herramientas de cálculo y documentación oficial de aseguradoras.",
     },
   };
 }
@@ -260,18 +265,217 @@ export default async function RecursosPage({
       />
 
       <main className="flex flex-col">
-        <section className="px-6 pt-20 pb-10 max-w-5xl mx-auto w-full">
-          <p className="text-sm uppercase tracking-wider text-rif-gris">
-            Recursos
-          </p>
-          <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight text-ink dark:text-cream-light">
-            Documentos oficiales de las aseguradoras
-          </h1>
-          <p className="mt-5 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-            Condiciones Generales, formatos, cuadros médicos y tabuladores —
-            acceso público a la documentación oficial de las 6 aseguradoras
-            autorizadas con las que trabajo.
-          </p>
+        {/* HERO — banda oscura, mismo patrón aprobado en /blog y en los
+            artículos: foto nítida a la derecha + degradado real en capa
+            aparte. La imagen es un bodegón de marca (libreta, pluma, folders
+            sobre mármol) generado para esta página; no se reutiliza la tarjeta
+            roja porque ya está en el hero de /blog y repetirla se nota.
+            El H1 dejó de ser "Documentos oficiales de las aseguradoras" (que
+            describía solo la mitad de la página) y ahora abarca las dos
+            audiencias: cliente que busca su documentación y prospecto que
+            viene a entender antes de decidir. */}
+        <section className="relative bg-espresso text-cream-light overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] overflow-hidden lg:block"
+          >
+            <Image
+              src="/img/iria/recursos-escritorio.jpg"
+              alt=""
+              fill
+              sizes="60vw"
+              className="object-cover object-center"
+              priority
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.94) 15%, rgba(31,22,18,0.6) 38%, rgba(31,22,18,0.18) 65%, transparent 88%)",
+              }}
+            />
+          </div>
+          <div className="relative mx-auto w-full max-w-[86rem] px-6 py-16 sm:py-20">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">
+                Recursos
+              </p>
+              <h1 className="mt-5 font-serif font-light text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-[-0.015em] text-cream-light">
+                Información clara para tomar{" "}
+                <span className="italic text-champagne">mejores</span>{" "}
+                decisiones.
+              </h1>
+              <p className="mt-6 text-lg text-cream-light/80 leading-relaxed max-w-xl">
+                Documentos oficiales de las aseguradoras, guías descargables y
+                herramientas para entender tus coberturas, planear tu retiro y
+                proteger tu patrimonio.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a
+                  href="#para-ti"
+                  className="inline-flex items-center gap-2 rounded-full bg-burgundy px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:bg-burgundy-deep"
+                >
+                  Guías y herramientas
+                </a>
+                <a
+                  href="#para-clientes"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream-light/30 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:border-cream-light/70"
+                >
+                  Documentos de aseguradoras
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PARA TI — la mitad para prospectos. Antes esta página servía SOLO a
+            clientes existentes (documentación de aseguradoras); sus tres lead
+            magnets vivían enterrados dentro de artículos del blog y no tenían
+            ninguna entrada desde aquí. */}
+        <section
+          id="para-ti"
+          className="scroll-mt-24 px-6 pt-20 max-w-6xl mx-auto w-full"
+        >
+          <div className="max-w-2xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+              Para ti
+            </p>
+            <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+              Guías gratuitas
+            </h2>
+            <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
+              Descargables para ordenar decisiones concretas. Sin costo.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                etiqueta: "Guía · PDF",
+                titulo: "8 trámites después de un fallecimiento",
+                desc: "Testamento, deudas, seguros, AFORE y SAT: qué hacer y en qué orden.",
+                href: "/guia",
+              },
+              {
+                etiqueta: "Check-up · PDF + Excel",
+                titulo: "Revisión de beneficiarios y patrimonio",
+                desc: "Detecta si tu patrimonio llegaría a quien tú quieres, y en cuánto tiempo.",
+                href: "/blog/testamento-no-protege-seguros-vida-cuentas",
+              },
+              {
+                etiqueta: "Checklist · PDF + Excel",
+                titulo: "Protección para un hijo con discapacidad",
+                desc: "Los puntos que hay que cerrar para que su cuidado no dependa de ti.",
+                href: "/blog/proteger-hijo-con-discapacidad-cuando-yo-falte",
+              },
+            ].map((g) => (
+              <li key={g.titulo}>
+                <Link
+                  href={g.href}
+                  className="group flex h-full flex-col rounded-2xl bg-espresso p-6 text-cream-light transition-transform duration-500 hover:-translate-y-1"
+                >
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-champagne">
+                    {g.etiqueta}
+                  </p>
+                  <h3 className="mt-3 font-serif text-lg leading-snug">
+                    {g.titulo}
+                  </h3>
+                  <p className="mt-2 flex-1 text-[13px] leading-relaxed text-cream-light/70">
+                    {g.desc}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em]">
+                    Descargar
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5"
+                      aria-hidden
+                    >
+                      <line x1="12" y1="5" x2="12" y2="17" />
+                      <polyline points="6 12 12 18 18 12" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* HERRAMIENTAS — solo las DOS que existen de verdad. La maqueta
+              proponía además una "Calculadora de retiro" que no está
+              construida; poner la tarjeta habría dejado un enlace muerto. */}
+          <h2 className="mt-16 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+            Herramientas
+          </h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                titulo: "¿Tu ahorro alcanza para la universidad?",
+                desc: "Proyecta el costo real de la carrera de tu hijo y el ahorro mensual que hace falta.",
+                cta: "Usar calculadora",
+                href: "/blog/incremento-costos-universitarios-mexico",
+              },
+              {
+                titulo: "Diagnóstico de protección patrimonial",
+                desc: "Revisa si tus beneficiarios están bien designados y qué huecos tiene tu estructura hoy.",
+                cta: "Iniciar diagnóstico",
+                href: "/guia",
+              },
+            ].map((h) => (
+              <li key={h.titulo}>
+                <Link
+                  href={h.href}
+                  className="group flex h-full items-start gap-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/20 p-6 transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]"
+                >
+                  <span
+                    aria-hidden
+                    className="flex size-12 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-burgundy/25 bg-burgundy/[0.06]"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      className="size-6 text-burgundy"
+                    >
+                      <rect x="5" y="3" width="14" height="18" rx="2" />
+                      <line x1="8.5" y1="7" x2="15.5" y2="7" />
+                      <line x1="8.5" y1="11" x2="10" y2="11" />
+                      <line x1="13" y1="11" x2="15.5" y2="11" />
+                      <line x1="8.5" y1="15" x2="10" y2="15" />
+                      <line x1="13" y1="15" x2="15.5" y2="15" />
+                    </svg>
+                  </span>
+                  <span className="flex-1">
+                    <span className="block font-serif text-lg leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+                      {h.titulo}
+                    </span>
+                    <span className="mt-2 block text-[13.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/65">
+                      {h.desc}
+                    </span>
+                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
+                      {h.cta}
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                        aria-hidden
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
           {/* /glosario solo estaba enlazado desde el footer: quedaba casi
               huérfano pese a emitir DefinedTermSet. Recursos es su hub natural
@@ -279,20 +483,56 @@ export default async function RecursosPage({
               saber qué significa "coaseguro". */}
           <Link
             href="/glosario"
-            className="mt-8 group flex items-start gap-4 rounded-2xl border border-warm-brown/20 dark:border-warm-brown/40 p-5 max-w-2xl hover:border-burgundy/50 hover:bg-cream dark:hover:bg-coffee/40 transition-colors duration-500"
+            className="group mt-6 flex items-start gap-4 rounded-2xl border border-warm-brown/20 dark:border-warm-brown/40 p-5 transition-colors duration-500 hover:border-burgundy/50 hover:bg-cream dark:hover:bg-coffee/40"
           >
-            <span aria-hidden="true" className="text-2xl leading-none mt-0.5">📖</span>
+            <span
+              aria-hidden
+              className="flex size-12 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-burgundy/25 bg-burgundy/[0.06]"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                className="size-6 text-burgundy"
+              >
+                <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v16H5.5A2.5 2.5 0 0 1 3 17.5z" />
+                <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v16h5.5A2.5 2.5 0 0 0 21 17.5z" />
+              </svg>
+            </span>
             <span>
-              <span className="block font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
+              <span className="block font-serif text-lg text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
                 Glosario de seguros
               </span>
-              <span className="mt-1 block text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
+              <span className="mt-1 block text-[13.5px] text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
                 Deducible, coaseguro, suma asegurada, periodo de espera — los
                 términos que aparecen en cada condición general, explicados en
                 español claro.
               </span>
             </span>
           </Link>
+        </section>
+
+        {/* PARA CLIENTES — separador antes de la documentación operativa. */}
+        <section
+          id="para-clientes"
+          className="scroll-mt-24 px-6 pt-20 max-w-6xl mx-auto w-full"
+        >
+          <div className="max-w-2xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+              Para clientes
+            </p>
+            <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+              Documentos oficiales de tus planes
+            </h2>
+            <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
+              Condiciones generales, formatos, cuadros médicos y canales de
+              atención de las 6 aseguradoras con las que trabajo. Los documentos
+              se actualizan continuamente; cada enlace lleva a la versión más
+              reciente.
+            </p>
+          </div>
         </section>
 
         <section className="px-6 py-8 sm:py-12 border-t border-warm-brown/15 dark:border-warm-brown/30">
