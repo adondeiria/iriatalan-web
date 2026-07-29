@@ -38,6 +38,15 @@ export const article = defineType({
         "Si está ON: el artículo NO aparece en /blog, /blog/[slug] (404), sitemap.xml ni llms.txt. Cambia a OFF cuando esté listo para publicar.",
     }),
     defineField({
+      name: "destacado",
+      title: "⭐ Destacado en /blog",
+      type: "boolean",
+      group: "core",
+      initialValue: false,
+      description:
+        "Si está ON, este artículo ocupa la tarjeta grande de arriba en /blog. Si hay varios en ON gana el más reciente; si ninguno está ON, se destaca el último publicado.",
+    }),
+    defineField({
       name: "title",
       title: "Título",
       type: "string",

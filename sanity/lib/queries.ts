@@ -167,6 +167,7 @@ export const ALL_ARTICLES_SLUGS_QUERY = defineQuery(`
 export const BLOG_INDEX_QUERY = defineQuery(`
   *[_type == "article" && defined(slug.current) && !draft && publishedAt <= now()] | order(publishedAt desc){
     _id, title, "slug": slug.current,
+    destacado,
     excerpt,
     tldr,
     publishedAt,

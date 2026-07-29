@@ -23,6 +23,7 @@ type ArticleListItem = {
   _id: string;
   title: string;
   slug: string;
+  destacado?: boolean;
   excerpt?: string;
   tldr?: string;
   publishedAt: string;
@@ -122,10 +123,16 @@ export default async function BlogIndexPage() {
     return acc;
   }, {});
 
-  // Artículo destacado = el más reciente. Se saca del grid de "recientes" para
-  // no repetirlo, y así el índice tiene una entrada evidente en vez de pedirle
-  // al lector que elija entre nueve tarjetas iguales.
-  const [destacado, ...resto] = articles;
+  // Artículo destacado: lo elige Iria con el toggle "⭐ Destacado" en Studio.
+  // Si no marca ninguno, cae al más reciente — así la página nunca se queda sin
+  // tarjeta grande. Se excluye del listado de abajo para no repetirlo.
+  //
+  // El campo existe para que ella no dependa de un cambio de código cada vez
+  // que quiera cambiar qué artículo recibe al lector: el más reciente no
+  // siempre es el que conviene poner al frente (Modalidad 40, por ejemplo,
+  // tiene mucha más intención de compra que un artículo recién publicado).
+  const destacado = articles.find((a) => a.destacado) ?? articles[0];
+  const resto = articles.filter((a) => a._id !== destacado?._id);
 
   // Lo que se puede buscar en el cliente: título, entradilla y etiqueta de tema.
   const buscables = articles.map((a) => ({
