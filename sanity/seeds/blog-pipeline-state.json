@@ -180,7 +180,7 @@
     },
     {
       "slug": "gmm-emergencia-extranjero-aviso-aseguradora",
-      "title": "Lo que debes saber para que tu seguro te cubra en el extranjero (PENDIENTE confirmar con Iria — 2 alternativas dadas)",
+      "title": "Así te protege tu seguro si tienes una emergencia en el extranjero",
       "topic": "gmm",
       "format": "guia",
       "phase": "borrador",
@@ -280,6 +280,15 @@
           "Se agrego que el aviso lo puede dar un familiar o acompanante si el cliente no puede (inferido de su edicion de seoDescription, PENDIENTE confirmar que la lectura es correcta).",
           "Se adoptaron todas sus ediciones de redaccion (parrafo de apertura, remocion de \"por defecto\"->\"automaticamente\", \"o en tus condiciones\", \"revisa tu poliza igual\", \"nacional\", transicion \"Aqui hay dos cosas que la gente confunde\")."
         ]
+      },
+      "tituloDescartadoV3": "Lo que debes saber para que tu seguro te cubra en el extranjero (PENDIENTE confirmar con Iria — 2 alternativas dadas)",
+      "seoTitle": "Emergencia en el extranjero: así se activa tu cobertura",
+      "tituloResuelto": {
+        "fecha": "2026-07-28",
+        "metodo": "Iria llevo las 3 opciones a Perplexity con contexto (audiencia, tono no-amenazante). Perplexity recomendo separar H1 y seoTitle en vez de un solo titulo para ambos usos.",
+        "h1": "Asi te protege tu seguro si tienes una emergencia en el extranjero (= opcion 2 de las 3 originales)",
+        "seoTitle": "Emergencia en el extranjero: asi se activa tu cobertura (nueva, 55 caracteres, sin el (2026) que traia la version anterior — Iria puede pedirlo de vuelta si quiere consistencia con otros articulos)",
+        "nota": "No requiere cambios de codigo: el schema ya separa title/seoTitle para todos los articulos."
       }
     }
   ]
