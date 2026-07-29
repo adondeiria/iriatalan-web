@@ -361,7 +361,14 @@
           "emojis: no estaban en el articulo, eran anotaciones del chat",
           "tabla: ComparisonTable emite <table> semantica con scroll en movil — verificado en codigo"
         ]
-      }
+      },
+      "imageAsset": {
+        "hero": {
+          "localPath": "public/img/blog/gmm-emergencia-extranjero-hero.png",
+          "alt": "Pareja mexicana en un hospital en el extranjero — él estable en la camilla, ella llamando a la aseguradora desde el celular"
+        }
+      },
+      "imagenAlternativa": "public/img/blog/gmm-emergencia-extranjero-hero-alt.png (pared limpia, sin carteles; misma escena, lectura más sobria)"
     }
   ]
 }
