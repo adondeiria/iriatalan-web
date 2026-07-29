@@ -369,7 +369,7 @@
         }
       },
       "imagenAlternativa": "public/img/blog/gmm-emergencia-extranjero-hero-alt.png (pared limpia, sin carteles; misma escena, lectura más sobria)",
-      "notaImagen": "v4 FINAL. Composicion de pasillo elegida por Iria (venia de la propuesta de ChatGPT: camilla en corredor, cartel EMERGENCY grande, nurse station — mas institucional y comunica \"acabas de llegar a urgencias\"). Corregidos los 4 problemas de aquella version: paleta calida en vez de azul clinico; expresiones serenas en vez de angustiadas; TODO el texto en ingles (la suya traia un cartel \"TU SALUD PRIORIDAD\" en espanol, que contradice la premisa de estar fuera de Mexico); y sin degradado azul quemado en el archivo, que chocaria con el degradado espresso que aplica el hero por CSS."
+      "notaImagen": "v5 FINAL: imagen elegida por Iria (generada en ChatGPT, iteracion 3). Ya venia con las correcciones de idioma —YOUR HEALTH OUR PRIORITY en ingles— y sin degradado quemado. Se le aplico en post un ajuste de temperatura (R+7.5%, B-10.5%, saturacion -6%) para llevarla de la paleta azul-blanca clinica a los cremas del sitio, porque el hero le encima un degradado espresso y el empalme frio/calido se veia sucio. Original sin gradar guardada en scratchpad/chatgpt-orig.png."
     }
   ]
 }
