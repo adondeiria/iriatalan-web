@@ -183,7 +183,7 @@
       "title": "Así te protege tu seguro si tienes una emergencia en el extranjero",
       "topic": "gmm",
       "format": "guia",
-      "phase": "borrador",
+      "phase": "borrador-v4",
       "verdict": "🟡 ajustar primero",
       "primaryKeyword": "seguro de gastos médicos cubre en el extranjero",
       "created": "2026-07-25T18:00:00-06:00",
@@ -202,7 +202,7 @@
         "CORRECCION 28-jul-2026 (Iria): la cobertura aplica UNICAMENTE si se contrato el beneficio Y si es una emergencia. No es automatica ni cubre atencion programada."
       ],
       "faltaVerificarEnCondicionesGenerales": [
-        "Definicion literal de EMERGENCIA en condiciones generales. Acordado mientras tanto: redactar con ejemplos practicos (fractura expuesta, intoxicacion) + remitir al contrato, sin inventar la clausula."
+        "CG de BUPA Nacional Plus — Nacional Vital 2023 EXCLUYE el extranjero; sin la CG de Plus el articulo dice \"depende del plan\" en la fila BUPA"
       ],
       "notes": "IDEA GUARDADA A PETICIÓN DE IRIA (25-jul-2026): 'guárdalo para que me recuerdes cuando empecemos el próximo artículo'. NO arrancar hasta tener las condiciones generales a la mano — es contenido YMYL y la regla del repo es rechazar todo dato no verificado contra el contrato. Verdict 🟡 es por los datos faltantes, NO por el tema: el tema es fuerte y es de los pocos con dato primario real. Sugerencia de proceso: usar el agente iriatalan-seo-blog con quórum YMYL, igual que en la comparativa de maternidad. Interlinking natural: /gmm (sección 'cobertura internacional', que ya tiene la tabla y el bloque de emergencia), el hub GMM, y /personas/mexicanos-en-el-extranjero. Contexto: la sección de /gmm ya publica los datos confirmados de arriba, así que el artículo debe profundizar, no repetir.",
       "tituloDescartado": "Tu GMM sí te cubre en el extranjero (pero solo si haces esta llamada) — DESCARTADO 2026-07-28",
@@ -289,6 +289,32 @@
         "h1": "Asi te protege tu seguro si tienes una emergencia en el extranjero (= opcion 2 de las 3 originales)",
         "seoTitle": "Emergencia en el extranjero: asi se activa tu cobertura (nueva, 55 caracteres, sin el (2026) que traia la version anterior — Iria puede pedirlo de vuelta si quiere consistencia con otros articulos)",
         "nota": "No requiere cambios de codigo: el schema ya separa title/seoTitle para todos los articulos."
+      },
+      "verificacionCG": {
+        "fecha": "2026-07-28",
+        "reporte": "draft-history/gmm-emergencia-extranjero__verificacion-CG-2026-07-28.md",
+        "verificadas": [
+          "AXA Flex Plus feb-2026",
+          "MetLife MedicaLife abr-2026",
+          "SMNYL Alfa Medical 2026",
+          "GNP Beneficios Adicionales 407001_CNSF_022420"
+        ],
+        "nombresPorAseguradora": {
+          "SMNYL": "Asistencia en el Extranjero",
+          "AXA": "Emergencia Médica en el Extranjero (EMER)",
+          "GNP": "Emergencia Médica en el Extranjero",
+          "MetLife": "Emergencia en el extranjero",
+          "BUPA": "depende del plan — Vital la EXCLUYE"
+        },
+        "hallazgosClave": [
+          "AXA solo reembolso",
+          "SMNYL pago directo por convenios",
+          "MetLife suma = 100k o basica LA MENOR",
+          "regla 3 meses (viajero, no residente)",
+          "GNP: todos los asegurados deben contratarla",
+          "definicion de emergencia RESUELTA con citas",
+          "aviso por familiar RESPALDADO (fuerza mayor AXA)"
+        ]
       }
     }
   ]
