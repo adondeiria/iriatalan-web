@@ -443,7 +443,10 @@ export function CheckupDownloadBlock() {
 // promete una estimación personalizada (Iria la envía tras recibir el lead).
 export function CalculadoraEducacionalBlock() {
   return (
-    <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
+    <div
+      id="calculadora-educacional"
+      className="scroll-mt-24 my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose"
+    >
       <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
         Calculadora gratuita
       </p>
@@ -465,9 +468,14 @@ export function CalculadoraEducacionalBlock() {
 // ChecklistDiscapacidadBlock — lead magnet gateado para el artículo de protección
 // patrimonial de familias con un hijo con discapacidad. Capta contacto y entrega
 // el checklist (PDF + Excel).
+// El `id` lo enlaza la sección de herramientas de /recursos: sin ancla, el
+// enlace deja al lector al inicio de un artículo de dos mil palabras.
 export function ChecklistDiscapacidadBlock() {
   return (
-    <div className="my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose">
+    <div
+      id="checklist-discapacidad"
+      className="scroll-mt-24 my-10 rounded-2xl border-2 border-rif-rojo/30 bg-cream/40 dark:bg-coffee/20 p-6 sm:p-8 not-prose"
+    >
       <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
         Checklist gratuito
       </p>

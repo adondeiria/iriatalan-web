@@ -51,7 +51,8 @@ BUPA, MetLife, Allianz, Seguros Monterrey New York Life, AXA, GNP
 
 ## Recursos públicos
 
-- [Documentos de aseguradoras](https://iriatalan.com.mx/recursos): biblioteca pública de Condiciones Generales, formatos de reclamación, cuadros médicos y tabuladores de las 6 carriers autorizadas (BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP). Documentación oficial provista por las aseguradoras con fines informativos.
+- [Centro de recursos](https://iriatalan.com.mx/recursos): punto de entrada a todo el material público — documentos oficiales de aseguradoras, glosario de términos de seguros, guía de trámites por fallecimiento y artículos organizados por tema (retiro, gastos médicos mayores, vida y sucesión, hijos y familia, empresas, mexicanos en el extranjero). Incluye buscador sobre artículos y glosario, e índice completo de contenidos.
+- [Documentos de aseguradoras](https://iriatalan.com.mx/recursos/documentos): biblioteca pública de Condiciones Generales, formatos de reclamación, cuadros médicos y tabuladores de las 6 carriers autorizadas (BUPA, MetLife, Allianz, Seguros Monterrey NYL, AXA, GNP). Documentación oficial provista por las aseguradoras con fines informativos.
 
 ## Contenido editorial
 

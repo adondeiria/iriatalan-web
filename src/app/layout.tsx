@@ -298,11 +298,14 @@ export default async function RootLayout({
             <div>
               <p className="text-[11px] uppercase tracking-[0.24em] text-burgundy font-medium mb-5">Recursos</p>
               <ul className="space-y-3 text-sm text-cream-light/80">
+                {/* /recursos es el hub que reúne artículos, glosario, guías y
+                    documentos; la biblioteca de aseguradoras es una sección
+                    suya y vive en /recursos/documentos. Las dos se listan
+                    porque responden a intenciones distintas: explorar versus
+                    ir directo a la condición general de mi póliza. */}
+                <li><Link href="/recursos" className="hover:text-cream-light transition-colors duration-500">Centro de recursos</Link></li>
                 <li><Link href="/blog" className="hover:text-cream-light transition-colors duration-500">Blog</Link></li>
-                {/* Se llamaba "Guías Gratuitas" pero /recursos son condiciones
-                    generales y documentos de aseguradoras. La guía real ya está
-                    listada abajo (/guia); la etiqueta ahora dice lo que hay. */}
-                <li><Link href="/recursos" className="hover:text-cream-light transition-colors duration-500">Documentos de aseguradoras</Link></li>
+                <li><Link href="/recursos/documentos" className="hover:text-cream-light transition-colors duration-500">Documentos de aseguradoras</Link></li>
                 {/* Apuntaba a /recursos#faqs, un ancla inexistente: /recursos no
                     tiene sección de FAQs. Las FAQs del home sí existen y emiten
                     FAQPage, así que el enlace del footer va ahí. */}

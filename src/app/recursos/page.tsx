@@ -1,260 +1,387 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  Bell,
+  Briefcase,
+  Download,
+  FileText,
+  GraduationCap,
+  Headphones,
+  HeartPulse,
+  Globe,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+} from "lucide-react";
+
+import { BuscadorRecursos } from "@/components/recursos/buscador";
+import { CategoryBadge } from "@/components/blog/article-meta";
+import { recortar, type DocBusqueda } from "@/lib/busqueda";
+import {
+  formatDateMx,
+  TOPIC_LABELS,
+  TOPIC_TO_URL_SLUG,
+  topicHref,
+  type ArticleTopic,
+} from "@/lib/blog";
+import {
+  RECURSOS_HUB_DESCRIPTION,
+  RECURSOS_HUB_ITEMS,
+  type RecursoHubItem,
+} from "@/lib/recursos";
+import { buildBreadcrumbSchema, buildGraph, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
-import { RESOURCES_LIST_QUERY } from "../../../sanity/lib/queries";
-import { buildBreadcrumbSchema, buildGraph, SITE_URL } from "@/lib/seo";
+import {
+  BLOG_INDEX_QUERY,
+  GLOSSARY_INDEX_QUERY,
+} from "../../../sanity/lib/queries";
 
-type ResourceItem = {
+/**
+ * /recursos — centro de recursos.
+ *
+ * Antes esta URL era la biblioteca de documentos de aseguradoras, o sea que
+ * servía solo a clientes con póliza: quien llegaba investigando no encontraba
+ * nada que le ayudara a decidir. Esa biblioteca se mudó íntegra a
+ * /recursos/documentos y esta página pasó a ser la puerta de entrada al
+ * material editorial — artículos, glosario, guías y herramientas — que hasta
+ * ahora estaba disperso y sin un solo lugar que lo reuniera.
+ *
+ * Es un server component estático (no lee searchParams): el índice del
+ * buscador viaja en el payload RSC y el filtrado ocurre en el cliente.
+ */
+
+type ArticuloItem = {
   _id: string;
   title: string;
   slug: string;
-  carrier: string;
-  category: string;
-  productLine: string;
-  year?: string | null;
-  fileUrl?: string | null;
-  fileSize?: number | null;
-  externalUrl?: string | null;
-  seoDescription?: string | null;
+  excerpt?: string | null;
+  tldr?: string | null;
+  publishedAt?: string | null;
+  topic?: string | null;
+  format?: string | null;
+  heroImage?: { asset?: { url?: string } | null; alt?: string | null } | null;
 };
 
-type SearchParams = Promise<{
-  carrier?: string;
-  category?: string;
-  productLine?: string;
-}>;
-
-const CATEGORY_LABELS: Record<string, string> = {
-  condiciones_generales: "Condiciones Generales",
-  formato_reclamacion: "Formato de Reclamación",
-  formato_alta_baja: "Formato Alta / Baja",
-  cuadro_medico: "Cuadro Médico / Red Hospitalaria",
-  tabulador: "Tabulador / Tarifas",
-  folleto_producto: "Folleto Producto",
-  guia_usuario: "Guía de Usuario",
-  aviso_privacidad: "Aviso de Privacidad",
-  otro: "Otro",
+type TerminoItem = {
+  _id: string;
+  term: string;
+  slug: string;
+  shortDefinition?: string | null;
+  topic?: string | null;
+  synonyms?: string[] | null;
 };
 
-const PRODUCT_LINE_LABELS: Record<string, string> = {
-  vida: "Vida individual",
-  gmm: "GMM individual",
-  vida_grupo: "Vida grupo",
-  gmm_empresarial: "GMM empresarial",
-  autos: "Autos",
-  dano_hogar: "Daños / Hogar",
-  retiro: "Retiro / AFORE",
-  educacional: "Educacional",
-  otro: "—",
-};
-
-type WhatsAppChannel = {
-  carrier: string;
-  ramo: string;
-  url: string;
-};
-
-const WHATSAPP_CHANNELS: WhatsAppChannel[] = [
-  { carrier: "BUPA",                              ramo: "Médico",                  url: "https://whatsapp.com/channel/0029VaGVom8GehELQJ7iCA2v" },
-  { carrier: "GNP",                               ramo: "Médico + Seguros Autos",  url: "https://whatsapp.com/channel/0029VaBhwM6Dp2Q4uSPaB92l" },
-  { carrier: "Seguros Monterrey New York Life",   ramo: "Médico",                  url: "https://whatsapp.com/channel/0029VaGvIyNAYlUPmGEDFQ2p" },
-  { carrier: "AXA",                               ramo: "Médico + Seguros Autos",  url: "https://whatsapp.com/channel/0029VaBbyzT0LKZCIHeDxz1p" },
-  { carrier: "MetLife",                           ramo: "Vida + GMM",              url: "https://whatsapp.com/channel/0029VaCLFhMAe5Vps0msnG3D" },
-  { carrier: "Allianz",                           ramo: "Seguros Autos",           url: "https://whatsapp.com/channel/0029VaQkrFJLNSZyWtUvKq41" },
+/**
+ * Términos que se muestran en la sección de glosario. Es una lista curada, no
+ * "los más populares": `glossaryTerm` no tiene campo de popularidad ni hay
+ * analítica por término, así que llamarlos populares sería inventar un dato.
+ * Se filtra contra los que existen de verdad, o sea que borrar uno en Studio
+ * no rompe nada.
+ */
+const TERMINOS_DESTACADOS = [
+  "deducible",
+  "coaseguro",
+  "suma-asegurada",
+  "periodo-de-espera",
+  "beneficiario",
+  "modalidad-40",
+  "renta-vitalicia",
+  "testamento",
+  "fideicomiso",
+  "prima",
+  "exclusiones",
+  "plan-personal-de-retiro",
 ];
 
-type ResourceFolderRamo = "gmm" | "autos";
-
-type ResourceFolder = {
-  carrier: string;
-  ramo: ResourceFolderRamo;
-  linea: string;
-  folderUrl: string | null;
+/** Icono por tarjeta temática. Se resuelve por `key` para no meter JSX en la lib. */
+const ICONO_TEMA: Record<string, typeof ShieldCheck> = {
+  retiro: Sparkles,
+  gmm: HeartPulse,
+  vida: ShieldCheck,
+  familia: GraduationCap,
+  empresas: Briefcase,
+  internacional: Globe,
 };
 
-const RAMO_LABELS: Record<ResourceFolderRamo, string> = {
-  gmm: "Gastos Médicos Mayores",
-  autos: "Seguros Autos",
+/** Chips del hero. Son enlaces de navegación, no filtros — ver nota abajo. */
+const CHIPS: Array<{ label: string; href: string }> = [
+  { label: "Retiro", href: `/blog/categoria/${TOPIC_TO_URL_SLUG.retiro}` },
+  { label: "Gastos médicos", href: `/blog/categoria/${TOPIC_TO_URL_SLUG.gmm}` },
+  {
+    label: "Vida y patrimonio",
+    href: `/blog/categoria/${TOPIC_TO_URL_SLUG.patrimonial}`,
+  },
+  {
+    label: "Universidad",
+    href: `/blog/categoria/${TOPIC_TO_URL_SLUG.educacionales}`,
+  },
+  { label: "Glosario", href: "/glosario" },
+  { label: "Documentos", href: "/recursos/documentos" },
+];
+
+/**
+ * Descargables gratuitos: guías, check-ups y checklists.
+ *
+ * Van todos en UNA sección, no en dos. Antes la guía de fallecimiento tenía
+ * bloque destacado propio y además aparecía como tarjeta en "Herramientas", o
+ * sea que la misma pieza salía dos veces en la página. La distinción entre
+ * "guía" y "herramienta" existía en el código, no en la cabeza de quien lee:
+ * los tres son un archivo que te llevas.
+ *
+ * `acceso` dice el costo de entrada ANTES del clic — descarga directa o dejar
+ * el correo. En un vertical donde todo el mundo esconde el formulario hasta el
+ * último paso, decirlo por adelantado es la diferencia.
+ *
+ * Agregar las calculadoras cuando existan = un objeto más aquí.
+ */
+type Descargable = {
+  slug: string;
+  /** Etiqueta del badge sobre la portada. */
+  tipo: string;
+  titulo: string;
+  gancho: string;
+  /** Descarga directa, o la página/ancla donde vive el formulario. */
+  href: string;
+  /** true = <a download> de un archivo; false = navegación interna. */
+  descargaDirecta: boolean;
+  imagen: string;
+  acceso: string;
+  meta: string[];
 };
 
-const RAMO_ORDER: ResourceFolderRamo[] = ["gmm", "autos"];
-
-// Orden custom para mostrar aseguradoras en la página /recursos. Cualquier
-// carrier no listado aquí (ej. nuevo) cae al final del bloque.
-const CARRIER_ORDER: string[] = [
-  "GNP",
-  "Seguros Monterrey New York Life",
-  "BUPA",
-  "AXA",
-  "MetLife",
-  "Allianz",
-  "Red Enlace",
+const DESCARGABLES: Descargable[] = [
+  {
+    slug: "tramites-fallecimiento",
+    tipo: "Guía",
+    titulo: "Qué hacer cuando fallece un familiar",
+    gancho:
+      "Los 8 trámites que no conviene posponer: seguros, AFORE, pensión, testamento y deudas, en el orden correcto.",
+    href: "/descargas/guia-8-tramites-fallecimiento.pdf",
+    descargaDirecta: true,
+    imagen: "/img/guias/tramites-fallecimiento.jpg",
+    acceso: "Descarga directa · sin formulario",
+    meta: ["PDF", "10 min de lectura"],
+  },
+  {
+    slug: "checkup-beneficiarios",
+    tipo: "Check-up",
+    titulo: "Revisión de beneficiarios y patrimonio",
+    gancho:
+      "16 puntos para detectar si tu patrimonio llegaría a quien tú quieres, y en cuánto tiempo.",
+    href: "/guia#checkup",
+    descargaDirecta: false,
+    imagen: "/img/guias/checkup-beneficiarios.jpg",
+    acceso: "Te lo mando por correo",
+    meta: ["PDF + Excel"],
+  },
+  {
+    slug: "checklist-discapacidad",
+    tipo: "Checklist",
+    titulo: "Proteger a un hijo con discapacidad",
+    gancho:
+      "Los puntos que hay que cerrar —testamento, beneficiarios, fideicomiso, red de apoyo— para que su cuidado no dependa de ti.",
+    href: "/blog/proteger-hijo-con-discapacidad-cuando-yo-falte#checklist-discapacidad",
+    descargaDirecta: false,
+    imagen: "/img/guias/proteger-hijo-discapacidad.jpg",
+    acceso: "Te lo mando por correo",
+    meta: ["PDF + Excel"],
+  },
 ];
 
-// Cada entrada apunta a un folder de OneDrive compartido como
-// "Cualquier persona con el vínculo · Puede ver". Si folderUrl es null,
-// la card se muestra como "Próximamente". Para agregar/actualizar:
-// generar link en OneDrive (Compartir → ⚙ → Cualquier persona → Puede
-// ver → Aplicar → Copiar) y pegar el URL aquí.
-const RESOURCE_FOLDERS: ResourceFolder[] = [
-  // GMM · AXA
-  { carrier: "AXA",        ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgDuzvDNJdNtS7aoz1f3bM37ATWhoRwcexii6NbnmZOihns?e=laZo1o" },
-  { carrier: "AXA",        ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgAr9H8A8RElR7E0v6YH4tDuARFbGPEoZ5Ei4XsVgCBqb6s?e=MkhqeD" },
-  { carrier: "AXA",        ramo: "gmm",   linea: "Planmed Keralty",         folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFAQIAAAAAATQh3abCpqc7ZDmyV_HyFRI?e=yJPdM8" },
-  // GMM · BUPA
-  { carrier: "BUPA",       ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFzgEAAAAAAQPRu0tjwFpJdkMhyrcoIW0?e=OQmvK4" },
-  { carrier: "BUPA",       ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFzwEAAAAAAYFY8eOzCCTNjbElMhC_Kp4?e=t2V2AL" },
-  // GMM · GNP
-  { carrier: "GNP",        ramo: "gmm",   linea: "Internacional",           folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgArcdqbYL-hSYe79V5zO0u7AXF8nNF5YMFcVlnsquaUqcE?e=vjhX3n" },
-  { carrier: "GNP",        ramo: "gmm",   linea: "Nacional",                folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgDuNQ_prE8eRbFLBeTHUlVuAc_b3tRyJT-aD9SQG3pUuww?e=1I578h" },
-  // GMM · MetLife
-  { carrier: "MetLife",    ramo: "gmm",   linea: "Planes Nacionales",       folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFqwEAAAAAAbVrwl-oOjWZDZJt-8TBKgo?e=8WpDx2" },
-  // GMM · Red Enlace
-  { carrier: "Red Enlace", ramo: "gmm",   linea: "Contrato y siniestros",   folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCii_lE-gCcRrW-ey338tncAeyGCuYsUn1utAiirnhPEtQ?e=URHnwo" },
-  // GMM · Seguros Monterrey New York Life
-  { carrier: "Seguros Monterrey New York Life", ramo: "gmm",   linea: "Alfa Medical",            folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgBG0AOOENTaIIDFIgMAAAAAARJLL2TixXjBsXEAC9M-ig8?e=pJ8yhB" },
-  // Autos · Allianz
-  { carrier: "Allianz",    ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCZtxbwUopBRZZFJDxL4K63AWTpy3XrxNR1eEP6gKhJwNs?e=4UFdj7" },
-  // Autos · AXA
-  { carrier: "AXA",        ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgCyqHai2b7GRbxOQkLM69GvAY_HzsFMIV43V_qxuJgstk4?e=IepI6B" },
-  // Autos · GNP
-  { carrier: "GNP",        ramo: "autos", linea: "Condiciones y folletos",  folderUrl: "https://1drv.ms/f/c/c5dad4108e03d046/IgA6_3y9j0dlR5wAhH6wFNV_AVLY4JOhNkqXtm7Umt-z26o?e=zltjbC" },
-];
-
-type CarrierWebLink = {
-  carrier: string;
-  label: string;
-  url: string;
+export const metadata: Metadata = {
+  title: "Recursos — Centro de conocimiento",
+  description: RECURSOS_HUB_DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/recursos` },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/recursos`,
+    title: `Recursos — Centro de conocimiento | ${SITE_NAME}`,
+    description: RECURSOS_HUB_DESCRIPTION,
+  },
 };
 
-// Enlaces a sitios web oficiales de las aseguradoras (buscadores de médicos
-// y hospitales, info sobre médicos sin convenio / sin pago directo).
-// Se renderizan dentro del bloque de cada carrier, después de los folders.
-const CARRIER_WEB_LINKS: CarrierWebLink[] = [
-  { carrier: "AXA",     label: "Buscador de médicos y hospitales", url: "https://axa.mx/servicios/buscador-de-servicios" },
-  { carrier: "AXA",     label: "Médicos sin convenio",             url: "https://axa.mx/documents/51602/1266886/MedicoSinConvenio.pdf" },
-  // Va bajo AXA, no como carrier propio: AXA Keralty es la red de clínicas de
-  // AXA, no una séptima aseguradora. Como "Keralty" no está en CARRIER_ORDER
-  // pero sí entraba al `carrierSet` de más abajo, esta línea abría un bloque
-  // suelto al final de la página — /recursos era otra superficie del negocio
-  // diciendo siete aseguradoras en vez de seis.
-  { carrier: "AXA",     label: "Clínicas AXA Keralty — ubicaciones", url: "https://axakeralty.mx/ubicaciones" },
-  { carrier: "BUPA",    label: "Buscador de médicos y hospitales", url: "https://www.bupasalud.com.mx/red-de-salud" },
-  { carrier: "GNP",     label: "Buscador de médicos y hospitales", url: "https://www.gnp.com.mx/directorio-proveedores-medicos" },
-  { carrier: "GNP",     label: "Médicos sin pago directo",         url: "https://www.gnp.com.mx/content/pp/mx/es/footer/touch-navigation/listado-de-medicos-sin-pago-directo.html" },
-  { carrier: "MetLife", label: "Buscador de médicos y hospitales", url: "https://www.metlife.com.mx/tramites-y-servicios/directorio-medico/" },
-  { carrier: "Seguros Monterrey New York Life", label: "Buscador de médicos y hospitales", url: "https://www.mnyl.com.mx/" },
-];
+/**
+ * Tarjeta de descargable. Una sola pieza para guías, check-ups y checklists:
+ * son el mismo objeto para quien lee, así que comparten markup.
+ *
+ * El elemento raíz cambia según el destino — <a download> cuando el archivo se
+ * baja directo, <Link> cuando primero hay un formulario. Forzar un <a download>
+ * a una ruta interna rompería la navegación del cliente.
+ */
+function TarjetaDescargable({ item }: { item: Descargable }) {
+  const contenido = (
+    <>
+      <div className="img-zoom relative aspect-[3/2] overflow-hidden">
+        <Image
+          src={item.imagen}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover"
+        />
+        <span className="absolute left-4 top-4 rounded-full bg-burgundy px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-cream-light">
+          {item.tipo}
+        </span>
+        <span
+          aria-hidden
+          className="absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full bg-burgundy text-cream-light shadow-[0_8px_20px_-6px_rgba(20,17,15,0.5)] transition-transform duration-500 group-hover:translate-y-0.5"
+        >
+          {item.descargaDirecta ? (
+            <Download className="size-4" />
+          ) : (
+            <ArrowRight className="size-4" />
+          )}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-serif text-lg leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+          {item.titulo}
+        </h3>
+        <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-warm-brown/80 dark:text-cream-light/55">
+          {item.gancho}
+        </p>
+        <div className="mt-5 border-t border-warm-brown/12 dark:border-cream-light/10 pt-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-burgundy">
+            {item.acceso}
+          </p>
+          <p className="mt-1.5 flex flex-wrap gap-x-3 text-[12px] text-warm-brown/60 dark:text-cream-light/45">
+            {item.meta.map((m) => (
+              <span key={m}>{m}</span>
+            ))}
+          </p>
+        </div>
+      </div>
+    </>
+  );
 
-// La página SIEMPRE es indexable: aunque la biblioteca de recursos de Sanity
-// esté vacía, la página sirve contenido estático valioso y estable — canales
-// de WhatsApp por aseguradora, folders de OneDrive con condiciones generales y
-// folletos, y buscadores oficiales de médicos/hospitales. Por eso ya no depende
-// del conteo de documentos en Sanity para decidir index/noindex.
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    // El title describía solo la mitad de la página. Ahora que /recursos
-    // también aloja guías descargables y herramientas, la metadata cubre las
-    // dos audiencias — el cliente que busca su documentación y el prospecto
-    // que llega buscando entender antes de contratar.
-    title: "Recursos: guías, herramientas y documentos de aseguradoras",
-    description:
-      "Guías descargables gratuitas, herramientas de cálculo y la documentación oficial de las 6 aseguradoras con las que trabajo: condiciones generales, formatos y cuadros médicos.",
-    alternates: { canonical: `${SITE_URL}/recursos` },
-    robots: { index: true, follow: true },
-    openGraph: {
-      type: "website",
-      url: `${SITE_URL}/recursos`,
-      title: "Recursos — Guías, herramientas y documentos | Iria Talan / RIF",
-      description:
-        "Guías gratuitas, herramientas de cálculo y documentación oficial de aseguradoras.",
-    },
-  };
+  const clase =
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/25 transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_22px_50px_-24px_rgba(20,17,15,0.35)]";
+
+  return item.descargaDirecta ? (
+    <a href={item.href} download className={clase}>
+      {contenido}
+    </a>
+  ) : (
+    <Link href={item.href} className={clase}>
+      {contenido}
+    </Link>
+  );
 }
 
-function formatFileSize(bytes?: number | null): string | null {
-  if (!bytes || bytes <= 0) return null;
-  const mb = bytes / (1024 * 1024);
-  if (mb >= 1) return `${mb.toFixed(1)} MB`;
-  const kb = bytes / 1024;
-  return `${kb.toFixed(0)} KB`;
+/**
+ * Destino de una tarjeta temática. Si el topic no tiene artículos publicados,
+ * el enlace primario cae a la página comercial: las categorías vacías se
+ * marcan noindex y no entran al sitemap, así que mandarles tráfico desde aquí
+ * sería un callejón sin salida.
+ */
+function destinoTarjeta(
+  item: RecursoHubItem,
+  topicsConContenido: Set<string>
+): { href: string; label: string; esCategoria: boolean } {
+  if (item.topic && topicsConContenido.has(item.topic)) {
+    const href = topicHref(item.topic);
+    if (href) return { href, label: "Explorar artículos", esCategoria: true };
+  }
+  return { href: item.pillar.href, label: item.pillar.label, esCategoria: false };
 }
 
-function getDownloadUrl(r: ResourceItem): string | null {
-  return r.fileUrl ?? r.externalUrl ?? null;
-}
+export default async function RecursosPage() {
+  const [articulos, terminos] = await Promise.all([
+    sanityFetch<ArticuloItem[]>({
+      query: BLOG_INDEX_QUERY,
+      tags: ["article"],
+    }).catch(() => null),
+    sanityFetch<TerminoItem[]>({
+      query: GLOSSARY_INDEX_QUERY,
+      tags: ["glossaryTerm"],
+    }).catch(() => null),
+  ]);
 
-function buildItemListSchema(resources: ResourceItem[]) {
-  if (!resources.length) return null;
-  return {
-    "@type": "ItemList" as const,
-    "@id": `${SITE_URL}/recursos#itemlist`,
-    name: "Recursos de aseguradoras",
-    numberOfItems: resources.length,
-    itemListElement: resources.map((r, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      item: {
-        "@type": "DigitalDocument",
-        name: r.title,
-        url: getDownloadUrl(r) ?? `${SITE_URL}/recursos`,
-        about: r.seoDescription ?? CATEGORY_LABELS[r.category],
-        provider: { "@type": "Organization", name: r.carrier },
-        datePublished: r.year ? `${r.year.slice(0, 4)}-01-01` : undefined,
-        publisher: { "@id": `${SITE_URL}#organization` },
-      },
+  const arts = articulos ?? [];
+  const terms = terminos ?? [];
+
+  const topicsConContenido = new Set(
+    arts.map((a) => a.topic).filter((t): t is string => Boolean(t))
+  );
+
+  // Índice del buscador. Se arma con los datos que las secciones de abajo ya
+  // necesitaban: el buscador no agrega ni una query.
+  const docsBusqueda: DocBusqueda[] = [
+    ...arts.map((a) => ({
+      id: a._id,
+      tipo: "articulo" as const,
+      titulo: a.title,
+      href: `/blog/${a.slug}`,
+      resumen: recortar(a.excerpt ?? a.tldr ?? ""),
+      tema: a.topic ?? undefined,
+      fecha: a.publishedAt ?? undefined,
     })),
-  };
-}
+    ...terms.map((t) => ({
+      id: t._id,
+      tipo: "termino" as const,
+      titulo: t.term,
+      href: `/glosario/${t.slug}`,
+      resumen: recortar(t.shortDefinition ?? ""),
+      tema: t.topic ?? undefined,
+      alias: t.synonyms?.length ? t.synonyms.join(" · ") : undefined,
+    })),
+  ];
 
-export default async function RecursosPage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
-  const params = await searchParams;
-  const carrierFilter = params.carrier?.trim() || null;
-  const categoryFilter = params.category?.trim() || null;
-  const productFilter = params.productLine?.trim() || null;
+  const recientes = arts.slice(0, 3);
 
-  const allResources =
-    (await sanityFetch<ResourceItem[]>({
-      query: RESOURCES_LIST_QUERY,
-      tags: ["resource"],
-    }).catch(() => null)) ?? [];
+  const glosarioDestacado = TERMINOS_DESTACADOS.map((slug) =>
+    terms.find((t) => t.slug === slug)
+  ).filter((t): t is TerminoItem => Boolean(t));
 
-  const resources = allResources.filter((r) => {
-    if (carrierFilter && r.carrier !== carrierFilter) return false;
-    if (categoryFilter && r.category !== categoryFilter) return false;
-    if (productFilter && r.productLine !== productFilter) return false;
-    return true;
-  });
-
-  const grouped = resources.reduce<Record<string, ResourceItem[]>>((acc, r) => {
-    if (!acc[r.carrier]) acc[r.carrier] = [];
-    acc[r.carrier].push(r);
-    return acc;
-  }, {});
-  const carriers = Object.keys(grouped).sort();
-
-  const carriersAvailable = Array.from(
-    new Set(allResources.map((r) => r.carrier))
-  ).sort();
-  const categoriesAvailable = Array.from(
-    new Set(allResources.map((r) => r.category))
-  ).sort();
-
-  const hasFilter = Boolean(carrierFilter || categoryFilter || productFilter);
-  const isEmpty = allResources.length === 0;
+  // El ItemList se deriva de los mismos arrays que se renderizan: así lo que
+  // se declara en el JSON-LD no puede divergir de lo que se ve en pantalla.
+  const itemsSchema = [
+    {
+      name: "Documentos oficiales de las aseguradoras",
+      url: `${SITE_URL}/recursos/documentos`,
+    },
+    { name: "Glosario de seguros", url: `${SITE_URL}/glosario` },
+    {
+      name: "Guía: 8 trámites después de un fallecimiento",
+      url: `${SITE_URL}/guia`,
+    },
+    { name: "Artículos", url: `${SITE_URL}/blog` },
+    ...RECURSOS_HUB_ITEMS.filter(
+      (i) => i.topic && topicsConContenido.has(i.topic)
+    ).map((i) => ({
+      name: i.title,
+      url: `${SITE_URL}${topicHref(i.topic as ArticleTopic)}`,
+    })),
+  ];
 
   const schema = buildGraph(
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Recursos", path: "/recursos" },
     ]),
-    buildItemListSchema(resources)
+    {
+      "@type": "CollectionPage" as const,
+      "@id": `${SITE_URL}/recursos#collection`,
+      name: `Recursos — ${SITE_NAME}`,
+      description: RECURSOS_HUB_DESCRIPTION,
+      url: `${SITE_URL}/recursos`,
+      inLanguage: "es-MX",
+      isPartOf: { "@id": `${SITE_URL}#website` },
+      publisher: { "@id": `${SITE_URL}#organization` },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: itemsSchema.length,
+        itemListElement: itemsSchema.map((it, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: it.name,
+          url: it.url,
+        })),
+      },
+    }
   );
 
   return (
@@ -265,735 +392,574 @@ export default async function RecursosPage({
       />
 
       <main className="flex flex-col">
-        {/* HERO — banda oscura, mismo patrón aprobado en /blog y en los
-            artículos: foto nítida a la derecha + degradado real en capa
-            aparte. La imagen es un bodegón de marca (libreta, pluma, folders
-            sobre mármol) generado para esta página; no se reutiliza la tarjeta
-            roja porque ya está en el hero de /blog y repetirla se nota.
-            El H1 dejó de ser "Documentos oficiales de las aseguradoras" (que
-            describía solo la mitad de la página) y ahora abarca las dos
-            audiencias: cliente que busca su documentación y prospecto que
-            viene a entender antes de decidir. */}
+        {/* ============================================================
+            1 · HERO
+            Banda oscura con bodegón a la derecha y degradado en capa
+            aparte, igual que /blog y los artículos. Todo lo que va dentro
+            es claro-sobre-oscuro INCONDICIONAL (nada de pares dark:):
+            el hero es espresso en los dos modos.
+            ============================================================ */}
         <section className="relative bg-espresso text-cream-light overflow-hidden">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] overflow-hidden lg:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[52%] overflow-hidden lg:block"
           >
+            {/* El grabado NO lo dibujó un generador de imagen: la foto se creó
+                con la tapa en blanco y encima se compuso el SVG real de la
+                marca, deformado al plano de la tapa (scripts/grabar-logo.mjs).
+                La versión anterior tenía el logo inclinado respecto al libro y
+                la tipografía aproximada. */}
+            {/* `sizes` NO es el ancho de la caja. La caja es casi cuadrada
+                (~741x735) y la foto es 16:9, así que con object-cover manda el
+                ALTO: para llenar 735px sin estirar hacen falta ~1317px de
+                ancho intrínseco. Con "55vw" el navegador pedía la variante de
+                828px y la escalaba 1.6x — el cuaderno se veía suave.
+                Debajo de lg la foto no se muestra, y el 0px evita que el
+                preload de `priority` se traiga un archivo grande en móvil. */}
             <Image
-              src="/img/iria/recursos-escritorio.jpg"
+              src="/img/iria/recursos-cuaderno-rif.jpg"
               alt=""
               fill
-              sizes="60vw"
+              sizes="(max-width: 1023px) 0px, 1400px"
               className="object-cover object-center"
               priority
+              quality={85}
             />
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.94) 15%, rgba(31,22,18,0.6) 38%, rgba(31,22,18,0.18) 65%, transparent 88%)",
+                  "linear-gradient(to right, #1F1612 0%, rgba(31,22,18,0.96) 20%, rgba(31,22,18,0.7) 45%, rgba(31,22,18,0.24) 72%, transparent 92%)",
               }}
             />
           </div>
+
           <div className="relative mx-auto w-full max-w-[86rem] px-6 py-16 sm:py-20">
             <div className="max-w-2xl">
-              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">
-                Recursos
+              <p className="animate-fade-up text-[11px] font-medium uppercase tracking-[0.22em] text-champagne">
+                Centro de recursos
               </p>
-              <h1 className="mt-5 font-serif font-light text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-[-0.015em] text-cream-light">
-                Información clara para tomar{" "}
-                <span className="italic text-champagne">mejores</span>{" "}
-                decisiones.
+              <h1 className="animate-fade-up stagger-1 mt-5 font-serif font-light text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-[-0.015em] text-cream-light">
+                Información clara para tomar mejores{" "}
+                <span className="italic text-champagne">decisiones</span>{" "}
+                financieras.
               </h1>
-              <p className="mt-6 text-lg text-cream-light/80 leading-relaxed max-w-xl">
-                Documentos oficiales de las aseguradoras, guías descargables y
-                herramientas para entender tus coberturas, planear tu retiro y
-                proteger tu patrimonio.
+              <p className="animate-fade-up stagger-2 mt-6 max-w-xl text-lg leading-relaxed text-cream-light/80">
+                Guías, artículos, herramientas y documentos oficiales para
+                entender tus seguros, planear tu retiro y proteger tu
+                patrimonio con mayor claridad.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href="#para-ti"
-                  className="inline-flex items-center gap-2 rounded-full bg-burgundy px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:bg-burgundy-deep"
+
+              <div className="mt-10">
+                <BuscadorRecursos docs={docsBusqueda} />
+              </div>
+
+              {/* Los chips son ENLACES, no filtros del buscador. Con este
+                  volumen de contenido, filtrar en sitio devolvería dos o tres
+                  tarjetas sueltas, mientras que /blog/categoria/… ya es una
+                  página con su propio H1, metadata y schema. Además son <a>
+                  rastreables: enlace interno real, y funcionan sin JS. */}
+              <nav aria-label="Temas frecuentes" className="mt-7">
+                <p className="text-[12.5px] text-cream-light/50">
+                  O empieza por un tema:
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-2.5">
+                  {CHIPS.map((c) => (
+                    <li key={c.href}>
+                      <Link
+                        href={c.href}
+                        className="inline-flex min-h-11 items-center rounded-full border border-cream-light/25 px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light/80 transition-colors duration-500 hover:border-champagne hover:text-champagne focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne/40"
+                      >
+                        {c.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            2 · DOCUMENTOS DE ASEGURADORAS — "para clientes"
+            Va primero, justo bajo el hero, por decisión de Iria: quien
+            llega a /recursos con una tarea concreta ("necesito la condición
+            general de mi póliza") es el visitante impaciente, y las tres
+            URLs legacy que redirigen aquí (/soy-cliente, /clientes,
+            /clientes-resp) traen exactamente esa intención. El material
+            editorial queda abajo, para quien viene a explorar.
+            ============================================================ */}
+        <section className="bg-cream-light dark:bg-transparent border-b border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,21rem)_1fr] lg:gap-14 lg:items-start">
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                  Para clientes
+                </p>
+                <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                  Documentos oficiales de tus{" "}
+                  <span className="italic text-burgundy">planes</span>.
+                </h2>
+                <p className="mt-4 text-[14.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60">
+                  Consulta condiciones generales, formatos, directorios
+                  médicos, tabuladores y canales de atención de las
+                  aseguradoras.
+                </p>
+                <Link
+                  href="/recursos/documentos"
+                  className="group mt-7 inline-flex items-center gap-2 rounded-full bg-burgundy px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:bg-burgundy-deep"
                 >
-                  Guías y herramientas
-                </a>
-                <a
-                  href="#para-clientes"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream-light/30 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:border-cream-light/70"
+                  Ir a documentos de aseguradoras
+                  <ArrowRight
+                    className="size-3.5 transition-transform duration-500 group-hover:translate-x-1"
+                    aria-hidden
+                  />
+                </Link>
+              </div>
+
+              {/* Las cuatro describen los TIPOS de material y todas llevan al
+                  mismo sitio, que es donde vive todo organizado por compañía.
+                  Inventarles cuatro destinos separados sería prometer una
+                  estructura que no existe. */}
+              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  {
+                    titulo: "Documentos y formatos",
+                    desc: "Condiciones generales, formatos y material oficial de cada aseguradora.",
+                    Icono: FileText,
+                  },
+                  {
+                    titulo: "Directorios médicos",
+                    desc: "Cuadros médicos, hospitales y tabuladores actualizados.",
+                    Icono: Stethoscope,
+                  },
+                  {
+                    titulo: "Canales oficiales",
+                    desc: "WhatsApp y medios de atención de cada aseguradora.",
+                    Icono: Headphones,
+                  },
+                  {
+                    titulo: "Avisos importantes",
+                    desc: "Actualizaciones relevantes sobre tus coberturas y servicios.",
+                    Icono: Bell,
+                  },
+                ].map((c) => (
+                  <li key={c.titulo}>
+                    <Link
+                      href="/recursos/documentos#por-aseguradora"
+                      className="group flex h-full flex-col items-center rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream dark:bg-coffee/25 p-6 text-center transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]"
+                    >
+                      <c.Icono
+                        className="size-8 text-burgundy"
+                        strokeWidth={1.4}
+                        aria-hidden
+                      />
+                      <h3 className="mt-4 font-serif text-[17px] leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
+                        {c.titulo}
+                      </h3>
+                      <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-warm-brown/80 dark:text-cream-light/55">
+                        {c.desc}
+                      </p>
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
+                        Consultar
+                        <ArrowRight
+                          className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                          aria-hidden
+                        />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            3 · DESCARGABLES GRATUITOS
+            Guías, check-ups y checklists juntos. Antes estaban en dos
+            secciones —una "guía destacada" y otra de "herramientas"— y la
+            guía de fallecimiento salía en las dos. Para quien lee son la
+            misma cosa: un archivo que se lleva.
+            Ninguno se esconde detrás de un formulario sorpresa: cada tarjeta
+            dice el costo de acceso antes del clic.
+            ============================================================ */}
+        {DESCARGABLES.length > 0 && (
+          <section className="bg-cream dark:bg-coffee/20 border-y border-warm-brown/15 dark:border-warm-brown/30">
+            <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
+              <div className="max-w-2xl">
+                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                  Para ti · sin costo
+                </p>
+                <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                  Guías y herramientas para{" "}
+                  <span className="italic text-burgundy">guardar</span>.
+                </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60">
+                  Material para ordenar decisiones concretas. Cada uno dice por
+                  adelantado si se descarga directo o si te lo mando por correo.
+                </p>
+              </div>
+
+              <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {DESCARGABLES.map((d) => (
+                  <li key={d.slug}>
+                    <TarjetaDescargable item={d} />
+                  </li>
+                ))}
+              </ul>
+
+              {/* Lo que falta se declara en una franja, no en una cuarta
+                  tarjeta al 60% de opacidad: eso se lee como sitio a medio
+                  construir. Cuando existan, las calculadoras entran como
+                  tarjetas y esta franja se borra. */}
+              <div className="mt-8 rounded-2xl border border-warm-brown/20 dark:border-warm-brown/40 px-7 py-6 sm:flex sm:items-center sm:justify-between sm:gap-8">
+                <p className="max-w-2xl text-[14px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60">
+                  Estoy preparando dos calculadoras —aportación al retiro y
+                  costo universitario— para que puedas correr tus propios
+                  números antes de hablar conmigo. Mientras tanto, si quieres el
+                  cálculo con tus datos reales, lo hacemos juntos en la sesión
+                  inicial.
+                </p>
+                <Link
+                  href="/contacto"
+                  className="group mt-5 inline-flex shrink-0 items-center gap-2 rounded-full border border-burgundy/35 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy transition-colors duration-500 hover:border-burgundy hover:bg-burgundy/[0.04] sm:mt-0"
                 >
-                  Documentos de aseguradoras
-                </a>
+                  Agendar 30 minutos
+                  <ArrowRight
+                    className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                    aria-hidden
+                  />
+                </Link>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        {/* PARA TI — la mitad para prospectos. Antes esta página servía SOLO a
-            clientes existentes (documentación de aseguradoras); sus tres lead
-            magnets vivían enterrados dentro de artículos del blog y no tenían
-            ninguna entrada desde aquí. */}
-        <section
-          id="para-ti"
-          className="scroll-mt-24 px-6 pt-20 max-w-6xl mx-auto w-full"
-        >
-          <div className="max-w-2xl">
+        {/* ============================================================
+            4 · ¿QUÉ QUIERES RESOLVER?
+            ============================================================ */}
+        <section className="bg-cream dark:bg-coffee/20 border-y border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
             <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
-              Para ti
+              Por dónde empezar
             </p>
-            <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
-              Guías gratuitas
+            <h2 className="mt-4 max-w-2xl font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+              ¿Qué quieres{" "}
+              <span className="italic text-burgundy">resolver</span>?
             </h2>
-            <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65">
-              Descargables para ordenar decisiones concretas. Sin costo.
-            </p>
-          </div>
 
-          <ul className="mt-10 grid gap-4 sm:grid-cols-3">
-            {[
-              {
-                etiqueta: "Guía · PDF",
-                titulo: "8 trámites después de un fallecimiento",
-                desc: "Testamento, deudas, seguros, AFORE y SAT: qué hacer y en qué orden.",
-                href: "/guia",
-              },
-              {
-                etiqueta: "Check-up · PDF + Excel",
-                titulo: "Revisión de beneficiarios y patrimonio",
-                desc: "Detecta si tu patrimonio llegaría a quien tú quieres, y en cuánto tiempo.",
-                href: "/blog/testamento-no-protege-seguros-vida-cuentas",
-              },
-              {
-                etiqueta: "Checklist · PDF + Excel",
-                titulo: "Protección para un hijo con discapacidad",
-                desc: "Los puntos que hay que cerrar para que su cuidado no dependa de ti.",
-                href: "/blog/proteger-hijo-con-discapacidad-cuando-yo-falte",
-              },
-            ].map((g) => (
-              <li key={g.titulo}>
-                <Link
-                  href={g.href}
-                  className="group flex h-full flex-col rounded-2xl bg-espresso p-6 text-cream-light transition-transform duration-500 hover:-translate-y-1"
-                >
-                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-champagne">
-                    {g.etiqueta}
-                  </p>
-                  <h3 className="mt-3 font-serif text-lg leading-snug">
-                    {g.titulo}
-                  </h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-relaxed text-cream-light/70">
-                    {g.desc}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em]">
-                    Descargar
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5"
-                      aria-hidden
-                    >
-                      <line x1="12" y1="5" x2="12" y2="17" />
-                      <polyline points="6 12 12 18 18 12" />
-                    </svg>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* HERRAMIENTAS — solo las DOS que existen de verdad. La maqueta
-              proponía además una "Calculadora de retiro" que no está
-              construida; poner la tarjeta habría dejado un enlace muerto. */}
-          <h2 className="mt-16 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
-            Herramientas
-          </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                titulo: "¿Tu ahorro alcanza para la universidad?",
-                desc: "Proyecta el costo real de la carrera de tu hijo y el ahorro mensual que hace falta.",
-                cta: "Usar calculadora",
-                href: "/blog/incremento-costos-universitarios-mexico",
-              },
-              {
-                titulo: "Diagnóstico de protección patrimonial",
-                desc: "Revisa si tus beneficiarios están bien designados y qué huecos tiene tu estructura hoy.",
-                cta: "Iniciar diagnóstico",
-                href: "/guia",
-              },
-            ].map((h) => (
-              <li key={h.titulo}>
-                <Link
-                  href={h.href}
-                  className="group flex h-full items-start gap-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/20 p-6 transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]"
-                >
-                  <span
-                    aria-hidden
-                    className="flex size-12 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-burgundy/25 bg-burgundy/[0.06]"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      className="size-6 text-burgundy"
-                    >
-                      <rect x="5" y="3" width="14" height="18" rx="2" />
-                      <line x1="8.5" y1="7" x2="15.5" y2="7" />
-                      <line x1="8.5" y1="11" x2="10" y2="11" />
-                      <line x1="13" y1="11" x2="15.5" y2="11" />
-                      <line x1="8.5" y1="15" x2="10" y2="15" />
-                      <line x1="13" y1="15" x2="15.5" y2="15" />
-                    </svg>
-                  </span>
-                  <span className="flex-1">
-                    <span className="block font-serif text-lg leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
-                      {h.titulo}
-                    </span>
-                    <span className="mt-2 block text-[13.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/65">
-                      {h.desc}
-                    </span>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
-                      {h.cta}
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+            <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {RECURSOS_HUB_ITEMS.map((item) => {
+                const Icono = ICONO_TEMA[item.key] ?? ShieldCheck;
+                const destino = destinoTarjeta(item, topicsConContenido);
+                return (
+                  <li key={item.key}>
+                    {/* El enlace primario envuelve el título y se estira sobre
+                        toda la tarjeta (after:inset-0); el secundario va por
+                        encima con z-10. Un solo nombre accesible por enlace y
+                        un área de clic grande, sin anidar <a> dentro de <a>. */}
+                    <div className="relative flex h-full flex-col rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/25 p-7 transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]">
+                      <span
                         aria-hidden
+                        className="flex size-12 items-center justify-center rounded-full ring-1 ring-champagne/40"
                       >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* /glosario solo estaba enlazado desde el footer: quedaba casi
-              huérfano pese a emitir DefinedTermSet. Recursos es su hub natural
-              — quien viene a leer condiciones generales es justo quien necesita
-              saber qué significa "coaseguro". */}
-          <Link
-            href="/glosario"
-            className="group mt-6 flex items-start gap-4 rounded-2xl border border-warm-brown/20 dark:border-warm-brown/40 p-5 transition-colors duration-500 hover:border-burgundy/50 hover:bg-cream dark:hover:bg-coffee/40"
-          >
-            <span
-              aria-hidden
-              className="flex size-12 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-burgundy/25 bg-burgundy/[0.06]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                className="size-6 text-burgundy"
-              >
-                <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v16H5.5A2.5 2.5 0 0 1 3 17.5z" />
-                <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v16h5.5A2.5 2.5 0 0 0 21 17.5z" />
-              </svg>
-            </span>
-            <span>
-              <span className="block font-serif text-lg text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
-                Glosario de seguros
-              </span>
-              <span className="mt-1 block text-[13.5px] text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
-                Deducible, coaseguro, suma asegurada, periodo de espera — los
-                términos que aparecen en cada condición general, explicados en
-                español claro.
-              </span>
-            </span>
-          </Link>
-        </section>
-
-        {/* PARA CLIENTES — dos columnas como la maqueta: a la izquierda el
-            texto con su CTA, a la derecha las 4 tarjetas con icono.
-            Las 4 describen los TIPOS de material que hay y todas bajan a la
-            misma sección (#por-aseguradora), porque ahí es donde vive todo
-            organizado por compañía. No se inventaron cuatro destinos
-            separados: sería prometer una estructura que no existe. */}
-        <section
-          id="para-clientes"
-          className="scroll-mt-24 px-6 pt-20 max-w-6xl mx-auto w-full"
-        >
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-12 lg:items-start">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
-                Para clientes
-              </p>
-              <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
-                Documentos oficiales de tus planes
-              </h2>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/65">
-                Consulta condiciones generales, formatos, directorios médicos,
-                tabuladores y canales de atención de las aseguradoras.
-              </p>
-              <a
-                href="#por-aseguradora"
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-burgundy px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:bg-burgundy-deep"
-              >
-                Ir a documentos de aseguradoras
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  className="size-3.5 transition-transform duration-500 group-hover:translate-x-1"
-                  aria-hidden
-                >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </div>
-
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  titulo: "Documentos y formatos",
-                  desc: "Condiciones generales, formatos y material oficial de cada aseguradora.",
-                  icono: (
-                    <>
-                      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 3 14 8 19 8" />
-                      <line x1="9" y1="13" x2="15" y2="13" />
-                      <line x1="9" y1="17" x2="13" y2="17" />
-                    </>
-                  ),
-                },
-                {
-                  titulo: "Directorios médicos",
-                  desc: "Cuadros médicos, hospitales y tabuladores actualizados.",
-                  icono: (
-                    <>
-                      <path d="M6 3v6a4 4 0 0 0 8 0V3" />
-                      <line x1="6" y1="3" x2="6" y2="3.01" />
-                      <line x1="14" y1="3" x2="14" y2="3.01" />
-                      <path d="M10 13v3a3.5 3.5 0 0 0 7 0v-1.5" />
-                      <circle cx="17.5" cy="13" r="1.6" />
-                    </>
-                  ),
-                },
-                {
-                  titulo: "Canales oficiales",
-                  desc: "WhatsApp y medios de atención de cada aseguradora.",
-                  icono: (
-                    <>
-                      <path d="M4 13a8 8 0 0 1 16 0" />
-                      <rect x="3" y="13" width="4" height="7" rx="1.6" />
-                      <rect x="17" y="13" width="4" height="7" rx="1.6" />
-                    </>
-                  ),
-                },
-                {
-                  titulo: "Avisos importantes",
-                  desc: "Actualizaciones relevantes sobre tus coberturas y servicios.",
-                  icono: (
-                    <>
-                      <path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6" />
-                      <path d="M10.3 19a2 2 0 0 0 3.4 0" />
-                    </>
-                  ),
-                },
-              ].map((c) => (
-                <li key={c.titulo}>
-                  <a
-                    href="#por-aseguradora"
-                    className="group flex h-full flex-col items-center rounded-2xl border border-warm-brown/15 dark:border-warm-brown/35 bg-cream-light dark:bg-coffee/20 p-6 text-center transition-all duration-500 hover:border-burgundy/35 hover:shadow-[0_18px_40px_-22px_rgba(20,17,15,0.28)]"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-9 text-burgundy"
-                      aria-hidden
-                    >
-                      {c.icono}
-                    </svg>
-                    <h3 className="mt-4 font-serif text-[17px] leading-snug text-ink dark:text-cream-light transition-colors duration-500 group-hover:text-burgundy">
-                      {c.titulo}
-                    </h3>
-                    <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-warm-brown/80 dark:text-cream-light/60">
-                      {c.desc}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
-                      Consultar
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        className="size-3 transition-transform duration-500 group-hover:translate-x-1"
-                        aria-hidden
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </span>
-                  </a>
-                </li>
-              ))}
+                        <Icono
+                          className="size-5 text-burgundy"
+                          strokeWidth={1.5}
+                        />
+                      </span>
+                      <h3 className="mt-6 font-serif text-xl leading-snug text-ink dark:text-cream-light">
+                        <Link
+                          href={destino.href}
+                          className="after:absolute after:inset-0 after:rounded-2xl transition-colors duration-500 hover:text-burgundy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy/40 focus-visible:ring-offset-4 focus-visible:ring-offset-cream-light dark:focus-visible:ring-offset-coffee"
+                        >
+                          {item.title}
+                        </Link>
+                      </h3>
+                      <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60">
+                        {item.description}
+                      </p>
+                      <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy">
+                        {destino.label}
+                        <ArrowRight className="size-3" aria-hidden />
+                      </span>
+                      {destino.esCategoria && (
+                        <Link
+                          href={item.pillar.href}
+                          className="link-underline relative z-10 mt-3 self-start text-[12.5px] text-warm-brown/70 dark:text-cream-light/50"
+                        >
+                          {item.pillar.label}
+                        </Link>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
 
-        {/* Destino de las 4 tarjetas y del CTA de "Para clientes". */}
-        <section
-          id="por-aseguradora"
-          className="scroll-mt-24 px-6 py-8 sm:py-12 mt-12 border-t border-warm-brown/15 dark:border-warm-brown/30"
-        >
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-sm uppercase tracking-wider text-rif-gris">
-              Recursos por aseguradora
-            </p>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink dark:text-cream-light">
-              Folletos, condiciones generales y canal de avisos
-            </h2>
-            <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
-              Por cada aseguradora con la que trabajo: el canal de WhatsApp
-              donde publico avisos para mis clientes y los folders con la
-              documentación vigente (folletos, condiciones generales,
-              formatos). Los documentos se actualizan continuamente; el link
-              siempre lleva a la versión más reciente.
-            </p>
 
-            <div className="mt-8 space-y-12">
-              {(() => {
-                const carrierSet = new Set<string>();
-                WHATSAPP_CHANNELS.forEach((c) => carrierSet.add(c.carrier));
-                RESOURCE_FOLDERS.forEach((f) => carrierSet.add(f.carrier));
-                CARRIER_WEB_LINKS.forEach((l) => carrierSet.add(l.carrier));
-                const allCarriers = Array.from(carrierSet).sort((a, b) => {
-                  const ai = CARRIER_ORDER.indexOf(a);
-                  const bi = CARRIER_ORDER.indexOf(b);
-                  if (ai === -1 && bi === -1) return a.localeCompare(b, "es");
-                  if (ai === -1) return 1;
-                  if (bi === -1) return -1;
-                  return ai - bi;
-                });
-                return allCarriers.map((carrier) => {
-                  const whatsapp = WHATSAPP_CHANNELS.find(
-                    (c) => c.carrier === carrier
-                  );
-                  const carrierFolders = RESOURCE_FOLDERS.filter(
-                    (f) => f.carrier === carrier
-                  );
-                  return (
-                    <div key={carrier}>
-                      <h3 className="text-xl font-semibold text-ink dark:text-cream-light">
-                        {carrier}
-                      </h3>
-
-                      {whatsapp && (
-                        <a
-                          href={whatsapp.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group mt-4 flex items-center justify-between gap-4 p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-                        >
-                          <div>
-                            <div className="text-xs uppercase tracking-wider text-rif-gris">
-                              Canal WhatsApp
-                            </div>
-                            <div className="mt-0.5 font-medium text-ink dark:text-cream-light">
-                              Avisos de {carrier} — {whatsapp.ramo}
-                            </div>
-                          </div>
-                          <span className="text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
-                            Únete →
-                          </span>
-                        </a>
-                      )}
-
-                      {RAMO_ORDER.map((ramo) => {
-                        const lineas = carrierFolders.filter(
-                          (f) => f.ramo === ramo
-                        );
-                        if (!lineas.length) return null;
-                        return (
-                          <div key={ramo} className="mt-6">
-                            <h4 className="text-sm font-semibold uppercase tracking-wider text-warm-brown dark:text-cream-light/80">
-                              {RAMO_LABELS[ramo]}
-                            </h4>
-                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                              {lineas.map((f) => {
-                                const isPending = !f.folderUrl;
-                                const card = (
-                                  <>
-                                    <div className="font-medium text-ink dark:text-cream-light leading-snug">
-                                      {f.linea}
-                                    </div>
-                                    <span
-                                      className={`mt-3 inline-block text-sm font-medium whitespace-nowrap ${
-                                        isPending
-                                          ? "text-rif-gris"
-                                          : "text-rif-rojo group-hover:underline"
-                                      }`}
-                                    >
-                                      {isPending
-                                        ? "Próximamente"
-                                        : "Ver documentos →"}
-                                    </span>
-                                  </>
-                                );
-                                const baseClass =
-                                  "block p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 transition";
-                                if (isPending) {
-                                  return (
-                                    <div
-                                      key={`${f.carrier}-${f.ramo}-${f.linea}`}
-                                      className={`${baseClass} opacity-60`}
-                                      aria-disabled="true"
-                                    >
-                                      {card}
-                                    </div>
-                                  );
-                                }
-                                return (
-                                  <a
-                                    key={`${f.carrier}-${f.ramo}-${f.linea}`}
-                                    href={f.folderUrl!}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`group ${baseClass} hover:border-rif-rojo dark:hover:border-rif-rojo`}
-                                  >
-                                    {card}
-                                  </a>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })}
-
-                      {(() => {
-                        const webLinks = CARRIER_WEB_LINKS.filter(
-                          (l) => l.carrier === carrier
-                        );
-                        if (!webLinks.length) return null;
-                        return (
-                          <div className="mt-6">
-                            <h4 className="text-sm font-semibold uppercase tracking-wider text-warm-brown dark:text-cream-light/80">
-                              Sitios oficiales {carrier}
-                            </h4>
-                            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                              {webLinks.map((l) => (
-                                <a
-                                  key={`${l.carrier}-${l.label}`}
-                                  href={l.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="group block p-4 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition"
-                                >
-                                  <div className="font-medium text-ink dark:text-cream-light leading-snug">
-                                    {l.label}
-                                  </div>
-                                  <span className="mt-3 inline-block text-sm font-medium text-rif-rojo group-hover:underline whitespace-nowrap">
-                                    Ir al sitio →
-                                  </span>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })()}
-
-                      {!whatsapp &&
-                        !carrierFolders.length &&
-                        !CARRIER_WEB_LINKS.some(
-                          (l) => l.carrier === carrier
-                        ) && (
-                          <p className="mt-3 text-sm text-rif-gris">
-                            Documentación próximamente.
-                          </p>
-                        )}
-                    </div>
-                  );
-                });
-              })()}
-            </div>
-
-            <p className="mt-8 text-xs text-rif-gris leading-relaxed">
-              Los canales de WhatsApp son administrados por mí (Iria Talan /
-              RIF) e incluyen información práctica para mis clientes — no son
-              canales oficiales de los carriers; para comunicaciones formales
-              contacta directo a la aseguradora. Los folders enlazan a mi
-              OneDrive con la versión vigente de los documentos; si algún
-              enlace no carga o necesitas un documento específico, escríbeme.
-            </p>
-          </div>
-        </section>
-
-        {!isEmpty && (
-          <section className="px-6 pb-8 max-w-5xl mx-auto w-full">
-            <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-sm text-rif-gris mr-2">Filtrar:</span>
-              <Link
-                href="/recursos"
-                className={`text-sm px-3 py-1.5 rounded-full border ${
-                  !hasFilter
-                    ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
-                    : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
-                }`}
-              >
-                Todos
-              </Link>
-              {carriersAvailable.map((c) => (
+        {/* ============================================================
+            5 · ARTÍCULOS RECOMENDADOS
+            Los tres más recientes, de los datos que ya tenemos. Se copia
+            el patrón de tarjeta de /blog a propósito: es el mismo objeto
+            en dos superficies y debe verse igual.
+            ============================================================ */}
+        {recientes.length > 0 && (
+          <section className="bg-cream-light dark:bg-transparent">
+            <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
+              <div className="flex flex-wrap items-end justify-between gap-6">
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                    Del blog
+                  </p>
+                  <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                    Lo último que{" "}
+                    <span className="italic text-burgundy">escribí</span>.
+                  </h2>
+                </div>
                 <Link
-                  key={c}
-                  href={`/recursos?carrier=${encodeURIComponent(c)}`}
-                  className={`text-sm px-3 py-1.5 rounded-full border ${
-                    carrierFilter === c
-                      ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
-                      : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
-                  }`}
+                  href="/blog"
+                  className="group inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy"
                 >
-                  {c}
+                  Ver todos los artículos
+                  <ArrowRight
+                    className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                    aria-hidden
+                  />
                 </Link>
-              ))}
-            </div>
-            {categoriesAvailable.length > 1 && (
-              <div className="mt-3 flex flex-wrap gap-2 items-center">
-                <span className="text-sm text-rif-gris mr-2">Categoría:</span>
-                {categoriesAvailable.map((cat) => (
-                  <Link
-                    key={cat}
-                    href={`/recursos?category=${encodeURIComponent(cat)}`}
-                    className={`text-sm px-3 py-1.5 rounded-full border ${
-                      categoryFilter === cat
-                        ? "bg-coffee text-cream-light dark:bg-cream dark:text-ink border-warm-brown/25 dark:border-warm-brown/10"
-                        : "border-warm-brown/20 dark:border-warm-brown/40 hover:bg-cream dark:hover:bg-coffee/40"
-                    }`}
-                  >
-                    {CATEGORY_LABELS[cat] ?? cat}
-                  </Link>
-                ))}
               </div>
-            )}
+
+              <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {recientes.map((a) => (
+                  <li key={a._id} className="group">
+                    {a.heroImage?.asset?.url && (
+                      <Link
+                        href={`/blog/${a.slug}`}
+                        tabIndex={-1}
+                        aria-hidden
+                        className="img-zoom relative block aspect-[4/3] overflow-hidden rounded-2xl"
+                      >
+                        <Image
+                          src={a.heroImage.asset.url}
+                          alt=""
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                        />
+                      </Link>
+                    )}
+                    <div className="mt-5">
+                      <CategoryBadge topic={a.topic} size="sm" />
+                      <h3 className="mt-2 font-serif text-xl leading-snug text-ink dark:text-cream-light">
+                        <Link
+                          href={`/blog/${a.slug}`}
+                          className="transition-colors duration-500 group-hover:text-burgundy"
+                        >
+                          {a.title}
+                        </Link>
+                      </h3>
+                      {(a.excerpt || a.tldr) && (
+                        <p className="mt-2.5 text-[14px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60 line-clamp-3">
+                          {a.excerpt ?? a.tldr}
+                        </p>
+                      )}
+                      {a.publishedAt && (
+                        <p className="mt-3 text-xs text-warm-brown/60 dark:text-cream-light/45">
+                          {formatDateMx(a.publishedAt)}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
         )}
 
-        <section className="px-6 pb-20 max-w-5xl mx-auto w-full">
-          {isEmpty ? (
-            <div className="rounded-2xl border border-dashed border-warm-brown/20 dark:border-warm-brown/40 p-12 text-center">
-              <h2 className="text-xl font-semibold text-ink dark:text-cream-light">
-                Aún no hay documentos publicados
-              </h2>
-              <p className="mt-3 text-warm-brown/85 dark:text-cream-light/65 max-w-md mx-auto">
-                Estoy organizando la biblioteca de Condiciones Generales y
-                formatos de cada aseguradora. Si necesitas un documento
-                específico, escríbeme.
-              </p>
-              <Link
-                href="/sobre-iria"
-                className="mt-6 inline-block text-sm font-medium underline"
-              >
-                Contactar a Iria →
-              </Link>
-            </div>
-          ) : resources.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-warm-brown/20 dark:border-warm-brown/40 p-12 text-center">
-              <p className="text-warm-brown dark:text-cream-light/85">
-                Ningún documento coincide con el filtro seleccionado.
-              </p>
-              <Link
-                href="/recursos"
-                className="mt-4 inline-block text-sm font-medium underline"
-              >
-                Ver todos los recursos
-              </Link>
-            </div>
-          ) : (
-            <div className="space-y-12">
-              {carriers.map((carrier) => (
-                <div key={carrier}>
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink dark:text-cream-light">
-                    {carrier}
+        {/* ============================================================
+            6 · GLOSARIO
+            ============================================================ */}
+        {glosarioDestacado.length > 0 && (
+          <section className="bg-cream-light dark:bg-transparent">
+            <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-burgundy">
+                    Glosario
+                  </p>
+                  <h2 className="mt-4 font-serif font-light text-3xl sm:text-4xl leading-tight text-ink dark:text-cream-light">
+                    Las palabras que aparecen en toda{" "}
+                    <span className="italic text-burgundy">póliza</span>.
                   </h2>
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                    {grouped[carrier].map((r) => {
-                      const url = getDownloadUrl(r);
-                      const size = formatFileSize(r.fileSize);
-                      const card = (
-                        <>
-                          <div className="text-xs uppercase tracking-wider text-rif-gris mb-2">
-                            {CATEGORY_LABELS[r.category] ?? r.category}
-                            {r.productLine &&
-                              r.productLine !== "otro" &&
-                              ` · ${PRODUCT_LINE_LABELS[r.productLine] ?? r.productLine}`}
-                            {r.year && ` · ${r.year}`}
-                          </div>
-                          <h3 className="text-base font-semibold text-ink dark:text-cream-light leading-snug">
-                            {r.title}
-                          </h3>
-                          {r.seoDescription && (
-                            <p className="mt-2 text-sm text-warm-brown/85 dark:text-cream-light/65 leading-relaxed">
-                              {r.seoDescription}
-                            </p>
-                          )}
-                          <div className="mt-3 flex items-center gap-3 text-sm">
-                            <span className="font-medium text-ink dark:text-cream-light">
-                              {r.fileUrl ? "Descargar PDF" : "Ver documento"}
-                            </span>
-                            {size && (
-                              <span className="text-rif-gris">({size})</span>
-                            )}
-                            {!r.fileUrl && r.externalUrl && (
-                              <span className="text-rif-gris text-xs">
-                                → sitio de {r.carrier}
-                              </span>
-                            )}
-                          </div>
-                        </>
-                      );
-                      const className =
-                        "block p-5 rounded-xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-rif-rojo dark:hover:border-rif-rojo transition";
-                      if (!url) {
-                        return (
-                          <div key={r._id} className={`${className} opacity-60`}>
-                            {card}
-                          </div>
-                        );
-                      }
-                      return (
-                        <a
-                          key={r._id}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={className}
-                        >
-                          {card}
-                        </a>
-                      );
-                    })}
-                  </div>
+                  <p className="mt-4 text-[14.5px] leading-relaxed text-warm-brown/85 dark:text-cream-light/60">
+                    Deducible, coaseguro, periodo de espera, beneficiario
+                    irrevocable, suma asegurada. Explicados en español claro,
+                    con lo que significan en la práctica.
+                  </p>
+                  <Link
+                    href="/glosario"
+                    className="group mt-7 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-burgundy"
+                  >
+                    Consultar el glosario completo
+                    <ArrowRight
+                      className="size-3 transition-transform duration-500 group-hover:translate-x-1"
+                      aria-hidden
+                    />
+                  </Link>
                 </div>
-              ))}
+
+                <ul className="grid grid-cols-1 gap-x-8 gap-y-0 self-start sm:grid-cols-2">
+                  {glosarioDestacado.map((t) => (
+                    <li
+                      key={t._id}
+                      className="border-b border-warm-brown/12 dark:border-cream-light/10"
+                    >
+                      <Link
+                        href={`/glosario/${t.slug}`}
+                        className="group flex items-baseline justify-between gap-4 py-3.5 transition-colors duration-500 hover:text-burgundy"
+                      >
+                        <span className="text-[15px] text-ink dark:text-cream-light group-hover:text-burgundy">
+                          {t.term}
+                        </span>
+                        <ArrowRight
+                          className="size-3 shrink-0 text-warm-brown/40 dark:text-cream-light/30 transition-transform duration-500 group-hover:translate-x-1 group-hover:text-burgundy"
+                          aria-hidden
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          )}
+          </section>
+        )}
+
+        {/* ============================================================
+            7 · ÍNDICE DE CONTENIDOS
+            Doble función: es el destino del formulario de búsqueda cuando
+            no hay JavaScript, y es lo que hace que el hub enlace de verdad
+            a cada pieza de contenido en vez de solo a las tres recientes.
+            ============================================================ */}
+        <section
+          id="indice"
+          className="scroll-mt-24 bg-cream dark:bg-coffee/20 border-t border-warm-brown/15 dark:border-warm-brown/30"
+        >
+          <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20">
+            <h2 className="font-serif font-light text-2xl text-ink dark:text-cream-light">
+              Índice de contenidos
+            </h2>
+            <p className="mt-2 text-[13.5px] text-warm-brown/70 dark:text-cream-light/50">
+              Todo lo publicado, en una sola lista.
+            </p>
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-2">
+              <div>
+                <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-burgundy">
+                  Artículos
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  {arts.map((a) => (
+                    <li key={a._id} className="text-[14px] leading-snug">
+                      <Link
+                        href={`/blog/${a.slug}`}
+                        className="link-underline text-warm-brown dark:text-cream-light/70"
+                      >
+                        {a.title}
+                      </Link>
+                      {a.topic && TOPIC_LABELS[a.topic] && (
+                        <span className="ml-2 text-[11px] uppercase tracking-[0.14em] text-warm-brown/45 dark:text-cream-light/35">
+                          {TOPIC_LABELS[a.topic]}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] font-medium uppercase tracking-[0.2em] text-burgundy">
+                  Glosario
+                </h3>
+                <ul className="mt-4 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+                  {terms.map((t) => (
+                    <li key={t._id} className="text-[14px] leading-snug">
+                      <Link
+                        href={`/glosario/${t.slug}`}
+                        className="link-underline text-warm-brown dark:text-cream-light/70"
+                      >
+                        {t.term}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                <h3 className="mt-9 text-[11px] font-medium uppercase tracking-[0.2em] text-burgundy">
+                  Otros recursos
+                </h3>
+                <ul className="mt-4 space-y-2.5 text-[14px]">
+                  <li>
+                    <Link
+                      href="/recursos/documentos"
+                      className="link-underline text-warm-brown dark:text-cream-light/70"
+                    >
+                      Documentos oficiales de las aseguradoras
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/guia"
+                      className="link-underline text-warm-brown dark:text-cream-light/70"
+                    >
+                      Guía: 8 trámites después de un fallecimiento
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/glosario"
+                      className="link-underline text-warm-brown dark:text-cream-light/70"
+                    >
+                      Glosario completo de seguros
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section className="px-6 py-10 border-t border-warm-brown/15 dark:border-warm-brown/30">
-          <div className="max-w-5xl mx-auto w-full">
-            <p className="text-xs text-rif-gris leading-relaxed">
-              Los documentos aquí publicados son provistos por las aseguradoras
-              con fines informativos. La versión vigente de cada póliza
-              prevalece sobre cualquier copia descargada. Para confirmar
-              vigencia o resolver dudas, agenda una sesión inicial.
+        {/* ============================================================
+            8 · CTA FINAL — único bloque burgundy de la página.
+            ============================================================ */}
+        <section className="bg-burgundy text-cream-light">
+          <div className="mx-auto w-full max-w-4xl px-6 py-20 text-center sm:py-24">
+            <h2 className="font-serif font-light text-3xl sm:text-4xl leading-tight">
+              La información ayuda. Una estrategia personalizada{" "}
+              <span className="italic">decide</span>.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-[15.5px] leading-relaxed text-cream-light/80">
+              Todo lo de esta página es informativo. Para ver cómo aplica a tu
+              situación —tus pólizas, tus prioridades y tus objetivos— lo
+              revisamos juntos.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contacto"
+                className="inline-flex items-center rounded-full bg-cream-light px-8 py-4 text-[11px] font-medium uppercase tracking-[0.16em] text-espresso transition-colors duration-500 hover:bg-cream"
+              >
+                Agenda una conversación inicial
+              </Link>
+              <Link
+                href="/sobre-iria"
+                className="inline-flex items-center rounded-full border border-cream-light/40 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.16em] text-cream-light transition-colors duration-500 hover:border-cream-light"
+              >
+                Conocer a Iria
+              </Link>
+            </div>
+            <p className="mt-6 text-[12.5px] text-cream-light/60">
+              Sin compromiso. Sin presión comercial. 30 minutos.
             </p>
           </div>
         </section>

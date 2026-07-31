@@ -307,10 +307,10 @@ export default async function GmmPage() {
 
             <p className="mt-8 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               ¿Quieres ver el detalle real? Consulta las{" "}
-              <Link href="/recursos" className="font-medium text-ink dark:text-cream-light underline underline-offset-4 decoration-warm-brown/40 hover:decoration-rif-rojo">
+              <Link href="/recursos/documentos" className="font-medium text-ink dark:text-cream-light underline underline-offset-4 decoration-warm-brown/40 hover:decoration-rif-rojo">
                 condiciones generales y cuadros médicos por aseguradora
               </Link>{" "}
-              en Recursos.
+              que publica cada carrier.
             </p>
           </div>
         </section>
@@ -709,7 +709,7 @@ export default async function GmmPage() {
                 </p>
               </Link>
               <Link
-                href="/recursos"
+                href="/recursos/documentos"
                 className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
               >
                 <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">

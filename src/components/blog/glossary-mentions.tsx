@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { GLOSSARY_INDEX_QUERY } from "../../../sanity/lib/queries";
+import { normalizar } from "@/lib/busqueda";
 
 /**
  * "Términos de este artículo" — enlaza el artículo con las entradas del
@@ -30,18 +31,9 @@ type GlossaryTermItem = {
 /** Máximo de términos a mostrar: más que esto deja de ser útil y se vuelve ruido. */
 const MAX_TERMINOS = 8;
 
-/**
- * Minúsculas y sin acentos: el cuerpo escribe "Pensión" y el término puede
- * estar como "pension" (o al revés), y no queremos fallar por una tilde.
- * `\p{Diacritic}` cubre las marcas que deja NFD sin tener que escribir el
- * rango de combinables literal, que es ilegible y se corrompe al copiar.
- */
-function normalizar(s: string): string {
-  return s
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "");
-}
+// `normalizar` (minúsculas + sin acentos) se importa de @/lib/busqueda: la
+// misma comparación la necesita el buscador del centro de recursos, y tenerla
+// dos veces garantizaba que un día divergieran.
 
 /** Texto plano del cuerpo Portable Text, para buscar menciones. */
 function textoPlano(body: unknown[]): string {

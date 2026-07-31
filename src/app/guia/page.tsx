@@ -298,8 +298,13 @@ export default async function GuiaPage() {
           </div>
         </section>
 
-        {/* Lead magnet gateado: Check-up de Beneficiarios */}
-        <section className="px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+        {/* Lead magnet gateado: Check-up de Beneficiarios.
+            El `id` lo enlazan /recursos y /blog: sin él, quien viene por el
+            check-up aterriza al inicio de esta página y tiene que buscarlo. */}
+        <section
+          id="checkup"
+          className="scroll-mt-24 px-6 py-12 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30"
+        >
           <div className="max-w-2xl mx-auto w-full text-center">
             <p className="text-xs uppercase tracking-[0.2em] text-rif-rojo font-medium">
               Descarga gratuita

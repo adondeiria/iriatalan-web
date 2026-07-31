@@ -4,6 +4,7 @@ import { sanityFetch } from "../../sanity/lib/fetch";
 import { SITEMAP_QUERY } from "../../sanity/lib/queries";
 import { SITE_URL } from "@/lib/seo";
 import { TOPIC_TO_URL_SLUG, type ArticleTopic } from "@/lib/blog";
+import { isReservedRecursoSlug } from "@/lib/recursos";
 
 // ISR: regenerar sitemap cada 60 seg para que crawlers vean nuevos slugs
 // publicados sin necesidad de redeploy.
@@ -98,12 +99,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     })) ?? [];
 
+  // /recursos/documentos/[slug] — el detalle vive bajo /documentos, no bajo
+  // /recursos directo: así ninguna ruta dinámica es hermana de las secciones
+  // fijas del hub. Un slug reservado se descarta igual, por si alguna vez se
+  // reintroduce un [slug] a ese nivel: la ruta estática ganaría y el documento
+  // quedaría inalcanzable mientras el sitemap seguiría anunciándolo.
   const resourceUrls: MetadataRoute.Sitemap =
-    data?.resources?.map((r) => ({
-      url: `${SITE_URL}/recursos/${r.slug}`,
-      lastModified: new Date(r._updatedAt),
-      priority: 0.6,
-    })) ?? [];
+    data?.resources
+      ?.filter((r) => !isReservedRecursoSlug(r.slug))
+      .map((r) => ({
+        url: `${SITE_URL}/recursos/documentos/${r.slug}`,
+        lastModified: new Date(r._updatedAt),
+        priority: 0.6,
+      })) ?? [];
 
   // /blog/categoria/[slug] — un hub por topic con artículos publicados.
   // Emiten CollectionPage + ItemList y son indexables, pero faltaban en el
@@ -150,12 +158,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ]
       : [];
 
-  // /recursos index — SIEMPRE presente: la página sirve contenido estático
-  // estable (canales WhatsApp, folders OneDrive de condiciones generales,
-  // buscadores de médicos) y es indexable aunque no haya recursos en Sanity.
+  // /recursos (hub) y /recursos/documentos (biblioteca de aseguradoras).
+  // Ambas SIEMPRE presentes: sirven contenido estático estable e indexable
+  // aunque no haya un solo recurso en Sanity — el hub reúne artículos,
+  // glosario y guías, y la biblioteca tiene los canales de WhatsApp, los
+  // folders de OneDrive con condiciones generales y los buscadores de médicos.
+  //
+  // El hub va sin lastModified a propósito: su frescura no depende de los
+  // documentos de aseguradoras, y un lastmod que no corresponde degrada la
+  // confianza en el sitemap completo.
   const recursosIndexUrl: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/recursos`,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/recursos/documentos`,
       lastModified: newestDate(data?.resources ?? []),
       priority: 0.8,
     },
