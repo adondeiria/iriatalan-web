@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { TOPIC_LABELS } from "@/lib/blog";
+import { buscar, prepararIndice, recortar, type DocBusqueda } from "@/lib/busqueda";
 
 /**
  * Buscador del índice del blog.
@@ -16,6 +17,11 @@ import { TOPIC_LABELS } from "@/lib/blog";
  * NO se usa un endpoint de búsqueda ni el índice de Sanity: sería agregar
  * infraestructura y una petición por tecla para resolver algo que cabe en
  * memoria. Cuando el blog pase de ~100 artículos conviene reevaluarlo.
+ *
+ * El matching lo pone `@/lib/busqueda`, el mismo motor que usa el buscador del
+ * centro de recursos. Antes era un `includes()` sobre minúsculas, que fallaba
+ * en dos casos cotidianos: "pension" no encontraba "Pensión" (acento) y
+ * "seguro de vida" exigía que apareciera el "de" literal.
  */
 
 export type SearchableArticle = {
@@ -27,23 +33,29 @@ export type SearchableArticle = {
 
 export function BlogSearch({ articles }: { articles: SearchableArticle[] }) {
   const [q, setQ] = useState("");
-  const termino = q.trim().toLowerCase();
+  const termino = q.trim();
 
-  const resultados = useMemo(() => {
-    if (termino.length < 2) return [];
-    return articles
-      .filter((a) => {
-        const heno = [
-          a.title,
-          a.excerpt ?? "",
-          TOPIC_LABELS[a.topic ?? ""] ?? "",
-        ]
-          .join(" ")
-          .toLowerCase();
-        return heno.includes(termino);
-      })
-      .slice(0, 6);
-  }, [articles, termino]);
+  const indice = useMemo(
+    () =>
+      prepararIndice(
+        articles.map(
+          (a): DocBusqueda => ({
+            id: a.slug,
+            tipo: "articulo",
+            titulo: a.title,
+            href: `/blog/${a.slug}`,
+            resumen: recortar(a.excerpt ?? ""),
+            tema: a.topic,
+          })
+        )
+      ),
+    [articles]
+  );
+
+  const resultados = useMemo(
+    () => buscar(indice, termino, 6).map((r) => r.doc),
+    [indice, termino]
+  );
 
   const buscando = termino.length >= 2;
 
@@ -99,18 +111,18 @@ export function BlogSearch({ articles }: { articles: SearchableArticle[] }) {
           ) : (
             <ul className="divide-y divide-warm-brown/10 dark:divide-cream-light/10">
               {resultados.map((a) => (
-                <li key={a.slug}>
+                <li key={a.id}>
                   <Link
-                    href={`/blog/${a.slug}`}
+                    href={a.href}
                     className="block px-5 py-3.5 transition-colors hover:bg-cream dark:hover:bg-coffee/40"
                   >
-                    {a.topic && (
+                    {a.tema && (
                       <span className="text-[10px] uppercase tracking-[0.2em] text-burgundy">
-                        {TOPIC_LABELS[a.topic] ?? a.topic}
+                        {TOPIC_LABELS[a.tema] ?? a.tema}
                       </span>
                     )}
                     <span className="mt-1 block font-serif text-[15px] leading-snug text-ink dark:text-cream-light">
-                      {a.title}
+                      {a.titulo}
                     </span>
                   </Link>
                 </li>
