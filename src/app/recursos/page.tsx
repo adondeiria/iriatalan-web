@@ -409,11 +409,18 @@ export default async function RecursosPage() {
                 marca, deformado al plano de la tapa (scripts/grabar-logo.mjs).
                 La versión anterior tenía el logo inclinado respecto al libro y
                 la tipografía aproximada. */}
+            {/* `sizes` NO es el ancho de la caja. La caja es casi cuadrada
+                (~741x735) y la foto es 16:9, así que con object-cover manda el
+                ALTO: para llenar 735px sin estirar hacen falta ~1317px de
+                ancho intrínseco. Con "55vw" el navegador pedía la variante de
+                828px y la escalaba 1.6x — el cuaderno se veía suave.
+                Debajo de lg la foto no se muestra, y el 0px evita que el
+                preload de `priority` se traiga un archivo grande en móvil. */}
             <Image
               src="/img/iria/recursos-cuaderno-rif.jpg"
               alt=""
               fill
-              sizes="55vw"
+              sizes="(max-width: 1023px) 0px, 1400px"
               className="object-cover object-center"
               priority
               quality={85}

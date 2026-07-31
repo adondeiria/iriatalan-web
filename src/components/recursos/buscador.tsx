@@ -101,7 +101,9 @@ export function BuscadorRecursos({ docs }: { docs: DocBusqueda[] }) {
   const terminos = resultados.filter((r) => r.doc.tipo === "termino");
 
   return (
-    <div className="w-full max-w-xl">
+    // `relative` ancla el panel de resultados, que se posiciona con `top-full`
+    // justo debajo de la pista del buscador.
+    <div className="relative w-full max-w-xl">
       <form
         role="search"
         // Sin JS, el submit aterriza en el índice completo del final de la
@@ -173,8 +175,21 @@ export function BuscadorRecursos({ docs }: { docs: DocBusqueda[] }) {
         {anuncio}
       </p>
 
+      {/* El panel va FUERA del flujo a propósito.
+          Cuando estaba en flujo, al aparecer los resultados crecía el alto de
+          la sección del hero; como el bodegón es `object-cover` dentro de un
+          contenedor `inset-y-0`, la foto se reescalaba para cubrir ese alto
+          nuevo y el libro daba un salto de zoom al teclear. Sacándolo con
+          `absolute` el alto de la sección nunca cambia y la foto queda quieta.
+
+          No es un combobox de ARIA: el panel sigue en orden de DOM justo
+          después del input, los resultados son enlaces normales y el Tab
+          funciona solo. Tapa los chips mientras escribes, que es justo cuando
+          no los estás usando.
+
+          El tope de alto evita que un panel largo se salga del hero. */}
       {activa && (
-        <div className="mt-5 rounded-2xl border border-cream-light/15 bg-espresso/80 p-2 backdrop-blur-sm">
+        <div className="absolute inset-x-0 top-full z-30 mt-4 max-h-[min(60vh,26rem)] overflow-y-auto overscroll-contain rounded-2xl border border-cream-light/15 bg-espresso/95 p-2 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md">
           {sinResultados ? (
             <div className="px-4 py-5">
               <p className="text-[14.5px] text-cream-light/85">
