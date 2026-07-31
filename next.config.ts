@@ -79,14 +79,18 @@ const nextConfig: NextConfig = {
       { source: "/retiro-y-pensiones", destination: "/retiro", permanent: true },
       { source: "/retiro-y-pensiones/", destination: "/retiro", permanent: true },
       // Additional WordPress sitelinks captured from Google SERP (2026-05-07)
-      { source: "/soy-cliente", destination: "/recursos", permanent: true },
-      { source: "/soy-cliente/", destination: "/recursos", permanent: true },
+      // Las tres apuntaban a /recursos, que ahora es el hub editorial. Su
+      // intención es "ya soy cliente, quiero mis documentos", así que aterrizan
+      // en /recursos/documentos: es además la única equity legacy que alimenta
+      // esa URL nueva, y conviene que la reciba la página que arranca de cero.
+      { source: "/soy-cliente", destination: "/recursos/documentos", permanent: true },
+      { source: "/soy-cliente/", destination: "/recursos/documentos", permanent: true },
       // /clientes — descubierto por firecrawl 2026-05-10 (Google sigue indexándola)
-      { source: "/clientes", destination: "/recursos", permanent: true },
-      { source: "/clientes/", destination: "/recursos", permanent: true },
+      { source: "/clientes", destination: "/recursos/documentos", permanent: true },
+      { source: "/clientes/", destination: "/recursos/documentos", permanent: true },
       // /clientes-resp — portal-cliente WP viejo, rastreada sin indexar (GSC 2026-07)
-      { source: "/clientes-resp", destination: "/recursos", permanent: true },
-      { source: "/clientes-resp/", destination: "/recursos", permanent: true },
+      { source: "/clientes-resp", destination: "/recursos/documentos", permanent: true },
+      { source: "/clientes-resp/", destination: "/recursos/documentos", permanent: true },
       { source: "/our-services", destination: "/", permanent: true },
       { source: "/our-services/", destination: "/", permanent: true },
       { source: "/hablemos", destination: "/", permanent: true },

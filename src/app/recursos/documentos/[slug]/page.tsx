@@ -5,78 +5,43 @@ import { type PortableTextBlock } from "@portabletext/react";
 
 import { PortableTextRenderer } from "@/components/portable-text";
 
-import { sanityFetch } from "../../../../sanity/lib/fetch";
+import { sanityFetch } from "../../../../../sanity/lib/fetch";
 import {
   ALL_RESOURCES_SLUGS_QUERY,
   RESOURCE_QUERY,
-} from "../../../../sanity/lib/queries";
+} from "../../../../../sanity/lib/queries";
 import {
   buildBreadcrumbSchema,
   buildGraph,
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+import {
+  categoryLabel,
+  formatFileSize,
+  getDownloadUrl,
+  isReservedRecursoSlug,
+  productLineLabel,
+  type ResourceBase,
+} from "@/lib/recursos";
 
-type ResourceData = {
-  _id: string;
-  title: string;
-  slug: string;
-  carrier: string;
-  category: string;
-  productLine: string;
-  year?: string | null;
-  fileUrl?: string | null;
-  fileSize?: number | null;
+type ResourceData = ResourceBase & {
   fileType?: string | null;
-  externalUrl?: string | null;
   description?: unknown[] | null;
   seoTitle?: string | null;
-  seoDescription?: string | null;
   _updatedAt: string;
 };
-
-const CATEGORY_LABELS: Record<string, string> = {
-  condiciones_generales: "Condiciones Generales",
-  formato_reclamacion: "Formato de Reclamación",
-  formato_alta_baja: "Formato Alta / Baja",
-  cuadro_medico: "Cuadro Médico / Red Hospitalaria",
-  tabulador: "Tabulador / Tarifas",
-  folleto_producto: "Folleto Producto",
-  guia_usuario: "Guía de Usuario",
-  aviso_privacidad: "Aviso de Privacidad",
-  otro: "Otro",
-};
-
-const PRODUCT_LINE_LABELS: Record<string, string> = {
-  vida: "Vida individual",
-  gmm: "GMM individual",
-  vida_grupo: "Vida grupo",
-  gmm_empresarial: "GMM empresarial",
-  autos: "Autos",
-  dano_hogar: "Daños / Hogar",
-  retiro: "Retiro / AFORE",
-  educacional: "Educacional",
-  otro: "—",
-};
-
-function formatFileSize(bytes?: number | null): string | null {
-  if (!bytes || bytes <= 0) return null;
-  const mb = bytes / (1024 * 1024);
-  if (mb >= 1) return `${mb.toFixed(1)} MB`;
-  const kb = bytes / 1024;
-  return `${kb.toFixed(0)} KB`;
-}
-
-function getDownloadUrl(r: ResourceData): string | null {
-  return r.fileUrl ?? r.externalUrl ?? null;
-}
 
 export async function generateStaticParams() {
   const slugs =
     (await sanityFetch<Array<{ slug: string }>>({
       query: ALL_RESOURCES_SLUGS_QUERY,
     }).catch(() => null)) ?? [];
-  return slugs.map((s) => ({ slug: s.slug }));
+  // Un slug reservado nunca se pre-genera ni se anuncia: colisionaría con una
+  // sección fija de /recursos y el documento quedaría inalcanzable.
+  return slugs
+    .filter((s) => !isReservedRecursoSlug(s.slug))
+    .map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({
@@ -103,7 +68,7 @@ export async function generateMetadata({
     `${resource.title} — ${resource.carrier} | ${SITE_NAME}`;
   const description =
     resource.seoDescription ||
-    `${CATEGORY_LABELS[resource.category] ?? resource.category} de ${resource.carrier}${
+    `${categoryLabel(resource.category)} de ${resource.carrier}${
       resource.year ? ` (${resource.year})` : ""
     }. Documento oficial publicado por la aseguradora.`;
 
@@ -112,10 +77,10 @@ export async function generateMetadata({
     // pegaba una segunda vez.
     title: { absolute: title },
     description,
-    alternates: { canonical: `${SITE_URL}/recursos/${slug}` },
+    alternates: { canonical: `${SITE_URL}/recursos/documentos/${slug}` },
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/recursos/${slug}`,
+      url: `${SITE_URL}/recursos/documentos/${slug}`,
       title,
       description,
     },
@@ -126,10 +91,10 @@ function buildDocumentSchema(r: ResourceData) {
   const url = getDownloadUrl(r);
   return {
     "@type": "DigitalDocument" as const,
-    "@id": `${SITE_URL}/recursos/${r.slug}#document`,
+    "@id": `${SITE_URL}/recursos/documentos/${r.slug}#document`,
     name: r.title,
     description: r.seoDescription,
-    url: `${SITE_URL}/recursos/${r.slug}`,
+    url: `${SITE_URL}/recursos/documentos/${r.slug}`,
     contentUrl: url ?? undefined,
     encodingFormat: r.fileType ?? "application/pdf",
     inLanguage: "es-MX",
@@ -137,7 +102,7 @@ function buildDocumentSchema(r: ResourceData) {
     dateModified: r._updatedAt,
     provider: { "@type": "Organization", name: r.carrier },
     publisher: { "@id": `${SITE_URL}#organization` },
-    about: CATEGORY_LABELS[r.category] ?? r.category,
+    about: categoryLabel(r.category),
   };
 }
 
@@ -166,7 +131,11 @@ export default async function ResourcePage({
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
       { name: "Recursos", path: "/recursos" },
-      { name: resource.title, path: `/recursos/${resource.slug}` },
+      { name: "Documentos de aseguradoras", path: "/recursos/documentos" },
+      {
+        name: resource.title,
+        path: `/recursos/documentos/${resource.slug}`,
+      },
     ])
   );
 
@@ -184,12 +153,16 @@ export default async function ResourcePage({
             {" / "}
             <Link href="/recursos" className="hover:underline">Recursos</Link>
             {" / "}
+            <Link href="/recursos/documentos" className="hover:underline">
+              Documentos
+            </Link>
+            {" / "}
             {resource.carrier}
           </p>
           <p className="mt-6 text-xs uppercase tracking-[0.24em] text-burgundy font-medium">
-            {CATEGORY_LABELS[resource.category] ?? resource.category}
+            {categoryLabel(resource.category)}
             {resource.productLine && resource.productLine !== "otro" && (
-              <span> · {PRODUCT_LINE_LABELS[resource.productLine] ?? resource.productLine}</span>
+              <span> · {productLineLabel(resource.productLine)}</span>
             )}
             {resource.year && <span> · {resource.year}</span>}
           </p>
@@ -243,10 +216,10 @@ export default async function ResourcePage({
           </p>
           <p className="mt-4">
             <Link
-              href="/recursos"
+              href="/recursos/documentos"
               className="text-sm font-medium underline hover:text-burgundy"
             >
-              ← Ver todos los recursos
+              ← Ver todos los documentos
             </Link>
           </p>
         </section>
