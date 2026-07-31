@@ -336,7 +336,10 @@ export default async function BlogIndexPage() {
                   etiqueta: "Check-up",
                   titulo: "Revisión de beneficiarios y patrimonio",
                   desc: "Detecta en minutos si tu patrimonio llegaría a quien tú quieres.",
-                  href: "/recursos",
+                  // El gate del check-up vive en /guia, no en /recursos: la
+                  // tarjeta prometía un formulario y dejaba al lector en una
+                  // página de documentos de aseguradoras.
+                  href: "/guia#checkup",
                 },
                 {
                   etiqueta: "Checklist",
