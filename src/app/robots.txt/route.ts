@@ -39,7 +39,24 @@ const LLM_ALLOWED_AGENTS = [
   "Cohere-AI",
 ];
 
-const DISALLOW = ["/studio", "/api/", "/_next/static/"];
+/**
+ * `/_next/static/` NO se bloquea, y es deliberado.
+ *
+ * Estuvo en esta lista y salió caro: en Search Console 54 de las 96 URLs "no
+ * indexadas" eran chunks de JS, hojas de CSS y tipografías `.woff2` de Next.
+ * Otras 19 aparecían como "indexada aunque robots.txt la tenía bloqueada", que
+ * es lo que pasa cuando Google ve el enlace en el HTML pero no puede rastrear
+ * el archivo para comprobar que no es contenido: indexa la URL a ciegas.
+ *
+ * El daño de fondo es peor que el informe sucio. Google renderiza las páginas
+ * antes de evaluarlas, y para eso necesita el CSS y el JS. Bloquearlos es un
+ * antipatrón que la propia documentación de Google desaconseja: degrada la
+ * evaluación de diseño, de experiencia móvil y de Core Web Vitals.
+ *
+ * No hay nada sensible ahí — son los assets compilados que cualquier visitante
+ * descarga igual al abrir la página.
+ */
+const DISALLOW = ["/studio", "/api/"];
 
 function bloque(userAgent: string): string {
   return [

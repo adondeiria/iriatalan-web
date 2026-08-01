@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Hay un package-lock.json suelto en la carpeta padre (C:\Users\iriat\CLAUDE\)
+  // y Turbopack, al ver dos lockfiles, elegía esa como raíz del workspace y
+  // avisaba en cada arranque. Fijarla evita que un día resuelva rutas contra el
+  // directorio equivocado.
+  turbopack: {
+    root: __dirname,
+  },
   images: {
     // AVIF primero (30-50% más ligero que WebP); el optimizador negocia por
     // header Accept. Cache de 31 días para no re-transformar en cada miss.
@@ -130,6 +137,29 @@ const nextConfig: NextConfig = {
       { source: "/what-consumers-want-from-businesses/", destination: "/empresas", permanent: true },
       { source: "/giving-buyers-more-options-with-financing", destination: "/", permanent: true },
       { source: "/giving-buyers-more-options-with-financing/", destination: "/", permanent: true },
+      { source: "/seven-ways-to-handle-unexpected-expenses-and-financial-emergencies", destination: "/", permanent: true },
+      { source: "/seven-ways-to-handle-unexpected-expenses-and-financial-emergencies/", destination: "/", permanent: true },
+      { source: "/videos", destination: "/blog", permanent: true },
+      { source: "/videos/", destination: "/blog", permanent: true },
+
+      // Taxonomías de WordPress (descubierto en Search Console 2026-07-31).
+      // Google seguía rastreándolas en julio y devolvían 404. Las cuatro con
+      // equivalente temático van a su categoría del blog; el resto cae al
+      // índice por comodín, porque WordPress genera taxonomías sin límite y
+      // enumerarlas una por una garantiza que la siguiente vuelva a fallar.
+      //
+      // El comodín va AL FINAL a propósito: en Next gana la primera coincidencia,
+      // así que si subiera, se comería los cuatro destinos específicos.
+      { source: "/category/retiro", destination: "/blog/categoria/retiro-y-afore", permanent: true },
+      { source: "/category/retiro/", destination: "/blog/categoria/retiro-y-afore", permanent: true },
+      { source: "/category/afore", destination: "/blog/categoria/retiro-y-afore", permanent: true },
+      { source: "/category/afore/", destination: "/blog/categoria/retiro-y-afore", permanent: true },
+      { source: "/category/vida", destination: "/blog/categoria/seguros-de-vida", permanent: true },
+      { source: "/category/vida/", destination: "/blog/categoria/seguros-de-vida", permanent: true },
+      { source: "/tag/axa", destination: "/gmm", permanent: true },
+      { source: "/tag/axa/", destination: "/gmm", permanent: true },
+      { source: "/category/:slug*", destination: "/blog", permanent: true },
+      { source: "/tag/:slug*", destination: "/blog", permanent: true },
     ];
   },
 };
