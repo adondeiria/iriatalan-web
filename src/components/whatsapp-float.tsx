@@ -5,6 +5,11 @@ import { usePathname } from "next/navigation";
 import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 
 /**
+ * SIN USAR desde 2026-08: el layout monta en su lugar el widget de respond.io,
+ * que ocupa la misma esquina. Se conserva porque es la única pieza que sabe
+ * mandar un mensaje precargado distinto por sección; si el widget se retira,
+ * basta con volver a montar <WhatsAppFloat /> en `layout.tsx`.
+ *
  * Floating WhatsApp button — sticky bottom-right.
  * Mejor canal de contacto en Latam para mass-affluent / HNWI que prefieren
  * conversación directa antes de llenar form.
