@@ -12,8 +12,15 @@
  * y /retirement-planning son EN).
  */
 
-/** Número de respaldo si Sanity no trae el del autor. */
-export const WA_NUMBER_FALLBACK = "525512683401";
+/**
+ * Número de respaldo si Sanity no trae el del autor.
+ *
+ * Es el WhatsApp Business API (WABA) conectado a respond.io, donde el equipo
+ * atiende los chats. NO es el número de voz: un WABA no recibe llamadas, así
+ * que el `tel:` del sitio apunta a otro número (`socialLinks.phone`). Si algún
+ * día se unifican, hay que cambiar ambos y la ficha de Google Business.
+ */
+export const WA_NUMBER_FALLBACK = "525526786325";
 
 export const WA_MESSAGES = {
   /** Footer, botón flotante y cualquier CTA sin página específica. */

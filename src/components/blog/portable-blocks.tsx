@@ -5,6 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { CheckupGate } from "@/components/checkup-gate";
 import { CalculadoraEducacionalGate } from "@/components/calculadora-educacional-gate";
 import { ChecklistDiscapacidadGate } from "@/components/checklist-discapacidad-gate";
+import { WA_NUMBER_FALLBACK } from "@/lib/whatsapp";
 
 // =========================================================
 // InlineImage — bloque image dentro del body Portable Text
@@ -277,10 +278,10 @@ export function DataCallout({ value }: { value: DataCalloutValue }) {
 // =========================================================
 // CtaWhatsApp — tarjeta CTA con botón a WhatsApp pre-llenado
 // =========================================================
-// Convención del sitio: número WhatsApp inline (525512683401), mismo que
-// whatsapp-float.tsx y las 13 páginas que lo usan. Refactor a constante
-// compartida es out-of-scope.
-const WA_NUMBER = "525512683401";
+// El número sale de la constante compartida, no de una copia local: cuando
+// migró al WABA de respond.io (2026-08) esta copia era el lugar donde se
+// quedaba el número viejo sin que nadie lo notara.
+const WA_NUMBER = WA_NUMBER_FALLBACK;
 
 export type CtaWhatsAppValue = {
   heading?: string;

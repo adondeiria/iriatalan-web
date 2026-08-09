@@ -149,7 +149,7 @@ Te propongo una revisión sencilla:
 
 Con esa información podemos ver si tu plan va bien encaminado o si hay que reforzarlo antes de que la universidad llegue a la puerta.
 
-[**📱 Escríbeme por WhatsApp →**](https://wa.me/525512683401?text=Hola%20Iria%2C%20vengo%20del%20blog%20de%20costos%20universitarios.%20Quiero%20revisar%20mi%20seguro%20educacional.)
+[**📱 Escríbeme por WhatsApp →**](https://wa.me/525526786325?text=Hola%20Iria%2C%20vengo%20del%20blog%20de%20costos%20universitarios.%20Quiero%20revisar%20mi%20seguro%20educacional.)
 
 **Iria Talan — Reingeniería Financiera**.
 CNSF V388618 · Wealth Management Theory & Practice (Yale Executive Education) · MBA Essentials (LSE Executive Education) · Egresada Tec de Monterrey.

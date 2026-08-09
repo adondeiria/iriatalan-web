@@ -135,7 +135,7 @@ export default async function GuiaPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
+  const whatsapp = author?.socialLinks?.whatsapp ?? "+525526786325";
   const waDigits = whatsapp.replace(/\D/g, "");
   const waHref = `https://wa.me/${waDigits}?text=${encodeURIComponent(
     "Hola Iria, descargué tu guía de trámites por fallecimiento y me gustaría asesoría sobre mi caso.",

@@ -209,7 +209,7 @@ Si al leer esto pensaste "necesito que alguien revise esto conmigo antes de firm
 
 No te vendo una póliza: te ayudo a tomar una mejor decisión.
 
-[Escríbeme por WhatsApp →](https://wa.me/525512683401?text=Hola%20Iria%2C%20le%C3%AD%20tu%20gu%C3%ADa%20de%20maternidad%20y%20GMM%2C%20quiero%20que%20revises%20mi%20caso%20antes%20de%20contratar.)
+[Escríbeme por WhatsApp →](https://wa.me/525526786325?text=Hola%20Iria%2C%20le%C3%AD%20tu%20gu%C3%ADa%20de%20maternidad%20y%20GMM%2C%20quiero%20que%20revises%20mi%20caso%20antes%20de%20contratar.)
 
 Porque el mejor seguro de maternidad no es el que anuncia el monto más alto. Es el que protege mejor a tu familia cuando las cosas no salen exactamente como las imaginabas.
 
