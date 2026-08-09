@@ -263,7 +263,7 @@ No tienes que resolverlo de golpe ni a solas. En una sesión uno a uno ponemos t
 
 **👉 [Quiero ver mis números y ordenar el futuro de mi hijo](https://iriatalan.com.mx/contacto#agendar)** — sesión inicial, 45 minutos, sin costo.
 
-¿Prefieres algo más rápido? Mándame WhatsApp con la edad de tu hijo y tu duda concreta, y lo vemos: [wa.me/525512683401](https://wa.me/525512683401).
+¿Prefieres algo más rápido? Mándame WhatsApp con la edad de tu hijo y tu duda concreta, y lo vemos: [wa.me/525526786325](https://wa.me/525526786325).
 
 ---
 

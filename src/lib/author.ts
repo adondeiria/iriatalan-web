@@ -86,5 +86,14 @@ export const FALLBACK_AUTHOR: AuthorData = {
   // (nombre, dirección, teléfono) es como Google confirma que la ficha y el sitio
   // son el mismo negocio, así que una sola forma de la dirección, sin variantes.
   officeAddress: "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
-  socialLinks: {},
+  // Los dos números son distintos a propósito: `whatsapp` es el WABA conectado a
+  // respond.io (solo chat, no recibe llamadas) y `phone` es la línea de voz del
+  // `tel:` del footer. Antes esto estaba vacío, así que durante una caída de
+  // Sanity el `telephone` del JSON-LD se emitía sin valor — justo el dato que
+  // Google cruza con la ficha de Google Business.
+  socialLinks: {
+    whatsapp: "+525526786325",
+    phone: "+525512683401",
+    email: "soporte@talan.com.mx",
+  },
 };

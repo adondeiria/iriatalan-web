@@ -123,7 +123,7 @@ export default async function GmmPage() {
   }).catch(() => null);
 
   const ctaUrl = "/contacto#agendar";
-  const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
+  const whatsapp = author?.socialLinks?.whatsapp ?? "+525526786325";
   const email = author?.socialLinks?.email ?? "soporte@talan.com.mx";
 
   const pageSchema = buildGraph(

@@ -117,6 +117,21 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
+/**
+ * "+525512683401" → "+52 55 1268 3401".
+ *
+ * El footer muestra el número y lo enlaza con `tel:`. Escribir las dos formas a
+ * mano es cómo se desincronizan: derivar la legible del E.164 deja una sola
+ * fuente. Si el formato no es un móvil mexicano de 10 dígitos, se devuelve tal
+ * cual en vez de inventar una separación equivocada.
+ */
+function formatTelMx(e164: string): string {
+  const digitos = e164.replace(/\D/g, "");
+  const nacional = digitos.startsWith("52") ? digitos.slice(2) : digitos;
+  if (nacional.length !== 10) return e164;
+  return `+52 ${nacional.slice(0, 2)} ${nacional.slice(2, 6)} ${nacional.slice(6)}`;
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -134,6 +149,12 @@ export default async function RootLayout({
       query: SOBRE_IRIA_QUERY,
       tags: ["author"],
     }).catch(() => null)) ?? FALLBACK_AUTHOR;
+
+  // Línea de voz del footer. Vive en su propio campo porque NO es el WhatsApp:
+  // el de WhatsApp es un WABA en respond.io y los WABA no reciben llamadas, así
+  // que enlazarlo con `tel:` mandaría a la gente a un número que nadie contesta.
+  const telVoz = author.socialLinks?.phone ?? "+525512683401";
+  const telVozLegible = formatTelMx(telVoz);
 
   const globalSchema = buildGraph(
     buildOrganizationSchema(author),
@@ -329,8 +350,11 @@ export default async function RootLayout({
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-burgundy mt-0.5 flex-shrink-0" aria-hidden>
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <a href="tel:+525512683401" className="hover:text-cream-light transition-colors duration-500 tabular-nums">
-                    +52 55 1268 3401
+                  {/* Línea de voz, NO el WhatsApp: el número de WhatsApp es un
+                      WABA en respond.io y no recibe llamadas. Son dos números
+                      distintos a propósito. */}
+                  <a href={`tel:${telVoz}`} className="hover:text-cream-light transition-colors duration-500 tabular-nums">
+                    {telVozLegible}
                   </a>
                 </li>
                 <li className="flex items-start gap-3">

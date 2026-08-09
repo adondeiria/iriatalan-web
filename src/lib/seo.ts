@@ -98,7 +98,10 @@ export type AuthorData = {
     linkedin?: string;
     instagram?: string;
     facebook?: string;
+    /** WhatsApp (WABA de respond.io). Solo chat — no recibe llamadas. */
     whatsapp?: string;
+    /** Línea de voz para el `tel:` del sitio. Distinta del WhatsApp. */
+    phone?: string;
     email?: string;
   };
   officeAddress?: string;
@@ -392,7 +395,11 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
       ],
     },
     provider: { "@id": `${SITE_URL}/sobre-iria#person` },
-    telephone: author.socialLinks?.whatsapp,
+    // La línea de voz, NO el WhatsApp. La ficha de Google Business tiene campos
+    // separados para "Número de teléfono" y "Usuario de chat (WhatsApp)": el
+    // primero conserva esta línea y el WhatsApp vive en el suyo. `telephone` es
+    // el que Google cruza con la ficha, así que tiene que ser el mismo de allá.
+    telephone: author.socialLinks?.phone,
     email: author.socialLinks?.email,
   };
 }
@@ -708,7 +715,11 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     alternateName: SITE_NAME_ALTERNATES,
     url: SITE_URL,
     image: author?.photo?.asset?.url ?? `${SITE_URL}/img/iria/iria-portrait-02.jpg`,
-    telephone: author?.socialLinks?.whatsapp ?? "+525512683401",
+    // La línea de voz, NO el WhatsApp. Este nodo es el que Google cruza con la
+    // ficha de Google Business, y la ficha guarda cada canal en su propio campo:
+    // "Número de teléfono" (esta línea) y "Usuario de chat → WhatsApp" (el WABA
+    // de respond.io). Poner aquí el WhatsApp desalinearía el NAP contra la ficha.
+    telephone: author?.socialLinks?.phone ?? "+525512683401",
     email: author?.socialLinks?.email ?? "soporte@talan.com.mx",
     // `streetAddress` sale de `officeAddress` del autor (Sanity), igual que en
     // buildFinancialAdvisorSchema. Antes este nodo solo declaraba ciudad y país:

@@ -9,6 +9,7 @@ import {
   SITE_URL,
   type FAQItem,
 } from "@/lib/seo";
+import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 
 import { ContactForm } from "./contact-form";
 
@@ -142,7 +143,7 @@ export default function ContactoPage() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <a
-              href="https://wa.me/525512683401?text=Hola%20Iria%2C%20vi%20tu%20sitio%20y%20me%20gustar%C3%ADa%20agendar%20una%20primera%20pl%C3%A1tica."
+              href={waHref(WA_NUMBER_FALLBACK, WA_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
               className="group p-7 rounded-2xl bg-[#25D366] text-white hover:bg-[#1FB658] transition-all duration-500 hover:-translate-y-0.5"
@@ -152,7 +153,7 @@ export default function ContactoPage() {
               </div>
               <div className="text-xl font-semibold">WhatsApp</div>
               <div className="mt-2 text-sm opacity-90 leading-relaxed">
-                +52 55 1268 3401 · Horas hábiles
+                +52 55 2678 6325 · Mensajes, horas hábiles
               </div>
               <div className="mt-5 text-sm font-medium">Escribir →</div>
             </a>

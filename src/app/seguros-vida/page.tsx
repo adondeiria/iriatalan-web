@@ -97,7 +97,7 @@ export default async function SegurosVidaPage() {
     tags: ["author"],
   }).catch(() => null);
 
-  const whatsapp = author?.socialLinks?.whatsapp ?? "+525512683401";
+  const whatsapp = author?.socialLinks?.whatsapp ?? "+525526786325";
 
   const faqSchema = buildFAQPageSchema(FAQS);
   const pageSchema = buildGraph(
