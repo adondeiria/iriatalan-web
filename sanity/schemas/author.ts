@@ -140,14 +140,14 @@ export const author = defineType({
           title: "WhatsApp (E.164)",
           type: "string",
           description:
-            "Formato +52... — es el WABA conectado a respond.io, donde el equipo atiende los chats. Alimenta TODOS los botones de WhatsApp del sitio y el `telephone` del JSON-LD que Google cruza con la ficha de Google Business: si cambia aquí, hay que cambiarlo también en la ficha el mismo día o se rompe la consistencia NAP.",
+            "Formato +52... — es el WABA conectado a respond.io, donde el equipo atiende los chats. Alimenta TODOS los botones de WhatsApp del sitio. Si cambia aquí, hay que cambiarlo también en la ficha de Google Business, en el campo 'Usuario de chat → WhatsApp' (NO en 'Número de teléfono', que es la línea de voz).",
         }),
         defineField({
           name: "phone",
           title: "Teléfono para llamadas (E.164)",
           type: "string",
           description:
-            "Formato +52... — la línea de voz que aparece en el `tel:` del footer. Va aparte del WhatsApp a propósito: un número WABA no recibe llamadas, así que si aquí se pusiera el mismo, quien marque no encontraría a nadie.",
+            "Formato +52... — la línea de voz del `tel:` del footer, y el `telephone` del JSON-LD que Google cruza con la ficha de Google Business. Si cambia aquí, hay que cambiar el campo 'Número de teléfono' de la ficha el mismo día o se rompe la consistencia NAP. Va aparte del WhatsApp a propósito: un número WABA no recibe llamadas, así que si aquí se pusiera el mismo, quien marque no encontraría a nadie.",
         }),
         defineField({ name: "email", title: "Email", type: "string" }),
       ],
