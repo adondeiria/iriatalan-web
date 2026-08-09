@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 import { sanityFetch } from "../../sanity/lib/fetch";
 import { SOBRE_IRIA_QUERY } from "../../sanity/lib/queries";
@@ -23,7 +24,6 @@ import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
 import { Analytics } from "@/components/analytics";
 import { CookieBanner } from "@/components/cookie-banner";
 import { SiteHeader } from "@/components/site-header";
-import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 import "./globals.css";
 
@@ -417,7 +417,25 @@ export default async function RootLayout({
             </p>
           </div>
         </footer>
-        <WhatsAppFloat />
+        {/*
+          Widget de WhatsApp de respond.io — la burbuja de abajo a la derecha.
+
+          Sustituye al botón propio (`WhatsAppFloat`, que sigue en el repo sin
+          usarse): los dos se colocan en la misma esquina y se encimarían.
+
+          Lo que se pierde frente al botón propio: el mensaje precargado por
+          sección (16 rutas, y el título del artículo en el blog). El widget solo
+          admite UNO fijo para todo el sitio, y se edita en respond.io →
+          Growth widgets → "Sitio web iriatalan.com.mx", no aquí.
+
+          `lazyOnload` lo saca del camino crítico: es un script de terceros y no
+          debe competir con el LCP de páginas que viven de búsqueda orgánica.
+        */}
+        <Script
+          id="respondio__growth_tool"
+          src="https://cdn.respond.io/widget/widget.js?wId=94722863-2fa5-4992-9960-d865e59806f1"
+          strategy="lazyOnload"
+        />
         <CookieBanner />
         <Analytics />
       </body>
