@@ -1,16 +1,34 @@
 import { NextResponse } from "next/server";
 
-import { createPipedriveLead, isPipedriveConfigured } from "@/lib/pipedrive";
+import {
+  createPipedriveActivity,
+  createPipedriveLead,
+  isPipedriveConfigured,
+} from "@/lib/pipedrive";
+import {
+  isRespondioLeadConfigured,
+  notifyLeadToRespondio,
+} from "@/lib/respondio";
+
+// El brazo de respond.io agrega 3-4 llamadas seriales al peor caso. 30s es
+// techo de seguridad; en la práctica el presupuesto interno corta antes.
+export const maxDuration = 30;
 
 /**
  * POST /api/contact — Único punto de entrada de leads del sitio. Lo usan el
  * form de /contacto y los 4 lead magnets (guía, checkup, checklist, calculadora).
  *
- * DESTINOS (se escriben en paralelo; basta que uno funcione para dar success):
- *   · Pipedrive — Persona + Lead en la Leads Inbox. Es el CRM de prospección.
- *     Activo solo si existe PIPEDRIVE_API_TOKEN.
+ * DESTINOS (se escriben en paralelo):
+ *   · Pipedrive — Persona + Trato en el embudo dedicado. Es el CRM de
+ *     prospección. Activo solo si existe PIPEDRIVE_API_TOKEN.
  *   · Zoho Forms — el destino histórico. Se mantiene como respaldo durante la
  *     migración para que ningún lead se pierda si Pipedrive falla.
+ *   · respond.io — WhatsApp de bienvenida al lead y asignación de la
+ *     conversación a Iria, para que no se enfríe (un lead esperó 3 días).
+ *
+ * BASTA QUE PIPEDRIVE O ZOHO FUNCIONEN para dar success. respond.io NO cuenta:
+ * es notificación, no persistencia. Si diera success por sí solo, el visitante
+ * vería su mensaje "enviado" con un lead que no quedó registrado en ningún CRM.
  *
  * Cuando Iria confirme que Pipedrive recibe bien, se apaga Zoho poniendo
  * PIPEDRIVE_ONLY=true en Vercel — sin tocar código ni redeployar el repo.
@@ -261,10 +279,10 @@ export async function POST(req: Request) {
     referrer,
   };
 
-  // Se escriben los dos destinos en paralelo: el visitante no espera la suma
-  // de ambas latencias, y una caída de Pipedrive no retrasa a Zoho.
+  // Se escriben los tres destinos en paralelo: el visitante no espera la suma
+  // de las latencias, y una caída de Pipedrive no retrasa a Zoho.
   const enviarAZoho = !(process.env.PIPEDRIVE_ONLY === "true");
-  const [pipedrive, zoho] = await Promise.allSettled([
+  const [pipedrive, zoho, respondio] = await Promise.allSettled([
     isPipedriveConfigured()
       ? createPipedriveLead(lead)
       : Promise.reject(new Error("Pipedrive no configurado.")),
@@ -280,8 +298,15 @@ export async function POST(req: Request) {
           mensaje: mensajeConOrigen,
         })
       : Promise.reject(new Error("Zoho desactivado (PIPEDRIVE_ONLY).")),
+    isRespondioLeadConfigured()
+      ? notifyLeadToRespondio({ ...lead, source: body.source ?? "" })
+      : Promise.reject(new Error("respond.io no configurado.")),
   ]);
 
+  // OJO — respond.io NO cuenta para el éxito, y es a propósito: es la capa de
+  // notificación (WhatsApp de bienvenida + asignación a Iria), no un registro.
+  // Si fuera el único brazo que funcionó, el visitante vería "enviado" con un
+  // lead que no quedó en ningún CRM. La condición se queda en Pipedrive || Zoho.
   if (pipedrive.status === "fulfilled" || zoho.status === "fulfilled") {
     // Al menos un CRM tiene el lead. Si el otro falló, queda en los logs de
     // Vercel para revisarlo sin castigar al visitante con un error.
@@ -291,6 +316,46 @@ export async function POST(req: Request) {
     if (zoho.status === "rejected" && enviarAZoho) {
       console.error("[contact] Zoho falló:", zoho.reason);
     }
+    if (respondio.status === "rejected" && isRespondioLeadConfigured()) {
+      console.error("[contact] respond.io falló:", respondio.reason);
+    }
+
+    // El lead quedó registrado pero puede que nadie lo haya saludado. Ese hueco
+    // tiene que verse donde Iria trabaja, no solo en los logs.
+    //
+    // Iria se entera por dos vías: la ASIGNACIÓN de la conversación (que le
+    // dispara la notificación nativa de respond.io) o el aviso interno de
+    // WhatsApp. Se mide eso y no si la plantilla salió: un lead que recibió su
+    // bienvenida pero cuya conversación quedó sin asignar es justamente el
+    // caso invisible que este feature existe para evitar.
+    //
+    // `omitido` es la excepción: significa que no había nada que hacer con este
+    // lead (no venía de /contacto, no traía teléfono, o el canary lo dejó
+    // fuera). Eso no es hueco y no debe ensuciar Pipedrive con tareas.
+    const respondioResolvio = respondio.status === "fulfilled";
+    const fueraDeAlcance = respondioResolvio && Boolean(respondio.value.omitido);
+    const iriaEnterada =
+      respondioResolvio &&
+      (respondio.value.asignada || respondio.value.avisoInterno);
+    const bienvenidaPendiente =
+      isRespondioLeadConfigured() && !fueraDeAlcance && !iriaEnterada;
+
+    if (bienvenidaPendiente && pipedrive.status === "fulfilled") {
+      const detalle = respondioResolvio
+        ? (respondio.value.nota ?? "respond.io no confirmó la asignación")
+        : String(respondio.reason);
+      await createPipedriveActivity(
+        {
+          dealId: pipedrive.value.dealId,
+          leadId: pipedrive.value.leadId,
+        },
+        "Lead sin contactar por WhatsApp — escribirle a mano",
+        detalle,
+      ).catch((err) => {
+        console.error("[contact] No se pudo dejar la actividad de respaldo:", err);
+      });
+    }
+
     return NextResponse.json({ success: true });
   }
 
