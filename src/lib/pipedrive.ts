@@ -241,3 +241,40 @@ export async function createPipedriveLead(
 
   return { personId: person.id, dealId, leadId, noteCreated };
 }
+
+/**
+ * Deja una tarea pendiente sobre el lead. Se usa cuando el WhatsApp de
+ * bienvenida NO salió: el lead sí quedó registrado, pero nadie lo saludó, y
+ * ese hueco tiene que ser visible donde Iria trabaja, no solo en los logs.
+ *
+ * Acepta trato O lead de la Inbox porque `createPipedriveLead` cae al segundo
+ * cuando el embudo no se resuelve — y mientras `PIPEDRIVE_PIPELINE` no traiga
+ * el id numérico, ESE es el camino que siguen todos los leads. Anclar solo a
+ * `deal_id` dejaría la tarea sin crear justo cuando más falta hace.
+ *
+ * Devuelve false en vez de lanzar: es un complemento, nunca la razón por la
+ * que el visitante vea un error.
+ */
+export async function createPipedriveActivity(
+  ancla: { dealId: number | null; leadId: string | null },
+  subject: string,
+  note?: string,
+): Promise<boolean> {
+  const token = process.env.PIPEDRIVE_API_TOKEN;
+  if (!token) return false;
+  if (!ancla.dealId && !ancla.leadId) return false;
+
+  try {
+    await request("POST", "/v1/activities", token, {
+      ...(ancla.dealId ? { deal_id: ancla.dealId } : { lead_id: ancla.leadId }),
+      subject,
+      type: "task",
+      due_date: new Date().toISOString().slice(0, 10),
+      ...(note ? { note } : {}),
+    });
+    return true;
+  } catch (err) {
+    console.error("[pipedrive] No se pudo crear la actividad:", err);
+    return false;
+  }
+}
