@@ -276,7 +276,6 @@ async function escribirContacto(
   e164: string,
   input: RespondioLeadInput,
   existente: boolean,
-  marcarBienvenida: boolean,
 ): Promise<boolean> {
   const ruta = `/contact/create_or_update/${identifier(e164)}`;
   const { firstName, lastName } = partirNombre(input.nombre);
@@ -295,16 +294,17 @@ async function escribirContacto(
   // Nunca se escriben `tema_whatsapp` ni `escalamiento_estado`: meterían al
   // lead en la escalera 15/30/45 y a los 30 minutos se lo reasignaría a otra
   // persona, cuando el lead comercial es de Iria.
-  // `bienvenida_web_fecha` solo se estampa cuando de verdad se va a saludar.
-  // Escribirla siempre desplazaría la ventana de 7 días en cada submit: quien
-  // llenara el formulario cada 5 días no volvería a recibir bienvenida nunca.
+  //
+  // `bienvenida_web_fecha` NO se escribe aquí. Se estampa en `marcarSaludado()`
+  // y solo después de que el envío devolvió 2xx. El 16-ago-2026, con la
+  // plantilla aprobada en Meta pero sin sincronizar en respond.io, el envío
+  // fallaba con 404 y la marca quedaba puesta igual: el lead se veía "saludado"
+  // sin haber recibido nada, y el guard de 7 días le impedía recibirlo después.
+  // Un fallo que además se tapaba a sí mismo.
   const camposCustom = [
     { name: "origen_lead", value: "sitio_web" },
     { name: "servicio_interes", value: input.servicio },
     { name: "utm_lead", value: resumenUtm(input) },
-    ...(marcarBienvenida
-      ? [{ name: "bienvenida_web_fecha", value: new Date().toISOString() }]
-      : []),
   ].filter((c) => c.value);
 
   const base = { phone: e164, ...identidad };
@@ -318,26 +318,76 @@ async function escribirContacto(
       "[respondio] falta un campo custom en el workspace:",
       mensaje.slice(0, 200),
     );
-    // Reintento en dos escalones. Primero conservando SOLO la marca de
-    // bienvenida: es la que sostiene la idempotencia, y tirarla junto con los
-    // metadatos haría que el mismo lead recibiera la plantilla en cada submit
-    // mientras dure la falla. Si el campo que falta es justamente ese, se cae
-    // al alta pelona: un lead saludado sin metadatos vale más que uno perdido.
-    if (marcarBienvenida) {
-      const conMarca = await llamar("POST", ruta, {
-        ...base,
-        custom_fields: [
-          { name: "bienvenida_web_fecha", value: new Date().toISOString() },
-        ],
-      });
-      if (conMarca.status < 300) return true;
-    }
+    // Reintento sin campos: un lead contactado sin metadatos vale más que un
+    // lead perdido. La marca de bienvenida ya no viaja aquí (ver `marcarSaludado`).
     const reintento = await llamar("POST", ruta, base);
     return reintento.status < 300;
   }
 
   console.error(`[respondio] alta falló (${r.status}):`, mensaje.slice(0, 200));
   return false;
+}
+
+/**
+ * Estampa `bienvenida_web_fecha`. Se llama SOLO después de que el envío de la
+ * plantilla devolvió 2xx: esa marca es la que impide saludar dos veces al mismo
+ * lead en 7 días, así que ponerla sin haber enviado nada deja al lead mudo y sin
+ * forma de recuperarse.
+ */
+async function marcarSaludado(e164: string): Promise<void> {
+  const r = await llamar("POST", `/contact/create_or_update/${identifier(e164)}`, {
+    phone: e164,
+    custom_fields: [
+      { name: "bienvenida_web_fecha", value: new Date().toISOString() },
+    ],
+  });
+  if (r.status >= 300) {
+    // El lead SÍ recibió su bienvenida; lo único que falla es la marca. Se deja
+    // en los logs porque el riesgo es un saludo repetido, no un lead sin atender.
+    console.error(
+      `[respondio] no se pudo marcar bienvenida_web_fecha (${r.status})`,
+    );
+  }
+}
+
+/**
+ * Asigna la conversación y COMPRUEBA que haya quedado.
+ *
+ * respond.io responde 200 aunque no aplique nada: si la conversación está en
+ * `closed` —el caso normal de un lead nuevo, que todavía no ha escrito— el
+ * assignee se queda vacío y la API no lo dice. Confiar en ese 200 hacía que
+ * `route.ts` diera por avisada a Iria cuando no lo estaba, y por eso no dejaba
+ * la actividad de respaldo en Pipedrive. Verificado en vivo el 16-ago-2026.
+ */
+async function asignarYVerificar(
+  contactId: number,
+  userId: number,
+): Promise<boolean> {
+  const r = await llamar(
+    "POST",
+    `/contact/id:${contactId}/conversation/assignee`,
+    { assignee: userId },
+  );
+  if (r.status >= 300) {
+    console.error(
+      `[respondio] no se pudo asignar (${r.status}):`,
+      JSON.stringify(r.json)?.slice(0, 200),
+    );
+    return false;
+  }
+
+  const relectura = await llamar("GET", `/contact/id:${contactId}`);
+  if (relectura.status !== 200) return false;
+  // Sin relectura utilizable no se puede afirmar que quedó: se devuelve false
+  // para que route.ts deje la actividad de respaldo. Falla cerrada, a propósito.
+  const quedo = comoContacto(relectura.json)?.assigneeId === userId;
+  if (!quedo) {
+    console.error(
+      "[respondio] la API respondió 200 pero la conversación quedó sin asignar " +
+        `(contacto ${contactId}) — probablemente está cerrada.`,
+    );
+  }
+  return quedo;
 }
 
 /**
@@ -439,12 +489,7 @@ export async function notifyLeadToRespondio(
     // ---- 4. Escribir el contacto ----------------------------------------
     const vaASaludar = !conOtroAgente && !yaSaludado;
     if (!sinTiempo()) {
-      const escrito = await escribirContacto(
-        e164,
-        input,
-        Boolean(contacto),
-        vaASaludar,
-      );
+      const escrito = await escribirContacto(e164, input, Boolean(contacto));
       resultado.creado = escrito && !contacto;
       // El alta no devuelve el id: hay que releer. El GET por identifier es
       // inmediato (el retraso de ~25 s es del índice de /contact/list, no de aquí).
@@ -476,25 +521,20 @@ export async function notifyLeadToRespondio(
           PLANTILLA_BIENVENIDA,
           [partirNombre(input.nombre).firstName, fraseDeServicio(input.servicio)],
         );
+        // La marca va DESPUÉS y solo si de verdad salió. Ver `marcarSaludado`.
+        if (resultado.plantillaEnviada && !sinTiempo()) {
+          await marcarSaludado(e164);
+        }
       } else if (yaSaludado) {
         resultado.nota = "ya recibió la bienvenida esta semana";
       }
 
       // La asignación es lo que dispara las notificaciones nativas de Iria, así
-      // que se intenta aunque la plantilla haya fallado.
+      // que se intenta aunque la plantilla haya fallado. Se VERIFICA releyendo:
+      // con la conversación cerrada la API contesta 200 sin asignar a nadie, y
+      // dar eso por bueno dejaba a Iria sin enterarse y sin red de respaldo.
       if (!sinTiempo()) {
-        const r = await llamar(
-          "POST",
-          `/contact/id:${contacto.id}/conversation/assignee`,
-          { assignee: USER_IRIA },
-        );
-        resultado.asignada = r.status < 300;
-        if (!resultado.asignada) {
-          console.error(
-            `[respondio] no se pudo asignar a Iria (${r.status}):`,
-            JSON.stringify(r.json)?.slice(0, 200),
-          );
-        }
+        resultado.asignada = await asignarYVerificar(contacto.id, USER_IRIA);
       }
     }
 
