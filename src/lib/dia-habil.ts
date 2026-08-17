@@ -96,3 +96,46 @@ export function fraseDiaHabil(ahora: Date): string {
   // toca `esHabil` y rompe la premisa sin darse cuenta.
   return "el siguiente día hábil";
 }
+
+/**
+ * Fecha (YYYY-MM-DD) del día hábil que cae `diasHabiles` días hábiles después
+ * de `desde`, contando en el calendario de CDMX.
+ *
+ * Existe para las actividades de la cabina: "seguimiento en 3 días hábiles"
+ * tiene que volverse un `due_date` concreto para Pipedrive, y ese cálculo NO
+ * puede hacerse con el calendario del servidor (UTC): un viernes 20:00 de CDMX
+ * ya es sábado en UTC, y el "+3 hábiles" saldría corrido un día.
+ *
+ * Devuelve string ISO y no Date a propósito: el consumidor es la API de
+ * Pipedrive (`due_date: "2026-08-20"`), y un Date obligaría al llamador a
+ * re-formatear eligiendo zona otra vez — el mismo bug dos veces.
+ *
+ * `diasHabiles = 0` regresa `desde` si es hábil, o el hábil siguiente si cae
+ * en fin de semana. Igual que `fraseDiaHabil`, no sabe de festivos.
+ */
+export function proximoDiaHabilISO(desde: Date, diasHabiles: number): string {
+  const fmt = new Intl.DateTimeFormat("en-CA", {
+    timeZone: ZONA,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  // Ancla a mediodía UTC del día-calendario de CDMX: sumar días con setUTCDate
+  // sobre mediodía nunca cambia de fecha por horas de más o de menos.
+  const [y, m, d] = fmt.format(desde).split("-").map(Number);
+  const cursor = new Date(Date.UTC(y, m - 1, d, 12));
+
+  let restantes = Math.max(0, diasHabiles);
+  // Con 0 restantes el while no corre, pero el ajuste final de fin de semana
+  // de abajo sí: por eso 0 también aterriza en día hábil.
+  while (restantes > 0) {
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+    if (esHabil(cursor.getUTCDay())) restantes -= 1;
+  }
+  while (!esHabil(cursor.getUTCDay())) {
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+
+  return cursor.toISOString().slice(0, 10);
+}
