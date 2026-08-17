@@ -24,7 +24,7 @@ import {
   resolverEmbudoVenta,
   type TratoAbierto,
 } from "@/lib/pipedrive";
-import { construirDigest, type ProspectoDigest } from "@/lib/cabina/digest";
+import { construirDigest, NOMBRE, type ProspectoDigest } from "@/lib/cabina/digest";
 import { diasDesde, fechaCdmx } from "@/lib/cabina/fechas";
 
 export const dynamic = "force-dynamic";
@@ -183,7 +183,7 @@ export async function GET(req: NextRequest) {
       Authorization: `Bearer ${resendKey}`,
     },
     body: JSON.stringify({
-      from: "Cabina RIF <onboarding@resend.dev>",
+      from: `${NOMBRE} <onboarding@resend.dev>`,
       to: [destino],
       subject: digest.asunto,
       html: digest.html,

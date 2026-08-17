@@ -24,6 +24,15 @@ import { firmarAccion } from "./token.ts";
  */
 export const TOPE_POR_SECCION = 10;
 
+/**
+ * Cómo se identifica el correo: remitente, asunto y encabezado.
+ *
+ * Vive en una sola constante porque Iria lo busca por este nombre en su
+ * bandeja: si el remitente dijera una cosa y el asunto otra, dejaría de ser
+ * reconocible de un vistazo entre los correos de la mañana.
+ */
+export const NOMBRE = "LEADS RIF";
+
 export type ProspectoDigest = {
   dealId: number;
   titulo: string;
@@ -205,14 +214,14 @@ export function construirDigest(
   if (datos.vencidos.length) partes.push(`${datos.vencidos.length} vencidos`);
   if (datos.hoy.length) partes.push(`${datos.hoy.length} para hoy`);
   if (datos.fugas.length) partes.push(`${datos.fugas.length} sin siguiente paso`);
-  const asunto = `Cabina RIF: ${partes.join(", ")}`;
+  const asunto = `${NOMBRE}: ${partes.join(", ")}`;
 
   const html = `<!doctype html><html lang="es"><body style="margin:0;padding:0;background:#ECE7E2;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ECE7E2;padding:24px 8px;">
     <tr><td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;">
         <tr><td style="background:#9E1B1E;padding:18px 16px;">
-          <div style="color:#ffffff;font-size:18px;font-weight:700;">Cabina de prospectos</div>
+          <div style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:.04em;">${esc(NOMBRE)}</div>
           <div style="color:#ECE7E2;font-size:12px;margin-top:2px;">Tu seguimiento del día — un toque por prospecto</div>
         </td></tr>
         ${seccionHtml("Te deben cotización", "#9E1B1E", datos.debenCotizacion, cfg, "debe")}

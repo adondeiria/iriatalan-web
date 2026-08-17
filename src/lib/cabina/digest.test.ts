@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 
 import {
   construirDigest,
+  NOMBRE,
   TOPE_POR_SECCION,
   type DatosDigest,
   type ProspectoDigest,
@@ -55,8 +56,17 @@ describe("construirDigest", () => {
     assert.ok(d);
     assert.equal(
       d.asunto,
-      "Cabina RIF: 1 esperan cotización, 2 vencidos, 1 para hoy, 1 sin siguiente paso",
+      "LEADS RIF: 1 esperan cotización, 2 vencidos, 1 para hoy, 1 sin siguiente paso",
     );
+  });
+
+  it("el nombre del correo es el mismo en asunto y encabezado", () => {
+    // Iria lo busca por este nombre en su bandeja: si el remitente dijera una
+    // cosa y el asunto otra, dejaría de ser reconocible de un vistazo.
+    const d = construirDigest({ ...vacio, hoy: [prospecto()] }, CFG);
+    assert.ok(d);
+    assert.ok(d.asunto.startsWith(`${NOMBRE}:`));
+    assert.ok(d.html.includes(NOMBRE));
   });
 
   it("cada prospecto con teléfono trae su wa.me con mensaje", () => {
