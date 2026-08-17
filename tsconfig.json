@@ -9,6 +9,10 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    // Los tests corren con el runner nativo de Node (`node --test`), que exige
+    // la extensión explícita en los imports ESM. Con `noEmit` activo esto es
+    // seguro: TypeScript no genera los .js donde la extensión sería inválida.
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",

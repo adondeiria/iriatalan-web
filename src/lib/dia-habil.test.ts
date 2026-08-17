@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { fraseDiaHabil } from "./dia-habil.ts";
+import { fraseDiaHabil, proximoDiaHabilISO } from "./dia-habil.ts";
 
 /**
  * Las fechas se escriben en UTC a propósito: es lo que ve el servidor. Cada
@@ -81,6 +81,55 @@ describe("fraseDiaHabil — los bordes que rompen esto", () => {
         for (const malo of inhabiles) {
           assert.ok(!frase.includes(malo), `prometió ${malo} en ${iso}`);
         }
+      }
+    }
+  });
+});
+
+describe("proximoDiaHabilISO — fechas para actividades de la cabina", () => {
+  it("lunes + 3 hábiles = jueves", () => {
+    // Lunes 17-ago-2026, 10:00 CDMX
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-17T16:00:00Z"), 3), "2026-08-20");
+  });
+
+  it("miércoles + 3 hábiles salta el fin de semana: lunes", () => {
+    // Miércoles 19-ago-2026, 10:00 CDMX → jue, vie, lun
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-19T16:00:00Z"), 3), "2026-08-24");
+  });
+
+  it("viernes + 1 hábil = lunes, nunca sábado", () => {
+    // Viernes 21-ago-2026, 10:00 CDMX
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-21T16:00:00Z"), 1), "2026-08-24");
+  });
+
+  it("sábado + 0 aterriza en el lunes (0 también respeta lo hábil)", () => {
+    // Sábado 22-ago-2026, 11:00 CDMX
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-22T17:00:00Z"), 0), "2026-08-24");
+  });
+
+  it("día hábil + 0 = ese mismo día", () => {
+    // Martes 18-ago-2026, 10:00 CDMX
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-18T16:00:00Z"), 0), "2026-08-18");
+  });
+
+  it("la zona manda: viernes 20:00 CDMX (sábado UTC) + 1 hábil = lunes, no martes", () => {
+    // Viernes 21-ago-2026, 20:00 CDMX = sábado 22 02:00 UTC. Si el cálculo
+    // usara el calendario UTC, partiría del sábado y regresaría martes.
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-22T02:00:00Z"), 1), "2026-08-24");
+  });
+
+  it("cruza fin de mes sin despeinarse", () => {
+    // Viernes 28-ago-2026, 10:00 CDMX + 2 hábiles = martes 1-sep
+    assert.equal(proximoDiaHabilISO(cdmx("2026-08-28T16:00:00Z"), 2), "2026-09-01");
+  });
+
+  it("siempre regresa YYYY-MM-DD y nunca fin de semana (barrido)", () => {
+    for (let dia = 16; dia <= 22; dia += 1) {
+      for (let n = 0; n <= 5; n += 1) {
+        const fecha = proximoDiaHabilISO(cdmx(`2026-08-${dia}T18:00:00Z`), n);
+        assert.match(fecha, /^\d{4}-\d{2}-\d{2}$/);
+        const diaSemana = new Date(`${fecha}T12:00:00Z`).getUTCDay();
+        assert.ok(diaSemana >= 1 && diaSemana <= 5, `${fecha} cayó en fin de semana`);
       }
     }
   });

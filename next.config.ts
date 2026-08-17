@@ -68,6 +68,14 @@ const nextConfig: NextConfig = {
         source: "/descargas/:archivo*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, noarchive" }],
       },
+      // La cabina de prospectos es una herramienta interna de Iria (links
+      // firmados que llegan por correo). Mismo defense-in-depth que /studio.
+      {
+        source: "/cabina/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
     ];
   },
 
