@@ -1029,3 +1029,109 @@ export async function marcarPidioCotizacion(
 
   return resultado;
 }
+
+export type EntradaProspectoWhatsApp = {
+  nombre: string;
+  telefono: string;
+  /** Primer mensaje del prospecto: alimenta la nota del trato. */
+  mensaje?: string;
+  /** Por dónde entró (artículo del blog, widget del sitio). */
+  origen?: string;
+};
+
+export type ResultadoProspectoWhatsApp = {
+  personId: number;
+  dealId: number;
+  /** true si la persona ya existía en Pipedrive. */
+  personaReutilizada: boolean;
+  /** true si se reutilizó un trato abierto en vez de crear uno. */
+  tratoReutilizado: boolean;
+};
+
+/**
+ * Registra en Pipedrive a quien escribe por WhatsApp sin pasar por el
+ * formulario: los que llegan por el botón del blog o marcan directo.
+ *
+ * Hermana de `capturarPideCotizacion`, con una diferencia deliberada: NO pone
+ * la etiqueta de cotización. Quien solo saludó no pidió una, y esa etiqueta
+ * dispara la automatización que agenda tarea a 2 días hábiles — llenaría la
+ * agenda de pendientes que nadie pidió.
+ *
+ * Deduplica por teléfono y por trato abierto porque el disparador de arriba
+ * (respond.io avisa de CADA reasignación) manda el mismo contacto varias
+ * veces por conversación: sin esto, un prospecto se convierte en tres.
+ */
+export async function registrarProspectoWhatsApp(
+  entrada: EntradaProspectoWhatsApp,
+): Promise<ResultadoProspectoWhatsApp> {
+  const token = process.env.PIPEDRIVE_API_TOKEN;
+  if (!token) throw new Error("PIPEDRIVE_API_TOKEN no está configurado.");
+
+  const telefono = normalizarTelefono(entrada.telefono);
+  const nombre = entrada.nombre.trim() || "Sin nombre";
+  const mensaje = (entrada.mensaje ?? "").trim();
+  const origen = (entrada.origen ?? "").trim();
+
+  // 1. ¿Ya existe la persona? Buscar antes de crear es lo único que evita el
+  //    duplicado; el disparador reenvía el mismo contacto en cada asignación.
+  //
+  //    SE BUSCA DOS VECES a propósito. El buscador de Pipedrive corre sobre un
+  //    índice que tarda ~1-2 s en ver a un recién creado: verificado el 17-ago
+  //    con dos llamadas seguidas, que crearon DOS personas para el mismo
+  //    teléfono. La segunda pasada, tras una pausa, cierra esa ventana. Solo
+  //    la paga el camino "no existe", que es el que va a crear de todos modos.
+  let personId = await buscarPersonaPorTelefono(token, telefono);
+  if (!personId) {
+    await new Promise((r) => setTimeout(r, 1500));
+    personId = await buscarPersonaPorTelefono(token, telefono);
+  }
+  const personaReutilizada = personId !== null;
+
+  if (!personId) {
+    const p = await request<{ id: number }>("POST", "/api/v2/persons", token, {
+      name: nombre,
+      ...(telefono
+        ? { phones: [{ value: telefono, primary: true, label: "mobile" }] }
+        : {}),
+    });
+    personId = p.id;
+  }
+
+  // 2. Un trato abierto por prospecto. Si ya lo estamos atendiendo, este
+  //    mensaje pertenece a esa conversación, no a una nueva.
+  let dealId = await tratoAbiertoDePersona(token, personId);
+  const tratoReutilizado = dealId !== null;
+
+  if (!dealId) {
+    const target = await resolveTarget(token).catch(() => null);
+    const d = await request<{ id: number }>("POST", "/api/v2/deals", token, {
+      title: `${nombre} — WhatsApp`,
+      person_id: personId,
+      ...(target
+        ? { pipeline_id: target.pipelineId, stage_id: target.stageId }
+        : {}),
+    });
+    dealId = d.id;
+  }
+
+  // 3. La nota guarda con qué llegó. Solo en tratos nuevos: en uno que ya
+  //    existe, cada reenvío del disparador dejaría la misma nota repetida.
+  if (!tratoReutilizado && (mensaje || origen)) {
+    const filas = [
+      origen ? `<p><b>Entró por:</b> ${escapeHtml(origen)}</p>` : "",
+      mensaje ? `<p><b>Escribió:</b> ${escapeHtml(mensaje)}</p>` : "",
+    ].join("");
+    try {
+      await request("POST", "/v1/notes", token, {
+        deal_id: dealId,
+        content: `<p><b>Prospecto por WhatsApp</b></p>${filas}`,
+      });
+    } catch (err) {
+      // La nota es contexto, no el registro. Perderla no justifica devolver
+      // error a quien nos llamó y provocar un reintento que sí duplicaría.
+      console.error("[whatsapp] No se pudo guardar la nota:", err);
+    }
+  }
+
+  return { personId, dealId, personaReutilizada, tratoReutilizado };
+}
