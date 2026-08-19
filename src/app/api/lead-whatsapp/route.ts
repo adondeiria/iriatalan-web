@@ -28,6 +28,7 @@ import {
   pasaCanary,
   secretoValido,
 } from "@/lib/lead-whatsapp";
+import { avisarPorCorreo } from "@/lib/lead-whatsapp-correo";
 import {
   normalizarTelefono,
   registrarProspectoWhatsApp,
@@ -89,7 +90,19 @@ export async function POST(req: NextRequest) {
       mensaje,
       origen,
     });
-    return NextResponse.json({ ok: true, ...r });
+
+    // El aviso va DESPUÉS de registrar y sin romper la respuesta: si Resend
+    // falla, el lead ya quedó en Pipedrive y devolver error provocaría un
+    // reintento de Make. Se reporta en el cuerpo para poder auditarlo.
+    const avisado = await avisarPorCorreo({
+      nombre,
+      telefono,
+      origen,
+      dealId: r.dealId,
+      tratoReutilizado: r.tratoReutilizado,
+    });
+
+    return NextResponse.json({ ok: true, ...r, avisado });
   } catch (err) {
     console.error("[lead-whatsapp] No se pudo registrar:", err);
     // 502 y no 200: Make debe poder reintentar y quedar registrado el fallo.
