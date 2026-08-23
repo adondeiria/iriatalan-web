@@ -657,7 +657,25 @@ function PantallaResultado({
         </section>
       )}
 
-      <section className="mt-10">
+      {/*
+        Los botones van aquí y no al final del todo: el momento de mayor
+        intención es justo después de leer el diagnóstico, y la sección que
+        acaba de terminar dice literalmente qué preguntarle a Iria — así que la
+        acción es el paso siguiente natural. Lo que queda abajo (cómo se
+        calculó, la nota, los avisos) es respaldo de método: lectura de menor
+        energía que no debería estorbar entre el diagnóstico y el contacto.
+      */}
+      {!modoSesion && (
+        <AccionesDelResultado
+          resultado={resultado}
+          modoSesion={modoSesion}
+          nombre={nombre}
+          recomendacion={recomendacion}
+          onReiniciar={onReiniciar}
+        />
+      )}
+
+      <section className="mt-12">
         <h2 className="font-serif text-xl text-ink dark:text-cream-light">
           Cómo se calculó
         </h2>
@@ -739,15 +757,35 @@ function PantallaResultado({
         </section>
       )}
 
-      {modoSesion && <BloqueDeAsesora bloque={bloque} setBloque={setBloque} />}
+      {/*
+        En sesión los botones se quedan ABAJO, después del bloque de acuerdo:
+        el PDF tiene que incluir lo que Iria acaba de llenar con el cliente, y
+        un "Guardar PDF" colocado antes del formulario guardaría el expediente
+        a medias. En público no hay formulario que esperar, así que allá suben.
+      */}
+      {modoSesion && (
+        <>
+          <BloqueDeAsesora bloque={bloque} setBloque={setBloque} />
+          <AccionesDelResultado
+            resultado={resultado}
+            modoSesion={modoSesion}
+            nombre={nombre}
+            recomendacion={recomendacion}
+            onReiniciar={onReiniciar}
+          />
+        </>
+      )}
 
-      <AccionesDelResultado
-        resultado={resultado}
-        modoSesion={modoSesion}
-        nombre={nombre}
-        recomendacion={recomendacion}
-        onReiniciar={onReiniciar}
-      />
+      {/* En público, reiniciar vive al pie: arriba competía con los CTAs. */}
+      {!modoSesion && (
+        <button
+          type="button"
+          onClick={onReiniciar}
+          className="mt-10 inline-flex min-h-11 items-center rounded-full px-1 text-sm text-rif-gris underline underline-offset-4 transition hover:text-burgundy print:hidden"
+        >
+          Empezar de nuevo
+        </button>
+      )}
 
       <Avisos />
     </div>
@@ -939,13 +977,17 @@ function AccionesDelResultado({
         </>
       )}
 
-      <button
-        type="button"
-        onClick={onReiniciar}
-        className="mt-6 inline-flex min-h-11 items-center rounded-full px-1 text-sm text-rif-gris underline underline-offset-4 transition hover:text-burgundy"
-      >
-        Empezar de nuevo
-      </button>
+      {/* En sesión el reinicio vive aquí; en público baja al pie de la página
+          para no competir con los dos CTAs. */}
+      {modoSesion && (
+        <button
+          type="button"
+          onClick={onReiniciar}
+          className="mt-6 inline-flex min-h-11 items-center rounded-full px-1 text-sm text-rif-gris underline underline-offset-4 transition hover:text-burgundy"
+        >
+          Empezar de nuevo
+        </button>
+      )}
     </section>
   );
 }
