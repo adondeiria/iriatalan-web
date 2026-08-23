@@ -1005,6 +1005,19 @@ function Escalera({ resultado }: { resultado: Resultado }) {
         if (nivelTolerancia === p.nivel) marcas.push("Tolerancia");
         const esTuyo = p.nivel === nivel;
 
+        /*
+          El subtítulo de cada escalón es el plazo que lleva a ese nivel. Como
+          referencia en los escalones ajenos funciona, pero en el propio puede
+          contradecir a la persona: quien declaró más de quince años y aterrizó
+          en Conservador por su tolerancia leía "Conservador · menos de 5 años"
+          y parecía que no la habíamos escuchado. En su renglón se dice qué la
+          puso ahí, que además es la información que necesita.
+        */
+        const subtitulo =
+          esTuyo && !marcas.includes("Plazo")
+            ? `por ${fraseDimensiones(resultado.dimensionesMinimas)}`
+            : p.horizonte;
+
         return (
           <div
             key={p.nivel}
@@ -1036,7 +1049,7 @@ function Escalera({ resultado }: { resultado: Resultado }) {
               >
                 {p.nombre}
               </span>
-              <span className="block text-xs text-rif-gris">{p.horizonte}</span>
+              <span className="block text-xs text-rif-gris">{subtitulo}</span>
             </span>
             {marcas.length > 0 && (
               <span className="flex shrink-0 flex-wrap justify-end gap-1">
