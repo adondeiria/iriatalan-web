@@ -13,7 +13,11 @@
  * asignación (decisión de Iria, 21-ago-2026).
  */
 
-import type { Paso, Resultado } from "./perfil-inversionista";
+import {
+  noAceptaNingunaPerdida,
+  type Paso,
+  type Resultado,
+} from "./perfil-inversionista.ts";
 
 export type TextoPerfil = {
   /** Qué significa el perfil en la práctica. */
@@ -149,9 +153,6 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
   },
 };
 
-/** Puntos de la P8 que significan "no acepto ninguna pérdida". */
-const P8_NINGUNA_PERDIDA = 1;
-
 /**
  * Nivel de plazo hasta el cual manda el horizonte: 1 = menos de 2 años,
  * 2 = de 2 a 5. Corrección de Iria (22-ago): **con menos de cinco años** lo que
@@ -180,7 +181,7 @@ export function textoRecomendacion(
   respuestas: Record<number, number>,
 ): TextoRecomendacion | null {
   const plazoCorto = resultado.nivelPlazo <= PLAZO_MAXIMO_CORTO;
-  const sinPerdida = respuestas[8] === P8_NINGUNA_PERDIDA;
+  const sinPerdida = noAceptaNingunaPerdida(respuestas);
 
   // Cuando mandan las dos, se nombran las dos. Contestar solo el plazo deja
   // fuera lo que la persona marcó con más fuerza, y se lee como si no la

@@ -114,7 +114,10 @@ export function Cuestionario({ modoSesion }: { modoSesion: boolean }) {
   }, [respuestas, nombre, monto]);
 
   const pregunta = PREGUNTAS[indice];
-  const completas = PREGUNTAS.every((q) => respuestas[q.n]);
+  // Comparar contra `undefined` y no evaluar el valor como booleano: la P9
+  // tiene una opción que vale 0, y tratarla como falsy haría que el
+  // cuestionario creyera que esa pregunta sigue sin contestar.
+  const completas = PREGUNTAS.every((q) => respuestas[q.n] !== undefined);
 
   const resultado: Resultado | null = useMemo(() => {
     if (!completas) return null;
@@ -164,7 +167,9 @@ export function Cuestionario({ modoSesion }: { modoSesion: boolean }) {
         hayAvance={Object.keys(respuestas).length > 0}
         onEmpezar={() => {
           // Retomar en la primera pregunta sin contestar.
-          const pendiente = PREGUNTAS.findIndex((q) => !respuestas[q.n]);
+          const pendiente = PREGUNTAS.findIndex(
+            (q) => respuestas[q.n] === undefined,
+          );
           // Contra `quiz_complete`, este evento da la tasa de terminación —
           // sin formulario, es la única forma de saber cuántos se caen y dónde.
           trackEvent("quiz_start", {
@@ -206,9 +211,9 @@ export function Cuestionario({ modoSesion }: { modoSesion: boolean }) {
         else setIndice(indice - 1);
       }}
       onSiguiente={
-        respuestas[pregunta.n] && indice < TOTAL_PREGUNTAS - 1
+        respuestas[pregunta.n] !== undefined && indice < TOTAL_PREGUNTAS - 1
           ? () => setIndice(indice + 1)
-          : respuestas[pregunta.n] && completas
+          : respuestas[pregunta.n] !== undefined && completas
             ? () => setFase("resultado")
             : undefined
       }
@@ -780,7 +785,7 @@ function mensajeWhatsApp(
       ? "Me gustaría que me propongas un fondo para este plazo."
       : recomendacion
         ? "Me gustaría ver las opciones garantizadas."
-        : "Me gustaría platicarlo.";
+        : "Me gustaría que me propongas un plan.";
   const l: string[] = [];
   l.push(
     nombre
@@ -839,12 +844,44 @@ function AccionesDelResultado({
     mensajeWhatsApp(resultado, nombre, recomendacion),
   )}`;
 
+  // Mensaje del segundo botón: avisa que viene el PDF, para que Iria sepa que
+  // hay un archivo en camino aunque la persona tarde en adjuntarlo.
+  const urlWhatsAppPdf = `https://wa.me/525526786325?text=${encodeURIComponent(
+    `${
+      nombre ? `Hola Iria, soy ${nombre}.` : "Hola Iria."
+    } Te mando el PDF de mi perfil del inversionista — salí perfil ${resultado.perfil.nombre.toLowerCase()}. Va adjunto en el siguiente mensaje.`,
+  )}`;
+
   function guardarPdf() {
     trackEvent("file_download", {
       file_name: "perfil-inversionista",
       method: modoSesion ? "perfil_sesion" : "perfil_publico",
     });
     window.print();
+  }
+
+  /**
+   * Segundo botón: guardar el PDF y abrir WhatsApp para adjuntarlo.
+   *
+   * Son dos pasos y no uno porque **WhatsApp no acepta archivos por enlace** —
+   * un `wa.me` solo precarga texto. Lo que sí se puede es dispararle el diálogo
+   * de guardado y dejarle el chat abierto con el mensaje escrito, para que
+   * adjunte el archivo que acaba de guardar. El botón lo dice tal cual: si
+   * prometiera mandarlo solo, la persona cerraría creyendo que ya llegó.
+   *
+   * El retardo deja que el diálogo de impresión se abra antes que la pestaña de
+   * WhatsApp; sin él, algunos navegadores cancelan uno de los dos.
+   */
+  function guardarYMandarPdf() {
+    trackEvent("file_download", {
+      file_name: "perfil-inversionista",
+      method: "perfil_publico_a_asesora",
+    });
+    trackEvent("whatsapp_click", { method: "perfil_pdf_a_asesora" });
+    window.print();
+    window.setTimeout(() => {
+      window.open(urlWhatsAppPdf, "_blank", "noopener,noreferrer");
+    }, 700);
   }
 
   return (
@@ -855,7 +892,7 @@ function AccionesDelResultado({
       <p className="mt-2 leading-relaxed text-warm-brown dark:text-cream-light/80">
         {modoSesion
           ? "Guarda el PDF con el perfil acordado. Es lo que queda documentado."
-          : "Este perfil es el punto de partida de una conversación, no una recomendación de inversión. Mándamelo y lo revisamos juntos, o guárdalo para después."}
+          : "Este perfil es el punto de partida de una conversación, no una recomendación de inversión. Pídeme una propuesta, o mándame tu PDF y lo revisamos juntos."}
       </p>
 
       <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -869,28 +906,37 @@ function AccionesDelResultado({
             }
             className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-rif-rojo px-6 py-3.5 text-center font-medium text-cream-light transition hover:bg-burgundy-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy"
           >
-            {recomendacion ? recomendacion.cta : "Mandárselo a Iria por WhatsApp"}
+            {recomendacion ? recomendacion.cta : "Quiero que me propongan un plan"}
           </a>
         )}
         <button
           type="button"
-          onClick={guardarPdf}
+          onClick={modoSesion ? guardarPdf : guardarYMandarPdf}
           className={[
-            "inline-flex min-h-12 flex-1 items-center justify-center rounded-full px-6 py-3.5 font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy",
+            "inline-flex min-h-12 flex-1 items-center justify-center rounded-full px-6 py-3.5 text-center font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy",
             modoSesion
               ? "bg-rif-rojo text-cream-light hover:bg-burgundy-deep"
               : "border border-burgundy/30 text-burgundy dark:text-cream-light hover:bg-cream dark:hover:bg-coffee/40",
           ].join(" ")}
         >
-          {modoSesion ? "Guardar PDF" : "Descargar mi resultado en PDF"}
+          {modoSesion ? "Guardar PDF" : "Mandar mi PDF a Iria"}
         </button>
       </div>
 
       {!modoSesion && (
-        <p className="mt-4 text-sm leading-relaxed text-rif-gris">
-          No guardamos tus respuestas: el resultado vive solo en tu navegador
-          hasta que tú decidas mandarlo.
-        </p>
+        <>
+          {/* Decir el paso manual por adelantado. WhatsApp no acepta archivos
+              por enlace, así que el botón guarda el PDF y abre el chat — si no
+              lo advirtiéramos, la persona cerraría creyendo que ya se envió. */}
+          <p className="mt-4 text-sm leading-relaxed text-rif-gris">
+            El segundo botón guarda tu PDF y abre WhatsApp con el mensaje listo;
+            solo tienes que adjuntar el archivo que acabas de guardar.
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-rif-gris">
+            No guardamos tus respuestas: el resultado vive solo en tu navegador
+            hasta que tú decidas mandarlo.
+          </p>
+        </>
       )}
 
       <button

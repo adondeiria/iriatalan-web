@@ -252,6 +252,16 @@ export const PREGUNTAS: readonly Pregunta[] = [
     texto:
       "Si el mercado cayera fuerte, ¿cuánto tiempo aceptarías esperar la recuperación sin mover tu plan?",
     opciones: [
+      // Vale 0 y no 1 a propósito. Esta respuesta dice lo mismo que la opción
+      // "Ninguna" de la P8, así que tiene que disparar el mismo techo — y para
+      // distinguirla de "menos de 6 meses" necesita un valor propio, porque lo
+      // que se guarda son los puntos, no cuál opción se eligió. El 0 baja el
+      // mínimo del subtotal de tolerancia de 6 a 5, que sigue cayendo en el
+      // nivel 1; el máximo no se mueve, así que las bandas no cambian.
+      {
+        texto: "No estoy dispuesto a ninguna pérdida",
+        puntos: 0,
+      },
       { texto: "Menos de 6 meses", puntos: 1 },
       { texto: "Hasta 1 año", puntos: 2 },
       { texto: "2 a 3 años", puntos: 3 },
@@ -284,13 +294,27 @@ export function nivelTolerancia(subtotal: number): number {
   return 5;
 }
 
-/**
- * Puntos de la P8 que significan "no acepto ninguna pérdida".
- *
- * Es la primera opción: "Ninguna: no acepto ver mi saldo abajo de lo que
- * aporté".
- */
+/** P8, primera opción: "Ninguna: no acepto ver mi saldo abajo de lo que aporté". */
 const P8_NINGUNA_PERDIDA = 1;
+
+/** P9, opción añadida por Iria (23-ago): "No estoy dispuesto a ninguna pérdida". */
+const P9_NINGUNA_PERDIDA = 0;
+
+/**
+ * true si la persona declaró que no acepta ninguna pérdida, por cualquiera de
+ * las dos puertas.
+ *
+ * Son dos preguntas distintas que permiten decir lo mismo —cuánta caída
+ * tolerarías y cuánto esperarías a que se recupere—, y ambas tienen que
+ * disparar el techo. Si solo mirara la P8, alguien podría declarar cero
+ * tolerancia en la P9 y salir Dinámico por la otra puerta.
+ */
+export function noAceptaNingunaPerdida(respuestas: Respuestas): boolean {
+  return (
+    respuestas[8] === P8_NINGUNA_PERDIDA ||
+    respuestas[9] === P9_NINGUNA_PERDIDA
+  );
+}
 
 /**
  * Techo duro pedido por Iria (21-ago-2026): **quien no tolera ninguna pérdida
@@ -312,7 +336,7 @@ function aplicarTechoDeTolerancia(
   nivel: number,
   respuestas: Respuestas,
 ): number {
-  return respuestas[8] === P8_NINGUNA_PERDIDA ? 1 : nivel;
+  return noAceptaNingunaPerdida(respuestas) ? 1 : nivel;
 }
 
 /**
@@ -321,7 +345,10 @@ function aplicarTechoDeTolerancia(
  */
 export function sumarPaso(respuestas: Respuestas, paso: Paso): number | null {
   const preguntas = PREGUNTAS.filter((q) => q.paso === paso);
-  if (preguntas.some((q) => !respuestas[q.n])) return null;
+  // `=== undefined` y no un chequeo de falsy: la P9 tiene una opción que vale
+  // 0, y `!0` es true — con la comprobación ingenua, quien eligiera "no estoy
+  // dispuesto a ninguna pérdida" quedaría como si no hubiera contestado.
+  if (preguntas.some((q) => respuestas[q.n] === undefined)) return null;
   return preguntas.reduce((acc, q) => acc + (respuestas[q.n] ?? 0), 0);
 }
 
@@ -359,9 +386,9 @@ function calcularSenales(
 
   // El techo de la P8 manda: si no acepta ninguna pérdida, esa es LA razón del
   // resultado y va primero — en público se muestra a lo más una señal.
-  if (r[8] === P8_NINGUNA_PERDIDA) {
+  if (noAceptaNingunaPerdida(r)) {
     senales.push({
-      titulo: "No aceptas ver tu saldo abajo de lo que aportaste",
+      titulo: "No estás dispuesto a ninguna pérdida",
       detalle:
         "Ese solo dato define tu perfil: un fondo que puede bajar no te sirve, por muy largo que sea tu plazo. Lo tuyo es un plan con capital o rendimiento mínimo garantizado.",
     });
@@ -369,11 +396,11 @@ function calcularSenales(
   // Cubre también r[8] === 1 ("ninguna pérdida"): esperar 12% o más sin aceptar
   // NADA de caída es una contradicción todavía más fuerte que aceptar un 5%, y
   // la condición original la dejaba pasar sin señal.
-  if (r[10] === 4 && (r[8] ?? 0) <= 2) {
+  if (r[10] === 4 && ((r[8] ?? 9) <= 2 || noAceptaNingunaPerdida(r))) {
     senales.push({
       titulo: "Tu expectativa y tu tolerancia no cuadran",
       detalle:
-        r[8] === P8_NINGUNA_PERDIDA
+        noAceptaNingunaPerdida(r)
           ? "Esperas 12% o más y a la vez no aceptas ninguna pérdida. No existe un instrumento que dé las dos cosas: quien te lo ofrezca, no te está ofreciendo una inversión."
           : "Esperas 12% o más pero solo aguantas una caída de 5%. Una de las dos tiene que ceder.",
     });
@@ -425,7 +452,11 @@ export function calcularResultado(respuestas: Respuestas): Resultado {
   const subtotalCap = sumarPaso(respuestas, "capacidad");
   const subtotalTol = sumarPaso(respuestas, "tolerancia");
 
-  if (!nivelPlazo || subtotalCap === null || subtotalTol === null) {
+  if (
+    nivelPlazo === undefined ||
+    subtotalCap === null ||
+    subtotalTol === null
+  ) {
     throw new Error("Cuestionario incompleto: faltan respuestas.");
   }
 

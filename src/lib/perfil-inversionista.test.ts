@@ -205,7 +205,7 @@ describe("techo duro: quien no acepta ninguna pérdida es conservador", () => {
     const res = calcularResultado(r);
     assert.deepEqual(res.dimensionesMinimas, ["tolerancia"]);
     assert.ok(
-      res.senales.some((s) => s.titulo.includes("No aceptas")),
+      res.senales.some((s) => s.titulo.includes("No estás dispuesto")),
       "esperaba la señal que explica el techo",
     );
   });
@@ -215,21 +215,43 @@ describe("techo duro: quien no acepta ninguna pérdida es conservador", () => {
     r[8] = 1;
     r[10] = 4;
     const res = calcularResultado(r);
-    assert.match(res.senales[0].titulo, /No aceptas/);
+    assert.match(res.senales[0].titulo, /No estás dispuesto/);
+  });
+
+  it("la P9 es la segunda puerta del mismo techo", () => {
+    // Opción añadida por Iria (23-ago). Dice lo mismo que la "Ninguna" de la
+    // P8, así que tiene que topar igual — si no, se podría declarar cero
+    // tolerancia aquí y salir Dinámico por la otra puerta.
+    const r = respuestasCon(5, 4, 4);
+    r[9] = 0;
+    const res = calcularResultado(r);
+    assert.equal(res.nivelTolerancia, 1);
+    assert.equal(res.perfil.nombre, "Conservador");
+    assert.ok(res.senales.some((s) => s.titulo.includes("No estás dispuesto")));
+  });
+
+  it("elegir la opción que vale 0 cuenta como respuesta contestada", () => {
+    // `!0` es true: con una comprobación de falsy, el cuestionario creería que
+    // esta pregunta sigue en blanco y nunca llegaría al resultado.
+    const r = respuestasCon(5, 4, 4);
+    r[9] = 0;
+    assert.equal(sumarPaso(r, "tolerancia"), 4 + 4 + 4 + 4 + 0 + 4);
+    assert.doesNotThrow(() => calcularResultado(r));
   });
 
   it("P8=2 (hasta −5%) NO dispara el techo", () => {
     const r = respuestasCon(5, 4, 4);
     r[8] = 2;
+    r[9] = 4;
     const res = calcularResultado(r);
-    assert.ok(res.nivelTolerancia > 1, "solo la opción 'ninguna' topa el perfil");
+    assert.ok(res.nivelTolerancia > 1, "solo las opciones de cero pérdida topan");
   });
 
   it("recomienda garantizado en el texto de la señal", () => {
     const r = respuestasCon(3, 3, 3);
     r[8] = 1;
     const res = calcularResultado(r);
-    const senal = res.senales.find((s) => s.titulo.includes("No aceptas"));
+    const senal = res.senales.find((s) => s.titulo.includes("No estás dispuesto"));
     assert.ok(senal);
     assert.match(senal.detalle, /garantizado/);
   });
@@ -302,45 +324,51 @@ describe("parseRespuestas — el servidor no confía en el navegador", () => {
 
 describe("barrido exhaustivo — los 5 niveles son alcanzables", () => {
   it("recorre todas las combinaciones sin dejar un nivel huérfano", () => {
+    // Los valores salen de las opciones DECLARADAS de cada pregunta, no de un
+    // 1..4 escrito a mano. Desde que la P9 tiene una opción que vale 0 y la P1
+    // salta del 1 al 3, un barrido con rangos inventados estaría probando un
+    // cuestionario que no existe.
+    const valores = (n: number) =>
+      PREGUNTAS.find((q) => q.n === n)!.opciones.map((o) => o.puntos);
+
     const finales = new Map<number, number>();
     const capacidades = new Set<number>();
     const tolerancias = new Set<number>();
     let total = 0;
 
-    // Los valores de plazo salen de las opciones declaradas, no de un 1..5
-    // inventado: tras la fusión de la P1 el 2 ya no existe, y codificarlo a
-    // mano haría que el barrido probara un cuestionario que no es el real.
-    const VALORES_PLAZO = PREGUNTAS.find((q) => q.paso === "plazo")!.opciones.map(
-      (o) => o.puntos,
-    );
-    for (const plazo of VALORES_PLAZO) {
-      for (let a = 1; a <= 4; a++)
-        for (let b = 1; b <= 4; b++)
-          for (let c = 1; c <= 4; c++) {
-            const nCap = nivelCapacidad(a + b + c);
+    for (const p1 of valores(1))
+      for (const p2 of valores(2))
+        for (const p3 of valores(3))
+          for (const p4 of valores(4)) {
+            const nCap = nivelCapacidad(p2 + p3 + p4);
             capacidades.add(nCap);
-            for (let d = 1; d <= 4; d++)
-              for (let e = 1; e <= 4; e++)
-                for (let f = 1; f <= 4; f++)
-                  for (let g = 1; g <= 4; g++)
-                    for (let h = 1; h <= 4; h++)
-                      for (let i = 1; i <= 4; i++) {
-                        // `g` es la P8: si vale 1 ("ninguna pérdida"), el techo
-                        // duro baja la tolerancia a 1 sin importar la suma.
-                        const nTol =
-                          g === 1 ? 1 : nivelTolerancia(d + e + f + g + h + i);
-                        tolerancias.add(nTol);
-                        const fin = Math.min(plazo, nCap, nTol);
-                        finales.set(fin, (finales.get(fin) ?? 0) + 1);
+            for (const p5 of valores(5))
+              for (const p6 of valores(6))
+                for (const p7 of valores(7))
+                  for (const p8 of valores(8))
+                    for (const p9 of valores(9))
+                      for (const p10 of valores(10)) {
+                        const r: Respuestas = {
+                          1: p1, 2: p2, 3: p3, 4: p4, 5: p5,
+                          6: p6, 7: p7, 8: p8, 9: p9, 10: p10,
+                        };
+                        const res = calcularResultado(r);
+                        tolerancias.add(res.nivelTolerancia);
+                        finales.set(
+                          res.nivel,
+                          (finales.get(res.nivel) ?? 0) + 1,
+                        );
                         total++;
                       }
           }
-    }
 
-    // El total se deriva del cuestionario real, no de una constante escrita a
-    // mano: si mañana cambia el número de opciones, el barrido sigue siendo
-    // exhaustivo en vez de quedarse probando una versión vieja.
-    assert.equal(total, VALORES_PLAZO.length * 4 ** 3 * 4 ** 6);
+    assert.equal(
+      total,
+      valores(1).length *
+        valores(2).length * valores(3).length * valores(4).length *
+        valores(5).length * valores(6).length * valores(7).length *
+        valores(8).length * valores(9).length * valores(10).length,
+    );
     for (const nivel of [1, 2, 3, 4, 5]) {
       assert.ok(
         (finales.get(nivel) ?? 0) > 0,
