@@ -322,6 +322,97 @@ function parseDraft(md) {
     out.body.push(paragraph(text.trim(), style));
   }
 
+  /*
+    Markdown envuelve los párrafos a 80 columnas; un párrafo es un grupo de
+    renglones seguidos, no un renglón. Sin acumularlos, cada renglón se
+    convertía en un párrafo aparte —cortado a media frase— y una negrita que
+    cruzara el corte se partía en dos, dejando los `**` visibles al lector.
+    Por eso los renglones se juntan aquí y solo se vuelcan cuando algo cierra
+    el párrafo: un renglón en blanco, un encabezado, una lista, una cita.
+  */
+  let paraBuffer = [];
+  let quoteBuffer = [];
+  let currentList = null;
+
+  function flushParagraph() {
+    if (currentList) {
+      const { listItem, level, lines } = currentList;
+      currentList = null;
+      const txt = lines.join(" ").trim();
+      if (txt) out.body.push(paragraph(txt, "normal", listItem, level));
+    }
+    if (!paraBuffer.length) return;
+    const txt = paraBuffer.join(" ").trim();
+    paraBuffer = [];
+    if (txt) out.body.push(paragraph(txt, "normal"));
+  }
+
+  /**
+   * Cierra una cita. Una cita de varios renglones es UN bloque.
+   *
+   * Las que empiezan con 📎 son `dataCallout`: cita textual de una fuente
+   * verificable. Su último renglón es la atribución («— CONDUSEF, *Título*») y
+   * de ahí salen `publisher` y `sourceName`; la URL se resuelve al final,
+   * contra la lista de fuentes del propio borrador. Si no hay atribución se
+   * deja la marca de pendiente, que es lo que obliga a revisarlo en Studio.
+   */
+  function flushQuote() {
+    if (!quoteBuffer.length) return;
+    const lines = quoteBuffer;
+    quoteBuffer = [];
+
+    const esCallout = /^📎/.test(lines[0]);
+    const esLibro = /^📖/.test(lines[0]);
+
+    if (!esCallout) {
+      const txt = lines.join(" ").trim();
+      if (txt) out.body.push(paragraph(txt, esLibro ? "normal" : "blockquote"));
+      return;
+    }
+
+    // La atribución va en el último renglón y abre con raya o guion largo.
+    let atribucion = "";
+    const cuerpo = [...lines];
+    if (cuerpo.length > 1 && /^\s*[—–-]\s+/.test(cuerpo[cuerpo.length - 1])) {
+      atribucion = cuerpo
+        .pop()
+        .replace(/^\s*[—–-]\s+/, "")
+        .trim();
+    }
+
+    const claim = cuerpo
+      .join(" ")
+      .replace(/^📎\s*/, "")
+      .trim();
+
+    let publisher = "";
+    let sourceName = "";
+    if (atribucion) {
+      const m = atribucion.match(/^([^,]+),\s*(.+)$/);
+      if (m) {
+        publisher = m[1].replace(/[*`]/g, "").trim();
+        sourceName = m[2].replace(/[*`]/g, "").trim();
+      } else {
+        sourceName = atribucion.replace(/[*`]/g, "").trim();
+      }
+    }
+
+    out.body.push({
+      _type: "dataCallout",
+      _key: key(),
+      claim,
+      sourceName: sourceName || "Pendiente — completar en Studio",
+      publisher,
+      sourceUrl: sourceName ? "" : "https://example.com/pending",
+    });
+  }
+
+  /** Cierra párrafo y cita a la vez: lo que cualquier bloque nuevo necesita. */
+  function flushTexto() {
+    flushParagraph();
+    flushQuote();
+  }
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
@@ -344,17 +435,20 @@ function parseDraft(md) {
     if (trimmed === "---") {
       if (mode === "tldr") {
         out.tldr = flushBuffer();
-        mode = "preamble";
+        mode = "body";
       } else if (mode === "excerpt") {
         out.excerpt = flushBuffer();
-        mode = "preamble";
+        mode = "body";
       } else if (mode === "disclaimer") {
         out.disclaimer = {
           variant: out.disclaimer.variant,
           text: flushBuffer(),
         };
-        mode = "preamble";
+        // A "body" y no a "preamble": lo que sigue al disclaimer es la entrada
+        // del artículo, y en "preamble" no la recogía nadie.
+        mode = "body";
       } else if (mode === "body") {
+        flushTexto();
         flushTable();
       }
       continue;
@@ -414,6 +508,7 @@ function parseDraft(md) {
         continue;
       }
 
+      flushTexto();
       flushTable();
       out.body.push(paragraph(heading, "h2"));
       mode = "body";
@@ -421,6 +516,7 @@ function parseDraft(md) {
     }
 
     if (trimmed.startsWith("### ")) {
+      flushTexto();
       flushTable();
       if (mode === "tldr") out.tldr = flushBuffer();
       if (mode === "excerpt") out.excerpt = flushBuffer();
@@ -483,8 +579,15 @@ function parseDraft(md) {
     }
 
     if (mode === "body") {
+      // Renglón en blanco: es lo que cierra un párrafo o una cita en markdown.
+      if (!trimmed) {
+        flushTexto();
+        continue;
+      }
+
       // Tabla markdown
       if (/^\|.+\|/.test(trimmed)) {
+        flushTexto();
         if (/^\|[\s:|-]+\|$/.test(trimmed)) continue;
         const cells = trimmed
           .replace(/^\||\|$/g, "")
@@ -500,50 +603,46 @@ function parseDraft(md) {
         flushTable();
       }
 
-      // Blockquote / callout
-      if (trimmed.startsWith("> ")) {
-        const inner = trimmed.slice(2).trim();
-        if (/^📎/.test(inner)) {
-          const claim = inner.replace(/^📎\s*/, "").trim();
-          out.body.push({
-            _type: "dataCallout",
-            _key: key(),
-            claim,
-            sourceName: "Pendiente — completar en Studio",
-            publisher: "",
-            sourceUrl: "https://example.com/pending",
-          });
-        } else if (/^📖/.test(inner)) {
-          out.body.push(paragraph(inner, "normal"));
-        } else {
-          out.body.push(paragraph(inner, "blockquote"));
-        }
+      // Cita / callout: los renglones seguidos se acumulan en un solo bloque.
+      if (trimmed.startsWith(">")) {
+        flushParagraph();
+        quoteBuffer.push(trimmed.replace(/^>\s?/, "").trim());
         continue;
       }
+      flushQuote();
 
       // Lista numerada
       if (/^\d+\.\s+/.test(trimmed)) {
-        const txt = trimmed.replace(/^\d+\.\s+/, "");
+        flushTexto();
         flushTable();
-        out.body.push(paragraph(txt, "normal", "number", 1));
+        currentList = {
+          listItem: "number",
+          level: 1,
+          lines: [trimmed.replace(/^\d+\.\s+/, "")],
+        };
         continue;
       }
 
       // Lista bullet
       if (/^[-*]\s+/.test(trimmed)) {
-        const txt = trimmed.replace(/^[-*]\s+/, "");
+        flushTexto();
         flushTable();
-        out.body.push(paragraph(txt, "normal", "bullet", 1));
+        currentList = {
+          listItem: "bullet",
+          level: 1,
+          lines: [trimmed.replace(/^[-*]\s+/, "")],
+        };
         continue;
       }
 
-      // Párrafo normal
-      if (trimmed) {
-        pushParagraph(trimmed);
-      }
+      // Renglón suelto: continúa la lista abierta, o el párrafo en curso.
+      if (currentList) currentList.lines.push(trimmed);
+      else paraBuffer.push(trimmed);
       continue;
     }
   }
+
+  flushTexto();
 
   if (mode === "tldr") out.tldr = flushBuffer();
   if (mode === "excerpt") out.excerpt = flushBuffer();
@@ -551,6 +650,39 @@ function parseDraft(md) {
     out.disclaimer = { variant: out.disclaimer.variant, text: flushBuffer() };
   }
   flushTable();
+
+  /*
+    La URL de cada dataCallout sale de la lista de Fuentes del propio borrador,
+    que vive al final del archivo y por eso se parsea después del cuerpo. El
+    cruce es por título: la atribución de la cita nombra la misma página que
+    aparece en Fuentes. Lo que no cruza se queda con la marca de pendiente —
+    publicar una cita apuntando a una URL inventada es peor que no publicarla.
+  */
+  const normaliza = (t) =>
+    (t || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9 ]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  for (const b of out.body) {
+    if (b._type !== "dataCallout" || b.sourceUrl) continue;
+    const objetivo = normaliza(b.sourceName);
+    const fuente = objetivo
+      ? out.sources.find((f) => {
+          const t = normaliza(f.title);
+          return t && (t.includes(objetivo) || objetivo.includes(t));
+        })
+      : null;
+    if (fuente?.url) {
+      b.sourceUrl = fuente.url;
+      if (!b.publisher) b.publisher = fuente.publisher || "";
+    } else {
+      b.sourceUrl = "https://example.com/pending";
+    }
+  }
 
   return out;
 }
@@ -844,6 +976,61 @@ function validate(doc) {
   if (!Array.isArray(doc.body) || doc.body.length === 0) {
     errors.push("body vacío");
   }
+
+  /*
+    Una cita textual apuntando a `example.com/pending` es peor que no tener la
+    cita: en el sitio queda un enlace de fuente que no lleva a ninguna fuente,
+    en una categoría —dinero— donde la fuente ES el argumento. Se trata como
+    error, no como aviso, para que no se cuele en un push desatendido.
+  */
+  const sinFuente = (doc.body || []).filter(
+    (b) =>
+      b._type === "dataCallout" &&
+      /example\.com\/pending/.test(b.sourceUrl || ""),
+  );
+  for (const b of sinFuente) {
+    errors.push(
+      `dataCallout sin URL real ("${(b.claim || "").slice(0, 50)}…") — ` +
+        `añade la atribución «— Editor, *Título*» al final de la cita y ` +
+        `asegúrate de que ese título esté en la sección Fuentes`,
+    );
+  }
+
+  /*
+    Párrafos de un solo renglón cortado a media frase: la firma de un markdown
+    con los renglones envueltos que no se juntó. Si aparece, algo se rompió en
+    el parser y el artículo saldría despedazado.
+  */
+  const parrafos = (doc.body || [])
+    .filter((b) => b._type === "block" && (b.style || "normal") === "normal")
+    .map((b) =>
+      (b.children || [])
+        .map((c) => c.text)
+        .join("")
+        .trim(),
+    )
+    .filter(Boolean);
+  if (parrafos.length >= 20) {
+    const cortos = parrafos.filter((t) => t.length < 90).length;
+    if (cortos / parrafos.length > 0.8) {
+      errors.push(
+        `${cortos} de ${parrafos.length} párrafos miden menos de 90 caracteres: ` +
+          `el texto quedó cortado por renglón en vez de por párrafo`,
+      );
+    }
+  }
+
+  /*
+    Asteriscos literales en el texto plano: una negrita que se partió. El
+    lector los ve tal cual.
+  */
+  const conAsteriscos = parrafos.filter((t) => t.includes("**")).length;
+  if (conAsteriscos) {
+    errors.push(
+      `${conAsteriscos} párrafo(s) con \`**\` literal: una negrita quedó partida`,
+    );
+  }
+
   return errors;
 }
 
