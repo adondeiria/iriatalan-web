@@ -50,6 +50,10 @@ const STATIC_ROUTES: Array<{ path: string; priority: number }> = [
   { path: "/international-health-insurance", priority: 0.8 },
   { path: "/retirement-planning", priority: 0.8 },
   { path: "/guia", priority: 0.8 },
+  // Solo la puerta pública. `/perfil-inversionista/sesion` va con
+  // `noindex, nofollow` porque muestra la estrategia guía interna y el bloque
+  // de acuerdo con la asesora — no debe entrar aquí nunca.
+  { path: "/perfil-inversionista", priority: 0.8 },
   { path: "/blog/silencios", priority: 0.6 },
   { path: "/contacto", priority: 0.7 },
 ];

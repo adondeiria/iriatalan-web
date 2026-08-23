@@ -76,6 +76,7 @@ export const article = defineType({
           { title: "Fideicomisos", value: "fideicomisos" },
           { title: "Empresas", value: "empresas" },
           { title: "Casos especiales", value: "casos" },
+          { title: "Inversión", value: "inversion" },
         ],
       },
       validation: (Rule) => Rule.required(),

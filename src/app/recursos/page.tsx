@@ -147,7 +147,13 @@ type Descargable = {
   href: string;
   /** true = <a download> de un archivo; false = navegación interna. */
   descargaDirecta: boolean;
-  imagen: string;
+  /**
+   * Portada del recurso. Opcional: una pieza puede publicarse antes de que
+   * exista su foto —la alternativa era retrasar el lanzamiento o meter una
+   * imagen genérica de banco, que en este sitio se ve peor que no tener
+   * ninguna—. Sin foto, la tarjeta cae a un tratamiento tipográfico.
+   */
+  imagen?: string;
   acceso: string;
   meta: string[];
 };
@@ -189,6 +195,20 @@ const DESCARGABLES: Descargable[] = [
     acceso: "Te lo mando por correo",
     meta: ["PDF + Excel"],
   },
+  {
+    slug: "perfil-inversionista",
+    tipo: "Test",
+    titulo: "Qué tipo de inversionista eres",
+    gancho:
+      "Diez preguntas para saber cuánto riesgo puedes y quieres tomar antes de decidir dónde poner tu dinero.",
+    href: "/perfil-inversionista",
+    descargaDirecta: false,
+    // El único de los cuatro que no pide nada a cambio: el resultado sale en
+    // pantalla y la persona decide si lo manda. Decirlo aquí es justo el
+    // argumento que esta sección presume — el costo de entrada, por adelantado.
+    acceso: "Sin registro · resultado al instante",
+    meta: ["3 min", "Resultado en pantalla"],
+  },
 ];
 
 export const metadata: Metadata = {
@@ -215,13 +235,24 @@ function TarjetaDescargable({ item }: { item: Descargable }) {
   const contenido = (
     <>
       <div className="img-zoom relative aspect-[3/2] overflow-hidden">
-        <Image
-          src={item.imagen}
-          alt=""
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
-        />
+        {item.imagen ? (
+          <Image
+            src={item.imagen}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover"
+          />
+        ) : (
+          // Sin portada: panel cálido de la paleta, sin texto. El badge del
+          // tipo y la flecha ya viven encima, así que el área se lee como una
+          // decisión de diseño y no como una imagen que no cargó. Nada de
+          // repetir aquí el título — la tarjeta ya lo pinta debajo.
+          <div
+            aria-hidden
+            className="size-full bg-[radial-gradient(circle_at_30%_25%,var(--color-champagne)_0%,transparent_55%)] bg-cream dark:bg-coffee/60"
+          />
+        )}
         <span className="absolute left-4 top-4 rounded-full bg-burgundy px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-cream-light">
           {item.tipo}
         </span>
