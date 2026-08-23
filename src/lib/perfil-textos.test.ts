@@ -71,11 +71,25 @@ describe("las tres formas de salir Conservador", () => {
 });
 
 describe("precedencia: el plazo manda sobre todo lo demás", () => {
-  it("plazo corto Y sin tolerancia a pérdida → gana el plazo", () => {
-    // Recomendarle un plan garantizado a diez años a quien necesita el dinero
-    // en año y medio sería venderle el producto equivocado con mejor tono.
+  it("plazo corto Y sin tolerancia a pérdida → nombra las DOS", () => {
+    // Caso real de Iria probando el cuestionario (23-ago): marcó plazo de 2
+    // años, cero tolerancia a pérdida y expectativa de rendimiento alto. La
+    // pantalla le contestaba solo el plazo y callaba lo que ella había marcado
+    // con más fuerza.
     const r = respuestasCon(1, 4, 4);
     r[8] = 1;
+    assert.equal(variante(r), "plazo_y_sin_perdida");
+    const t = textoRecomendacion(calcularResultado(r), r);
+    assert.ok(t);
+    assert.match(t.titulo, /plazo y tu tolerancia/);
+    assert.match(t.cuerpo, /menos de cinco años/);
+    assert.match(t.cuerpo, /no aceptas ver tu saldo abajo/);
+    assert.match(t.cuerpo, /CETES/);
+  });
+
+  it("plazo corto SIN el techo de la P8 → solo la variante de plazo", () => {
+    const r = respuestasCon(1, 4, 4);
+    r[8] = 3;
     assert.equal(variante(r), "plazo_corto");
   });
 
@@ -85,13 +99,16 @@ describe("precedencia: el plazo manda sobre todo lo demás", () => {
     assert.equal(variante(r), "sin_perdida");
   });
 
-  it("plazo de 2 a 5 años con P8=1 → gana el plazo", () => {
-    // Ampliación de Iria (22-ago): el corte pasó de "menos de 2 años" a "menos
-    // de 5". A ese horizonte la respuesta es deuda gubernamental, no un plan
-    // garantizado de largo plazo.
-    const r = respuestasCon(2, 4, 4);
+  it("expectativa alta + cero tolerancia dispara la señal de contradicción", () => {
+    // La condición original era `r[8] === 2` y dejaba pasar sin señal el caso
+    // más extremo: querer 12%+ sin aceptar NADA de caída.
+    const r = respuestasCon(1, 4, 4);
     r[8] = 1;
-    assert.equal(variante(r), "plazo_corto");
+    r[10] = 4;
+    const res = calcularResultado(r);
+    const senal = res.senales.find((x) => x.titulo.includes("expectativa"));
+    assert.ok(senal, "esperaba la señal de expectativa vs tolerancia");
+    assert.match(senal.detalle, /no existe un instrumento/i);
   });
 
   it("plazo de 6 a 10 años ya no dispara la variante de plazo", () => {
@@ -132,7 +149,7 @@ describe("plazo de 2 a 5 años: el perfil es MODERADO y aun así ve la recomenda
   });
 });
 
-describe("las tres variantes cubren todo perfil conservador posible", () => {
+describe("las variantes cubren todo perfil conservador posible", () => {
   it("ningún juego de respuestas de nivel 1 se queda sin texto", () => {
     let conservadores = 0;
     const vistas = new Set<string>();
@@ -155,8 +172,8 @@ describe("las tres variantes cubren todo perfil conservador posible", () => {
     assert.ok(conservadores > 0);
     assert.deepEqual(
       [...vistas].sort(),
-      ["plazo_corto", "sin_perdida", "situacion"],
-      "las tres variantes deben ser alcanzables",
+      ["plazo_corto", "plazo_y_sin_perdida", "sin_perdida", "situacion"],
+      "las cuatro variantes deben ser alcanzables",
     );
   });
 });

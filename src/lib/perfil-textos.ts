@@ -75,7 +75,11 @@ export const TEXTOS_PERFIL: Record<number, TextoPerfil> = {
  * Es el segundo embudo de la asesoría: quien vende fondos descarta a este
  * prospecto, y aquí se convierte en cliente de garantizados o de deuda.
  */
-export type VarianteRecomendacion = "sin_perdida" | "plazo_corto" | "situacion";
+export type VarianteRecomendacion =
+  | "sin_perdida"
+  | "plazo_corto"
+  | "plazo_y_sin_perdida"
+  | "situacion";
 
 export type TextoRecomendacion = {
   variante: VarianteRecomendacion;
@@ -112,6 +116,22 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
       "Contratar a largo plazo dinero que se va a necesitar pronto, y descubrir la penalización cuando ya no hay vuelta atrás.",
     quePreguntar:
       "Qué fondo de deuda gubernamental conviene para tu plazo, si te sirve más dentro de un plan o por tu cuenta, y desde qué monto tiene sentido cada opción.",
+    cta: "Quiero que me propongan un fondo",
+  },
+
+  // Las dos cosas a la vez. Iria lo detectó probando el cuestionario con su
+  // propio caso: plazo corto Y cero tolerancia a pérdida. La pantalla de plazo
+  // le contestaba solo la mitad, y la mitad que callaba era justo la que ella
+  // había marcado con más fuerza.
+  plazo_y_sin_perdida: {
+    variante: "plazo_y_sin_perdida",
+    titulo: "Aquí mandan dos cosas: tu plazo y tu tolerancia.",
+    cuerpo:
+      "Dijiste dos cosas que apuntan al mismo lugar. Primero, que vas a necesitar este dinero en menos de cinco años. Segundo, que no aceptas ver tu saldo abajo de lo que aportaste. Cualquiera de las dos por separado ya descartaría un plan de largo plazo con exposición a los mercados; juntas no dejan lugar a dudas. Lo que corresponde a tu caso son instrumentos de deuda gubernamental, del tipo de los CETES: rendimiento modesto, sin sobresaltos y disponibles en el plazo que necesitas.",
+    errorTipico:
+      "Buscar un rendimiento alto que compense el plazo corto. Es justo la combinación que más gente lleva a aceptar una promesa que nadie regulado puede cumplir — y ahí es donde se pierde el patrimonio, no en los mercados.",
+    quePreguntar:
+      "Qué fondo de deuda gubernamental conviene para tu plazo, si te sirve más dentro de un plan o por tu cuenta, y qué rendimiento es razonable esperar sin salirte de ahí.",
     cta: "Quiero que me propongan un fondo",
   },
 
@@ -159,9 +179,16 @@ export function textoRecomendacion(
   resultado: Resultado,
   respuestas: Record<number, number>,
 ): TextoRecomendacion | null {
-  if (resultado.nivelPlazo <= PLAZO_MAXIMO_CORTO) return RECOMENDACION.plazo_corto;
+  const plazoCorto = resultado.nivelPlazo <= PLAZO_MAXIMO_CORTO;
+  const sinPerdida = respuestas[8] === P8_NINGUNA_PERDIDA;
+
+  // Cuando mandan las dos, se nombran las dos. Contestar solo el plazo deja
+  // fuera lo que la persona marcó con más fuerza, y se lee como si no la
+  // hubiéramos escuchado.
+  if (plazoCorto && sinPerdida) return RECOMENDACION.plazo_y_sin_perdida;
+  if (plazoCorto) return RECOMENDACION.plazo_corto;
   if (resultado.nivel !== 1) return null;
-  if (respuestas[8] === P8_NINGUNA_PERDIDA) return RECOMENDACION.sin_perdida;
+  if (sinPerdida) return RECOMENDACION.sin_perdida;
   return RECOMENDACION.situacion;
 }
 

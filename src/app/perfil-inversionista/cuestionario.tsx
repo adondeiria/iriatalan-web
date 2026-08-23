@@ -451,7 +451,10 @@ function PantallaPregunta({
           </svg>
         </button>
         <span className="text-sm tabular-nums text-rif-gris">
-          Pregunta {pregunta.n} de {TOTAL_PREGUNTAS}
+          {/* La posición en pantalla, no `pregunta.n`: el campo `n` es la
+              identidad estable de la pregunta y ya no coincide con el orden
+              desde que la del rendimiento se movió al principio. */}
+          Pregunta {indice + 1} de {TOTAL_PREGUNTAS}
         </span>
       </div>
 

@@ -89,7 +89,30 @@ export const PERFILES: readonly Perfil[] = [
   },
 ] as const;
 
+/**
+ * El ORDEN del arreglo es el orden en que se muestran las preguntas; el campo
+ * `n` es la identidad estable de cada una y NO cambia al reordenar. Esa
+ * separación importa: `n` es la llave del mapa de respuestas y la usan el techo
+ * de la P8 y las señales de alerta, así que renumerar rompería reglas de
+ * negocio en silencio.
+ *
+ * La pregunta del rendimiento esperado va primero por decisión de Iria
+ * (23-ago): es la que engancha —el titular de la página habla de ese número— y
+ * poner la expectativa antes que todo lo demás hace que la persona ya la tenga
+ * declarada cuando el cuestionario le muestre lo que en realidad aguanta.
+ */
 export const PREGUNTAS: readonly Pregunta[] = [
+  {
+    n: 10,
+    paso: "tolerancia",
+    texto: "¿Qué rendimiento anual promedio esperas de esta inversión?",
+    opciones: [
+      { texto: "Similar a CETES, con mínima variación", puntos: 1 },
+      { texto: "Un poco arriba de la inflación, de forma estable", puntos: 2 },
+      { texto: "Alrededor de 10%, aceptando altibajos en el camino", puntos: 3 },
+      { texto: "12% o más, aceptando volatilidad importante", puntos: 4 },
+    ],
+  },
   {
     n: 1,
     paso: "plazo",
@@ -239,17 +262,6 @@ export const PREGUNTAS: readonly Pregunta[] = [
       },
     ],
   },
-  {
-    n: 10,
-    paso: "tolerancia",
-    texto: "¿Qué rendimiento anual promedio esperas de esta inversión?",
-    opciones: [
-      { texto: "Similar a CETES, con mínima variación", puntos: 1 },
-      { texto: "Un poco arriba de la inflación, de forma estable", puntos: 2 },
-      { texto: "Alrededor de 10%, aceptando altibajos en el camino", puntos: 3 },
-      { texto: "12% o más, aceptando volatilidad importante", puntos: 4 },
-    ],
-  },
 ] as const;
 
 export const TOTAL_PREGUNTAS = PREGUNTAS.length;
@@ -354,11 +366,16 @@ function calcularSenales(
         "Ese solo dato define tu perfil: un fondo que puede bajar no te sirve, por muy largo que sea tu plazo. Lo tuyo es un plan con capital o rendimiento mínimo garantizado.",
     });
   }
-  if (r[10] === 4 && r[8] === 2) {
+  // Cubre también r[8] === 1 ("ninguna pérdida"): esperar 12% o más sin aceptar
+  // NADA de caída es una contradicción todavía más fuerte que aceptar un 5%, y
+  // la condición original la dejaba pasar sin señal.
+  if (r[10] === 4 && (r[8] ?? 0) <= 2) {
     senales.push({
       titulo: "Tu expectativa y tu tolerancia no cuadran",
       detalle:
-        "Esperas 12% o más pero solo aguantas una caída de 5%. Una de las dos tiene que ceder.",
+        r[8] === P8_NINGUNA_PERDIDA
+          ? "Esperas 12% o más y a la vez no aceptas ninguna pérdida. No existe un instrumento que dé las dos cosas: quien te lo ofrezca, no te está ofreciendo una inversión."
+          : "Esperas 12% o más pero solo aguantas una caída de 5%. Una de las dos tiene que ceder.",
     });
   }
   if (nCap - nTol >= 2) {

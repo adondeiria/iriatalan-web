@@ -50,12 +50,22 @@ describe("estructura del cuestionario", () => {
     assert.equal(Math.max(...p1.opciones.map((o) => o.puntos)), 5);
   });
 
-  it("tiene exactamente 10 preguntas numeradas del 1 al 10", () => {
+  it("tiene las 10 preguntas, con `n` único e independiente del orden", () => {
+    // El orden del arreglo es el orden de presentación y NO tiene que coincidir
+    // con `n`: la pregunta del rendimiento (n=10) se muestra primero. Lo que sí
+    // debe cumplirse es que estén las diez y que ningún `n` se repita, porque
+    // `n` es la llave del mapa de respuestas.
     assert.equal(TOTAL_PREGUNTAS, 10);
     assert.deepEqual(
-      PREGUNTAS.map((q) => q.n),
+      PREGUNTAS.map((q) => q.n).sort((a, b) => a - b),
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     );
+  });
+
+  it("la pregunta del rendimiento esperado se muestra primero", () => {
+    // Decisión de Iria (23-ago): engancha con el titular de la página.
+    assert.equal(PREGUNTAS[0].n, 10);
+    assert.match(PREGUNTAS[0].texto, /rendimiento anual promedio/);
   });
 
   it("reparte las preguntas 1 / 3 / 6 entre plazo, capacidad y tolerancia", () => {
