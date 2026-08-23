@@ -128,21 +128,18 @@ export function Cuestionario({ modoSesion }: { modoSesion: boolean }) {
     }
   }, [completas, respuestas]);
 
-  const elegir = useCallback(
-    (n: number, puntos: number) => {
-      setRespuestas((prev) => ({ ...prev, [n]: puntos }));
-      // Avance automático: en móvil evita un toque extra por pregunta. El
-      // retardo deja ver el estado seleccionado antes de cambiar de pantalla.
-      window.setTimeout(() => {
-        setIndice((i) => {
-          if (i < TOTAL_PREGUNTAS - 1) return i + 1;
-          setFase("resultado");
-          return i;
-        });
-      }, 220);
-    },
-    [],
-  );
+  const elegir = useCallback((n: number, puntos: number) => {
+    setRespuestas((prev) => ({ ...prev, [n]: puntos }));
+    // Avance automático: en móvil evita un toque extra por pregunta. El
+    // retardo deja ver el estado seleccionado antes de cambiar de pantalla.
+    window.setTimeout(() => {
+      setIndice((i) => {
+        if (i < TOTAL_PREGUNTAS - 1) return i + 1;
+        setFase("resultado");
+        return i;
+      });
+    }, 220);
+  }, []);
 
   function reiniciar() {
     setRespuestas({});
@@ -845,7 +842,11 @@ function mensajeWhatsApp(
   const senales = resultado.senales.slice(0, 2);
   if (senales.length > 0) {
     l.push("");
-    l.push(senales.length === 1 ? "Nota del cuestionario:" : "Notas del cuestionario:");
+    l.push(
+      senales.length === 1
+        ? "Nota del cuestionario:"
+        : "Notas del cuestionario:",
+    );
     for (const s of senales) l.push(`— ${s.titulo}`);
   }
 
@@ -923,9 +924,58 @@ function AccionesDelResultado({
     }, 700);
   }
 
+  /**
+   * La fila de botones se arma aparte porque su lugar cambia con el modo.
+   *
+   * En público va ARRIBA del encabezado, pegada al diagnóstico: quien acaba
+   * de leer su perfil ya decidió, y el encabezado más su párrafo la
+   * empujaban fuera de la primera pantalla en móvil. En sesión se queda
+   * después, porque ahí el encabezado es una instrucción para Iria
+   * ("Guardar para el expediente") y el boton es lo que la obedece.
+   */
+  const botones = (
+    <div
+      className={`${modoSesion ? "mt-6 " : ""}flex flex-col sm:flex-row gap-3`}
+    >
+      {!modoSesion && (
+        <a
+          href={urlWhatsApp}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() =>
+            trackEvent("whatsapp_click", { method: "perfil_inversionista" })
+          }
+          className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-rif-rojo px-6 py-3.5 text-center font-medium text-cream-light transition hover:bg-burgundy-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy"
+        >
+          {recomendacion
+            ? recomendacion.cta
+            : "Quiero que me propongan un plan"}
+        </a>
+      )}
+      <button
+        type="button"
+        onClick={modoSesion ? guardarPdf : guardarYMandarPdf}
+        className={[
+          "inline-flex min-h-12 flex-1 items-center justify-center rounded-full px-6 py-3.5 text-center font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy",
+          modoSesion
+            ? "bg-rif-rojo text-cream-light hover:bg-burgundy-deep"
+            : "border border-burgundy/30 text-burgundy dark:text-cream-light hover:bg-cream dark:hover:bg-coffee/40",
+        ].join(" ")}
+      >
+        {modoSesion ? "Guardar PDF" : "Mandar mi PDF a Iria"}
+      </button>
+    </div>
+  );
+
   return (
     <section className="mt-12 print:hidden">
-      <h2 className="font-serif text-xl text-ink dark:text-cream-light">
+      {!modoSesion && botones}
+
+      <h2
+        className={`font-serif text-xl text-ink dark:text-cream-light${
+          modoSesion ? "" : " mt-8"
+        }`}
+      >
         {modoSesion ? "Guardar para el expediente" : "¿Y ahora qué?"}
       </h2>
       <p className="mt-2 leading-relaxed text-warm-brown dark:text-cream-light/80">
@@ -934,33 +984,7 @@ function AccionesDelResultado({
           : "Este perfil es el punto de partida de una conversación, no una recomendación de inversión. Pídeme una propuesta, o mándame tu PDF y lo revisamos juntos."}
       </p>
 
-      <div className="mt-6 flex flex-col sm:flex-row gap-3">
-        {!modoSesion && (
-          <a
-            href={urlWhatsApp}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() =>
-              trackEvent("whatsapp_click", { method: "perfil_inversionista" })
-            }
-            className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-rif-rojo px-6 py-3.5 text-center font-medium text-cream-light transition hover:bg-burgundy-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy"
-          >
-            {recomendacion ? recomendacion.cta : "Quiero que me propongan un plan"}
-          </a>
-        )}
-        <button
-          type="button"
-          onClick={modoSesion ? guardarPdf : guardarYMandarPdf}
-          className={[
-            "inline-flex min-h-12 flex-1 items-center justify-center rounded-full px-6 py-3.5 text-center font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burgundy",
-            modoSesion
-              ? "bg-rif-rojo text-cream-light hover:bg-burgundy-deep"
-              : "border border-burgundy/30 text-burgundy dark:text-cream-light hover:bg-cream dark:hover:bg-coffee/40",
-          ].join(" ")}
-        >
-          {modoSesion ? "Guardar PDF" : "Mandar mi PDF a Iria"}
-        </button>
-      </div>
+      {modoSesion && botones}
 
       {!modoSesion && (
         <>
@@ -1127,8 +1151,8 @@ function BloqueDeAsesora({
 
       <div className="mt-4">
         <label htmlFor="ba-art93" className={etiquetaBase}>
-          ¿Planea dejar esta inversión al menos 5 años y retirarla después de los
-          60?
+          ¿Planea dejar esta inversión al menos 5 años y retirarla después de
+          los 60?
         </label>
         <p className="mt-1 text-xs text-rif-gris">
           Si sí, Elite ofrece retiros exentos de ISR conforme al Art. 93.
