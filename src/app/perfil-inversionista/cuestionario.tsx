@@ -818,12 +818,11 @@ function mensajeWhatsApp(
   nombre: string,
   recomendacion: TextoRecomendacion | null,
 ): string {
+  // El cierre viene de la propia recomendación, junto a su CTA: derivarlo aquí
+  // con un condicional por variante fue lo que hizo que el botón y el mensaje
+  // se separaran cuando se agregó una variante nueva.
   const cierre =
-    recomendacion?.variante === "plazo_corto"
-      ? "Me gustaría que me propongas un fondo para este plazo."
-      : recomendacion
-        ? "Me gustaría ver las opciones garantizadas."
-        : "Me gustaría que me propongas un plan.";
+    recomendacion?.cierreWhatsApp ?? "Me gustaría que me propongas un plan.";
   const l: string[] = [];
   l.push(
     nombre

@@ -93,6 +93,15 @@ export type TextoRecomendacion = {
   quePreguntar: string;
   /** Texto del botón de contacto: cambia el tono de la invitación. */
   cta: string;
+  /**
+   * Cierre del mensaje de WhatsApp que abre ese botón.
+   *
+   * Vive aquí, pegado al `cta`, y no en el componente: cuando estaban en
+   * archivos distintos se separaron sin que nadie lo notara — al agregar la
+   * variante combinada, el botón prometía una propuesta de fondo y el mensaje
+   * pedía opciones garantizadas. Juntos, quien edite uno ve el otro.
+   */
+  cierreWhatsApp: string;
 };
 
 const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
@@ -107,6 +116,8 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
     quePreguntar:
       "Cuáles son las opciones con capital o rendimiento mínimo garantizado, y qué estás dejando sobre la mesa a cambio de esa tranquilidad.",
     cta: "Quiero ver las opciones garantizadas",
+    cierreWhatsApp:
+      "Me gustaría ver las opciones garantizadas.",
   },
 
   // El plazo es el techo. No es que "no haya nada": para horizontes cortos lo
@@ -121,6 +132,8 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
     quePreguntar:
       "Qué fondo de deuda gubernamental conviene para tu plazo, si te sirve más dentro de un plan o por tu cuenta, y desde qué monto tiene sentido cada opción.",
     cta: "Quiero que me propongan un fondo",
+    cierreWhatsApp:
+      "Me gustaría que me propongas un fondo para este plazo.",
   },
 
   // Las dos cosas a la vez. Iria lo detectó probando el cuestionario con su
@@ -137,6 +150,8 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
     quePreguntar:
       "Qué fondo de deuda gubernamental conviene para tu plazo, si te sirve más dentro de un plan o por tu cuenta, y qué rendimiento es razonable esperar sin salirte de ahí.",
     cta: "Quiero que me propongan un fondo",
+    cierreWhatsApp:
+      "Me gustaría que me propongas un fondo para este plazo.",
   },
 
   // Su situación o su temperamento no dan, aunque el plazo sí.
@@ -150,6 +165,8 @@ const RECOMENDACION: Record<VarianteRecomendacion, TextoRecomendacion> = {
     quePreguntar:
       "Cuáles son las opciones con capital o rendimiento mínimo garantizado, y qué estás dejando sobre la mesa a cambio de esa tranquilidad.",
     cta: "Quiero ver las opciones garantizadas",
+    cierreWhatsApp:
+      "Me gustaría ver las opciones garantizadas.",
   },
 };
 

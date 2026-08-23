@@ -228,6 +228,46 @@ describe("textos de los niveles 2 a 5", () => {
   });
 });
 
+describe("el mensaje de WhatsApp no puede contradecir al botón", () => {
+  it("cada variante pide en el mensaje lo mismo que promete su botón", () => {
+    // Bug real detectado en revisión del PR #6: la variante combinada tenía un
+    // botón que ofrecía proponer un fondo y un mensaje que pedía opciones
+    // garantizadas. La persona tocaba una cosa y mandaba otra.
+    const casos: Array<[Record<number, number>, string]> = [
+      [{ ...respuestasCon(1, 4, 4), 8: 1 }, "plazo_y_sin_perdida"],
+      [{ ...respuestasCon(1, 4, 4), 8: 3 }, "plazo_corto"],
+      [{ ...respuestasCon(5, 4, 4), 8: 1 }, "sin_perdida"],
+      [respuestasCon(5, 1, 2), "situacion"],
+    ];
+    for (const [r, esperada] of casos) {
+      const t = textoRecomendacion(calcularResultado(r), r);
+      assert.ok(t);
+      assert.equal(t.variante, esperada);
+      const pideFondo = /fondo/i.test(t.cierreWhatsApp);
+      const ofreceFondo = /fondo/i.test(t.cta);
+      assert.equal(
+        pideFondo,
+        ofreceFondo,
+        `"${esperada}": el botón dice "${t.cta}" y el mensaje "${t.cierreWhatsApp}"`,
+      );
+      const pideGarantizado = /garantizad/i.test(t.cierreWhatsApp);
+      const ofreceGarantizado = /garantizad/i.test(t.cta);
+      assert.equal(pideGarantizado, ofreceGarantizado, esperada);
+    }
+  });
+
+  it("ninguna variante se queda sin cierre", () => {
+    for (const plazo of [1, 3, 5])
+      for (const p8 of [1, 3]) {
+        const r = respuestasCon(plazo, 1, 1);
+        r[8] = p8;
+        const t = textoRecomendacion(calcularResultado(r), r);
+        if (!t) continue;
+        assert.ok(t.cierreWhatsApp.length > 10, t.variante);
+      }
+  });
+});
+
 describe("fraseDimensiones", () => {
   it("una sola dimensión", () => {
     assert.equal(fraseDimensiones(["plazo"]), "tu plazo");
