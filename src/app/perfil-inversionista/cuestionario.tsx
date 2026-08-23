@@ -626,18 +626,38 @@ function PantallaResultado({
         </section>
       )}
 
+      {!recomendacion && texto && (
+        <section className="mt-10">
+          <h2 className="font-serif text-xl text-ink dark:text-cream-light">
+            Qué significa
+          </h2>
+          <p className="mt-2 leading-relaxed text-warm-brown dark:text-cream-light/80">
+            {texto.significado}
+          </p>
+        </section>
+      )}
+
+      {/*
+        Los botones van INMEDIATAMENTE después del resultado, no después del
+        refuerzo. El recuadro de arriba es la respuesta que la persona vino a
+        buscar, y ese es el punto de mayor intención: obligarla a leer dos
+        secciones más antes de poder actuar pierde a quien ya se decidió.
+
+        "El error típico" y "Qué preguntarme" quedan abajo como refuerzo para
+        quien sigue leyendo, y siguen alimentando la conversación contigo.
+      */}
+      {!modoSesion && (
+        <AccionesDelResultado
+          resultado={resultado}
+          modoSesion={modoSesion}
+          nombre={nombre}
+          recomendacion={recomendacion}
+          onReiniciar={onReiniciar}
+        />
+      )}
+
       {(recomendacion || texto) && (
-        <section className="mt-10 space-y-6">
-          {!recomendacion && texto && (
-            <div>
-              <h2 className="font-serif text-xl text-ink dark:text-cream-light">
-                Qué significa
-              </h2>
-              <p className="mt-2 leading-relaxed text-warm-brown dark:text-cream-light/80">
-                {texto.significado}
-              </p>
-            </div>
-          )}
+        <section className="mt-12 space-y-6">
           <div>
             <h2 className="font-serif text-xl text-ink dark:text-cream-light">
               El error típico de este perfil
@@ -655,24 +675,6 @@ function PantallaResultado({
             </p>
           </div>
         </section>
-      )}
-
-      {/*
-        Los botones van aquí y no al final del todo: el momento de mayor
-        intención es justo después de leer el diagnóstico, y la sección que
-        acaba de terminar dice literalmente qué preguntarle a Iria — así que la
-        acción es el paso siguiente natural. Lo que queda abajo (cómo se
-        calculó, la nota, los avisos) es respaldo de método: lectura de menor
-        energía que no debería estorbar entre el diagnóstico y el contacto.
-      */}
-      {!modoSesion && (
-        <AccionesDelResultado
-          resultado={resultado}
-          modoSesion={modoSesion}
-          nombre={nombre}
-          recomendacion={recomendacion}
-          onReiniciar={onReiniciar}
-        />
       )}
 
       <section className="mt-12">
