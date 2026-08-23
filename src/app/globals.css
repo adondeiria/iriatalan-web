@@ -337,3 +337,49 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ── Impresión del perfil del inversionista ─────────────────────────────────
+   El botón "Guardar PDF" del modo sesión (`/perfil-inversionista?c=1`) usa
+   `window.print()`, y el PDF va al expediente de la póliza: tiene que salir
+   limpio, sin menú, footer, banner de cookies ni botón flotante de WhatsApp.
+
+   Las reglas se acotan con `:has([data-perfil-print])` para que apliquen SOLO
+   cuando la página del perfil está en pantalla — el resto del sitio conserva
+   su comportamiento de impresión por defecto. */
+@media print {
+  /* Lista blanca, no lista negra: se oculta TODO hijo directo de <body> que no
+     contenga la página del perfil. Enumerar el header, el footer y el banner
+     uno por uno dejaba fuera lo que se inyecta en runtime — el widget de
+     respond.io no monta en localhost (filtra por dominio), así que en
+     desarrollo no hay forma de verlo fallar. Así queda cubierto cualquier
+     widget presente o futuro sin tener que acordarse de agregarlo. */
+  body:has([data-perfil-print])
+    > *:not(:has([data-perfil-print])):not(script):not(style) {
+    display: none !important;
+  }
+
+  /* Fondo blanco y texto negro: ahorra tinta y evita que el modo oscuro del
+     navegador imprima una hoja café. */
+  body:has([data-perfil-print]),
+  [data-perfil-print] {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Los campos del bloque de asesora se imprimen como texto con su línea, no
+     como cajas de formulario. */
+  [data-perfil-print] input,
+  [data-perfil-print] textarea {
+    border: 0 !important;
+    border-bottom: 1px solid #999 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #000 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Que ninguna sección se parta a la mitad entre dos hojas. */
+  [data-perfil-print] section {
+    break-inside: avoid;
+  }
+}

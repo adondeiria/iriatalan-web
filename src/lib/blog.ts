@@ -18,7 +18,8 @@ export type ArticleTopic =
   | "educacionales"
   | "fideicomisos"
   | "empresas"
-  | "casos";
+  | "casos"
+  | "inversion";
 
 // Display name humano de cada topic.
 export const TOPIC_LABELS: Record<string, string> = {
@@ -30,6 +31,7 @@ export const TOPIC_LABELS: Record<string, string> = {
   fideicomisos: "Fideicomisos",
   empresas: "Empresas",
   casos: "Casos especiales",
+  inversion: "Inversión",
 };
 
 // Descripción breve por categoría (para metadata de /blog/categoria/[slug]).
@@ -42,6 +44,8 @@ export const TOPIC_DESCRIPTIONS: Record<string, string> = {
   fideicomisos: "Artículos sobre fideicomisos en México: para qué sirven, cuándo usarlos y diferencias frente a otras estructuras.",
   empresas: "Artículos sobre seguros para empresas: Persona Clave, GMM colectivo, vida grupo y planes de retiro empresarial.",
   casos: "Artículos sobre situaciones especiales: divorcios, hijos neurodivergentes, mexicanos en el extranjero, familias arcoíris.",
+  inversion:
+    "Artículos sobre inversión en México: perfil de riesgo, rendimientos realistas, fondos y cómo distinguir una inversión legítima de un fraude.",
 };
 
 // URL slug ↔ topic value mapping.
@@ -56,6 +60,7 @@ export const TOPIC_TO_URL_SLUG: Record<ArticleTopic, string> = {
   fideicomisos: "fideicomisos",
   empresas: "seguros-empresariales",
   casos: "casos-especiales",
+  inversion: "inversion",
 };
 
 // Reverse map para resolver /blog/categoria/[slug] → topic.
