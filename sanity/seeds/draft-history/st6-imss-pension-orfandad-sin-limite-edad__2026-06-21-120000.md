@@ -36,7 +36,7 @@ Una aclaración desde ya: todo esto aplica si tú —el papá o la mamá— coti
 
 Este artículo es la guía concreta: qué es el ST-6, por qué no puedes dejarlo para después, y el paso a paso para sacarlo.
 
-**Antes de seguir: soy Iria Talan**, agente de seguros y asesora patrimonial desde 2008. Una parte importante de mi consulta son familias neurodivergentes, y este es uno de los primeros pendientes que reviso con ellas — porque es de los que más se descubren tarde. Yo no tramito el ST-6 por ti (eso es directo con el IMSS), pero sí te ayudo a dimensionar lo que la pensión no alcanza a cubrir y a armar la estructura de seguros que cubre esa diferencia. Te lo digo desde el inicio para que leas con transparencia: vivo de diseñar y colocar seguros de vida, de retiro y de gastos médicos mayores.
+**Antes de seguir: soy Iria Talan**, agente de seguros y [asesora patrimonial](/patrimonial) desde 2008. Una parte importante de mi consulta son familias neurodivergentes, y este es uno de los primeros pendientes que reviso con ellas — porque es de los que más se descubren tarde. Yo no tramito el ST-6 por ti (eso es directo con el IMSS), pero sí te ayudo a dimensionar lo que la pensión no alcanza a cubrir y a armar la estructura de seguros que cubre esa diferencia. Te lo digo desde el inicio para que leas con transparencia: vivo de diseñar y colocar seguros de vida, de retiro y de gastos médicos mayores.
 
 ---
 
