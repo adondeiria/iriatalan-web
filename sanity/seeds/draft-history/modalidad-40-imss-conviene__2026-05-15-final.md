@@ -39,7 +39,7 @@ La Modalidad 40 da el beneficio grande a quienes están en Régimen 73 — o sea
 
 Si entraste a cotizar del 1 de julio de 1997 en adelante (Régimen 97), tu pensión será a través de AFORE más cesantía y vejez. La Modalidad 40 ahí también suma, pero el efecto es mucho más chico.
 
-> 📎 Antes que nada, revisa la fecha de tu primera alta en el IMSS. Si es anterior al 1 de julio de 1997, eres Régimen 73 y vale la pena correr los números. Si no, evalúa con calma.
+> 📎 Antes que nada, revisa la fecha de tu primera alta en el IMSS. Si es anterior al 1 de julio de 1997, eres Régimen 73 y vale la pena correr los números. Si no, evalúa con calma. · **Fuente**: IMSS — http://www.imss.gob.mx/tramites/imss02007
 
 ---
 
@@ -105,7 +105,7 @@ Sobre el SBC que elijas pagas 14.438%. Esa cifra junta las ramas de cesantía y 
 
 Si eliges un SBC menor al tope, la cuota baja proporcional. No todos necesitan cotizar al máximo — depende de tu SBC histórico y de a qué pensión apuntas.
 
-> 📎 La UMA se publica cada año a principios de enero y entra en vigor el 1 de febrero (INEGI, 2026).
+> 📎 La UMA se publica cada año a principios de enero y entra en vigor el 1 de febrero (INEGI, 2026). · **Fuente**: INEGI — https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/uma/uma2026.pdf
 
 ---
 
