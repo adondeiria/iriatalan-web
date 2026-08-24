@@ -370,24 +370,27 @@ function parseDraft(md) {
       return;
     }
 
-    // La atribución va en el último renglón y abre con raya o guion largo.
-    let atribucion = "";
+    /*
+      Los borradores atribuyen la cita de dos maneras, y las dos son válidas:
+
+        A) en un renglón aparte:   — CONDUSEF, *Verifica en el SIPRES*
+        B) al final de la cita:    · **Fuente**: IMSS — https://imss.gob.mx/…
+
+      La B trae la URL explícita; la A la resuelve después contra la sección
+      Fuentes. Lo que quede sin URL se marca como pendiente y lo caza la
+      validación — nunca se inventa un enlace.
+    */
+    let publisher = "";
+    let sourceName = "";
+    let sourceUrl = "";
     const cuerpo = [...lines];
+
+    // Forma A: la atribución ocupa su propio renglón y abre con raya.
     if (cuerpo.length > 1 && /^\s*[—–-]\s+/.test(cuerpo[cuerpo.length - 1])) {
-      atribucion = cuerpo
+      const atribucion = cuerpo
         .pop()
         .replace(/^\s*[—–-]\s+/, "")
         .trim();
-    }
-
-    const claim = cuerpo
-      .join(" ")
-      .replace(/^📎\s*/, "")
-      .trim();
-
-    let publisher = "";
-    let sourceName = "";
-    if (atribucion) {
       const m = atribucion.match(/^([^,]+),\s*(.+)$/);
       if (m) {
         publisher = m[1].replace(/[*`]/g, "").trim();
@@ -397,13 +400,35 @@ function parseDraft(md) {
       }
     }
 
+    let claim = cuerpo
+      .join(" ")
+      .replace(/^📎\s*/, "")
+      .trim();
+
+    // Forma B: «· **Fuente**: Editor — URL» pegado al final de la propia cita.
+    const inline = claim.match(/[·|]\s*\*{0,2}Fuente\*{0,2}\s*:\s*(.+)$/i);
+    if (inline) {
+      claim = claim
+        .slice(0, inline.index)
+        .replace(/\s*[·|]\s*$/, "")
+        .trim();
+      const resto = inline[1].trim();
+      const urlMatch = resto.match(/https?:\/\/[^\s)\]`]+/);
+      if (urlMatch) sourceUrl = urlMatch[0];
+      const editor = (urlMatch ? resto.slice(0, urlMatch.index) : resto)
+        .replace(/[*`]/g, "")
+        .replace(/\s*[—–-]\s*$/, "")
+        .trim();
+      if (editor && !publisher) publisher = editor;
+    }
+
     out.body.push({
       _type: "dataCallout",
       _key: key(),
       claim,
-      sourceName: sourceName || "Pendiente — completar en Studio",
+      sourceName,
       publisher,
-      sourceUrl: sourceName ? "" : "https://example.com/pending",
+      sourceUrl,
     });
   }
 
@@ -667,20 +692,66 @@ function parseDraft(md) {
       .replace(/\s+/g, " ")
       .trim();
 
+  /** Dos URLs son la misma aunque cambien el protocolo, el www o la barra final. */
+  const mismaUrl = (a, b) => {
+    const pela = (u) =>
+      (u || "")
+        .trim()
+        .toLowerCase()
+        .replace(/^https?:\/\//, "")
+        .replace(/^www\./, "")
+        .replace(/\/+$/, "");
+    return !!pela(a) && pela(a) === pela(b);
+  };
+
+  /** El título de Fuentes repite el editor al frente; como etiqueta sobra. */
+  const etiqueta = (fuente) => {
+    let t = (fuente.title || "").trim();
+    const pub = (fuente.publisher || "").trim();
+    if (pub && t.toLowerCase().startsWith(pub.toLowerCase())) {
+      t = t
+        .slice(pub.length)
+        .replace(/^\s*[—–-]\s*/, "")
+        .trim();
+    }
+    if (t.length > 90) {
+      const corte = t.indexOf(" (");
+      t = corte > 15 ? t.slice(0, corte) : t.slice(0, 89).trim() + "…";
+    }
+    return t;
+  };
+
   for (const b of out.body) {
-    if (b._type !== "dataCallout" || b.sourceUrl) continue;
-    const objetivo = normaliza(b.sourceName);
-    const fuente = objetivo
-      ? out.sources.find((f) => {
-          const t = normaliza(f.title);
-          return t && (t.includes(objetivo) || objetivo.includes(t));
-        })
-      : null;
-    if (fuente?.url) {
-      b.sourceUrl = fuente.url;
-      if (!b.publisher) b.publisher = fuente.publisher || "";
-    } else {
-      b.sourceUrl = "https://example.com/pending";
+    if (b._type !== "dataCallout") continue;
+
+    // Con URL pero sin nombre: el nombre sale de la fuente que apunta ahí.
+    if (b.sourceUrl && !b.sourceName) {
+      const fuente = out.sources.find((f) => mismaUrl(f.url, b.sourceUrl));
+      if (fuente) {
+        b.sourceName = etiqueta(fuente);
+        if (!b.publisher) b.publisher = fuente.publisher || "";
+      } else {
+        b.sourceName = b.publisher || "Fuente";
+      }
+      continue;
+    }
+
+    // Con nombre pero sin URL: la URL sale de la fuente que se llama igual.
+    if (!b.sourceUrl) {
+      const objetivo = normaliza(b.sourceName);
+      const fuente = objetivo
+        ? out.sources.find((f) => {
+            const t = normaliza(f.title);
+            return t && (t.includes(objetivo) || objetivo.includes(t));
+          })
+        : null;
+      if (fuente?.url) {
+        b.sourceUrl = fuente.url;
+        if (!b.publisher) b.publisher = fuente.publisher || "";
+      } else {
+        b.sourceName = b.sourceName || "Pendiente — completar en Studio";
+        b.sourceUrl = "https://example.com/pending";
+      }
     }
   }
 
