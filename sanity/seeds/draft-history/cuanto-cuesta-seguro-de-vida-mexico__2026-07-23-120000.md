@@ -2,7 +2,7 @@
 
 **Slug**: `cuanto-cuesta-seguro-de-vida-mexico` · **Topic**: `vida` · **Format**: `guia`
 **Generado por**: draft main-thread (Día 4 SEO/interlinking) siguiendo voice corpus + BLOG.md · **Fecha**: 2026-07-23
-**Estado**: borrador para revisión de Iria — completar celdas `[VERIFICAR_CIFRA]` con rangos reales 2026 antes de publicar.
+**Estado**: borrador para revisión de Iria — fuentes y citas verificadas (24-ago-2026). Falta únicamente la tabla de primas: suma asegurada del ejemplo y rangos a 30/40/50 años. No publicar hasta completarla.
 
 ---
 
@@ -55,7 +55,7 @@ En México trabajas, a grandes rasgos, con dos familias de producto. La diferenc
 
 Un temporal cuesta una fracción de lo que cuesta uno con valor en efectivo para la misma suma asegurada, porque no estás financiando un fondo interno. No es que uno sea mejor que otro: resuelven necesidades distintas. He visto a gente pagar de más por un producto con ahorro cuando lo que necesitaba era protección pura por diez años — y al revés.
 
-> 📎 En México, los seguros de vida y sus condiciones están regulados por la Comisión Nacional de Seguros y Fianzas (CNSF). Antes de contratar, la aseguradora debe entregarte las condiciones generales del producto. — CNSF
+> 📎 "Los asegurados tienen el derecho de exigir que se les entregue la documentación contractual, pues en ella se encuentra la descripción detallada del seguro contratado, sus exclusiones y en qué casos se puede aprovechar." · **Fuente**: CONDUSEF — https://www.condusef.gob.mx/?p=contenido&idc=865&idcat=1
 
 ## ¿Cuánto seguro de vida necesito? (la pregunta antes del precio)
 
@@ -87,7 +87,7 @@ Un seguro con valor en efectivo para esa misma suma cuesta varias veces más, po
 
 Dos cosas que ya con eso puedes ver: la edad manda, y el tipo de póliza cambia la cifra por completo. Por eso una tabla genérica no te sirve para decidir — sirve para dimensionar.
 
-> 📎 La Asociación Mexicana de Instituciones de Seguros (AMIS) publica información y estadísticas del sector de vida en México. — AMIS · `[VERIFICAR URL]`
+> 📎 "No se trata de contratar 'el más caro' ni 'el más completo', sino el que realmente se adapte a tus necesidades, estilo de vida y posibilidades económicas." · **Fuente**: CONDUSEF — https://www.gob.mx/condusef/articulos/que-es-un-seguro-y-por-que-puede-ayudarte-mas-de-lo-que-imaginas
 
 ## ¿Por qué la prima más barata no siempre es la mejor decisión?
 
@@ -119,6 +119,7 @@ Este artículo es informativo y refleja información general vigente al cierre d
 
 ## Recursos
 
-1. CNSF — Comisión Nacional de Seguros y Fianzas (regulación de seguros de vida en México) — https://www.gob.mx/cnsf · `[VERIFICAR URL específico]`
-2. CONDUSEF — Información al usuario sobre seguros de vida y SIAB-Vida (localización de pólizas) — https://www.gob.mx/condusef · `[VERIFICAR URL específico]`
-3. AMIS — Asociación Mexicana de Instituciones de Seguros (estadísticas del sector vida) — https://www.amis.com.mx · `[VERIFICAR URL específico]`
+1. CNSF — Lista de instituciones autorizadas para operar seguros en México (para verificar que tu aseguradora esté autorizada) — https://listainstituciones.cnsf.gob.mx/
+2. CONDUSEF — Qué debes saber antes de contratar un seguro (derecho a exigir la documentación contractual) — https://www.condusef.gob.mx/?p=contenido&idc=865&idcat=1
+3. CONDUSEF — Qué es un seguro y por qué puede ayudarte más de lo que imaginas (cómo elegir; 22 de julio de 2026) — https://www.gob.mx/condusef/articulos/que-es-un-seguro-y-por-que-puede-ayudarte-mas-de-lo-que-imaginas
+4. CONDUSEF — SIAB-VIDA: cómo saber si eres beneficiario de un seguro de vida — https://www.gob.mx/condusef/articulos/crees-ser-beneficiario-de-un-seguro-de-vida-la-condusef-te-ayuda-a-verificarlo
