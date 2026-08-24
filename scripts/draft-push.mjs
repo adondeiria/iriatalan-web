@@ -1073,7 +1073,15 @@ function validate(doc) {
     el parser y el artículo saldría despedazado.
   */
   const parrafos = (doc.body || [])
-    .filter((b) => b._type === "block" && (b.style || "normal") === "normal")
+    // Los renglones de una lista también son bloques "normal", y son cortos
+    // por naturaleza. Contarlos aquí inflaba el porcentaje y habría frenado
+    // con un error falso cualquier artículo con muchas viñetas.
+    .filter(
+      (b) =>
+        b._type === "block" &&
+        (b.style || "normal") === "normal" &&
+        !b.listItem,
+    )
     .map((b) =>
       (b.children || [])
         .map((c) => c.text)
