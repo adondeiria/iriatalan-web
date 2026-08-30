@@ -24,7 +24,36 @@ export const SITE_NAME = "Iria Talan / RIF";
  * en vez de una sola con más señales.
  */
 export const SITE_NAME_FULL = "Iria Talan · Reingeniería Financiera";
-export const SITE_NAME_ALTERNATES = [SITE_NAME, "RIF", "Reingeniería Financiera"];
+export const SITE_NAME_ALTERNATES = [
+  SITE_NAME,
+  "RIF",
+  "Reingeniería Financiera",
+  // Grafía LITERAL de la ficha de Google Business, sin acento y sin separador.
+  // No es un descuido copiarla así: es el string exacto que Google tiene del
+  // negocio, y declararlo como alternateName es lo que le confirma que la ficha
+  // y este sitio son la misma entidad en vez de dos parecidas.
+  "Iria Talan Reingenieria Financiera",
+];
+
+/**
+ * Dirección estructurada — única fuente de verdad para el JSON-LD.
+ *
+ * Antes el `streetAddress` se armaba metiendo `officeAddress` entero (calle,
+ * colonia, alcaldía y CP en un solo string), así que `postalCode` salía vacío y
+ * el CP quedaba enterrado en texto libre. El CP es de los campos que Google
+ * cruza con la ficha, así que va en su propio campo.
+ *
+ * Los valores replican EXACTAMENTE la ficha de Google Business, incluido el
+ * "Av." inicial: la ficha dice "Av. Homero 205" y el sitio decía "Homero 205".
+ */
+export const POSTAL_ADDRESS = {
+  "@type": "PostalAddress" as const,
+  streetAddress: "Av. Homero 205, Polanco V Secc, Miguel Hidalgo",
+  addressLocality: "Ciudad de México",
+  addressRegion: "CDMX",
+  postalCode: "11560",
+  addressCountry: "MX",
+};
 
 /**
  * Construye `alternates` con canonical absoluto + hreflang recíproco
@@ -284,17 +313,19 @@ export function buildFinancialAdvisorSchema(author: AuthorData) {
   return {
     "@type": "FinancialService" as const,
     "@id": `${SITE_URL}#financialservice`,
-    name: SITE_NAME,
+    // SITE_NAME_FULL, no SITE_NAME: este nodo y `#localbusiness` describen el
+    // mismo negocio, y venían con nombres distintos ("Iria Talan / RIF" contra
+    // "Iria Talan · Reingeniería Financiera"). Dos nombres en el mismo grafo es
+    // justo la ambigüedad que el bloque de arriba busca evitar.
+    name: SITE_NAME_FULL,
+    alternateName: SITE_NAME_ALTERNATES,
     url: SITE_URL,
     description: author.bio,
     image: author.photo?.asset?.url,
-    address: author.officeAddress
-      ? {
-          "@type": "PostalAddress",
-          streetAddress: author.officeAddress,
-          addressCountry: "MX",
-        }
-      : undefined,
+    // Dirección estructurada compartida: antes esto dependía de `officeAddress`
+    // (un string libre de Sanity) y solo declaraba país, así que ni la ciudad ni
+    // el CP llegaban a este nodo.
+    address: POSTAL_ADDRESS,
     // areaServed ampliado a EUA — clave para "mexicanos viviendo en el extranjero".
     areaServed: [
       { "@type": "Country", name: "México" },
@@ -726,13 +757,10 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     // un LocalBusiness sin calle es más débil para búsqueda local, y es
     // precisamente el nodo al que /contacto apunta como `mainEntity` y el que
     // debe coincidir con la ficha de Google Business.
-    address: {
-      "@type": "PostalAddress",
-      ...(author?.officeAddress ? { streetAddress: author.officeAddress } : {}),
-      addressLocality: "Ciudad de México",
-      addressRegion: "CDMX",
-      addressCountry: "MX",
-    },
+    // El mismo objeto que usa `#financialservice`: los dos nodos describen el
+    // mismo domicilio y tenerlo escrito dos veces garantizaba que un día
+    // divergieran. `postalCode` ya viaja en su propio campo.
+    address: POSTAL_ADDRESS,
     areaServed: { "@type": "Country", name: "México" },
     priceRange: "$$$$",
     // Horario real de la oficina, confirmado por Iria: cierra a las 5 pm.
