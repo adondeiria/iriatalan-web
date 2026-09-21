@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const LAST_UPDATED = "06 de abril de 2026";
+const LAST_UPDATED = "21 de septiembre de 2026";
 const ARCO_EMAIL = "soporte@talan.com.mx";
 const ARCO_OWNER = "Violeta Lindero";
 // Domicilio del responsable conforme a la LFPDPPP. Cambió con la mudanza de
@@ -22,7 +22,7 @@ const ARCO_OWNER = "Violeta Lindero";
 // dirección en todas las superficies. La ley pide un domicilio identificable,
 // no el interior, y calle + colonia + alcaldía + CP lo cumple.
 const RESPONSABLE_DOMICILIO =
-  "Homero 205, Col. Polanco V Sección, Miguel Hidalgo, Ciudad de México, C.P. 11560";
+  "Av. Homero 205, Polanco V Secc, Miguel Hidalgo, Ciudad de México, C.P. 11560";
 
 export default function AvisoPrivacidadPage() {
   const pageSchema = buildGraph(
