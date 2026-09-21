@@ -101,10 +101,12 @@ export type AuthorData = {
   _id?: string;
   name: string;
   /**
-   * Variante alternativa del nombre — clave para entity disambiguation en LLMs.
-   * Captura "Iria Talán" (con acento) que terceros indexan en findglocal,
-   * segurosrp, etc. Sin esto, ChatGPT/Perplexity pueden tratar "Talan" y
-   * "Talán" como dos personas distintas y fragmentar la entity.
+   * Variante alternativa del nombre, para entity disambiguation en LLMs.
+   * NUNCA "Talán" con acento: el apellido es Talan, y lo que se declara aquí
+   * lo leen Google y las IAs, que pueden repetirlo. En mayo de 2026 se declaró
+   * "Iria Talán" para capturar cómo lo escribían terceros (findglocal,
+   * segurosrp); en septiembre de 2026 Iria decidió quitarlo. buildPersonSchema
+   * lo descarta aunque llegue de Sanity, y seo.test.ts falla si vuelve.
    */
   alternateName?: string;
   slug?: string;
@@ -214,8 +216,10 @@ export function buildPersonSchema(author: AuthorData) {
   // estos campos, usar los datos confirmados (2026-05-09). Si Sanity los
   // tiene, los valores de Sanity overridean (truthy check).
   const isIria = author.name === "Iria Talan";
-  const alternateName =
-    author.alternateName ?? (isIria ? "Iria Talán" : undefined);
+  // Sin default y nunca con acento: ver el comentario de AuthorData.alternateName.
+  const alternateName = author.alternateName?.includes("Talán")
+    ? undefined
+    : author.alternateName;
   const awards =
     author.awards && author.awards.length > 0
       ? author.awards

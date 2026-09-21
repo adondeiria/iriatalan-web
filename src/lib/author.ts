@@ -16,7 +16,6 @@ import type { AuthorData } from "@/lib/seo";
  */
 export const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
-  alternateName: "Iria Talán",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
   bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios complejos en México. Formada en Wealth Management Theory & Practice por Yale School of Management (Executive Education) y en MBA Essentials por London School of Economics. Reconocida por la calidad del cuidado, no por volumen: Top of the Table en MDRT y 8vo Lugar Nacional AMASFAC. Asesora Diamante GNP y Seguros Monterrey NYL.",
   /**
