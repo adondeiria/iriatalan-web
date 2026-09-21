@@ -68,7 +68,22 @@ const TIMEOUT_MS = 3000;
  * (es parte de una operación ya empezada) y el aviso interno a Iria (es la
  * última red de seguridad). El techo duro de la petición es `maxDuration`.
  */
-const PRESUPUESTO_MS = 8000;
+const PRESUPUESTO_MS = 12000;
+
+/**
+ * Tras el alta, el GET por teléfono a veces responde 404 durante un momento
+ * (le pasó a un lead real el 14-sep-2026: alta 200, relectura 404, y el módulo
+ * abortaba sin bienvenida ni asignación). Se reintenta unas veces y, si aun así
+ * no aparece, se sigue por identificador de teléfono: el id no es indispensable.
+ */
+const REINTENTOS_RELECTURA = 3;
+const ESPERA_RELECTURA_MS = 700;
+
+/** Inyectable en pruebas para no dormir de verdad. */
+export type RespondioDeps = { dormir?: (ms: number) => Promise<void> };
+
+const dormirDeVerdad = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 /** Una segunda bienvenida al mismo lead se ve como un bot descompuesto. */
 const DIAS_SIN_REPETIR_BIENVENIDA = 7;
@@ -360,12 +375,12 @@ async function marcarSaludado(e164: string): Promise<void> {
  * la actividad de respaldo en Pipedrive. Verificado en vivo el 16-ago-2026.
  */
 async function asignarYVerificar(
-  contactId: number,
+  identificadorContacto: string,
   userId: number,
 ): Promise<boolean> {
   const r = await llamar(
     "POST",
-    `/contact/id:${contactId}/conversation/assignee`,
+    `/contact/${identificadorContacto}/conversation/assignee`,
     { assignee: userId },
   );
   if (r.status >= 300) {
@@ -376,7 +391,7 @@ async function asignarYVerificar(
     return false;
   }
 
-  const relectura = await llamar("GET", `/contact/id:${contactId}`);
+  const relectura = await llamar("GET", `/contact/${identificadorContacto}`);
   if (relectura.status !== 200) return false;
   // Sin relectura utilizable no se puede afirmar que quedó: se devuelve false
   // para que route.ts deje la actividad de respaldo. Falla cerrada, a propósito.
@@ -384,7 +399,7 @@ async function asignarYVerificar(
   if (!quedo) {
     console.error(
       "[respondio] la API respondió 200 pero la conversación quedó sin asignar " +
-        `(contacto ${contactId}) — probablemente está cerrada.`,
+        `(contacto ${identificadorContacto}) — probablemente está cerrada.`,
     );
   }
   return quedo;
@@ -397,7 +412,9 @@ async function asignarYVerificar(
  */
 export async function notifyLeadToRespondio(
   input: RespondioLeadInput,
+  deps: RespondioDeps = {},
 ): Promise<RespondioLeadResult> {
+  const dormir = deps.dormir ?? dormirDeVerdad;
   const vencimiento = Date.now() + PRESUPUESTO_MS;
   const sinTiempo = () => Date.now() > vencimiento;
   const resultado: RespondioLeadResult = {
@@ -491,21 +508,35 @@ export async function notifyLeadToRespondio(
     if (!sinTiempo()) {
       const escrito = await escribirContacto(e164, input, Boolean(contacto));
       resultado.creado = escrito && !contacto;
-      // El alta no devuelve el id: hay que releer. El GET por identifier es
-      // inmediato (el retraso de ~25 s es del índice de /contact/list, no de aquí).
-      if (escrito && !contacto && !sinTiempo()) {
-        const relectura = await llamar("GET", `/contact/${identifier(e164)}`);
-        if (relectura.status === 200) contacto = comoContacto(relectura.json);
+      // El alta no devuelve el id: hay que releer. Casi siempre aparece al
+      // primer GET, pero no siempre (14-sep-2026): se reintenta con pausa.
+      if (escrito && !contacto) {
+        for (let intento = 1; intento <= REINTENTOS_RELECTURA; intento++) {
+          if (sinTiempo()) break;
+          const relectura = await llamar("GET", `/contact/${identifier(e164)}`);
+          if (relectura.status === 200) {
+            contacto = comoContacto(relectura.json);
+            if (contacto) break;
+          }
+          if (intento < REINTENTOS_RELECTURA) await dormir(ESPERA_RELECTURA_MS);
+        }
       }
     }
 
     resultado.contactId = contacto?.id ?? null;
 
+    // Sin contacto releído NO se aborta: la plantilla y la asignación aceptan
+    // el identificador de teléfono (es lo que ya usa el aviso interno). Un lead
+    // recién dado de alta no tiene otro agente ni bienvenida previa, así que
+    // las dos compuertas de abajo quedan abiertas a propósito.
+    const identificadorContacto = contacto
+      ? `id:${contacto.id}`
+      : identifier(e164);
     if (!contacto) {
-      // Falla técnica, NO decisión deliberada: el lead se quedó sin saludo.
-      // Va con `error` (no con `omitido`) para que route.ts sí deje la tarea.
-      console.error("[respondio] no se pudo obtener el contacto:", e164);
-      return { ...resultado, error: true, nota: "contacto no disponible" };
+      console.warn(
+        `[respondio] relectura falló tras ${REINTENTOS_RELECTURA} intentos; se sigue por teléfono:`,
+        e164,
+      );
     }
 
     // ---- 5. Bienvenida y asignación --------------------------------------
@@ -513,11 +544,11 @@ export async function notifyLeadToRespondio(
     // atender, solo que no por la vía normal. Iria tiene que enterarse igual,
     // así que route.ts sigue exigiendo que la asignación o el aviso funcionen.
     if (conOtroAgente) {
-      resultado.nota = `en conversación con ${contacto.assigneeNombre || "otro agente"}`;
+      resultado.nota = `en conversación con ${contacto?.assigneeNombre || "otro agente"}`;
     } else {
       if (!yaSaludado && !sinTiempo()) {
         resultado.plantillaEnviada = await enviarPlantilla(
-          `/contact/id:${contacto.id}/message`,
+          `/contact/${identificadorContacto}/message`,
           PLANTILLA_BIENVENIDA,
           [partirNombre(input.nombre).firstName, fraseDeServicio(input.servicio)],
         );
@@ -534,7 +565,10 @@ export async function notifyLeadToRespondio(
       // con la conversación cerrada la API contesta 200 sin asignar a nadie, y
       // dar eso por bueno dejaba a Iria sin enterarse y sin red de respaldo.
       if (!sinTiempo()) {
-        resultado.asignada = await asignarYVerificar(contacto.id, USER_IRIA);
+        resultado.asignada = await asignarYVerificar(
+          identificadorContacto,
+          USER_IRIA,
+        );
       }
     }
 
@@ -545,7 +579,7 @@ export async function notifyLeadToRespondio(
     const celularIria = process.env.RESPONDIO_IRIA_CELULAR ?? "";
     if (process.env.RESPONDIO_AVISO_INTERNO === "1" && celularIria) {
       const detalle = conOtroAgente
-        ? `Lead web: ${input.nombre} — ya en conversación con ${contacto.assigneeNombre || "otro agente"}`
+        ? `Lead web: ${input.nombre} — ya en conversación con ${contacto?.assigneeNombre || "otro agente"}`
         : `Lead web: ${input.nombre} — ${input.servicio || "sin servicio"}`;
       resultado.avisoInterno = await enviarPlantilla(
         `/contact/${identifier(celularIria)}/message`,
