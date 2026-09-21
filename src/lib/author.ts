@@ -85,7 +85,11 @@ export const FALLBACK_AUTHOR: AuthorData = {
   // privacidad y ficha de Google Business dicen exactamente lo mismo. El NAP
   // (nombre, dirección, teléfono) es como Google confirma que la ficha y el sitio
   // son el mismo negocio, así que una sola forma de la dirección, sin variantes.
-  officeAddress: "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
+  // Copiada LITERAL de la ficha de Google Business, incluido el "Av." inicial
+  // y sin el "Col." de la colonia: el sitio decía "Homero 205, Col. Polanco V
+  // Secc" y la ficha "Av. Homero 205, Polanco V Secc". Este string es el que se
+  // MUESTRA; el JSON-LD usa POSTAL_ADDRESS de seo.ts, que ya va desglosado.
+  officeAddress: "Av. Homero 205, Polanco V Secc, Miguel Hidalgo, CDMX 11560",
   // Los dos números son distintos a propósito: `whatsapp` es el WABA conectado a
   // respond.io (solo chat, no recibe llamadas) y `phone` es la línea de voz del
   // `tel:` del footer. Antes esto estaba vacío, así que durante una caída de
