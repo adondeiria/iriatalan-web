@@ -16,7 +16,6 @@ import type { AuthorData } from "@/lib/seo";
  */
 export const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
-  alternateName: "Iria Talán",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
   bio: "Asesora financiera con 18 años acompañando a familias afluentes y patrimonios complejos en México. Formada en Wealth Management Theory & Practice por Yale School of Management (Executive Education) y en MBA Essentials por London School of Economics. Reconocida por la calidad del cuidado, no por volumen: Top of the Table en MDRT y 8vo Lugar Nacional AMASFAC. Asesora Diamante GNP y Seguros Monterrey NYL.",
   /**
@@ -85,7 +84,11 @@ export const FALLBACK_AUTHOR: AuthorData = {
   // privacidad y ficha de Google Business dicen exactamente lo mismo. El NAP
   // (nombre, dirección, teléfono) es como Google confirma que la ficha y el sitio
   // son el mismo negocio, así que una sola forma de la dirección, sin variantes.
-  officeAddress: "Homero 205, Col. Polanco V Secc, Miguel Hidalgo, CDMX 11560",
+  // Copiada LITERAL de la ficha de Google Business, incluido el "Av." inicial
+  // y sin el "Col." de la colonia: el sitio decía "Homero 205, Col. Polanco V
+  // Secc" y la ficha "Av. Homero 205, Polanco V Secc". Este string es el que se
+  // MUESTRA; el JSON-LD usa POSTAL_ADDRESS de seo.ts, que ya va desglosado.
+  officeAddress: "Av. Homero 205, Polanco V Secc, Miguel Hidalgo, CDMX 11560",
   // Los dos números son distintos a propósito: `whatsapp` es el WABA conectado a
   // respond.io (solo chat, no recibe llamadas) y `phone` es la línea de voz del
   // `tel:` del footer. Antes esto estaba vacío, así que durante una caída de
