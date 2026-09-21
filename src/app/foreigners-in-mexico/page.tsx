@@ -33,7 +33,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Are retirement plans (PPR) worth it for someone who may leave Mexico?",
     answerText:
-      "Worth analyzing case by case. PPRs (Planes Personales de Retiro) are most powerful for someone tributing in Mexico — Mexican fiscal residency or income from Mexican sources — because the annual income-tax deduction requires filing a Mexican return. If you may leave in 5 to 10 years, we evaluate options: maintain the plan with continued contributions, freeze contributions, or convert to a payout-aligned structure. The plan itself does not become void if you leave — it is the deduction benefit that depends on your fiscal residency. Mexican retirement plans qualifying under Article 93 of the Income Tax Law currently in force offer attractive tax treatment on the payout side, subject to compliance with applicable fiscal requirements at the time of payout, available in MXN (inflation-adjusted), UDIS, or USD.",
+      "Worth analyzing case by case. PPRs (Planes Personales de Retiro) are most powerful for Mexican tax residents: the annual income-tax deduction under Art. 151 fracc V LISR currently in force is available only to residents, so Mexican-source income alone does not qualify. If you may leave in 5 to 10 years, we evaluate options: maintain the plan with continued contributions, freeze contributions, or convert to a payout-aligned structure. The plan itself does not become void if you leave — it is the deduction benefit that depends on your fiscal residency. Mexican retirement plans qualifying under Article 93 of the Income Tax Law currently in force offer attractive tax treatment on the payout side, subject to compliance with applicable fiscal requirements at the time of payout, available in MXN (inflation-adjusted), UDIS, or USD.",
   },
   {
     question: "How does cross-border succession work with Mexican life insurance?",
@@ -376,9 +376,10 @@ export default async function ForeignersInMexicoPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   Worth analyzing case by case. PPRs (Planes Personales de Retiro)
-                  are most powerful for someone tributing in Mexico — Mexican fiscal
-                  residency or income from Mexican sources — because the annual
-                  income-tax deduction requires filing a Mexican return. If you may
+                  are most powerful for Mexican tax residents: the annual income-tax
+                  deduction under Art. 151 fracc V LISR currently in force is
+                  available only to residents, so Mexican-source income alone does
+                  not qualify. If you may
                   leave in 5 to 10 years, we evaluate options: maintain the plan with
                   continued contributions, freeze contributions, or convert to a
                   payout-aligned structure. The plan itself does not become void if

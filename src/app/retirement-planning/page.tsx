@@ -18,12 +18,12 @@ const FAQS: FAQItem[] = [
   {
     question: "What is a PPR, and why do foreigners in Mexico use one?",
     answerText:
-      "A PPR (Plan Personal de Retiro) is a Mexican personal retirement plan contracted with an authorized insurer. For anyone filing taxes in Mexico it offers two advantages: an annual income-tax deduction while you contribute (under Art. 151 fracc V LISR currently in force), and favorable tax treatment on the payout side (under Art. 93 LISR currently in force), subject to compliance with the applicable fiscal requirements. It is available in MXN (inflation-adjusted), UDIS, or USD, and it is inheritable. Foreigners with Mexican fiscal residency or Mexican-source income use it as a tax-efficient retirement layer their home country often does not replicate.",
+      "A PPR (Plan Personal de Retiro) is a Mexican personal retirement plan contracted with an authorized insurer. For Mexican tax residents it offers two advantages: an annual income-tax deduction while you contribute (under Art. 151 fracc V LISR currently in force), and favorable tax treatment on the payout side (under Art. 93 LISR currently in force), subject to compliance with the applicable fiscal requirements. It is available in MXN (inflation-adjusted), UDIS, or USD, and it is inheritable. Foreigners who are Mexican tax residents use it as a tax-efficient retirement layer their home country often does not replicate.",
   },
   {
     question: "How much can I deduct with a PPR?",
     answerText:
-      "Under Art. 151 fracc V LISR currently in force, PPR contributions are deductible up to the lesser of 10% of your annual taxable income or the equivalent of 5 annual UMAs (a cap that updates every year with inflation). The real benefit you receive through the SAT depends on your marginal income-tax rate. Because the deduction requires filing a Mexican return, it is most valuable for those with Mexican fiscal residency or Mexican-source income. Confirm the applicability to your situation with your tax advisor before contributing.",
+      "Under Art. 151 fracc V LISR currently in force, PPR contributions are deductible up to the lesser of 10% of your annual taxable income or the equivalent of 5 annual UMAs (a cap that updates every year with inflation). The real benefit you receive through the SAT depends on your marginal income-tax rate. The deduction is available only to Mexican tax residents — Mexican-source income alone does not qualify. Confirm the applicability to your situation with your tax advisor before contributing.",
   },
   {
     question: "Are PPRs worth it if I might leave Mexico in 5 or 10 years?",
@@ -82,7 +82,7 @@ function buildAudienceSchema() {
     "@type": "Audience" as const,
     "@id": `${SITE_URL}/retirement-planning#audience`,
     audienceType:
-      "Foreign residents in Mexico (RT or RP) planning retirement with Mexican-source income or fiscal residency",
+      "Foreigners in Mexico with temporary or permanent residency (RT or RP) and Mexican tax residency, planning retirement",
     geographicArea: { "@type": "Country", name: "Mexico" },
   };
 }
@@ -172,10 +172,10 @@ export default async function RetirementPlanningPage() {
             </h2>
             <div className="mt-8 space-y-6 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               <p>
-                If you file taxes in Mexico — fiscal residency or Mexican-source
-                income — a PPR can be one of the most tax-efficient tools
-                available, giving you an annual deduction while you contribute and
-                favorable treatment on the payout side.
+                If you are a Mexican tax resident, a PPR can be one of the most
+                tax-efficient tools available, giving you an annual deduction while
+                you contribute and favorable treatment on the payout side.
+                Mexican-source income alone does not qualify.
               </p>
               <p>
                 <strong className="text-ink dark:text-cream-light">
