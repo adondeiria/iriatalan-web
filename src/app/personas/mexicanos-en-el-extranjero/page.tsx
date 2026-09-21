@@ -52,7 +52,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Vivo en EUA. ¿Puedo seguir teniendo PPR en México?",
     answerText:
-      "Depende de tu situación fiscal. Si sigues tributando en México (residencia fiscal mexicana, ingresos de fuente mexicana, propiedades, empresa), el PPR sigue dándote deducción anual vía SAT (sujeto al cumplimiento de los requisitos del Art. 151 fracc V / Art. 185 LISR vigentes). Si tu residencia fiscal cambió por completo a EUA, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",
+      "Depende de tu situación fiscal. Si sigues siendo residente fiscal en México, el PPR sigue dándote deducción anual vía SAT (sujeto al cumplimiento de los requisitos del Art. 151 fracc V / Art. 185 LISR vigentes). Tener ingresos, propiedades o una empresa en México no basta por sí solo: la deducción del Art. 151 es para residentes. Si ya no eres residente fiscal en México, evaluamos juntos si conviene mantener el PPR existente o reestructurar. No es respuesta única — depende del caso.",
   },
   {
     question: "¿Cómo funciona la asesoría si no estoy en México?",
@@ -120,7 +120,7 @@ const PRODUCTOS = [
   {
     title: "PPR deducible — Art. 151 fracc V LISR",
     desc:
-      "Si todavía tributas en México (residencia fiscal mexicana, ingresos de fuente mexicana, empresa propia, propiedades), el PPR sigue dándote deducción anual hasta el tope vigente (~$213,973 MXN en 2026, equivalente a 5 UMAs anuales; cifra vigente a 2026). Es una de las herramientas fiscales más rentables que tu país de residencia probablemente no replica.",
+      "Si sigues siendo residente fiscal en México, el PPR sigue dándote deducción anual hasta el tope vigente (~$213,973 MXN en 2026, equivalente a 5 UMAs anuales; cifra vigente a 2026). Ingresos, propiedades o empresa en México no bastan por sí solos: la deducción es para residentes. Es una de las herramientas fiscales más rentables que el país donde vives probablemente no replica.",
   },
   {
     title: "GMM con red premium nacional",

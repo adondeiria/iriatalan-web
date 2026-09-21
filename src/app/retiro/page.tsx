@@ -549,7 +549,7 @@ export default async function RetiroPage() {
                   Mexicanos viviendo fuera del país
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
-                  El beneficio aplica si sigues tributando en México (residencia fiscal, ingresos de fuente mexicana, propiedades, empresa).
+                  El beneficio aplica si sigues siendo residente fiscal en México. Ingresos, propiedades o empresa aquí no bastan por sí solos.
                 </p>
               </Link>
             </div>
