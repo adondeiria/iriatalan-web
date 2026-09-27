@@ -40,9 +40,12 @@ const newKey = () => randomBytes(6).toString("hex");
 const span = (text, marks = []) => ({ _type: "span", _key: newKey(), text, marks });
 const textOf = (block) => (block?.children ?? []).map((c) => c.text).join("");
 
-// Mediodía CDMX = 18:00 UTC: evita que la firma "Revisado" caiga en otro día
-// (la plantilla todavía formatea en UTC; ver blog-datos-publicacion).
-const DATE_MODIFIED = "2026-09-27T18:00:00.000Z";
+// Campos reales del esquema (sanity/schemas/article.ts): `updatedAt` alimenta el
+// dateModified del JSON-LD y `lastReviewed` (fecha sin hora) la firma
+// "Revisado". No existe un campo `dateModified` en el esquema: escribirlo
+// crearía un campo huérfano que nada lee.
+// Mediodía CDMX = 18:00 UTC, para que el día no se corra al formatear en UTC.
+const FECHAS = { updatedAt: "2026-09-27T18:00:00.000Z", lastReviewed: "2026-09-27" };
 
 async function getDoc(id) {
   const q = encodeURIComponent(`*[_id=="${id}"][0]`);
@@ -78,7 +81,7 @@ async function maternidad() {
   set.seoTitle = "Seguro de gastos médicos para embarazo y maternidad";
   set.seoDescription =
     "¿Ya estás embarazada? Ningún seguro cubre ese parto: hay 10 meses de espera. Compara GNP, AXA, MetLife, BUPA y Seguros Monterrey antes de buscar bebé.";
-  set.dateModified = DATE_MODIFIED;
+  Object.assign(set, FECHAS);
   plan(`seoTitle (${set.seoTitle.length}): ${set.seoTitle}`);
   plan(`seoDescription (${set.seoDescription.length}): ${set.seoDescription}`);
 
@@ -145,7 +148,7 @@ async function st6() {
         set: {
           [`body[_key=="${b._key}"].children`]: children,
           [`body[_key=="${b._key}"].markDefs`]: markDefs,
-          dateModified: DATE_MODIFIED,
+          ...FECHAS,
         },
       },
     });
@@ -167,7 +170,7 @@ async function autismo(id) {
   const set = {};
   for (const b of doc.body ?? []) {
     if (b._type !== "block") continue;
-    b.children.forEach((c, i) => {
+    b.children.forEach((c) => {
       let t = c.text;
       for (const [de, a] of REEMPLAZOS) t = t.replace(de, a);
       if (t !== c.text) {
@@ -176,9 +179,15 @@ async function autismo(id) {
       }
     });
   }
-  const quedan = (doc.body ?? []).filter((b) => /\b18 años\b/.test(textOf(b)) && /acompañ/.test(textOf(b)));
   if (Object.keys(set).length === 0) skip("no hay \"18 años\" de experiencia que corregir");
-  return { id, slug: "como-dejar-dinero-hijo-autismo-discapacidad-mexico", ops: Object.keys(set).length ? [{ patch: { id, set } }] : [], quedan };
+  // Red de seguridad: una variante de la frase que REEMPLAZOS no cubra se
+  // reporta en vez de pasar en silencio.
+  for (const b of doc.body ?? []) {
+    let t = textOf(b);
+    for (const [de, a] of REEMPLAZOS) t = t.replace(de, a);
+    if (/\b\d+ años acompañ/.test(t)) skip(`sigue un número de años sin corregir en ${b._key}: "${t.slice(0, 120)}"`);
+  }
+  return { id, slug: "como-dejar-dinero-hijo-autismo-discapacidad-mexico", ops: Object.keys(set).length ? [{ patch: { id, set } }] : [] };
 }
 
 // ----------------------------------------------------------------------- main
