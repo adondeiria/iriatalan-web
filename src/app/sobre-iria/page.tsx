@@ -23,7 +23,7 @@ import { WA_MESSAGES, waHref } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: { absolute: "Sobre Iria Talan — Asesora Patrimonial y de Seguros" },
   description:
-    "Conoce a Iria Talan, Asesora Patrimonial y de seguros con +18 años ayudando a familias a proteger su patrimonio, su salud y su retiro. Formación en Yale School of Management (Executive Education). Autorizada CNSF.",
+    "Conoce a Iria Talan, Asesora Patrimonial y de seguros que desde 2008 ayuda a familias a proteger su patrimonio, su salud y su retiro. Formación en Yale School of Management (Executive Education). Autorizada CNSF.",
   alternates: { canonical: "/sobre-iria" },
   openGraph: {
     title: "Sobre Iria Talan — Asesora Financiera RIF",
@@ -61,7 +61,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Quién es Iria Talan?",
       answerText:
-        "Iria Talan es asesora patrimonial y agente de seguros independiente en México, con más de 18 años de experiencia. Está autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF) con cédula V388618 desde 2008. Se especializa en seguros de vida, gastos médicos mayores, retiro y planeación patrimonial. Atiende desde Ciudad de México, en español e inglés.",
+        "Iria Talan es asesora patrimonial y agente de seguros independiente en México. Está autorizada por la Comisión Nacional de Seguros y Fianzas (CNSF) con cédula V388618 desde 2008. Se especializa en seguros de vida, gastos médicos mayores, retiro y planeación patrimonial. Atiende desde Ciudad de México, en español e inglés.",
     },
     {
       question: "¿Iria Talan es independiente o trabaja para una aseguradora?",
