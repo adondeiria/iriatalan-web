@@ -55,9 +55,13 @@ const FAQS: FAQItem[] = [
 
 
 export const metadata: Metadata = {
-  title: "Asesoría Patrimonial y Seguros en México",
+  // Search Console (sep-2026): posición 14 para "asesoría patrimonial" (367
+  // impresiones, 0 clics), 17 para "asesoria patrimonial personalizada".
+  // Iria vende seguros, no servicios legales: el título y la definición de
+  // abajo explican la asesoría patrimonial desde los seguros.
+  title: "Asesoría patrimonial personalizada con seguros",
   description:
-    "Asesoría patrimonial personalizada: fideicomisos, sucesión, inversiones y seguros en dólares para familias en México y el extranjero. Ordena tu patrimonio.",
+    "Asesoría patrimonial con seguros: seguro de vida para que tu familia reciba el dinero sin juicio, retiro, ahorro en dólares y fideicomiso vía aseguradora.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
@@ -125,6 +129,13 @@ export default async function PatrimonialPage() {
             Asesoría patrimonial discreta para patrimonios complejos.
           </h1>
           <p className="mt-6 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
+            La asesoría patrimonial es ordenar cómo proteges, haces crecer y heredas
+            lo que tienes. Yo la hago con seguros: un seguro de vida para que tu
+            familia reciba el dinero directo, sin juicio sucesorio; planes de retiro y
+            ahorro en dólares; y fideicomiso a través de la aseguradora cuando hay
+            hijos menores o con discapacidad.
+          </p>
+          <p className="mt-4 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Cuando tu patrimonio cruza ciertos umbrales, los productos estándar
             dejan de ser suficientes. Aquí trabajamos fideicomisos, sucesión patrimonial,
             inversiones complejas y estructuras internacionales — con la discreción
