@@ -46,8 +46,11 @@ export const metadata: Metadata = {
  * debe funcionar como cita aislada, sin el resto de la página.
  *
  * Toda afirmación aquí es verificable contra credentials/carriers de arriba.
- * Precisión importante: son 6 aseguradoras en total, 5 de ellas con GMM
- * (Allianz no comercializa gastos médicos mayores).
+ * Precisión importante: son 6 aseguradoras en total; Iria asesora GMM con 5.
+ * Allianz SÍ vende GMM en México — Iria no lo vende con ella (con Allianz
+ * trabaja fondos de inversión y planes deducibles de impuestos, para personas
+ * físicas y empresas — confirmado por Iria, 1-oct-2026). Tampoco vende
+ * seguro de vida con Allianz. No escribir "Allianz no vende GMM".
  *
  * Es una función y no una constante porque la respuesta de la oficina toma la
  * dirección de `author` (Sanity). Cuando estaba escrita a mano, la página se
@@ -71,7 +74,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Con qué aseguradoras trabaja Iria Talan?",
       answerText:
-        "Con seis aseguradoras autorizadas en México: GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz. Cinco de ellas ofrecen gastos médicos mayores —Allianz no comercializa GMM—. Es Asesora Diamante en GNP Seguros y en Seguros Monterrey New York Life.",
+        "Con seis aseguradoras autorizadas en México: GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz. En gastos médicos mayores asesora con cinco de ellas; con Allianz trabaja fondos de inversión y planes deducibles de impuestos para personas físicas y empresas. Es Asesora Diamante en GNP Seguros y en Seguros Monterrey New York Life.",
     },
     {
       question: "¿Cómo verifico la cédula de Iria Talan ante la CNSF?",

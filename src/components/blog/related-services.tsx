@@ -31,9 +31,11 @@ const SERVICES: Record<string, ServiceLink> = {
   gmm: {
     href: "/gmm",
     title: "Gastos Médicos Mayores",
-    // 5, no 6: de las 6 aseguradoras que represento, Allianz no vende GMM en México.
+    // 5, no 6: de las 6 aseguradoras que represento, con Allianz no vendo GMM
+    // (Allianz sí lo vende en México; con ella Iria trabaja fondos de inversión
+    // y planes deducibles de impuestos).
     blurb:
-      "Comparo las 5 aseguradoras que venden GMM en México y armo la cobertura que te conviene, no la que más se vende.",
+      "Comparo 5 aseguradoras de gastos médicos y armo la cobertura que te conviene, no la que más se vende.",
   },
   retiro: {
     href: "/retiro",

@@ -3,6 +3,8 @@
  * Combinar múltiples schemas con @graph en una sola etiqueta <script>.
  */
 
+import { GOOGLE_PROFILE_URL } from "./google-business.ts";
+
 export const SITE_URL = "https://iriatalan.com.mx";
 
 /**
@@ -628,11 +630,58 @@ const TOPIC_ABOUT_THING: Record<string, { name: string; sameAs?: string }> = {
   casos: { name: "Asesoría financiera especializada" },
 };
 
-export function buildArticleSchema(article: ArticleData) {
-  // dateModified = lastReviewed (si existe) > updatedAt > publishedAt.
-  // LLMs prefieren documentos recientemente revisados.
-  const dateModified =
+/** Día de calendario en Ciudad de México ("2026-08-23"). Una fecha sin hora ya lo es. */
+function diaCdmx(iso: string): string {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Mexico_City",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(iso));
+}
+
+/**
+ * dateModified = lastReviewed (si existe) > updatedAt > publishedAt.
+ * LLMs prefieren documentos recientemente revisados.
+ *
+ * Nunca antes de la publicación: `lastReviewed` es un día sin hora y
+ * `publishedAt` un instante UTC, así que un artículo publicado en la tarde
+ * de CDMX ("2026-08-24T00:32Z") y revisado ese mismo día ("2026-08-23")
+ * declaraba haberse modificado antes de existir.
+ *
+ * - Con hora: se comparan instantes; si es anterior, gana la publicación.
+ * - Sin hora: si cae el mismo día de CDMX que la publicación (o antes), gana
+ *   la publicación. Si es un día posterior se emite a mediodía de CDMX, porque
+ *   un lector la tomaría como medianoche UTC — que para una publicación de
+ *   después de las 6 pm sigue cayendo antes de ella.
+ * - Una fecha ilegible se deja pasar tal cual (como antes de esta función) en
+ *   vez de tumbar la página del artículo.
+ */
+export function fechaModificacion(
+  article: Pick<ArticleData, "publishedAt" | "updatedAt" | "lastReviewed">
+): string {
+  const candidata =
     article.lastReviewed ?? article.updatedAt ?? article.publishedAt;
+  if (!candidata || !article.publishedAt) return candidata;
+  if (isNaN(Date.parse(candidata)) || isNaN(Date.parse(article.publishedAt))) {
+    return candidata;
+  }
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(candidata)) {
+    return Date.parse(candidata) < Date.parse(article.publishedAt)
+      ? article.publishedAt
+      : candidata;
+  }
+
+  return candidata <= diaCdmx(article.publishedAt)
+    ? article.publishedAt
+    // CDMX es UTC-6 todo el año desde que México dejó el horario de verano (2022).
+    : `${candidata}T12:00:00-06:00`;
+}
+
+export function buildArticleSchema(article: ArticleData) {
+  const dateModified = fechaModificacion(article);
 
   // `about` enlaza el artículo a un concepto canónico (Thing).
   const aboutThing = article.topic
@@ -807,7 +856,12 @@ export function buildLocalBusinessSchema(author?: AuthorData) {
     // Horario real de la oficina, confirmado por Iria: cierra a las 5 pm.
     // El sitio declaraba 18:00 y la ficha de Google 17:00 — ganó la ficha.
     openingHours: "Mo-Fr 09:00-17:00",
-    sameAs,
+    // La ficha de Google Business, declarada en los dos campos que la nombran:
+    // `hasMap` (el mapa del local) y `sameAs` (el mismo negocio en otra
+    // superficie). El sitio ya enlazaba la ficha en el footer, pero el nodo que
+    // Google cruza con ella no la mencionaba.
+    hasMap: GOOGLE_PROFILE_URL,
+    sameAs: sameAs.includes(GOOGLE_PROFILE_URL) ? sameAs : [...sameAs, GOOGLE_PROFILE_URL],
   };
 }
 

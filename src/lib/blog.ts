@@ -91,13 +91,22 @@ export const FORMAT_LABELS: Record<string, string> = {
 };
 
 // Formato de fecha consistente para todo el blog.
+//
+// Vercel renderiza en UTC: sin `timeZone`, un artículo publicado a las 6:32 pm
+// del 23-ago en CDMX (00:32 UTC del 24) se mostraba como "24 de agosto", un día
+// después de su "Revisado 23 de agosto". Los timestamps se leen en hora de
+// Ciudad de México. Las fechas sin hora ("2026-08-23", p. ej. `lastReviewed`)
+// ya son el día de calendario: JS las toma como medianoche UTC, así que se
+// formatean en UTC — en CDMX caerían al día anterior.
 export function formatDateMx(iso?: string | null): string {
   if (!iso) return "";
   try {
+    const soloFecha = /^\d{4}-\d{2}-\d{2}$/.test(iso);
     return new Date(iso).toLocaleDateString("es-MX", {
       year: "numeric",
       month: "long",
       day: "numeric",
+      timeZone: soloFecha ? "UTC" : "America/Mexico_City",
     });
   } catch {
     return "";

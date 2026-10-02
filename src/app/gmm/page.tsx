@@ -184,9 +184,10 @@ export default async function GmmPage() {
           </p>
           <p className="mt-4 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Soy corredora independiente de 6 aseguradoras AAA en México, y{" "}
-            <strong className="font-semibold text-ink dark:text-cream-light">5 de ellas venden gastos médicos mayores</strong>:
-            BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP. La sexta es
-            Allianz, que en México no ofrece GMM — solo vida y ahorro. Según tu
+            <strong className="font-semibold text-ink dark:text-cream-light">con 5 de ellas te asesoro en gastos médicos mayores</strong>:
+            BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP. Con la sexta,
+            Allianz, trabajo fondos de inversión y planes deducibles de impuestos
+            para personas físicas y empresas. Según tu
             situación específica, te recomiendo la(s) más adecuada(s) para ti.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -610,10 +611,11 @@ export default async function GmmPage() {
                   2. Recomendación de la(s) aseguradora(s) adecuada(s) para ti
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Para GMM comparo las 5 aseguradoras que lo venden: BUPA, MetLife,
-                  Seguros Monterrey New York Life, AXA y GNP. En total represento a 6
-                  —la sexta es Allianz, que en México no maneja gastos médicos mayores—,
-                  así que en esta línea la comparación honesta es entre 5. Según tu
+                  Para GMM comparo 5 aseguradoras: BUPA, MetLife, Seguros Monterrey
+                  New York Life, AXA y GNP. En total represento a 6 —con la sexta,
+                  Allianz, trabajo fondos de inversión y planes deducibles de
+                  impuestos, no gastos médicos—, así que
+                  en esta línea la comparación es entre 5. Según tu
                   situación específica, te recomiendo la(s) más adecuada(s) para ti.
                 </p>
               </div>

@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import { FALLBACK_AUTHOR } from "./author.ts";
-import { buildPersonSchema } from "./seo.ts";
+import { GOOGLE_PROFILE_URL } from "./google-business.ts";
+import {
+  buildLocalBusinessSchema,
+  buildPersonSchema,
+  fechaModificacion,
+} from "./seo.ts";
 
 /**
  * El apellido se escribe Talan, sin acento, en todo lo que ve un cliente, y los
@@ -85,5 +90,65 @@ describe("experiencia en los datos estructurados", () => {
   it('dice "desde 2008", no un número de años que envejece', () => {
     const json = JSON.stringify(buildPersonSchema(FALLBACK_AUTHOR));
     assert.ok(!/\b1[5-9] años/.test(json), "el perfil trae un número de años");
+  });
+});
+
+/**
+ * "rendimiento-que-esperas…" se publicó el 23-ago-2026 a las 6:32 pm CDMX
+ * (00:32 UTC del 24) y se revisó ese mismo día. El JSON-LD declaraba
+ * dateModified "2026-08-23" < datePublished "2026-08-24T00:32Z".
+ */
+describe("dateModified nunca antes de la publicación", () => {
+  const publishedAt = "2026-08-24T00:32:34.202Z";
+
+  it("revisado el mismo día de CDMX → usa el instante de publicación", () => {
+    assert.equal(fechaModificacion({ publishedAt, lastReviewed: "2026-08-23" }), publishedAt);
+  });
+
+  it("revisión de un día posterior se respeta, a mediodía de CDMX", () => {
+    assert.equal(
+      fechaModificacion({ publishedAt, lastReviewed: "2026-08-25" }),
+      "2026-08-25T12:00:00-06:00"
+    );
+  });
+
+  it("revisión al día siguiente de CDMX tampoco queda antes (24-ago 00:00Z < 00:32Z)", () => {
+    const r = fechaModificacion({ publishedAt, lastReviewed: "2026-08-24" });
+    assert.ok(Date.parse(r) > Date.parse(publishedAt), r);
+  });
+
+  it("una actualización con hora del mismo día se respeta si es posterior", () => {
+    assert.equal(
+      fechaModificacion({ publishedAt, updatedAt: "2026-08-24T05:00:00Z" }),
+      "2026-08-24T05:00:00Z"
+    );
+  });
+
+  it("una fecha ilegible no tumba la página", () => {
+    assert.equal(fechaModificacion({ publishedAt, lastReviewed: "pendiente" }), "pendiente");
+  });
+
+  it("updatedAt anterior (dato malo) no gana a la publicación", () => {
+    assert.equal(
+      fechaModificacion({ publishedAt, updatedAt: "2026-08-23T17:00:00Z" }),
+      publishedAt
+    );
+  });
+
+  it("sin revisión ni actualización → la publicación", () => {
+    assert.equal(fechaModificacion({ publishedAt }), publishedAt);
+  });
+});
+
+describe("ficha de Google Business en el nodo local", () => {
+  it("declara hasMap y la incluye en sameAs una sola vez", () => {
+    const s = buildLocalBusinessSchema();
+    assert.equal(s.hasMap, GOOGLE_PROFILE_URL);
+    assert.equal(s.sameAs.filter((u) => u === GOOGLE_PROFILE_URL).length, 1);
+  });
+
+  it("no la duplica si Sanity ya la trae en sameAs", () => {
+    const s = buildLocalBusinessSchema({ name: "Iria Talan", sameAs: [GOOGLE_PROFILE_URL] });
+    assert.deepEqual(s.sameAs, [GOOGLE_PROFILE_URL]);
   });
 });

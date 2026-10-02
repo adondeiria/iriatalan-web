@@ -31,6 +31,7 @@ import {
   buildFAQPageSchema,
   buildGraph,
   buildVideoSchema,
+  fechaModificacion,
   SITE_NAME,
   SITE_URL,
   type ArticleVideoData,
@@ -194,8 +195,7 @@ export async function generateMetadata({
       title,
       description,
       publishedTime: article.publishedAt,
-      modifiedTime:
-        article.lastReviewed ?? article.updatedAt ?? article.publishedAt,
+      modifiedTime: fechaModificacion(article),
       authors: article.author?.name ? [article.author.name] : undefined,
       images: article.heroImage?.asset?.url
         ? [
