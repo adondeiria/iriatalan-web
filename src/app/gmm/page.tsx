@@ -18,6 +18,11 @@ import { RelatedArticles } from "@/components/blog/related-articles";
 
 const FAQS: FAQItem[] = [
   {
+    question: "¿Qué es un GMM?",
+    answerText:
+      "Un GMM (seguro de gastos médicos mayores) es un seguro privado que paga hospital, cirugía, honorarios médicos y medicinas cuando tienes una enfermedad o un accidente cubiertos, después del deducible y el coaseguro que eliges al contratar. Si te lo da tu trabajo, es una póliza colectiva que contrata la empresa: te cubre mientras sigas ahí. Si es individual, está a tu nombre y la conservas aunque cambies de empleo.",
+  },
+  {
     question: "¿Qué GMM es mejor: GNP, BUPA, AXA, MetLife o SMNYL?",
     answerText:
       "Ninguna es \"mejor\" en absoluto — la mejor para ti depende de tu perfil (edad, hospitales donde quieres atenderte, necesidad internacional, presupuesto, preexistencias declaradas) y del plan específico que contrates. Dos precisiones que cambian la comparación: la red hospitalaria no es un atributo fijo de cada aseguradora, porque las cinco manejan varios niveles de red y el nivel lo decide el plan que pagas; y de GMM internacional solo dos tienen oferta, BUPA y GNP. La elección correcta requiere comparar cuadros médicos, deducibles, coaseguros, plazos de espera para preexistencias y costos referenciales para tu edad y suma asegurada — eso es exactamente lo que hacemos en la sesión inicial.",
@@ -35,7 +40,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cubre el GMM maternidad y parto?",
     answerText:
-      "Sí, pero con periodo de espera — típicamente 10-12 meses desde la contratación o ampliación, según la aseguradora y plan. Esto significa que si quieres que tu GMM cubra el parto, debes contratar antes de embarazarte (o estar dentro del periodo de carencia que permita el plan). La cobertura del recién nacido (alta médica + primeros días de hospitalización) generalmente es un módulo aparte que conviene contratar al avisar el embarazo, dentro del plazo que marque la póliza. Las condiciones finales se rigen por la póliza emitida por la aseguradora.",
+      "Sí, pero con 10 meses de periodo de espera en las cinco aseguradoras que comparo, y un embarazo dura 9. Si ya estás embarazada, ninguna póliza nueva va a cubrir ese parto: el GMM para maternidad se contrata antes de buscar el embarazo. La cobertura del recién nacido (alta médica + primeros días de hospitalización) generalmente es un módulo aparte que conviene contratar al avisar el embarazo, dentro del plazo que marque la póliza. Las condiciones finales se rigen por la póliza emitida por la aseguradora.",
   },
   {
     question: "¿Cuánto cuesta un GMM individual o familiar en 2026?",
@@ -85,9 +90,12 @@ const FAQS: FAQItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "¿Qué cubre un Seguro de Gastos Médicos Mayores?",
+  // "Qué es un GMM" es como lo busca la gente: Search Console (sep-2026) daba
+  // 4,799 impresiones y 3 clics con el título anterior, en posición 9-10 para
+  // "que es gmm", "gmm que es" y "que es gmm en un trabajo".
+  title: "¿Qué es un GMM y qué cubre? Gastos Médicos Mayores",
   description:
-    "Qué cubre, cómo funciona y cuánto cuesta al año un GMM en México. Trabajo con 5 aseguradoras AAA para encontrar tu mejor plan, nacional e internacional.",
+    "Un GMM paga hospital, cirugía, médicos y medicinas por enfermedad o accidente. Qué cubre, deducible y coaseguro, y cómo elegir entre 5 aseguradoras.",
   alternates: buildHreflangAlternates(
     "/gmm",
     "/gmm",
@@ -170,6 +178,11 @@ export default async function GmmPage() {
             internacional correctas para tu caso real.
           </h2>
           <p className="mt-6 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
+            Un GMM (seguro de gastos médicos mayores) paga hospital, cirugía, médicos
+            y medicinas cuando tienes una enfermedad o un accidente, después del
+            deducible y el coaseguro que eliges al contratar.
+          </p>
+          <p className="mt-4 text-lg text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Soy corredora independiente de 6 aseguradoras AAA en México, y{" "}
             <strong className="font-semibold text-ink dark:text-cream-light">5 de ellas venden gastos médicos mayores</strong>:
             BUPA, MetLife, Seguros Monterrey New York Life, AXA y GNP. La sexta es
