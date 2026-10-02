@@ -283,7 +283,8 @@ export default async function PlanesEducacionalesPage() {
                   3. Elegir el plan correcto
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Comparamos entre las 6 aseguradoras con las que trabajo: tasa garantizada
+                  Comparamos entre las 5 aseguradoras con las que trabajo planes
+                  educacionales: tasa garantizada
                   vs ligado a fondos, coberturas adicionales (vida, invalidez), flexibilidad de
                   rescate, y condiciones de continuidad en caso de fallecimiento.
                 </p>
