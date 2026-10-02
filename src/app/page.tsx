@@ -33,7 +33,7 @@ const FALLBACK_CTA_TEXT = "Reserva tu sesión inicial · 30 min";
 const FALLBACK_CTA_URL = "/contacto#agendar";
 
 const PROPOSITOS_HERO = [
-  { icon: "/img/icons/hero-medal.svg", label: "+18 años de experiencia" },
+  { icon: "/img/icons/hero-medal.svg", label: "Asesorando desde 2008" },
   { icon: "/img/icons/hero-users.svg", label: "Asesoría personalizada y cercana" },
   { icon: "/img/icons/hero-globe.svg", label: "México y clientes en el extranjero" },
   { icon: "/img/icons/hero-shield.svg", label: "Sin presión comercial" },

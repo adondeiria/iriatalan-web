@@ -156,6 +156,35 @@ function normalizeLanguages(langs?: string[]): string[] | undefined {
   return langs.map((l) => LANGUAGE_ISO_MAP[l.toLowerCase().trim()] ?? l);
 }
 
+type Credential = NonNullable<AuthorData["credentials"]>[number];
+
+/**
+ * Nombre de la institución tal como la reconocen Google y las IAs.
+ *
+ * El `issuer` de Sanity es texto para personas y trae aclaraciones después de
+ * " — " ("London School of Economics — Executive Education (curso ejecutivo, no
+ * MBA)", "Million Dollar Round Table — nivel más alto de la élite…"). Esa
+ * aclaración se queda en la página, pero como nombre de `Organization` impide
+ * que el crawler reconozca la entidad: nadie más la llama así.
+ */
+export function credentialOrgName(issuer: string): string {
+  return issuer.split(" — ")[0].trim();
+}
+
+/**
+ * Categoría con el vocabulario que esperan los crawlers ("license",
+ * "certificate", "degree"), no las etiquetas internas de Sanity.
+ *
+ * Yale y LSE son programas ejecutivos: van como "certificate", nunca "degree",
+ * por la misma razón por la que en prosa llevan "Executive Education" — no se
+ * insinúa un posgrado que no existe.
+ */
+export function credentialSchemaCategory(c: Credential): string {
+  if (c.category === "regulatoria" && /c[ée]dula/i.test(c.title ?? "")) return "license";
+  if (c.category === "academica" && !/executive education/i.test(c.issuer ?? "")) return "degree";
+  return "certificate";
+}
+
 export function buildPersonSchema(author: AuthorData) {
   // Deduplicado: `author.sameAs` y `socialLinks` suelen traer los mismos perfiles
   // (LinkedIn, Instagram, Facebook). Mientras `sameAs` estuvo vacío en Sanity no
@@ -209,7 +238,25 @@ export function buildPersonSchema(author: AuthorData) {
     ?.filter((c) => c.category === "academica" && c.issuer)
     .map((c) => ({
       "@type": "EducationalOrganization" as const,
-      name: c.issuer,
+      name: credentialOrgName(c.issuer!),
+    }));
+
+  // Solo formación y autorizaciones. MDRT, AMASFAC y los niveles Diamante son
+  // reconocimientos (categorías "industria" y "carrier"): ya salen en `award`
+  // y en `affiliation`, y declararlos también como credencial los duplicaba.
+  const hasCredential = author.credentials
+    ?.filter((c) => c.category === "academica" || c.category === "regulatoria")
+    .map((c) => ({
+      "@type": "EducationalOccupationalCredential" as const,
+      name: c.title,
+      credentialCategory: credentialSchemaCategory(c),
+      // El número de cédula como dato propio: es lo que se busca en el
+      // registro de la CNSF, y así no depende de leerlo dentro del nombre.
+      identifier: c.title?.match(/c[ée]dula\s+([A-Z0-9]+)/i)?.[1],
+      recognizedBy: c.issuer
+        ? { "@type": "Organization" as const, name: credentialOrgName(c.issuer) }
+        : undefined,
+      url: c.url,
     }));
 
   // Defaults hardcoded para Iria — sitio one-author. Si Sanity no tiene
@@ -300,15 +347,7 @@ export function buildPersonSchema(author: AuthorData) {
     award: awards,
     alumniOf: alumniOf && alumniOf.length > 0 ? alumniOf : undefined,
     worksFor: { "@id": `${SITE_URL}#organization` },
-    hasCredential: author.credentials?.map((c) => ({
-      "@type": "EducationalOccupationalCredential",
-      name: c.title,
-      credentialCategory: c.category,
-      recognizedBy: c.issuer
-        ? { "@type": "Organization", name: c.issuer }
-        : undefined,
-      url: c.url,
-    })),
+    hasCredential: hasCredential && hasCredential.length > 0 ? hasCredential : undefined,
     sameAs: sameAs.length ? sameAs : undefined,
   };
 }
