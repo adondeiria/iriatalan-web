@@ -134,8 +134,11 @@ const nextConfig: NextConfig = {
       { source: "/contact/", destination: "/contacto", permanent: true },
       { source: "/contact-us", destination: "/contacto", permanent: true },
       { source: "/contact-us/", destination: "/contacto", permanent: true },
-      { source: "/english", destination: "/", permanent: true },
-      { source: "/english/", destination: "/", permanent: true },
+      // /english/ era la portada en inglés del WordPress; sigue con impresiones
+      // en Search Console (263 a sep-2026). Su público es el de la página para
+      // extranjeros, no la portada en español.
+      { source: "/english", destination: "/foreigners-in-mexico", permanent: true },
+      { source: "/english/", destination: "/foreigners-in-mexico", permanent: true },
       // Restructure 2026-05-10: 4 nichos movidos bajo /personas/* para
       // crear topical hub. Preservar SEO con 308 (=301 SEO-equivalente).
       { source: "/mexicanos-en-el-extranjero", destination: "/personas/mexicanos-en-el-extranjero", permanent: true },
