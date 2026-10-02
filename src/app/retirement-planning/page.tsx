@@ -70,6 +70,9 @@ export const metadata: Metadata = {
   ),
   openGraph: {
     type: "website",
+    // El contenido está en inglés (<main lang="en">); sin esto la página no
+    // declaraba og:locale, porque este openGraph reemplaza al del layout.
+    locale: "en_US",
     url: `${SITE_URL}/retirement-planning`,
     title: "Retirement Planning in Mexico for Foreigners (PPR) — Iria Talan",
     description:

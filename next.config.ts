@@ -83,6 +83,21 @@ const nextConfig: NextConfig = {
   // Google sitelinks still point to /quienes-somos and /servicios (404 on new site).
   async redirects() {
     return [
+      // www.iriatalan.com.mx servía el sitio completo con 200 en vez de mandar al
+      // dominio canónico. Las canonical apuntaban bien, pero eran dos copias del
+      // sitio que Google tenía que reconciliar, y los enlaces externos hacia www
+      // repartían la señal entre dos hosts.
+      //
+      // /api queda fuera: un webhook configurado contra www (Sanity, WhatsApp,
+      // Zoho) funcionaba con el 200 y muchos remitentes no siguen un 308 en un
+      // POST — fallaría en silencio. Las URLs viejas de WordPress en www dan dos
+      // saltos (www → apex → destino); aceptable.
+      {
+        source: "/:path((?!api(?:/|$)).*)",
+        has: [{ type: "host", value: "www.iriatalan.com.mx" }],
+        destination: "https://iriatalan.com.mx/:path",
+        permanent: true,
+      },
       { source: "/quienes-somos", destination: "/sobre-iria", permanent: true },
       { source: "/quienes-somos/", destination: "/sobre-iria", permanent: true },
       { source: "/servicios", destination: "/", permanent: true },

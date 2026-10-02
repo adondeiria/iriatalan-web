@@ -38,7 +38,7 @@
 5. MetLife
 6. Seguros Monterrey New York Life (abreviar como **SMNYL** en cuerpo, expandir primera vez)
 
-> ⚠️ **GMM — excepción por ramo**: NO se vende GMM con **Allianz**. Los carriers de GMM son **AXA, BUPA, GNP, MetLife y SMNYL** (5, orden alfabético). Allianz aplica a vida, ahorro/retiro y educacional — NUNCA incluir Allianz en comparativas, tablas ni ejemplos de GMM. (2026-07-23)
+> ⚠️ **GMM — excepción por ramo**: NO se vende GMM con **Allianz**. Los carriers de GMM son **AXA, BUPA, GNP, MetLife y SMNYL** (5, orden alfabético). Allianz SÍ vende GMM en México, pero Iria no lo vende con ella: con Allianz trabaja fondos de inversión y planes deducibles de impuestos, para personas físicas y empresas; tampoco vende seguro de vida con Allianz (confirmado por Iria, 1-oct-2026). Nunca escribir "Allianz no vende GMM" — NUNCA incluir Allianz en comparativas, tablas ni ejemplos de GMM. (2026-07-23)
 
 NUNCA mencionar como hecho regulatorio lo que un carrier dice en su material comercial — siempre cita CNSF/CONDUSEF/AMIS para regulación.
 

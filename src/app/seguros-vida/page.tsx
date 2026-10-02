@@ -29,7 +29,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cuánto cuesta un seguro de vida?",
     answerText:
-      "El costo depende de tu edad, sexo biológico, si eres fumador, la suma asegurada y los riders adicionales. Como referencia: un hombre de 35 años, no fumador, con $1,000,000 MXN de suma asegurada en un seguro temporal a 20 años puede pagar desde $200-$400 MXN al mes — menos que un plan de streaming familiar. A los 50 años el mismo perfil puede costar 2-3 veces más. Por eso la regla es: contratar joven y sano. Cotizamos sin costo y sin compromiso con las 6 aseguradoras con las que trabajo.",
+      "El costo depende de tu edad, sexo biológico, si eres fumador, la suma asegurada y los riders adicionales. Como referencia: un hombre de 35 años, no fumador, con $1,000,000 MXN de suma asegurada en un seguro temporal a 20 años puede pagar desde $200-$400 MXN al mes — menos que un plan de streaming familiar. A los 50 años el mismo perfil puede costar 2-3 veces más. Por eso la regla es: contratar joven y sano. Cotizamos sin costo y sin compromiso con las 5 aseguradoras con las que trabajo seguro de vida.",
   },
   {
     question: "¿El suicidio está cubierto?",
@@ -345,7 +345,7 @@ export default async function SegurosVidaPage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-warm-brown/60 dark:text-cream-light/40">
-              Cifras referenciales para seguro temporal a 20 años. Precios vigentes a 2026; sujetos a emisión y cuestionario médico. Fuente: cotizaciones de las 6 aseguradoras con las que trabajo.
+              Cifras referenciales para seguro temporal a 20 años. Precios vigentes a 2026; sujetos a emisión y cuestionario médico. Fuente: cotizaciones de las 5 aseguradoras con las que trabajo seguro de vida.
             </p>
           </div>
         </section>
@@ -378,8 +378,8 @@ export default async function SegurosVidaPage() {
             <p className="mt-3 text-warm-brown dark:text-cream-light/85 leading-relaxed">
               Trabajo con 6 aseguradoras AAA en México:{" "}
               <strong className="font-semibold text-ink dark:text-cream-light">GNP, AXA, MetLife, Seguros Monterrey New York Life, BUPA y Allianz</strong>.
-              Las 6 ofrecen seguro de vida, así que aquí la comparativa es entre todas.
-              (En gastos médicos mayores son 5, porque Allianz no vende GMM en México.)
+              En seguro de vida comparo 5 —todas menos Allianz, con la que trabajo
+              fondos de inversión y planes deducibles de impuestos—.
               En 30 minutos tienes la comparativa de opciones para tu perfil específico
               — no una presentación genérica.
             </p>
