@@ -36,8 +36,6 @@ export type PipedriveLeadInput = {
   utmCampaign: string;
   /** Sitio desde el que llegó, cuando no hay UTM (ej. "google.com"). */
   referrer: string;
-  /** Persona que lo recomendó ("¿Quién te recomendó?"), ya saneada. */
-  recomendadoPor?: string;
 };
 
 export type PipedriveResult = {
@@ -166,7 +164,6 @@ function etiquetaDeOrigen(input: PipedriveLeadInput): string {
 /** Cuerpo HTML de la nota: todo lo que el form capturó, en orden de lectura. */
 function buildNote(input: PipedriveLeadInput): string {
   const filas: Array<[string, string]> = [
-    ["Recomendado por", input.recomendadoPor ?? ""],
     ["Página de origen", input.origen],
     ["Vino de", etiquetaDeOrigen(input)],
     ["Campaña", input.utmCampaign],
