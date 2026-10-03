@@ -17,7 +17,7 @@ import type { AuthorData } from "@/lib/seo";
 export const FALLBACK_AUTHOR: AuthorData = {
   name: "Iria Talan",
   title: "Asesora Financiera RIF · Especialista en Seguros de Vida y GMM",
-  bio: "Asesora financiera que desde 2008 acompaña a familias afluentes y patrimonios complejos en México. Formada en Wealth Management Theory & Practice por Yale School of Management (Executive Education) y en MBA Essentials por London School of Economics. Reconocida por la calidad del cuidado, no por volumen: Top of the Table en MDRT y 8vo Lugar Nacional AMASFAC. Asesora Diamante GNP y Seguros Monterrey NYL.",
+  bio: "Asesora financiera que desde 2008 acompaña a familias afluentes y patrimonios complejos en México. Formada en Wealth Management Theory & Practice por Yale School of Management (Executive Education) y en MBA Essentials por London School of Economics. Reconocida por la calidad del cuidado, no por volumen: Top of the Table en MDRT y 4º Lugar Nacional AMASFAC 2025. Asesora Diamante GNP y Seguros Monterrey NYL.",
   /**
    * ORDEN DELIBERADO: la formación va primero.
    *
@@ -42,7 +42,7 @@ export const FALLBACK_AUTHOR: AuthorData = {
     // omite a propósito, para que la frase no envejezca.
     "MDRT Top of the Table (TOT) 2024 — Million Dollar Round Table",
     "Million Dollar Round Table (MDRT) — Miembro desde 2008",
-    "AMASFAC — 8vo Lugar Nacional",
+    "AMASFAC — 4º Lugar Nacional 2025 · 8º Lugar Nacional 2024",
     "GNP Seguros — Asesora Diamante",
     "Seguros Monterrey New York Life — Asesora Diamante",
   ],
@@ -66,8 +66,9 @@ export const FALLBACK_AUTHOR: AuthorData = {
     { title: "Miembro MDRT desde 2008 · Top of the Table 2024", issuer: "Million Dollar Round Table — nivel más alto de la élite mundial de la industria de seguros", category: "industria" },
     // 2024, no 2025: el Trofeo del 2025 aún no se entrega. Ponerlo antes sería
     // afirmar un reconocimiento no recibido. Cuando se confirme, se agrega.
+    { title: "4º Lugar Nacional — Trofeo AMASFAC", issuer: "AMASFAC (Asociación Mexicana de Agentes de Seguros y Fianzas)", year: "2025", category: "industria" },
     { title: "8vo Lugar Nacional — Trofeo AMASFAC", issuer: "AMASFAC (Asociación Mexicana de Agentes de Seguros y Fianzas)", year: "2024", category: "industria" },
-    { title: "Asesora Diamante", issuer: "GNP Seguros", year: "Desde 2016", category: "carrier" },
+    { title: "Asesora Diamante", issuer: "GNP Seguros", year: "Desde 2017", category: "carrier" },
     { title: "Asesora Diamante", issuer: "Seguros Monterrey New York Life", year: "Desde 2008", category: "carrier" },
     // Regulatorio al final, como estaba: la cédula es el cierre que respalda todo
     // lo anterior. El diplomado BMV vive en esta categoría desde antes; si se

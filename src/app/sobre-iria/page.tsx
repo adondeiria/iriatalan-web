@@ -87,14 +87,14 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
         "Million Dollar Round Table (MDRT) es la asociación internacional que reconoce al segmento de mayor desempeño de la industria de seguros, y Top of the Table es su nivel más alto. Iria Talan es miembro desde 2008 y Top of the Table en MDRT. Para un cliente significa que trabaja con una asesora del grupo más alto del sector, no que pague más por ello.",
     },
     {
-      question: "¿Qué es el 8° lugar nacional de AMASFAC?",
+      question: "¿Qué es el Trofeo AMASFAC que recibió Iria Talan?",
       answerText:
-        "AMASFAC es la Asociación Mexicana de Agentes de Seguros y Fianzas, la red de agentes más grande del país, fundada en 1958. Su Trofeo AMASFAC reconoce a los mejores agentes de Vida y Gastos Médicos Mayores de México, y en 2024 Iria Talan ocupó el 8° lugar nacional. Es una evaluación de sus pares del gremio, no de la aseguradora que le paga comisión.",
+        "AMASFAC es la Asociación Mexicana de Agentes de Seguros y Fianzas, la red de agentes más grande del país, fundada en 1958. Su Trofeo AMASFAC reconoce a los mejores agentes de Vida y Gastos Médicos Mayores de México, Iria Talan ocupó el 4° lugar nacional en 2025 y el 8° en 2024. Es una evaluación de sus pares del gremio, no de la aseguradora que le paga comisión.",
     },
     {
       question: "¿Qué significa que Iria Talan sea Asesora Diamante?",
       answerText:
-        "Diamante es el nivel más alto que una aseguradora otorga a sus agentes. Iria Talan lo tiene en dos a la vez: en Seguros Monterrey New York Life desde 2008 y en GNP Seguros desde 2016 — casi dos décadas sosteniéndolo en ambas. A diferencia del reconocimiento de AMASFAC, que viene del gremio, este lo concede cada aseguradora sobre su propia cartera.",
+        "Diamante es el nivel más alto que una aseguradora otorga a sus agentes. Iria Talan lo tiene en dos a la vez: en Seguros Monterrey New York Life desde 2008 y en GNP Seguros desde 2017. A diferencia del reconocimiento de AMASFAC, que viene del gremio, este lo concede cada aseguradora sobre su propia cartera.",
     },
     {
       question: "¿En qué se especializa Iria Talan?",
