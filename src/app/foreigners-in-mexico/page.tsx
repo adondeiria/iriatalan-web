@@ -43,7 +43,7 @@ const FAQS: FAQItem[] = [
   {
     question: "Can you advise me in English?",
     answerText:
-      "Yes. I work bilingually — Spanish and English — with clients from the US, Europe, and Latin America. All formal documents (policies, fiscal receipts, regulatory paperwork) are issued in Spanish because Mexican law requires it, but I walk you through each document in English and answer your questions in whichever language you prefer. I studied Wealth Management Theory & Practice at Yale School of Management (Executive Education) and MBA Essentials at the London School of Economics, and I am MDRT Top of the Table and ranked 8th nationally by AMASFAC.",
+      "Yes. I work bilingually — Spanish and English — with clients from the US, Europe, and Latin America. All formal documents (policies, fiscal receipts, regulatory paperwork) are issued in Spanish because Mexican law requires it, but I walk you through each document in English and answer your questions in whichever language you prefer. I studied Wealth Management Theory & Practice at Yale School of Management (Executive Education) and MBA Essentials at the London School of Economics, and I am MDRT Top of the Table and ranked 4th nationally by AMASFAC in 2025.",
   },
   {
     question: "What if I leave Mexico in 5 or 10 years — can I keep the plans?",
@@ -422,8 +422,8 @@ export default async function ForeignersInMexicoPage() {
                   English and answer your questions in whichever language you prefer.
                   I studied Wealth Management Theory &amp; Practice at Yale School of
                   Management (Executive Education) and MBA Essentials at the London
-                  School of Economics, and I am MDRT Top of the Table and ranked 8th
-                  nationally by AMASFAC.
+                  School of Economics, and I am MDRT Top of the Table and ranked 4th
+                  nationally by AMASFAC in 2025.
                 </p>
               </div>
               <div>

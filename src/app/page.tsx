@@ -115,7 +115,7 @@ const EXPERIENCIA_RESPALDO = [
   { logo: "/img/logos/yale.svg", alt: "Yale School of Management — Wealth Management Program" },
   { logo: "/img/logos/lse.svg", alt: "LSE — The London School of Economics, MBA Essentials" },
   { logo: "/img/logos/mdrt-official.svg", alt: "MDRT — Million Dollar Round Table (logo oficial)" },
-  { logo: "/img/logos/amasfac.svg", alt: "AMASFAC — Top 8 Nacional México" },
+  { logo: "/img/logos/amasfac.svg", alt: "AMASFAC — 4º Lugar Nacional México 2025" },
   { logo: "/img/logos/years.svg", alt: "+18 años asesorando personas, familias y empresas" },
 ];
 

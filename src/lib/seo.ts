@@ -283,7 +283,7 @@ export function buildPersonSchema(author: AuthorData) {
             "MBA Essentials — London School of Economics (Executive Education), 2023",
             "MDRT Top of the Table (TOT) 2024 — Million Dollar Round Table",
             "Million Dollar Round Table (MDRT) — Miembro desde 2008",
-            "AMASFAC — 8vo Lugar Nacional",
+            "AMASFAC — 4º Lugar Nacional 2025 · 8º Lugar Nacional 2024",
             "GNP Seguros — Asesora Diamante",
             "Seguros Monterrey New York Life — Asesora Diamante",
           ]
