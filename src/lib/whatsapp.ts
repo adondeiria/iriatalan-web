@@ -95,3 +95,42 @@ export function waHref(
   const digits = (numero ?? WA_NUMBER_FALLBACK).replace(/\D/g, "");
   return `https://wa.me/${digits || WA_NUMBER_FALLBACK}?text=${encodeURIComponent(mensaje)}`;
 }
+
+/**
+ * Prefijo de ruta → mensaje. Se evalúa en orden, así que las rutas más
+ * específicas van primero (`/personas/mujeres` antes que `/personas`).
+ */
+const RUTA_MENSAJE: ReadonlyArray<readonly [string, string]> = [
+  ["/personas/mujeres", WA_MESSAGES.mujeres],
+  ["/personas/familias-arcoiris", WA_MESSAGES.familiasArcoiris],
+  ["/personas/hijos-neurodivergentes", WA_MESSAGES.hijosNeurodivergentes],
+  ["/personas/mexicanos-en-el-extranjero", WA_MESSAGES.mexicanosExtranjero],
+  ["/blog", WA_MESSAGES.blog],
+  ["/gmm", WA_MESSAGES.gmm],
+  ["/retiro", WA_MESSAGES.retiro],
+  ["/patrimonial", WA_MESSAGES.patrimonial],
+  ["/seguros-vida", WA_MESSAGES.segurosVida],
+  ["/planes-educacionales", WA_MESSAGES.planesEducacionales],
+  ["/fondos-de-inversion", WA_MESSAGES.fondosInversion],
+  ["/empresas", WA_MESSAGES.empresas],
+  ["/sobre-iria", WA_MESSAGES.sobreIria],
+  // Páginas en inglés — el mensaje también va en inglés.
+  ["/international-health-insurance", WA_MESSAGES.internationalHealth],
+  ["/foreigners-in-mexico", WA_MESSAGES.foreignersInMexico],
+  ["/retirement-planning", WA_MESSAGES.retirementPlanning],
+];
+
+/**
+ * Mensaje precargado para la página donde está el visitante. Lo usan el botón
+ * del pie de página (layout) y el flotante.
+ *
+ * Coincidencia por segmento completo: `/retiro` no debe activarse en
+ * `/retirement-planning` (que tiene su propio mensaje, en inglés).
+ */
+export function mensajeWhatsAppParaRuta(pathname: string | null): string {
+  if (!pathname) return WA_MESSAGES.default;
+  const match = RUTA_MENSAJE.find(
+    ([prefijo]) => pathname === prefijo || pathname.startsWith(`${prefijo}/`)
+  );
+  return match?.[1] ?? WA_MESSAGES.default;
+}

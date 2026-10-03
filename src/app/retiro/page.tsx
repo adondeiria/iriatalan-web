@@ -372,7 +372,7 @@ export default async function RetiroPage() {
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
                   PPR + Modalidad 40 + (si aplica) ahorro patrimonial adicional. Trabajo con
-                  6 aseguradoras autorizadas para el PPR; según tu situación específica, te
+                  5 aseguradoras autorizadas para el PPR; según tu situación específica, te
                   recomiendo la(s) más adecuada(s) para ti. Aportaciones desde $2,000 MXN/mes.
                 </p>
               </div>
