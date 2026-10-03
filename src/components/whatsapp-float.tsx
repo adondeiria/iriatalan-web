@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
+import { WA_NUMBER_FALLBACK, mensajeWhatsAppParaRuta, waHref } from "@/lib/whatsapp";
 
 /**
  * SIN USAR desde 2026-08: el layout monta en su lugar el widget de respond.io,
@@ -21,45 +21,9 @@ import { WA_MESSAGES, WA_NUMBER_FALLBACK, waHref } from "@/lib/whatsapp";
  * post (con el título dentro); aquí basta con la sección.
  */
 
-/**
- * Prefijo de ruta → mensaje. Se evalúa en orden, así que las rutas más
- * específicas van primero (`/personas/mujeres` antes que `/personas`).
- */
-const RUTA_MENSAJE: ReadonlyArray<readonly [string, string]> = [
-  ["/personas/mujeres", WA_MESSAGES.mujeres],
-  ["/personas/familias-arcoiris", WA_MESSAGES.familiasArcoiris],
-  ["/personas/hijos-neurodivergentes", WA_MESSAGES.hijosNeurodivergentes],
-  ["/personas/mexicanos-en-el-extranjero", WA_MESSAGES.mexicanosExtranjero],
-  ["/blog", WA_MESSAGES.blog],
-  ["/gmm", WA_MESSAGES.gmm],
-  ["/retiro", WA_MESSAGES.retiro],
-  ["/patrimonial", WA_MESSAGES.patrimonial],
-  ["/seguros-vida", WA_MESSAGES.segurosVida],
-  ["/planes-educacionales", WA_MESSAGES.planesEducacionales],
-  ["/fondos-de-inversion", WA_MESSAGES.fondosInversion],
-  ["/empresas", WA_MESSAGES.empresas],
-  ["/sobre-iria", WA_MESSAGES.sobreIria],
-  // Páginas en inglés — el mensaje también va en inglés.
-  ["/international-health-insurance", WA_MESSAGES.internationalHealth],
-  ["/foreigners-in-mexico", WA_MESSAGES.foreignersInMexico],
-  ["/retirement-planning", WA_MESSAGES.retirementPlanning],
-];
-
-/**
- * Coincidencia por segmento completo: `/retiro` no debe activarse en
- * `/retirement-planning` (que tiene su propio mensaje, en inglés).
- */
-function mensajeParaRuta(pathname: string | null): string {
-  if (!pathname) return WA_MESSAGES.default;
-  const match = RUTA_MENSAJE.find(
-    ([prefijo]) => pathname === prefijo || pathname.startsWith(`${prefijo}/`)
-  );
-  return match?.[1] ?? WA_MESSAGES.default;
-}
-
 export function WhatsAppFloat() {
   const pathname = usePathname();
-  const href = waHref(WA_NUMBER_FALLBACK, mensajeParaRuta(pathname));
+  const href = waHref(WA_NUMBER_FALLBACK, mensajeWhatsAppParaRuta(pathname));
 
   return (
     <a
