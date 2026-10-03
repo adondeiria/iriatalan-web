@@ -9,7 +9,6 @@ import {
   isRespondioLeadConfigured,
   notifyLeadToRespondio,
 } from "@/lib/respondio";
-import { limpiarRecomendadoPor } from "@/lib/recomendado";
 
 // El brazo de respond.io agrega 3-4 llamadas seriales al peor caso. 30s es
 // techo de seguridad; en la práctica el presupuesto interno corta antes.
@@ -74,7 +73,6 @@ type ContactPayload = {
   condicion_medica?: "SI" | "NO" | "N/A" | "";
   aportacion?: string;
   mensaje?: string;
-  recomendado_por?: string; // persona que lo recomendó (no el sitio web).
   privacy_accepted?: boolean;
   // Anti-spam (opcionales — forms viejos sin estos campos no se rompen):
   website?: string; // honeypot: debe llegar vacío.
@@ -241,7 +239,6 @@ export async function POST(req: Request) {
   const ciudad = (body.ciudad ?? "").trim().slice(0, 80);
   const aportacion = (body.aportacion ?? "").trim().slice(0, 120);
   const mensajeLimpio = (body.mensaje ?? "").trim().slice(0, 2000);
-  const recomendadoPor = limpiarRecomendadoPor(body.recomendado_por);
 
   // El origen viaja anexado al mensaje que ve Iria en Zoho (que no tiene campo
   // propio para esto) y como campo dedicado en la nota de Pipedrive.
@@ -254,7 +251,6 @@ export async function POST(req: Request) {
   // Zoho no tiene campos para esto, así que la procedencia viaja anexada al
   // mensaje. En Pipedrive va desglosada en la nota.
   const procedencia = [
-    recomendadoPor && `Recomendado por: ${recomendadoPor}`,
     `Origen: ${origen}`,
     utmSource && `Vino de: ${utmSource}`,
     utmCampaign && `Campaña: ${utmCampaign}`,
@@ -281,7 +277,6 @@ export async function POST(req: Request) {
     utmMedium,
     utmCampaign,
     referrer,
-    recomendadoPor,
   };
 
   // Se escriben los tres destinos en paralelo: el visitante no espera la suma

@@ -130,7 +130,6 @@ export function ContactForm() {
         ? String(formData.get("aportacion") ?? "").trim()
         : "",
       mensaje: String(formData.get("mensaje") ?? "").trim(),
-      recomendado_por: String(formData.get("recomendado_por") ?? "").trim(),
       privacy_accepted: privacyAccepted,
       source: "contacto",
       origin_path: window.location.pathname,
@@ -319,15 +318,6 @@ export function ContactForm() {
           />
         </fieldset>
       )}
-
-      {/* Recomendación — casi todos los clientes llegan referidos; esto lo mide. */}
-      <fieldset>
-        <Field
-          label="¿Quién te recomendó? (opcional)"
-          name="recomendado_por"
-          placeholder="Nombre de quien te habló de mí"
-        />
-      </fieldset>
 
       {/* Mensaje libre */}
       <fieldset>
