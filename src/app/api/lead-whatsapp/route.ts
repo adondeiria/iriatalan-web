@@ -26,11 +26,13 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   estaEncendido,
   pasaCanary,
+  quiereSoloNuevos,
   secretoValido,
 } from "@/lib/lead-whatsapp";
 import { avisarPorCorreo } from "@/lib/lead-whatsapp-correo";
 import {
   normalizarTelefono,
+  personaYaEnPipedrive,
   registrarProspectoWhatsApp,
 } from "@/lib/pipedrive";
 
@@ -81,6 +83,17 @@ export async function POST(req: NextRequest) {
   if (!pasaCanary(telefono)) {
     console.log(`[lead-whatsapp] ${telefono} fuera del canary; no se registra.`);
     return NextResponse.json({ ok: true, omitido: "canary" });
+  }
+
+  // soloNuevos (18-oct-2026): lo manda el workflow de respond.io que reemplaza
+  // a Make. Make solo llamaba aquí si la persona NO estaba en Pipedrive; sin
+  // esta compuerta, cada conversación nueva de un prospecto que ya conocemos
+  // mandaría un correo de "ya en seguimiento" o abriría un trato nuevo si el
+  // anterior estaba cerrado. Si la búsqueda falla (null) se registra igual:
+  // registrarProspectoWhatsApp ya deduplica por coincidencia exacta.
+  if (quiereSoloNuevos(body) && (await personaYaEnPipedrive(telefono)) === true) {
+    console.log(`[lead-whatsapp] ${telefono} ya está en Pipedrive; soloNuevos, no se toca.`);
+    return NextResponse.json({ ok: true, omitido: "ya_en_pipedrive" });
   }
 
   try {

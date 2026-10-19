@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { estaEncendido, pasaCanary, secretoValido } from "./lead-whatsapp.ts";
+import { estaEncendido, pasaCanary, quiereSoloNuevos, secretoValido } from "./lead-whatsapp.ts";
 
 const SECRETO = "secreto-de-prueba-nada-productivo";
 
@@ -87,5 +87,14 @@ describe("compuerta canary", () => {
     // El canary compara el final del E.164 completo.
     assert.equal(pasaCanary("+15537338976", canary), true);
     assert.equal(pasaCanary("+525537338970", canary), false);
+  });
+});
+
+describe("soloNuevos (workflow de respond.io que reemplaza a Make)", () => {
+  it("solo un true de verdad lo enciende", () => {
+    assert.equal(quiereSoloNuevos({ soloNuevos: true }), true);
+    for (const v of [{ soloNuevos: "true" }, { soloNuevos: 1 }, { soloNuevos: false }, {}, null, undefined, "x"]) {
+      assert.equal(quiereSoloNuevos(v), false, JSON.stringify(v));
+    }
   });
 });
