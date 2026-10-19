@@ -48,3 +48,14 @@ export function pasaCanary(
   }
   return telefonoE164.endsWith(solo);
 }
+
+/**
+ * `soloNuevos` (18-oct-2026): el workflow de respond.io que reemplaza a Make
+ * manda `soloNuevos: true` para que el endpoint haga lo mismo que hacía Make:
+ * si la persona YA está en Pipedrive no se toca nada (ni trato nuevo, ni nota,
+ * ni correo). Solo cuenta un `true` de verdad; cualquier otra cosa conserva el
+ * comportamiento de siempre.
+ */
+export function quiereSoloNuevos(body: unknown): boolean {
+  return !!body && typeof body === "object" && (body as { soloNuevos?: unknown }).soloNuevos === true;
+}

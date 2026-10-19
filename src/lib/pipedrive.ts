@@ -845,6 +845,31 @@ async function buscarPersonaPorTelefono(
   }
 }
 
+/**
+ * ¿Ya existe en Pipedrive alguien con este teléfono? Es la misma búsqueda que
+ * hacía Make antes de mandar el lead (últimos 10 dígitos, SIN exact_match):
+ * encuentra al que se capturó con espacios o con lada. Devuelve null si la
+ * búsqueda falla o el teléfono no alcanza 10 dígitos: quien llama decide (el
+ * endpoint registra igual; el registro ya deduplica por coincidencia exacta).
+ */
+export async function personaYaEnPipedrive(telefono: string): Promise<boolean | null> {
+  const token = process.env.PIPEDRIVE_API_TOKEN;
+  if (!token) return null;
+  const d = String(telefono ?? "").replace(/\D/g, "");
+  if (d.length < 10) return null;
+  try {
+    const r = await request<{ items?: PersonaBusqueda[] }>(
+      "GET",
+      `/api/v2/persons/search?term=${encodeURIComponent(d.slice(-10))}&fields=phone&exact_match=false&limit=5`,
+      token,
+    );
+    return (r?.items?.length ?? 0) > 0;
+  } catch (err) {
+    console.error("[whatsapp] Falló la búsqueda de soloNuevos:", err);
+    return null;
+  }
+}
+
 /** Trato abierto más reciente de una persona, o null si no tiene. */
 async function tratoAbiertoDePersona(
   token: string,
