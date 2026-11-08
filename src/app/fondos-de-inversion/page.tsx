@@ -459,7 +459,7 @@ export default async function FondosDeInversionPage() {
                 className="group p-5 rounded-2xl border border-warm-brown/15 dark:border-warm-brown/30 hover:border-burgundy/40 transition-colors duration-500"
               >
                 <h3 className="font-medium text-ink dark:text-cream-light group-hover:text-burgundy transition-colors duration-500">
-                  Planeación patrimonial
+                  Asesoría patrimonial
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
                   Ordena e invierte tu capital dentro de una estrategia patrimonial integral.

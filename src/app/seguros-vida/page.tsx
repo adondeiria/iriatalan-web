@@ -266,9 +266,9 @@ export default async function SegurosVidaPage() {
             </div>
             <p className="mt-8 text-sm text-warm-brown/70 dark:text-cream-light/50 leading-relaxed">
               Para estructuras más complejas — fideicomisos, buy-sell agreements entre socios,
-              blindaje patrimonial — ver{" "}
+              blindaje patrimonial — está la{" "}
               <Link href="/patrimonial" className="underline hover:text-rif-rojo">
-                /patrimonial
+                asesoría patrimonial
               </Link>.
             </p>
           </div>

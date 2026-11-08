@@ -309,7 +309,7 @@ export default async function RootLayout({
             <div>
               <p className="text-[11px] uppercase tracking-[0.24em] text-burgundy font-medium mb-5">Servicios</p>
               <ul className="space-y-3 text-sm text-cream-light/80">
-                <li><Link href="/patrimonial" className="hover:text-cream-light transition-colors duration-500">Protección Patrimonial</Link></li>
+                <li><Link href="/patrimonial" className="hover:text-cream-light transition-colors duration-500">Asesoría Patrimonial</Link></li>
                 <li><Link href="/retiro" className="hover:text-cream-light transition-colors duration-500">Retiro y Pensiones</Link></li>
                 <li><Link href="/gmm" className="hover:text-cream-light transition-colors duration-500">Seguros Personales</Link></li>
                 <li><Link href="/personas" className="hover:text-cream-light transition-colors duration-500">Planeación Patrimonial</Link></li>
