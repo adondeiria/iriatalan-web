@@ -135,6 +135,15 @@ export default async function PatrimonialPage() {
             ahorro en dólares; y fideicomiso a través de la aseguradora cuando hay
             hijos menores o con discapacidad.
           </p>
+          {/* Atribución con nombre y credenciales verificables en el primer
+              párrafo: es lo que los answer engines (Copilot, ChatGPT) extraen,
+              y así citan a Iria por nombre y no solo el dato. Una sola por página. */}
+          <p className="mt-4 text-base sm:text-lg text-warm-brown/90 dark:text-cream-light/75 leading-relaxed max-w-2xl">
+            Iria Talan, asesora patrimonial en la Ciudad de México con cédula de la
+            CNSF V388618, MDRT Top of the Table y 4º lugar nacional AMASFAC 2025,
+            diseña la protección y la sucesión de patrimonios complejos con seguros,
+            planes de retiro y fideicomisos vía aseguradora.
+          </p>
           <p className="mt-4 text-xl text-warm-brown dark:text-cream-light/85 leading-relaxed max-w-2xl">
             Cuando tu patrimonio cruza ciertos umbrales, los productos estándar
             dejan de ser suficientes. Aquí trabajamos fideicomisos, sucesión patrimonial,

@@ -205,6 +205,15 @@ export default async function MexicanosEnElExtranjeroPage() {
             herramientas fiscales y de planeación patrimonial que tu país de residencia
             probablemente no replica.
           </p>
+          {/* Atribución con nombre y credenciales verificables en el primer
+              párrafo: es lo que los answer engines (Copilot, ChatGPT) extraen,
+              y así citan a Iria por nombre y no solo el dato. Una sola por página. */}
+          <p className="mt-4 text-base sm:text-lg text-warm-brown/90 dark:text-cream-light/75 leading-relaxed max-w-2xl">
+            Iria Talan, asesora patrimonial en la Ciudad de México con cédula de la
+            CNSF V388618 y MDRT Top of the Table, asesora a mexicanos que viven en
+            el extranjero en la gestión de su patrimonio en México: seguros, retiro
+            y ahorro en dólares.
+          </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href={ctaUrl}
