@@ -39,7 +39,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cobras honorarios o solo comisiones?",
     answerText:
-      "Lo platicamos en la primera conversación. Para casos patrimoniales complejos hay opciones de honorarios fijos o comisiones por carrier según el producto. Total transparencia sobre cómo me pagan.",
+      "Depende de lo que contrates. En seguros, GMM, PPR e inversiones me paga la aseguradora una comisión sobre la póliza; tú no pagas honorarios aparte. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos o coordinación con tu equipo legal y fiscal) cobro honorarios por separado, acordados por escrito antes de empezar.",
   },
   {
     question: "¿Mi información es confidencial?",
@@ -53,15 +53,33 @@ const FAQS: FAQItem[] = [
   },
 ];
 
+// Las dos preguntas que Google muestra en "Otras preguntas" para "asesoría
+// patrimonial" (SERP MX, nov-2026). Van arriba en la página, no en el FAQ del
+// fondo: es la respuesta que el buscador y los answer engines extraen. El costo
+// dice lo mismo que /sobre-iria y la home — si cambia ahí, cambia aquí.
+const ASESORIA_QA: FAQItem[] = [
+  {
+    question: "¿Qué es una asesoría patrimonial?",
+    answerText:
+      "Es revisar todo lo que tienes y lo que te puede pasar, y armar un plan para protegerlo, hacerlo crecer y heredarlo en orden. Incluye un diagnóstico de riesgos (qué pasa con tu familia o tu negocio si faltas o te enfermas), la protección con seguro de vida y gastos médicos, el ahorro para el retiro, la inversión y el orden de tus beneficiarios para que la herencia no se atore. Como agente independiente comparo entre varias aseguradoras en lugar de ofrecerte el producto de un solo banco, y coordino con tu notario y tu fiscalista: no doy asesoría legal ni fiscal, la pieza que yo diseño son los seguros y los planes.",
+  },
+  {
+    question: "¿Cuánto cuesta una asesoría patrimonial?",
+    answerText:
+      "La sesión inicial de 30 minutos no tiene costo ni compromiso. En seguros, GMM, PPR e inversiones mi ingreso es la comisión que paga la aseguradora sobre la póliza contratada, así que no pagas honorarios aparte. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos o coordinación con tu equipo legal y fiscal) cobro honorarios por separado, acordados por escrito antes de empezar.",
+  },
+];
+
 
 export const metadata: Metadata = {
-  // Search Console (sep-2026): posición 14 para "asesoría patrimonial" (367
-  // impresiones, 0 clics), 17 para "asesoria patrimonial personalizada".
-  // Iria vende seguros, no servicios legales: el título y la definición de
-  // abajo explican la asesoría patrimonial desde los seguros.
-  title: "Asesoría patrimonial personalizada con seguros",
+  // Search Console (10 ago–6 nov 2026): posición ~10 para "asesoría
+  // patrimonial" y sus variantes (~950 impresiones, 0 clics). Antes (sep):
+  // posición 14. Iria vende seguros, no servicios legales: el título y la
+  // definición de abajo explican la asesoría patrimonial desde los seguros.
+  // "CDMX" en el título: el SERP trae local pack y competidores locales.
+  title: "Asesoría patrimonial personalizada en CDMX",
   description:
-    "Asesoría patrimonial con seguros: seguro de vida para que tu familia reciba el dinero sin juicio, retiro, ahorro en dólares y fideicomiso vía aseguradora.",
+    "Asesoría patrimonial con seguros en CDMX: seguro de vida para que tu familia reciba el dinero sin juicio, retiro, ahorro en dólares y fideicomiso vía aseguradora.",
   alternates: { canonical: `${SITE_URL}/patrimonial` },
   openGraph: {
     type: "website",
@@ -94,9 +112,9 @@ export default async function PatrimonialPage() {
     buildAudienceSchema(),
     buildBreadcrumbSchema([
       { name: "Inicio", path: "/" },
-      { name: "Patrimonios complejos", path: "/patrimonial" },
+      { name: "Asesoría patrimonial", path: "/patrimonial" },
     ]),
-    buildFAQPageSchema(FAQS),
+    buildFAQPageSchema([...ASESORIA_QA, ...FAQS]),
   );
 
   return (
@@ -123,7 +141,7 @@ export default async function PatrimonialPage() {
         <section className="px-6 pt-12 pb-12 max-w-4xl mx-auto w-full">
           <p className="text-sm uppercase tracking-wider text-rif-gris">
             <Link href="/" className="hover:underline">Inicio</Link>
-            {" / "}Patrimonios complejos
+            {" / "}Asesoría patrimonial
           </p>
           <h1 className="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-ink dark:text-cream-light">
             Asesoría patrimonial discreta para patrimonios complejos.
@@ -163,6 +181,26 @@ export default async function PatrimonialPage() {
             >
               Conoce a Iria
             </Link>
+          </div>
+        </section>
+
+        <section className="px-6 py-10 sm:py-16 border-t border-warm-brown/15 dark:border-warm-brown/30">
+          <div className="max-w-3xl mx-auto w-full">
+            <h2 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
+              Asesoría patrimonial: qué es y cuánto cuesta
+            </h2>
+            <div className="mt-8 space-y-8">
+              {ASESORIA_QA.map((qa) => (
+                <div key={qa.question}>
+                  <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
+                    {qa.question}
+                  </h3>
+                  <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
+                    {qa.answerText}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -436,9 +474,11 @@ export default async function PatrimonialPage() {
                   ¿Cobras honorarios o solo comisiones?
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Lo platicamos en la primera conversación. Para casos patrimoniales complejos
-                  hay opciones de honorarios fijos o comisiones por carrier según el producto.
-                  Total transparencia sobre cómo me pagan.
+                  Depende de lo que contrates. En seguros, GMM, PPR e inversiones me paga
+                  la aseguradora una comisión sobre la póliza; tú no pagas honorarios aparte.
+                  Solo en diseños patrimoniales complejos (estructuras corporativas,
+                  fideicomisos o coordinación con tu equipo legal y fiscal) cobro honorarios
+                  por separado, acordados por escrito antes de empezar.
                 </p>
               </div>
               <div>
@@ -529,7 +569,7 @@ export default async function PatrimonialPage() {
                   Seguros de vida
                 </h3>
                 <p className="mt-2 text-sm text-warm-brown dark:text-cream-light/80 leading-relaxed">
-                  El instrumento central de liquidez sucesoria: paga impuestos, iguala herencias y da continuidad al negocio.
+                  El instrumento central de liquidez sucesoria: cubre los gastos de la sucesión, iguala herencias y da continuidad al negocio.
                 </p>
               </Link>
               <Link

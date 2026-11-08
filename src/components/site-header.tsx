@@ -67,7 +67,7 @@ const HELP_CATEGORIES: MenuCategory[] = [
       { label: "Seguros de Vida y Protección Familiar", href: "/seguros-vida" },
       { label: "Fideicomisos", href: "/patrimonial" },
       { label: "Protección Patrimonial", href: "/patrimonial" },
-      { label: "Patrimonios complejos", href: "/patrimonial" },
+      { label: "Asesoría patrimonial", href: "/patrimonial" },
       { label: "Familias neurodivergentes", href: "/personas/hijos-neurodivergentes" },
       { label: "Familias diversas", href: "/personas/familias-arcoiris" },
     ],

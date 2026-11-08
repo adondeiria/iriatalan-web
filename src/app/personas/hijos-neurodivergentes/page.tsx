@@ -251,7 +251,7 @@ export default async function HijosNeurodivergentesPage() {
                   Calculada no para “10 años de gastos familiares” sino para “60+ años
                   de cuidado de tu hijo”. El monto correcto cambia todo.
                 </p>
-                <Link href="/patrimonial" className="mt-3 inline-block text-sm font-medium underline">
+                <Link href="/seguros-vida" className="mt-3 inline-block text-sm font-medium underline">
                   Más sobre seguros de vida →
                 </Link>
               </div>
