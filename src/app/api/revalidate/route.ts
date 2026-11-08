@@ -12,9 +12,14 @@
 //   POST /api/revalidate?path=/blog/<slug>&secret=<REVALIDATE_SECRET>
 //   POST /api/revalidate?path=/blog&secret=<REVALIDATE_SECRET>
 //   POST /api/revalidate?path=/&secret=<REVALIDATE_SECRET>
+//
+// IndexNow: en producción, después de responder, avisa a Bing que el path
+// cambió (ver src/lib/indexnow.ts). Corre con `after()`, así que no retrasa
+// la respuesta y si falla no afecta la revalidación.
 
 import { revalidatePath } from "next/cache";
-import { NextResponse, type NextRequest } from "next/server";
+import { after, NextResponse, type NextRequest } from "next/server";
+import { siteUrl, submitToIndexNow } from "@/lib/indexnow";
 
 export const runtime = "nodejs";
 
@@ -54,6 +59,14 @@ async function handler(req: NextRequest) {
 
   try {
     revalidatePath(path);
+    if (process.env.VERCEL_ENV === "production") {
+      after(async () => {
+        const result = await submitToIndexNow([siteUrl(path)]);
+        if (!result.ok) {
+          console.warn("[indexnow] aviso no aceptado", { path, ...result });
+        }
+      });
+    }
     return NextResponse.json({
       revalidated: true,
       path,
