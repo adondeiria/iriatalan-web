@@ -366,13 +366,14 @@ export default async function PatrimonialPage() {
               </div>
               <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  5. Impuestos y costos de sucesión sin planeación
+                  5. Costos de sucesión sin planeación
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Los derechos notariales representan aproximadamente 8% del valor del
-                  patrimonio. A eso se suman ISR por enajenación, avalúos, honorarios
-                  y gastos de gestión. Sin liquidez destinada específicamente a eso,
-                  tus herederos venden activos en condiciones desfavorables.
+                  Honorarios notariales, avalúos, derechos de registro y, según el estado,
+                  impuestos locales por la transmisión de inmuebles. Y si después tus
+                  herederos venden un inmueble heredado, esa venta puede pagar ISR. Sin
+                  liquidez destinada específicamente a eso, venden activos en condiciones
+                  desfavorables.
                 </p>
               </div>
             </div>

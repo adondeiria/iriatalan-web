@@ -160,14 +160,14 @@ const INSIGHTS = [
 
 const FAQS: FAQItem[] = [
   {
-    question: "¿Qué hace una asesora patrimonial certificada y en qué se diferencia de un agente de seguros?",
+    question: "¿Qué hace una asesora patrimonial y en qué se diferencia de un agente de seguros?",
     answerText:
       "Un agente de seguros coloca un producto puntual a tu necesidad inmediata en la compañía de seguros que trabaja el asesor (generalmente es una). Un Asesor Patrimonial Profesional diseña una estrategia integral que conecta tu protección personal, retiro, optimización fiscal y planeación sucesoria — los seguros son una herramienta dentro de ese mapa, no el fin. En mi caso, además de la cédula CNSF V388618 como Agente de Seguros autorizada, cursé Wealth Management Theory & Practice en Yale School of Management (Executive Education) y MBA Essentials en London School of Economics, soy MDRT Top of the Table (top global del sector), y trabajo con 6 aseguradoras AAA. Esto me permite diseñar la solución alrededor de ti, no del producto de la Aseguradora.",
   },
   {
     question: "¿Cómo funciona el pago de honorarios y comisiones?",
     answerText:
-      "La primera sesión de diagnóstico (15-30 min) es sin costo y sin compromiso de contratar ningún plan o servicio. En la mayoría de los planes que recomiendo (seguros, GMM, PPR, inversiones), es la aseguradora quien me paga una comisión por intermediación —así que tú no pagas honorarios adicionales por ellos. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos, reestructuras financieras o coordinación con tu equipo legal y fiscal) trabajamos honorarios por separado, siempre acordados con transparencia antes de empezar.",
+      "La primera sesión de diagnóstico (30 min) es sin costo y sin compromiso de contratar ningún plan o servicio. En la mayoría de los planes que recomiendo (seguros, GMM, PPR, inversiones), es la aseguradora quien me paga una comisión por intermediación —así que tú no pagas honorarios adicionales por ellos. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos, reestructuras financieras o coordinación con tu equipo legal y fiscal) trabajamos honorarios por separado, siempre acordados con transparencia antes de empezar.",
   },
   {
     question: "¿Con qué aseguradoras trabajas?",
@@ -177,7 +177,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cómo es la primera sesión y cuánto tarda?",
     answerText:
-      "Generalmente dura entre 30 y 60 minutos, por videollamada (Zoom, Meet o Teams) o presencial si estás en la CDMX. Es una conversación, no una junta de ventas, y sigue una estructura sencilla: (1) escucho tu contexto —tu situación familiar, profesional y patrimonial actual—; (2) identificamos juntos tus prioridades, preocupaciones y metas; (3) te comparto una primera propuesta de estrategia, a grandes rasgos; y (4) acordamos los siguientes pasos, siempre sin compromiso. Sales con un mapa claro de tus prioridades y de las oportunidades que vale la pena explorar. La decisión de avanzar es siempre tuya y a tu ritmo.",
+      "Dura 30 minutos, por videollamada (Zoom, Meet o Teams) o presencial si estás en la CDMX. Es una conversación, no una junta de ventas, y sigue una estructura sencilla: (1) escucho tu contexto —tu situación familiar, profesional y patrimonial actual—; (2) identificamos juntos tus prioridades, preocupaciones y metas; (3) te comparto una primera propuesta de estrategia, a grandes rasgos; y (4) acordamos los siguientes pasos, siempre sin compromiso. Sales con un mapa claro de tus prioridades y de las oportunidades que vale la pena explorar. La decisión de avanzar es siempre tuya y a tu ritmo.",
   },
   {
     question: "¿Atiendes en toda la República o solo CDMX?",
@@ -561,7 +561,7 @@ export default async function HomePage() {
                   Lo que normalmente NO te explica la industria financiera
                 </h2>
                 <p className="mt-5 text-warm-brown/80 leading-relaxed italic max-w-xl">
-                  No vendo seguros. Te ayudo a que tomes las decisiones correctas.
+                  No vendo pólizas aisladas. Te ayudo a que tomes las decisiones correctas.
                 </p>
               </div>
               <Link
