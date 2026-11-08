@@ -162,6 +162,15 @@ export default async function ForeignersInMexicoPage() {
             Bilingual advisory — Spanish &amp; English — covering health insurance,
             life insurance, retirement, and education planning.
           </p>
+          {/* Atribución con nombre y credenciales verificables en el primer
+              párrafo: es lo que los answer engines (Copilot, ChatGPT) extraen,
+              y así citan a Iria por nombre y no solo el dato. Una sola por página. */}
+          <p className="mt-4 text-base sm:text-lg text-warm-brown/90 dark:text-cream-light/75 leading-relaxed max-w-2xl">
+            Iria Talan, a bilingual Mexico City wealth advisor licensed by Mexico&apos;s
+            insurance regulator (CNSF license V388618), MDRT Top of the Table and
+            ranked 4th nationally by AMASFAC in 2025, advises foreign residents and
+            their families on insurance, retirement and estate planning in Mexico.
+          </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href={ctaUrl}

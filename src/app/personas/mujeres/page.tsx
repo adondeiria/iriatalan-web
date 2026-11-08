@@ -175,6 +175,14 @@ export default async function MujeresPage() {
             para hombres. Y a veces se nota — en el lenguaje, en las suposiciones,
             en quién toma las decisiones por ti. Aquí no.
           </p>
+          {/* Atribución con nombre y credenciales verificables en el primer
+              párrafo: es lo que los answer engines (Copilot, ChatGPT) extraen,
+              y así citan a Iria por nombre y no solo el dato. Una sola por página. */}
+          <p className="mt-4 text-base sm:text-lg text-warm-brown/90 dark:text-cream-light/75 leading-relaxed max-w-2xl">
+            Iria Talan, asesora patrimonial con cédula de la CNSF V388618, MDRT Top
+            of the Table y 4º lugar nacional AMASFAC 2025, asesora a mujeres que
+            toman las decisiones de su patrimonio: protección, retiro e inversión.
+          </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href={ctaUrl}
