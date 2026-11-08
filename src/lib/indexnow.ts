@@ -10,7 +10,7 @@
 //
 // Protocolo: https://www.indexnow.org/documentation
 
-export const INDEXNOW_KEY = "08eaed4947a02ef1ff7428c4fdb264bc";
+export const INDEXNOW_KEY = "bbff919a3256fcbc60a26f15f3e2a97b";
 export const INDEXNOW_HOST = "iriatalan.com.mx";
 const SITE_ORIGIN = `https://${INDEXNOW_HOST}`;
 const ENDPOINT = "https://api.indexnow.org/indexnow";

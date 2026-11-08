@@ -9,7 +9,7 @@
 //
 // La clave debe coincidir con src/lib/indexnow.ts y con public/<clave>.txt.
 
-const KEY = "08eaed4947a02ef1ff7428c4fdb264bc";
+const KEY = "bbff919a3256fcbc60a26f15f3e2a97b";
 const HOST = "iriatalan.com.mx";
 const ORIGIN = `https://${HOST}`;
 const SEND = process.argv.includes("--send");
