@@ -325,6 +325,14 @@ export default function AvisoPrivacidadPage() {
             configuración de su navegador. Le informamos que el rechazo de
             cookies puede limitar algunas funcionalidades del sitio.
           </p>
+          <p className="mt-3 leading-relaxed text-warm-brown dark:text-cream-light/85">
+            Si rechaza las cookies en el aviso del sitio, no se guardan cookies
+            de análisis en su navegador. Google Analytics opera en modo de
+            consentimiento: solo recibe señales anónimas, sin cookies ni
+            identificadores, que permiten estimar de forma agregada cuántas
+            visitas recibe el sitio. Microsoft Clarity solo se activa si usted
+            acepta las cookies.
+          </p>
         </section>
 
         <section>

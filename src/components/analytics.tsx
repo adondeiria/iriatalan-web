@@ -17,6 +17,21 @@ function hasAcceptedAnalytics(): boolean {
   return match.split("=")[1] === "accepted";
 }
 
+// Google Consent Mode v2 (modo avanzado). GA4 se carga siempre, pero arranca
+// con todo en "denied": sin cookies ni identificadores, solo envía señales
+// anónimas que Google usa para estimar visitas de quien rechaza el banner.
+// Al aceptar, se actualiza a "granted" y GA4 mide normal con cookies.
+// Clarity sí sigue esperando el consentimiento: no tiene modo sin cookies.
+function consentState(accepted: boolean) {
+  const v = accepted ? "granted" : "denied";
+  return {
+    analytics_storage: v,
+    ad_storage: v,
+    ad_user_data: v,
+    ad_personalization: v,
+  };
+}
+
 export function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
@@ -28,7 +43,12 @@ export function Analytics() {
     // Cookies are unavailable during SSR, so initial render must be `false`.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setConsented(hasAcceptedAnalytics());
-    const onChange = () => setConsented(hasAcceptedAnalytics());
+    const onChange = () => {
+      const accepted = hasAcceptedAnalytics();
+      setConsented(accepted);
+      // Consent Mode v2: avisa a GA4 la decisión del banner sin recargar.
+      window.gtag?.("consent", "update", consentState(accepted));
+    };
     window.addEventListener("rif-consent-change", onChange);
     return () => window.removeEventListener("rif-consent-change", onChange);
   }, []);
@@ -42,7 +62,7 @@ export function Analytics() {
   // Tracking de conversiones por delegación: un solo listener captura clics
   // a WhatsApp, a "Agendar / Contacto" y a descargas de archivos en TODO el
   // sitio (float, footer, hero, CTAs, lead magnets) sin tocar cada componente.
-  // trackEvent es no-op si no hay consentimiento.
+  // Sin consentimiento, Consent Mode los manda como señales anónimas sin cookies.
   useEffect(() => {
     function onClick(e: MouseEvent) {
       const anchor = (e.target as HTMLElement | null)?.closest?.("a");
@@ -72,28 +92,39 @@ export function Analytics() {
       document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
-  if (!consented) return null;
-
   return (
     <>
       {gaId ? (
         <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
-          />
+          {/* Defaults de consentimiento ANTES de 'config': así el primer hit
+              ya sale sin cookies si no hay aceptación. Lee la cookie del banner
+              directo para no esperar a React. */}
           <Script id="ga4-init" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              var rifAccepted = document.cookie.split('; ').indexOf('${COOKIE_NAME}=accepted') !== -1;
+              var rifState = rifAccepted ? 'granted' : 'denied';
+              gtag('consent', 'default', {
+                analytics_storage: rifState,
+                ad_storage: rifState,
+                ad_user_data: rifState,
+                ad_personalization: rifState,
+                wait_for_update: 500
+              });
               gtag('js', new Date());
               gtag('config', '${gaId}', { anonymize_ip: true });
             `}
           </Script>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="afterInteractive"
+          />
         </>
       ) : null}
 
-      {clarityId ? (
+      {consented && clarityId ? (
         <Script id="ms-clarity-init" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

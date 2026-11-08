@@ -1,9 +1,9 @@
 /**
- * Helper cliente para eventos GA4. No-op si gtag no está cargado
- * (p.ej. el usuario NO aceptó cookies → no medimos, correcto en privacidad).
+ * Helper cliente para eventos GA4. No-op si gtag no está cargado.
  *
- * Los eventos se disparan vía window.gtag, definido por <Analytics /> tras
- * el consentimiento. Para que cuenten como conversión en GA4, marcar el
+ * Los eventos se disparan vía window.gtag, definido por <Analytics />. Con
+ * Consent Mode v2, si el usuario no aceptó cookies el evento sale como señal
+ * anónima sin cookies ni identificadores; si aceptó, sale normal. Para que cuenten como conversión en GA4, marcar el
  * evento como "Evento clave" en Admin → Eventos.
  */
 

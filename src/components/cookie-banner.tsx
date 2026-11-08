@@ -52,7 +52,8 @@ export function CookieBanner() {
       <div className="mx-auto max-w-6xl px-4 py-2.5 sm:px-6 sm:py-3.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
         <p className="text-[12px] sm:text-[13px] leading-[1.45] text-warm-brown dark:text-cream-light/85 sm:flex-1">
           Usamos cookies para analizar el uso del sitio y mejorar tu
-          experiencia. Puedes aceptarlas o rechazarlas; tu decisión se
+          experiencia. Puedes aceptarlas o rechazarlas; si las rechazas, solo
+          contamos visitas de forma anónima, sin cookies. Tu decisión se
           guarda por 12 meses. Detalles en nuestro{" "}
           <Link
             href="/aviso-privacidad"
