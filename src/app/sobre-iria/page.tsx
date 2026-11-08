@@ -109,7 +109,7 @@ function buildSobreIriaFaqs(author: AuthorData): FAQItem[] {
     {
       question: "¿Cuánto cuesta una asesoría con Iria Talan?",
       answerText:
-        "La sesión inicial de 30 minutos no tiene costo ni compromiso. Como agente de seguros, su ingreso proviene de la comisión que paga la aseguradora sobre la póliza contratada, no de un honorario que cobre al cliente. El precio de tu póliza es el mismo que si la contrataras directamente.",
+        "La sesión inicial de 30 minutos no tiene costo ni compromiso. En seguros, GMM, PPR e inversiones, su ingreso proviene de la comisión que paga la aseguradora sobre la póliza contratada, no de un honorario al cliente, y el precio de tu póliza es el mismo que si la contrataras directamente. Solo en diseños patrimoniales complejos (estructuras corporativas, fideicomisos o coordinación con tu equipo legal y fiscal) cobra honorarios por separado, acordados por escrito antes de empezar.",
     },
     {
       question: "¿Atiende clientes fuera de la Ciudad de México?",

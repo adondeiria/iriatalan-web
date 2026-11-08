@@ -19,7 +19,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿Cuánto seguro de vida necesito?",
     answerText:
-      "Punto de partida: 10 veces tu ingreso anual neto. Si tienes deudas grandes (hipoteca, crédito empresarial), súmalas. Si tienes hijos menores o dependientes con necesidades especiales, multiplica por más años de dependencia. Si tu patrimonio incluye inmuebles con derechos notariales pendientes (≈ 8% del valor), agrega eso. El número exacto lo calculamos con tus datos — lo que parece mucho en primas suele ser poco frente al costo real que cargarían tus herederos.",
+      "Punto de partida: 10 veces tu ingreso anual neto. Si tienes deudas grandes (hipoteca, crédito empresarial), súmalas. Si tienes hijos menores o dependientes con necesidades especiales, multiplica por más años de dependencia. Si tu patrimonio incluye inmuebles, agrega lo que costará la sucesión (notario, avalúos, registro e impuestos locales según el estado). El número exacto lo calculamos con tus datos — lo que parece mucho en primas suele ser poco frente al costo real que cargarían tus herederos.",
   },
   {
     question: "¿Qué diferencia hay entre seguro temporal y seguro de vida vitalicio?",
@@ -34,7 +34,7 @@ const FAQS: FAQItem[] = [
   {
     question: "¿El suicidio está cubierto?",
     answerText:
-      "Sí, a partir del 3er año de vigencia de la póliza. La mayoría de las aseguradoras en México exigen un periodo de carencia de 2 años antes de cubrir muerte por suicidio. Pasado ese periodo, el beneficiario cobra igual que en cualquier otro fallecimiento. Es importante leer las condiciones generales de tu póliza específica para confirmar el plazo exacto que aplica.",
+      "Sí, si ocurre después de los primeros 2 años de vigencia de la póliza: así lo establece el artículo 197 de la Ley sobre el Contrato de Seguro. Si ocurre antes de esos 2 años, la aseguradora solo devuelve la reserva matemática. Pasado ese plazo, el beneficiario cobra igual que en cualquier otro fallecimiento. Revisa las condiciones generales de tu póliza para confirmar desde qué fecha corre el plazo.",
   },
   {
     question: "¿El dinero que recibe mi familia paga ISR?",
@@ -208,13 +208,14 @@ export default async function SegurosVidaPage() {
             <div className="mt-10 space-y-8">
               <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
                 <h3 className="text-lg font-semibold text-ink dark:text-cream-light">
-                  1. Pagar impuestos hereditarios
+                  1. Dar liquidez inmediata a tus herederos
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  Cuando falleces y tienes inmuebles, el ISR por enajenación puede ser
-                  significativo. Tus herederos necesitan liquidez inmediata para cubrirlo
-                  — o se ven forzados a vender parte del patrimonio a precio de urgencia.
-                  El seguro de vida llega antes que el notario.
+                  En México heredar no paga ISR (art. 93, fracc. XXII LISR), pero una
+                  sucesión con inmuebles tarda meses y sus gastos se pagan antes de recibir
+                  nada. Sin dinero disponible, tus herederos venden a precio de urgencia — y
+                  si venden un inmueble heredado, esa venta sí puede pagar ISR. El seguro de
+                  vida llega antes que el notario.
                 </p>
               </div>
               <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">
@@ -233,10 +234,10 @@ export default async function SegurosVidaPage() {
                   3. Cubrir derechos notariales y gastos de sucesión
                 </h3>
                 <p className="mt-2 text-warm-brown dark:text-cream-light/85 leading-relaxed">
-                  El proceso notarial de una herencia cuesta aproximadamente 8% del valor
-                  total del patrimonio — más honorarios, impuestos y gastos administrativos.
-                  Para una herencia de $5M, estás hablando de $400,000 MXN que tus herederos
-                  deben pagar antes de recibir un solo peso. El seguro cubre ese hueco.
+                  Honorarios notariales, avalúos, derechos de registro y, según el estado,
+                  impuestos locales por la transmisión de inmuebles: tus herederos los pagan
+                  antes de recibir un solo peso. El monto depende del estado y del valor de
+                  los bienes, así que lo calculamos con tu caso. El seguro cubre ese hueco.
                 </p>
               </div>
               <div className="border-l-2 border-warm-brown/20 dark:border-warm-brown/40 pl-6">

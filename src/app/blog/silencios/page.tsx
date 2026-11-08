@@ -116,7 +116,7 @@ export default function SilenciosPage() {
               Lo que normalmente NO te explica la industria financiera
             </h1>
             <p className="mt-7 text-base sm:text-lg text-cream-light/80 italic max-w-2xl">
-              No vendo seguros. Te ayudo a que tomes las decisiones correctas.
+              No vendo pólizas aisladas. Te ayudo a que tomes las decisiones correctas.
             </p>
           </div>
         </section>
