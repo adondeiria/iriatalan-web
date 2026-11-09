@@ -51,5 +51,10 @@ export const config = {
     "/how-to-go-freelance-your-step-by-step-guide",
     "/seven-ways-to-handle-unexpected-expenses-and-financial-emergencies",
     "/how-to-become-a-better-leader-in-new-workplace",
+    // Más posts demo del theme WP — Bing Webmaster los reporta como 404
+    // (Site Explorer, nov-2026). Con 410 salen más rápido del índice.
+    "/types-of-business-insurance-needed-for-startups-well-established-company",
+    "/engage-employees-in-social-media-marketing",
+    "/how-to-track-your-deposits-and-money",
   ],
 };

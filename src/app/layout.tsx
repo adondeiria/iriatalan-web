@@ -76,11 +76,14 @@ export const metadata: Metadata = {
     description:
       "Asesoría financiera personalizada en México. Seguros de vida, GMM, planeación patrimonial y retiro. MDRT Top of the Table.",
   },
+  // Sin `title` ni `description` a propósito: puestos aquí, TODAS las páginas
+  // heredaban el título genérico del sitio al compartirse en X, aunque cada
+  // una tenga su propio og:title. Sin ellos, Next los completa desde el
+  // openGraph de cada página y X muestra el título real (verificado nov-2026:
+  // /gmm, /glosario/* y todos los artículos salían como "Iria Talan / RIF —
+  // Planeación Patrimonial, Seguros y Retiro").
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Planeación Patrimonial, Seguros y Retiro`,
-    description:
-      "Asesoría financiera independiente en México. MDRT Top of the Table · Cédula CNSF V388618.",
     creator: "@iriatalan",
   },
   alternates: {
