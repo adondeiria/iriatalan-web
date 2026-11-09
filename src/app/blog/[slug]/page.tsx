@@ -206,6 +206,24 @@ export async function generateMetadata({
           ]
         : undefined,
     },
+    // Explícito para X: sin esto, la tarjeta del artículo usaba la imagen
+    // genérica de `src/app/twitter-image.tsx` en vez del hero del artículo.
+    // Al definir `twitter` aquí se reemplaza el del layout completo, por eso
+    // se repiten `card` y `creator`.
+    twitter: {
+      card: "summary_large_image",
+      creator: "@iriatalan",
+      title,
+      description,
+      images: article.heroImage?.asset?.url
+        ? [
+            {
+              url: article.heroImage.asset.url,
+              alt: article.heroImage.alt ?? article.title,
+            },
+          ]
+        : undefined,
+    },
   };
 }
 

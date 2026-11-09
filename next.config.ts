@@ -139,6 +139,11 @@ const nextConfig: NextConfig = {
       // extranjeros, no la portada en español.
       { source: "/english", destination: "/foreigners-in-mexico", permanent: true },
       { source: "/english/", destination: "/foreigners-in-mexico", permanent: true },
+      // Post viejo del WordPress ("¿Sabes qué es la AFORE?"): Bing lo tiene
+      // registrado y hoy da 404. Su intención es la definición, así que va al
+      // término del glosario.
+      { source: "/sabes-que-es-la-afore", destination: "/glosario/afore", permanent: true },
+      { source: "/sabes-que-es-la-afore/", destination: "/glosario/afore", permanent: true },
       // Restructure 2026-05-10: 4 nichos movidos bajo /personas/* para
       // crear topical hub. Preservar SEO con 308 (=301 SEO-equivalente).
       { source: "/mexicanos-en-el-extranjero", destination: "/personas/mexicanos-en-el-extranjero", permanent: true },
