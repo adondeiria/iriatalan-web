@@ -3,9 +3,10 @@
  *
  * Un lead del sitio se materializa así:
  *   1. Persona (POST /api/v2/persons) — el contacto con email y WhatsApp.
- *   2. Trato   (POST /api/v2/deals)   — en el embudo dedicado "Leads RS / Webpage",
- *                                       primera etapa. NUNCA en los embudos de
- *                                       prospectos propios de Iria.
+ *   2. Trato   (POST /api/v2/deals)   — en el embudo configurado, columna
+ *                                       "Lead RS / Webpage" (buscada por nombre,
+ *                                       PIPEDRIVE_STAGE). NUNCA en las columnas
+ *                                       de prospectos propios de Iria.
  *   3. Nota    (POST /v1/notes)       — el detalle del formulario: página de
  *                                       origen, campaña/red social (UTM), mensaje.
  *
@@ -51,6 +52,14 @@ const API_BASE = process.env.PIPEDRIVE_API_BASE ?? "https://api.pipedrive.com";
 
 /** Nombre (o id numérico) del embudo destino. Configurable sin tocar código. */
 const PIPELINE = process.env.PIPEDRIVE_PIPELINE ?? "Leads RS / Webpage";
+
+/**
+ * Nombre (o id numérico) de la columna donde entran los leads automáticos.
+ * Se busca POR NOMBRE y no "la primera columna": el 7-sep-2026 se creó
+ * "POR RETOMAR" en primer lugar y, durante dos meses, todos los leads del
+ * sitio y de WhatsApp cayeron ahí en vez de en "Lead RS / Webpage".
+ */
+const ETAPA_LEADS = process.env.PIPEDRIVE_STAGE?.trim() || "Lead RS / Webpage";
 
 /** Pipedrive tarda ~200-600ms; 8s es techo generoso antes de caer a Zoho. */
 const TIMEOUT_MS = 8000;
@@ -107,9 +116,39 @@ export async function request<T>(
 
 type Target = { pipelineId: number; stageId: number };
 
+type EtapaEmbudo = { id: number; name?: string; order_nr?: number };
+
 /**
- * Resuelve el embudo destino y su primera etapa. Se memoiza solo en éxito: un
- * fallo transitorio no debe dejar la instancia envenenada para siempre.
+ * Elige la columna de los leads: la que se llama `buscada` (o tiene ese id si
+ * es numérica), comparando sin mayúsculas, acentos ni espacios de más. Si ya
+ * no existe, cae a la primera columna por orden con `porNombre: false`, para
+ * que quien llama lo deje en los logs: un lead en la columna equivocada se
+ * mueve a mano; uno que no se registra se pierde. Null si no hay etapas.
+ */
+export function elegirEtapaLeads(
+  etapas: EtapaEmbudo[],
+  buscada: string,
+): { id: number; name: string; porNombre: boolean } | null {
+  // Ordenada por columna: si hubiera dos con el mismo nombre, gana la de más
+  // a la izquierda, no la que la API devuelva primero.
+  const lista = [...etapas].sort((a, b) => (a.order_nr ?? 0) - (b.order_nr ?? 0));
+  const objetivo = buscada.trim();
+  const comparable = (s: string) => normalizar(s).replace(/\s+/g, " ");
+
+  const exacta = /^\d+$/.test(objetivo)
+    ? lista.find((s) => s.id === Number(objetivo))
+    : lista.find((s) => comparable(s.name ?? "") === comparable(objetivo));
+  if (exacta) return { id: exacta.id, name: exacta.name ?? "", porNombre: true };
+
+  const primera = lista[0];
+  if (!primera) return null;
+  return { id: primera.id, name: primera.name ?? "", porNombre: false };
+}
+
+/**
+ * Resuelve el embudo destino y la columna de los leads. Se memoiza solo cuando
+ * la columna se encontró por nombre: un fallo transitorio o una columna
+ * renombrada no deben dejar la instancia envenenada para siempre.
  */
 let targetCache: Target | null = null;
 
@@ -139,20 +178,25 @@ async function resolveTarget(token: string): Promise<Target> {
     pipelineId = match.id;
   }
 
-  const stages = await request<Array<{ id: number; order_nr: number }>>(
+  const stages = await request<EtapaEmbudo[]>(
     "GET",
     `/api/v2/stages?pipeline_id=${pipelineId}&limit=500`,
     token,
   );
-  const primera = [...(stages ?? [])].sort(
-    (a, b) => (a.order_nr ?? 0) - (b.order_nr ?? 0),
-  )[0];
-  if (!primera) {
+  const etapa = elegirEtapaLeads(stages ?? [], ETAPA_LEADS);
+  if (!etapa) {
     throw new Error(`El embudo ${pipelineId} no tiene etapas configuradas.`);
   }
 
-  targetCache = { pipelineId, stageId: primera.id };
-  return targetCache;
+  const target = { pipelineId, stageId: etapa.id };
+  if (etapa.porNombre) {
+    targetCache = target;
+  } else {
+    console.error(
+      `[pipedrive] No existe la columna "${ETAPA_LEADS}" en el embudo ${pipelineId}; el lead va a la primera ("${etapa.name}").`,
+    );
+  }
+  return target;
 }
 
 /** De dónde vino: la red social si hay UTM, si no el sitio. */
