@@ -33,9 +33,14 @@ describe("fraseDiaHabil — dentro del horario de atención", () => {
     assert.equal(fraseDiaHabil(cdmx("2026-08-17T16:00:00Z")), "hoy mismo");
   });
 
-  it("viernes 17:59 todavía es hoy", () => {
-    // Viernes 21-ago-2026, 17:59 CDMX
-    assert.equal(fraseDiaHabil(cdmx("2026-08-21T23:59:00Z")), "hoy mismo");
+  it("viernes 16:59 todavía es hoy", () => {
+    // Viernes 21-ago-2026, 16:59 CDMX
+    assert.equal(fraseDiaHabil(cdmx("2026-08-21T22:59:00Z")), "hoy mismo");
+  });
+
+  it("viernes 17:00 en punto ya cerró (Iria, 15-nov-2026: de 9 a 5)", () => {
+    // Viernes 21-ago-2026, 17:00 CDMX
+    assert.equal(fraseDiaHabil(cdmx("2026-08-21T23:00:00Z")), "el lunes");
   });
 
   it("día hábil de madrugada: hoy mismo, porque abre a las 9", () => {

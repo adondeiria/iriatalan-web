@@ -16,8 +16,8 @@
 
 const ZONA = "America/Mexico_City";
 
-/** Horario de atención de Iria: L-V, 9:00 a 18:00 (CLAUDE.md). */
-const HORA_CIERRE = 18;
+/** Horario de atención de Iria: L-V, 9:00 a 17:00 (Iria, 15-nov-2026; antes 18:00). */
+const HORA_CIERRE = 17;
 
 const NOMBRES = [
   "domingo",
